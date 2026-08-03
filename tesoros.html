@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tesoros de Lavanda · Saquitos artesanales de lavanda y trigo</title>
+<meta name="description" content="Saquitos de lavanda y trigo ecológico, hechos a mano. Termoterapia natural. Envíos a toda España.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FDF8EF;
+    --ivory:#FBF1E4;
+    --gold:#D9A441;
+    --gold-deep:#B9822B;
+    --lav-1:#8E6FB0;
+    --lav-2:#6B4E92;
+    --lav-3:#C9A8E0;
+    --lav-soft:#EFE3F7;
+    --wheat:#E4B96A;
+    --wheat-deep:#C79640;
+    --ink:#3E2F55;
+    --ink-soft:#6B5A85;
+    --white:#FFFFFF;
+    --shadow: 0 20px 45px -20px rgba(107,78,146,0.35);
+    --radius-lg: 28px;
+    --radius-md: 18px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'DM Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Syne', sans-serif;
+    font-weight:700;
+    color:var(--lav-2);
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  .eyebrow{
+    font-family:'Barlow Condensed', sans-serif;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.18em;
+    font-size:0.82rem;
+    color:var(--gold-deep);
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+  section{position:relative;}
+
+  /* decorative floating petals */
+  .petal{
+    position:absolute;
+    pointer-events:none;
+    opacity:0.55;
+    animation:drift 14s ease-in-out infinite;
+  }
+  @keyframes drift{
+    0%,100%{transform:translateY(0) rotate(0deg);}
+    50%{transform:translateY(-22px) rotate(12deg);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .petal, .sway, .float-slow{animation:none !important;}
+    html{scroll-behavior:auto;}
+  }
+
+  /* ===== NAV ===== */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(253,248,239,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(139,111,176,0.15);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px;
+    max-width:1180px; margin:0 auto;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Syne',sans-serif; font-weight:700; font-size:1.25rem;
+    color:var(--lav-2);
+    text-decoration:none;
+  }
+  .brand svg{width:34px;height:34px;flex-shrink:0;}
+  .nav-links{display:flex; align-items:center; gap:26px;}
+  .nav-links a{
+    text-decoration:none; color:var(--ink-soft); font-weight:600; font-size:0.95rem;
+    transition:color .2s;
+  }
+  .nav-links a:hover{color:var(--lav-2);}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:12px 24px;
+    border-radius:100px;
+    font-weight:700;
+    font-size:0.95rem;
+    text-decoration:none;
+    border:2px solid transparent;
+    cursor:pointer;
+    transition:transform .18s ease, box-shadow .18s ease, background .2s;
+  }
+  .btn:focus-visible{outline:3px solid var(--gold); outline-offset:3px;}
+  .btn-primary{
+    background:linear-gradient(135deg, var(--lav-1), var(--lav-2));
+    color:var(--white);
+    box-shadow:0 12px 28px -10px rgba(107,78,146,0.55);
+  }
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 16px 32px -10px rgba(107,78,146,0.65);}
+  .btn-ghost{
+    background:var(--white);
+    color:var(--lav-2);
+    border-color:var(--lav-3);
+  }
+  .btn-ghost:hover{background:var(--lav-soft); transform:translateY(-2px);}
+  .btn-sm{padding:9px 18px; font-size:0.85rem;}
+
+  /* ===== HERO ===== */
+  .hero{
+    padding:64px 0 40px;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.05fr 0.95fr; gap:48px; align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 4.4vw, 3.6rem);
+    line-height:1.05;
+    margin:14px 0 20px;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--gold-deep);
+    position:relative;
+  }
+  .hero p.lead{
+    font-size:1.15rem;
+    color:var(--ink-soft);
+    max-width:520px;
+    margin-bottom:30px;
+    line-height:1.6;
+  }
+  .hero-ctas{display:flex; flex-wrap:wrap; gap:14px; margin-bottom:28px;}
+  .hero-tags{display:flex; flex-wrap:wrap; gap:10px;}
+  .tag{
+    display:inline-flex; align-items:center; gap:6px;
+    background:var(--white);
+    border:1px solid rgba(139,111,176,0.25);
+    padding:7px 14px 7px 10px;
+    border-radius:100px;
+    font-size:0.85rem;
+    font-weight:600;
+    color:var(--lav-2);
+  }
+  .hero-art{
+    position:relative;
+    aspect-ratio:1/1;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .hero-art svg{width:100%; height:100%;}
+  .sway{animation:sway 6s ease-in-out infinite;}
+  @keyframes sway{
+    0%,100%{transform:rotate(-2deg);}
+    50%{transform:rotate(2deg);}
+  }
+  .float-slow{animation:floaty 7s ease-in-out infinite;}
+  @keyframes floaty{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-14px);}
+  }
+
+  /* ===== marquee strip ===== */
+  .strip{
+    background:var(--lav-2);
+    color:var(--lav-soft);
+    padding:12px 0;
+    overflow:hidden;
+    white-space:nowrap;
+  }
+  .strip-track{
+    display:inline-flex;
+    gap:48px;
+    animation:scroll-left 26s linear infinite;
+    font-family:'Barlow Condensed', sans-serif;
+    font-weight:600;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    font-size:0.95rem;
+  }
+  @keyframes scroll-left{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+
+  /* ===== FEATURES ===== */
+  .features{padding:88px 0 40px;}
+  .section-head{text-align:center; max-width:640px; margin:0 auto 52px;}
+  .section-head h2{font-size:clamp(1.9rem,3vw,2.6rem); margin-top:10px;}
+  .section-head p{color:var(--ink-soft); margin-top:14px; font-size:1.05rem; line-height:1.6;}
+  .feature-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:22px;
+  }
+  .feature-card{
+    background:var(--white);
+    border-radius:var(--radius-md);
+    padding:30px 24px;
+    box-shadow:var(--shadow);
+    transition:transform .25s ease;
+  }
+  .feature-card:hover{transform:translateY(-6px);}
+  .feature-card .icon{
+    width:56px; height:56px;
+    border-radius:16px;
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:18px;
+  }
+  .feature-card h3{font-size:1.1rem; margin-bottom:10px;}
+  .feature-card p{color:var(--ink-soft); font-size:0.95rem; line-height:1.55; margin:0;}
+  .icon-1{background:var(--lav-soft);}
+  .icon-2{background:#FBEFD6;}
+  .icon-3{background:#F4E4EF;}
+  .icon-4{background:#E4F1E0;}
+
+  /* ===== HOW IT WORKS / TERMOTERAPIA ===== */
+  .thermo{
+    background:var(--ivory);
+    padding:90px 0;
+    margin:60px 0;
+    position:relative;
+  }
+  .thermo::before, .thermo::after{
+    content:"";
+    position:absolute; left:0; right:0; height:60px;
+    background:var(--cream);
+  }
+  .thermo::before{top:0; clip-path:polygon(0 0,100% 100%,100% 0);}
+  .thermo::after{bottom:0; clip-path:polygon(0 100%,100% 0,100% 100%);}
+  .thermo-grid{
+    display:grid; grid-template-columns:0.9fr 1.1fr; gap:56px; align-items:center;
+  }
+  .steps{list-style:none; margin:30px 0 0; padding:0; display:grid; gap:20px;}
+  .steps li{
+    display:flex; gap:16px; align-items:flex-start;
+    background:var(--white); padding:18px 20px; border-radius:16px;
+    box-shadow:0 10px 24px -16px rgba(107,78,146,0.35);
+  }
+  .steps .num{
+    flex-shrink:0; width:34px; height:34px; border-radius:50%;
+    background:linear-gradient(135deg,var(--gold),var(--wheat-deep));
+    color:#fff; display:flex; align-items:center; justify-content:center;
+    font-family:'Syne',sans-serif; font-weight:700; font-size:0.95rem;
+  }
+  .steps h4{margin:0 0 4px; font-family:'Syne',sans-serif; color:var(--lav-2); font-size:1.02rem;}
+  .steps p{margin:0; color:var(--ink-soft); font-size:0.92rem; line-height:1.5;}
+
+  /* ===== GALLERY / PRODUCTS ===== */
+  .products{padding:40px 0 90px;}
+  .product-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:24px;
+  }
+  .product-card{
+    background:var(--white);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    display:flex; flex-direction:column;
+    transition:transform .25s ease;
+  }
+  .product-card:hover{transform:translateY(-6px);}
+  .product-media{
+    aspect-ratio:4/3;
+    display:flex; align-items:center; justify-content:center;
+    position:relative;
+  }
+  .product-body{padding:22px 22px 26px;}
+  .product-body .eyebrow{display:block; margin-bottom:6px;}
+  .product-body h3{font-size:1.15rem; margin-bottom:8px;}
+  .product-body p{color:var(--ink-soft); font-size:0.92rem; line-height:1.55; margin:0 0 16px;}
+  .product-cta{
+    display:inline-flex; align-items:center; gap:6px;
+    font-weight:700; color:var(--lav-2); text-decoration:none; font-size:0.9rem;
+  }
+  .product-cta svg{width:16px;height:16px;transition:transform .2s;}
+  .product-cta:hover svg{transform:translateX(4px);}
+
+  /* ===== TESTIMONIALS ===== */
+  .testimonials{
+    background:linear-gradient(160deg, var(--lav-2), var(--lav-1));
+    padding:90px 0;
+    color:var(--lav-soft);
+  }
+  .testimonials .section-head h2{color:var(--white);}
+  .testimonials .section-head p{color:var(--lav-soft);}
+  .t-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:22px;}
+  .t-card{
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.18);
+    border-radius:var(--radius-md);
+    padding:26px 24px;
+    backdrop-filter:blur(4px);
+  }
+  .t-card .stars{color:var(--wheat); font-size:1.1rem; margin-bottom:12px; letter-spacing:2px;}
+  .t-card p{font-size:0.95rem; line-height:1.6; margin:0 0 16px; color:#F3EBFA;}
+  .t-name{font-family:'Syne',sans-serif; font-weight:700; font-size:0.92rem; color:var(--white);}
+
+  /* ===== SHIPPING BAND ===== */
+  .shipping{
+    padding:70px 0;
+  }
+  .ship-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:22px;
+    background:var(--white);
+    border-radius:var(--radius-lg);
+    padding:44px;
+    box-shadow:var(--shadow);
+  }
+  .ship-item{display:flex; gap:16px; align-items:flex-start;}
+  .ship-item .icon{width:48px;height:48px;border-radius:14px;background:var(--lav-soft);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .ship-item h4{margin:0 0 6px; font-family:'Syne',sans-serif; color:var(--lav-2); font-size:1rem;}
+  .ship-item p{margin:0; color:var(--ink-soft); font-size:0.9rem; line-height:1.5;}
+
+  /* ===== FINAL CTA ===== */
+  .final-cta{
+    padding:30px 0 100px;
+  }
+  .cta-box{
+    background:radial-gradient(circle at 15% 20%, #F3E6FF 0%, transparent 45%), linear-gradient(135deg, var(--gold), var(--wheat-deep));
+    border-radius:36px;
+    padding:64px 48px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 30px 60px -25px rgba(185,130,43,0.55);
+  }
+  .cta-box h2{color:#3E2A0E; font-size:clamp(1.8rem,3.4vw,2.5rem);}
+  .cta-box p{color:#5C4118; max-width:520px; margin:16px auto 30px; font-size:1.05rem; line-height:1.6;}
+  .cta-box .btn-primary{background:linear-gradient(135deg,var(--lav-1),var(--lav-2));}
+  .cta-box .btn-ghost{background:#fff; border-color:#3E2A0E33;}
+
+  /* ===== FOOTER ===== */
+  footer{
+    background:var(--lav-2);
+    color:var(--lav-soft);
+    padding:56px 0 30px;
+  }
+  .footer-grid{
+    display:flex; justify-content:space-between; align-items:flex-start; gap:40px; flex-wrap:wrap;
+    padding-bottom:32px;
+    border-bottom:1px solid rgba(255,255,255,0.15);
+  }
+  .footer-brand{display:flex; align-items:center; gap:10px; font-family:'Syne',sans-serif; font-weight:700; font-size:1.2rem; color:#fff;}
+  .footer-brand svg{width:30px;height:30px;}
+  footer p.tagline{color:var(--lav-3); font-size:0.92rem; margin:10px 0 0; max-width:340px; line-height:1.6;}
+  .footer-social{display:flex; gap:12px;}
+  .social-btn{
+    width:46px;height:46px;border-radius:50%;
+    background:rgba(255,255,255,0.12);
+    display:flex; align-items:center; justify-content:center;
+    text-decoration:none; color:#fff;
+    transition:background .2s, transform .2s;
+  }
+  .social-btn:hover{background:var(--gold); transform:translateY(-3px);}
+  .footer-bottom{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+    padding-top:22px; font-size:0.85rem; color:var(--lav-3);
+  }
+
+  /* reveal on scroll */
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width:980px){
+    .hero-grid{grid-template-columns:1fr; text-align:center;}
+    .hero p.lead{margin-left:auto; margin-right:auto;}
+    .hero-ctas, .hero-tags{justify-content:center;}
+    .hero-art{max-width:380px; margin:0 auto;}
+    .feature-grid{grid-template-columns:repeat(2,1fr);}
+    .thermo-grid{grid-template-columns:1fr;}
+    .product-grid{grid-template-columns:repeat(2,1fr);}
+    .t-grid{grid-template-columns:1fr;}
+    .ship-grid{grid-template-columns:1fr;}
+    .nav-links{display:none;}
+  }
+  @media (max-width:560px){
+    .feature-grid{grid-template-columns:1fr;}
+    .product-grid{grid-template-columns:1fr;}
+    .cta-box{padding:48px 24px;}
+    .ship-grid{padding:30px 22px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<header>
+  <nav class="nav">
+    <a class="brand" href="#top">
+      <svg viewBox="0 0 48 48" fill="none">
+        <circle cx="24" cy="24" r="23" fill="#EFE3F7"/>
+        <path d="M24 34c0-8 -6-10-6-16 0-3.3 2.7-6 6-6s6 2.7 6 6c0 6-6 8-6 16z" fill="#8E6FB0"/>
+        <ellipse cx="20" cy="17" rx="2.6" ry="4.2" fill="#C9A8E0" transform="rotate(-25 20 17)"/>
+        <ellipse cx="28" cy="17" rx="2.6" ry="4.2" fill="#C9A8E0" transform="rotate(25 28 17)"/>
+      </svg>
+      Tesoros de Lavanda
+    </a>
+    <div class="nav-links">
+      <a href="#producto">Producto</a>
+      <a href="#termoterapia">Termoterapia</a>
+      <a href="#envios">Envíos</a>
+      <a href="#opiniones">Opiniones</a>
+    </div>
+    <a class="btn btn-primary btn-sm" href="https://www.instagram.com/tesoros_de_lavanda/" target="_blank" rel="noopener">
+      Pedir ahora
+    </a>
+  </nav>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">🌾 Hecho a mano en España 🪻</span>
+      <h1>Calorcito y calma <em>en cada saquito</em> de lavanda y trigo</h1>
+      <p class="lead">Saquitos artesanales de lavanda y trigo 100% ecológico, pensados para calentar, relajar y perfumar. Cada uno se cose y se rellena a mano, con mimo, para llevar bienestar natural a tu día a día.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="https://www.instagram.com/tesoros_de_lavanda/" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2c2.7 0 3.05.01 4.12.06 1.07.05 1.79.22 2.43.46.66.26 1.22.6 1.77 1.15.55.55.89 1.11 1.15 1.77.24.64.41 1.36.46 2.43.05 1.07.06 1.42.06 4.12s-.01 3.05-.06 4.12c-.05 1.07-.22 1.79-.46 2.43a4.9 4.9 0 0 1-1.15 1.77 4.9 4.9 0 0 1-1.77 1.15c-.64.24-1.36.41-2.43.46-1.07.05-1.42.06-4.12.06s-3.05-.01-4.12-.06c-1.07-.05-1.79-.22-2.43-.46a4.9 4.9 0 0 1-1.77-1.15 4.9 4.9 0 0 1-1.15-1.77c-.24-.64-.41-1.36-.46-2.43C2.01 15.05 2 14.7 2 12s.01-3.05.06-4.12c.05-1.07.22-1.79.46-2.43.26-.66.6-1.22 1.15-1.77A4.9 4.9 0 0 1 5.44 2.53c.64-.24 1.36-.41 2.43-.46C8.95 2.01 9.3 2 12 2Zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4Zm5.4-8.4a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0Z" fill="currentColor"/></svg>
+          Escríbenos por Instagram
+        </a>
+        <a class="btn btn-ghost" href="#producto">Ver saquitos</a>
+      </div>
+      <div class="hero-tags">
+        <span class="tag">🌿 Trigo ecológico</span>
+        <span class="tag">🪻 Lavanda natural</span>
+        <span class="tag">🍶 Frío / Calor</span>
+        <span class="tag">🚚 Envíos a toda España</span>
+      </div>
+    </div>
+
+    <div class="hero-art">
+      <svg viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="blob" cx="50%" cy="50%" r="60%">
+            <stop offset="0%" stop-color="#F3E6FF"/>
+            <stop offset="100%" stop-color="#EFE3F7" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <circle cx="210" cy="210" r="200" fill="url(#blob)"/>
+        <!-- sachet -->
+        <g class="float-slow">
+          <g transform="translate(115,150)">
+            <path d="M10 40 Q0 40 2 60 L14 190 Q16 210 40 210 L150 210 Q174 210 176 190 L188 60 Q190 40 180 40 Z" fill="#F4EAF9" stroke="#8E6FB0" stroke-width="3"/>
+            <path d="M40 210 Q95 225 150 210" stroke="#8E6FB0" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <path d="M18 60 h164" stroke="#C9A8E0" stroke-width="3"/>
+            <path d="M25 90 h150 M25 115 h150 M25 140 h150 M25 165 h150" stroke="#DCC4EC" stroke-width="2"/>
+            <path d="M10 40 Q95 12 180 40" fill="none" stroke="#8E6FB0" stroke-width="3" stroke-linecap="round"/>
+            <g class="sway" style="transform-origin:95px 40px;">
+              <path d="M95 40 L95 8" stroke="#6B4E92" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="95" cy="4" r="5" fill="#8E6FB0"/>
+            </g>
+          </g>
+        </g>
+        <!-- lavender sprigs -->
+        <g class="sway" style="transform-origin:70px 320px;">
+          <path d="M70 340 C 65 300 75 260 68 220" stroke="#6B8F5C" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <ellipse cx="66" cy="230" rx="5" ry="9" fill="#8E6FB0" transform="rotate(-15 66 230)"/>
+          <ellipse cx="72" cy="240" rx="5" ry="9" fill="#A084C4" transform="rotate(15 72 240)"/>
+          <ellipse cx="65" cy="250" rx="5" ry="9" fill="#8E6FB0" transform="rotate(-10 65 250)"/>
+          <ellipse cx="71" cy="260" rx="5" ry="9" fill="#A084C4" transform="rotate(10 71 260)"/>
+          <ellipse cx="66" cy="270" rx="5" ry="9" fill="#8E6FB0" transform="rotate(-12 66 270)"/>
+        </g>
+        <g class="sway" style="transform-origin:350px 330px; animation-delay:1.2s;">
+          <path d="M350 350 C 345 305 356 270 349 225" stroke="#C79640" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <ellipse cx="349" cy="225" rx="10" ry="16" fill="#E4B96A"/>
+          <ellipse cx="349" cy="245" rx="9" ry="14" fill="#D9A441"/>
+          <ellipse cx="349" cy="264" rx="8" ry="13" fill="#E4B96A"/>
+        </g>
+        <g opacity="0.6">
+          <ellipse cx="120" cy="360" rx="4" ry="7" fill="#C9A8E0" transform="rotate(20 120 360)"/>
+          <ellipse cx="300" cy="370" rx="4" ry="7" fill="#8E6FB0" transform="rotate(-15 300 370)"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STRIP ===== -->
+<div class="strip" aria-hidden="true">
+  <div class="strip-track">
+    <span>🪻 Saquitos 100% artesanales</span>
+    <span>🌾 Trigo ecológico</span>
+    <span>🍶 Termoterapia natural</span>
+    <span>🚚 Envíos a toda España</span>
+    <span>💜 Hecho a mano</span>
+    <span>🪻 Saquitos 100% artesanales</span>
+    <span>🌾 Trigo ecológico</span>
+    <span>🍶 Termoterapia natural</span>
+    <span>🚚 Envíos a toda España</span>
+    <span>💜 Hecho a mano</span>
+  </div>
+</div>
+
+<!-- ===== FEATURES ===== -->
+<section class="features" id="producto">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Por qué elegirnos</span>
+      <h2>Bienestar natural, cosido a mano</h2>
+      <p>Cada saquito nace de la unión de dos materiales nobles: lavanda cultivada con cariño y trigo ecológico. El resultado es un pequeño ritual de calma que se adapta a lo que tu cuerpo necesite.</p>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card reveal">
+        <div class="icon icon-1">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.5-9.3-9C1.2 8.6 3 5 6.5 5c2 0 3.3 1.2 4 2.3.7-1.1 2-2.3 4-2.3 3.5 0 5.3 3.6 3.8 7-2.3 4.5-9.3 9-9.3 9Z" stroke="#6B4E92" stroke-width="1.8"/></svg>
+        </div>
+        <h3>Termoterapia</h3>
+        <p>Úsalo en frío o en calor: alivia molestias, relaja músculos y te acompaña en los días difíciles del mes.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="icon icon-2">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 20c8-1 12-6 16-16-9 1-14 7-16 16Z" stroke="#B9822B" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>Trigo ecológico</h3>
+        <p>Cultivo sin químicos, seleccionado grano a grano por su capacidad de retener y liberar el calor por más tiempo.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="icon icon-3">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M12 3c1 3-1 4-1 6 0 1.7 1.3 3 3 3s3-1.3 3-3c2 1 3 3 3 5a6 6 0 1 1-12 0c0-4 3-6 4-11Z" stroke="#8E4E86" stroke-width="1.8"/></svg>
+        </div>
+        <h3>Aroma de lavanda</h3>
+        <p>Flor de lavanda seca de forma natural que perfuma suavemente y ayuda a conciliar el sueño y bajar el ritmo.</p>
+      </div>
+      <div class="feature-card reveal">
+        <div class="icon icon-4">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 17V7a2 2 0 0 1 2-2h7l5 5v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z" stroke="#4E8A57" stroke-width="1.8" stroke-linejoin="round"/><path d="M13 5v5h5" stroke="#4E8A57" stroke-width="1.8" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>100% hecho a mano</h3>
+        <p>Cosido, rellenado y cerrado uno a uno. Sin producción en cadena: cada saquito lleva su tiempo de dedicación.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TERMOTERAPIA / STEPS ===== -->
+<section class="thermo" id="termoterapia">
+  <div class="wrap thermo-grid">
+    <div class="reveal">
+      <span class="eyebrow">Modo de uso</span>
+      <h2 style="margin-top:10px; font-size:clamp(1.8rem,3vw,2.3rem);">Tan fácil como calentar o enfriar</h2>
+      <p style="color:var(--ink-soft); margin-top:14px; line-height:1.6;">El trigo retiene la temperatura durante mucho más tiempo que otros rellenos, así que un solo saquito te acompaña toda la sesión de relax.</p>
+      <ul class="steps">
+        <li>
+          <span class="num">1</span>
+          <div><h4>Para calor</h4><p>Microondas en intervalos de 30 segundos hasta la temperatura deseada. Nunca superar los 2 minutos.</p></div>
+        </li>
+        <li>
+          <span class="num">2</span>
+          <div><h4>Para frío</h4><p>Congelador un mínimo de 2 horas dentro de una bolsa. Ideal para golpes, hinchazón o días de calor.</p></div>
+        </li>
+        <li>
+          <span class="num">3</span>
+          <div><h4>Para dormir</h4><p>Colócalo cerca de la almohada: el aroma de lavanda ayuda a relajar la mente antes de dormir.</p></div>
+        </li>
+      </ul>
+    </div>
+    <div class="reveal">
+      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="200" cy="200" r="190" fill="#F4EAF9"/>
+        <g transform="translate(80,90)">
+          <path d="M20 50 Q10 50 12 75 L28 220 Q30 245 60 245 L180 245 Q210 245 212 220 L228 75 Q230 50 220 50 Z" fill="#FBF1E4" stroke="#B9822B" stroke-width="3"/>
+          <path d="M60 245 Q120 262 180 245" stroke="#B9822B" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M25 75 h195" stroke="#E4B96A" stroke-width="3"/>
+          <g stroke="#E9CB8F" stroke-width="2">
+            <path d="M30 110 h185"/><path d="M30 140 h185"/><path d="M30 170 h185"/><path d="M30 200 h185"/>
+          </g>
+          <path d="M20 50 Q120 18 220 50" fill="none" stroke="#B9822B" stroke-width="3" stroke-linecap="round"/>
+        </g>
+        <!-- steam -->
+        <g class="float-slow" stroke="#D9A441" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.7">
+          <path d="M150 70 q10 -20 0 -40 q-10 -20 0 -40"/>
+          <path d="M200 60 q10 -20 0 -40 q-10 -20 0 -40"/>
+          <path d="M250 70 q10 -20 0 -40 q-10 -20 0 -40"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRODUCTS ===== -->
+<section class="products">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Nuestros favoritos</span>
+      <h2>Elige el tuyo (o pide uno a medida)</h2>
+      <p>Estos son algunos de los saquitos más pedidos. Escríbenos por Instagram y te contamos tamaños, telas disponibles y precio.</p>
+    </div>
+    <div class="product-grid">
+
+      <div class="product-card reveal">
+        <div class="product-media" style="background:linear-gradient(160deg,#F4EAF9,#EFE3F7);">
+          <svg width="70%" viewBox="0 0 200 160"><rect x="40" y="30" width="120" height="100" rx="18" fill="#fff" stroke="#8E6FB0" stroke-width="3"/><path d="M55 30 q45-18 90 0" fill="none" stroke="#8E6FB0" stroke-width="3"/><path d="M55 60 h90 M55 85 h90 M55 110 h90" stroke="#DCC4EC" stroke-width="2"/><circle cx="100" cy="18" r="6" fill="#8E6FB0"/></svg>
+        </div>
+        <div class="product-body">
+          <span class="eyebrow">Cervical</span>
+          <h3>Saquito cervical alargado</h3>
+          <p>Diseñado para adaptarse al cuello y hombros. Perfecto para tensión tras horas de pantalla.</p>
+          <a class="product-cta" href="https://www.instagram.com/tesoros_de_lavanda/" target="_blank" rel="noopener">Pedir por Instagram <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+      <div class="product-card reveal">
+        <div class="product-media" style="background:linear-gradient(160deg,#FBF1E4,#F3E4C4);">
+          <svg width="60%" viewBox="0 0 200 160"><rect x="60" y="40" width="80" height="80" rx="16" fill="#fff" stroke="#B9822B" stroke-width="3"/><path d="M70 40 q30-14 60 0" fill="none" stroke="#B9822B" stroke-width="3"/><path d="M70 65 h60 M70 85 h60 M70 105 h60" stroke="#E9CB8F" stroke-width="2"/></svg>
+        </div>
+        <div class="product-body">
+          <span class="eyebrow">Bolsillo</span>
+          <h3>Mini saquito de bolsillo</h3>
+          <p>Tamaño compacto para manos, muñecas o llevarlo en el bolso. Tu calorcito a todas partes.</p>
+          <a class="product-cta" href="https://www.instagram.com/tesoros_de_lavanda/" target="_blank" rel="noopener">Pedir por Instagram <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+      <div class="product-card reveal">
+        <div class="product-media" style="background:linear-gradient(160deg,#EAF1E5,#DCEBD4);">
+          <svg width="65%" viewBox="0 0 200 160"><rect x="45" y="25" width="110" height="110" rx="20" fill="#fff" stroke="#6B8F5C" stroke-width="3"/><path d="M58 25 q42-16 84 0" fill="none" stroke="#6B8F5C" stroke-width="3"/><path d="M58 55 h84 M58 80 h84 M58 105 h84" stroke="#CBE0C0" stroke-width="2"/></svg>
+        </div>
+        <div class="product-body">
+          <span class="eyebrow">Espalda</span>
+          <h3>Saquito lumbar grande</h3>
+          <p>Formato extra grande para espalda y zona lumbar. El más pedido para relajarse en el sofá.</p>
+          <a class="product-cta" href="https://www.instagram.com/tesoros_de_lavanda/" target="_blank" rel="noopener">Pedir por Instagram <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIALS ===== -->
+<section class="testimonials" id="opiniones">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" style="color:var(--wheat);">Opiniones</span>
+      <h2>Lo que dicen quienes ya tienen su tesoro</h2>
+      <p>Cientos de saquitos entregados en toda España, uno a uno.</p>
+    </div>
+    <div class="t-grid">
+      <div class="t-card reveal">
+        <div class="stars">★★★★★</div>
+        <p>Lo pido cada vez que tengo tensión en el cuello. El olor a lavanda es buenísimo y aguanta el calor mucho tiempo.</p>
+        <div class="t-name">Marta G.</div>
+      </div>
+      <div class="t-card reveal">
+        <div class="stars">★★★★★</div>
+        <p>Se nota que está hecho a mano, el acabado es precioso. Llegó rapidísimo y muy bien embalado.</p>
+        <div class="t-name">Laura P.</div>
+      </div>
+      <div class="t-card reveal">
+        <div class="stars">★★★★★</div>
+        <p>Se lo regalé a mi madre y ahora quiere uno para cada habitación de la casa. Un acierto total.</p>
+        <div class="t-name">Sergio R.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== SHIPPING ===== -->
+<section class="shipping" id="envios">
+  <div class="wrap">
+    <div class="ship-grid reveal">
+      <div class="ship-item">
+        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z" stroke="#6B4E92" stroke-width="1.8" stroke-linejoin="round"/><circle cx="7" cy="18" r="1.6" stroke="#6B4E92" stroke-width="1.8"/><circle cx="17" cy="18" r="1.6" stroke="#6B4E92" stroke-width="1.8"/></svg></div>
+        <div><h4>Envíos a toda España</h4><p>Preparamos cada pedido con cuidado y lo enviamos a cualquier punto del país.</p></div>
+      </div>
+      <div class="ship-item">
+        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.5-9.3-9C1.2 8.6 3 5 6.5 5c2 0 3.3 1.2 4 2.3.7-1.1 2-2.3 4-2.3 3.5 0 5.3 3.6 3.8 7-2.3 4.5-9.3 9-9.3 9Z" stroke="#6B4E92" stroke-width="1.8"/></svg></div>
+        <div><h4>Hecho con mimo</h4><p>Producción artesanal y en pequeños lotes, cuidando cada detalle de costura y relleno.</p></div>
+      </div>
+      <div class="ship-item">
+        <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="#6B4E92" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div><h4>Pedido personalizado</h4><p>Cuéntanos la tela, el tamaño o la ocasión y te ayudamos a elegir el saquito perfecto.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FINAL CTA ===== -->
+<section class="final-cta">
+  <div class="wrap">
+    <div class="cta-box reveal">
+      <h2>Tu saquito de lavanda te está esperando</h2>
+      <p>Escríbenos por Instagram, cuéntanos qué necesitas y te ayudamos a elegir el tuyo. Respuesta rápida y envíos a toda España.</p>
+      <div class="hero-ctas" style="justify-content:center;">
+        <a class="btn btn-primary" href="https://www.instagram.com/tesoros_de_lavanda/" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2c2.7 0 3.05.01 4.12.06 1.07.05 1.79.22 2.43.46.66.26 1.22.6 1.77 1.15.55.55.89 1.11 1.15 1.77.24.64.41 1.36.46 2.43.05 1.07.06 1.42.06 4.12s-.01 3.05-.06 4.12c-.05 1.07-.22 1.79-.46 2.43a4.9 4.9 0 0 1-1.15 1.77 4.9 4.9 0 0 1-1.77 1.15c-.64.24-1.36.41-2.43.46-1.07.05-1.42.06-4.12.06s-3.05-.01-4.12-.06c-1.07-.05-1.79-.22-2.43-.46a4.9 4.9 0 0 1-1.77-1.15 4.9 4.9 0 0 1-1.15-1.77c-.24-.64-.41-1.36-.46-2.43C2.01 15.05 2 14.7 2 12s.01-3.05.06-4.12c.05-1.07.22-1.79.46-2.43.26-.66.6-1.22 1.15-1.77A4.9 4.9 0 0 1 5.44 2.53c.64-.24 1.36-.41 2.43-.46C8.95 2.01 9.3 2 12 2Zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4Zm5.4-8.4a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0Z" fill="currentColor"/></svg>
+          @tesoros_de_lavanda
+        </a>
+        <a class="btn btn-ghost" href="#producto">Ver saquitos</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="23" fill="rgba(255,255,255,0.12)"/><path d="M24 34c0-8 -6-10-6-16 0-3.3 2.7-6 6-6s6 2.7 6 6c0 6-6 8-6 16z" fill="#C9A8E0"/></svg>
+          Tesoros de Lavanda
+        </div>
+        <p class="tagline">Saquitos de lavanda y trigo ecológico, hechos a mano. Termoterapia natural con envíos a toda España.</p>
+      </div>
+      <div class="footer-social">
+        <a class="social-btn" href="https://www.instagram.com/tesoros_de_lavanda/" target="_blank" rel="noopener" aria-label="Instagram de Tesoros de Lavanda">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2c2.7 0 3.05.01 4.12.06 1.07.05 1.79.22 2.43.46.66.26 1.22.6 1.77 1.15.55.55.89 1.11 1.15 1.77.24.64.41 1.36.46 2.43.05 1.07.06 1.42.06 4.12s-.01 3.05-.06 4.12c-.05 1.07-.22 1.79-.46 2.43a4.9 4.9 0 0 1-1.15 1.77 4.9 4.9 0 0 1-1.77 1.15c-.64.24-1.36.41-2.43.46-1.07.05-1.42.06-4.12.06s-3.05-.01-4.12-.06c-1.07-.05-1.79-.22-2.43-.46a4.9 4.9 0 0 1-1.77-1.15 4.9 4.9 0 0 1-1.15-1.77c-.24-.64-.41-1.36-.46-2.43C2.01 15.05 2 14.7 2 12s.01-3.05.06-4.12c.05-1.07.22-1.79.46-2.43.26-.66.6-1.22 1.15-1.77A4.9 4.9 0 0 1 5.44 2.53c.64-.24 1.36-.41 2.43-.46C8.95 2.01 9.3 2 12 2Zm0 5a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0 8.2a3.2 3.2 0 1 1 0-6.4 3.2 3.2 0 0 1 0 6.4Zm5.4-8.4a1.2 1.2 0 1 1-2.4 0 1.2 1.2 0 0 1 2.4 0Z" fill="currentColor"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Tesoros de Lavanda. Todos los derechos reservados.</span>
+      <span>Sitio creado por EasyPageX</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // reveal on scroll
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  },{threshold:0.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
