@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Walking el Mundo · Creadora digital en Galicia</title>
+<meta name="description" content="Walking el Mundo — contenido de viajes y vida lenta desde Galicia. Colaboremos.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Work+Sans:wght@400;500;600;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF2E4;
+    --cream-2:#F4E8D4;
+    --teal:#1E8A82;
+    --teal-dark:#0F5C58;
+    --coral:#E8734A;
+    --forest:#264D3B;
+    --gold:#E9B94A;
+    --ink:#2B2118;
+    --paper:#FFFDF8;
+    --shadow: 0 12px 30px rgba(43,33,24,0.12);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background: var(--cream);
+    color: var(--ink);
+    font-family:'Work Sans', sans-serif;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3, .display{
+    font-family:'Fraunces', serif;
+    letter-spacing:-0.01em;
+    color: var(--forest);
+  }
+  .script{
+    font-family:'Caveat', cursive;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{
+    max-width: 1080px;
+    margin:0 auto;
+    padding: 0 28px;
+  }
+
+  /* ===== texture backdrop ===== */
+  .grain{
+    position:fixed; inset:0; pointer-events:none; z-index:1; opacity:0.05; mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ===== walking trail (signature element) ===== */
+  #trailSvg{
+    position:fixed;
+    top:0; left:50%;
+    transform:translateX(-50%);
+    width:100%;
+    max-width:1080px;
+    height:100vh;
+    pointer-events:none;
+    z-index:0;
+  }
+  #trailPath{
+    fill:none;
+    stroke: var(--teal);
+    stroke-width:3;
+    stroke-dasharray: 14 14;
+    opacity:0.35;
+  }
+  #trailFill{
+    fill:none;
+    stroke: var(--coral);
+    stroke-width:3;
+    stroke-linecap:round;
+    stroke-dasharray: 6000;
+    stroke-dashoffset: 6000;
+  }
+  .footprint{
+    opacity:0;
+    transition: opacity .5s ease;
+  }
+  .footprint.on{opacity:1;}
+
+  /* ===== nav ===== */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 18px 28px;
+    background: linear-gradient(to bottom, rgba(251,242,228,0.96), rgba(251,242,228,0));
+  }
+  .logo{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:1.15rem;
+    color: var(--forest);
+    display:flex; align-items:center; gap:8px;
+  }
+  .logo span.globe{font-size:1.2rem;}
+  nav a.ig-mini{
+    display:flex; align-items:center; gap:8px;
+    background: var(--forest);
+    color: var(--paper);
+    padding:9px 16px;
+    border-radius: 40px;
+    font-size:0.85rem;
+    font-weight:600;
+    transition: transform .25s ease, background .25s ease;
+  }
+  nav a.ig-mini:hover{ background: var(--coral); transform: translateY(-2px);}
+
+  section{
+    position:relative;
+    z-index:2;
+  }
+
+  /* ===== hero ===== */
+  .hero{
+    min-height: 100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding: 140px 28px 80px;
+    position:relative;
+  }
+  .badge-loc{
+    display:inline-flex; align-items:center; gap:8px;
+    background: var(--paper);
+    border:1.5px solid var(--gold);
+    color: var(--teal-dark);
+    font-weight:600;
+    font-size:0.8rem;
+    letter-spacing:0.14em;
+    padding:8px 18px;
+    border-radius:40px;
+    margin-bottom: 26px;
+    box-shadow: var(--shadow);
+  }
+  .hero h1{
+    font-size: clamp(2.6rem, 8vw, 5.4rem);
+    line-height: 0.98;
+    font-weight:700;
+    text-transform:uppercase;
+    max-width: 900px;
+  }
+  .hero h1 .accent{
+    color: var(--coral);
+    font-style:italic;
+    text-transform:none;
+    font-weight:500;
+  }
+  .hero .sub{
+    margin-top: 26px;
+    max-width: 560px;
+    font-size:1.15rem;
+    color: var(--ink);
+    opacity:0.85;
+  }
+  .hero .sub .script{
+    font-size:1.5rem;
+    color: var(--teal-dark);
+    display:block;
+    margin-top:6px;
+  }
+  .hero-ctas{
+    margin-top: 42px;
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-weight:600;
+    font-size:1rem;
+    cursor:pointer;
+    border:none;
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .btn-primary{
+    background: var(--coral);
+    color: var(--paper);
+    box-shadow: 0 10px 24px rgba(232,115,74,0.4);
+  }
+  .btn-primary:hover{ transform: translateY(-3px); box-shadow: 0 14px 28px rgba(232,115,74,0.5);}
+  .btn-outline{
+    background: transparent;
+    border: 2px solid var(--forest);
+    color: var(--forest);
+  }
+  .btn-outline:hover{ background: var(--forest); color: var(--paper); transform: translateY(-3px);}
+
+  .stamp{
+    position:absolute;
+    top: 120px; right: 6%;
+    width:120px; height:120px;
+    border:2.5px dashed var(--teal);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    transform: rotate(12deg);
+    opacity:0.9;
+  }
+  .stamp span{
+    font-family:'Caveat', cursive;
+    font-size:1.05rem;
+    color: var(--teal-dark);
+    text-align:center;
+    line-height:1.15;
+    font-weight:700;
+  }
+
+  /* ===== reveal ===== */
+  .reveal{
+    opacity:0;
+    transform: translateY(28px);
+    transition: opacity .8s ease, transform .8s ease;
+  }
+  .reveal.show{ opacity:1; transform:none; }
+
+  /* ===== section shell ===== */
+  .section{
+    padding: 110px 0;
+  }
+  .eyebrow{
+    font-family:'Caveat', cursive;
+    color: var(--coral);
+    font-size:1.5rem;
+    margin-bottom: 6px;
+  }
+  .section h2{
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    max-width:700px;
+  }
+
+  /* ===== philosophy ===== */
+  .philosophy{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items:center;
+  }
+  .philosophy .quote-card{
+    background: var(--paper);
+    border-radius: 24px;
+    padding: 46px 38px;
+    box-shadow: var(--shadow);
+    position:relative;
+  }
+  .philosophy .quote-card::before{
+    content:"❝";
+    font-family:'Fraunces', serif;
+    font-size:4rem;
+    color: var(--gold);
+    position:absolute;
+    top:-10px; left:24px;
+  }
+  .philosophy .quote-card p{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.5rem;
+    color: var(--forest);
+    line-height:1.4;
+    margin-top: 20px;
+  }
+  .philosophy .text p{
+    margin-bottom: 18px;
+    line-height:1.7;
+    font-size:1.05rem;
+  }
+
+  /* ===== services ===== */
+  .services-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 22px;
+    margin-top: 50px;
+  }
+  .service-card{
+    background: var(--paper);
+    border-radius:20px;
+    padding: 30px 26px;
+    box-shadow: var(--shadow);
+    border-top: 5px solid var(--teal);
+    transition: transform .3s ease;
+  }
+  .service-card:nth-child(2){ border-top-color: var(--coral); }
+  .service-card:nth-child(3){ border-top-color: var(--gold); }
+  .service-card:nth-child(4){ border-top-color: var(--forest); }
+  .service-card:hover{ transform: translateY(-6px); }
+  .service-card .ico{ font-size:2rem; margin-bottom:14px; display:block; }
+  .service-card h3{ font-size:1.15rem; margin-bottom:10px; }
+  .service-card p{ font-size:0.95rem; line-height:1.55; opacity:0.85; }
+
+  /* ===== why ===== */
+  .why{
+    background: var(--forest);
+    color: var(--cream-2);
+    border-radius: 32px;
+    padding: 70px 50px;
+    margin: 0 28px;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:50px;
+  }
+  .why h2{ color: var(--paper); }
+  .why-list{ list-style:none; display:flex; flex-direction:column; gap:22px; }
+  .why-list li{ display:flex; gap:16px; align-items:flex-start; font-size:1.02rem; line-height:1.5; }
+  .why-list .mark{
+    flex-shrink:0;
+    width:34px; height:34px;
+    border-radius:50%;
+    background: var(--coral);
+    color:white;
+    display:flex; align-items:center; justify-content:center;
+    font-weight:700;
+    font-family:'Fraunces', serif;
+  }
+
+  /* ===== paradas (process) ===== */
+  .paradas{
+    display:flex;
+    flex-direction:column;
+    gap: 46px;
+    margin-top: 60px;
+  }
+  .parada{
+    display:flex;
+    gap: 26px;
+    align-items:flex-start;
+  }
+  .parada .pin{
+    flex-shrink:0;
+    width:56px; height:56px;
+    border-radius:50%;
+    background: var(--paper);
+    border:3px solid var(--coral);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    color: var(--coral);
+    font-size:1.3rem;
+    box-shadow: var(--shadow);
+  }
+  .parada h3{ font-size:1.25rem; margin-bottom:8px; }
+  .parada p{ opacity:0.8; line-height:1.6; max-width: 520px; }
+
+  /* ===== gallery / postcards ===== */
+  .gallery{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 26px;
+    margin-top: 50px;
+  }
+  .postcard{
+    background: var(--paper);
+    border-radius: 14px;
+    padding: 14px 14px 20px;
+    box-shadow: var(--shadow);
+    transform: rotate(var(--r, -2deg));
+    transition: transform .3s ease;
+  }
+  .postcard:nth-child(2){ --r: 2deg; }
+  .postcard:nth-child(3){ --r: -1deg; }
+  .postcard:nth-child(4){ --r: 1.5deg; }
+  .postcard:hover{ transform: rotate(0deg) translateY(-6px); }
+  .postcard .scene{
+    height: 150px;
+    border-radius: 8px;
+    margin-bottom: 14px;
+    position:relative;
+    overflow:hidden;
+  }
+  .postcard .scene svg{ width:100%; height:100%; }
+  .postcard .cap{
+    font-family:'Caveat', cursive;
+    font-size:1.25rem;
+    color: var(--forest);
+    font-weight:700;
+  }
+  .postcard .sub-cap{
+    font-size:0.78rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    opacity:0.55;
+    margin-top:2px;
+  }
+
+  /* ===== contact ===== */
+  .contact{
+    text-align:center;
+    max-width: 640px;
+    margin: 0 auto;
+  }
+  .contact-card{
+    background: var(--paper);
+    border-radius: 28px;
+    padding: 56px 40px;
+    box-shadow: var(--shadow);
+    position:relative;
+    overflow:hidden;
+  }
+  .contact-card::after{
+    content:"";
+    position:absolute;
+    width:220px; height:220px;
+    background: var(--gold);
+    opacity:0.15;
+    border-radius:50%;
+    top:-100px; right:-100px;
+  }
+  .contact-links{
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+    margin-top: 34px;
+    align-items:center;
+  }
+  .contact-link{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    background: var(--cream);
+    padding: 16px 26px;
+    border-radius: 50px;
+    font-weight:600;
+    width:100%;
+    max-width: 380px;
+    justify-content:center;
+    transition: background .25s ease, transform .25s ease;
+  }
+  .contact-link:hover{ background: var(--gold); transform: translateY(-2px); }
+  .contact-link.ig:hover{ background: var(--coral); color:white; }
+
+  footer{
+    text-align:center;
+    padding: 50px 28px 40px;
+    font-size:0.85rem;
+    opacity:0.6;
+  }
+  footer .built{
+    display:inline-block;
+    margin-top:12px;
+    padding:8px 18px;
+    border-radius:40px;
+    background: var(--forest);
+    color: var(--paper);
+    font-weight:600;
+    font-size:0.78rem;
+    letter-spacing:0.04em;
+  }
+
+  @media (max-width: 800px){
+    .philosophy{ grid-template-columns: 1fr; }
+    .why{ grid-template-columns:1fr; margin:0 16px; padding: 46px 26px; }
+    .stamp{ display:none; }
+    #trailSvg{ display:none; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; animation:none !important; }
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+<div class="grain"></div>
+
+<svg id="trailSvg" viewBox="0 0 1080 6000" preserveAspectRatio="none">
+  <path id="trailPath" d="M540,0 C 540,400 480,700 540,1000 C 600,1300 480,1600 540,1900 C 600,2200 480,2500 540,2800 C 600,3100 480,3400 540,3700 C 600,4000 480,4300 540,4600 C 600,4900 480,5200 540,5500 L540,6000"></path>
+  <path id="trailFill" d="M540,0 C 540,400 480,700 540,1000 C 600,1300 480,1600 540,1900 C 600,2200 480,2500 540,2800 C 600,3100 480,3400 540,3700 C 600,4000 480,4300 540,4600 C 600,4900 480,5200 540,5500 L540,6000"></path>
+</svg>
+
+<header>
+  <div class="logo"><span class="globe">🌍</span> WALKING EL MUNDO</div>
+  <nav>
+    <a class="ig-mini" href="https://www.instagram.com/walking.el.mundo/" target="_blank" rel="noopener">
+      📸 @walking.el.mundo
+    </a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="badge-loc">🔹 GALICIA, ESPAÑA</div>
+  <h1>WALKING <span class="accent">el mundo</span></h1>
+  <p class="sub">
+    Creadora digital de viajes y vida lenta.
+    <span class="script">"Lo interesante empieza cuando te quedas..."</span>
+  </p>
+  <div class="hero-ctas">
+    <a href="#contacto" class="btn btn-primary">✉️ Colaboremos</a>
+    <a href="https://www.instagram.com/walking.el.mundo/" target="_blank" rel="noopener" class="btn btn-outline">Ver Instagram</a>
+  </div>
+  <div class="stamp"><span>GALICIA<br>🐚 correo aéreo</span></div>
+</section>
+
+<section class="section philosophy wrap reveal">
+  <div class="text">
+    <p class="eyebrow">Sobre mí</p>
+    <h2>No enseño destinos. Enseño a quedarte en ellos.</h2>
+    <p>Cada semana comparto Galicia y el mundo desde el mismo sitio de siempre: parado, mirando de cerca, sin prisa por llegar al siguiente punto del mapa. Las rías, los pueblos pequeños, las conversaciones que no salen en las guías.</p>
+    <p>Mi comunidad no busca la foto rápida — busca el motivo real para ir. Y por eso confía en lo que recomiendo.</p>
+  </div>
+  <div class="quote-card">
+    <p>"Lo interesante empieza cuando te quedas."</p>
+  </div>
+</section>
+
+<section class="section wrap reveal">
+  <p class="eyebrow">Qué ofrezco</p>
+  <h2>Contenido que hace que la gente quiera ir.</h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="ico">🎬</span>
+      <h3>Reels y vídeo</h3>
+      <p>Piezas cortas pensadas para retener la mirada y contar tu lugar o tu marca de forma honesta.</p>
+    </div>
+    <div class="service-card">
+      <span class="ico">📷</span>
+      <h3>Fotografía de destino</h3>
+      <p>Imágenes con luz e identidad propia, listas para redes, web o campañas.</p>
+    </div>
+    <div class="service-card">
+      <span class="ico">🗺️</span>
+      <h3>Guías y recomendaciones</h3>
+      <p>Rutas y paradas reales, probadas por mí, integradas de forma natural en el contenido.</p>
+    </div>
+    <div class="service-card">
+      <span class="ico">🤝</span>
+      <h3>Embajadora de marca</h3>
+      <p>Colaboraciones continuadas con hoteles, turismo rural, restaurantes y marcas de viaje.</p>
+    </div>
+  </div>
+</section>
+
+<div class="why reveal">
+  <div>
+    <p class="eyebrow" style="color:var(--gold);">Por qué colaborar conmigo</p>
+    <h2>Una audiencia que viaja para quedarse, no para tachar una lista.</h2>
+  </div>
+  <ul class="why-list">
+    <li><span class="mark">1</span> Especialización real en Galicia y viaje lento, no contenido genérico de viajes.</li>
+    <li><span class="mark">2</span> Historias con voz propia — la audiencia confía porque se nota que lo he vivido.</li>
+    <li><span class="mark">3</span> Contenido pensado para durar: sigue funcionando meses después de publicarse.</li>
+    <li><span class="mark">4</span> Comunicación directa y sin fricciones, de la propuesta a la entrega.</li>
+  </ul>
+</div>
+
+<section class="section wrap reveal">
+  <p class="eyebrow">Cómo trabajamos</p>
+  <h2>El camino, paso a paso</h2>
+  <div class="paradas">
+    <div class="parada">
+      <div class="pin">1</div>
+      <div><h3>Me escribes</h3><p>Cuéntame tu marca, tu destino o tu idea por correo o Instagram. Sin formularios eternos.</p></div>
+    </div>
+    <div class="parada">
+      <div class="pin">2</div>
+      <div><h3>Diseñamos la colaboración</h3><p>Definimos formato, tono y calendario según lo que necesites: reel, reportaje, estancia, campaña.</p></div>
+    </div>
+    <div class="parada">
+      <div class="pin">3</div>
+      <div><h3>Creo el contenido</h3><p>Grabo y fotografío in situ, con el mismo cuidado que le pongo a mi propio feed.</p></div>
+    </div>
+    <div class="parada">
+      <div class="pin">4</div>
+      <div><h3>Publicamos y medimos</h3><p>Compartimos resultados y dejamos la puerta abierta para seguir caminando juntos.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section wrap reveal">
+  <p class="eyebrow">Postales</p>
+  <h2>Un vistazo al camino</h2>
+  <div class="gallery">
+    <div class="postcard">
+      <div class="scene">
+        <svg viewBox="0 0 200 150"><rect width="200" height="150" fill="#1E8A82"/><path d="M0,100 Q50,80 100,100 T200,100 V150 H0 Z" fill="#0F5C58"/><circle cx="160" cy="35" r="18" fill="#E9B94A"/></svg>
+      </div>
+      <div class="cap">Rías Baixas</div>
+      <div class="sub-cap">costa atlántica</div>
+    </div>
+    <div class="postcard">
+      <div class="scene">
+        <svg viewBox="0 0 200 150"><rect width="200" height="150" fill="#E8734A"/><path d="M0,110 L40,60 L80,110 Z" fill="#264D3B"/><path d="M60,120 L110,50 L160,120 Z" fill="#1E8A82"/></svg>
+      </div>
+      <div class="cap">Sendas verdes</div>
+      <div class="sub-cap">interior de Galicia</div>
+    </div>
+    <div class="postcard">
+      <div class="scene">
+        <svg viewBox="0 0 200 150"><rect width="200" height="150" fill="#E9B94A"/><rect x="20" y="70" width="30" height="60" fill="#264D3B"/><rect x="60" y="50" width="30" height="80" fill="#1E8A82"/><rect x="100" y="85" width="30" height="45" fill="#E8734A"/></svg>
+      </div>
+      <div class="cap">Pueblos con historia</div>
+      <div class="sub-cap">arquitectura local</div>
+    </div>
+    <div class="postcard">
+      <div class="scene">
+        <svg viewBox="0 0 200 150"><rect width="200" height="150" fill="#264D3B"/><circle cx="100" cy="75" r="45" fill="#1E8A82"/><circle cx="100" cy="75" r="25" fill="#E9B94A"/></svg>
+      </div>
+      <div class="cap">Atardeceres</div>
+      <div class="sub-cap">luz atlántica</div>
+    </div>
+  </div>
+</section>
+
+<section class="section wrap reveal" id="contacto">
+  <div class="contact">
+    <div class="contact-card">
+      <p class="eyebrow">Hablemos</p>
+      <h2>¿Colaboramos?</h2>
+      <p style="margin-top:14px; opacity:0.8;">Cuéntame tu proyecto, destino o marca — respondo personalmente a cada mensaje.</p>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:walkingelmundo@gmail.com">✉️ walkingelmundo@gmail.com</a>
+        <a class="contact-link ig" href="https://www.instagram.com/walking.el.mundo/" target="_blank" rel="noopener">📸 @walking.el.mundo</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>🌍 Walking el Mundo · Galicia © 2026</div>
+  <a class="built" href="https://easypagex.github.io" target="_blank" rel="noopener">Built by EasyPageX</a>
+</footer>
+
+<script>
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('show'); }
+    });
+  }, {threshold:0.15});
+  revealEls.forEach(el=>io.observe(el));
+
+  // trail draw on scroll
+  const trailFill = document.getElementById('trailFill');
+  const trailLength = trailFill.getTotalLength();
+  trailFill.style.strokeDasharray = trailLength;
+  trailFill.style.strokeDashoffset = trailLength;
+
+  function updateTrail(){
+    const scrollTop = window.scrollY;
+    const docHeight = document.body.scrollHeight - window.innerHeight;
+    const progress = Math.min(scrollTop / docHeight, 1);
+    trailFill.style.strokeDashoffset = trailLength - (trailLength * progress);
+  }
+  window.addEventListener('scroll', updateTrail);
+  updateTrail();
+</script>
+
+</body>
+</html>
