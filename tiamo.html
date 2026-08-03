@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pizzería Ti Amo · Embajadores, Madrid</title>
+<meta name="description" content="Pizzería Ti Amo — pizza napolitana de horno de leña en Embajadores 102, Madrid. Reservas, delivery por Glovo y carta completa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Caveat:wght@600;700&family=Work+Sans:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF1DE;
+    --cream-dim:#F3E6C9;
+    --tomato:#D6402C;
+    --tomato-deep:#A82B1B;
+    --basil:#2F5233;
+    --charcoal:#241811;
+    --gold:#E7A33E;
+    --paper:#FFFDF7;
+    --shadow: 0 12px 30px rgba(36,24,17,0.18);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--charcoal);
+    font-family:'Work Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; scroll-behavior:auto !important;}
+  }
+  a{color:inherit;}
+  h1,h2,h3{font-family:'Fraunces', serif; margin:0; line-height:1.05;}
+  .script{font-family:'Caveat', cursive;}
+  .container{max-width:1140px; margin:0 auto; padding:0 28px;}
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    text-transform:uppercase;
+    letter-spacing:0.18em;
+    font-size:0.72rem;
+    color:var(--tomato-deep);
+    font-weight:700;
+  }
+
+  /* ---------- Background texture: sfondo tela/impasto ---------- */
+  .crumb-bg{
+    background-image:
+      radial-gradient(rgba(36,24,17,0.045) 1.4px, transparent 1.4px),
+      radial-gradient(rgba(36,24,17,0.035) 1px, transparent 1px);
+    background-size: 26px 26px, 14px 14px;
+    background-position: 0 0, 8px 8px;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(251,241,222,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:2px solid var(--charcoal);
+  }
+  .nav-wrap{display:flex; align-items:center; justify-content:space-between; padding:14px 28px; max-width:1140px; margin:0 auto;}
+  .logo{display:flex; align-items:baseline; gap:8px;}
+  .logo-mark{font-family:'Fraunces', serif; font-style:italic; font-weight:600; font-size:1.5rem;}
+  .logo-mark span{color:var(--tomato);}
+  nav ul{list-style:none; display:flex; gap:26px; margin:0; padding:0;}
+  nav a{
+    font-family:'Work Sans', sans-serif; font-weight:500; font-size:0.92rem;
+    text-decoration:none; position:relative; padding:4px 0;
+  }
+  nav a::after{
+    content:""; position:absolute; left:0; bottom:-2px; width:0; height:2px; background:var(--tomato);
+    transition:width .25s ease;
+  }
+  nav a:hover::after{width:100%;}
+  .nav-ig{
+    display:flex; align-items:center; gap:6px;
+    background:var(--charcoal); color:var(--cream);
+    padding:8px 14px; border-radius:999px; text-decoration:none; font-size:0.85rem; font-weight:600;
+    transition:transform .2s ease, background .2s ease;
+  }
+  .nav-ig:hover{background:var(--tomato); transform:translateY(-2px);}
+  .menu-toggle{display:none; background:none; border:none; font-size:1.6rem; cursor:pointer; color:var(--charcoal);}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    padding:76px 28px 110px;
+    background:linear-gradient(180deg, var(--cream) 0%, var(--cream-dim) 100%);
+    overflow:hidden;
+  }
+  .hero-grid{
+    max-width:1140px; margin:0 auto;
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px; align-items:center;
+  }
+  .hero h1{font-size:clamp(2.8rem, 6vw, 5rem); font-style:italic; font-weight:600;}
+  .hero h1 em{color:var(--tomato); font-style:italic;}
+  .hero-tagline{
+    font-family:'Caveat', cursive; font-size:1.9rem; color:var(--basil); margin-top:6px; display:block;
+  }
+  .hero p.lead{
+    font-size:1.08rem; max-width:46ch; margin:22px 0 30px; color:#3a2c22; line-height:1.6;
+  }
+  .hero-ctas{display:flex; flex-wrap:wrap; gap:14px;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:14px 24px; border-radius:10px; text-decoration:none;
+    font-weight:600; font-size:0.95rem; border:2px solid var(--charcoal);
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .btn:hover{transform:translateY(-3px); box-shadow:var(--shadow);}
+  .btn-primary{background:var(--tomato); color:var(--paper); border-color:var(--tomato-deep);}
+  .btn-ghost{background:transparent; color:var(--charcoal);}
+  .btn-dark{background:var(--charcoal); color:var(--cream);}
+
+  /* Pizza illustration */
+  .oven-scene{position:relative; display:flex; justify-content:center; align-items:center; min-height:380px;}
+  .pizza-wrap{position:relative; width:340px; height:340px; animation:float 6s ease-in-out infinite;}
+  @keyframes float{0%,100%{transform:translateY(0) rotate(0deg);} 50%{transform:translateY(-14px) rotate(2deg);}}
+  .steam{
+    position:absolute; width:10px; height:60px; background:rgba(255,255,255,0.6);
+    border-radius:50%; filter:blur(6px); opacity:0;
+  }
+  .s1{left:38%; top:-40px; animation: steamRise 3.2s ease-in infinite;}
+  .s2{left:52%; top:-30px; animation: steamRise 3.6s ease-in infinite 0.9s;}
+  .s3{left:64%; top:-45px; animation: steamRise 3.4s ease-in infinite 1.8s;}
+  @keyframes steamRise{
+    0%{opacity:0; transform:translateY(0) scaleX(1);}
+    20%{opacity:0.55;}
+    100%{opacity:0; transform:translateY(-90px) scaleX(1.6);}
+  }
+  .flame-glow{
+    position:absolute; bottom:-30px; left:50%; transform:translateX(-50%);
+    width:240px; height:80px; border-radius:50%;
+    background:radial-gradient(ellipse at center, rgba(231,163,62,0.55), rgba(214,64,44,0) 70%);
+    animation:flicker 2.4s ease-in-out infinite;
+    filter:blur(4px);
+  }
+  @keyframes flicker{
+    0%,100%{opacity:0.65; transform:translateX(-50%) scale(1);}
+    50%{opacity:0.95; transform:translateX(-50%) scale(1.08);}
+  }
+
+  /* ---------- Section framing ---------- */
+  section{padding:88px 0;}
+  .section-head{max-width:640px; margin-bottom:48px;}
+  .section-head h2{font-size:clamp(2rem, 4vw, 2.9rem); font-style:italic; font-weight:600; margin-top:8px;}
+
+  /* ---------- Sobre nosotros ---------- */
+  .about{background:var(--paper); border-top:2px solid var(--charcoal); border-bottom:2px solid var(--charcoal);}
+  .about-grid{display:grid; grid-template-columns: 1fr 1fr; gap:56px; align-items:center;}
+  .about p{line-height:1.75; font-size:1.02rem; color:#3a2c22; margin-bottom:16px;}
+  .stat-row{display:flex; gap:36px; margin-top:28px; flex-wrap:wrap;}
+  .stat b{display:block; font-family:'Fraunces', serif; font-size:2rem; color:var(--tomato); font-style:italic;}
+  .stat span{font-family:'Space Mono', monospace; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--charcoal);}
+
+  .slice-diagram{position:relative; width:100%; max-width:380px; margin:0 auto;}
+
+  /* ---------- Menu (ticket cards) ---------- */
+  .menu-section{position:relative;}
+  .ticket-row{
+    display:grid; grid-template-columns:repeat(2, 1fr); gap:26px;
+  }
+  .ticket{
+    background:var(--paper);
+    border:2px dashed var(--charcoal);
+    border-radius:4px;
+    padding:26px 26px 22px;
+    position:relative;
+    box-shadow:6px 6px 0 rgba(36,24,17,0.08);
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .ticket:hover{transform:translateY(-6px); box-shadow:10px 12px 0 rgba(36,24,17,0.1);}
+  .ticket-head{display:flex; justify-content:space-between; align-items:baseline; border-bottom:1px dashed rgba(36,24,17,0.35); padding-bottom:10px; margin-bottom:12px;}
+  .ticket-head h3{font-size:1.4rem; font-style:italic;}
+  .ticket-price{font-family:'Space Mono', monospace; font-weight:700; color:var(--tomato-deep); font-size:1.05rem;}
+  .ticket p{font-size:0.94rem; color:#5a473a; line-height:1.55; margin:0;}
+  .ticket-tag{
+    font-family:'Space Mono', monospace; font-size:0.66rem; text-transform:uppercase; letter-spacing:0.1em;
+    color:var(--basil); display:inline-block; margin-top:12px;
+  }
+  .menu-cta{text-align:center; margin-top:44px;}
+
+  /* ---------- Horario (comanda) ---------- */
+  .hours-section{background:var(--charcoal); color:var(--cream); position:relative;}
+  .hours-section .eyebrow{color:var(--gold);}
+  .comanda{
+    background:var(--paper); color:var(--charcoal);
+    max-width:520px; margin:0 auto; padding:36px 34px;
+    border-radius:2px;
+    box-shadow:0 24px 50px rgba(0,0,0,0.35);
+    position:relative;
+  }
+  .comanda::before, .comanda::after{
+    content:""; position:absolute; left:0; right:0; height:14px;
+    background:
+      linear-gradient(135deg, var(--paper) 50%, transparent 50%) 0 0/14px 14px repeat-x,
+      linear-gradient(-135deg, var(--paper) 50%, transparent 50%) 0 0/14px 14px repeat-x;
+  }
+  .comanda::before{top:-13px; background-color:transparent;}
+  .comanda::after{bottom:-13px; transform:rotate(180deg);}
+  .comanda h3{font-style:italic; font-size:1.6rem; text-align:center; margin-bottom:4px;}
+  .comanda .sub{text-align:center; font-family:'Space Mono', monospace; font-size:0.72rem; letter-spacing:0.1em; text-transform:uppercase; color:#7a6555; margin-bottom:22px;}
+  .schedule-line{
+    display:flex; justify-content:space-between; align-items:flex-start;
+    font-family:'Space Mono', monospace; font-size:0.92rem;
+    padding:12px 0; border-bottom:1px dashed rgba(36,24,17,0.25);
+    gap:16px;
+  }
+  .schedule-line:last-of-type{border-bottom:none;}
+  .schedule-line b{font-family:'Work Sans', sans-serif; font-weight:600; font-size:0.95rem;}
+  .schedule-line .times{text-align:right; color:var(--tomato-deep); font-weight:700;}
+  .comanda .call{
+    margin-top:24px; text-align:center; font-size:0.92rem; color:#5a473a;
+  }
+  .comanda .call a{color:var(--tomato); font-weight:700; text-decoration:none; border-bottom:2px solid var(--tomato);}
+
+  /* ---------- Ubicación ---------- */
+  .location-grid{display:grid; grid-template-columns:1fr 1fr; gap:0; border:2px solid var(--charcoal); border-radius:8px; overflow:hidden;}
+  .location-info{background:var(--paper); padding:44px; display:flex; flex-direction:column; justify-content:center; gap:18px;}
+  .location-info h3{font-style:italic; font-size:1.7rem;}
+  .info-line{display:flex; gap:14px; align-items:flex-start; font-size:0.98rem;}
+  .info-line .ic{width:22px; flex-shrink:0; margin-top:2px;}
+  .location-info .btn{align-self:flex-start; margin-top:8px;}
+  .map-embed{min-height:380px; border:none; width:100%; height:100%; filter:grayscale(0.15) contrast(1.05);}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--charcoal); color:var(--cream-dim); padding:56px 0 26px;}
+  .footer-grid{display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:40px; margin-bottom:40px;}
+  footer h4{font-family:'Fraunces', serif; font-style:italic; font-size:1.3rem; color:var(--cream); margin-bottom:14px;}
+  footer p, footer a{font-size:0.92rem; line-height:1.7; color:var(--cream-dim); text-decoration:none;}
+  footer a:hover{color:var(--gold);}
+  .footer-ig{
+    display:inline-flex; align-items:center; gap:8px; margin-top:8px;
+    background:rgba(255,255,255,0.08); padding:9px 16px; border-radius:999px; font-weight:600;
+  }
+  .footer-ig:hover{background:var(--tomato);}
+  .footer-bottom{
+    border-top:1px solid rgba(255,255,255,0.14); padding-top:22px;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+    font-family:'Space Mono', monospace; font-size:0.74rem; color:#8a7666; text-transform:uppercase; letter-spacing:0.05em;
+  }
+
+  /* reveal on scroll */
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  @media (max-width: 880px){
+    nav ul{display:none;}
+    .menu-toggle{display:block;}
+    .hero-grid{grid-template-columns:1fr;}
+    .oven-scene{order:-1; min-height:260px;}
+    .pizza-wrap{width:240px; height:240px;}
+    .about-grid{grid-template-columns:1fr; gap:30px;}
+    .ticket-row{grid-template-columns:1fr;}
+    .location-grid{grid-template-columns:1fr;}
+    .map-embed{min-height:280px;}
+    .footer-grid{grid-template-columns:1fr; gap:26px;}
+  }
+</style>
+</head>
+<body class="crumb-bg">
+
+<header>
+  <div class="nav-wrap">
+    <div class="logo">
+      <span class="logo-mark">Ti <span>Amo</span></span>
+    </div>
+    <nav id="mainNav">
+      <ul>
+        <li><a href="#sobre">Nosotros</a></li>
+        <li><a href="#menu">Menú</a></li>
+        <li><a href="#horario">Horario</a></li>
+        <li><a href="#ubicacion">Ubicación</a></li>
+      </ul>
+    </nav>
+    <a class="nav-ig" href="https://www.instagram.com/pizzatiamo_madrid/" target="_blank" rel="noopener">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+      Síguenos
+    </a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-grid">
+    <div class="reveal in">
+      <span class="eyebrow">Embajadores 102 · Madrid</span>
+      <h1>Pizzería <em>Ti Amo</em><span class="hero-tagline">mucho más que pizza</span></h1>
+      <p class="lead">Masa de larga fermentación, horno encendido a fuego vivo y una carta que no se toma a sí misma demasiado en serio. En pleno Embajadores, servimos la pizza que te hace decir "ti amo" al primer bocado.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="https://drive.google.com/file/d/1psXWtCbGT9GQCfiR_epmDRjKNacUZn77/view?usp=sharing" target="_blank" rel="noopener">Ver la carta</a>
+        <a class="btn btn-dark" href="tel:+34914946377">Reservar · 914 946 377</a>
+        <a class="btn btn-ghost" href="#ubicacion">Pedir por Glovo</a>
+      </div>
+    </div>
+    <div class="oven-scene">
+      <div class="pizza-wrap">
+        <div class="flame-glow"></div>
+        <span class="steam s1"></span>
+        <span class="steam s2"></span>
+        <span class="steam s3"></span>
+        <svg viewBox="0 0 300 300" width="100%" height="100%">
+          <circle cx="150" cy="150" r="128" fill="#E7A33E"/>
+          <circle cx="150" cy="150" r="112" fill="#F0C36B"/>
+          <circle cx="150" cy="150" r="104" fill="#D6402C"/>
+          <circle cx="150" cy="150" r="98" fill="#E9573F"/>
+          <g fill="#2F5233">
+            <ellipse cx="105" cy="95" rx="9" ry="5" transform="rotate(-20 105 95)"/>
+            <ellipse cx="190" cy="80" rx="9" ry="5" transform="rotate(15 190 80)"/>
+            <ellipse cx="205" cy="165" rx="9" ry="5" transform="rotate(60 205 165)"/>
+            <ellipse cx="150" cy="210" rx="9" ry="5" transform="rotate(-10 150 210)"/>
+            <ellipse cx="85" cy="185" rx="9" ry="5" transform="rotate(40 85 185)"/>
+            <ellipse cx="150" cy="145" rx="9" ry="5" transform="rotate(5 150 145)"/>
+          </g>
+          <g fill="#FBF1DE" opacity="0.9">
+            <circle cx="125" cy="120" r="15"/>
+            <circle cx="185" cy="115" r="12"/>
+            <circle cx="200" cy="190" r="13"/>
+            <circle cx="130" cy="195" r="11"/>
+            <circle cx="165" cy="165" r="14"/>
+            <circle cx="95" cy="150" r="10"/>
+          </g>
+          <circle cx="150" cy="150" r="128" fill="none" stroke="#241811" stroke-width="4"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="sobre">
+  <div class="container about-grid">
+    <div class="reveal">
+      <span class="eyebrow">Sobre nosotros</span>
+      <h2>Pizza de barrio, alma italiana</h2>
+      <p>Ti Amo nació en Embajadores con una idea sencilla: hacer la pizza que echábamos de menos, sin atajos. Impasto de fermentación lenta, tomate que sabe a tomate y mozzarella que hace hilo de verdad.</p>
+      <p>Estamos en el corazón de uno de los barrios con más carácter de Madrid — un lugar de mezcla, de terrazas y de gente que se sienta a comer sin prisa. Aquí la pizza se hace para compartir, para repetir y, sobre todo, para amar.</p>
+      <div class="stat-row">
+        <div class="stat"><b>100%</b><span>Horno de leña</span></div>
+        <div class="stat"><b>24h</b><span>Fermentación de la masa</span></div>
+        <div class="stat"><b>7</b><span>Días a la semana</span></div>
+      </div>
+    </div>
+    <div class="reveal slice-diagram">
+      <svg viewBox="0 0 340 340" width="100%" height="100%">
+        <path d="M170 30 L300 300 A180 180 0 0 1 40 300 Z" fill="#D6402C" stroke="#241811" stroke-width="4" stroke-linejoin="round"/>
+        <path d="M170 60 L275 285 A150 150 0 0 1 65 285 Z" fill="#E9573F"/>
+        <g fill="#2F5233">
+          <ellipse cx="150" cy="140" rx="10" ry="6" transform="rotate(10 150 140)"/>
+          <ellipse cx="200" cy="170" rx="10" ry="6" transform="rotate(-15 200 170)"/>
+          <ellipse cx="170" cy="220" rx="10" ry="6" transform="rotate(30 170 220)"/>
+        </g>
+        <g fill="#FBF1DE" opacity="0.9">
+          <circle cx="130" cy="180" r="14"/>
+          <circle cx="190" cy="130" r="12"/>
+          <circle cx="210" cy="220" r="13"/>
+          <circle cx="150" cy="250" r="11"/>
+        </g>
+        <path d="M170 30 L300 300 A180 180 0 0 1 40 300 Z" fill="none" stroke="#241811" stroke-width="4" stroke-linejoin="round"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="menu-section" id="menu">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">La carta</span>
+      <h2>Nuestras favoritas</h2>
+    </div>
+    <div class="ticket-row">
+      <div class="ticket reveal">
+        <div class="ticket-head"><h3>Margherita</h3><span class="ticket-price">10,50 €</span></div>
+        <p>Tomate San Marzano, mozzarella fior di latte, albahaca fresca y un hilo de aceite de oliva virgen extra.</p>
+        <span class="ticket-tag">La clásica</span>
+      </div>
+      <div class="ticket reveal">
+        <div class="ticket-head"><h3>Diavola</h3><span class="ticket-price">12,90 €</span></div>
+        <p>Salami picante, mozzarella, tomate y un toque de guindilla que despierta a cualquiera.</p>
+        <span class="ticket-tag">Para valientes</span>
+      </div>
+      <div class="ticket reveal">
+        <div class="ticket-head"><h3>Quattro Formaggi</h3><span class="ticket-price">13,50 €</span></div>
+        <p>Mozzarella, gorgonzola, parmesano y provolone. Cremosa, intensa, sin disculpas.</p>
+        <span class="ticket-tag">Amor al queso</span>
+      </div>
+      <div class="ticket reveal">
+        <div class="ticket-head"><h3>Tartufo</h3><span class="ticket-price">15,90 €</span></div>
+        <p>Crema de trufa, mozzarella, champiñones salteados y parmesano curado.</p>
+        <span class="ticket-tag">La especial</span>
+      </div>
+    </div>
+    <div class="menu-cta reveal">
+      <a class="btn btn-primary" href="https://drive.google.com/file/d/1psXWtCbGT9GQCfiR_epmDRjKNacUZn77/view?usp=sharing" target="_blank" rel="noopener">Ver la carta completa</a>
+    </div>
+  </div>
+</section>
+
+<section class="hours-section" id="horario">
+  <div class="container">
+    <div class="section-head reveal" style="max-width:100%; text-align:center; margin:0 auto 48px;">
+      <span class="eyebrow">Horario</span>
+      <h2 style="color:var(--cream);">Te esperamos</h2>
+    </div>
+    <div class="comanda reveal">
+      <h3>Ti Amo</h3>
+      <div class="sub">Comanda de la casa</div>
+      <div class="schedule-line">
+        <b>Lunes a miércoles</b>
+        <span class="times">13:00–16:30<br>20:00–23:30</span>
+      </div>
+      <div class="schedule-line">
+        <b>Jueves a domingo</b>
+        <span class="times">13:00–17:00<br>20:00–00:00</span>
+      </div>
+      <div class="call">📲 Reservas al <a href="tel:+34914946377">914 946 377</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="ubicacion">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Ubicación</span>
+      <h2>Encuéntranos</h2>
+    </div>
+    <div class="location-grid reveal">
+      <div class="location-info">
+        <h3>Calle Embajadores 102</h3>
+        <div class="info-line">
+          <span class="ic">📍</span>
+          <span>Calle Embajadores 102, Madrid, Spain 28012</span>
+        </div>
+        <div class="info-line">
+          <span class="ic">📲</span>
+          <span>Reservas al <a href="tel:+34914946377">914 946 377</a></span>
+        </div>
+        <div class="info-line">
+          <span class="ic">🛵</span>
+          <span>Pide a domicilio con <b>Glovo</b></span>
+        </div>
+        <a class="btn btn-dark" href="https://www.google.com/maps/search/?api=1&query=Calle+Embajadores+102%2C+Madrid%2C+Spain+28012" target="_blank" rel="noopener">Cómo llegar</a>
+      </div>
+      <iframe class="map-embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        src="https://www.google.com/maps?q=Calle+Embajadores+102,+Madrid,+Spain+28012&output=embed">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h4>Ti Amo</h4>
+        <p>Calle Embajadores 102<br>Madrid, Spain 28012</p>
+        <a class="footer-ig" href="https://www.instagram.com/pizzatiamo_madrid/" target="_blank" rel="noopener">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          @pizzatiamo_madrid
+        </a>
+      </div>
+      <div>
+        <h4>Horario</h4>
+        <p>Lun–Mié: 13:00–16:30 / 20:00–23:30<br>Jue–Dom: 13:00–17:00 / 20:00–00:00</p>
+      </div>
+      <div>
+        <h4>Pedidos</h4>
+        <p><a href="tel:+34914946377">Reservas: 914 946 377</a><br>Delivery por Glovo<br><a href="https://drive.google.com/file/d/1psXWtCbGT9GQCfiR_epmDRjKNacUZn77/view?usp=sharing" target="_blank" rel="noopener">Ver carta / galería</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Pizzería Ti Amo</span>
+      <span>Embajadores · Madrid</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.15});
+  revealEls.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
