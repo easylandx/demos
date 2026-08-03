@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cocoon Studio | Pilates, Yoga & Barre en Getafe</title>
+<meta name="description" content="Cocoon Studio — Pilates Reformer, Suelo, Yoga y Barre en Getafe. Reserva tu primera clase en C/ Hospital de San José, 55.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F0E9DC;
+    --cream-2:#E8DFCE;
+    --ink:#262320;
+    --ink-soft:#4B453D;
+    --clay:#B97A5A;
+    --clay-dark:#9C6146;
+    --sage:#6B7A5E;
+    --sage-dark:#414A38;
+    --blush:#E4CBBC;
+    --gold:#A9884F;
+    --line:rgba(38,35,32,0.14);
+    --radius:2px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Work Sans',sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+  h1,h2,h3{font-family:'Fraunces',serif;font-weight:500;letter-spacing:-0.01em;color:var(--ink);}
+  .eyebrow{
+    font-family:'Work Sans',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.18em;
+    font-size:12px;
+    font-weight:600;
+    color:var(--clay-dark);
+  }
+
+  /* reveal on scroll */
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .9s ease, transform .9s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    *{scroll-behavior:auto !important;}
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:22px 40px;
+    background:rgba(240,233,220,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid transparent;
+    transition:border-color .3s ease, padding .3s ease;
+  }
+  header.scrolled{border-color:var(--line);padding:14px 40px;}
+  .logo{
+    font-family:'Fraunces',serif;
+    font-size:22px;
+    font-style:italic;
+    font-weight:500;
+    letter-spacing:0.01em;
+  }
+  .logo em{font-style:normal;color:var(--clay-dark);}
+  nav ul{list-style:none;display:flex;gap:36px;align-items:center;}
+  nav a{font-size:14px;font-weight:500;color:var(--ink-soft);transition:color .25s ease;position:relative;}
+  nav a:not(.btn):after{
+    content:"";position:absolute;left:0;bottom:-4px;width:0;height:1px;background:var(--clay-dark);
+    transition:width .25s ease;
+  }
+  nav a:not(.btn):hover{color:var(--ink);}
+  nav a:not(.btn):hover:after{width:100%;}
+  .nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:6px;}
+  .nav-toggle span{display:block;width:22px;height:2px;background:var(--ink);margin:5px 0;}
+
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:13px 28px;
+    font-size:14px;font-weight:600;
+    border-radius:var(--radius);
+    border:1px solid var(--ink);
+    transition:background .25s ease, color .25s ease, transform .2s ease, box-shadow .25s ease;
+    white-space:nowrap;
+  }
+  .btn-primary{background:var(--ink);color:var(--cream);}
+  .btn-primary:hover{background:var(--sage-dark);border-color:var(--sage-dark);transform:translateY(-2px);box-shadow:0 10px 24px -10px rgba(38,35,32,0.5);}
+  .btn-ghost{background:transparent;color:var(--ink);}
+  .btn-ghost:hover{background:var(--ink);color:var(--cream);}
+  .btn-clay{background:var(--clay);border-color:var(--clay);color:#fff;}
+  .btn-clay:hover{background:var(--clay-dark);border-color:var(--clay-dark);transform:translateY(-2px);box-shadow:0 10px 24px -10px rgba(156,97,70,0.55);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    display:flex;align-items:center;
+    padding:140px 0 80px;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 82% 18%, rgba(185,122,90,0.16), transparent 45%),
+      radial-gradient(circle at 10% 85%, rgba(107,122,94,0.16), transparent 42%);
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.05fr 0.85fr;gap:40px;align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(40px,5.4vw,68px);
+    line-height:1.04;
+    margin:18px 0 22px;
+  }
+  .hero h1 i{font-style:italic;color:var(--clay-dark);}
+  .hero p.lead{
+    font-size:18px;color:var(--ink-soft);max-width:480px;margin-bottom:34px;
+  }
+  .hero-ctas{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:28px;}
+  .hero-meta{display:flex;gap:26px;flex-wrap:wrap;margin-top:6px;}
+  .hero-meta div{font-size:13px;color:var(--ink-soft);display:flex;align-items:center;gap:8px;}
+  .hero-meta svg{width:16px;height:16px;flex-shrink:0;color:var(--clay-dark);}
+
+  .cocoon-art{position:relative;aspect-ratio:1/1;max-width:480px;margin:0 auto;}
+  .cocoon-art svg{width:100%;height:100%;overflow:visible;}
+  .cocoon-thread{
+    fill:none;stroke:var(--clay);stroke-width:1.4;
+    stroke-dasharray:900;stroke-dashoffset:900;
+    animation:draw 2.6s cubic-bezier(.65,0,.35,1) forwards .3s;
+  }
+  .cocoon-thread.two{stroke:var(--sage);animation-delay:.6s;}
+  .cocoon-thread.three{stroke:var(--gold);animation-delay:.9s;}
+  @keyframes draw{to{stroke-dashoffset:0;}}
+  .cocoon-word{
+    font-family:'Fraunces',serif;font-style:italic;font-size:15px;fill:var(--ink-soft);
+    opacity:0;animation:fadein 1s ease forwards 2s;
+  }
+  @keyframes fadein{to{opacity:1;}}
+  @media (prefers-reduced-motion: reduce){
+    .cocoon-thread{animation:none;stroke-dashoffset:0;}
+    .cocoon-word{animation:none;opacity:1;}
+  }
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{padding:110px 0;}
+  .section-head{max-width:640px;margin-bottom:64px;}
+  .section-head h2{font-size:clamp(30px,3.6vw,44px);margin-top:14px;}
+  .section-head p{color:var(--ink-soft);font-size:17px;margin-top:16px;}
+
+  /* ---------- INTRO STRIP ---------- */
+  .intro{background:var(--ink);color:var(--cream);}
+  .intro .wrap{display:grid;grid-template-columns:0.6fr 1fr;gap:60px;align-items:start;}
+  .intro h2{color:var(--cream);font-size:clamp(28px,3.2vw,38px);font-style:italic;font-weight:400;line-height:1.3;}
+  .intro p{color:#CFC7B8;font-size:16px;max-width:480px;}
+  .intro .eyebrow{color:var(--blush);}
+
+  /* ---------- DISCIPLINAS ---------- */
+  .disciplinas-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+    background:var(--line);border:1px solid var(--line);
+  }
+  .disc-card{
+    background:var(--cream);padding:38px 30px;
+    transition:background .3s ease;
+  }
+  .disc-card:hover{background:var(--cream-2);}
+  .disc-card .icon{width:40px;height:40px;color:var(--clay-dark);margin-bottom:26px;}
+  .disc-card h3{font-size:21px;margin-bottom:10px;}
+  .disc-card p{font-size:14.5px;color:var(--ink-soft);}
+
+  /* ---------- PILARES ---------- */
+  .pilares{background:var(--cream-2);}
+  .pilares-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:50px;}
+  .pilar{border-top:1px solid var(--line);padding-top:24px;}
+  .pilar .eyebrow{display:block;margin-bottom:14px;}
+  .pilar h3{font-size:22px;margin-bottom:12px;font-weight:500;}
+  .pilar p{font-size:15px;color:var(--ink-soft);}
+
+  /* ---------- CTA BAND ---------- */
+  .cta-band{
+    background:linear-gradient(135deg, var(--sage-dark), var(--sage));
+    color:var(--cream);text-align:center;
+    padding:100px 0;
+  }
+  .cta-band .eyebrow{color:var(--blush);}
+  .cta-band h2{color:var(--cream);font-size:clamp(30px,4vw,48px);margin:16px 0 30px;font-style:italic;font-weight:400;}
+  .cta-band .btn-primary{background:var(--cream);color:var(--ink);border-color:var(--cream);}
+  .cta-band .btn-primary:hover{background:var(--clay);color:#fff;border-color:var(--clay);}
+  .cta-band .btn-ghost{border-color:rgba(240,233,220,0.5);color:var(--cream);}
+  .cta-band .btn-ghost:hover{background:var(--cream);color:var(--ink);}
+  .cta-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+
+  /* ---------- UBICACION ---------- */
+  .ubicacion .wrap{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;}
+  .map-frame{
+    border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+    box-shadow:0 30px 60px -30px rgba(38,35,32,0.35);
+  }
+  .map-frame iframe{width:100%;height:420px;border:0;display:block;filter:grayscale(20%) contrast(1.02);}
+  .ubic-info h2{font-size:clamp(28px,3.4vw,40px);margin:14px 0 22px;}
+  .ubic-info p{color:var(--ink-soft);font-size:16px;margin-bottom:10px;}
+  .ubic-address{
+    display:flex;gap:12px;align-items:flex-start;margin:26px 0 30px;
+    font-family:'Fraunces',serif;font-size:19px;color:var(--ink);
+  }
+  .ubic-address svg{width:22px;height:22px;flex-shrink:0;margin-top:2px;color:var(--clay-dark);}
+  .ubic-ctas{display:flex;gap:14px;flex-wrap:wrap;}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--ink);color:#CFC7B8;padding:64px 0 30px;}
+  .footer-top{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;padding-bottom:44px;border-bottom:1px solid rgba(240,233,220,0.14);}
+  .footer-logo{font-family:'Fraunces',serif;font-style:italic;font-size:24px;color:var(--cream);margin-bottom:10px;}
+  .footer-cols{display:flex;gap:70px;flex-wrap:wrap;}
+  .footer-col h4{font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:var(--blush);margin-bottom:16px;font-weight:600;}
+  .footer-col a, .footer-col p{display:block;font-size:14.5px;color:#CFC7B8;margin-bottom:10px;transition:color .2s ease;}
+  .footer-col a:hover{color:var(--cream);}
+  .footer-bottom{display:flex;justify-content:space-between;padding-top:26px;font-size:12.5px;color:#8B8375;flex-wrap:wrap;gap:10px;}
+  .social-btn{
+    display:inline-flex;align-items:center;gap:8px;
+    border:1px solid rgba(240,233,220,0.3);padding:10px 18px;border-radius:var(--radius);
+    font-size:13.5px;font-weight:500;color:var(--cream);transition:all .25s ease;
+  }
+  .social-btn:hover{background:var(--clay);border-color:var(--clay);}
+  .social-btn svg{width:16px;height:16px;}
+
+  /* ---------- STICKY MOBILE CTA ---------- */
+  .sticky-cta{
+    position:fixed;bottom:0;left:0;right:0;z-index:99;
+    display:none;
+    background:var(--ink);padding:14px 20px;
+    justify-content:center;
+    box-shadow:0 -8px 24px rgba(0,0,0,0.15);
+  }
+  .sticky-cta a{color:var(--cream);font-size:14px;font-weight:600;}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:980px){
+    .hero-grid{grid-template-columns:1fr;text-align:left;}
+    .cocoon-art{max-width:320px;margin-top:10px;}
+    .disciplinas-grid{grid-template-columns:repeat(2,1fr);}
+    .pilares-grid{grid-template-columns:1fr;gap:30px;}
+    .intro .wrap{grid-template-columns:1fr;gap:26px;}
+    .ubicacion .wrap{grid-template-columns:1fr;}
+    nav ul{
+      position:fixed;top:0;right:0;height:100vh;width:min(78vw,320px);
+      background:var(--cream);flex-direction:column;justify-content:center;align-items:flex-start;
+      padding:40px;gap:26px;
+      transform:translateX(100%);transition:transform .35s ease;
+      box-shadow:-20px 0 40px rgba(0,0,0,0.12);
+    }
+    nav ul.open{transform:translateX(0);}
+    .nav-toggle{display:block;}
+    .sticky-cta{display:flex;}
+    body{padding-bottom:64px;}
+  }
+  @media (max-width:640px){
+    .wrap{padding:0 22px;}
+    header{padding:18px 22px;}
+    .disciplinas-grid{grid-template-columns:1fr;}
+    section{padding:80px 0;}
+    .hero{padding-top:120px;}
+  }
+
+  :focus-visible{outline:2px solid var(--clay-dark);outline-offset:3px;}
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <div class="logo">C<em>ocoon</em> Studio</div>
+  <nav>
+    <ul id="navList">
+      <li><a href="#disciplinas">Disciplinas</a></li>
+      <li><a href="#estudio">El Estudio</a></li>
+      <li><a href="#ubicacion">Ubicación</a></li>
+      <li><a class="btn btn-primary" href="https://www.instagram.com/cocoon_pilates_/" target="_blank" rel="noopener">Reservar clase</a></li>
+    </ul>
+  </nav>
+  <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow reveal in">Pilates · Yoga · Barre — Getafe</span>
+      <h1 class="reveal in">Tu espacio de<br>bienestar en <i>Getafe</i></h1>
+      <p class="lead reveal in">Pilates Reformer, suelo, yoga y barre en un estudio pensado para moverte con calma. Movimiento, calma y equilibrio, sesión a sesión.</p>
+      <div class="hero-ctas reveal in">
+        <a class="btn btn-clay" href="https://www.instagram.com/cocoon_pilates_/" target="_blank" rel="noopener">Reserva tu primera clase</a>
+        <a class="btn btn-ghost" href="https://maps.app.goo.gl/DwYkCtUrir5vNNns7?g_st=ipc" target="_blank" rel="noopener">Cómo llegar</a>
+      </div>
+      <div class="hero-meta reveal in">
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          C/ Hospital de San José, 55, Getafe
+        </div>
+        <div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="17" rx="1.5"/><path d="M3 9h18M8 3v3M16 3v3"/></svg>
+          Grupos reducidos
+        </div>
+      </div>
+    </div>
+
+    <div class="cocoon-art reveal in" aria-hidden="true">
+      <svg viewBox="0 0 400 400">
+        <ellipse class="cocoon-thread" cx="200" cy="200" rx="150" ry="110" transform="rotate(-8 200 200)"/>
+        <ellipse class="cocoon-thread two" cx="200" cy="200" rx="118" ry="150" transform="rotate(24 200 200)"/>
+        <ellipse class="cocoon-thread three" cx="200" cy="200" rx="90" ry="90" transform="rotate(50 200 200)"/>
+        <text x="200" y="205" text-anchor="middle" class="cocoon-word">movimiento · calma · equilibrio</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ================= INTRO ================= -->
+<section class="intro" id="estudio">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">El estudio</span>
+    </div>
+    <div>
+      <h2>Un lugar pequeño, hecho a propósito para que el movimiento se sienta con calma —<br>como un capullo antes de abrir sus alas.</h2>
+      <p style="margin-top:24px;">En Cocoon cuidamos cada detalle: grupos reducidos, seguimiento cercano y un espacio luminoso en pleno Getafe donde entrenar el cuerpo también es cuidar la mente.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DISCIPLINAS ================= -->
+<section id="disciplinas">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Disciplinas</span>
+      <h2>Cuatro formas de moverte, un mismo equilibrio</h2>
+      <p>Elige la disciplina que mejor se adapte a ti, o combínalas todas — cada clase está guiada por profesoras especializadas.</p>
+    </div>
+  </div>
+  <div class="wrap" style="padding:0;">
+    <div class="disciplinas-grid reveal">
+      <div class="disc-card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2" y="10" width="20" height="4" rx="1"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="12" r="3"/></svg>
+        <h3>Pilates Reformer</h3>
+        <p>Trabajo de fuerza, control y postura sobre máquina, con resistencia progresiva para resultados visibles.</p>
+      </div>
+      <div class="disc-card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="5" r="2.2"/><path d="M12 7.2v6M8 22l4-8.8L16 22M6 13l6-1.6 6 1.6"/></svg>
+        <h3>Pilates Suelo</h3>
+        <p>Fortalece el centro, mejora la alineación y gana movilidad con tu propio peso corporal.</p>
+      </div>
+      <div class="disc-card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg>
+        <h3>Yoga</h3>
+        <p>Respiración, flexibilidad y presencia. Un espacio para desconectar y volver a tu centro.</p>
+      </div>
+      <div class="disc-card">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 6h16M4 12h16M4 18h10"/><circle cx="19" cy="18" r="2"/></svg>
+        <h3>Barre</h3>
+        <p>Técnica de ballet, pilates y fuerza en un formato dinámico que tonifica de forma armoniosa.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PILARES ================= -->
+<section class="pilares">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Por qué Cocoon</span>
+      <h2>Cuidado en cada detalle</h2>
+    </div>
+    <div class="pilares-grid reveal">
+      <div class="pilar">
+        <span class="eyebrow">Grupos reducidos</span>
+        <h3>Atención real</h3>
+        <p>Clases con pocas personas para que cada corrección y cada avance se noten de verdad.</p>
+      </div>
+      <div class="pilar">
+        <span class="eyebrow">Equipo especializado</span>
+        <h3>Profesoras cercanas</h3>
+        <p>Formación específica en Pilates, Yoga y Barre, adaptando cada sesión a tu nivel y objetivo.</p>
+      </div>
+      <div class="pilar">
+        <span class="eyebrow">Ambiente</span>
+        <h3>Un espacio para respirar</h3>
+        <p>Luz natural, calma y buena energía en pleno centro de Getafe. Tu paréntesis en el día.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA BAND ================= -->
+<section class="cta-band">
+  <div class="wrap">
+    <span class="eyebrow reveal">Empieza hoy</span>
+    <h2 class="reveal">¿Lista para moverte con calma?</h2>
+    <div class="cta-row reveal">
+      <a class="btn btn-primary" href="https://www.instagram.com/cocoon_pilates_/" target="_blank" rel="noopener">
+        Escríbenos por Instagram
+      </a>
+      <a class="btn btn-ghost" href="https://wa.me/34600000000" target="_blank" rel="noopener">
+        Reservar por WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= UBICACION ================= -->
+<section class="ubicacion" id="ubicacion">
+  <div class="wrap">
+    <div class="ubic-info reveal">
+      <span class="eyebrow">Ubicación</span>
+      <h2>Te esperamos en Getafe</h2>
+      <p>A un paseo del centro. Ven a conocer el estudio y resuelve todas tus dudas antes de tu primera clase.</p>
+      <div class="ubic-address">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+        C/ Hospital de San José, 55<br>Getafe, Madrid
+      </div>
+      <div class="ubic-ctas">
+        <a class="btn btn-clay" href="https://maps.app.goo.gl/DwYkCtUrir5vNNns7?g_st=ipc" target="_blank" rel="noopener">Cómo llegar</a>
+        <a class="btn btn-ghost" href="https://www.instagram.com/cocoon_pilates_/" target="_blank" rel="noopener">Ver Instagram</a>
+      </div>
+    </div>
+    <div class="map-frame reveal">
+      <iframe
+        src="https://www.google.com/maps?q=Calle+Hospital+de+San+Jos%C3%A9+55+Getafe&output=embed"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Mapa de Cocoon Studio en Getafe">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">Cocoon Studio</div>
+        <p style="max-width:260px;">Pilates, Yoga & Barre.<br>Movimiento, calma y equilibrio.</p>
+        <a class="social-btn" href="https://www.instagram.com/cocoon_pilates_/" target="_blank" rel="noopener" style="margin-top:14px;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+          @cocoon_pilates_
+        </a>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Estudio</h4>
+          <a href="#disciplinas">Disciplinas</a>
+          <a href="#estudio">Sobre nosotras</a>
+          <a href="#ubicacion">Ubicación</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <p>C/ Hospital de San José, 55<br>Getafe, Madrid</p>
+          <a href="https://maps.app.goo.gl/DwYkCtUrir5vNNns7?g_st=ipc" target="_blank" rel="noopener">Ver en Google Maps</a>
+        </div>
+        <div class="footer-col">
+          <h4>Reservas</h4>
+          <a href="https://www.instagram.com/cocoon_pilates_/" target="_blank" rel="noopener">Instagram DM</a>
+          <a href="https://wa.me/34600000000" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Cocoon Studio · Getafe</span>
+      <span>Pilates Reformer · Suelo · Yoga · Barre</span>
+    </div>
+  </div>
+</footer>
+
+<div class="sticky-cta">
+  <a href="https://www.instagram.com/cocoon_pilates_/" target="_blank" rel="noopener">✨ Reserva tu primera clase en Instagram →</a>
+</div>
+
+<script>
+  // header scroll state
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navList = document.getElementById('navList');
+  navToggle.addEventListener('click', () => {
+    const open = navList.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open);
+  });
+  navList.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navList.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', false);
+  }));
+
+  // scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal:not(.in)').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
