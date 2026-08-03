@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pipu Calise · Makeup & Hair Artist · BsAs</title>
+<meta name="description" content="Pipu Calise, Makeup & Hair Artist en Buenos Aires. Novias, Moda, Sociales y Clases. Reservá tu turno por WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#170a12;
+    --ink-soft:#2a1120;
+    --wine:#7a1e4d;
+    --fuchsia:#ff2d78;
+    --fuchsia-deep:#e01463;
+    --gold:#f0b840;
+    --gold-soft:#ffd166;
+    --blush:#f8c6d8;
+    --cream:#fff6ef;
+    --white:#ffffff;
+    --ok-green:#25d366;
+    --ff-display:'Playfair Display', serif;
+    --ff-body:'Poppins', sans-serif;
+    --radius:22px;
+    --shadow-soft:0 20px 45px -20px rgba(122,30,77,.45);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:var(--ff-body);
+    background:var(--cream);
+    color:var(--ink);
+    overflow-x:hidden;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;margin:0;padding:0;}
+  section{position:relative;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+  .eyebrow{
+    font-family:var(--ff-body);
+    text-transform:uppercase;
+    letter-spacing:.28em;
+    font-size:12px;
+    font-weight:600;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:currentColor;display:inline-block;}
+  h1,h2,h3{font-family:var(--ff-display);margin:0;line-height:1.05;}
+  p{line-height:1.65;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important;}
+  }
+
+  /* ---------- swatch signature element ---------- */
+  .swatch{
+    width:14px;height:14px;border-radius:50%;
+    box-shadow:inset 0 -2px 3px rgba(0,0,0,.18), inset 0 2px 3px rgba(255,255,255,.35);
+    flex-shrink:0;
+  }
+  .swatch-row{display:flex; gap:8px; align-items:center;}
+
+  /* ---------- nav ---------- */
+  .nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(23,10,18,.72);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .nav-inner{
+    max-width:1180px;margin:0 auto;padding:16px 28px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .brand{
+    font-family:var(--ff-display);
+    font-style:italic;
+    font-weight:700;
+    font-size:22px;
+    color:var(--white);
+    letter-spacing:.01em;
+  }
+  .brand span{color:var(--gold-soft);font-style:normal;}
+  .nav-links{display:flex;gap:30px;align-items:center;}
+  .nav-links a{
+    color:rgba(255,255,255,.82);
+    font-size:14px;font-weight:500;
+    transition:color .2s ease;
+  }
+  .nav-links a:hover{color:var(--gold-soft);}
+  .nav-cta{
+    background:linear-gradient(135deg,var(--ok-green),#1fae54);
+    color:#fff !important;
+    padding:10px 20px;
+    border-radius:999px;
+    font-weight:600;
+    font-size:13.5px;
+    display:flex;align-items:center;gap:8px;
+    box-shadow:0 10px 22px -8px rgba(37,211,102,.55);
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .nav-cta:hover{transform:translateY(-2px);box-shadow:0 14px 26px -8px rgba(37,211,102,.65);}
+  .burger{display:none;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex;align-items:center;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(255,45,120,.35), transparent 45%),
+      radial-gradient(circle at 85% 15%, rgba(240,184,64,.28), transparent 50%),
+      radial-gradient(circle at 75% 85%, rgba(122,30,77,.55), transparent 55%),
+      linear-gradient(160deg,#170a12 0%, #2a1120 55%, #3a1128 100%);
+    padding:150px 0 100px;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr .85fr;
+    gap:60px;
+    align-items:center;
+  }
+  .hero-eyebrow{color:var(--gold-soft);margin-bottom:22px;}
+  .hero h1{
+    font-size:clamp(48px,7vw,86px);
+    color:var(--white);
+    font-weight:800;
+  }
+  .hero h1 em{
+    font-style:italic;
+    font-weight:600;
+    background:linear-gradient(100deg,var(--gold-soft),var(--blush) 55%, var(--fuchsia));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .hero-sub{
+    color:rgba(255,246,239,.82);
+    font-size:18px;
+    max-width:480px;
+    margin:24px 0 34px;
+  }
+  .hero-tags{
+    display:flex;flex-wrap:wrap;gap:10px;
+    margin-bottom:38px;
+  }
+  .hero-tags li{
+    display:flex;align-items:center;gap:8px;
+    padding:9px 16px;
+    border-radius:999px;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.14);
+    color:var(--white);
+    font-size:13.5px;
+    font-weight:500;
+  }
+  .hero-actions{display:flex;gap:16px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:16px 30px;
+    border-radius:999px;
+    font-weight:600;
+    font-size:15px;
+    cursor:pointer;
+    border:none;
+    transition:transform .22s cubic-bezier(.2,.8,.2,1), box-shadow .22s ease, background .2s ease;
+  }
+  .btn-primary{
+    background:linear-gradient(135deg,var(--ok-green),#1fae54);
+    color:#fff;
+    box-shadow:0 16px 30px -10px rgba(37,211,102,.55);
+  }
+  .btn-primary:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 20px 36px -10px rgba(37,211,102,.65);}
+  .btn-ghost{
+    background:transparent;
+    color:var(--white);
+    border:1.5px solid rgba(255,255,255,.4);
+  }
+  .btn-ghost:hover{border-color:var(--gold-soft); color:var(--gold-soft); transform:translateY(-3px);}
+
+  .hero-visual{
+    position:relative;
+    height:460px;
+  }
+  .palette{
+    position:absolute; inset:0;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    grid-template-rows:repeat(4,1fr);
+    gap:14px;
+    padding:10px;
+  }
+  .palette .swatch-big{
+    border-radius:16px;
+    box-shadow:inset 0 -6px 10px rgba(0,0,0,.2), inset 0 5px 8px rgba(255,255,255,.25), 0 12px 24px -10px rgba(0,0,0,.5);
+    animation:float 7s ease-in-out infinite;
+  }
+  .palette .swatch-big:nth-child(1){background:radial-gradient(circle at 30% 30%,#ff9dc0,#ff2d78); animation-delay:0s;}
+  .palette .swatch-big:nth-child(2){background:radial-gradient(circle at 30% 30%,#ffe29a,#f0b840); animation-delay:.3s;}
+  .palette .swatch-big:nth-child(3){background:radial-gradient(circle at 30% 30%,#c98fd6,#7a1e4d); animation-delay:.6s;}
+  .palette .swatch-big:nth-child(4){background:radial-gradient(circle at 30% 30%,#ffd7e6,#f8c6d8); animation-delay:.9s;}
+  .palette .swatch-big:nth-child(5){background:radial-gradient(circle at 30% 30%,#fff2c9,#ffd166); animation-delay:1.2s;}
+  .palette .swatch-big:nth-child(6){background:radial-gradient(circle at 30% 30%,#ff77a6,#e01463); animation-delay:1.5s;}
+  .palette .swatch-big:nth-child(7){background:radial-gradient(circle at 30% 30%,#e5b8ff,#9c3fa8); animation-delay:1.8s;}
+  .palette .swatch-big:nth-child(8){background:radial-gradient(circle at 30% 30%,#fff,#f8c6d8); animation-delay:2.1s;}
+  .palette .swatch-big:nth-child(9){background:radial-gradient(circle at 30% 30%,#ffb15e,#f0b840); animation-delay:2.4s;}
+  .palette .swatch-big:nth-child(10){background:radial-gradient(circle at 30% 30%,#ff5f9e,#7a1e4d); animation-delay:2.7s;}
+  .palette .swatch-big:nth-child(11){background:radial-gradient(circle at 30% 30%,#ffe6ee,#ff2d78); animation-delay:3s;}
+  .palette .swatch-big:nth-child(12){background:radial-gradient(circle at 30% 30%,#f7d488,#e01463); animation-delay:3.3s;}
+  .palette .swatch-big:nth-child(13){background:radial-gradient(circle at 30% 30%,#d6a6ff,#7a1e4d); animation-delay:3.6s;}
+  .palette .swatch-big:nth-child(14){background:radial-gradient(circle at 30% 30%,#ffdca8,#f0b840); animation-delay:3.9s;}
+  .palette .swatch-big:nth-child(15){background:radial-gradient(circle at 30% 30%,#ff9fc4,#ff2d78); animation-delay:4.2s;}
+  .palette .swatch-big:nth-child(16){background:radial-gradient(circle at 30% 30%,#ffffff,#ffd7e6); animation-delay:4.5s;}
+  @keyframes float{
+    0%,100%{transform:translateY(0) scale(1);}
+    50%{transform:translateY(-8px) scale(1.03);}
+  }
+  .hero-ig-chip{
+    position:absolute; bottom:-6px; left:-6px;
+    background:var(--white);
+    padding:14px 20px;
+    border-radius:18px;
+    box-shadow:var(--shadow-soft);
+    display:flex; align-items:center; gap:12px;
+  }
+  .hero-ig-chip .num{font-family:var(--ff-display);font-weight:800;font-size:22px;color:var(--fuchsia-deep);}
+  .hero-ig-chip .lbl{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:var(--wine);font-weight:600;}
+
+  .marquee-wrap{
+    background:var(--ink);
+    border-top:1px solid rgba(255,255,255,.08);
+    border-bottom:1px solid rgba(255,255,255,.08);
+    overflow:hidden;
+    padding:14px 0;
+  }
+  .marquee{
+    display:flex; gap:48px; white-space:nowrap;
+    animation:scroll 22s linear infinite;
+    width:max-content;
+  }
+  .marquee span{
+    font-family:var(--ff-display); font-style:italic; font-weight:600;
+    font-size:19px; color:rgba(255,246,239,.75);
+    display:flex; align-items:center; gap:14px;
+  }
+  .marquee span::after{content:"✦"; color:var(--gold-soft); font-style:normal;}
+  @keyframes scroll{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+
+  /* ---------- section headers ---------- */
+  .section-head{
+    max-width:640px;
+    margin:0 0 54px;
+  }
+  .section-head .eyebrow{color:var(--fuchsia-deep); margin-bottom:16px;}
+  .section-head h2{font-size:clamp(32px,4.4vw,50px); color:var(--ink);}
+  .section-head h2 em{font-style:italic; color:var(--fuchsia-deep);}
+  .section-head p{color:#5c4450; font-size:16.5px; margin-top:16px;}
+
+  /* ---------- servicios ---------- */
+  .servicios{padding:120px 0 100px; background:var(--cream);}
+  .serv-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:22px;
+  }
+  .serv-card{
+    background:var(--white);
+    border-radius:var(--radius);
+    padding:32px 26px 30px;
+    box-shadow:0 14px 34px -18px rgba(122,30,77,.28);
+    border:1px solid rgba(122,30,77,.08);
+    transition:transform .28s cubic-bezier(.2,.8,.2,1), box-shadow .28s ease;
+    display:flex; flex-direction:column; gap:16px;
+  }
+  .serv-card:hover{transform:translateY(-8px); box-shadow:0 26px 44px -18px rgba(122,30,77,.4);}
+  .serv-top{height:8px; border-radius:8px; margin:-32px -26px 6px;}
+  .serv-card:nth-child(1) .serv-top{background:linear-gradient(90deg,#ffd7e6,#ff2d78);}
+  .serv-card:nth-child(2) .serv-top{background:linear-gradient(90deg,#ffe29a,#f0b840);}
+  .serv-card:nth-child(3) .serv-top{background:linear-gradient(90deg,#e5b8ff,#7a1e4d);}
+  .serv-card:nth-child(4) .serv-top{background:linear-gradient(90deg,#c9f0e0,#25d366);}
+  .serv-card h3{font-size:23px; color:var(--ink);}
+  .serv-card p{color:#6b5560; font-size:14.5px; margin:0;}
+  .serv-card .serv-link{
+    margin-top:auto;
+    font-size:13.5px; font-weight:600;
+    color:var(--fuchsia-deep);
+    display:flex; align-items:center; gap:6px;
+  }
+  .serv-card .serv-link svg{transition:transform .2s ease;}
+  .serv-card:hover .serv-link svg{transform:translateX(4px);}
+
+  /* ---------- sobre mi ---------- */
+  .sobre{
+    padding:110px 0;
+    background:linear-gradient(150deg,#2a1120,#3a1128 60%, #7a1e4d);
+    color:var(--white);
+  }
+  .sobre-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:70px;
+    align-items:center;
+  }
+  .sobre .eyebrow{color:var(--gold-soft);}
+  .sobre h2{font-size:clamp(30px,4vw,44px); margin:18px 0 22px;}
+  .sobre h2 em{font-style:italic; color:var(--gold-soft);}
+  .sobre p{color:rgba(255,246,239,.82); font-size:16px;}
+  .stat-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:36px;
+  }
+  .stat-card{
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(255,255,255,.14);
+    border-radius:16px;
+    padding:20px 14px;
+    text-align:center;
+  }
+  .stat-card .n{font-family:var(--ff-display); font-size:28px; font-weight:800; color:var(--gold-soft);}
+  .stat-card .l{font-size:11.5px; text-transform:uppercase; letter-spacing:.1em; color:rgba(255,246,239,.7); margin-top:4px;}
+  .sobre-swatches{
+    display:flex; flex-wrap:wrap; gap:10px; margin-top:30px;
+  }
+  .sobre-swatches .swatch{width:26px;height:26px;}
+
+  .ig-card{
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:24px;
+    padding:38px;
+    backdrop-filter:blur(6px);
+  }
+  .ig-head{display:flex; align-items:center; gap:14px; margin-bottom:22px;}
+  .ig-avatar{
+    width:58px;height:58px;border-radius:50%;
+    background:conic-gradient(from 210deg, var(--gold-soft), var(--fuchsia), var(--wine), var(--gold-soft));
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+  }
+  .ig-avatar span{
+    width:50px;height:50px;border-radius:50%;
+    background:var(--ink);
+    display:flex;align-items:center;justify-content:center;
+    font-family:var(--ff-display); font-style:italic; font-weight:700; color:var(--gold-soft);
+  }
+  .ig-name{font-weight:700; font-size:16px;}
+  .ig-handle{font-size:13px; color:rgba(255,246,239,.65);}
+  .ig-row{display:flex; gap:26px; margin:20px 0 26px;}
+  .ig-row div{text-align:left;}
+  .ig-row .n{font-weight:700; font-size:18px; font-family:var(--ff-display);}
+  .ig-row .l{font-size:11.5px; color:rgba(255,246,239,.65); text-transform:uppercase; letter-spacing:.08em;}
+  .ig-btn{
+    display:flex; align-items:center; justify-content:center; gap:10px;
+    background:linear-gradient(90deg,#f58529,#dd2a7b,#8134af,#515bd4);
+    padding:14px; border-radius:14px; color:#fff; font-weight:600; font-size:14.5px;
+    transition:transform .2s ease, filter .2s ease;
+  }
+  .ig-btn:hover{transform:translateY(-2px); filter:brightness(1.08);}
+
+  /* ---------- por que elegirme ---------- */
+  .porque{padding:110px 0; background:var(--cream);}
+  .porque-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:24px;
+  }
+  .porque-item{
+    display:flex; gap:16px; align-items:flex-start;
+    background:var(--white);
+    padding:26px; border-radius:18px;
+    border:1px solid rgba(122,30,77,.08);
+    box-shadow:0 10px 26px -18px rgba(122,30,77,.3);
+  }
+  .porque-item .swatch{width:20px;height:20px; margin-top:3px;}
+  .porque-item h4{font-family:var(--ff-body); font-weight:600; font-size:15.5px; margin:0 0 6px; color:var(--ink);}
+  .porque-item p{font-size:13.8px; color:#6b5560; margin:0;}
+
+  /* ---------- contacto ---------- */
+  .contacto{
+    padding:120px 0 100px;
+    background:
+      radial-gradient(circle at 20% 20%, rgba(255,255,255,.18), transparent 45%),
+      radial-gradient(circle at 80% 80%, rgba(255,255,255,.14), transparent 45%),
+      linear-gradient(135deg, var(--fuchsia-deep), var(--wine) 55%, #3a1128);
+    color:var(--white);
+    text-align:center;
+  }
+  .contacto .eyebrow{color:var(--gold-soft); justify-content:center;}
+  .contacto h2{font-size:clamp(34px,5vw,58px); margin:18px auto 18px; max-width:720px;}
+  .contacto h2 em{font-style:italic; color:var(--gold-soft);}
+  .contacto p.lead{max-width:560px; margin:0 auto 44px; color:rgba(255,246,239,.85); font-size:17px;}
+  .contact-cards{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:20px; max-width:900px; margin:0 auto;
+  }
+  .contact-card{
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.2);
+    border-radius:20px;
+    padding:30px 22px;
+    display:flex; flex-direction:column; align-items:center; gap:14px;
+    transition:transform .25s ease, background .25s ease;
+  }
+  .contact-card:hover{transform:translateY(-6px); background:rgba(255,255,255,.14);}
+  .contact-card .ic{
+    width:52px; height:52px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(255,255,255,.15);
+  }
+  .contact-card h4{font-family:var(--ff-body); font-weight:600; font-size:15px; margin:0;}
+  .contact-card span{font-size:13.5px; color:rgba(255,246,239,.75); word-break:break-word;}
+
+  /* ---------- footer ---------- */
+  footer{
+    background:var(--ink);
+    color:rgba(255,246,239,.6);
+    padding:44px 0 30px;
+    text-align:center;
+    font-size:13px;
+  }
+  footer .brand{margin-bottom:14px; justify-content:center; display:flex;}
+  footer .foot-links{display:flex; gap:22px; justify-content:center; margin:18px 0; flex-wrap:wrap;}
+  footer .foot-links a{color:rgba(255,246,239,.75); font-size:13px;}
+  footer .foot-links a:hover{color:var(--gold-soft);}
+
+  /* ---------- floating whatsapp ---------- */
+  .float-wa{
+    position:fixed; right:24px; bottom:24px; z-index:200;
+    width:64px; height:64px; border-radius:50%;
+    background:linear-gradient(135deg,var(--ok-green),#1fae54);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 16px 30px -8px rgba(37,211,102,.6);
+    animation:pulse 2.6s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{box-shadow:0 16px 30px -8px rgba(37,211,102,.6);}
+    50%{box-shadow:0 16px 40px -6px rgba(37,211,102,.85);}
+  }
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal{opacity:0; transform:translateY(26px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:980px){
+    .hero-grid{grid-template-columns:1fr; gap:50px;}
+    .hero-visual{height:340px; margin-top:10px;}
+    .serv-grid{grid-template-columns:repeat(2,1fr);}
+    .sobre-grid{grid-template-columns:1fr;}
+    .porque-grid{grid-template-columns:1fr;}
+    .contact-cards{grid-template-columns:1fr;}
+    .nav-links{display:none;}
+  }
+  @media (max-width:560px){
+    .serv-grid{grid-template-columns:1fr;}
+    .hero{padding-top:120px;}
+    .stat-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand">Pipu <span>Calise</span></div>
+    <div class="nav-links">
+      <a href="#servicios">Servicios</a>
+      <a href="#sobre">Sobre mí</a>
+      <a href="#instagram">Instagram</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <a class="nav-cta" href="https://wa.me/5491150053656?text=Hola%20Pipu!%20Quiero%20consultar%20disponibilidad%20para%20un%20servicio." target="_blank" rel="noopener">
+      WhatsApp
+    </a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow hero-eyebrow"><span class="dot"></span> Makeup &amp; Hair Artist · Buenos Aires</div>
+      <h1>Belleza que <em>se nota</em>,<br>en cada detalle.</h1>
+      <p class="hero-sub">Pipu Calise Lo Presti diseña maquillaje y peinado para novias, producciones de moda y eventos sociales — y forma a nuevas artistas en sus clases. Cada trabajo, pensado para vos.</p>
+      <ul class="hero-tags">
+        <li><span class="swatch" style="background:radial-gradient(circle at 30% 30%,#ff9dc0,#ff2d78)"></span> Novias</li>
+        <li><span class="swatch" style="background:radial-gradient(circle at 30% 30%,#ffe29a,#f0b840)"></span> Moda</li>
+        <li><span class="swatch" style="background:radial-gradient(circle at 30% 30%,#c98fd6,#7a1e4d)"></span> Sociales</li>
+        <li><span class="swatch" style="background:radial-gradient(circle at 30% 30%,#c9f0e0,#25d366)"></span> Clases</li>
+      </ul>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://wa.me/5491150053656?text=Hola%20Pipu!%20Quiero%20reservar%20un%20turno." target="_blank" rel="noopener">
+          Reservá tu turno por WhatsApp →
+        </a>
+        <a class="btn btn-ghost" href="https://www.instagram.com/pipucalise/" target="_blank" rel="noopener">
+          Ver portfolio en Instagram
+        </a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="palette">
+        <div class="swatch-big"></div><div class="swatch-big"></div><div class="swatch-big"></div><div class="swatch-big"></div>
+        <div class="swatch-big"></div><div class="swatch-big"></div><div class="swatch-big"></div><div class="swatch-big"></div>
+        <div class="swatch-big"></div><div class="swatch-big"></div><div class="swatch-big"></div><div class="swatch-big"></div>
+        <div class="swatch-big"></div><div class="swatch-big"></div><div class="swatch-big"></div><div class="swatch-big"></div>
+      </div>
+      <div class="hero-ig-chip">
+        <div class="num">9.481</div>
+        <div class="lbl">Seguidoras<br>en Instagram</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="marquee-wrap">
+  <div class="marquee" id="marquee">
+    <span>Novias</span><span>Moda</span><span>Sociales</span><span>Clases</span>
+    <span>Novias</span><span>Moda</span><span>Sociales</span><span>Clases</span>
+    <span>Novias</span><span>Moda</span><span>Sociales</span><span>Clases</span>
+  </div>
+</div>
+
+<section class="servicios" id="servicios">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span> Qué hago</div>
+      <h2>Un servicio para <em>cada momento</em></h2>
+      <p>Elegí el que necesitás y coordinamos todo por WhatsApp: fecha, lugar y detalles del look.</p>
+    </div>
+    <div class="serv-grid">
+      <div class="serv-card reveal">
+        <div class="serv-top"></div>
+        <h3>Novias</h3>
+        <p>Maquillaje y peinado de novia, prueba previa incluida, para que el gran día se vea (y se sienta) impecable.</p>
+        <a class="serv-link" href="https://wa.me/5491150053656?text=Hola%20Pipu!%20Quiero%20consultar%20por%20el%20servicio%20de%20Novias." target="_blank" rel="noopener">Consultar disponibilidad
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <div class="serv-card reveal">
+        <div class="serv-top"></div>
+        <h3>Moda</h3>
+        <p>Producciones editoriales, campañas y shows: looks con dirección artística y resistencia para cámara.</p>
+        <a class="serv-link" href="https://wa.me/5491150053656?text=Hola%20Pipu!%20Quiero%20consultar%20por%20una%20producci%C3%B3n%20de%20Moda." target="_blank" rel="noopener">Consultar disponibilidad
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <div class="serv-card reveal">
+        <div class="serv-top"></div>
+        <h3>Sociales</h3>
+        <p>Fiestas, cumpleaños de 15, graduaciones y eventos: un look a tu medida para brillar toda la noche.</p>
+        <a class="serv-link" href="https://wa.me/5491150053656?text=Hola%20Pipu!%20Quiero%20consultar%20por%20un%20evento%20Social." target="_blank" rel="noopener">Consultar disponibilidad
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <div class="serv-card reveal">
+        <div class="serv-top"></div>
+        <h3>Clases</h3>
+        <p>Formación individual o grupal en maquillaje y peinado, desde lo básico hasta técnicas profesionales.</p>
+        <a class="serv-link" href="https://wa.me/5491150053656?text=Hola%20Pipu!%20Quiero%20informaci%C3%B3n%20sobre%20las%20Clases." target="_blank" rel="noopener">Consultar disponibilidad
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sobre" id="sobre">
+  <div class="wrap sobre-grid">
+    <div class="reveal">
+      <div class="eyebrow"><span class="dot"></span> Sobre mí</div>
+      <h2>Pipu Calise <em>Lo Presti</em></h2>
+      <p>Artista de maquillaje y peinado en Buenos Aires. Cada rostro es un lienzo distinto, y mi trabajo es realzar lo que ya está: tu mejor versión, sin máscaras.</p>
+      <p>Con más de 800 trabajos publicados y una comunidad de casi 10.000 personas que siguen cada producción, la experiencia y el ojo artístico están puestos en cada cita.</p>
+      <div class="stat-grid">
+        <div class="stat-card"><div class="n">815</div><div class="l">Publicaciones</div></div>
+        <div class="stat-card"><div class="n">9.481</div><div class="l">Seguidoras</div></div>
+        <div class="stat-card"><div class="n">📍BsAs</div><div class="l">Argentina</div></div>
+      </div>
+      <div class="sobre-swatches">
+        <span class="swatch" style="background:radial-gradient(circle at 30% 30%,#ff9dc0,#ff2d78)"></span>
+        <span class="swatch" style="background:radial-gradient(circle at 30% 30%,#ffe29a,#f0b840)"></span>
+        <span class="swatch" style="background:radial-gradient(circle at 30% 30%,#c98fd6,#7a1e4d)"></span>
+        <span class="swatch" style="background:radial-gradient(circle at 30% 30%,#ffd7e6,#f8c6d8)"></span>
+        <span class="swatch" style="background:radial-gradient(circle at 30% 30%,#fff2c9,#ffd166)"></span>
+        <span class="swatch" style="background:radial-gradient(circle at 30% 30%,#ff77a6,#e01463)"></span>
+        <span class="swatch" style="background:radial-gradient(circle at 30% 30%,#e5b8ff,#9c3fa8)"></span>
+      </div>
+    </div>
+    <div class="reveal" id="instagram">
+      <div class="ig-card">
+        <div class="ig-head">
+          <div class="ig-avatar"><span>PC</span></div>
+          <div>
+            <div class="ig-name">Pipu Calise Lo Presti</div>
+            <div class="ig-handle">@pipucalise</div>
+          </div>
+        </div>
+        <p style="color:rgba(255,246,239,.8); font-size:14.5px; margin:0 0 22px;">Artist · MAKEUP&amp;HAIR<br>📍BsAs, Argentina<br>Novias | Moda | Sociales | Clases</p>
+        <div class="ig-row">
+          <div><div class="n">815</div><div class="l">Posts</div></div>
+          <div><div class="n">9.481</div><div class="l">Seguidoras</div></div>
+          <div><div class="n">2.638</div><div class="l">Siguiendo</div></div>
+        </div>
+        <a class="ig-btn" href="https://www.instagram.com/pipucalise/" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg>
+          Ver perfil completo @pipucalise
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="porque">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow"><span class="dot"></span> Por qué elegirme</div>
+      <h2>Cada cita, <em>a tu medida</em></h2>
+    </div>
+    <div class="porque-grid">
+      <div class="porque-item reveal">
+        <span class="swatch" style="background:radial-gradient(circle at 30% 30%,#ff9dc0,#ff2d78)"></span>
+        <div><h4>Look personalizado</h4><p>Analizamos tu piel, tu estilo y la ocasión antes de definir el resultado final.</p></div>
+      </div>
+      <div class="porque-item reveal">
+        <span class="swatch" style="background:radial-gradient(circle at 30% 30%,#ffe29a,#f0b840)"></span>
+        <div><h4>Productos profesionales</h4><p>Materiales de alta duración pensados para fotos, video y jornadas largas.</p></div>
+      </div>
+      <div class="porque-item reveal">
+        <span class="swatch" style="background:radial-gradient(circle at 30% 30%,#c98fd6,#7a1e4d)"></span>
+        <div><h4>Puntualidad y trato cercano</h4><p>Coordinación clara desde el primer mensaje hasta el día del servicio.</p></div>
+      </div>
+      <div class="porque-item reveal">
+        <span class="swatch" style="background:radial-gradient(circle at 30% 30%,#c9f0e0,#25d366)"></span>
+        <div><h4>Servicio a domicilio</h4><p>Voy hasta donde estés en Buenos Aires, para que no pierdas tiempo el día del evento.</p></div>
+      </div>
+      <div class="porque-item reveal">
+        <span class="swatch" style="background:radial-gradient(circle at 30% 30%,#ffd7e6,#f8c6d8)"></span>
+        <div><h4>Portfolio verificable</h4><p>Más de 800 trabajos publicados en Instagram, para que veas el estilo antes de reservar.</p></div>
+      </div>
+      <div class="porque-item reveal">
+        <span class="swatch" style="background:radial-gradient(circle at 30% 30%,#fff2c9,#ffd166)"></span>
+        <div><h4>Clases disponibles</h4><p>Si querés aprender la técnica, también dicto clases individuales y grupales.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contacto" id="contacto">
+  <div class="wrap">
+    <div class="eyebrow"><span class="dot"></span> Reservá tu turno</div>
+    <h2>Contame tu <em>fecha</em> y lo hacemos realidad.</h2>
+    <p class="lead">Escribime por WhatsApp con el servicio que necesitás, la fecha y el lugar. Te respondo con la disponibilidad y los detalles.</p>
+    <div class="contact-cards">
+      <a class="contact-card" href="https://wa.me/5491150053656?text=Hola%20Pipu!%20Quiero%20consultar%20disponibilidad." target="_blank" rel="noopener">
+        <div class="ic">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.44-1.36a9.9 9.9 0 0 0 4.6 1.13h.01c5.46 0 9.91-4.45 9.91-9.91 0-5.46-4.45-9.86-9.92-9.86Zm5.83 14.05c-.24.68-1.4 1.32-1.93 1.4-.5.08-1.13.11-1.83-.11-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.8-4.16-4.94-4.35-.14-.19-1.19-1.58-1.19-3.02 0-1.44.75-2.15 1.02-2.44.27-.29.58-.36.78-.36.19 0 .39 0 .56.01.18.01.42-.07.65.5.24.58.82 2.02.89 2.17.07.15.11.32.02.51-.09.19-.14.31-.28.48-.14.17-.29.38-.42.51-.14.14-.29.29-.12.57.17.29.75 1.24 1.62 2.01 1.11.99 2.04 1.3 2.33 1.44.29.15.46.13.63-.07.17-.2.72-.83.91-1.12.19-.29.38-.24.63-.14.25.09 1.61.76 1.89.9.28.14.46.21.53.33.07.12.07.7-.17 1.38Z"/></svg>
+        </div>
+        <h4>WhatsApp</h4>
+        <span>+54 9 11 5005-3656</span>
+      </a>
+      <a class="contact-card" href="mailto:Pipucalise@gmail.com?subject=Consulta%20de%20servicio">
+        <div class="ic">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        </div>
+        <h4>Email</h4>
+        <span>Pipucalise@gmail.com</span>
+      </a>
+      <a class="contact-card" href="https://www.instagram.com/pipucalise/" target="_blank" rel="noopener">
+        <div class="ic">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="white" stroke="none"/></svg>
+        </div>
+        <h4>Instagram</h4>
+        <span>@pipucalise</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand">Pipu <span style="color:var(--gold-soft)">Calise</span></div>
+    <p style="max-width:420px;margin:0 auto;">Makeup &amp; Hair Artist · Buenos Aires, Argentina</p>
+    <div class="foot-links">
+      <a href="#servicios">Servicios</a>
+      <a href="#sobre">Sobre mí</a>
+      <a href="https://www.instagram.com/pipucalise/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://wa.me/5491150053656" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="mailto:Pipucalise@gmail.com">Email</a>
+    </div>
+    <p>© 2026 Pipu Calise Lo Presti. Todos los derechos reservados.</p>
+  </div>
+</footer>
+
+<a class="float-wa" href="https://wa.me/5491150053656?text=Hola%20Pipu!%20Quiero%20consultar%20disponibilidad." target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="white"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.44-1.36a9.9 9.9 0 0 0 4.6 1.13h.01c5.46 0 9.91-4.45 9.91-9.91 0-5.46-4.45-9.86-9.92-9.86Zm5.83 14.05c-.24.68-1.4 1.32-1.93 1.4-.5.08-1.13.11-1.83-.11-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.8-4.16-4.94-4.35-.14-.19-1.19-1.58-1.19-3.02 0-1.44.75-2.15 1.02-2.44.27-.29.58-.36.78-.36.19 0 .39 0 .56.01.18.01.42-.07.65.5.24.58.82 2.02.89 2.17.07.15.11.32.02.51-.09.19-.14.31-.28.48-.14.17-.29.38-.42.51-.14.14-.29.29-.12.57.17.29.75 1.24 1.62 2.01 1.11.99 2.04 1.3 2.33 1.44.29.15.46.13.63-.07.17-.2.72-.83.91-1.12.19-.29.38-.24.63-.14.25.09 1.61.76 1.89.9.28.14.46.21.53.33.07.12.07.7-.17 1.38Z"/></svg>
+</a>
+
+<script>
+  // reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  },{threshold:.15});
+  revealEls.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
