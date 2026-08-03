@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Majo Sosa Studio — Esmaltado semipermanente, refuerzo soft gel y nail art</title>
+<meta name="description" content="Majo Sosa Studio. Esmaltado semipermanente, refuerzo soft gel, nail art y belleza de pies. Reservá tu turno por WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;0,9..144,700;1,9..144,450&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#241512;
+    --ink-soft:#3a2620;
+    --bone:#f8efe6;
+    --blush:#f0ddd1;
+    --blush-soft:#f6e9df;
+    --wine:#7a2436;
+    --wine-deep:#5c1a28;
+    --gold:#c79a46;
+    --rose-dust:#c98b82;
+    --plum:#4b1f3d;
+    --line: rgba(36,21,18,0.12);
+    --line-light: rgba(248,239,230,0.18);
+    --shadow: 0 20px 40px -20px rgba(36,21,18,0.35);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bone);
+    color:var(--ink);
+    font-family:'Manrope', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3, .display{
+    font-family:'Fraunces', serif;
+    letter-spacing:-0.01em;
+    margin:0;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 24px;}
+  .eyebrow{
+    font-family:'Manrope', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.22em;
+    font-size:12px;
+    font-weight:700;
+    color:var(--wine);
+  }
+  .eyebrow.on-dark{color:var(--rose-dust);}
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:16px 30px;
+    border-radius:100px;
+    font-weight:700;
+    font-size:15px;
+    cursor:pointer;
+    border:1px solid transparent;
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease;
+    white-space:nowrap;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{
+    background:var(--wine);
+    color:var(--bone);
+    box-shadow:0 14px 30px -10px rgba(122,36,54,0.55);
+  }
+  .btn-primary:hover{background:var(--wine-deep); box-shadow:0 18px 34px -8px rgba(122,36,54,0.6);}
+  .btn-ghost{
+    background:transparent;
+    border-color:var(--line);
+    color:var(--ink);
+  }
+  .btn-ghost:hover{border-color:var(--wine); color:var(--wine);}
+  .btn-ghost.on-dark{border-color:var(--line-light); color:var(--bone);}
+  .btn-ghost.on-dark:hover{border-color:var(--gold); color:var(--gold);}
+  .btn svg{width:18px; height:18px; flex-shrink:0;}
+
+  /* ---------- Swatch strip (signature element) ---------- */
+  .swatch-strip{
+    display:flex;
+    width:100%;
+    height:14px;
+  }
+  .swatch-strip span{flex:1;}
+  .sw-wine{background:var(--wine);}
+  .sw-rose{background:var(--rose-dust);}
+  .sw-gold{background:var(--gold);}
+  .sw-plum{background:var(--plum);}
+  .sw-blush{background:var(--blush);}
+  .sw-ink{background:var(--ink);}
+
+  /* ---------- Header ---------- */
+  header{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:100;
+    background:rgba(36,21,18,0.72);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line-light);
+  }
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 24px;
+    max-width:1180px;
+    margin:0 auto;
+  }
+  .brand{
+    display:flex;
+    flex-direction:column;
+    line-height:1.05;
+    color:var(--bone);
+  }
+  .brand .name{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:19px;
+    letter-spacing:0.02em;
+  }
+  .brand .flags{font-size:11px; letter-spacing:0.18em; color:var(--rose-dust); text-transform:uppercase; margin-top:3px;}
+  .nav-links{display:flex; align-items:center; gap:34px;}
+  .nav-links a{
+    color:var(--blush-soft);
+    font-size:14px;
+    font-weight:600;
+    opacity:0.85;
+    transition:opacity .2s ease, color .2s ease;
+  }
+  .nav-links a:hover{opacity:1; color:var(--gold);}
+  .nav-cta{display:flex; align-items:center; gap:14px;}
+  .nav-toggle{display:none;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    background:radial-gradient(120% 140% at 15% -10%, #3a2620 0%, var(--ink) 55%, #150b09 100%);
+    color:var(--bone);
+    padding:168px 0 90px;
+    overflow:hidden;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    right:-140px; top:-60px;
+    width:520px; height:520px;
+    border-radius:50%;
+    background:radial-gradient(circle at 30% 30%, rgba(199,154,70,0.28), rgba(199,154,70,0) 70%);
+    pointer-events:none;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:60px;
+    align-items:center;
+    position:relative;
+  }
+  .hero h1{
+    font-size:clamp(38px, 5.2vw, 66px);
+    font-weight:600;
+    line-height:1.04;
+    margin:18px 0 22px;
+  }
+  .hero h1 em{
+    font-style:italic;
+    font-weight:450;
+    color:var(--rose-dust);
+  }
+  .hero p.lead{
+    font-size:18px;
+    line-height:1.6;
+    color:var(--blush-soft);
+    max-width:480px;
+    margin-bottom:34px;
+  }
+  .hero-ctas{display:flex; flex-wrap:wrap; gap:16px; margin-bottom:38px;}
+  .hero-note{
+    display:flex; align-items:center; gap:10px;
+    font-size:13px; color:var(--blush-soft); opacity:0.75;
+  }
+  .hero-note .dot{width:7px; height:7px; border-radius:50%; background:#7fbf7f; box-shadow:0 0 0 4px rgba(127,191,127,0.18);}
+
+  /* Hero visual: mani "swatch card" */
+  .swatch-card{
+    background:var(--blush);
+    border-radius:26px;
+    padding:30px;
+    box-shadow:var(--shadow);
+    transform:rotate(2.5deg);
+    position:relative;
+  }
+  .swatch-card::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:26px;
+    border:1px solid rgba(36,21,18,0.08);
+  }
+  .swatch-card .card-label{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:15px;
+    color:var(--wine-deep);
+    margin-bottom:18px;
+  }
+  .swatch-row{display:grid; grid-template-columns:repeat(5,1fr); gap:12px; margin-bottom:22px;}
+  .swatch-dot{
+    aspect-ratio:1;
+    border-radius:50%;
+    box-shadow:inset 0 -6px 10px rgba(0,0,0,0.14), inset 0 4px 6px rgba(255,255,255,0.25);
+    position:relative;
+  }
+  .swatch-dot::after{
+    content:"";
+    position:absolute; top:14%; left:18%;
+    width:26%; height:26%;
+    border-radius:50%;
+    background:rgba(255,255,255,0.55);
+    filter:blur(1px);
+  }
+  .swatch-card .services-mini{
+    display:flex; flex-direction:column; gap:10px;
+    border-top:1px dashed rgba(36,21,18,0.18);
+    padding-top:18px;
+  }
+  .services-mini .row{
+    display:flex; justify-content:space-between; align-items:center;
+    font-size:14px; color:var(--ink-soft);
+  }
+  .services-mini .row b{font-weight:700; color:var(--ink);}
+  .services-mini .tag{
+    font-size:10.5px; letter-spacing:0.08em; text-transform:uppercase;
+    background:var(--wine); color:var(--bone);
+    padding:4px 9px; border-radius:100px; font-weight:700;
+  }
+
+  /* ---------- Section shells ---------- */
+  section{padding:96px 0;}
+  .section-head{
+    max-width:640px;
+    margin-bottom:56px;
+  }
+  .section-head h2{
+    font-size:clamp(30px, 3.6vw, 44px);
+    font-weight:600;
+    margin-top:14px;
+    line-height:1.12;
+  }
+  .section-head p{
+    font-size:16px;
+    color:var(--ink-soft);
+    margin-top:16px;
+    line-height:1.65;
+  }
+
+  /* ---------- Services ---------- */
+  .services{background:var(--blush-soft);}
+  .service-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:22px;
+  }
+  .service-card{
+    background:var(--bone);
+    border-radius:22px;
+    padding:32px 26px;
+    border:1px solid var(--line);
+    position:relative;
+    transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+    display:flex;
+    flex-direction:column;
+    min-height:290px;
+  }
+  .service-card:hover{
+    transform:translateY(-6px);
+    box-shadow:var(--shadow);
+    border-color:transparent;
+  }
+  .service-card .icon-wrap{
+    width:52px; height:52px;
+    border-radius:16px;
+    background:var(--blush);
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:22px;
+  }
+  .service-card .icon-wrap svg{width:26px; height:26px; stroke:var(--wine-deep);}
+  .service-card h3{
+    font-size:20px;
+    font-weight:600;
+    margin-bottom:10px;
+  }
+  .service-card p{
+    font-size:14.5px;
+    color:var(--ink-soft);
+    line-height:1.6;
+    flex-grow:1;
+  }
+  .service-card .card-link{
+    margin-top:18px;
+    font-size:13.5px;
+    font-weight:700;
+    color:var(--wine);
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+  }
+  .service-card .card-link svg{width:14px; height:14px;}
+  .service-card:nth-child(1) .icon-wrap{background:#f3dee0;}
+  .service-card:nth-child(2) .icon-wrap{background:#e8ddf0;}
+  .service-card:nth-child(3) .icon-wrap{background:#f5e6cf;}
+  .service-card:nth-child(4) .icon-wrap{background:#dbe8e0;}
+
+  /* ---------- Why / dark band ---------- */
+  .why{
+    background:var(--ink);
+    color:var(--bone);
+  }
+  .why-grid{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:60px;
+    align-items:start;
+  }
+  .why h2{font-size:clamp(28px,3.4vw,40px); font-weight:600; line-height:1.14; margin-top:14px;}
+  .why .lead{color:var(--blush-soft); margin-top:18px; line-height:1.65; font-size:15.5px;}
+  .why-list{display:flex; flex-direction:column; gap:0;}
+  .why-item{
+    display:flex; gap:20px;
+    padding:26px 0;
+    border-bottom:1px solid var(--line-light);
+  }
+  .why-item:first-child{padding-top:0;}
+  .why-item .num{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:22px;
+    color:var(--gold);
+    min-width:34px;
+  }
+  .why-item h4{font-size:16.5px; font-weight:700; margin-bottom:6px;}
+  .why-item p{font-size:14px; color:var(--blush-soft); line-height:1.6; margin:0;}
+
+  /* ---------- Booking steps ---------- */
+  .steps{background:var(--bone);}
+  .steps-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:26px;
+    position:relative;
+  }
+  .step-card{
+    background:var(--blush-soft);
+    border-radius:22px;
+    padding:34px 28px;
+    position:relative;
+    border:1px solid var(--line);
+  }
+  .step-card .step-num{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:44px;
+    color:var(--wine);
+    opacity:0.85;
+    line-height:1;
+    margin-bottom:18px;
+  }
+  .step-card h3{font-size:18px; font-weight:700; margin-bottom:10px;}
+  .step-card p{font-size:14px; color:var(--ink-soft); line-height:1.6; margin:0;}
+
+  /* ---------- Final CTA ---------- */
+  .final-cta{
+    background:linear-gradient(135deg, var(--wine-deep), var(--wine) 55%, #8a2c3f);
+    color:var(--bone);
+    border-radius:32px;
+    margin:0 24px;
+    max-width:1132px;
+    margin-inline:auto;
+    padding:70px 60px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .final-cta::before{
+    content:"";
+    position:absolute; inset:0;
+    background:radial-gradient(60% 100% at 50% 0%, rgba(255,255,255,0.12), rgba(255,255,255,0) 60%);
+  }
+  .final-cta h2{
+    font-size:clamp(28px, 4vw, 42px);
+    font-weight:600;
+    line-height:1.15;
+    max-width:640px;
+    margin:16px auto 20px;
+    position:relative;
+  }
+  .final-cta p{
+    color:var(--blush-soft);
+    max-width:520px;
+    margin:0 auto 34px;
+    font-size:16px;
+    line-height:1.6;
+    position:relative;
+  }
+  .final-cta .cta-row{display:flex; justify-content:center; gap:16px; flex-wrap:wrap; position:relative;}
+  .final-cta .btn-ghost{border-color:rgba(248,239,230,0.35); color:var(--bone);}
+  .final-cta .btn-ghost:hover{border-color:var(--gold); color:var(--gold);}
+  .final-cta .btn-primary{background:var(--bone); color:var(--wine-deep); box-shadow:0 14px 30px -10px rgba(0,0,0,0.35);}
+  .final-cta .btn-primary:hover{background:#fff;}
+
+  /* ---------- Footer ---------- */
+  footer{
+    background:var(--ink);
+    color:var(--blush-soft);
+    padding:50px 0 30px;
+  }
+  .footer-grid{
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:24px;
+    padding-bottom:30px;
+    border-bottom:1px solid var(--line-light);
+  }
+  .footer-brand .name{font-family:'Fraunces', serif; font-size:20px; color:var(--bone); font-weight:600;}
+  .footer-brand .flags{font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:var(--rose-dust); margin-top:4px;}
+  .footer-links{display:flex; gap:26px;}
+  .footer-links a{
+    display:flex; align-items:center; gap:8px;
+    font-size:14px; font-weight:600; color:var(--blush-soft);
+    opacity:0.85; transition:opacity .2s ease, color .2s ease;
+  }
+  .footer-links a:hover{opacity:1; color:var(--gold);}
+  .footer-links svg{width:17px; height:17px;}
+  .footer-bottom{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+    padding-top:24px;
+    font-size:12.5px; color:rgba(248,239,230,0.5);
+  }
+
+  /* ---------- Floating WhatsApp ---------- */
+  .fab{
+    position:fixed;
+    right:22px; bottom:22px;
+    z-index:200;
+    display:flex; align-items:center; gap:10px;
+    background:var(--wine);
+    color:var(--bone);
+    padding:15px 22px 15px 16px;
+    border-radius:100px;
+    box-shadow:0 16px 32px -10px rgba(122,36,54,0.6);
+    font-weight:700;
+    font-size:14px;
+    transition:transform .25s ease, background .25s ease;
+    animation:pulse-fab 2.6s ease-in-out infinite;
+  }
+  .fab:hover{transform:translateY(-3px) scale(1.02); background:var(--wine-deep);}
+  .fab svg{width:22px; height:22px;}
+  @keyframes pulse-fab{
+    0%, 100%{box-shadow:0 16px 32px -10px rgba(122,36,54,0.6);}
+    50%{box-shadow:0 16px 34px -6px rgba(122,36,54,0.85);}
+  }
+
+  /* ---------- Reveal on scroll ---------- */
+  .reveal{opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.is-visible{opacity:1; transform:translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .reveal{opacity:1; transform:none; transition:none;}
+    .fab{animation:none;}
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 980px){
+    .hero-grid{grid-template-columns:1fr; gap:48px;}
+    .swatch-card{transform:rotate(0deg); max-width:420px;}
+    .service-grid{grid-template-columns:repeat(2, 1fr);}
+    .why-grid{grid-template-columns:1fr; gap:36px;}
+    .steps-grid{grid-template-columns:1fr;}
+    .final-cta{padding:54px 30px;}
+  }
+  @media (max-width: 720px){
+    .nav-links{
+      position:fixed;
+      top:64px; left:0; right:0;
+      background:var(--ink);
+      flex-direction:column;
+      align-items:flex-start;
+      padding:20px 24px 26px;
+      gap:18px;
+      border-bottom:1px solid var(--line-light);
+      transform:translateY(-140%);
+      transition:transform .3s ease;
+    }
+    .nav-links.open{transform:translateY(0);}
+    .nav-cta .btn-ghost{display:none;}
+    .nav-toggle{
+      display:flex; align-items:center; justify-content:center;
+      width:38px; height:38px;
+      border-radius:10px;
+      border:1px solid var(--line-light);
+      background:transparent;
+      color:var(--bone);
+      cursor:pointer;
+    }
+    .nav-toggle svg{width:20px; height:20px;}
+    .service-grid{grid-template-columns:1fr;}
+    .footer-grid{flex-direction:column; align-items:flex-start;}
+    .fab span{display:none;}
+    .fab{padding:15px; border-radius:50%;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <div class="swatch-strip">
+    <span class="sw-wine"></span><span class="sw-rose"></span><span class="sw-gold"></span>
+    <span class="sw-plum"></span><span class="sw-blush"></span><span class="sw-ink"></span>
+  </div>
+  <nav class="nav">
+    <a href="#top" class="brand">
+      <span class="name">Majo Sosa Studio</span>
+      <span class="flags">🇦🇷 Buenos Aires · 🇪🇸 España</span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#servicios">Servicios</a>
+      <a href="#por-que">Por qué elegirnos</a>
+      <a href="#reservar">Cómo reservar</a>
+      <a href="https://www.instagram.com/majo.studio___/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <div class="nav-cta">
+      <a class="btn btn-ghost on-dark" href="https://www.instagram.com/majo.studio___/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+        Instagram
+      </a>
+      <a class="btn btn-primary" href="https://wa.link/80ex15" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.33 4.95L2.05 22l5.29-1.39a9.9 9.9 0 0 0 4.7 1.2h.01c5.46 0 9.9-4.45 9.9-9.9C21.95 6.45 17.5 2 12.04 2Zm5.8 14.16c-.24.68-1.4 1.32-1.93 1.4-.5.08-1.12.11-1.8-.12-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.8-4.17-4.94-4.36-.14-.2-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.24.58.83 2 .9 2.14.07.15.12.32.02.52-.1.2-.15.32-.3.5-.15.17-.32.39-.45.52-.15.15-.3.31-.13.6.17.29.75 1.24 1.62 2.01 1.11.99 2.05 1.3 2.34 1.44.29.15.46.13.63-.08.17-.2.72-.84.92-1.13.2-.29.4-.24.66-.15.27.1 1.7.8 1.99.95.29.15.48.22.55.34.07.13.07.75-.17 1.43Z"/></svg>
+        Reservar por WhatsApp
+      </a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </nav>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow on-dark">Esmaltado semipermanente · Refuerzo soft gel · Nail art · Pies</span>
+      <h1>Manos y pies con <em>sello propio</em>,<br>listos para todo lo que viene.</h1>
+      <p class="lead">Majo Sosa Studio, esmaltado semipermanente, refuerzo soft gel, nail art y belleza de pies, con la calidez argentina y el detalle de siempre, ahora en España.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="https://wa.link/80ex15" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.33 4.95L2.05 22l5.29-1.39a9.9 9.9 0 0 0 4.7 1.2h.01c5.46 0 9.9-4.45 9.9-9.9C21.95 6.45 17.5 2 12.04 2Zm5.8 14.16c-.24.68-1.4 1.32-1.93 1.4-.5.08-1.12.11-1.8-.12-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.8-4.17-4.94-4.36-.14-.2-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.24.58.83 2 .9 2.14.07.15.12.32.02.52-.1.2-.15.32-.3.5-.15.17-.32.39-.45.52-.15.15-.3.31-.13.6.17.29.75 1.24 1.62 2.01 1.11.99 2.05 1.3 2.34 1.44.29.15.46.13.63-.08.17-.2.72-.84.92-1.13.2-.29.4-.24.66-.15.27.1 1.7.8 1.99.95.29.15.48.22.55.34.07.13.07.75-.17 1.43Z"/></svg>
+          Reservar mi turno
+        </a>
+        <a class="btn btn-ghost on-dark" href="#servicios">
+          Ver servicios
+        </a>
+      </div>
+      <div class="hero-note"><span class="dot"></span> Respuesta rápida por WhatsApp · Cupos limitados por semana</div>
+    </div>
+
+    <div class="swatch-card reveal">
+      <div class="card-label">Muestrario del estudio</div>
+      <div class="swatch-row">
+        <div class="swatch-dot" style="background:#7a2436"></div>
+        <div class="swatch-dot" style="background:#c98b82"></div>
+        <div class="swatch-dot" style="background:#c79a46"></div>
+        <div class="swatch-dot" style="background:#4b1f3d"></div>
+        <div class="swatch-dot" style="background:#a9435a"></div>
+        <div class="swatch-dot" style="background:#e7c9b4"></div>
+        <div class="swatch-dot" style="background:#8a5a3b"></div>
+        <div class="swatch-dot" style="background:#d9a6ab"></div>
+        <div class="swatch-dot" style="background:#241512"></div>
+        <div class="swatch-dot" style="background:#eee1d3"></div>
+      </div>
+      <div class="services-mini">
+        <div class="row"><b>Esmaltado semipermanente</b><span class="tag">Top</span></div>
+        <div class="row"><span>Refuerzo soft gel</span></div>
+        <div class="row"><span>Nail art</span></div>
+        <div class="row"><span>Belleza de pies</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICIOS ================= -->
+<section class="services" id="servicios">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Servicios</span>
+      <h2>Todo lo que tus manos y pies necesitan, en un solo lugar.</h2>
+      <p>Elegí el servicio y coordinamos día y horario por WhatsApp. Sin vueltas.</p>
+    </div>
+
+    <div class="service-grid">
+      <div class="service-card reveal">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c3 4.5 6 8.2 6 11.5A6 6 0 0 1 6 13.5C6 10.2 9 6.5 12 2Z"/></svg>
+        </div>
+        <h3>Esmaltado semipermanente</h3>
+        <p>Color parejo y brillo de larga duración, sin manchas ni descascarado, ideal para el día a día.</p>
+        <a class="card-link" href="https://wa.link/80ex15" target="_blank" rel="noopener">Reservar este servicio
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6l7-3Z"/></svg>
+        </div>
+        <h3>Refuerzo soft gel</h3>
+        <p>Estructura y resistencia para uñas débiles o cortas, con un acabado natural y liviano.</p>
+        <a class="card-link" href="https://wa.link/80ex15" target="_blank" rel="noopener">Reservar este servicio
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M3 12h3M18 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/><circle cx="12" cy="12" r="2.4"/></svg>
+        </div>
+        <h3>Nail art</h3>
+        <p>Diseños a medida, de lo minimalista a lo más elaborado, para cada ocasión y estilo.</p>
+        <a class="card-link" href="https://wa.link/80ex15" target="_blank" rel="noopener">Reservar este servicio
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21c-1.5 0-2.5-1-2.5-2.5 0-2 1.5-3 1.5-5.5S6 9 6 6.5A2.5 2.5 0 0 1 8.5 4c1 0 1.6.6 2 1.5.4-1 1-1.9 2.2-1.9 1.3 0 2.3 1 2.3 2.6 0 2-1.5 2.7-1.5 5.2s2 3.7 2 6.1c0 1.9-1.3 3-2.8 3-1.1 0-1.7-.6-2.2-1.4-.5.8-1.2 1.9-2.5 1.9Z"/></svg>
+        </div>
+        <h3>Belleza de pies</h3>
+        <p>Pedicura completa con cuidado de cutículas, hidratación y esmaltado, pies impecables todo el año.</p>
+        <a class="card-link" href="https://wa.link/80ex15" target="_blank" rel="noopener">Reservar este servicio
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= POR QUÉ ELEGIRNOS ================= -->
+<section class="why" id="por-que">
+  <div class="wrap why-grid">
+    <div class="reveal">
+      <span class="eyebrow on-dark">Por qué elegirnos</span>
+      <h2>Técnica argentina, adaptada a tu rutina en España.</h2>
+      <p class="lead">Majo Sosa Studio combina formación y experiencia con materiales de calidad e higiene estricta, para que cada turno sea prolijo, cómodo y puntual.</p>
+    </div>
+    <div class="why-list reveal">
+      <div class="why-item">
+        <span class="num">01</span>
+        <div>
+          <h4>Materiales de primera calidad</h4>
+          <p>Productos seleccionados que cuidan tu uña natural y sostienen el color y la forma por más tiempo.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <span class="num">02</span>
+        <div>
+          <h4>Higiene y bioseguridad</h4>
+          <p>Instrumental esterilizado y protocolos de limpieza en cada turno, sin excepciones.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <span class="num">03</span>
+        <div>
+          <h4>Diseño a tu medida</h4>
+          <p>Cada trabajo se piensa según la forma de tu uña, tu estilo y lo que tenés planeado usar esa semana.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <span class="num">04</span>
+        <div>
+          <h4>Trato cercano</h4>
+          <p>La calidez de siempre, ahora a un mensaje de distancia. Coordinamos todo por WhatsApp.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CÓMO RESERVAR ================= -->
+<section class="steps" id="reservar">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Cómo reservar</span>
+      <h2>Tu turno, en tres pasos.</h2>
+      <p>Así de simple es coordinar tu próxima cita en Majo Sosa Studio.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card reveal">
+        <div class="step-num">01</div>
+        <h3>Elegí tu servicio</h3>
+        <p>Semipermanente, refuerzo soft gel, nail art o pies. Podés combinar más de uno en el mismo turno.</p>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num">02</div>
+        <h3>Escribinos por WhatsApp</h3>
+        <p>Contanos qué querés hacerte y te confirmamos disponibilidad al toque.</p>
+      </div>
+      <div class="step-card reveal">
+        <div class="step-num">03</div>
+        <h3>Confirmamos día y horario</h3>
+        <p>Reservás tu lugar y te esperamos con todo listo para tu turno.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FINAL CTA ================= -->
+<section>
+  <div class="wrap">
+    <div class="final-cta reveal">
+      <span class="eyebrow on-dark">Reservá ahora</span>
+      <h2>¿Le damos color a tus manos y pies esta semana?</h2>
+      <p>Escribinos por WhatsApp y coordinamos tu turno en minutos. También podés ver nuestros trabajos en Instagram.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://wa.link/80ex15" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.33 4.95L2.05 22l5.29-1.39a9.9 9.9 0 0 0 4.7 1.2h.01c5.46 0 9.9-4.45 9.9-9.9C21.95 6.45 17.5 2 12.04 2Zm5.8 14.16c-.24.68-1.4 1.32-1.93 1.4-.5.08-1.12.11-1.8-.12-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.8-4.17-4.94-4.36-.14-.2-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.24.58.83 2 .9 2.14.07.15.12.32.02.52-.1.2-.15.32-.3.5-.15.17-.32.39-.45.52-.15.15-.3.31-.13.6.17.29.75 1.24 1.62 2.01 1.11.99 2.05 1.3 2.34 1.44.29.15.46.13.63-.08.17-.2.72-.84.92-1.13.2-.29.4-.24.66-.15.27.1 1.7.8 1.99.95.29.15.48.22.55.34.07.13.07.75-.17 1.43Z"/></svg>
+          Escribir por WhatsApp
+        </a>
+        <a class="btn btn-ghost" href="https://www.instagram.com/majo.studio___/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+          @majo.studio___
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="name">Majo Sosa Studio</div>
+        <div class="flags">🇦🇷 en 🇪🇸</div>
+      </div>
+      <div class="footer-links">
+        <a href="https://www.instagram.com/majo.studio___/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+          Instagram
+        </a>
+        <a href="https://wa.link/80ex15" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.33 4.95L2.05 22l5.29-1.39a9.9 9.9 0 0 0 4.7 1.2h.01c5.46 0 9.9-4.45 9.9-9.9C21.95 6.45 17.5 2 12.04 2Zm5.8 14.16c-.24.68-1.4 1.32-1.93 1.4-.5.08-1.12.11-1.8-.12-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.8-4.17-4.94-4.36-.14-.2-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.24.58.83 2 .9 2.14.07.15.12.32.02.52-.1.2-.15.32-.3.5-.15.17-.32.39-.45.52-.15.15-.3.31-.13.6.17.29.75 1.24 1.62 2.01 1.11.99 2.05 1.3 2.34 1.44.29.15.46.13.63-.08.17-.2.72-.84.92-1.13.2-.29.4-.24.66-.15.27.1 1.7.8 1.99.95.29.15.48.22.55.34.07.13.07.75-.17 1.43Z"/></svg>
+          WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Majo Sosa Studio. Todos los derechos reservados.</span>
+      <span>Esmaltado semipermanente · Refuerzo soft gel · Nail art · Belleza de pies</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= FLOATING WHATSAPP ================= -->
+<a class="fab" href="https://wa.link/80ex15" target="_blank" rel="noopener" aria-label="Reservar por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.33 4.95L2.05 22l5.29-1.39a9.9 9.9 0 0 0 4.7 1.2h.01c5.46 0 9.9-4.45 9.9-9.9C21.95 6.45 17.5 2 12.04 2Zm5.8 14.16c-.24.68-1.4 1.32-1.93 1.4-.5.08-1.12.11-1.8-.12-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.8-4.17-4.94-4.36-.14-.2-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.29.58-.36.78-.36.2 0 .39 0 .56.01.18.01.42-.07.66.5.24.58.83 2 .9 2.14.07.15.12.32.02.52-.1.2-.15.32-.3.5-.15.17-.32.39-.45.52-.15.15-.3.31-.13.6.17.29.75 1.24 1.62 2.01 1.11.99 2.05 1.3 2.34 1.44.29.15.46.13.63-.08.17-.2.72-.84.92-1.13.2-.29.4-.24.66-.15.27.1 1.7.8 1.99.95.29.15.48.22.55.34.07.13.07.75-.17 1.43Z"/></svg>
+  <span>Reservar turno</span>
+</a>
+
+<script>
+  // Mobile menu toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
