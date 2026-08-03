@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Reta Hilada de Lau — Costura Creativa · Retaleo Artesanal</title>
+<meta name="description" content="Neceseres, joyeros, bolsos, bandanas, scrunchies, fundas y carteras hechos a mano con retazos de tela. Reduce, reusa y recicla con estilo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Caveat:wght@500;600;700&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF2E4;
+    --cream-2:#F7E8D3;
+    --mustard:#E8A93A;
+    --terracotta:#D9603F;
+    --teal:#2E7D6B;
+    --pink:#E68FA3;
+    --lilac:#8E7CC3;
+    --ink:#3C2A2C;
+    --ink-soft:#6B5254;
+    --paper:#FFFDF8;
+    --stitch:#3C2A2C;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Nunito Sans', sans-serif;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{
+    font-family:'Baloo 2', sans-serif;
+    margin:0;
+    color:var(--ink);
+  }
+  .accent-script{
+    font-family:'Caveat', cursive;
+    font-weight:700;
+  }
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ---------- Stitch divider ---------- */
+  .stitch-divider{
+    width:100%;
+    height:26px;
+    background-image: repeating-linear-gradient(90deg, var(--stitch) 0 14px, transparent 14px 26px);
+    background-size: 26px 3px;
+    background-repeat:repeat-x;
+    background-position:center;
+    opacity:0.35;
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(251,242,228,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom:3px dashed var(--ink);
+  }
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 28px;
+    max-width:1180px;
+    margin:0 auto;
+  }
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Baloo 2', sans-serif;
+    font-size:1.35rem;
+    font-weight:700;
+    letter-spacing:0.2px;
+  }
+  .logo .snip{
+    display:inline-block;
+    transform:rotate(-12deg);
+    font-size:1.5rem;
+  }
+  .nav-links{
+    display:flex;
+    gap:22px;
+    align-items:center;
+  }
+  .nav-links a{
+    text-decoration:none;
+    font-weight:700;
+    font-size:0.95rem;
+    color:var(--ink-soft);
+    padding:6px 2px;
+    border-bottom:2px solid transparent;
+    transition:border-color .2s, color .2s;
+  }
+  .nav-links a:hover{ color:var(--terracotta); border-color:var(--terracotta); }
+  .nav-cta{
+    background:var(--terracotta);
+    color:var(--paper) !important;
+    padding:10px 20px;
+    border-radius:999px;
+    font-weight:800 !important;
+    box-shadow:0 4px 0 #a8442b;
+    border-bottom:none !important;
+  }
+  .nav-cta:hover{ transform:translateY(-1px); }
+  .menu-toggle{ display:none; background:none; border:none; font-size:1.6rem; cursor:pointer; }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    padding:70px 28px 60px;
+    overflow:hidden;
+  }
+  .patch-field{
+    position:absolute;
+    inset:0;
+    display:grid;
+    grid-template-columns:repeat(7, 1fr);
+    grid-template-rows:repeat(3, 1fr);
+    opacity:0.55;
+    z-index:0;
+  }
+  .patch{
+    border:3px dashed var(--ink);
+    margin:6px;
+    border-radius:6px;
+  }
+  .hero-inner{
+    position:relative;
+    z-index:2;
+    max-width:1180px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:48px;
+    align-items:center;
+  }
+  .hero-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--paper);
+    border:2px dashed var(--terracotta);
+    color:var(--terracotta);
+    font-weight:800;
+    font-size:0.85rem;
+    padding:7px 16px;
+    border-radius:999px;
+    margin-bottom:20px;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 5vw, 3.6rem);
+    line-height:1.08;
+    font-weight:800;
+  }
+  .hero h1 span{
+    color:var(--terracotta);
+    display:block;
+    font-family:'Caveat', cursive;
+    font-weight:700;
+    font-size:1.3em;
+    line-height:1;
+    transform:rotate(-2deg);
+    display:inline-block;
+  }
+  .hero p.lead{
+    font-size:1.15rem;
+    color:var(--ink-soft);
+    max-width:520px;
+    margin:22px 0 30px;
+    line-height:1.6;
+  }
+  .hero-ctas{
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    padding:15px 26px;
+    border-radius:999px;
+    font-weight:800;
+    font-size:1rem;
+    text-decoration:none;
+    transition:transform .18s ease, box-shadow .18s ease;
+    border:none;
+    cursor:pointer;
+  }
+  .btn-primary{
+    background:var(--teal);
+    color:var(--paper);
+    box-shadow:0 5px 0 #1e5849;
+  }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 7px 0 #1e5849; }
+  .btn-secondary{
+    background:var(--paper);
+    color:var(--ink);
+    border:2.5px solid var(--ink);
+    box-shadow:0 5px 0 rgba(60,42,44,0.4);
+  }
+  .btn-secondary:hover{ transform:translateY(-2px); }
+
+  .hero-visual{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .quilt{
+    width:100%;
+    aspect-ratio:1/1;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    grid-template-rows:repeat(3,1fr);
+    gap:10px;
+    padding:14px;
+    background:var(--paper);
+    border-radius:24px;
+    border:3px dashed var(--ink);
+    transform:rotate(2deg);
+    box-shadow:14px 18px 0 rgba(60,42,44,0.12);
+  }
+  .quilt div{
+    border-radius:12px;
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.8rem;
+  }
+
+  /* ---------- Section basics ---------- */
+  section{ padding:78px 0; position:relative; }
+  .section-head{
+    text-align:center;
+    max-width:640px;
+    margin:0 auto 50px;
+  }
+  .eyebrow{
+    font-family:'Caveat', cursive;
+    font-size:1.5rem;
+    color:var(--terracotta);
+    font-weight:700;
+    display:block;
+    margin-bottom:2px;
+  }
+  .section-head h2{
+    font-size:clamp(1.8rem, 3.4vw, 2.5rem);
+  }
+  .section-head p{
+    color:var(--ink-soft);
+    font-size:1.05rem;
+    margin-top:14px;
+    line-height:1.6;
+  }
+
+  /* ---------- About ---------- */
+  .about{
+    background:var(--paper);
+  }
+  .about-grid{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:56px;
+    align-items:center;
+  }
+  .about-badge-cluster{
+    position:relative;
+    height:320px;
+  }
+  .float-tag{
+    position:absolute;
+    background:var(--cream-2);
+    border:2.5px dashed var(--ink);
+    border-radius:16px;
+    padding:14px 18px;
+    font-weight:700;
+    font-size:0.95rem;
+    box-shadow:6px 6px 0 rgba(60,42,44,0.1);
+  }
+  .about-copy h3{
+    font-size:1.5rem;
+    margin-bottom:16px;
+  }
+  .about-copy p{
+    color:var(--ink-soft);
+    line-height:1.75;
+    margin-bottom:16px;
+    font-size:1.03rem;
+  }
+  .eco-strip{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+    margin-top:22px;
+  }
+  .eco-pill{
+    background:var(--teal);
+    color:var(--paper);
+    font-weight:700;
+    font-size:0.85rem;
+    padding:8px 16px;
+    border-radius:999px;
+  }
+
+  /* ---------- Products ---------- */
+  .products{ background:var(--cream); }
+  .product-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:22px;
+  }
+  .product-card{
+    background:var(--paper);
+    border-radius:20px;
+    padding:26px 20px 24px;
+    border:3px solid var(--ink);
+    position:relative;
+    transition:transform .25s ease, box-shadow .25s ease;
+    box-shadow:6px 6px 0 rgba(60,42,44,0.15);
+    text-align:center;
+  }
+  .product-card:hover{
+    transform:translateY(-6px) rotate(-1deg);
+    box-shadow:9px 12px 0 rgba(60,42,44,0.18);
+  }
+  .product-card .icon{
+    font-size:2.4rem;
+    display:block;
+    margin-bottom:12px;
+  }
+  .product-card h3{
+    font-size:1.15rem;
+    margin-bottom:8px;
+  }
+  .product-card p{
+    color:var(--ink-soft);
+    font-size:0.92rem;
+    line-height:1.5;
+    margin:0;
+  }
+  .swatch-strip{
+    height:8px;
+    border-radius:999px;
+    margin:0 auto 14px;
+    width:56px;
+  }
+
+  /* ---------- Process ---------- */
+  .process{ background:var(--terracotta); color:var(--paper); }
+  .process .section-head h2,
+  .process .eyebrow{ color:var(--paper); }
+  .process .section-head p{ color:rgba(255,253,248,0.85); }
+  .steps{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:24px;
+    position:relative;
+  }
+  .step{
+    background:rgba(255,253,248,0.1);
+    border:2.5px dashed rgba(255,253,248,0.55);
+    border-radius:18px;
+    padding:26px 20px;
+    text-align:center;
+  }
+  .step .num{
+    font-family:'Baloo 2', sans-serif;
+    font-size:2.2rem;
+    font-weight:800;
+    display:block;
+    margin-bottom:8px;
+    color:var(--mustard);
+  }
+  .step h3{ color:var(--paper); font-size:1.05rem; margin-bottom:8px;}
+  .step p{ color:rgba(255,253,248,0.85); font-size:0.9rem; line-height:1.5; margin:0;}
+
+  /* ---------- Gallery / testimonial style ---------- */
+  .gallery{ background:var(--paper); }
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+  }
+  .gallery-card{
+    aspect-ratio:4/3;
+    border-radius:18px;
+    border:3px dashed var(--ink);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:3rem;
+    position:relative;
+    overflow:hidden;
+  }
+  .gallery-card span.label{
+    position:absolute;
+    bottom:10px;
+    left:12px;
+    font-family:'Caveat', cursive;
+    font-size:1.3rem;
+    font-weight:700;
+    background:rgba(255,253,248,0.85);
+    padding:2px 12px;
+    border-radius:999px;
+  }
+
+  /* ---------- CTA / Instagram ---------- */
+  .cta-final{
+    background:var(--teal);
+    color:var(--paper);
+    text-align:center;
+    border-radius:32px;
+    margin:0 28px;
+    padding:64px 28px;
+    position:relative;
+    overflow:hidden;
+  }
+  .cta-final h2{ color:var(--paper); font-size:clamp(1.8rem,4vw,2.6rem); margin-bottom:16px;}
+  .cta-final p{ color:rgba(255,253,248,0.9); max-width:520px; margin:0 auto 32px; font-size:1.05rem; line-height:1.6;}
+  .cta-buttons{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+  .btn-insta{
+    background:var(--paper);
+    color:var(--terracotta);
+    box-shadow:0 5px 0 rgba(0,0,0,0.15);
+  }
+  .btn-insta:hover{ transform:translateY(-2px); }
+
+  /* ---------- Footer ---------- */
+  footer{
+    padding:50px 28px 34px;
+    text-align:center;
+  }
+  .footer-handle{
+    font-family:'Caveat', cursive;
+    font-size:1.4rem;
+    color:var(--terracotta);
+    margin-bottom:6px;
+  }
+  .footer-note{
+    color:var(--ink-soft);
+    font-size:0.85rem;
+    margin-bottom:22px;
+  }
+  .built-by{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--ink);
+    color:var(--cream) !important;
+    text-decoration:none;
+    font-weight:700;
+    font-size:0.82rem;
+    padding:9px 18px;
+    border-radius:999px;
+  }
+  .built-by:hover{ opacity:0.85; }
+
+  /* ---------- Reveal animation ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(24px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .reveal.visible{ opacity:1; transform:translateY(0); }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px){
+    .hero-inner{ grid-template-columns:1fr; }
+    .hero-visual{ order:-1; max-width:320px; margin:0 auto; }
+    .about-grid{ grid-template-columns:1fr; }
+    .about-badge-cluster{ height:220px; }
+    .product-grid{ grid-template-columns:repeat(2,1fr); }
+    .steps{ grid-template-columns:repeat(2,1fr); }
+    .gallery-grid{ grid-template-columns:repeat(2,1fr); }
+    .nav-links{ display:none; }
+    .menu-toggle{ display:block; }
+  }
+  @media (max-width: 520px){
+    .product-grid{ grid-template-columns:1fr; }
+    .steps{ grid-template-columns:1fr; }
+    .gallery-grid{ grid-template-columns:1fr; }
+    .cta-final{ margin:0 14px; padding:48px 20px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; scroll-behavior:auto !important; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo"><span class="snip">✂️</span> La Reta Hilada de Lau</div>
+    <nav class="nav-links">
+      <a href="#nosotros">Nuestra historia</a>
+      <a href="#productos">Productos</a>
+      <a href="#proceso">Cómo lo hacemos</a>
+      <a href="#galeria">Galería</a>
+      <a href="https://www.instagram.com/laretahiladelau/" target="_blank" rel="noopener" class="nav-cta">Pedir ahora</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="patch-field" aria-hidden="true">
+    <div class="patch" style="background:var(--mustard)"></div>
+    <div class="patch" style="background:var(--pink)"></div>
+    <div class="patch" style="background:var(--teal)"></div>
+    <div class="patch" style="background:var(--terracotta)"></div>
+    <div class="patch" style="background:var(--lilac)"></div>
+    <div class="patch" style="background:var(--mustard)"></div>
+    <div class="patch" style="background:var(--pink)"></div>
+    <div class="patch" style="background:var(--teal)"></div>
+    <div class="patch" style="background:var(--cream-2)"></div>
+    <div class="patch" style="background:var(--terracotta)"></div>
+    <div class="patch" style="background:var(--mustard)"></div>
+    <div class="patch" style="background:var(--lilac)"></div>
+    <div class="patch" style="background:var(--pink)"></div>
+    <div class="patch" style="background:var(--teal)"></div>
+    <div class="patch" style="background:var(--cream-2)"></div>
+    <div class="patch" style="background:var(--terracotta)"></div>
+    <div class="patch" style="background:var(--mustard)"></div>
+    <div class="patch" style="background:var(--pink)"></div>
+    <div class="patch" style="background:var(--lilac)"></div>
+    <div class="patch" style="background:var(--teal)"></div>
+    <div class="patch" style="background:var(--terracotta)"></div>
+  </div>
+  <div class="hero-inner">
+    <div class="reveal visible">
+      <span class="hero-badge">🧵 Hecho a mano · Retazo a retazo</span>
+      <h1>Cada retazo tiene<br><span>una segunda vida</span></h1>
+      <p class="lead">Neceseres, joyeros, bolsos, bandanas, scrunchies, fundas y carteras únicos, cosidos a mano con telas rescatadas. Costura creativa con alma: reduce, reusa y recicla ♻️</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="https://www.instagram.com/laretahiladelau/" target="_blank" rel="noopener">📩 Hacer un pedido</a>
+        <a class="btn btn-secondary" href="https://www.instagram.com/laretahiladelau/" target="_blank" rel="noopener">📷 @laretahiladelau</a>
+      </div>
+    </div>
+    <div class="hero-visual reveal visible">
+      <div class="quilt" aria-hidden="true">
+        <div style="background:var(--mustard)">👛</div>
+        <div style="background:var(--teal)">🧵</div>
+        <div style="background:var(--pink)">💍</div>
+        <div style="background:var(--terracotta)">✂️</div>
+        <div style="background:var(--cream-2)">🎀</div>
+        <div style="background:var(--lilac)">👜</div>
+        <div style="background:var(--pink)">🧶</div>
+        <div style="background:var(--teal)">🧣</div>
+        <div style="background:var(--mustard)">♻️</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stitch-divider"></div>
+
+<section class="about" id="nosotros">
+  <div class="wrap about-grid">
+    <div class="about-badge-cluster reveal">
+      <div class="float-tag" style="top:6%; left:4%; background:var(--mustard); color:var(--ink); transform:rotate(-6deg);">Retales rescatados 🧵</div>
+      <div class="float-tag" style="top:38%; left:36%; background:var(--pink); color:var(--ink); transform:rotate(4deg);">100% a mano ✋</div>
+      <div class="float-tag" style="top:68%; left:8%; background:var(--teal); color:var(--paper); transform:rotate(-3deg);">Piezas únicas ✨</div>
+      <div class="float-tag" style="top:14%; left:58%; background:var(--terracotta); color:var(--paper); transform:rotate(5deg);">Reduce · Reusa · Recicla ♻️</div>
+      <div class="float-tag" style="top:78%; left:52%; background:var(--lilac); color:var(--paper); transform:rotate(-4deg);">Costura con corazón 💛</div>
+    </div>
+    <div class="about-copy reveal">
+      <span class="eyebrow">Nuestra historia</span>
+      <h3>Adictas al retaleo, enamoradas de la costura</h3>
+      <p>La Reta Hilada de Lau nace de una obsesión bonita: no dejar que ni un solo retazo de tela termine en la basura. Cada trozo de tela guarda un color, una textura, una historia — y nosotras le damos una nueva.</p>
+      <p>Combinamos retales de distintas telas, texturas y estampados para crear piezas irrepetibles, cosidas puntada a puntada, pensadas para durar y para acompañarte todos los días.</p>
+      <div class="eco-strip">
+        <span class="eco-pill">♻️ Reduce</span>
+        <span class="eco-pill">🔄 Reusa</span>
+        <span class="eco-pill">🌱 Recicla</span>
+        <span class="eco-pill">🧵 Hecho a mano</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="products" id="productos">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Lo que cosemos para ti</span>
+      <h2>Un retazo, mil posibilidades</h2>
+      <p>Cada categoría nace de retales distintos: ninguna pieza sale igual a la otra.</p>
+    </div>
+    <div class="product-grid">
+      <div class="product-card reveal">
+        <div class="swatch-strip" style="background:var(--mustard);"></div>
+        <span class="icon">👛</span>
+        <h3>Neceseres</h3>
+        <p>Para el maquillaje, el baño o el bolso — con forro resistente y cierre a medida.</p>
+      </div>
+      <div class="product-card reveal">
+        <div class="swatch-strip" style="background:var(--pink);"></div>
+        <span class="icon">💍</span>
+        <h3>Joyeros</h3>
+        <p>Guarda tus anillos, aros y collares en un rincón de tela con mucho carácter.</p>
+      </div>
+      <div class="product-card reveal">
+        <div class="swatch-strip" style="background:var(--teal);"></div>
+        <span class="icon">👜</span>
+        <h3>Bolsos</h3>
+        <p>Patchwork de retales combinados para un bolso que no verás en ningún otro lado.</p>
+      </div>
+      <div class="product-card reveal">
+        <div class="swatch-strip" style="background:var(--terracotta);"></div>
+        <span class="icon">🎀</span>
+        <h3>Bandanas</h3>
+        <p>Un toque de color para el pelo o para tu mascota, con telas suaves y frescas.</p>
+      </div>
+      <div class="product-card reveal">
+        <div class="swatch-strip" style="background:var(--lilac);"></div>
+        <span class="icon">🧶</span>
+        <h3>Scrunchies</h3>
+        <p>Ligeros, elásticos y con estampados que no repetimos dos veces.</p>
+      </div>
+      <div class="product-card reveal">
+        <div class="swatch-strip" style="background:var(--mustard);"></div>
+        <span class="icon">📱</span>
+        <h3>Fundas</h3>
+        <p>Para tu celular, tablet o lentes — acolchadas y a la medida que necesites.</p>
+      </div>
+      <div class="product-card reveal">
+        <div class="swatch-strip" style="background:var(--pink);"></div>
+        <span class="icon">👝</span>
+        <h3>Carteras</h3>
+        <p>Compartimentos pensados para el día a día, con retales combinados a mano.</p>
+      </div>
+      <div class="product-card reveal">
+        <div class="swatch-strip" style="background:var(--teal);"></div>
+        <span class="icon">✨</span>
+        <h3>A pedido</h3>
+        <p>¿Tienes una idea o tela propia? Cuéntanos y la convertimos en pieza única.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="process" id="proceso">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">De retazo a tesoro</span>
+      <h2>Así nace cada pieza</h2>
+      <p>Un proceso hecho con calma, tela por tela y puntada por puntada.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <span class="num">01</span>
+        <h3>Rescatamos telas</h3>
+        <p>Seleccionamos retales sobrantes de distintos colores y texturas.</p>
+      </div>
+      <div class="step reveal">
+        <span class="num">02</span>
+        <h3>Diseñamos el patchwork</h3>
+        <p>Combinamos los retazos buscando el equilibrio perfecto de color.</p>
+      </div>
+      <div class="step reveal">
+        <span class="num">03</span>
+        <h3>Cosemos a mano</h3>
+        <p>Cada puntada se hace con cuidado, sin prisas ni producción en serie.</p>
+      </div>
+      <div class="step reveal">
+        <span class="num">04</span>
+        <h3>Llega hasta ti</h3>
+        <p>Empacamos tu pedido y te lo enviamos listo para lucir.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="gallery" id="galeria">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Retales en acción</span>
+      <h2>Un vistazo a nuestro taller</h2>
+      <p>Sigue todo el proceso y las piezas nuevas en Instagram.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-card reveal" style="background:var(--mustard);">🧵<span class="label">Hilo y aguja</span></div>
+      <div class="gallery-card reveal" style="background:var(--pink);">✂️<span class="label">Corte de retazos</span></div>
+      <div class="gallery-card reveal" style="background:var(--teal);">👛<span class="label">Piezas listas</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="cta-final reveal">
+    <h2>¿Listx para tu pieza única?</h2>
+    <p>Escríbenos por Instagram, cuéntanos qué necesitas y armamos tu pedido a medida — con retazos, cariño y mucha costura.</p>
+    <div class="cta-buttons">
+      <a class="btn btn-insta" href="https://www.instagram.com/laretahiladelau/" target="_blank" rel="noopener">📷 Ir a @laretahiladelau</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-handle">@laretahiladelau</div>
+  <p class="footer-note">Costura Creativa ✂️ · Adicta al retaleo · Hecho a mano 🧵 · Reduce, reusa & recicla ♻️</p>
+  <p class="footer-note">© 2026 La Reta Hilada de Lau. Todos los derechos reservados.</p>
+  <a class="built-by" href="https://easypagex.github.io" target="_blank" rel="noopener">Built by EasyPageX</a>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }
+    });
+  }, { threshold:0.15 });
+  revealEls.forEach(el=> io.observe(el));
+</script>
+
+</body>
+</html>
