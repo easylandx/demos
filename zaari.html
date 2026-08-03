@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zaari Aromas — Perfumería árabe original desde Dubái</title>
+<meta name="description" content="Perfumería árabe original. Aromas intensos que enganchan, selección directa desde Dubái. Catálogo y pedidos por WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Barlow+Condensed:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FCF4E7;
+    --cream-deep:#F6E7CF;
+    --ink:#2C1A3B;
+    --ink-soft:#5B4270;
+    --gold:#C6942D;
+    --gold-light:#EAC468;
+    --gold-soft:#EBCB84;
+    --magenta:#C11E70;
+    --magenta-deep:#8E1554;
+    --purple:#5B2C82;
+    --purple-deep:#3B1A5C;
+    --teal:#0D6E5C;
+    --white:#FFFDF8;
+    --shadow: 0 20px 50px rgba(91,44,130,0.18);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'DM Sans', sans-serif;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3,.display{
+    font-family:'Syne', sans-serif;
+    font-weight:800;
+    letter-spacing:-0.01em;
+  }
+
+  .eyebrow{
+    font-family:'Barlow Condensed', sans-serif;
+    font-weight:600;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    font-size:0.78rem;
+  }
+
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  section{position:relative;}
+
+  /* ============ ARABESQUE PATTERN (signature motif) ============ */
+  .arabesque{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    opacity:0.14;
+    background-image:
+      radial-gradient(circle at 50% 50%, transparent 0 8px, var(--gold) 8.5px 9px, transparent 9.5px),
+      radial-gradient(circle at 50% 50%, transparent 0 8px, var(--gold) 8.5px 9px, transparent 9.5px);
+    background-size: 72px 72px;
+    background-position: 0 0, 36px 36px;
+  }
+
+  .star-divider{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:14px;
+    margin: 0 auto;
+    width:fit-content;
+  }
+  .star-divider .line{
+    width:52px;height:1px;
+    background:linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .star-divider svg{width:18px;height:18px;fill:var(--gold);}
+
+  /* ============ NAV ============ */
+  header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(252,244,231,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(198,148,45,0.25);
+  }
+  .nav-wrap{
+    max-width:1200px;
+    margin:0 auto;
+    padding:16px 24px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .logo{
+    font-family:'Syne', sans-serif;
+    font-weight:800;
+    font-size:1.35rem;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:var(--ink);
+  }
+  .logo svg{width:30px;height:30px;}
+  nav ul{
+    display:flex;
+    gap:32px;
+    list-style:none;
+  }
+  nav ul li a{
+    font-family:'Barlow Condensed', sans-serif;
+    font-weight:600;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    font-size:0.92rem;
+    color:var(--ink-soft);
+    transition:color 0.2s;
+    position:relative;
+  }
+  nav ul li a:hover{color:var(--magenta);}
+  .nav-cta{
+    display:flex;
+    align-items:center;
+    gap:12px;
+  }
+  .btn-wa-small{
+    background:linear-gradient(135deg, #25D366, #128C4A);
+    color:white;
+    padding:10px 18px;
+    border-radius:100px;
+    font-weight:700;
+    font-size:0.88rem;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    box-shadow:0 8px 20px rgba(37,211,102,0.35);
+    transition:transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-wa-small:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(37,211,102,0.45);}
+  .burger{display:none;background:none;border:none;cursor:pointer;}
+  .burger svg{width:26px;height:26px;stroke:var(--ink);}
+
+  /* ============ HERO ============ */
+  .hero{
+    position:relative;
+    padding:90px 24px 110px;
+    background:
+      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(193,30,112,0.22), transparent 60%),
+      radial-gradient(ellipse 700px 600px at 105% 10%, rgba(91,44,130,0.25), transparent 60%),
+      radial-gradient(ellipse 600px 500px at 50% 120%, rgba(198,148,45,0.20), transparent 60%),
+      var(--cream);
+    overflow:hidden;
+  }
+  .hero-grid{
+    max-width:1200px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:50px;
+    align-items:center;
+    position:relative;
+    z-index:2;
+  }
+  .hero-eyebrow{
+    color:var(--magenta-deep);
+    margin-bottom:18px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .hero-eyebrow::before{
+    content:'';
+    width:26px;height:1px;
+    background:var(--magenta-deep);
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 5vw, 4.1rem);
+    line-height:1.03;
+    background:linear-gradient(120deg, var(--purple-deep) 0%, var(--magenta) 45%, var(--gold) 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    margin-bottom:22px;
+  }
+  .hero p.lede{
+    font-size:1.2rem;
+    color:var(--ink-soft);
+    max-width:520px;
+    margin-bottom:14px;
+    line-height:1.55;
+  }
+  .hero p.lede strong{color:var(--ink);font-weight:700;}
+  .hero-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin:26px 0 34px;
+  }
+  .hero-tag{
+    font-family:'Barlow Condensed', sans-serif;
+    font-weight:600;
+    font-size:0.95rem;
+    letter-spacing:0.03em;
+    padding:8px 16px;
+    border-radius:100px;
+    background:var(--white);
+    border:1px solid rgba(91,44,130,0.18);
+    color:var(--purple-deep);
+    box-shadow:0 4px 14px rgba(91,44,130,0.08);
+  }
+  .hero-ctas{
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+  .btn-primary{
+    background:linear-gradient(135deg, #25D366, #0F9D53);
+    color:white;
+    padding:17px 30px;
+    border-radius:100px;
+    font-weight:700;
+    font-size:1.03rem;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    box-shadow:0 14px 30px rgba(37,211,102,0.38);
+    transition:transform 0.25s, box-shadow 0.25s;
+    border:none;
+    cursor:pointer;
+  }
+  .btn-primary:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 18px 36px rgba(37,211,102,0.48);}
+  .btn-secondary{
+    background:var(--white);
+    color:var(--ink);
+    padding:17px 30px;
+    border-radius:100px;
+    font-weight:700;
+    font-size:1.03rem;
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    border:1.5px solid rgba(198,148,45,0.4);
+    transition:transform 0.25s, border-color 0.25s;
+  }
+  .btn-secondary:hover{transform:translateY(-3px);border-color:var(--gold);}
+  .btn-secondary svg{width:20px;height:20px;}
+
+  /* Bottle illustration */
+  .hero-visual{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:2;
+  }
+  .bottle-halo{
+    position:absolute;
+    width:420px;height:420px;
+    border-radius:50%;
+    background:conic-gradient(from 0deg, var(--magenta), var(--gold), var(--purple), var(--teal), var(--magenta));
+    filter:blur(60px);
+    opacity:0.35;
+    animation:spin 18s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .bottle-card{
+    position:relative;
+    background:var(--white);
+    border-radius:28px;
+    padding:44px 36px 34px;
+    box-shadow:var(--shadow);
+    max-width:340px;
+    border:1px solid rgba(198,148,45,0.25);
+  }
+  .sparkle{
+    position:absolute;
+    animation:twinkle 2.4s ease-in-out infinite;
+  }
+  @keyframes twinkle{
+    0%,100%{opacity:0.2;transform:scale(0.7);}
+    50%{opacity:1;transform:scale(1.1);}
+  }
+  .bottle-tag{
+    position:absolute;
+    top:-14px;right:-14px;
+    background:linear-gradient(135deg, var(--magenta), var(--purple));
+    color:white;
+    font-family:'Barlow Condensed', sans-serif;
+    font-weight:600;
+    letter-spacing:0.04em;
+    font-size:0.85rem;
+    padding:8px 14px;
+    border-radius:100px;
+    box-shadow:0 8px 20px rgba(193,30,112,0.35);
+    transform:rotate(6deg);
+  }
+
+  /* ============ TRUST STRIP ============ */
+  .trust-strip{
+    background:linear-gradient(90deg, var(--purple-deep), var(--magenta-deep) 50%, var(--purple-deep));
+    padding:22px 24px;
+  }
+  .trust-inner{
+    max-width:1200px;
+    margin:0 auto;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  .trust-item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:var(--cream);
+    font-family:'Barlow Condensed', sans-serif;
+    font-weight:600;
+    font-size:1.02rem;
+    letter-spacing:0.02em;
+  }
+  .trust-item svg{width:20px;height:20px;flex-shrink:0;stroke:var(--gold-soft);}
+
+  /* ============ SECTION GENERAL ============ */
+  .section{
+    padding:100px 24px;
+    max-width:1200px;
+    margin:0 auto;
+  }
+  .section-head{
+    text-align:center;
+    max-width:640px;
+    margin:0 auto 60px;
+  }
+  .section-head .eyebrow{color:var(--magenta);margin-bottom:14px;}
+  .section-head h2{
+    font-size:clamp(2rem, 3.5vw, 2.8rem);
+    margin-bottom:16px;
+    color:var(--ink);
+  }
+  .section-head p{
+    color:var(--ink-soft);
+    font-size:1.08rem;
+    line-height:1.6;
+  }
+
+  /* ============ SCENT CATEGORIES ============ */
+  .scents-grid{
+    display:grid;
+    grid-template-columns:repeat(5, 1fr);
+    gap:20px;
+  }
+  .scent-card{
+    background:var(--white);
+    border-radius:22px;
+    padding:30px 20px;
+    text-align:center;
+    border:1px solid rgba(198,148,45,0.2);
+    transition:transform 0.3s, box-shadow 0.3s;
+    position:relative;
+    overflow:hidden;
+  }
+  .scent-card::before{
+    content:'';
+    position:absolute;
+    top:0;left:0;right:0;
+    height:5px;
+  }
+  .scent-card:nth-child(1)::before{background:var(--magenta);}
+  .scent-card:nth-child(2)::before{background:var(--gold);}
+  .scent-card:nth-child(3)::before{background:var(--purple);}
+  .scent-card:nth-child(4)::before{background:var(--teal);}
+  .scent-card:nth-child(5)::before{background:linear-gradient(90deg,var(--magenta),var(--gold));}
+  .scent-card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(91,44,130,0.15);}
+  .scent-icon{
+    width:56px;height:56px;
+    margin:0 auto 18px;
+    display:flex;align-items:center;justify-content:center;
+    border-radius:50%;
+    background:var(--cream-deep);
+  }
+  .scent-icon svg{width:28px;height:28px;}
+  .scent-card h3{font-size:1.05rem;margin-bottom:8px;}
+  .scent-card p{font-size:0.88rem;color:var(--ink-soft);line-height:1.5;}
+
+  /* ============ WHY US ============ */
+  .why-wrap{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+  }
+  .why-visual{
+    background:linear-gradient(150deg, var(--purple-deep), var(--magenta-deep));
+    border-radius:32px;
+    padding:50px 40px;
+    position:relative;
+    overflow:hidden;
+    min-height:420px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .why-visual .arabesque{opacity:0.18;}
+  .why-stat{
+    position:relative;
+    z-index:2;
+    text-align:center;
+    color:var(--cream);
+  }
+  .why-stat .num{
+    font-family:'Syne', sans-serif;
+    font-weight:800;
+    font-size:4.5rem;
+    line-height:1;
+    background:linear-gradient(120deg, var(--gold-soft), #fff);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .why-stat .lbl{
+    font-family:'Barlow Condensed', sans-serif;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    font-size:1rem;
+    margin-top:10px;
+    opacity:0.9;
+  }
+  .why-list{display:flex;flex-direction:column;gap:26px;}
+  .why-item{display:flex;gap:18px;align-items:flex-start;}
+  .why-item-icon{
+    width:48px;height:48px;flex-shrink:0;
+    border-radius:14px;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--cream-deep);
+  }
+  .why-item-icon svg{width:24px;height:24px;}
+  .why-item h3{font-size:1.15rem;margin-bottom:6px;}
+  .why-item p{color:var(--ink-soft);font-size:0.98rem;line-height:1.55;}
+
+  /* ============ HOW TO ORDER (steps — real sequence) ============ */
+  .steps{
+    background:var(--cream-deep);
+    position:relative;
+  }
+  .steps .arabesque{opacity:0.1;}
+  .steps-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:30px;
+    position:relative;
+    z-index:2;
+  }
+  .step-card{
+    background:var(--white);
+    border-radius:24px;
+    padding:38px 30px;
+    position:relative;
+    box-shadow:0 10px 30px rgba(91,44,130,0.08);
+  }
+  .step-num{
+    font-family:'Syne', sans-serif;
+    font-weight:800;
+    font-size:1rem;
+    width:38px;height:38px;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    color:white;
+    margin-bottom:20px;
+  }
+  .step-card:nth-child(1) .step-num{background:var(--magenta);}
+  .step-card:nth-child(2) .step-num{background:var(--purple);}
+  .step-card:nth-child(3) .step-num{background:var(--gold);}
+  .step-card h3{font-size:1.2rem;margin-bottom:10px;}
+  .step-card p{color:var(--ink-soft);font-size:0.98rem;line-height:1.55;margin-bottom:16px;}
+  .step-card a.step-link{
+    font-family:'Barlow Condensed', sans-serif;
+    font-weight:600;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+    font-size:0.88rem;
+    color:var(--magenta);
+    display:inline-flex;align-items:center;gap:6px;
+  }
+  .step-arrow{
+    position:absolute;
+    top:50%;right:-24px;
+    transform:translateY(-50%);
+    display:none;
+  }
+
+  /* ============ INSTAGRAM SECTION ============ */
+  .insta-section{
+    background:linear-gradient(135deg, var(--purple-deep) 0%, var(--magenta-deep) 55%, var(--purple-deep) 100%);
+    border-radius:36px;
+    max-width:1200px;
+    margin:0 auto 100px;
+    padding:70px 50px;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .insta-section .arabesque{opacity:0.15;}
+  .insta-icon{
+    width:64px;height:64px;
+    margin:0 auto 24px;
+    border-radius:20px;
+    background:linear-gradient(45deg, #FEDA75, #FA7E1E, #D62976, #962FBF, #4F5BD5);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 14px 34px rgba(214,41,118,0.4);
+  }
+  .insta-icon svg{width:34px;height:34px;stroke:white;fill:none;}
+  .insta-section h2{color:var(--cream);font-size:clamp(1.7rem,3vw,2.4rem);margin-bottom:14px;}
+  .insta-section p{color:var(--gold-soft);max-width:540px;margin:0 auto 32px;font-size:1.08rem;line-height:1.6;}
+  .insta-handle{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:rgba(255,255,255,0.1);
+    border:1px solid rgba(255,255,255,0.25);
+    color:var(--cream);
+    padding:14px 26px;
+    border-radius:100px;
+    font-weight:700;
+    font-size:1.05rem;
+    transition:background 0.25s, transform 0.25s;
+    backdrop-filter:blur(6px);
+  }
+  .insta-handle:hover{background:rgba(255,255,255,0.18);transform:translateY(-2px);}
+
+  /* ============ FINAL CTA ============ */
+  .final-cta{
+    text-align:center;
+    padding:0 24px 110px;
+  }
+  .final-cta-card{
+    max-width:820px;
+    margin:0 auto;
+    background:var(--white);
+    border-radius:36px;
+    padding:64px 44px;
+    box-shadow:var(--shadow);
+    border:1px solid rgba(198,148,45,0.25);
+    position:relative;
+  }
+  .final-cta h2{font-size:clamp(1.9rem,3.4vw,2.6rem);margin-bottom:16px;}
+  .final-cta p{color:var(--ink-soft);font-size:1.1rem;margin-bottom:36px;}
+  .final-ctas{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+
+  /* ============ FOOTER ============ */
+  footer{
+    background:var(--ink);
+    color:var(--cream);
+    padding:56px 24px 30px;
+  }
+  .footer-inner{
+    max-width:1200px;
+    margin:0 auto;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:36px;
+    padding-bottom:36px;
+    border-bottom:1px solid rgba(255,255,255,0.12);
+  }
+  .footer-logo{
+    font-family:'Syne', sans-serif;
+    font-weight:800;
+    font-size:1.3rem;
+    display:flex;align-items:center;gap:10px;
+    margin-bottom:12px;
+  }
+  .footer-logo svg{width:26px;height:26px;}
+  .footer-col p{color:#C9BBD8;font-size:0.95rem;max-width:280px;line-height:1.6;}
+  .footer-links{display:flex;flex-direction:column;gap:10px;}
+  .footer-links a{color:#C9BBD8;font-size:0.95rem;transition:color 0.2s;}
+  .footer-links a:hover{color:var(--gold-soft);}
+  .footer-col h4{
+    font-family:'Barlow Condensed', sans-serif;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    font-size:0.88rem;
+    color:var(--gold-soft);
+    margin-bottom:16px;
+  }
+  .footer-bottom{
+    max-width:1200px;
+    margin:24px auto 0;
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+    font-size:0.85rem;
+    color:#9987AC;
+  }
+
+  /* ============ STICKY WHATSAPP FAB ============ */
+  .fab-wa{
+    position:fixed;
+    bottom:26px;right:26px;
+    z-index:200;
+    background:linear-gradient(135deg, #25D366, #0F9D53);
+    color:white;
+    width:64px;height:64px;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 14px 30px rgba(37,211,102,0.45);
+    animation:pulse 2.6s ease-in-out infinite;
+    border:none;
+    cursor:pointer;
+  }
+  .fab-wa svg{width:30px;height:30px;fill:white;}
+  @keyframes pulse{
+    0%,100%{box-shadow:0 14px 30px rgba(37,211,102,0.45);}
+    50%{box-shadow:0 14px 30px rgba(37,211,102,0.75), 0 0 0 10px rgba(37,211,102,0.12);}
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 980px){
+    nav ul{display:none;}
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-visual{order:-1;}
+    .why-wrap{grid-template-columns:1fr;}
+    .scents-grid{grid-template-columns:repeat(2,1fr);}
+    .steps-grid{grid-template-columns:1fr;}
+    .trust-inner{justify-content:center;text-align:center;}
+    .insta-section{padding:50px 26px;border-radius:24px;}
+  }
+  @media (max-width:560px){
+    .scents-grid{grid-template-columns:1fr 1fr;}
+    .hero{padding:60px 18px 80px;}
+    .section{padding:70px 18px;}
+    .final-cta-card{padding:44px 26px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+
+  :focus-visible{
+    outline:3px solid var(--purple);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header>
+  <div class="nav-wrap">
+    <div class="logo">
+      <svg viewBox="0 0 32 32" fill="none"><path d="M16 2c2 4 2 6 0 9-2-3-2-5 0-9Z" fill="#C11E70"/><path d="M11 11h10c1.5 0 2 1 2 2.5v11c0 2.5-2 4.5-4.5 4.5h-5C11 29 9 27 9 24.5v-11C9 12 9.5 11 11 11Z" fill="#5B2C82"/><path d="M13 15h6v4h-6z" fill="#C6942D"/></svg>
+      Zaari Aromas
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#aromas">Aromas</a></li>
+        <li><a href="#por-que">Por qué elegirnos</a></li>
+        <li><a href="#pedidos">Cómo pedir</a></li>
+        <li><a href="https://www.instagram.com/zaariaromas/" target="_blank" rel="noopener">Instagram</a></li>
+      </ul>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn-wa-small" id="navWaBtn" href="https://wa.me/34600000000?text=Hola%20Zaari%20Aromas%2C%20quiero%20ver%20el%20cat%C3%A1logo%20de%20perfumes%20%E2%9C%A8" target="_blank" rel="noopener">
+        <svg viewBox="0 0 32 32" width="16" height="16" fill="white"><path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.386.7 4.61 1.9 6.475L4 29l7.727-1.856A11.93 11.93 0 0 0 16.001 27C22.628 27 28 21.627 28 15S22.628 3 16.001 3Z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="arabesque"></div>
+  <div class="hero-grid">
+    <div>
+      <div class="hero-eyebrow eyebrow">Perfumería árabe original</div>
+      <h1>Aromas intensos<br>que enganchan ✨</h1>
+      <p class="lede"><strong>Selección directa desde Dubái.</strong> Fragancias árabes originales, potentes y de larga duración — de esas que dejan rastro y que te preguntan "¿qué perfume llevas?"</p>
+      <div class="hero-tags">
+        <span class="hero-tag">🕌 Directo desde Dubái</span>
+        <span class="hero-tag">⏳ Larga duración</span>
+        <span class="hero-tag">📲 Pedidos por WhatsApp</span>
+      </div>
+      <div class="hero-ctas">
+        <a class="btn-primary" href="https://wa.me/34600000000?text=Hola%20Zaari%20Aromas%2C%20quiero%20hacer%20un%20pedido%20%E2%9C%A8" target="_blank" rel="noopener" id="heroWaBtn">
+          <svg viewBox="0 0 32 32" width="20" height="20" fill="white"><path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.386.7 4.61 1.9 6.475L4 29l7.727-1.856A11.93 11.93 0 0 0 16.001 27C22.628 27 28 21.627 28 15S22.628 3 16.001 3Z"/></svg>
+          Pedir por WhatsApp
+        </a>
+        <a class="btn-secondary" href="https://www.instagram.com/zaariaromas/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#C11E70" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="6"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="#C11E70" stroke="none"/></svg>
+          Ver catálogo en Instagram
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="bottle-halo"></div>
+      <div class="bottle-card">
+        <div class="bottle-tag">Edición Dubái</div>
+        <svg class="sparkle" style="top:10px;left:20px;" width="16" height="16" viewBox="0 0 24 24" fill="#C6942D"><path d="M12 0l2.5 9.5L24 12l-9.5 2.5L12 24l-2.5-9.5L0 12l9.5-2.5z"/></svg>
+        <svg class="sparkle" style="bottom:26px;right:24px;animation-delay:0.6s;" width="12" height="12" viewBox="0 0 24 24" fill="#C11E70"><path d="M12 0l2.5 9.5L24 12l-9.5 2.5L12 24l-2.5-9.5L0 12l9.5-2.5z"/></svg>
+        <svg class="sparkle" style="top:40%;right:0;animation-delay:1.2s;" width="10" height="10" viewBox="0 0 24 24" fill="#5B2C82"><path d="M12 0l2.5 9.5L24 12l-9.5 2.5L12 24l-2.5-9.5L0 12l9.5-2.5z"/></svg>
+        <svg viewBox="0 0 160 220" width="100%" height="240">
+          <ellipse cx="80" cy="205" rx="46" ry="9" fill="#5B2C82" opacity="0.12"/>
+          <rect x="62" y="12" width="36" height="26" rx="6" fill="#C6942D"/>
+          <rect x="70" y="0" width="20" height="16" rx="4" fill="#3B1A5C"/>
+          <path d="M40 46 C40 38 48 34 60 34 H100 C112 34 120 38 120 46 V180 C120 196 106 208 90 208 H70 C54 208 40 196 40 180 Z" fill="url(#bottleGrad)"/>
+          <path d="M48 60 H112 V178 C112 190 102 200 90 200 H70 C58 200 48 190 48 178 Z" fill="#FCF4E7" opacity="0.18"/>
+          <rect x="55" y="90" width="50" height="46" rx="8" fill="#FCF4E7" opacity="0.9"/>
+          <text x="80" y="110" text-anchor="middle" font-family="Syne, sans-serif" font-weight="800" font-size="11" fill="#5B2C82">ZAARI</text>
+          <text x="80" y="124" text-anchor="middle" font-family="Barlow Condensed, sans-serif" font-size="8" letter-spacing="2" fill="#C11E70">AROMAS</text>
+          <defs>
+            <linearGradient id="bottleGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#C11E70"/>
+              <stop offset="55%" stop-color="#8E1554"/>
+              <stop offset="100%" stop-color="#5B2C82"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRUST STRIP ============ -->
+<div class="trust-strip">
+  <div class="trust-inner">
+    <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.5 6.5L21 9l-5 4.5L17.5 21 12 17l-5.5 4L8 13.5 3 9l6.5-.5z"/></svg> Selección directa desde Dubái</div>
+    <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg> Fijación de larga duración</div>
+    <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.4 8.4 0 0 1-4-1L3 20l1-4.5a8.4 8.4 0 0 1-1-4A8.38 8.38 0 0 1 11.5 3 8.5 8.5 0 0 1 21 11.5Z"/></svg> Atención cercana por WhatsApp</div>
+    <div class="trust-item"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12a8 8 0 1 1-3-6.3"/><path d="M20 4v5h-5"/></svg> Catálogo actualizado en Instagram</div>
+  </div>
+</div>
+
+<!-- ============ SCENT CATEGORIES ============ -->
+<section class="section" id="aromas">
+  <div class="section-head">
+    <div class="eyebrow">La colección</div>
+    <h2>Un aroma para cada versión de ti</h2>
+    <p>Fragancias árabes intensas, seleccionadas por familia olfativa. Escríbenos por WhatsApp y te ayudamos a elegir la tuya.</p>
+  </div>
+  <div class="scents-grid">
+    <div class="scent-card">
+      <div class="scent-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#8E1554" stroke-width="2"><path d="M12 2v6M8 8h8l2 12H6L8 8Z"/></svg></div>
+      <h3>Oud</h3>
+      <p>Intenso, ahumado y envolvente</p>
+    </div>
+    <div class="scent-card">
+      <div class="scent-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#C6942D" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></div>
+      <h3>Floral</h3>
+      <p>Delicado con un toque exótico</p>
+    </div>
+    <div class="scent-card">
+      <div class="scent-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#5B2C82" stroke-width="2"><path d="M4 20V10l8-6 8 6v10H4Z"/></svg></div>
+      <h3>Amaderado</h3>
+      <p>Cálido, elegante y duradero</p>
+    </div>
+    <div class="scent-card">
+      <div class="scent-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#0D6E5C" stroke-width="2"><path d="M12 21c-4-3-7-6.5-7-10.5A7 7 0 0 1 12 3a7 7 0 0 1 7 7.5C19 14.5 16 18 12 21Z"/></svg></div>
+      <h3>Dulce / Gourmand</h3>
+      <p>Goloso, ambarado, adictivo</p>
+    </div>
+    <div class="scent-card">
+      <div class="scent-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#C11E70" stroke-width="2"><circle cx="12" cy="12" r="8"/><path d="M12 4a8 8 0 0 1 0 16"/></svg></div>
+      <h3>Cítrico</h3>
+      <p>Fresco, luminoso, energizante</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WHY US ============ -->
+<section class="section" id="por-que">
+  <div class="why-wrap">
+    <div class="why-visual">
+      <div class="arabesque"></div>
+      <div class="why-stat">
+        <div class="num">100%</div>
+        <div class="lbl">Selección árabe original</div>
+      </div>
+    </div>
+    <div class="why-list">
+      <div class="eyebrow" style="color:var(--magenta);margin-bottom:6px;">Por qué elegir Zaari Aromas</div>
+      <div class="why-item">
+        <div class="why-item-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#8E1554" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <div>
+          <h3>Originales, no imitaciones baratas</h3>
+          <p>Traemos fragancias árabes auténticas seleccionadas directamente desde Dubái, no versiones genéricas.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-item-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#C6942D" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <div>
+          <h3>Intensidad que se nota todo el día</h3>
+          <p>Concentraciones potentes, pensadas para durar y dejar rastro sin necesidad de retocar.</p>
+        </div>
+      </div>
+      <div class="why-item">
+        <div class="why-item-icon"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#5B2C82" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.4 8.4 0 0 1-4-1L3 20l1-4.5a8.4 8.4 0 0 1-1-4A8.38 8.38 0 0 1 11.5 3 8.5 8.5 0 0 1 21 11.5Z"/></svg></div>
+        <div>
+          <h3>Atención directa y personalizada</h3>
+          <p>Sin formularios ni esperas: escribes por WhatsApp y te asesoramos según lo que buscas.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW TO ORDER ============ -->
+<section class="section steps" id="pedidos">
+  <div class="arabesque"></div>
+  <div class="section-head">
+    <div class="eyebrow">Cómo pedir</div>
+    <h2>De la idea al aroma, en 3 pasos</h2>
+    <p>Pedir tu perfume árabe favorito es así de simple.</p>
+  </div>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <h3>Explora el catálogo</h3>
+      <p>Descubre los aromas disponibles en nuestro Instagram, con fotos y detalles de cada fragancia.</p>
+      <a class="step-link" href="https://www.instagram.com/zaariaromas/" target="_blank" rel="noopener">Ver Instagram →</a>
+    </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <h3>Escríbenos por WhatsApp</h3>
+      <p>Cuéntanos qué estilo buscas — intenso, dulce, fresco — y te recomendamos tu aroma ideal.</p>
+      <a class="step-link" id="step2WaBtn" href="https://wa.me/34600000000?text=Hola%20Zaari%20Aromas%2C%20quiero%20informaci%C3%B3n%20sobre%20un%20aroma" target="_blank" rel="noopener">Escribir ahora →</a>
+    </div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <h3>Confirma y recíbelo</h3>
+      <p>Cerramos los detalles del pedido y coordinamos la entrega directamente contigo.</p>
+      <a class="step-link" id="step3WaBtn" href="https://wa.me/34600000000?text=Hola%20Zaari%20Aromas%2C%20quiero%20confirmar%20un%20pedido" target="_blank" rel="noopener">Hacer pedido →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INSTAGRAM ============ -->
+<section class="insta-section">
+  <div class="arabesque"></div>
+  <div class="insta-icon">
+    <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="6"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+  </div>
+  <h2>Síguenos y descubre cada lanzamiento</h2>
+  <p>Todo nuestro catálogo, novedades y aromas de temporada se publican primero en Instagram.</p>
+  <a class="insta-handle" href="https://www.instagram.com/zaariaromas/" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="6"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1"/></svg>
+    @zaariaromas
+  </a>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="final-cta">
+  <div class="final-cta-card">
+    <div class="star-divider" style="margin-bottom:22px;">
+      <span class="line"></span>
+      <svg viewBox="0 0 24 24"><path d="M12 0l2.5 9.5L24 12l-9.5 2.5L12 24l-2.5-9.5L0 12l9.5-2.5z"/></svg>
+      <span class="line"></span>
+    </div>
+    <h2>Tu próximo aroma favorito está a un mensaje</h2>
+    <p>Escríbenos ahora y te ayudamos a encontrar tu fragancia árabe ideal.</p>
+    <div class="final-ctas">
+      <a class="btn-primary" href="https://wa.me/34600000000?text=Hola%20Zaari%20Aromas%2C%20quiero%20hacer%20un%20pedido%20%E2%9C%A8" target="_blank" rel="noopener" id="finalWaBtn">
+        <svg viewBox="0 0 32 32" width="20" height="20" fill="white"><path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.386.7 4.61 1.9 6.475L4 29l7.727-1.856A11.93 11.93 0 0 0 16.001 27C22.628 27 28 21.627 28 15S22.628 3 16.001 3Z"/></svg>
+        Pedir por WhatsApp
+      </a>
+      <a class="btn-secondary" href="https://www.instagram.com/zaariaromas/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#C11E70" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="6"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="#C11E70" stroke="none"/></svg>
+        Ver Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-col">
+      <div class="footer-logo">
+        <svg viewBox="0 0 32 32" fill="none"><path d="M16 2c2 4 2 6 0 9-2-3-2-5 0-9Z" fill="#C6942D"/><path d="M11 11h10c1.5 0 2 1 2 2.5v11c0 2.5-2 4.5-4.5 4.5h-5C11 29 9 27 9 24.5v-11C9 12 9.5 11 11 11Z" fill="#EAC9F0" opacity="0.9"/></svg>
+        Zaari Aromas
+      </div>
+      <p>Perfumería árabe original ✨ Aromas intensos que enganchan, seleccionados directamente desde Dubái.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Enlaces</h4>
+      <div class="footer-links">
+        <a href="#aromas">Aromas</a>
+        <a href="#por-que">Por qué elegirnos</a>
+        <a href="#pedidos">Cómo pedir</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Contacto</h4>
+      <div class="footer-links">
+        <a href="https://wa.me/34600000000" target="_blank" rel="noopener">📲 WhatsApp</a>
+        <a href="https://www.instagram.com/zaariaromas/" target="_blank" rel="noopener">📷 @zaariaromas</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Zaari Aromas — Perfumería árabe original</span>
+    <span>Sitio creado por EasyPageX</span>
+  </div>
+</footer>
+
+<!-- ============ WHATSAPP FAB ============ -->
+<a class="fab-wa" href="https://wa.me/34600000000?text=Hola%20Zaari%20Aromas%2C%20quiero%20hacer%20un%20pedido%20%E2%9C%A8" target="_blank" rel="noopener" id="fabWaBtn" aria-label="Pedir por WhatsApp">
+  <svg viewBox="0 0 32 32"><path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.386.7 4.61 1.9 6.475L4 29l7.727-1.856A11.93 11.93 0 0 0 16.001 27C22.628 27 28 21.627 28 15S22.628 3 16.001 3Z"/></svg>
+</a>
+
+<script>
+  // Subtle "spray" chime sound on WhatsApp CTA clicks
+  let audioCtx;
+  function playChime(){
+    try{
+      audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+      const now = audioCtx.currentTime;
+      [880, 1320].forEach((freq, i) => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, now + i*0.06);
+        gain.gain.setValueAtTime(0, now + i*0.06);
+        gain.gain.linearRampToValueAtTime(0.08, now + i*0.06 + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + i*0.06 + 0.35);
+        osc.connect(gain).connect(audioCtx.destination);
+        osc.start(now + i*0.06);
+        osc.stop(now + i*0.06 + 0.4);
+      });
+    }catch(e){}
+  }
+  document.querySelectorAll('#navWaBtn, #heroWaBtn, #finalWaBtn, #fabWaBtn, #step2WaBtn, #step3WaBtn').forEach(el=>{
+    el.addEventListener('click', playChime);
+  });
+
+  // Fade-in reveal on scroll
+  const revealEls = document.querySelectorAll('.scent-card, .step-card, .why-item');
+  revealEls.forEach(el=>{
+    el.style.opacity = 0;
+    el.style.transform = 'translateY(18px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  });
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.style.opacity = 1;
+        entry.target.style.transform = 'translateY(0)';
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.15});
+  revealEls.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
