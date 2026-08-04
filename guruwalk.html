@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GuruWalk — Free Tours a pie por todo el mundo</title>
+<meta name="description" content="Descubre ciudades caminando con guías locales. Reserva gratis, camina, y paga lo que creas justo. +15M de viajeros ya lo han probado.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#122622;
+    --paper:#FFF8EF;
+    --paper-2:#FDEFDD;
+    --coral:#FF6B4A;
+    --coral-dark:#E44F30;
+    --turquoise:#1FA396;
+    --turquoise-dark:#127268;
+    --sun:#FFC145;
+    --line:rgba(18,38,34,0.14);
+    --max:1180px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit; text-decoration:none;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 28px;}
+  h1,h2,h3{font-family:'Fraunces', serif; line-height:1.05; letter-spacing:-0.01em;}
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    font-size:12.5px;
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    color:var(--turquoise-dark);
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:7px; height:7px; border-radius:50%;
+    background:var(--coral);
+    display:inline-block;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'Inter', sans-serif;
+    font-weight:700;
+    font-size:15px;
+    padding:14px 26px;
+    border-radius:100px;
+    border:2px solid transparent;
+    cursor:pointer;
+    transition:transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease;
+    white-space:nowrap;
+  }
+  .btn-primary{ background:var(--ink); color:var(--paper); }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 10px 24px rgba(18,38,34,.25); }
+  .btn-outline{ border-color:var(--ink); color:var(--ink); background:transparent; }
+  .btn-outline:hover{ background:var(--ink); color:var(--paper); transform:translateY(-2px);}
+  .btn-coral{ background:var(--coral); color:#fff; }
+  .btn-coral:hover{ background:var(--coral-dark); transform:translateY(-2px); box-shadow:0 12px 28px rgba(228,79,48,.35);}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(255,248,239,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:78px;
+  }
+  .logo{
+    font-family:'Fraunces', serif;
+    font-weight:800;
+    font-size:22px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .logo .dot{color:var(--coral);}
+  .nav-links{
+    display:flex; align-items:center; gap:34px;
+    font-size:14.5px; font-weight:600;
+  }
+  .nav-links a{ opacity:.75; transition:opacity .15s; }
+  .nav-links a:hover{ opacity:1; }
+  .nav-cta{ display:flex; gap:12px; }
+  .burger{ display:none; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:88px 0 40px;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.05fr 0.85fr;
+    gap:48px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(40px, 5.6vw, 74px);
+    font-weight:700;
+    margin:18px 0 20px;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--coral-dark);
+  }
+  .hero p.lead{
+    font-size:19px;
+    line-height:1.6;
+    max-width:480px;
+    opacity:.82;
+    margin-bottom:32px;
+  }
+  .hero-ctas{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:38px;}
+  .stat-row{
+    display:flex; gap:28px; flex-wrap:wrap;
+  }
+  .stat{
+    font-family:'Space Mono', monospace;
+  }
+  .stat b{
+    display:block;
+    font-family:'Fraunces', serif;
+    font-size:30px;
+    font-weight:700;
+    color:var(--ink);
+  }
+  .stat span{ font-size:12px; opacity:.65; text-transform:uppercase; letter-spacing:.06em;}
+
+  .hero-visual{
+    position:relative;
+    aspect-ratio:4/5;
+    border-radius:28px;
+    background:linear-gradient(155deg, var(--turquoise) 0%, var(--turquoise-dark) 100%);
+    overflow:hidden;
+    box-shadow:0 30px 60px -20px rgba(18,38,34,.35);
+  }
+  .hero-visual svg{ position:absolute; inset:0; width:100%; height:100%;}
+  .hero-badge{
+    position:absolute;
+    bottom:22px; left:22px; right:22px;
+    background:rgba(255,248,239,0.95);
+    border-radius:18px;
+    padding:16px 18px;
+    display:flex; align-items:center; gap:12px;
+    font-size:13.5px; font-weight:600;
+  }
+  .hero-badge .pin{
+    width:34px; height:34px; border-radius:50%;
+    background:var(--coral); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-size:16px; flex-shrink:0;
+  }
+
+  /* ---------- RUTA / PATH SIGNATURE ---------- */
+  .route-wrap{ position:relative; }
+  .route-svg{
+    position:absolute;
+    left:50%;
+    top:0;
+    width:2px;
+    height:100%;
+    transform:translateX(-50%);
+    pointer-events:none;
+    z-index:0;
+  }
+  .route-path{
+    stroke-dasharray: 10 12;
+    stroke:var(--coral);
+    stroke-width:3;
+    fill:none;
+    opacity:.35;
+  }
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{ position:relative; padding:96px 0; }
+  .section-head{
+    max-width:640px;
+    margin-bottom:56px;
+  }
+  .section-head h2{
+    font-size:clamp(30px,3.6vw,46px);
+    font-weight:700;
+    margin-top:14px;
+  }
+  .section-head p{
+    font-size:17px; opacity:.75; margin-top:14px; line-height:1.6;
+  }
+
+  /* ---------- STEPS ---------- */
+  .steps{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:28px;
+    position:relative;
+    z-index:1;
+  }
+  .step-card{
+    background:var(--paper-2);
+    border:1px solid var(--line);
+    border-radius:22px;
+    padding:34px 28px;
+    position:relative;
+  }
+  .step-mark{
+    font-family:'Space Mono', monospace;
+    font-size:13px;
+    color:var(--coral-dark);
+    font-weight:700;
+    margin-bottom:18px;
+    display:inline-block;
+    border:1px solid var(--coral);
+    border-radius:100px;
+    padding:4px 12px;
+  }
+  .step-card h3{
+    font-size:22px; font-weight:600; margin-bottom:10px;
+  }
+  .step-card p{ font-size:15px; opacity:.78; line-height:1.6;}
+  .step-card:nth-child(2){ transform:translateY(26px); }
+
+  /* ---------- DESTINOS ---------- */
+  .dest-scroller{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+  }
+  .dest-card{
+    position:relative;
+    border-radius:22px;
+    overflow:hidden;
+    aspect-ratio:3/3.6;
+    color:#fff;
+    display:flex;
+    align-items:flex-end;
+    padding:22px;
+    isolation:isolate;
+  }
+  .dest-card::before{
+    content:"";
+    position:absolute; inset:0;
+    background:var(--g);
+    z-index:-2;
+  }
+  .dest-card::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,0) 55%);
+    z-index:-1;
+  }
+  .dest-card .city{ font-family:'Fraunces', serif; font-size:24px; font-weight:700;}
+  .dest-card .country{
+    font-family:'Space Mono', monospace; font-size:11.5px;
+    text-transform:uppercase; letter-spacing:.08em; opacity:.85; margin-top:4px;
+  }
+  .dest-card .tours{
+    position:absolute; top:18px; right:18px;
+    background:rgba(255,255,255,.92);
+    color:var(--ink);
+    font-family:'Space Mono', monospace;
+    font-size:11px; font-weight:700;
+    padding:5px 10px; border-radius:100px;
+  }
+
+  /* ---------- BENEFICIOS ---------- */
+  .benefits{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:24px;
+    overflow:hidden;
+  }
+  .benefit{
+    background:var(--paper);
+    padding:36px 26px;
+  }
+  .benefit .icon{
+    width:46px; height:46px;
+    border-radius:14px;
+    background:var(--sun);
+    display:flex; align-items:center; justify-content:center;
+    font-size:22px;
+    margin-bottom:20px;
+  }
+  .benefit h3{ font-family:'Inter'; font-size:16.5px; font-weight:700; margin-bottom:8px;}
+  .benefit p{ font-size:14px; opacity:.72; line-height:1.55;}
+
+  /* ---------- INSTAGRAM ---------- */
+  .ig-section{
+    background:var(--ink);
+    color:var(--paper);
+    border-radius:32px;
+    margin:0 28px;
+    max-width:calc(var(--max) - 56px);
+    margin-left:auto; margin-right:auto;
+    padding:70px 56px;
+    position:relative;
+    overflow:hidden;
+  }
+  .ig-section .eyebrow{ color:var(--sun); }
+  .ig-section .eyebrow::before{ background:var(--sun);}
+  .ig-grid{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:56px;
+    align-items:center;
+  }
+  .ig-profile{
+    display:flex; align-items:center; gap:16px;
+    margin:22px 0 26px;
+  }
+  .ig-avatar{
+    width:64px; height:64px; border-radius:50%;
+    background:linear-gradient(135deg, var(--coral), var(--sun));
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces'; font-weight:700; font-size:24px; color:#fff;
+    flex-shrink:0;
+  }
+  .ig-handle{ font-weight:700; font-size:17px;}
+  .ig-handle span{
+    display:block; font-family:'Space Mono', monospace; font-size:12.5px;
+    opacity:.6; font-weight:400; margin-top:3px;
+  }
+  .ig-stats{ display:flex; gap:26px; margin-bottom:28px; flex-wrap:wrap;}
+  .ig-stats div b{ font-family:'Fraunces'; font-size:22px; display:block;}
+  .ig-stats div span{ font-size:11.5px; opacity:.62; text-transform:uppercase; letter-spacing:.06em;}
+  .ig-bio{ font-size:15px; line-height:1.7; opacity:.88; margin-bottom:28px;}
+  .ig-tiles{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:8px;
+  }
+  .ig-tile{
+    aspect-ratio:1/1;
+    border-radius:12px;
+    background:var(--tg);
+    display:flex; align-items:center; justify-content:center;
+    font-size:26px;
+    opacity:.92;
+  }
+
+  /* ---------- TESTIMONIOS ---------- */
+  .testis{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+  }
+  .testi{
+    background:var(--paper-2);
+    border-radius:20px;
+    padding:30px 26px;
+    border:1px solid var(--line);
+  }
+  .stars{ color:var(--sun); font-size:15px; letter-spacing:2px; margin-bottom:14px;}
+  .testi p{ font-size:15px; line-height:1.65; opacity:.85; margin-bottom:20px;}
+  .testi-author{ display:flex; align-items:center; gap:10px;}
+  .testi-avatar{
+    width:38px; height:38px; border-radius:50%;
+    background:var(--turquoise);
+    color:#fff; font-family:'Fraunces'; font-weight:700;
+    display:flex; align-items:center; justify-content:center; font-size:14px;
+  }
+  .testi-author b{ font-size:13.5px; display:block;}
+  .testi-author span{ font-size:12px; opacity:.6;}
+
+  /* ---------- CTA FINAL ---------- */
+  .final-cta{
+    text-align:center;
+    padding:110px 0 60px;
+  }
+  .final-cta .flag{
+    width:64px; height:64px;
+    border-radius:50%;
+    background:var(--coral);
+    color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    font-size:28px;
+    margin:0 auto 26px;
+  }
+  .final-cta h2{
+    font-size:clamp(32px,5vw,58px);
+    font-weight:700;
+    max-width:760px;
+    margin:0 auto 22px;
+  }
+  .final-cta p{ font-size:17px; opacity:.75; max-width:520px; margin:0 auto 34px;}
+  .final-ctas{ display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    border-top:1px solid var(--line);
+    padding:52px 0 34px;
+  }
+  .foot-grid{
+    display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:32px;
+    margin-bottom:36px;
+  }
+  .foot-links{ display:flex; gap:48px; flex-wrap:wrap;}
+  .foot-col h4{
+    font-family:'Space Mono', monospace; font-size:11.5px;
+    text-transform:uppercase; letter-spacing:.08em; opacity:.55; margin-bottom:14px;
+  }
+  .foot-col a{
+    display:block; font-size:14.5px; font-weight:600; margin-bottom:10px; opacity:.85;
+  }
+  .foot-col a:hover{ opacity:1; color:var(--coral-dark);}
+  .foot-bottom{
+    display:flex; justify-content:space-between; align-items:center;
+    padding-top:26px; border-top:1px solid var(--line);
+    font-size:12.5px; opacity:.55; flex-wrap:wrap; gap:12px;
+  }
+
+  /* ---------- REVEAL ---------- */
+  .reveal{ opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0);}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 920px){
+    .nav-links{ display:none; }
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero-visual{ order:-1; aspect-ratio:16/10; }
+    .steps{ grid-template-columns:1fr; }
+    .step-card:nth-child(2){ transform:none; }
+    .dest-scroller{ grid-template-columns:repeat(2,1fr); }
+    .benefits{ grid-template-columns:repeat(2,1fr); }
+    .ig-grid{ grid-template-columns:1fr; }
+    .ig-section{ padding:44px 26px; margin:0 16px; }
+    .testis{ grid-template-columns:1fr; }
+    .foot-grid{ flex-direction:column; }
+  }
+  @media (max-width:560px){
+    .dest-scroller{ grid-template-columns:1fr 1fr; }
+    .stat-row{ gap:18px; }
+    .nav-cta .btn-outline{ display:none; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <div class="logo">Guru<span class="dot">Walk</span></div>
+    <div class="nav-links">
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#destinos">Destinos</a>
+      <a href="#opiniones">Opiniones</a>
+      <a href="#instagram">Instagram</a>
+    </div>
+    <div class="nav-cta">
+      <a class="btn btn-outline" href="https://www.instagram.com/guruwalk/" target="_blank" rel="noopener">Síguenos</a>
+      <a class="btn btn-primary" href="https://linktr.ee/guruwalk.es" target="_blank" rel="noopener">Reservar tour</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">Free tours · Sin tarjeta · Sin sorpresas</span>
+        <h1>Camina tu próxima <em>ciudad favorita</em>, gratis.</h1>
+        <p class="lead">GuruWalk conecta a viajeros con guías locales para descubrir cada rincón a pie. Reservas gratis, caminas, y al final pagas lo que creas que ha valido la pena.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-coral" href="https://linktr.ee/guruwalk.es" target="_blank" rel="noopener">🥾 Ver free tours cerca de ti</a>
+          <a class="btn btn-outline" href="https://www.instagram.com/guruwalk/" target="_blank" rel="noopener">📸 @guruwalk en Instagram</a>
+        </div>
+        <div class="stat-row">
+          <div class="stat"><b>+15M</b><span>Viajeros</span></div>
+          <div class="stat"><b>66.4K</b><span>Seguidores IG</span></div>
+          <div class="stat"><b>745</b><span>Historias compartidas</span></div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <svg viewBox="0 0 400 500" preserveAspectRatio="none">
+          <path d="M40 480 C 40 380, 180 400, 160 300 S 340 220, 300 140 S 120 60, 150 10"
+                stroke="#FFF8EF" stroke-width="4" stroke-dasharray="1 14" stroke-linecap="round" fill="none" opacity="0.65"/>
+          <circle cx="40" cy="480" r="9" fill="#FF6B4A"/>
+          <circle cx="150" cy="10" r="9" fill="#FFC145"/>
+        </svg>
+        <div class="hero-badge">
+          <div class="pin">📍</div>
+          <div>Casco Antiguo · Sale en 20 min<br><span style="opacity:.6; font-weight:400;">12 viajeros ya reservaron hoy</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section id="como-funciona" class="route-wrap">
+    <svg class="route-svg" viewBox="0 0 2 800" preserveAspectRatio="none" aria-hidden="true">
+      <path class="route-path" d="M1 0 L1 800"/>
+    </svg>
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Cómo funciona</span>
+        <h2>Tres pasos y ya estás caminando</h2>
+        <p>Nada de itinerarios rígidos ni pagos por adelantado. GuruWalk funciona como debería funcionar viajar: fácil, flexible y justo para las dos partes.</p>
+      </div>
+      <div class="steps">
+        <div class="step-card reveal">
+          <span class="step-mark">Paso 1</span>
+          <h3>Reserva gratis</h3>
+          <p>Elige tu ciudad, tu barrio o tu tema favorito —historia, gastronomía, misterio— y reserva plaza sin pagar nada por adelantado.</p>
+        </div>
+        <div class="step-card reveal">
+          <span class="step-mark">Paso 2</span>
+          <h3>Camina con un local</h3>
+          <p>Un guía de la ciudad te lleva por las calles que de verdad importan, con las historias que no salen en las guías.</p>
+        </div>
+        <div class="step-card reveal">
+          <span class="step-mark">Paso 3</span>
+          <h3>Paga lo que creas justo</h3>
+          <p>Al terminar, decides tú cuánto vale la experiencia. Sin mínimos impuestos, sin letra pequeña.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESTINOS -->
+  <section id="destinos">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Destinos con más movimiento</span>
+        <h2>Elige por dónde caminar hoy</h2>
+        <p>Cientos de ciudades, miles de rutas creadas por guías locales que las conocen mejor que nadie.</p>
+      </div>
+      <div class="dest-scroller">
+        <div class="dest-card reveal" style="--g:linear-gradient(160deg,#E44F30,#FF6B4A)">
+          <span class="tours">120+ rutas</span>
+          <div><div class="city">Barcelona</div><div class="country">España</div></div>
+        </div>
+        <div class="dest-card reveal" style="--g:linear-gradient(160deg,#127268,#1FA396)">
+          <span class="tours">98 rutas</span>
+          <div><div class="city">Lisboa</div><div class="country">Portugal</div></div>
+        </div>
+        <div class="dest-card reveal" style="--g:linear-gradient(160deg,#8A5A2E,#FFC145)">
+          <span class="tours">140+ rutas</span>
+          <div><div class="city">Roma</div><div class="country">Italia</div></div>
+        </div>
+        <div class="dest-card reveal" style="--g:linear-gradient(160deg,#1F3A5F,#3E6BA6)">
+          <span class="tours">76 rutas</span>
+          <div><div class="city">Ciudad de México</div><div class="country">México</div></div>
+        </div>
+        <div class="dest-card reveal" style="--g:linear-gradient(160deg,#5A2E5C,#B15AB0)">
+          <span class="tours">65 rutas</span>
+          <div><div class="city">París</div><div class="country">Francia</div></div>
+        </div>
+        <div class="dest-card reveal" style="--g:linear-gradient(160deg,#2E5C4E,#4E9C82)">
+          <span class="tours">54 rutas</span>
+          <div><div class="city">Buenos Aires</div><div class="country">Argentina</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFICIOS -->
+  <section>
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Por qué GuruWalk</span>
+        <h2>Viajar con curiosidad, no con prisa</h2>
+      </div>
+      <div class="benefits reveal">
+        <div class="benefit">
+          <div class="icon">🆓</div>
+          <h3>100% gratis para reservar</h3>
+          <p>Sin tarjeta, sin depósitos. Reserva tantos tours como quieras.</p>
+        </div>
+        <div class="benefit">
+          <div class="icon">🧭</div>
+          <h3>Guías locales reales</h3>
+          <p>Personas del lugar, no scripts genéricos de agencia.</p>
+        </div>
+        <div class="benefit">
+          <div class="icon">🕒</div>
+          <h3>Cancela cuando quieras</h3>
+          <p>Planes que cambian sin penalizaciones ni letra pequeña.</p>
+        </div>
+        <div class="benefit">
+          <div class="icon">🌍</div>
+          <h3>Comunidad enorme</h3>
+          <p>+15M de viajeros ya han descubierto el mundo con nosotros.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTAGRAM -->
+  <section id="instagram">
+    <div class="ig-section reveal">
+      <div class="ig-grid">
+        <div>
+          <span class="eyebrow">Síguenos</span>
+          <div class="ig-profile">
+            <div class="ig-avatar">G</div>
+            <div class="ig-handle">@guruwalk<span>Free tours y mucho más 🏄🏼‍♀️</span></div>
+          </div>
+          <div class="ig-stats">
+            <div><b>745</b><span>Posts</span></div>
+            <div><b>66.4K</b><span>Seguidores</span></div>
+            <div><b>1,213</b><span>Siguiendo</span></div>
+          </div>
+          <p class="ig-bio">
+            ▫️ Para los que viajan con curiosidad 🩷<br>
+            ▫️ Travel hacks, fun facts y destinos 🔝<br>
+            ▫️ +15M de viajeros descubren el 🌍 con nosotros<br>
+            ⬇️ Si lo pruebas, repites ⬇️
+          </p>
+          <div class="hero-ctas">
+            <a class="btn btn-coral" href="https://www.instagram.com/guruwalk/" target="_blank" rel="noopener">Ver perfil en Instagram</a>
+            <a class="btn btn-outline" style="border-color:#FFF8EF; color:#FFF8EF;" href="https://linktr.ee/guruwalk.es" target="_blank" rel="noopener">Todos los enlaces</a>
+          </div>
+        </div>
+        <div class="ig-tiles">
+          <div class="ig-tile" style="--tg:linear-gradient(160deg,#FF6B4A,#E44F30)">🏛️</div>
+          <div class="ig-tile" style="--tg:linear-gradient(160deg,#1FA396,#127268)">🚶‍♀️</div>
+          <div class="ig-tile" style="--tg:linear-gradient(160deg,#FFC145,#E4A22B)">🗺️</div>
+          <div class="ig-tile" style="--tg:linear-gradient(160deg,#3E6BA6,#1F3A5F)">🌅</div>
+          <div class="ig-tile" style="--tg:linear-gradient(160deg,#B15AB0,#5A2E5C)">📸</div>
+          <div class="ig-tile" style="--tg:linear-gradient(160deg,#4E9C82,#2E5C4E)">🥐</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIOS -->
+  <section id="opiniones">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Lo que dicen al terminar la ruta</span>
+        <h2>Si lo pruebas, repites</h2>
+      </div>
+      <div class="testis">
+        <div class="testi reveal">
+          <div class="stars">★★★★★</div>
+          <p>"Reservé el free tour de Barcelona sin esperar mucho y terminé cambiando todo mi itinerario del viaje. El guía sabía historias que ni en los libros."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">M</div>
+            <div><b>Marina R.</b><span>Viajó a Barcelona</span></div>
+          </div>
+        </div>
+        <div class="testi reveal">
+          <div class="stars">★★★★★</div>
+          <p>"Llegué sola a Lisboa y en dos horas de caminata ya tenía plan para el resto de la semana, gracias a la gente del grupo y al guía."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">D</div>
+            <div><b>Diego F.</b><span>Viajó a Lisboa</span></div>
+          </div>
+        </div>
+        <div class="testi reveal">
+          <div class="stars">★★★★★</div>
+          <p>"Lo mejor: no sentir que estás pagando por algo antes de saber si te va a gustar. Al final pagué con gusto, valió cada euro."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">L</div>
+            <div><b>Lucía A.</b><span>Viajó a Roma</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="final-cta">
+    <div class="wrap">
+      <div class="flag reveal">🚩</div>
+      <h2 class="reveal">Tu próxima ciudad no se explora sola.</h2>
+      <p class="reveal">Reserva tu free tour hoy y camina mañana con alguien que de verdad conoce el barrio.</p>
+      <div class="final-ctas reveal">
+        <a class="btn btn-coral" href="https://linktr.ee/guruwalk.es" target="_blank" rel="noopener">Reservar mi free tour</a>
+        <a class="btn btn-outline" href="https://www.instagram.com/guruwalk/" target="_blank" rel="noopener">Seguir en Instagram</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="logo">Guru<span class="dot">Walk</span></div>
+      <div class="foot-links">
+        <div class="foot-col">
+          <h4>Explora</h4>
+          <a href="#como-funciona">Cómo funciona</a>
+          <a href="#destinos">Destinos</a>
+          <a href="#opiniones">Opiniones</a>
+        </div>
+        <div class="foot-col">
+          <h4>Síguenos</h4>
+          <a href="https://www.instagram.com/guruwalk/" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://linktr.ee/guruwalk.es" target="_blank" rel="noopener">Todos los enlaces</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 GuruWalk. Página de ejemplo creada para conseguir clientes.</span>
+      <span>Camina. Descubre. Repite.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
