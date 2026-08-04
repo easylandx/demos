@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Le Walk — Tu guía local, directo en tus auriculares</title>
+<meta name="description" content="Le Walk es la audioguía de viajes que activa historias de expertos y locales según dónde estés. Descubre ciudades como nunca antes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#0E1E27;
+    --bg-panel:#152B36;
+    --bg-panel-2:#1B3540;
+    --gold:#D4A24C;
+    --coral:#E96A4C;
+    --text-light:#EFE7D8;
+    --muted:#8FA6AA;
+    --line: rgba(239,231,216,0.12);
+    --line-strong: rgba(239,231,216,0.22);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg-deep);
+    color:var(--text-light);
+    font-family:'Work Sans',sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none;}
+  img,svg{display:block;max-width:100%;}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 32px;}
+
+  .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    color:var(--gold);
+    display:flex;align-items:center;gap:10px;
+  }
+  .eyebrow::before{
+    content:'';width:16px;height:1px;background:var(--gold);
+  }
+
+  h1,h2,h3{font-family:'Fraunces',serif;font-weight:500;line-height:1.05;}
+
+  /* NAV */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    background:rgba(14,30,39,0.72);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{
+    max-width:1160px;margin:0 auto;padding:18px 32px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .logo{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:500;
+    font-size:22px;letter-spacing:0.01em;
+  }
+  .logo span{color:var(--gold);}
+  .nav-links{display:flex;gap:34px;align-items:center;}
+  .nav-links a{
+    font-size:14.5px;color:var(--muted);transition:color .2s;
+  }
+  .nav-links a:hover{color:var(--text-light);}
+  .btn{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;letter-spacing:0.04em;
+    padding:11px 22px;border-radius:100px;
+    display:inline-flex;align-items:center;gap:8px;
+    transition:transform .25s ease, box-shadow .25s ease;
+    border:1px solid transparent;
+  }
+  .btn-primary{
+    background:var(--coral);color:#17120E;font-weight:500;
+    box-shadow:0 6px 20px rgba(233,106,76,0.25);
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(233,106,76,0.38);}
+  .btn-ghost{
+    border:1px solid var(--line-strong); color:var(--text-light);
+  }
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+
+  /* HERO */
+  .hero{
+    position:relative;
+    padding:190px 0 120px;
+    overflow:hidden;
+  }
+  .hero-glow{
+    position:absolute; inset:-20% -10% auto -10%;height:700px;
+    background:radial-gradient(ellipse at 30% 20%, rgba(212,162,76,0.16), transparent 60%),
+               radial-gradient(ellipse at 80% 0%, rgba(233,106,76,0.12), transparent 55%);
+    pointer-events:none;
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.15fr 0.85fr;gap:60px;align-items:center;
+    position:relative;
+  }
+  .hero h1{
+    font-size:clamp(40px,5.6vw,72px);
+    letter-spacing:-0.01em;
+    margin:22px 0 26px;
+  }
+  .hero h1 em{
+    font-style:italic;color:var(--gold);font-weight:400;
+  }
+  .hero p.lead{
+    font-size:18px;line-height:1.65;color:var(--muted);
+    max-width:480px;margin-bottom:34px;
+  }
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:38px;}
+  .btn-lg{padding:15px 28px;font-size:14px;}
+  .trust-row{
+    display:flex;gap:28px;flex-wrap:wrap;
+    font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--muted);
+  }
+  .trust-row b{color:var(--text-light);font-weight:500;}
+
+  /* SIGNATURE: route / waveform visual */
+  .route-visual{position:relative; width:100%; aspect-ratio:1/1.12;}
+  .route-visual svg{width:100%;height:100%;}
+  .pulse-dot{animation:pulse 2.6s ease-in-out infinite;}
+  .pulse-dot:nth-child(2){animation-delay:.5s;}
+  .pulse-dot:nth-child(3){animation-delay:1s;}
+  .pulse-dot:nth-child(4){animation-delay:1.5s;}
+  @keyframes pulse{
+    0%,100%{opacity:.35; r:4;}
+    50%{opacity:1; r:6.5;}
+  }
+  .route-line{
+    stroke-dasharray: 6 8;
+    animation: dash 40s linear infinite;
+  }
+  @keyframes dash{ to { stroke-dashoffset: -1000; } }
+
+  @media (prefers-reduced-motion: reduce){
+    .pulse-dot, .route-line, .wave-bar, .marquee-track{animation:none !important;}
+  }
+
+  /* WAVEFORM divider */
+  .waveform{
+    display:flex;align-items:center;gap:3px;height:34px;
+  }
+  .wave-bar{
+    width:3px;background:var(--gold);border-radius:2px;
+    animation:wavey 1.4s ease-in-out infinite;
+  }
+  @keyframes wavey{
+    0%,100%{transform:scaleY(0.35);}
+    50%{transform:scaleY(1);}
+  }
+
+  section{padding:100px 0;position:relative;}
+  .section-head{max-width:620px;margin-bottom:64px;}
+  .section-head h2{font-size:clamp(30px,3.6vw,44px);margin-top:16px;}
+  .section-head p{color:var(--muted);margin-top:16px;font-size:16.5px;line-height:1.6;}
+
+  /* STEPS */
+  .steps{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
+    background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden;
+  }
+  .step{background:var(--bg-panel);padding:40px 34px;}
+  .step .num{
+    font-family:'IBM Plex Mono',monospace;color:var(--gold);font-size:13px;letter-spacing:.1em;
+  }
+  .step h3{font-size:23px;margin:18px 0 12px;font-weight:500;}
+  .step p{color:var(--muted);font-size:15px;line-height:1.6;}
+
+  /* FEATURES */
+  .features{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:1px;
+    background:var(--line);border:1px solid var(--line);border-radius:20px;overflow:hidden;
+  }
+  .feature{background:var(--bg-panel);padding:38px;display:flex;gap:20px;}
+  .feature .icon{
+    width:44px;height:44px;flex:none;border-radius:12px;
+    background:var(--bg-panel-2);display:flex;align-items:center;justify-content:center;
+    border:1px solid var(--line-strong);
+  }
+  .feature h4{font-family:'Fraunces',serif;font-weight:500;font-size:19px;margin-bottom:8px;}
+  .feature p{color:var(--muted);font-size:14.5px;line-height:1.6;}
+
+  /* CITY MARQUEE */
+  .marquee{
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    padding:26px 0;overflow:hidden;background:var(--bg-panel);
+  }
+  .marquee-track{
+    display:flex;gap:56px;white-space:nowrap;width:max-content;
+    animation:scroll 32s linear infinite;
+    font-family:'Fraunces',serif;font-style:italic;font-size:24px;color:var(--muted);
+  }
+  .marquee-track span.dot{color:var(--gold);font-style:normal;margin:0 4px;}
+  @keyframes scroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+
+  /* STATS + PRESS */
+  .stat-band{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+    background:var(--line);border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  }
+  .stat{background:var(--bg-deep);padding:38px 30px;text-align:center;}
+  .stat .n{font-family:'Fraunces',serif;font-size:38px;color:var(--gold);}
+  .stat .l{font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:.08em;color:var(--muted);margin-top:8px;text-transform:uppercase;}
+
+  /* TESTIMONIAL */
+  .testimonial{
+    max-width:760px;margin:0 auto;text-align:center;
+  }
+  .testimonial blockquote{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:400;
+    font-size:clamp(22px,3vw,32px);line-height:1.4;color:var(--text-light);
+  }
+  .testimonial .who{margin-top:24px;font-size:14px;color:var(--muted);font-family:'IBM Plex Mono',monospace;}
+
+  /* INSTAGRAM */
+  .ig-panel{
+    display:grid;grid-template-columns:0.9fr 1.1fr;gap:50px;align-items:center;
+    background:linear-gradient(135deg, var(--bg-panel), var(--bg-panel-2));
+    border:1px solid var(--line-strong); border-radius:24px; padding:56px;
+  }
+  .ig-card{
+    background:var(--bg-deep);border:1px solid var(--line-strong);border-radius:18px;padding:28px;
+  }
+  .ig-card .handle{display:flex;align-items:center;gap:12px;margin-bottom:18px;}
+  .ig-avatar{
+    width:46px;height:46px;border-radius:50%;
+    background:conic-gradient(from 220deg, var(--coral), var(--gold), var(--coral));
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces',serif;font-style:italic;color:var(--bg-deep);font-size:18px;
+  }
+  .ig-card .h-name{font-weight:600;font-size:14.5px;}
+  .ig-card .h-sub{font-size:12.5px;color:var(--muted);}
+  .ig-stats{display:flex;gap:26px;margin:18px 0;font-family:'IBM Plex Mono',monospace;font-size:13px;}
+  .ig-stats b{display:block;font-size:17px;color:var(--text-light);font-family:'Work Sans',sans-serif;}
+  .ig-stats span{color:var(--muted);}
+  .ig-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:18px;}
+  .ig-tile{aspect-ratio:1;border-radius:8px;background:var(--bg-panel-2);position:relative;overflow:hidden;border:1px solid var(--line);}
+  .ig-tile::after{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(circle at 30% 30%, rgba(212,162,76,0.35), transparent 60%);
+  }
+
+  /* FINAL CTA */
+  .final-cta{
+    text-align:center;padding:120px 0 100px;
+  }
+  .final-cta h2{font-size:clamp(34px,5vw,58px);max-width:760px;margin:20px auto 30px;}
+  .final-cta .cta-row{justify-content:center;}
+
+  footer{
+    border-top:1px solid var(--line);padding:50px 0 40px;
+  }
+  .foot-grid{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;}
+  .foot-links{display:flex;gap:28px;}
+  .foot-links a{color:var(--muted);font-size:14px;}
+  .foot-links a:hover{color:var(--gold);}
+  .copyright{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--muted);opacity:.7;margin-top:30px;}
+
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1;transform:none;}
+
+  @media (max-width: 880px){
+    .hero-grid{grid-template-columns:1fr;}
+    .route-visual{max-width:340px;margin:0 auto;}
+    .steps{grid-template-columns:1fr;}
+    .features{grid-template-columns:1fr;}
+    .stat-band{grid-template-columns:repeat(2,1fr);}
+    .ig-panel{grid-template-columns:1fr;padding:34px;}
+    .nav-links{display:none;}
+    .wrap{padding:0 20px;}
+    .hero{padding:150px 0 80px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">le<span>·</span>walk</div>
+    <div class="nav-links">
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#ciudades">Ciudades</a>
+      <a href="#instagram">Instagram</a>
+    </div>
+    <a class="btn btn-primary" href="https://apps.apple.com/us/app/le-walk/id6504635876" target="_blank" rel="noopener">Descargar</a>
+  </nav>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">Audioguía de viajes</div>
+        <h1>Cada calle tiene<br><em>una historia</em> que contar.</h1>
+        <p class="lead">Le Walk pone a un guía local en tus auriculares. Las historias se activan solas según dónde estés, para que solo tengas que caminar, mirar y escuchar.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary btn-lg" href="https://apps.apple.com/us/app/le-walk/id6504635876" target="_blank" rel="noopener">↓ Descargar la app</a>
+          <a class="btn btn-ghost btn-lg" href="https://www.instagram.com/lewalk_espanol/" target="_blank" rel="noopener">Seguir en Instagram</a>
+        </div>
+        <div class="trust-row">
+          <div><b>4.9 / 5</b> valoración</div>
+          <div><b>72K+</b> viajeros</div>
+          <div><b>600+</b> ciudades</div>
+        </div>
+      </div>
+
+      <div class="route-visual">
+        <svg viewBox="0 0 320 360" fill="none">
+          <path class="route-line" d="M40 40 C 90 70, 60 120, 110 150 S 220 160, 200 220 S 90 260, 130 310"
+                stroke="#8FA6AA" stroke-opacity="0.5" stroke-width="1.6"/>
+          <circle class="pulse-dot" cx="40" cy="40" r="5" fill="#E96A4C"/>
+          <circle class="pulse-dot" cx="110" cy="150" r="5" fill="#D4A24C"/>
+          <circle class="pulse-dot" cx="200" cy="220" r="5" fill="#E96A4C"/>
+          <circle class="pulse-dot" cx="130" cy="310" r="5" fill="#D4A24C"/>
+          <!-- headphone glyph -->
+          <g transform="translate(215,55)" opacity="0.9">
+            <path d="M0 28 C0 5, 46 5, 46 28" stroke="#EFE7D8" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <rect x="-7" y="24" width="14" height="26" rx="6" fill="#EFE7D8"/>
+            <rect x="39" y="24" width="14" height="26" rx="6" fill="#EFE7D8"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- WAVEFORM DIVIDER -->
+  <div class="wrap" style="padding:0 0 10px;">
+    <div class="waveform" aria-hidden="true">
+      <div class="wave-bar" style="height:14px; animation-delay:0s"></div>
+      <div class="wave-bar" style="height:28px; animation-delay:.1s"></div>
+      <div class="wave-bar" style="height:10px; animation-delay:.2s"></div>
+      <div class="wave-bar" style="height:34px; animation-delay:.3s"></div>
+      <div class="wave-bar" style="height:18px; animation-delay:.4s"></div>
+      <div class="wave-bar" style="height:30px; animation-delay:.5s"></div>
+      <div class="wave-bar" style="height:12px; animation-delay:.6s"></div>
+      <div class="wave-bar" style="height:24px; animation-delay:.7s"></div>
+      <div class="wave-bar" style="height:16px; animation-delay:.8s"></div>
+    </div>
+  </div>
+
+  <!-- COMO FUNCIONA -->
+  <section id="como-funciona">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">El recorrido</div>
+        <h2>Tres pasos entre tú<br>y tu próxima historia.</h2>
+      </div>
+      <div class="steps reveal">
+        <div class="step">
+          <div class="num">01 — PREPARA</div>
+          <h3>Ponte los auriculares</h3>
+          <p>Elige una ciudad o un tour temático. Guarda el teléfono en el bolsillo: a partir de aquí, solo escuchas.</p>
+        </div>
+        <div class="step">
+          <div class="num">02 — CAMINA</div>
+          <h3>Sigue tu propio ritmo</h3>
+          <p>El GPS detecta dónde estás y activa la narración justa en el momento justo, sin apurar el paso ni esperar a nadie.</p>
+        </div>
+        <div class="step">
+          <div class="num">03 — DESCUBRE</div>
+          <h3>Explora donde estés</h3>
+          <p>Con la función Explorar, Le Walk te propone historias e itinerarios incluso en ciudades sin tour armado todavía.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section>
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Por qué funciona</div>
+        <h2>Guías reales,<br>no un audio genérico.</h2>
+        <p>Cada ruta está narrada por expertos y locales que conocen las calles que estás pisando, no una locución de museo.</p>
+      </div>
+      <div class="features reveal">
+        <div class="feature">
+          <div class="icon">🎧</div>
+          <div><h4>Narración de expertos y locales</h4><p>Historias, datos y anécdotas contadas por quien realmente conoce el lugar.</p></div>
+        </div>
+        <div class="feature">
+          <div class="icon">📍</div>
+          <div><h4>Se activa con tu ubicación</h4><p>Nada de pausar y buscar el siguiente punto: la app sabe dónde estás y sigue el relato.</p></div>
+        </div>
+        <div class="feature">
+          <div class="icon">🧭</div>
+          <div><h4>Función Explorar</h4><p>¿Sin plan? Descubre lugares e historias cerca de ti, estés donde estés.</p></div>
+        </div>
+        <div class="feature">
+          <div class="icon">🎟️</div>
+          <div><h4>Tours gratuitos para empezar</h4><p>Prueba la experiencia sin coste antes de desbloquear el resto del catálogo.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div id="ciudades" class="marquee">
+    <div class="marquee-track">
+      <span>París <span class="dot">·</span></span>
+      <span>Roma <span class="dot">·</span></span>
+      <span>Nueva York <span class="dot">·</span></span>
+      <span>Río de Janeiro <span class="dot">·</span></span>
+      <span>Londres <span class="dot">·</span></span>
+      <span>+600 ciudades más <span class="dot">·</span></span>
+      <span>París <span class="dot">·</span></span>
+      <span>Roma <span class="dot">·</span></span>
+      <span>Nueva York <span class="dot">·</span></span>
+      <span>Río de Janeiro <span class="dot">·</span></span>
+      <span>Londres <span class="dot">·</span></span>
+      <span>+600 ciudades más <span class="dot">·</span></span>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stat-band">
+    <div class="stat"><div class="n">4.9★</div><div class="l">Valoración media</div></div>
+    <div class="stat"><div class="n">72K+</div><div class="l">Descargas</div></div>
+    <div class="stat"><div class="n">600+</div><div class="l">Ciudades cubiertas</div></div>
+    <div class="stat"><div class="n">16.6K</div><div class="l">Comunidad en Instagram</div></div>
+  </div>
+
+  <!-- TESTIMONIAL -->
+  <section>
+    <div class="wrap testimonial reveal">
+      <blockquote>"Hice mi primer viaje sola con los auriculares puestos y sentí que caminaba con alguien de confianza al lado, contándome cosas que nunca hubiera encontrado sola."</blockquote>
+      <div class="who">— Viajera, reseña de la app · destino: París</div>
+    </div>
+  </section>
+
+  <!-- INSTAGRAM -->
+  <section id="instagram">
+    <div class="wrap">
+      <div class="ig-panel reveal">
+        <div>
+          <div class="eyebrow">Comunidad</div>
+          <h2 style="margin-top:16px;">Se nota en el feed<br>antes de bajarte la app.</h2>
+          <p style="color:var(--muted);margin-top:16px;line-height:1.6;">En @lewalk_espanol compartimos ciudades, rutas y la nueva función Explorar. Es el mejor lugar para ver de qué se trata antes de descargar.</p>
+          <div class="cta-row" style="margin-top:28px;">
+            <a class="btn btn-primary" href="https://www.instagram.com/lewalk_espanol/" target="_blank" rel="noopener">Seguir @lewalk_espanol</a>
+          </div>
+        </div>
+        <div class="ig-card">
+          <div class="handle">
+            <div class="ig-avatar">lw</div>
+            <div>
+              <div class="h-name">lewalk_espanol</div>
+              <div class="h-sub">Le Walk | App de audioguía de viajes</div>
+            </div>
+          </div>
+          <div class="ig-stats">
+            <div><b>270</b><span>posts</span></div>
+            <div><b>16.6K</b><span>seguidores</span></div>
+            <div><b>77</b><span>seguidos</span></div>
+          </div>
+          <div class="ig-grid">
+            <div class="ig-tile"></div><div class="ig-tile"></div><div class="ig-tile"></div>
+            <div class="ig-tile"></div><div class="ig-tile"></div><div class="ig-tile"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <div class="wrap">
+      <div class="eyebrow" style="justify-content:center;">Tu próxima ciudad te espera</div>
+      <h2>Ponte los auriculares.<br>Le Walk hace el resto.</h2>
+      <div class="cta-row">
+        <a class="btn btn-primary btn-lg" href="https://apps.apple.com/us/app/le-walk/id6504635876" target="_blank" rel="noopener">↓ Descargar en App Store</a>
+        <a class="btn btn-ghost btn-lg" href="https://www.instagram.com/lewalk_espanol/" target="_blank" rel="noopener">Ver en Instagram</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="logo">le<span>·</span>walk</div>
+      <div class="foot-links">
+        <a href="https://apps.apple.com/us/app/le-walk/id6504635876" target="_blank" rel="noopener">App Store</a>
+        <a href="https://www.instagram.com/lewalk_espanol/" target="_blank" rel="noopener">Instagram</a>
+        <a href="#como-funciona">Cómo funciona</a>
+      </div>
+    </div>
+    <div class="copyright">Le Walk — audioguía de viajes. Página no oficial creada para promoción de la comunidad @lewalk_espanol.</div>
+  </div>
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.15});
+  reveals.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
