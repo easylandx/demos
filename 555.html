@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>555 CAFÉ | MENDOZA — Café + Quilombo ☕️🔥</title>
+<meta name="description" content="555 Café, Chacras, Mendoza. De día: especialidad, comunidad y caos ordenado. De noche: @petizomadrid.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@600;700&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --radius: 22px;
+    --radius-sm: 12px;
+    --font-display: 'Anton', sans-serif;
+    --font-hand: 'Caveat', cursive;
+    --font-body: 'Space Grotesk', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+
+    /* AM palette */
+    --paper-am: #FBF1E1;
+    --ink-am: #241407;
+    --coral: #FF5B39;
+    --mustard: #F5A300;
+
+    /* PM palette */
+    --night-bg: #0D2427;
+    --night-fg: #FBF1E1;
+    --night-yellow: #FFD23F;
+    --night-cyan: #35C7C2;
+
+    /* shared thread color across day & night */
+    --magenta: #E31C6D;
+    --night-magenta: #FF3D8A;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--fg);
+    transition: background .55s ease, color .55s ease;
+    overflow-x: hidden;
+  }
+
+  body[data-mode="am"]{
+    --bg: var(--paper-am);
+    --fg: var(--ink-am);
+    --accent1: var(--coral);
+    --accent2: var(--mustard);
+    --accent3: var(--magenta);
+    --card-bg: #FFFDF8;
+    --card-border: rgba(36,20,7,0.12);
+  }
+  body[data-mode="pm"]{
+    --bg: var(--night-bg);
+    --fg: var(--night-fg);
+    --accent1: var(--night-yellow);
+    --accent2: var(--night-cyan);
+    --accent3: var(--night-magenta);
+    --card-bg: #123236;
+    --card-border: rgba(251,241,225,0.14);
+  }
+
+  a{ color: inherit; }
+  img,svg{ display:block; max-width:100%; }
+
+  .am-only, .pm-only{ transition: opacity .4s ease; }
+  body[data-mode="am"] .pm-only{ display:none; }
+  body[data-mode="pm"] .am-only{ display:none; }
+
+  /* ---------- layout helpers ---------- */
+  .wrap{ max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+  section{ position: relative; padding: 96px 0; }
+  .eyebrow{
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    font-size: .8rem;
+    font-weight: 700;
+    color: var(--accent1);
+    display:flex; align-items:center; gap:12px;
+  }
+  .eyebrow::before{
+    content:"";
+    width: 34px; height: 3px;
+    background: var(--accent1);
+    display:inline-block;
+  }
+  h1,h2,h3{ font-family: var(--font-display); text-transform: uppercase; line-height: .95; margin: 0; }
+  .btn{
+    font-family: var(--font-mono);
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 26px;
+    border-radius: 999px;
+    border: 3px solid var(--fg);
+    background: var(--accent1);
+    color: var(--ink-am);
+    transition: transform .18s ease, box-shadow .18s ease;
+    box-shadow: 6px 6px 0 var(--fg);
+  }
+  body[data-mode="pm"] .btn{ color: var(--night-bg); }
+  .btn:hover{ transform: translate(-3px,-3px); box-shadow: 9px 9px 0 var(--fg); }
+  .btn:active{ transform: translate(0,0); box-shadow: 2px 2px 0 var(--fg); }
+  .btn.ghost{ background: transparent; color: var(--fg); }
+  .btn:focus-visible{ outline: 3px dashed var(--accent3); outline-offset: 4px; }
+
+  /* ---------- halftone / dot texture ---------- */
+  .dots{
+    position:absolute; inset:0; pointer-events:none; opacity:.35;
+    background-image: radial-gradient(var(--accent1) 2.4px, transparent 2.6px);
+    background-size: 22px 22px;
+    mask-image: radial-gradient(circle at 70% 20%, black, transparent 70%);
+  }
+
+  /* ---------- header ---------- */
+  header{
+    position: sticky; top:0; z-index: 50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 18px 28px;
+    background: var(--bg);
+    border-bottom: 3px solid var(--fg);
+  }
+  .logo{
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    display:flex; align-items:center; gap:10px;
+  }
+  .logo .stamp{
+    width: 40px; height:40px; border-radius:50%;
+    border: 3px solid var(--fg);
+    display:flex; align-items:center; justify-content:center;
+    font-family: var(--font-mono); font-size:.7rem; font-weight:700;
+    transform: rotate(-8deg);
+  }
+  nav{ display:flex; gap: 18px; align-items:center; font-family: var(--font-mono); font-size:.85rem; }
+  nav a{ text-decoration:none; border-bottom: 2px solid transparent; padding-bottom:2px; }
+  nav a:hover{ border-color: var(--accent3); }
+
+  /* ---------- toggle switch (signature) ---------- */
+  .toggle{
+    display:flex; align-items:center; gap:10px;
+    border: 3px solid var(--fg);
+    border-radius: 999px;
+    padding: 4px;
+    background: var(--card-bg);
+    cursor:pointer;
+    font-family: var(--font-mono);
+    font-weight:700;
+    font-size:.78rem;
+    user-select:none;
+  }
+  .toggle span{ padding: 8px 14px; border-radius: 999px; transition: background .3s ease, color .3s ease; }
+  body[data-mode="am"] .toggle .lbl-am{ background: var(--coral); color:#241407; }
+  body[data-mode="pm"] .toggle .lbl-pm{ background: var(--night-magenta); color:#0D2427; }
+
+  /* ---------- hero ---------- */
+  .hero{ padding-top: 70px; padding-bottom: 70px; text-align:center; }
+  .hero .eyebrow{ justify-content:center; margin-bottom: 22px; }
+  .hero .eyebrow::before{ display:none; }
+  .hero h1{
+    font-size: clamp(3.2rem, 13vw, 8.5rem);
+    letter-spacing: -.01em;
+  }
+  .hero .plus{
+    display:block;
+    font-size: clamp(1.6rem, 6vw, 3.2rem);
+    color: var(--accent3);
+    margin-top: 6px;
+  }
+  .hero .tagline{
+    max-width: 560px; margin: 30px auto 40px;
+    font-size: 1.15rem;
+    font-family: var(--font-hand);
+    color: var(--accent1);
+    font-weight: 700;
+  }
+  .hero .ctas{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+
+  /* ---------- sticker cards ---------- */
+  .stickers{ display:grid; grid-template-columns: repeat(3,1fr); gap: 28px; margin-top: 56px; }
+  .sticker{
+    background: var(--card-bg);
+    border: 2px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: 26px 22px;
+    box-shadow: 0 10px 0 -4px var(--accent3);
+    position: relative;
+  }
+  .sticker:nth-child(1){ transform: rotate(-3deg); }
+  .sticker:nth-child(2){ transform: rotate(2deg); margin-top: 18px; }
+  .sticker:nth-child(3){ transform: rotate(-1.5deg); }
+  .sticker .tape{
+    position:absolute; top:-12px; left: 50%; transform: translateX(-50%) rotate(-4deg);
+    width: 64px; height: 22px;
+    background: var(--accent2);
+    opacity:.85;
+  }
+  .sticker .emoji{ font-size: 2rem; margin-bottom: 10px; display:block; }
+  .sticker h3{ font-size: 1.2rem; margin-bottom: 8px; }
+  .sticker p{ margin:0; font-size:.95rem; opacity:.85; line-height:1.4; }
+
+  /* ---------- two-col split sections ---------- */
+  .split{ display:grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items:center; }
+  .split h2{ font-size: clamp(2.2rem, 5vw, 3.6rem); margin: 18px 0 20px; }
+  .split p{ font-size: 1.05rem; line-height: 1.6; max-width: 460px; opacity:.9; }
+  .pm-section{ background: var(--card-bg); border-top: 3px solid var(--fg); border-bottom: 3px solid var(--fg); }
+  .pm-section .split{ direction: rtl; }
+  .pm-section .split > div{ direction: ltr; }
+
+  /* ---------- location ---------- */
+  .location .wrap{ display:grid; grid-template-columns: 220px 1fr; gap: 40px; align-items:center; }
+  .pin{
+    width: 160px; height:160px;
+    border-radius: 50%;
+    border: 3px solid var(--fg);
+    display:flex; align-items:center; justify-content:center;
+    background: var(--accent1);
+    transform: rotate(-6deg);
+  }
+  .pin svg{ width: 70px; height:70px; }
+  .location address{ font-style:normal; font-family: var(--font-mono); font-size: 1.1rem; line-height:1.7; }
+  .location h2{ font-size: clamp(2rem, 4.5vw, 3rem); margin-bottom: 14px; }
+
+  /* ---------- final CTA ---------- */
+  .final-cta{
+    background: var(--accent3);
+    text-align:center;
+    padding: 100px 0;
+    border-top: 3px solid var(--fg);
+    border-bottom: 3px solid var(--fg);
+  }
+  .final-cta h2{
+    color: var(--paper-am);
+    font-size: clamp(2.2rem, 7vw, 4.5rem);
+    margin-bottom: 34px;
+  }
+  body[data-mode="pm"] .final-cta h2{ color: var(--night-bg); }
+  .final-cta .ctas{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+  .final-cta .btn{ background: var(--paper-am); border-color: var(--paper-am); box-shadow: 6px 6px 0 var(--ink-am); }
+  body[data-mode="pm"] .final-cta .btn{ background: var(--night-bg); color: var(--night-fg); border-color: var(--night-bg); box-shadow: 6px 6px 0 var(--night-fg); }
+
+  footer{
+    padding: 50px 0 40px;
+    text-align:center;
+    font-family: var(--font-mono);
+    font-size: .85rem;
+    opacity: .8;
+  }
+  footer .logo{ justify-content:center; margin-bottom: 14px; }
+
+  @media (max-width: 760px){
+    .stickers{ grid-template-columns: 1fr; }
+    .split{ grid-template-columns: 1fr; }
+    .pm-section .split{ direction: ltr; }
+    .location .wrap{ grid-template-columns: 1fr; text-align:center; justify-items:center; }
+    nav{ display:none; }
+    section{ padding: 64px 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition: none !important; animation: none !important; scroll-behavior:auto !important; }
+  }
+</style>
+</head>
+<body data-mode="am">
+
+<header>
+  <div class="logo"><span class="stamp">555</span> CAFÉ</div>
+  <nav>
+    <a href="#am">De día</a>
+    <a href="#pm">De noche</a>
+    <a href="#ubicacion">Dónde</a>
+    <a href="https://www.instagram.com/555____cafe/" target="_blank" rel="noopener">Instagram</a>
+  </nav>
+  <button class="toggle" id="modeToggle" role="switch" aria-checked="false" aria-label="Cambiar entre modo día y modo noche">
+    <span class="lbl-am">☕️ AM</span><span class="lbl-pm">🔥 PM</span>
+  </button>
+</header>
+
+<section class="hero">
+  <div class="dots"></div>
+  <div class="wrap">
+    <p class="eyebrow">ITALIA 5629 · CHACRAS, MENDOZA</p>
+    <h1>555 CAFÉ<span class="plus">+ QUILOMBO ☕️🔥</span></h1>
+    <p class="tagline am-only">De día somos café de especialidad. De noche, otra historia — igual de nuestra.</p>
+    <p class="tagline pm-only">Cayó el sol. Ahora somos @petizomadrid — misma casa, otro cuento.</p>
+    <div class="ctas">
+      <a class="btn" href="https://www.instagram.com/555____cafe/" target="_blank" rel="noopener">📸 Ver Instagram</a>
+      <a class="btn ghost" href="https://linktr.ee/555cafe" target="_blank" rel="noopener">🔗 Todos los links</a>
+    </div>
+  </div>
+</section>
+
+<section id="am">
+  <div class="wrap split">
+    <div>
+      <p class="eyebrow">DE DÍA</p>
+      <h2>Especialidad,<br>comunidad<br>y caos ordenado</h2>
+      <p>Arrancamos temprano con café de especialidad y mesas que se llenan de charla. Vecinos, perros, gente que trabaja, gente que no hace nada — todos tienen su lugar, aunque el lugar no siempre se note a simple vista. Por algo somos café + quilombo.</p>
+    </div>
+    <div class="stickers">
+      <div class="sticker"><span class="tape"></span><span class="emoji">☕️</span><h3>Especialidad</h3><p>Grano elegido, método cuidado, sin vueltas.</p></div>
+      <div class="sticker"><span class="tape"></span><span class="emoji">🫂</span><h3>Comunidad</h3><p>Mesas compartidas, caras conocidas, charla de sobremesa.</p></div>
+      <div class="sticker"><span class="tape"></span><span class="emoji">🌀</span><h3>Caos ordenado</h3><p>Todo tiene su lugar. Confiá en el sistema.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="pm" class="pm-section">
+  <div class="wrap split">
+    <div>
+      <p class="eyebrow">DE NOCHE</p>
+      <h2>Se transforma<br>en<br>@petizomadrid</h2>
+      <p>Cuando cae el sol, 555 se pone otra ropa. Misma casa de Italia 5629, otra energía: buena onda, tragos y noche larga bajo el mismo techo de siempre.</p>
+      <div style="margin-top:28px;">
+        <a class="btn" href="https://www.instagram.com/petizomadrid/" target="_blank" rel="noopener">🔥 Ver @petizomadrid</a>
+      </div>
+    </div>
+    <div class="stickers">
+      <div class="sticker"><span class="tape"></span><span class="emoji">🍹</span><h3>Tragos</h3><p>La barra cambia de rubro sin cambiar de dirección.</p></div>
+      <div class="sticker"><span class="tape"></span><span class="emoji">🎶</span><h3>Buena onda</h3><p>Otro volumen, otra luz, misma gente linda.</p></div>
+      <div class="sticker"><span class="tape"></span><span class="emoji">🌙</span><h3>Otra historia</h3><p>El mismo quilombo, versión nocturna.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="ubicacion" class="location">
+  <div class="wrap">
+    <div class="pin">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C7.6 2 4 5.6 4 10c0 6 8 12 8 12s8-6 8-12c0-4.4-3.6-8-8-8z" stroke="#241407" stroke-width="1.6"/>
+        <circle cx="12" cy="10" r="3" stroke="#241407" stroke-width="1.6"/>
+      </svg>
+    </div>
+    <div>
+      <p class="eyebrow">DÓNDE ENCONTRARNOS</p>
+      <h2>Italia 5629, Chacras — Mendoza</h2>
+      <address>
+        📍 Italia 5629 · Chacras, Mendoza<br>
+        ☕️ AM: café de especialidad<br>
+        🔥 PM: @petizomadrid
+      </address>
+      <div style="margin-top:22px;">
+        <a class="btn ghost" href="https://www.google.com/maps/search/?api=1&query=Italia%205629%2C%20Chacras%2C%20Mendoza%2C%20Argentina" target="_blank" rel="noopener">🗺️ Abrir en Google Maps</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="wrap">
+    <h2>Vení a tomar<br>algo (café o no)</h2>
+    <div class="ctas">
+      <a class="btn" href="https://www.instagram.com/555____cafe/" target="_blank" rel="noopener">📸 Instagram</a>
+      <a class="btn" href="https://linktr.ee/555cafe" target="_blank" rel="noopener">🔗 linktr.ee/555cafe</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="logo"><span class="stamp">555</span> CAFÉ | MENDOZA</div>
+  <p>Italia 5629 · Chacras, Mendoza — Café + Quilombo ☕️🔥</p>
+  <p>@555____cafe · linktr.ee/555cafe</p>
+</footer>
+
+<script>
+  const body = document.body;
+  const toggle = document.getElementById('modeToggle');
+  toggle.addEventListener('click', () => {
+    const isPM = body.getAttribute('data-mode') === 'pm';
+    body.setAttribute('data-mode', isPM ? 'am' : 'pm');
+    toggle.setAttribute('aria-checked', String(!isPM));
+  });
+</script>
+
+</body>
+</html>
