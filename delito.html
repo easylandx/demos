@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delito Wines Bar & Coffee — Villa Devoto</title>
+<meta name="description" content="Bar de vinos y maridajes, cafetería y la cocina de Delito Wines en Villa Devoto, Buenos Aires. Lunes a sábado de 17 a 01hs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,500;1,9..144,600&family=Courier+Prime:wght@400;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --wine:#3D0B14;
+    --wine-deep:#26060C;
+    --paper:#EFE6D3;
+    --paper-dark:#E2D3AF;
+    --ink:#241A15;
+    --stamp:#A3291E;
+    --gold:#B08D57;
+    --cream-line: rgba(239,230,211,0.28);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  .eyebrow{
+    font-family:'Courier Prime', monospace;
+    text-transform:uppercase;
+    letter-spacing:0.14em;
+    font-size:0.72rem;
+    color:var(--stamp);
+    display:inline-flex;
+    align-items:center;
+    gap:0.5em;
+  }
+  .eyebrow::before{
+    content:"";
+    width:18px; height:1px;
+    background:var(--stamp);
+    display:inline-block;
+  }
+  a{color:inherit;}
+  img{max-width:100%;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 24px;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px;
+    background:rgba(61,11,20,0);
+    transition:background .35s ease, padding .35s ease, box-shadow .35s ease;
+  }
+  header.scrolled{
+    background:rgba(38,6,12,0.94);
+    padding:10px 24px;
+    box-shadow:0 4px 18px rgba(0,0,0,0.25);
+    backdrop-filter: blur(6px);
+  }
+  .brandmark{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-style:italic;
+    font-size:1.25rem;
+    color:var(--paper);
+    letter-spacing:0.01em;
+    display:flex; align-items:center; gap:10px;
+  }
+  .brandmark small{
+    display:block;
+    font-family:'Courier Prime', monospace;
+    font-style:normal;
+    font-size:0.55rem;
+    letter-spacing:0.16em;
+    color:var(--gold);
+    text-transform:uppercase;
+    line-height:1;
+  }
+  nav ul{
+    display:flex; gap:28px; list-style:none;
+  }
+  nav a{
+    font-size:0.82rem;
+    color:var(--paper);
+    text-decoration:none;
+    opacity:0.86;
+    transition:opacity .2s;
+  }
+  nav a:hover, nav a:focus-visible{opacity:1; text-decoration:underline;}
+  .nav-links{display:flex; align-items:center; gap:26px;}
+  .btn-nav-wa{
+    font-family:'Courier Prime', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    background:var(--stamp);
+    color:var(--paper);
+    padding:9px 16px;
+    border-radius:2px;
+    text-decoration:none;
+    white-space:nowrap;
+    transition:background .2s, transform .2s;
+  }
+  .btn-nav-wa:hover{background:#c2352a; transform:translateY(-1px);}
+  .nav-toggle{display:none; background:none; border:0; color:var(--paper); font-size:1.6rem; cursor:pointer;}
+
+  @media (max-width:760px){
+    nav ul{
+      position:fixed; inset:0 0 0 auto; top:0;
+      height:100vh; width:min(78vw,300px);
+      background:var(--wine-deep);
+      flex-direction:column; justify-content:center; gap:34px;
+      padding:0 40px;
+      transform:translateX(101%);
+      transition:transform .35s ease;
+    }
+    nav ul.open{transform:translateX(0);}
+    nav a{font-size:1.1rem;}
+    .nav-links{gap:14px;}
+    .btn-nav-wa{padding:8px 12px; font-size:0.65rem;}
+    .nav-toggle{display:block;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex; flex-direction:column; justify-content:center;
+    background:
+      radial-gradient(ellipse at 20% -10%, rgba(160,40,30,0.28), transparent 55%),
+      radial-gradient(ellipse at 85% 110%, rgba(176,141,87,0.16), transparent 50%),
+      linear-gradient(160deg, var(--wine) 0%, var(--wine-deep) 78%);
+    color:var(--paper);
+    padding:140px 24px 80px;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute; inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+    mix-blend-mode:overlay;
+    pointer-events:none;
+  }
+  .hero-inner{
+    position:relative; z-index:2;
+    max-width:1080px; margin:0 auto; width:100%;
+  }
+  .hero .eyebrow{color:var(--gold);}
+  .hero .eyebrow::before{background:var(--gold);}
+  .hero h1{
+    margin-top:22px;
+    font-size:clamp(2.6rem, 7vw, 5.2rem);
+    font-style:italic;
+    font-weight:600;
+    line-height:1.02;
+    max-width:14ch;
+  }
+  .hero p.lede{
+    margin-top:26px;
+    max-width:46ch;
+    font-size:1.08rem;
+    color:rgba(239,230,211,0.85);
+  }
+  .hero-ctas{
+    margin-top:38px;
+    display:flex; flex-wrap:wrap; gap:16px;
+  }
+  .btn{
+    font-family:'Courier Prime', monospace;
+    font-size:0.78rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    padding:15px 26px;
+    border-radius:2px;
+    text-decoration:none;
+    display:inline-flex; align-items:center; gap:10px;
+    transition:transform .2s, box-shadow .2s, background .2s;
+  }
+  .btn svg{width:16px; height:16px; flex:none;}
+  .btn-primary{background:var(--stamp); color:var(--paper);}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(163,41,30,0.35);}
+  .btn-ghost{border:1px solid var(--cream-line); color:var(--paper); background:transparent;}
+  .btn-ghost:hover{background:rgba(239,230,211,0.08); transform:translateY(-2px);}
+
+  .hero-ficha{
+    margin-top:60px;
+    display:inline-flex; flex-wrap:wrap; gap:28px;
+    border:1px dashed var(--cream-line);
+    padding:16px 22px;
+    font-family:'Courier Prime', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.05em;
+    color:rgba(239,230,211,0.75);
+  }
+  .hero-ficha span{color:var(--gold); display:block; font-size:0.62rem; margin-bottom:4px;}
+
+  /* stamp */
+  .stamp{
+    position:absolute;
+    top:150px; right:6%;
+    width:190px; height:190px;
+    border-radius:50%;
+    border:3px double var(--stamp);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+    color:var(--stamp);
+    mix-blend-mode:screen;
+    transform:rotate(-11deg) scale(0.85);
+    opacity:0;
+    animation:stampIn .9s .5s cubic-bezier(.2,.9,.3,1.2) forwards;
+    filter:url(#roughen);
+    z-index:1;
+  }
+  .stamp .stamp-main{
+    font-family:'Fraunces', serif;
+    font-style:italic; font-weight:700;
+    font-size:1.9rem;
+    line-height:1;
+  }
+  .stamp .stamp-sub{
+    font-family:'Courier Prime', monospace;
+    font-size:0.5rem;
+    letter-spacing:0.14em;
+    margin-top:6px;
+  }
+  @keyframes stampIn{
+    from{opacity:0; transform:rotate(-24deg) scale(0.6);}
+    to{opacity:0.9; transform:rotate(-11deg) scale(0.85);}
+  }
+  @media (max-width:900px){ .stamp{ display:none; } }
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{padding:96px 0;}
+  .section-head{max-width:640px; margin-bottom:52px;}
+  .section-head h2{
+    margin-top:16px;
+    font-size:clamp(1.9rem, 4vw, 2.7rem);
+    font-weight:500;
+  }
+  .reveal{opacity:0; transform:translateY(22px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.is-visible{opacity:1; transform:none;}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{transition:none; opacity:1; transform:none;}
+    .stamp{animation:none; opacity:0.9;}
+  }
+
+  /* about */
+  .about{background:var(--paper);}
+  .about-grid{
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:start;
+  }
+  .about-grid p{max-width:52ch; color:#3a2c22;}
+  .about-grid p + p{margin-top:16px;}
+  .about-card{
+    border:1px solid var(--paper-dark);
+    background:#fbf6ea;
+    padding:28px;
+    font-family:'Courier Prime', monospace;
+    font-size:0.82rem;
+    color:#4a3a2c;
+  }
+  .about-card h3{
+    font-family:'Courier Prime', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--stamp);
+    margin-bottom:14px;
+  }
+  .about-card ul{list-style:none;}
+  .about-card li{padding:8px 0; border-top:1px dashed var(--paper-dark);}
+  .about-card li:first-child{border-top:none;}
+  @media (max-width:800px){ .about-grid{grid-template-columns:1fr;} }
+
+  /* evidence / menu */
+  .evidence{background:var(--wine-deep); color:var(--paper);}
+  .evidence .section-head p{color:rgba(239,230,211,0.75); margin-top:14px; max-width:52ch;}
+  .evidence-grid{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:22px;
+  }
+  .evidence-card{
+    position:relative;
+    background:rgba(239,230,211,0.04);
+    border:1px solid var(--cream-line);
+    padding:30px 26px 26px;
+    transition:transform .25s ease, background .25s ease;
+  }
+  .evidence-card:hover{transform:translateY(-4px); background:rgba(239,230,211,0.07);}
+  .tag{
+    position:absolute; top:-12px; left:24px;
+    background:var(--stamp);
+    color:var(--paper);
+    font-family:'Courier Prime', monospace;
+    font-size:0.62rem;
+    letter-spacing:0.08em;
+    padding:4px 10px;
+    transform:rotate(-2deg);
+  }
+  .evidence-card h3{font-size:1.3rem; font-weight:600; margin-top:10px;}
+  .evidence-card p{margin-top:10px; font-size:0.92rem; color:rgba(239,230,211,0.72);}
+  @media (max-width:700px){ .evidence-grid{grid-template-columns:1fr;} }
+
+  /* testigo / quote */
+  .testigo{
+    background:var(--paper-dark);
+    text-align:center;
+  }
+  .testigo blockquote{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:clamp(1.6rem, 4vw, 2.4rem);
+    max-width:18ch;
+    margin:0 auto;
+    color:var(--wine);
+  }
+  .testigo cite{
+    display:block;
+    margin-top:20px;
+    font-family:'Courier Prime', monospace;
+    font-style:normal;
+    font-size:0.78rem;
+    color:#5c4a34;
+  }
+
+  /* eventos */
+  .eventos{background:var(--paper);}
+  .eventos-inner{
+    display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;
+  }
+  .eventos p{color:#3a2c22; max-width:48ch;}
+  .eventos p + p{margin-top:14px;}
+  .eventos-box{
+    border:1px dashed var(--stamp);
+    padding:30px;
+    background:#fbf6ea;
+  }
+  .eventos-box h3{
+    font-family:'Courier Prime', monospace;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.1em;
+    color:var(--stamp);
+    margin-bottom:14px;
+  }
+  .eventos-box ul{list-style:none; margin-bottom:22px;}
+  .eventos-box li{padding:6px 0; font-size:0.92rem;}
+  .eventos-box li::before{content:"— "; color:var(--gold);}
+  @media (max-width:800px){ .eventos-inner{grid-template-columns:1fr;} }
+
+  /* ficha tecnica / location */
+  .ficha{
+    background:var(--wine);
+    color:var(--paper);
+  }
+  .ficha .eyebrow{color:var(--gold);} .ficha .eyebrow::before{background:var(--gold);}
+  .ficha-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:40px;
+  }
+  .ficha-list{list-style:none;}
+  .ficha-list li{
+    display:flex; gap:16px;
+    padding:20px 0;
+    border-top:1px solid var(--cream-line);
+  }
+  .ficha-list li:first-child{border-top:none;}
+  .ficha-list svg{width:20px; height:20px; flex:none; margin-top:3px; color:var(--gold);}
+  .ficha-list strong{
+    display:block;
+    font-family:'Courier Prime', monospace;
+    font-size:0.68rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--gold);
+    margin-bottom:4px;
+  }
+  .map-card{
+    border:1px solid var(--cream-line);
+    padding:34px;
+    display:flex; flex-direction:column; justify-content:space-between;
+    min-height:260px;
+    background:rgba(239,230,211,0.04);
+  }
+  .map-card h3{font-size:1.5rem; font-weight:500; max-width:16ch;}
+  @media (max-width:800px){ .ficha-grid{grid-template-columns:1fr;} }
+
+  /* footer */
+  footer{
+    background:var(--wine-deep);
+    color:rgba(239,230,211,0.65);
+    padding:48px 0 32px;
+    text-align:center;
+  }
+  footer .brandmark{justify-content:center; margin-bottom:8px;}
+  footer .foot-links{
+    display:flex; justify-content:center; gap:22px; margin:18px 0;
+    font-family:'Courier Prime', monospace; font-size:0.75rem;
+  }
+  footer .foot-links a{text-decoration:none; opacity:0.85;}
+  footer .foot-links a:hover{opacity:1; text-decoration:underline;}
+  footer .fine{font-size:0.7rem; margin-top:18px; opacity:0.5;}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <filter id="roughen">
+    <feTurbulence type="fractalNoise" baseFrequency="0.02 0.09" numOctaves="2" result="noise" seed="7"/>
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="4"/>
+  </filter>
+</svg>
+
+<header id="site-header">
+  <div class="brandmark">
+    <span>Delito<br><small>Wines Bar &amp; Coffee</small></span>
+  </div>
+  <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+  <nav>
+    <ul id="navList">
+      <li><a href="#expediente">El lugar</a></li>
+      <li><a href="#pruebas">Carta</a></li>
+      <li><a href="#eventos">Eventos</a></li>
+      <li><a href="#ficha">Ubicación</a></li>
+      <li class="nav-links">
+        <a class="btn-nav-wa" href="https://wa.link/k1gcm7" target="_blank" rel="noopener">Reservar</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="stamp" aria-hidden="true">
+    <span class="stamp-main">Delito</span>
+    <span class="stamp-sub">Wines Bar &amp; Coffee</span>
+  </div>
+  <div class="hero-inner">
+    <span class="eyebrow">Expediente N.º 001 — Distrito del Vino, Villa Devoto</span>
+    <h1>Un delito que no nos conozcas.</h1>
+    <p class="lede">Bar de vinos y maridajes, cafetería de esquina y la cocina de Delito Wines, todo en una misma barra de Villa Devoto. Se abre a las 17 y no se cierra hasta la 01.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="https://wa.link/k1gcm7" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.6.1-.2.3-.7.9-.9 1-.2.2-.3.2-.6.1-1.9-1-3.1-2.9-3.2-3-.1-.2 0-.3.1-.4.2-.2.4-.4.6-.6.2-.2.2-.4.1-.6-.1-.2-.6-1.5-.9-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9 1-1 2.4-.1 1.4 1 2.9 1.1 3.1.1.2 2 3.1 5 4.3 2.5 1 3 .8 3.5.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.4z"/><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+        Reservar por WhatsApp
+      </a>
+      <a class="btn btn-ghost" href="https://www.instagram.com/delitococina/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/></svg>
+        Seguinos @delitococina
+      </a>
+    </div>
+    <div class="hero-ficha">
+      <div><span>Horario</span>Lun a sáb · 17 a 01 hs</div>
+      <div><span>Dirección</span>Av. Francisco Beiró 4655, Villa Devoto</div>
+      <div><span>Especialidad</span>Vinos, maridajes y café</div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="expediente">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="reveal">
+        <span class="eyebrow">Sobre el caso</span>
+        <h2>La cocina de Delito Wines, en formato bar.</h2>
+        <p>Villa Devoto es el Distrito del Vino de Buenos Aires, y nosotros somos parte de esa escena de siempre: una barra que a la tarde sirve café y algo rico, y a la noche se llena de copas, maridajes y sobremesas que se alargan hasta la una.</p>
+        <p>Cada plato sale de la cocina de Delito Wines pensado para acompañar una copa concreta. No es una carta de vinos con comida al lado: es al revés.</p>
+      </div>
+      <div class="about-card reveal">
+        <h3>Ficha del local</h3>
+        <ul>
+          <li>Bar de vinos y maridajes</li>
+          <li>Cafetería y cositas ricas</li>
+          <li>Degustaciones y eventos privados</li>
+          <li>Lunes a sábado, 17 a 01 hs</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="evidence" id="pruebas">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Las pruebas</span>
+      <h2>Lo que nos incrimina</h2>
+      <p>Una selección pensada para picar, compartir y, sobre todo, para tener una excusa más para pedir otra copa.</p>
+    </div>
+    <div class="evidence-grid">
+      <div class="evidence-card reveal">
+        <span class="tag">Prueba N.º 01</span>
+        <h3>La tabla del delito</h3>
+        <p>Quesos, fiambres y encurtidos armados para acompañar la copa que elijas, no al revés.</p>
+      </div>
+      <div class="evidence-card reveal">
+        <span class="tag">Prueba N.º 02</span>
+        <h3>Cocina de autor</h3>
+        <p>Platos de La cocina de Delito Wines, pensados para compartir en la mesa o disfrutar solo.</p>
+      </div>
+      <div class="evidence-card reveal">
+        <span class="tag">Prueba N.º 03</span>
+        <h3>Café de especialidad</h3>
+        <p>Para los que llegan antes de la primera copa, o prefieren quedarse en eso.</p>
+      </div>
+      <div class="evidence-card reveal">
+        <span class="tag">Prueba N.º 04</span>
+        <h3>Vinos por copa</h3>
+        <p>Una carta que cambia con las estaciones y las ganas del día, siempre con una sugerencia a mano.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testigo">
+  <div class="wrap reveal">
+    <blockquote>“Cada plato tiene una copa cómplice.”</blockquote>
+    <cite>— pedile al equipo un maridaje, es gratis y siempre acierta</cite>
+  </div>
+</section>
+
+<section class="eventos" id="eventos">
+  <div class="wrap">
+    <div class="eventos-inner">
+      <div class="reveal">
+        <span class="eyebrow">Citación</span>
+        <h2 style="margin-top:16px; font-size:clamp(1.9rem,4vw,2.5rem); font-weight:500;">Degustaciones y eventos privados</h2>
+        <p>Cumpleaños, after office, despedidas o simplemente una excusa para juntar gente alrededor de una buena mesa: armamos degustaciones y eventos privados a medida del grupo.</p>
+        <p>Contanos cuántos son, qué día tenés en mente y qué buscás, y te armamos una propuesta.</p>
+      </div>
+      <div class="eventos-box reveal">
+        <h3>Para coordinar un evento</h3>
+        <ul>
+          <li>Degustaciones guiadas de vino</li>
+          <li>Reservas de grupo y cumpleaños</li>
+          <li>Eventos privados fuera de horario</li>
+        </ul>
+        <a class="btn btn-primary" href="https://wa.link/k1gcm7" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.6.1-.2.3-.7.9-.9 1-.2.2-.3.2-.6.1-1.9-1-3.1-2.9-3.2-3-.1-.2 0-.3.1-.4.2-.2.4-.4.6-.6.2-.2.2-.4.1-.6-.1-.2-.6-1.5-.9-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9 1-1 2.4-.1 1.4 1 2.9 1.1 3.1.1.2 2 3.1 5 4.3 2.5 1 3 .8 3.5.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.4z"/><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+          Consultar por un evento
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ficha" id="ficha">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Ficha técnica</span>
+      <h2>Dónde encontrarnos</h2>
+    </div>
+    <div class="ficha-grid">
+      <ul class="ficha-list reveal">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-5.5-7-11a7 7 0 1 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          <div><strong>Dirección</strong>Av. Francisco Beiró 4655, Villa Devoto, Buenos Aires (1419)</div>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+          <div><strong>Horario</strong>Lunes a sábado, de 17 a 01 hs</div>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none"/></svg>
+          <div><strong>Instagram</strong><a href="https://www.instagram.com/delitococina/" target="_blank" rel="noopener">@delitococina</a></div>
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-1.9-.9-.3-.1-.5-.1-.6.1-.2.3-.7.9-.9 1-.2.2-.3.2-.6.1-1.9-1-3.1-2.9-3.2-3-.1-.2 0-.3.1-.4.2-.2.4-.4.6-.6.2-.2.2-.4.1-.6-.1-.2-.6-1.5-.9-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9 1-1 2.4-.1 1.4 1 2.9 1.1 3.1.1.2 2 3.1 5 4.3 2.5 1 3 .8 3.5.8.6-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.1-.3-.2-.6-.4z"/><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+          <div><strong>Reservas</strong><a href="https://wa.link/k1gcm7" target="_blank" rel="noopener">Escribinos por WhatsApp</a></div>
+        </li>
+      </ul>
+      <div class="map-card reveal">
+        <h3>A metros de la Plaza Arenales, en el corazón del Distrito del Vino.</h3>
+        <a class="btn btn-ghost" style="align-self:flex-start; margin-top:24px;" href="https://www.google.com/maps/search/?api=1&query=Av.+Francisco+Beiro+4655%2C+Villa+Devoto%2C+Buenos+Aires" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-5.5-7-11a7 7 0 1 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          Cómo llegar
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brandmark" style="color:var(--paper);">Delito <span style="font-style:normal; font-family:'Courier Prime',monospace; font-size:0.6rem; letter-spacing:0.14em; color:var(--gold); margin-left:6px;">WINES BAR &amp; COFFEE</span></div>
+    <div class="foot-links">
+      <a href="https://www.instagram.com/delitococina/" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://wa.link/k1gcm7" target="_blank" rel="noopener">WhatsApp</a>
+      <a href="#ficha">Ubicación</a>
+    </div>
+    <p class="fine">Av. Francisco Beiró 4655, Villa Devoto, Buenos Aires · Lun a sáb, 17 a 01 hs</p>
+  </div>
+</footer>
+
+<script>
+  // Header background on scroll
+  const header = document.getElementById('site-header');
+  const onScroll = () => header.classList.toggle('scrolled', window.scrollY > 40);
+  document.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navList = document.getElementById('navList');
+  navToggle.addEventListener('click', () => {
+    const open = navList.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', open);
+    navToggle.textContent = open ? '✕' : '☰';
+  });
+  navList.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navList.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.textContent = '☰';
+  }));
+
+  // Scroll reveal
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReduced && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  } else {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('is-visible'));
+  }
+</script>
+
+</body>
+</html>
