@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Más Barro y Olé | Cerámica y joyería artesanal hecha a mano</title>
+<meta name="description" content="Cerámica y joyería artesanal hecha a mano. Piezas únicas para tu look y tu hogar. Envíos a España y Baleares. Pide la tuya por WhatsApp.">
+<meta property="og:title" content="Más Barro y Olé | Cerámica y joyería artesanal">
+<meta property="og:description" content="Piezas únicas hechas a mano, una a una. Envíos a España y Baleares.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🏺</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,500&family=Work+Sans:wght@400;500;600&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --clay-bg: #F1E8DA;
+    --clay-bg-warm: #EADCC6;
+    --card: #FBF7F0;
+    --ink: #2E2016;
+    --ink-soft: #6b5c4d;
+    --terracota: #C1602B;
+    --terracota-dark: #9C4A1E;
+    --glaze: #5C7A6E;
+    --glaze-dark: #46605A;
+    --ocre: #D9A441;
+    --line: rgba(46,32,22,0.14);
+    --radius: 22px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--clay-bg);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit;}
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    line-height:1.08;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  .accent-hand{
+    font-family:'Caveat', cursive;
+    font-weight:700;
+  }
+  .wrap{
+    max-width:1160px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+  section{position:relative;}
+
+  /* ---------- Focus visibility ---------- */
+  a:focus-visible, button:focus-visible{
+    outline:3px solid var(--glaze);
+    outline-offset:3px;
+    border-radius:6px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:60;
+    background:rgba(241,232,218,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    transition:padding .25s ease;
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 0;
+  }
+  header.scrolled .nav{padding:12px 0;}
+  .logo{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Fraunces', serif;
+    font-weight:600; font-size:1.15rem;
+    text-decoration:none;
+    color:var(--ink);
+  }
+  .logo-mark{
+    width:34px; height:34px; flex:none;
+  }
+  .nav-links{
+    display:flex; align-items:center; gap:30px;
+    list-style:none; margin:0; padding:0;
+  }
+  .nav-links a{
+    text-decoration:none;
+    font-size:0.95rem; font-weight:500;
+    color:var(--ink-soft);
+    position:relative;
+    padding-bottom:3px;
+  }
+  .nav-links a::after{
+    content:''; position:absolute; left:0; bottom:0; height:2px; width:0;
+    background:var(--terracota); transition:width .25s ease;
+  }
+  .nav-links a:hover::after, .nav-links a:focus-visible::after{width:100%;}
+  .nav-actions{display:flex; align-items:center; gap:14px;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:12px 22px;
+    border-radius:100px;
+    font-weight:600; font-size:0.92rem;
+    text-decoration:none;
+    border:1.5px solid transparent;
+    cursor:pointer;
+    transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+    white-space:nowrap;
+  }
+  .btn-primary{
+    background:var(--glaze); color:#fff;
+    box-shadow:0 8px 20px -8px rgba(92,122,110,0.65);
+  }
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 12px 24px -8px rgba(92,122,110,0.75);}
+  .btn-ghost{
+    background:transparent; border-color:var(--line); color:var(--ink);
+  }
+  .btn-ghost:hover{border-color:var(--terracota); color:var(--terracota-dark);}
+  .btn-small{padding:9px 16px; font-size:0.85rem;}
+
+  .burger{display:none; background:none; border:none; padding:8px; cursor:pointer;}
+  .burger span{display:block; width:24px; height:2px; background:var(--ink); margin:5px 0; transition:.25s;}
+
+  /* ---------- TICKER ---------- */
+  .ticker-band{
+    background:var(--ink);
+    color:var(--clay-bg-warm);
+    overflow:hidden;
+    white-space:nowrap;
+    border-bottom:1px solid var(--line);
+  }
+  .ticker-track{
+    display:inline-flex;
+    animation:scroll-left 28s linear infinite;
+  }
+  .ticker-track span{
+    padding:11px 26px;
+    font-size:0.82rem;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    font-weight:500;
+    display:inline-flex; align-items:center; gap:10px;
+  }
+  .ticker-track span::after{content:'●'; color:var(--ocre); font-size:0.5rem;}
+  @keyframes scroll-left{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:76px 0 90px;
+    overflow:hidden;
+  }
+  .hero .wrap{
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:56px;
+    align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:0.82rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
+    color:var(--terracota-dark);
+    background:rgba(193,96,43,0.1);
+    padding:7px 14px 7px 10px;
+    border-radius:100px;
+    margin-bottom:22px;
+  }
+  .eyebrow .dot{width:7px; height:7px; border-radius:50%; background:var(--terracota);}
+  .hero h1{
+    font-size:clamp(2.6rem, 5vw, 3.9rem);
+    margin-bottom:22px;
+  }
+  .hero h1 em{
+    font-style:italic; color:var(--terracota);
+    position:relative;
+  }
+  .hero p.lead{
+    font-size:1.12rem;
+    color:var(--ink-soft);
+    max-width:46ch;
+    margin-bottom:34px;
+  }
+  .hero-ctas{display:flex; flex-wrap:wrap; gap:14px; margin-bottom:36px;}
+  .hero-meta{
+    display:flex; gap:28px; flex-wrap:wrap;
+  }
+  .hero-meta div{display:flex; flex-direction:column;}
+  .hero-meta strong{font-family:'Fraunces', serif; font-size:1.5rem; font-weight:600;}
+  .hero-meta span{font-size:0.82rem; color:var(--ink-soft);}
+
+  .hero-visual{
+    position:relative;
+    display:flex; align-items:center; justify-content:center;
+    min-height:420px;
+  }
+  .blob{
+    position:absolute; inset:0;
+    background:linear-gradient(150deg, var(--ocre) 0%, var(--terracota) 55%, var(--glaze) 130%);
+    border-radius:62% 38% 55% 45% / 48% 46% 54% 52%;
+    opacity:0.24;
+    animation:blobmove 12s ease-in-out infinite;
+  }
+  @keyframes blobmove{
+    0%,100%{border-radius:62% 38% 55% 45% / 48% 46% 54% 52%;}
+    50%{border-radius:42% 58% 40% 60% / 55% 40% 60% 45%;}
+  }
+  .hero-illustration{
+    position:relative; z-index:2;
+    width:78%;
+    animation:float 6s ease-in-out infinite;
+  }
+  @keyframes float{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-14px);}
+  }
+  .seal{
+    position:absolute; z-index:3;
+    top:6%; right:2%;
+    width:118px; height:118px;
+    animation:spin 26s linear infinite;
+  }
+  @keyframes spin{ from{transform:rotate(0);} to{transform:rotate(360deg);} }
+
+  /* ---------- DRIP DIVIDER ---------- */
+  .drip{
+    display:block; width:100%; height:44px;
+    margin-top:-1px;
+  }
+
+  /* ---------- SECTION HEADERS ---------- */
+  .sec-head{
+    max-width:640px;
+    margin:0 auto 52px;
+    text-align:center;
+  }
+  .sec-head .eyebrow{margin-bottom:16px;}
+  .sec-head h2{font-size:clamp(2rem, 3.4vw, 2.7rem);}
+  .sec-head p{color:var(--ink-soft); margin-top:14px; font-size:1.02rem;}
+
+  /* ---------- CATEGORIES ---------- */
+  .categorias{padding:96px 0; background:var(--card);}
+  .cat-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:32px;
+  }
+  .cat-card{
+    background:var(--clay-bg);
+    border-radius:var(--radius);
+    padding:0;
+    overflow:hidden;
+    border:1px solid var(--line);
+    transition:transform .3s ease, box-shadow .3s ease;
+    display:flex; flex-direction:column;
+  }
+  .cat-card:hover{transform:translateY(-6px); box-shadow:0 22px 40px -20px rgba(46,32,22,0.28);}
+  .ph-photo{
+    aspect-ratio:4/3.1;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:10px;
+    color:rgba(46,32,22,0.4);
+    position:relative;
+  }
+  .ph-photo svg{width:56px; height:56px; opacity:0.55;}
+  .ph-photo span{font-size:0.75rem; letter-spacing:.04em; text-transform:uppercase; font-weight:600;}
+  .ph-1{background:linear-gradient(155deg, #E4C9A4, #C1602B 120%);}
+  .ph-2{background:linear-gradient(155deg, #CBD8CE, #5C7A6E 120%);}
+  .cat-body{padding:30px 28px 32px;}
+  .cat-body .tag{
+    font-family:'Caveat', cursive; font-weight:700; font-size:1.2rem;
+    color:var(--terracota-dark);
+  }
+  .cat-body h3{font-size:1.6rem; margin:6px 0 10px;}
+  .cat-body p{color:var(--ink-soft); font-size:0.96rem; margin-bottom:20px;}
+
+  /* ---------- PROCESO ---------- */
+  .proceso{padding:96px 0;}
+  .steps{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:0;
+    position:relative;
+  }
+  .steps::before{
+    content:'';
+    position:absolute; top:27px; left:12%; right:12%; height:2px;
+    background-image:linear-gradient(to right, var(--line) 50%, transparent 0%);
+    background-size:12px 2px;
+  }
+  .step{position:relative; padding:0 18px; text-align:center;}
+  .step-num{
+    width:54px; height:54px; border-radius:50%;
+    background:var(--card);
+    border:2px solid var(--terracota);
+    color:var(--terracota-dark);
+    font-family:'Fraunces', serif; font-weight:600; font-size:1.25rem;
+    display:flex; align-items:center; justify-content:center;
+    margin:0 auto 20px;
+    position:relative; z-index:2;
+  }
+  .step h3{font-size:1.08rem; margin-bottom:8px;}
+  .step p{font-size:0.9rem; color:var(--ink-soft);}
+
+  /* ---------- GALERÍA / INSTAGRAM ---------- */
+  .galeria{padding:96px 0; background:var(--card);}
+  .ig-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:16px;
+  }
+  .ig-tile{
+    aspect-ratio:1/1;
+    border-radius:16px;
+    display:flex; align-items:center; justify-content:center;
+    position:relative;
+    overflow:hidden;
+    text-decoration:none;
+  }
+  .ig-tile svg{width:30px; height:30px; opacity:0.6;}
+  .ig-tile::after{
+    content:'';
+    position:absolute; inset:0;
+    background:rgba(46,32,22,0);
+    transition:background .25s ease;
+  }
+  .ig-tile:hover::after{background:rgba(46,32,22,0.18);}
+  .ig-tile .ig-icon-overlay{
+    position:absolute; z-index:2; opacity:0; transition:opacity .25s ease;
+    color:#fff;
+  }
+  .ig-tile:hover .ig-icon-overlay{opacity:1;}
+  .t1{background:linear-gradient(160deg,#E7CFAE,#C1602B);}
+  .t2{background:linear-gradient(160deg,#D8E1D6,#5C7A6E);}
+  .t3{background:linear-gradient(160deg,#F2DDB0,#D9A441);}
+  .t4{background:linear-gradient(160deg,#e8dccb,#9C4A1E);}
+  .ig-follow{
+    text-align:center; margin-top:38px;
+  }
+
+  /* ---------- SOBRE MÍ ---------- */
+  .sobre{padding:100px 0;}
+  .sobre .wrap{
+    display:grid; grid-template-columns:0.85fr 1.15fr; gap:60px; align-items:center;
+  }
+  .sobre-photo{
+    aspect-ratio:3/3.6;
+    border-radius:var(--radius);
+    background:linear-gradient(160deg, var(--glaze), var(--ink) 130%);
+    display:flex; align-items:center; justify-content:center;
+    position:relative;
+  }
+  .sobre-photo svg{width:80px; height:80px; opacity:0.5; color:#fff;}
+  .sobre-photo::before{
+    content:'Foto de la artesana';
+    position:absolute; bottom:22px; color:rgba(255,255,255,0.65);
+    font-size:0.75rem; letter-spacing:.04em; text-transform:uppercase; font-weight:600;
+  }
+  .sobre-text .accent-hand{font-size:1.6rem; color:var(--terracota); display:block; margin-bottom:6px;}
+  .sobre-text h2{font-size:clamp(1.9rem,3vw,2.5rem); margin-bottom:20px;}
+  .sobre-text p{color:var(--ink-soft); margin-bottom:16px; max-width:56ch;}
+  .sobre-quote{
+    border-left:3px solid var(--terracota);
+    padding-left:20px; margin:28px 0;
+    font-family:'Fraunces', serif; font-style:italic; font-size:1.15rem; font-weight:500;
+  }
+
+  /* ---------- CTA FINAL ---------- */
+  .cta-final{
+    padding:100px 0;
+    background:var(--ink);
+    color:var(--clay-bg-warm);
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .cta-final::before{
+    content:'';
+    position:absolute; width:600px; height:600px; border-radius:50%;
+    background:radial-gradient(circle, rgba(193,96,43,0.35), transparent 70%);
+    top:-260px; left:50%; transform:translateX(-50%);
+  }
+  .cta-final .wrap{position:relative; z-index:2;}
+  .cta-final h2{font-size:clamp(2rem,4vw,3rem); color:#fff; margin-bottom:18px;}
+  .cta-final p{color:rgba(241,232,218,0.75); max-width:46ch; margin:0 auto 36px; font-size:1.05rem;}
+  .cta-final .hero-ctas{justify-content:center;}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--card);
+    border-top:1px solid var(--line);
+    padding:56px 0 30px;
+  }
+  .foot-grid{
+    display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:40px;
+    margin-bottom:44px;
+  }
+  .foot-logo{
+    font-family:'Fraunces', serif; font-weight:600; font-size:1.3rem; margin-bottom:12px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .foot-logo svg{width:28px; height:28px;}
+  footer p{color:var(--ink-soft); font-size:0.92rem; max-width:32ch;}
+  footer h4{font-size:0.85rem; text-transform:uppercase; letter-spacing:.05em; margin-bottom:16px; color:var(--ink);}
+  .foot-links{list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:11px;}
+  .foot-links a{text-decoration:none; color:var(--ink-soft); font-size:0.94rem; transition:color .2s;}
+  .foot-links a:hover{color:var(--terracota-dark);}
+  .foot-bottom{
+    border-top:1px solid var(--line); padding-top:24px;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+    font-size:0.82rem; color:var(--ink-soft);
+  }
+
+  /* ---------- FLOATING WHATSAPP ---------- */
+  .float-wa{
+    position:fixed; bottom:24px; right:24px; z-index:80;
+    width:60px; height:60px; border-radius:50%;
+    background:var(--glaze); color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 10px 26px -8px rgba(46,32,22,0.5);
+    text-decoration:none;
+    animation:pulse 2.6s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{box-shadow:0 10px 26px -8px rgba(46,32,22,0.5);}
+    50%{box-shadow:0 10px 26px -4px rgba(92,122,110,0.75), 0 0 0 8px rgba(92,122,110,0.12);}
+  }
+  .float-wa svg{width:28px; height:28px;}
+
+  /* ---------- REVEAL ---------- */
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 900px){
+    .nav-links{
+      position:fixed; top:0; right:0; height:100vh; width:min(78vw,320px);
+      background:var(--card);
+      flex-direction:column; align-items:flex-start;
+      padding:100px 32px 32px;
+      gap:24px;
+      transform:translateX(100%);
+      transition:transform .3s ease;
+      box-shadow:-10px 0 30px rgba(0,0,0,0.12);
+    }
+    .nav-links.open{transform:translateX(0);}
+    .burger{display:block;}
+    .hero .wrap{grid-template-columns:1fr;}
+    .hero-visual{order:-1; min-height:280px;}
+    .cat-grid{grid-template-columns:1fr;}
+    .steps{grid-template-columns:1fr 1fr; row-gap:36px;}
+    .steps::before{display:none;}
+    .ig-grid{grid-template-columns:repeat(2,1fr);}
+    .sobre .wrap{grid-template-columns:1fr;}
+    .sobre-photo{max-width:320px; margin:0 auto;}
+    .foot-grid{grid-template-columns:1fr 1fr; row-gap:32px;}
+  }
+  @media (max-width: 540px){
+    .hero{padding:52px 0 60px;}
+    .hero-meta{gap:20px;}
+    .steps{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<a href="#main" class="sr-only" style="position:absolute; left:-9999px;">Saltar al contenido</a>
+
+<header id="site-header">
+  <div class="wrap nav">
+    <a href="#main" class="logo">
+      <svg class="logo-mark" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M24 4c-4 0-6 3-6 6 0 2 1 3 1 5-4 1-7 5-7 10 0 9 6 17 12 17s12-8 12-17c0-5-3-9-7-10 0-2 1-3 1-5 0-3-2-6-6-6z" fill="#C1602B"/>
+        <path d="M17 21c1 5 3 9 7 9s6-4 7-9" stroke="#F1E8DA" stroke-width="1.4" fill="none" stroke-linecap="round"/>
+      </svg>
+      Más Barro y Olé
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#ceramica">Cerámica</a></li>
+      <li><a href="#joyeria">Joyería</a></li>
+      <li><a href="#proceso">Cómo comprar</a></li>
+      <li><a href="#sobre">Sobre mí</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a class="btn btn-ghost btn-small" href="https://www.instagram.com/masbarroyole/" target="_blank" rel="noopener">Instagram</a>
+      <a class="btn btn-primary btn-small" href="https://wa.me/c/34626223064" target="_blank" rel="noopener">Ver catálogo</a>
+      <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="ticker-band" aria-hidden="true">
+    <div class="ticker-track">
+      <span>Envíos a España y Baleares 🇪🇸</span>
+      <span>Piezas únicas, hechas a mano</span>
+      <span>Cerámica y joyería artesanal</span>
+      <span>Cada pieza, una sola vez</span>
+      <span>Envíos a España y Baleares 🇪🇸</span>
+      <span>Piezas únicas, hechas a mano</span>
+      <span>Cerámica y joyería artesanal</span>
+      <span>Cada pieza, una sola vez</span>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <div class="eyebrow"><span class="dot"></span> Hecho a mano, pieza a pieza</div>
+        <h1>Barro y plata para tu <em>look</em><br> y tu hogar</h1>
+        <p class="lead">Cerámica y joyería artesanal moldeadas a mano en pequeños lotes. Nada sale en serie: cada pieza que ves es la única que existe.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="https://wa.me/c/34626223064" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-2-1.8-2.3-.2-.3 0-.5.1-.6.1-.1.3-.4.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5C9.4 9 8.8 7.6 8.6 7c-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.1 0 1.3.9 2.5 1.1 2.7.1.2 1.9 2.9 4.6 4 .6.3 1.1.4 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.2-.3-.2-.6-.4z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.3L2 22l4.8-1.5c1.5.9 3.3 1.4 5.2 1.4 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.7 0-3.4-.5-4.8-1.4l-.3-.2-3.4 1 1.1-3.3-.2-.3C3.5 14.4 3 13.2 3 12c0-4.9 4-8.9 9-8.9s9 4 9 8.9-4 9.2-9 9.2z"/></svg>
+            Pedir por WhatsApp
+          </a>
+          <a class="btn btn-ghost" href="https://www.instagram.com/masbarroyole/" target="_blank" rel="noopener">Seguir en Instagram</a>
+        </div>
+        <div class="hero-meta">
+          <div><strong>100%</strong><span>Piezas únicas</span></div>
+          <div><strong>ES + Baleares</strong><span>Zona de envío</span></div>
+          <div><strong>A mano</strong><span>Sin moldes en serie</span></div>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="blob" aria-hidden="true"></div>
+        <svg class="seal" viewBox="0 0 120 120" aria-hidden="true">
+          <circle cx="60" cy="60" r="56" fill="none" stroke="#9C4A1E" stroke-width="1.4" stroke-dasharray="2 6"/>
+          <path id="sealcircle" d="M60,14 a46,46 0 1,1 -0.1,0" fill="none"/>
+          <text font-family="Work Sans, sans-serif" font-size="9.2" letter-spacing="2.5" fill="#2E2016" font-weight="600">
+            <textPath href="#sealcircle" startOffset="0%">HECHO A MANO • MÁS BARRO Y OLÉ • HECHO A MANO • </textPath>
+          </text>
+          <circle cx="60" cy="60" r="8" fill="#C1602B"/>
+        </svg>
+        <svg class="hero-illustration" viewBox="0 0 360 380" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="180" cy="352" rx="120" ry="16" fill="#2E2016" opacity="0.08"/>
+          <path d="M130 60 C110 90 100 130 108 190 C114 240 118 300 150 330 C170 348 190 348 210 330 C242 300 246 240 252 190 C260 130 250 90 230 60 C210 40 150 40 130 60 Z" fill="#E4C7A0"/>
+          <path d="M108 190 C160 205 200 205 252 190" stroke="#C1602B" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <path d="M118 235 C165 248 195 248 242 235" stroke="#9C4A1E" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.55"/>
+          <path d="M132 58 C132 40 148 28 180 28 C212 28 228 40 228 58" stroke="#C1602B" stroke-width="10" fill="none" stroke-linecap="round"/>
+          <circle cx="70" cy="120" r="30" fill="#5C7A6E" opacity="0.9"/>
+          <circle cx="70" cy="120" r="30" fill="none" stroke="#46605A" stroke-width="2"/>
+          <path d="M70 96 L70 108 M70 132 L70 144 M46 120 L58 120 M82 120 L94 120" stroke="#F1E8DA" stroke-width="2" opacity="0.5"/>
+          <g transform="translate(290,150)">
+            <path d="M0 0 C-14 0 -22 10 -22 24 C-22 40 -8 52 0 66" stroke="#D9A441" stroke-width="6" fill="none" stroke-linecap="round"/>
+            <circle cx="0" cy="70" r="7" fill="#D9A441"/>
+          </g>
+          <g transform="translate(48,250)">
+            <circle cx="0" cy="0" r="16" fill="none" stroke="#C1602B" stroke-width="5"/>
+            <circle cx="0" cy="24" r="10" fill="#C1602B" opacity="0.85"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <svg class="drip" viewBox="0 0 1200 44" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,0 L1200,0 L1200,10 C1100,10 1080,34 1020,34 C980,34 970,14 930,14 C890,14 880,30 840,30 C800,30 790,12 750,12 C700,12 690,26 640,26 C600,26 590,10 550,10 C500,10 490,24 440,24 C400,24 390,12 350,12 C300,12 290,22 240,22 C200,22 190,10 150,10 C100,10 90,18 40,18 C20,18 10,10 0,10 Z" fill="#FBF7F0"/>
+    </svg>
+  </section>
+
+  <!-- CATEGORÍAS -->
+  <section class="categorias">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow"><span class="dot"></span> El catálogo</div>
+        <h2 id="ceramica">Dos oficios, un mismo barro</h2>
+        <p>Todo se trabaja a mano, sin dos piezas idénticas. Elige la tuya antes de que se acabe: cuando se agota, no vuelve.</p>
+      </div>
+      <div class="cat-grid">
+        <div class="cat-card reveal" id="joyeria">
+          <div class="ph-photo ph-1">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#2E2016" stroke-width="1.4"><circle cx="12" cy="8" r="5"/><path d="M12 13v7M9 20h6"/></svg>
+            <span>Foto de producto</span>
+          </div>
+          <div class="cat-body">
+            <span class="tag">colección joyas</span>
+            <h3>Joyería artesanal</h3>
+            <p>Pendientes, colgantes y anillos moldeados en pequeños lotes, con acabados en oro y plata. Piezas ligeras, pensadas para llevar todos los días.</p>
+            <a class="btn btn-primary btn-small" href="https://wa.me/c/34626223064" target="_blank" rel="noopener">Ver joyas en el catálogo</a>
+          </div>
+        </div>
+        <div class="cat-card reveal">
+          <div class="ph-photo ph-2">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#2E2016" stroke-width="1.4"><path d="M8 3h8l1 5c1 3-2 13-5 13s-6-10-5-13l1-5z"/><path d="M8.5 8h7"/></svg>
+            <span>Foto de producto</span>
+          </div>
+          <div class="cat-body">
+            <span class="tag">colección hogar</span>
+            <h3>Cerámica para el hogar</h3>
+            <p>Jarrones, cuencos y piezas decorativas torneadas y esmaltadas a mano. Cada una guarda las marcas propias del barro: por eso no hay dos iguales.</p>
+            <a class="btn btn-primary btn-small" href="https://wa.me/c/34626223064" target="_blank" rel="noopener">Ver cerámica en el catálogo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESO -->
+  <section class="proceso" id="proceso">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow"><span class="dot"></span> Así de fácil</div>
+        <h2>Cómo se compra una pieza</h2>
+        <p>Todo el catálogo y las compras se gestionan por WhatsApp, sin registros ni carritos complicados.</p>
+      </div>
+      <div class="steps">
+        <div class="step reveal">
+          <div class="step-num">1</div>
+          <h3>Explora el catálogo</h3>
+          <p>Abre el catálogo de WhatsApp y mira las piezas disponibles ahora mismo.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-num">2</div>
+          <h3>Elige tu pieza</h3>
+          <p>Cada foto tiene su descripción, tamaño y precio. Guarda la que más te guste.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-num">3</div>
+          <h3>Escribe por WhatsApp</h3>
+          <p>Confirma tu pedido, tu talla o color, y la dirección de envío en el chat.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-num">4</div>
+          <h3>Recíbela en casa</h3>
+          <p>Se embala a mano y se envía a cualquier punto de España o Baleares.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALERÍA / INSTAGRAM -->
+  <section class="galeria">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <div class="eyebrow"><span class="dot"></span> @masbarroyole</div>
+        <h2>El taller, en Instagram</h2>
+        <p>Ahí subo piezas nuevas, procesos y restocks antes que en ningún otro sitio.</p>
+      </div>
+      <div class="ig-grid">
+        <a class="ig-tile t1 reveal" href="https://www.instagram.com/masbarroyole/" target="_blank" rel="noopener" aria-label="Ver publicación en Instagram">
+          <svg class="ig-icon-overlay" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        </a>
+        <a class="ig-tile t2 reveal" href="https://www.instagram.com/masbarroyole/" target="_blank" rel="noopener" aria-label="Ver publicación en Instagram">
+          <svg class="ig-icon-overlay" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        </a>
+        <a class="ig-tile t3 reveal" href="https://www.instagram.com/masbarroyole/" target="_blank" rel="noopener" aria-label="Ver publicación en Instagram">
+          <svg class="ig-icon-overlay" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        </a>
+        <a class="ig-tile t4 reveal" href="https://www.instagram.com/masbarroyole/" target="_blank" rel="noopener" aria-label="Ver publicación en Instagram">
+          <svg class="ig-icon-overlay" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        </a>
+      </div>
+      <div class="ig-follow reveal">
+        <a class="btn btn-ghost" href="https://www.instagram.com/masbarroyole/" target="_blank" rel="noopener">@masbarroyole en Instagram →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOBRE MÍ -->
+  <section class="sobre" id="sobre">
+    <div class="wrap">
+      <div class="sobre-photo reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 12c3 0 5-2.5 5-5.5S15 1 12 1 7 3.5 7 6.5 9 12 12 12z"/><path d="M4 22c0-5 3.5-8 8-8s8 3 8 8"/></svg>
+      </div>
+      <div class="sobre-text reveal">
+        <span class="accent-hand">detrás del barro</span>
+        <h2>Cada pieza pasa por mis manos, de principio a fin</h2>
+        <p>Más Barro y Olé nace de un torno, un horno pequeño y la costumbre de no repetir dos veces la misma forma. Amaso, tornea, esmalto y engarzo cada pieza yo misma, así que el catálogo cambia todo el tiempo.</p>
+        <p>Cuando una pieza se vende, se va para siempre. Por eso, si algo te gusta, mejor no dejarlo para luego.</p>
+        <p class="sobre-quote">"No hago colecciones en serie. Hago piezas que, si no las ves hoy, puede que mañana ya no estén."</p>
+        <a class="btn btn-primary" href="https://wa.me/c/34626223064" target="_blank" rel="noopener">Escríbeme por WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="cta-final" id="contacto">
+    <div class="wrap reveal">
+      <h2>Tu próxima pieza favorita<br>está a un mensaje</h2>
+      <p>Consulta el catálogo completo, pregunta por una pieza concreta o pide algo a medida. Respondo yo misma por WhatsApp.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="https://wa.me/c/34626223064" target="_blank" rel="noopener">Abrir catálogo de WhatsApp</a>
+        <a class="btn btn-ghost" style="border-color:rgba(241,232,218,0.35); color:#fff;" href="https://www.instagram.com/masbarroyole/" target="_blank" rel="noopener">Seguir en Instagram</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo">
+          <svg viewBox="0 0 48 48" fill="none"><path d="M24 4c-4 0-6 3-6 6 0 2 1 3 1 5-4 1-7 5-7 10 0 9 6 17 12 17s12-8 12-17c0-5-3-9-7-10 0-2 1-3 1-5 0-3-2-6-6-6z" fill="#C1602B"/></svg>
+          Más Barro y Olé
+        </div>
+        <p>Cerámica y joyería artesanal hecha a mano. Piezas únicas para tu look y tu hogar. Envíos a España y Baleares.</p>
+      </div>
+      <div>
+        <h4>Explorar</h4>
+        <ul class="foot-links">
+          <li><a href="#ceramica">Cerámica</a></li>
+          <li><a href="#joyeria">Joyería</a></li>
+          <li><a href="#proceso">Cómo comprar</a></li>
+          <li><a href="#sobre">Sobre mí</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul class="foot-links">
+          <li><a href="https://wa.me/c/34626223064" target="_blank" rel="noopener">Catálogo de WhatsApp</a></li>
+          <li><a href="https://www.instagram.com/masbarroyole/" target="_blank" rel="noopener">Instagram @masbarroyole</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Más Barro y Olé. Hecho a mano, pieza a pieza.</span>
+      <span>Envíos a España y Baleares 🇪🇸</span>
+    </div>
+  </div>
+</footer>
+
+<a class="float-wa" href="https://wa.me/c/34626223064" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-1 1.1-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-2-1.8-2.3-.2-.3 0-.5.1-.6.1-.1.3-.4.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5C9.4 9 8.8 7.6 8.6 7c-.2-.5-.4-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.2.3-.9.9-.9 2.1 0 1.3.9 2.5 1.1 2.7.1.2 1.9 2.9 4.6 4 .6.3 1.1.4 1.5.6.6.2 1.2.2 1.6.1.5-.1 1.7-.7 1.9-1.3.2-.7.2-1.2.2-1.3-.1-.2-.3-.2-.6-.4z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.3L2 22l4.8-1.5c1.5.9 3.3 1.4 5.2 1.4 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.7 0-3.4-.5-4.8-1.4l-.3-.2-3.4 1 1.1-3.3-.2-.3C3.5 14.4 3 13.2 3 12c0-4.9 4-8.9 9-8.9s9 4 9 8.9-4 9.2-9 9.2z"/></svg>
+</a>
+
+<script>
+  // Sticky header shrink
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 30);
+  }, { passive:true });
+
+  // Mobile menu
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    burger.setAttribute('aria-expanded', isOpen);
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    burger.setAttribute('aria-expanded', 'false');
+  }));
+
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('in'));
+  }
+</script>
+
+</body>
+</html>
