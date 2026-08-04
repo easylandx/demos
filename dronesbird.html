@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Drones Bird — Nancy Zunino | Piloto de Drones RPA Certificada ANAC</title>
+<meta name="description" content="Nancy Zunino, piloto de drones (RPA) certificada por ANAC CETA 070. +25 años en aviación. Fotografía y video aéreo, agro, eventos, inspecciones y capacitación en Argentina.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Manrope:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-deep:#061729;
+    --navy-mid:#0f2f4f;
+    --navy-panel:#123a5e;
+    --sky:#2e7eb0;
+    --sky-light:#6db4dd;
+    --gold:#D4AF37;
+    --gold-light:#F0C863;
+    --gold-soft:#f5d98a;
+    --cloud:#F6F3EA;
+    --ink:#eef4f9;
+    --ink-dim:#a9c0d4;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--navy-deep);
+    color:var(--ink);
+    font-family:'Manrope',sans-serif;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.disp{
+    font-family:'Rajdhani',sans-serif;
+    font-weight:700;
+    letter-spacing:0.02em;
+    text-transform:uppercase;
+  }
+  .mono{font-family:'Space Mono',monospace;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+
+  /* ===== background sky texture ===== */
+  .sky-bg{
+    position:fixed;inset:0;z-index:-2;
+    background:
+      radial-gradient(ellipse 900px 600px at 15% 0%, rgba(212,175,55,0.10), transparent 60%),
+      radial-gradient(ellipse 800px 700px at 100% 20%, rgba(46,126,176,0.25), transparent 60%),
+      linear-gradient(180deg, #061729 0%, #0a2440 40%, #0f2f4f 100%);
+  }
+  .stars{position:fixed;inset:0;z-index:-1;opacity:0.5;pointer-events:none;}
+
+  /* ===== nav ===== */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(6,23,41,0.75);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(212,175,55,0.25);
+  }
+  nav{display:flex;align-items:center;justify-content:space-between;height:76px;}
+  .logo{display:flex;align-items:center;gap:10px;font-size:1.15rem;letter-spacing:0.08em;}
+  .logo .flag{font-size:1rem;}
+  .logo b{color:var(--gold-light);}
+  .navlinks{display:flex;gap:28px;align-items:center;font-size:0.85rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-dim);}
+  .navlinks a:hover{color:var(--gold-light);}
+  .nav-cta{
+    background:linear-gradient(135deg,var(--gold-light),var(--gold));
+    color:#0a1f33;padding:10px 20px;border-radius:999px;font-weight:700;
+    font-size:0.82rem;letter-spacing:0.06em;text-transform:uppercase;
+    box-shadow:0 4px 18px rgba(212,175,55,0.35);
+  }
+  .nav-cta:hover{filter:brightness(1.08);}
+  @media(max-width:780px){.navlinks{display:none;}}
+
+  /* ===== hero ===== */
+  .hero{
+    position:relative;padding:90px 0 70px;overflow:hidden;
+    min-height:88vh;display:flex;align-items:center;
+  }
+  .radar{
+    position:absolute;right:-180px;top:50%;transform:translateY(-50%);
+    width:720px;height:720px;border-radius:50%;
+    border:1px solid rgba(212,175,55,0.18);
+    z-index:0;pointer-events:none;
+  }
+  .radar::before,.radar::after{
+    content:'';position:absolute;border-radius:50%;border:1px solid rgba(212,175,55,0.12);
+  }
+  .radar::before{inset:90px;}
+  .radar::after{inset:200px;}
+  .sweep{
+    position:absolute;inset:0;border-radius:50%;
+    background:conic-gradient(from 0deg, rgba(212,175,55,0.35), transparent 40deg, transparent 360deg);
+    animation:spin 6s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .blip{position:absolute;width:6px;height:6px;background:var(--gold-light);border-radius:50%;box-shadow:0 0 10px var(--gold-light);}
+  .blip1{top:30%;left:38%;animation:blink 3s ease-in-out infinite;}
+  .blip2{top:62%;left:58%;animation:blink 3s ease-in-out infinite 1.1s;}
+  .blip3{top:45%;left:70%;animation:blink 3s ease-in-out infinite 2s;}
+  @keyframes blink{0%,100%{opacity:0.15;}50%{opacity:1;}}
+
+  .hero-inner{position:relative;z-index:2;max-width:680px;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:'Space Mono',monospace;font-size:0.78rem;letter-spacing:0.12em;
+    color:var(--gold-light);border:1px solid rgba(212,175,55,0.4);
+    padding:6px 14px;border-radius:999px;margin-bottom:22px;
+    background:rgba(212,175,55,0.06);
+  }
+  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--gold-light);box-shadow:0 0 8px var(--gold-light);}
+  .hero h1{
+    font-size:clamp(2.6rem,6vw,4.4rem);line-height:1.02;color:var(--ink);margin-bottom:18px;
+  }
+  .hero h1 span{
+    display:block;color:var(--gold-light);
+    background:linear-gradient(135deg,var(--gold-light),var(--gold));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p{font-size:1.08rem;color:var(--ink-dim);max-width:520px;margin-bottom:34px;line-height:1.6;}
+  .cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:38px;}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;padding:15px 26px;border-radius:10px;
+    font-weight:700;font-size:0.92rem;letter-spacing:0.02em;transition:all .2s ease;
+  }
+  .btn-gold{
+    background:linear-gradient(135deg,var(--gold-light),var(--gold));color:#0a1f33;
+    box-shadow:0 8px 26px rgba(212,175,55,0.35);
+  }
+  .btn-gold:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(212,175,55,0.45);}
+  .btn-outline{
+    border:1px solid rgba(238,244,249,0.35);color:var(--ink);background:rgba(255,255,255,0.03);
+  }
+  .btn-outline:hover{border-color:var(--gold-light);color:var(--gold-light);}
+  .badges{display:flex;flex-wrap:wrap;gap:10px;}
+  .badge{
+    font-family:'Space Mono',monospace;font-size:0.72rem;letter-spacing:0.04em;
+    border:1px solid rgba(212,175,55,0.3);color:var(--ink-dim);
+    padding:7px 12px;border-radius:6px;background:rgba(255,255,255,0.02);
+  }
+  .badge b{color:var(--gold-light);}
+
+  /* ===== flight log stats ===== */
+  .stats{
+    border-top:1px solid rgba(212,175,55,0.18);border-bottom:1px solid rgba(212,175,55,0.18);
+    background:linear-gradient(90deg,rgba(212,175,55,0.05),transparent 60%);
+    padding:36px 0;
+  }
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;}
+  .stat{border-left:2px solid var(--gold);padding-left:16px;}
+  .stat .num{font-family:'Rajdhani',sans-serif;font-weight:700;font-size:2.1rem;color:var(--gold-light);}
+  .stat .lbl{font-size:0.78rem;color:var(--ink-dim);text-transform:uppercase;letter-spacing:0.05em;margin-top:2px;}
+  .stat .coord{font-family:'Space Mono',monospace;font-size:0.65rem;color:rgba(212,175,55,0.5);margin-bottom:4px;}
+  @media(max-width:780px){.stats-grid{grid-template-columns:repeat(2,1fr);}}
+
+  /* ===== section shared ===== */
+  section{padding:100px 0;position:relative;}
+  .sec-head{max-width:640px;margin-bottom:56px;}
+  .sec-eyebrow{
+    font-family:'Space Mono',monospace;font-size:0.78rem;letter-spacing:0.12em;color:var(--gold-light);
+    display:flex;align-items:center;gap:12px;margin-bottom:14px;
+  }
+  .sec-eyebrow::before{content:'';width:34px;height:1px;background:var(--gold);}
+  .sec-head h2{font-size:clamp(1.9rem,4vw,2.7rem);color:var(--ink);}
+  .sec-head p{color:var(--ink-dim);margin-top:14px;font-size:1.02rem;line-height:1.6;}
+
+  .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* ===== bitacora / services ===== */
+  .log-list{display:flex;flex-direction:column;border-top:1px solid rgba(238,244,249,0.12);}
+  .log-item{
+    display:grid;grid-template-columns:110px 60px 1fr 220px;gap:20px;align-items:center;
+    padding:26px 0;border-bottom:1px solid rgba(238,244,249,0.12);
+    transition:background .3s ease;
+  }
+  .log-item:hover{background:rgba(212,175,55,0.05);}
+  .log-item .coord{font-family:'Space Mono',monospace;font-size:0.72rem;color:rgba(212,175,55,0.55);}
+  .log-icon{width:44px;height:44px;display:flex;align-items:center;justify-content:center;
+    border:1px solid rgba(212,175,55,0.35);border-radius:10px;background:rgba(212,175,55,0.06);}
+  .log-icon svg{width:22px;height:22px;stroke:var(--gold-light);}
+  .log-item h3{font-size:1.2rem;color:var(--ink);letter-spacing:0.01em;margin-bottom:4px;}
+  .log-item p{color:var(--ink-dim);font-size:0.92rem;line-height:1.5;font-family:'Manrope';font-weight:400;text-transform:none;}
+  .log-tag{
+    justify-self:end;font-family:'Space Mono',monospace;font-size:0.68rem;color:var(--gold-light);
+    border:1px solid rgba(212,175,55,0.3);padding:5px 10px;border-radius:999px;text-align:center;
+  }
+  @media(max-width:780px){
+    .log-item{grid-template-columns:1fr;gap:10px;text-align:left;}
+    .log-tag{justify-self:start;}
+  }
+
+  /* ===== about ===== */
+  .about{
+    background:linear-gradient(135deg,rgba(212,175,55,0.07),rgba(46,126,176,0.08));
+    border-top:1px solid rgba(212,175,55,0.18);
+    border-bottom:1px solid rgba(212,175,55,0.18);
+  }
+  .about-grid{display:grid;grid-template-columns:280px 1fr;gap:60px;align-items:center;}
+  .pilot-frame{
+    width:280px;height:280px;border-radius:50%;
+    border:2px solid var(--gold);
+    display:flex;align-items:center;justify-content:center;
+    background:radial-gradient(circle at 30% 20%, rgba(212,175,55,0.18), var(--navy-mid) 70%);
+    position:relative;
+  }
+  .pilot-frame::before{
+    content:'';position:absolute;inset:-14px;border-radius:50%;border:1px dashed rgba(212,175,55,0.35);
+  }
+  .pilot-frame svg{width:130px;height:130px;}
+  .about-text h2{font-size:clamp(1.8rem,3.6vw,2.5rem);margin-bottom:16px;color:var(--ink);}
+  .about-text p{color:var(--ink-dim);line-height:1.7;margin-bottom:16px;font-size:1.02rem;}
+  .cert-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px;}
+  @media(max-width:780px){.about-grid{grid-template-columns:1fr;text-align:center;}.pilot-frame{margin:0 auto;}.cert-row{justify-content:center;}}
+
+  /* ===== why choose ===== */
+  .why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;}
+  .why-card{
+    border:1px solid rgba(212,175,55,0.22);border-radius:14px;padding:30px 26px;
+    background:linear-gradient(160deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01));
+    transition:transform .3s ease, border-color .3s ease;
+  }
+  .why-card:hover{transform:translateY(-6px);border-color:var(--gold);}
+  .why-card svg{width:30px;height:30px;stroke:var(--gold-light);margin-bottom:16px;}
+  .why-card h3{font-size:1.05rem;color:var(--ink);margin-bottom:10px;letter-spacing:0.02em;}
+  .why-card p{color:var(--ink-dim);font-size:0.9rem;line-height:1.55;font-weight:400;text-transform:none;font-family:'Manrope';}
+  @media(max-width:900px){.why-grid{grid-template-columns:1fr;}}
+
+  /* ===== flight path CTA ===== */
+  .final-cta{
+    text-align:center;position:relative;
+    background:radial-gradient(ellipse 700px 400px at 50% 0%, rgba(212,175,55,0.12), transparent 70%);
+  }
+  .final-cta h2{font-size:clamp(2rem,5vw,3.2rem);color:var(--ink);margin-bottom:18px;}
+  .final-cta h2 span{color:var(--gold-light);}
+  .final-cta p{color:var(--ink-dim);max-width:520px;margin:0 auto 36px;font-size:1.05rem;line-height:1.6;}
+  .contact-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:900px;margin:0 auto;}
+  .cc{
+    border:1px solid rgba(212,175,55,0.28);border-radius:12px;padding:22px 14px;
+    background:rgba(255,255,255,0.03);transition:all .25s ease;
+  }
+  .cc:hover{background:rgba(212,175,55,0.1);border-color:var(--gold);transform:translateY(-4px);}
+  .cc svg{width:24px;height:24px;stroke:var(--gold-light);margin:0 auto 10px;}
+  .cc .t{font-size:0.72rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--ink-dim);margin-bottom:4px;font-family:'Rajdhani';font-weight:600;}
+  .cc .v{font-size:0.85rem;color:var(--ink);font-family:'Space Mono',monospace;word-break:break-word;}
+  @media(max-width:780px){.contact-cards{grid-template-columns:repeat(2,1fr);}}
+
+  footer{
+    border-top:1px solid rgba(212,175,55,0.2);padding:34px 0;text-align:center;
+    color:var(--ink-dim);font-size:0.82rem;
+  }
+  footer b{color:var(--gold-light);}
+  .wa-float{
+    position:fixed;bottom:24px;right:24px;z-index:60;
+    width:60px;height:60px;border-radius:50%;
+    background:linear-gradient(135deg,var(--gold-light),var(--gold));
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 8px 24px rgba(212,175,55,0.5);
+    animation:float 3s ease-in-out infinite;
+  }
+  .wa-float svg{width:28px;height:28px;fill:#0a1f33;}
+  @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+</style>
+</head>
+<body>
+
+<div class="sky-bg"></div>
+<svg class="stars" width="100%" height="100%">
+  <circle cx="8%" cy="12%" r="1.4" fill="#F0C863" opacity="0.6"/>
+  <circle cx="22%" cy="30%" r="1" fill="#eef4f9" opacity="0.4"/>
+  <circle cx="40%" cy="8%" r="1.2" fill="#F0C863" opacity="0.5"/>
+  <circle cx="60%" cy="22%" r="1" fill="#eef4f9" opacity="0.3"/>
+  <circle cx="78%" cy="14%" r="1.4" fill="#F0C863" opacity="0.6"/>
+  <circle cx="92%" cy="35%" r="1" fill="#eef4f9" opacity="0.4"/>
+  <circle cx="15%" cy="60%" r="1" fill="#F0C863" opacity="0.4"/>
+  <circle cx="70%" cy="70%" r="1.3" fill="#eef4f9" opacity="0.3"/>
+</svg>
+
+<header>
+  <div class="wrap">
+    <nav>
+      <div class="logo"><span class="flag">🇦🇷</span> DRONES <b>BIRD</b></div>
+      <div class="navlinks">
+        <a href="#servicios">Servicios</a>
+        <a href="#nancy">Piloto</a>
+        <a href="#porque">Por qué elegirnos</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+      <a class="nav-cta" href="https://wa.me/5491127650007" target="_blank" rel="noopener">Cotizar vuelo</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="radar">
+    <div class="sweep"></div>
+    <div class="blip blip1"></div>
+    <div class="blip blip2"></div>
+    <div class="blip blip3"></div>
+  </div>
+  <div class="wrap">
+    <div class="hero-inner">
+      <div class="eyebrow"><span class="dot"></span> RPA · PILOTO CERTIFICADO ANAC CETA 070</div>
+      <h1>La vista aérea que<span>tu proyecto necesita</span></h1>
+      <p>Nancy Zunino — piloto de Drones (RPA) con más de 25 años de trayectoria en aviación. Fotografía y video aéreo, mapeo y servicios profesionales con drones en toda Argentina, con seguridad y respaldo legal.</p>
+      <div class="cta-row">
+        <a class="btn btn-gold" href="https://wa.me/5491127650007" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#0a1f33"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.2L2 22l4.9-1.3C8.4 21.6 10.1 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.6-.1-1.8-.6-3.7-1.9-5.1-3.7-.9-1.1-1.5-2.4-1.6-2.6-.2-.3-1.1-1.5-1.1-2.8 0-1.3.7-2 1-2.2.3-.3.6-.3.8-.3h.6c.2 0 .5 0 .7.5.3.6.9 2.1 1 2.2.1.2.1.4 0 .6-.2.4-.4.6-.7 1-.2.2-.4.4-.2.8.3.6 1 1.5 1.8 2.2.9.8 1.7 1.2 2.1 1.4.3.1.5.1.7-.1.3-.3.6-.9.9-1.2.2-.3.5-.2.8-.1.3.1 2 .9 2.3 1.1.3.2.5.3.6.4.1.2.1.9-.1 1.5z"/></svg>
+          Escribir por WhatsApp
+        </a>
+        <a class="btn btn-outline" href="https://www.instagram.com/drones_bird/" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+          @drones_bird
+        </a>
+      </div>
+      <div class="badges">
+        <span class="badge"><b>ANAC</b> · CETA 070</span>
+        <span class="badge"><b>25+</b> años en aviación</span>
+        <span class="badge"><b>Operación</b> legal y segura</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="wrap">
+    <div class="stats-grid">
+      <div class="stat reveal"><div class="coord">// TRAYECTORIA</div><div class="num">25+</div><div class="lbl">Años en aviación</div></div>
+      <div class="stat reveal"><div class="coord">// HABILITACIÓN</div><div class="num">CETA 070</div><div class="lbl">Certificación ANAC</div></div>
+      <div class="stat reveal"><div class="coord">// COBERTURA</div><div class="num">AR</div><div class="lbl">Operaciones en Argentina</div></div>
+      <div class="stat reveal"><div class="coord">// RESPUESTA</div><div class="num">24h</div><div class="lbl">Cotización por WhatsApp</div></div>
+    </div>
+  </div>
+</div>
+
+<section id="servicios">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow">BITÁCORA DE VUELO</div>
+      <h2>Servicios a bordo</h2>
+      <p>Cada misión se planifica según el objetivo del cliente: altura, equipo y encuadre se ajustan al proyecto. Estas son las operaciones más solicitadas.</p>
+    </div>
+    <div class="log-list">
+
+      <div class="log-item reveal">
+        <div class="coord">ALT · variable</div>
+        <div class="log-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.5" cy="8.2" r="0.6" fill="currentColor" stroke="none"/></svg></div>
+        <div><h3>Fotografía y video aéreo</h3><p>Tomas cinematográficas y fotografía profesional para marcas, obras, propiedades y eventos, con encuadres imposibles desde tierra.</p></div>
+        <div class="log-tag">4K / cine</div>
+      </div>
+
+      <div class="log-item reveal">
+        <div class="coord">ALT · según predio</div>
+        <div class="log-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-10 4 6 3-4 5 8"/><path d="M3 20h18"/></svg></div>
+        <div><h3>Agro y mapeo de terrenos</h3><p>Relevamiento de campos, monitoreo de cultivos y generación de mapas para producción agropecuaria y catastral.</p></div>
+        <div class="log-tag">Mapeo</div>
+      </div>
+
+      <div class="log-item reveal">
+        <div class="coord">ALT · baja</div>
+        <div class="log-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-4z"/></svg></div>
+        <div><h3>Inspecciones industriales</h3><p>Revisión visual de techos, torres, tendidos y estructuras de difícil acceso, sin poner en riesgo personal.</p></div>
+        <div class="log-tag">Seguridad</div>
+      </div>
+
+      <div class="log-item reveal">
+        <div class="coord">ALT · media</div>
+        <div class="log-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <div><h3>Eventos y coberturas especiales</h3><p>Bodas, recitales, deportes y celebraciones: registro aéreo que suma otra perspectiva al recuerdo.</p></div>
+        <div class="log-tag">En vivo</div>
+      </div>
+
+      <div class="log-item reveal">
+        <div class="coord">ALT · variable</div>
+        <div class="log-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-6 9 6-9 6-9-6z"/><path d="M3 9v6l9 6 9-6V9"/></svg></div>
+        <div><h3>Inmobiliarias y desarrollos</h3><p>Videos y fotos aéreas que muestran propiedades, loteos y avances de obra con una vista que vende.</p></div>
+        <div class="log-tag">Real Estate</div>
+      </div>
+
+      <div class="log-item reveal">
+        <div class="coord">ALT · aula</div>
+        <div class="log-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l9 4-9 4-9-4 9-4z"/><path d="M6 10.5V16c0 1.5 2.7 3 6 3s6-1.5 6-3v-5.5"/></svg></div>
+        <div><h3>Capacitación y asesoría</h3><p>Introducción al mundo RPA para quienes quieren empezar a volar drones de forma profesional y legal.</p></div>
+        <div class="log-tag">Formación</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="about" id="nancy">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="pilot-frame reveal">
+        <svg viewBox="0 0 100 100" fill="none" stroke="#F0C863" stroke-width="1.6">
+          <circle cx="50" cy="34" r="14"/>
+          <path d="M22 84c0-15 12-24 28-24s28 9 28 24" />
+          <path d="M50 20l0 -10 M50 10l-6 3 M50 10l6 3"/>
+          <circle cx="50" cy="34" r="22" stroke-dasharray="2 4" opacity="0.5"/>
+        </svg>
+      </div>
+      <div class="about-text reveal">
+        <h2>Nancy Zunino</h2>
+        <p>Piloto de Drones (RPA) certificada por la Administración Nacional de Aviación Civil (ANAC), habilitación CETA 070. Más de 25 años de trayectoria dentro del mundo de la aviación respaldan cada vuelo.</p>
+        <p>Detrás de cada toma hay planificación, normativa vigente y criterio de piloto profesional: eso es lo que distingue a Drones Bird de una cámara improvisada en el aire.</p>
+        <div class="cert-row">
+          <span class="badge"><b>ANAC</b> CETA 070</span>
+          <span class="badge"><b>25+</b> años en aviación</span>
+          <span class="badge"><b>Argentina</b> 🇦🇷</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="porque">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-eyebrow">CHECKLIST PRE-VUELO</div>
+      <h2>Por qué elegir Drones Bird</h2>
+      <p>Volar un drone es fácil de improvisar y difícil de hacer bien. Esto es lo que asegura cada misión.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
+        <h3>Marco legal ANAC</h3>
+        <p>Operación dentro de la normativa vigente para RPA, con la certificación correspondiente y criterio profesional en cada vuelo.</p>
+      </div>
+      <div class="why-card reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        <h3>25+ años de aviación</h3>
+        <p>Trayectoria que va más allá del drone: criterio de vuelo, planificación y lectura del entorno formados a lo largo de una carrera aeronáutica.</p>
+      </div>
+      <div class="why-card reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l7-7M4 20l3-8 8-8 5 5-8 8-8 3z"/></svg>
+        <h3>Un servicio a medida</h3>
+        <p>Cada misión se planifica según el objetivo: altura, equipo y encuadre pensados para el resultado que el cliente necesita, no al revés.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta" id="contacto">
+  <div class="wrap">
+    <div class="reveal">
+      <h2>¿Listos para <span>despegar</span>?</h2>
+      <p>Contame tu proyecto y coordinamos el vuelo. Respuesta rápida por WhatsApp.</p>
+      <div class="cta-row" style="justify-content:center;margin-bottom:48px;">
+        <a class="btn btn-gold" href="https://wa.me/5491127650007" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#0a1f33"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.2L2 22l4.9-1.3C8.4 21.6 10.1 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.6-.1-1.8-.6-3.7-1.9-5.1-3.7-.9-1.1-1.5-2.4-1.6-2.6-.2-.3-1.1-1.5-1.1-2.8 0-1.3.7-2 1-2.2.3-.3.6-.3.8-.3h.6c.2 0 .5 0 .7.5.3.6.9 2.1 1 2.2.1.2.1.4 0 .6-.2.4-.4.6-.7 1-.2.2-.4.4-.2.8.3.6 1 1.5 1.8 2.2.9.8 1.7 1.2 2.1 1.4.3.1.5.1.7-.1.3-.3.6-.9.9-1.2.2-.3.5-.2.8-.1.3.1 2 .9 2.3 1.1.3.2.5.3.6.4.1.2.1.9-.1 1.5z"/></svg>
+          +54 9 11 2765-0007
+        </a>
+      </div>
+
+      <div class="contact-cards">
+        <a class="cc" href="https://www.instagram.com/drones_bird/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.6"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+          <div class="t">Instagram</div><div class="v">@drones_bird</div>
+        </a>
+        <a class="cc" href="https://facebook.com/dronesbird" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 9h3V6h-3c-2 0-3.5 1.5-3.5 3.5V11H8v3h2.5v6H14v-6h2.5l.5-3H14V9.8c0-.5.3-.8.9-.8z"/></svg>
+          <div class="t">Facebook</div><div class="v">/dronesbird</div>
+        </a>
+        <a class="cc" href="mailto:dronesbird@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          <div class="t">Email</div><div class="v">dronesbird@gmail.com</div>
+        </a>
+        <a class="cc" href="https://nancyzunino.com" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.5 6 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-6-3.5-9s1-6.5 3.5-9z"/></svg>
+          <div class="t">Sitio web</div><div class="v">nancyzunino.com</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><b>DRONES BIRD</b> · Nancy Zunino — Piloto de Drones (RPA) certificada ANAC CETA 070 🇦🇷</p>
+    <p style="margin-top:6px;opacity:0.7;">© 2026 Drones Bird. Todos los vuelos, con normativa y criterio profesional.</p>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/5491127650007" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.2L2 22l4.9-1.3C8.4 21.6 10.1 22 12 22c5.5 0 10-4.5 10-10S17.5 2 12 2zm5.2 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.6-.1-1.8-.6-3.7-1.9-5.1-3.7-.9-1.1-1.5-2.4-1.6-2.6-.2-.3-1.1-1.5-1.1-2.8 0-1.3.7-2 1-2.2.3-.3.6-.3.8-.3h.6c.2 0 .5 0 .7.5.3.6.9 2.1 1 2.2.1.2.1.4 0 .6-.2.4-.4.6-.7 1-.2.2-.4.4-.2.8.3.6 1 1.5 1.8 2.2.9.8 1.7 1.2 2.1 1.4.3.1.5.1.7-.1.3-.3.6-.9.9-1.2.2-.3.5-.2.8-.1.3.1 2 .9 2.3 1.1.3.2.5.3.6.4.1.2.1.9-.1 1.5z"/></svg>
+</a>
+
+<script>
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); } });
+  },{threshold:0.15});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
