@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fabee Drones — Filmación aérea profesional</title>
+<meta name="description" content="Servicio profesional de filmación con drones. Recorridos 360° y contenido de alto impacto. Operador certificado ANAC 550/2025.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0e13;
+    --bg-panel:#10151c;
+    --bg-panel-2:#161d26;
+    --line:#232b35;
+    --gold:#e8ae49;
+    --gold-dim:#8a6b32;
+    --cyan:#52d6de;
+    --text:#edeff3;
+    --text-dim:#8b95a3;
+    --text-faint:#576172;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--gold);color:#0a0e13;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .display{font-family:'Unbounded',sans-serif;}
+
+  /* ===== background texture ===== */
+  .grain{
+    position:fixed;inset:0;pointer-events:none;z-index:1;
+    opacity:0.035;
+    background-image:radial-gradient(circle at 1px 1px, #fff 1px, transparent 0);
+    background-size:3px 3px;
+  }
+  .skyline{
+    position:fixed;inset:0;pointer-events:none;z-index:0;
+    background:
+      radial-gradient(ellipse 900px 500px at 15% -5%, rgba(232,174,73,0.09), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 10%, rgba(82,214,222,0.07), transparent 60%);
+  }
+
+  /* ===== telemetry bar ===== */
+  .telemetry{
+    position:sticky;top:0;z-index:50;
+    background:rgba(10,14,19,0.9);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    padding:9px 24px;
+    display:flex;
+    align-items:center;
+    gap:28px;
+    font-size:11px;
+    letter-spacing:0.06em;
+    color:var(--text-faint);
+    overflow-x:auto;
+    white-space:nowrap;
+  }
+  .telemetry .dot{
+    width:6px;height:6px;border-radius:50%;
+    background:var(--cyan);
+    display:inline-block;
+    margin-right:8px;
+    box-shadow:0 0 6px var(--cyan);
+    animation:blink 1.8s infinite;
+  }
+  @keyframes blink{0%,100%{opacity:1;}50%{opacity:0.25;}}
+  .telemetry span.val{color:var(--text-dim);}
+  .telemetry b{color:var(--gold);font-weight:500;}
+
+  /* ===== nav ===== */
+  header.nav{
+    position:sticky;top:33px;z-index:49;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:18px 40px;
+    border-bottom:1px solid var(--line);
+    background:rgba(10,14,19,0.72);
+    backdrop-filter:blur(10px);
+  }
+  .logo{
+    font-family:'Unbounded',sans-serif;
+    font-weight:700;
+    font-size:16px;
+    letter-spacing:0.02em;
+    display:flex;align-items:center;gap:10px;
+  }
+  .logo .badge{
+    font-family:'JetBrains Mono',monospace;
+    font-size:9px;
+    color:var(--cyan);
+    border:1px solid var(--cyan);
+    padding:2px 6px;
+    border-radius:2px;
+    letter-spacing:0.05em;
+  }
+  .nav-cta{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--bg);
+    background:var(--gold);
+    padding:9px 18px;
+    border-radius:2px;
+    letter-spacing:0.02em;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(232,174,73,0.25);}
+
+  section{position:relative;z-index:2;}
+
+  /* ===== viewfinder frame ===== */
+  .vf{position:relative;}
+  .vf::before,.vf::after,.vf .c2,.vf .c3{
+    content:'';position:absolute;width:18px;height:18px;
+    border-color:var(--gold-dim);opacity:0.6;
+  }
+  .vf::before{top:-1px;left:-1px;border-top:1px solid;border-left:1px solid;}
+  .vf::after{top:-1px;right:-1px;border-top:1px solid;border-right:1px solid;}
+  .vf .c2{bottom:-1px;left:-1px;border-bottom:1px solid;border-left:1px solid;}
+  .vf .c3{bottom:-1px;right:-1px;border-bottom:1px solid;border-right:1px solid;}
+
+  /* ===== hero ===== */
+  .hero{
+    min-height:88vh;
+    display:flex;flex-direction:column;justify-content:center;
+    padding:60px 40px 90px;
+    max-width:1180px;margin:0 auto;
+  }
+  .eyebrow{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;color:var(--cyan);
+    letter-spacing:0.12em;
+    display:flex;align-items:center;gap:10px;
+    margin-bottom:26px;
+    opacity:0;transform:translateY(10px);
+    animation:rise .8s ease forwards;
+  }
+  .eyebrow::before{content:'';width:26px;height:1px;background:var(--cyan);}
+  h1{
+    font-family:'Unbounded',sans-serif;
+    font-weight:800;
+    font-size:clamp(2.4rem,6.2vw,5rem);
+    line-height:1.04;
+    letter-spacing:-0.01em;
+    max-width:15ch;
+    opacity:0;transform:translateY(16px);
+    animation:rise .9s ease .1s forwards;
+  }
+  h1 em{
+    font-style:normal;
+    color:var(--gold);
+  }
+  .hero p.sub{
+    margin-top:28px;
+    font-size:clamp(1.02rem,1.6vw,1.25rem);
+    color:var(--text-dim);
+    max-width:46ch;
+    line-height:1.6;
+    opacity:0;transform:translateY(16px);
+    animation:rise .9s ease .25s forwards;
+  }
+  .hero-actions{
+    margin-top:44px;
+    display:flex;align-items:center;gap:22px;flex-wrap:wrap;
+    opacity:0;transform:translateY(16px);
+    animation:rise .9s ease .4s forwards;
+  }
+  @keyframes rise{to{opacity:1;transform:translateY(0);}}
+
+  .btn-primary{
+    font-family:'JetBrains Mono',monospace;
+    font-size:13px;
+    letter-spacing:0.03em;
+    background:var(--gold);
+    color:#0a0e13;
+    padding:16px 26px;
+    border-radius:2px;
+    display:inline-flex;align-items:center;gap:10px;
+    transition:transform .25s ease, box-shadow .25s ease;
+    font-weight:600;
+  }
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(232,174,73,0.28);}
+  .btn-primary svg{width:16px;height:16px;}
+
+  .hero-note{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    color:var(--text-faint);
+    display:flex;align-items:center;gap:8px;
+  }
+  .hero-note .dot2{width:6px;height:6px;border-radius:50%;background:#4ade80;box-shadow:0 0 6px #4ade80;}
+
+  /* ===== flight path svg divider ===== */
+  .flightpath-wrap{max-width:1180px;margin:0 auto;padding:0 40px;}
+  .flightpath{width:100%;height:auto;display:block;}
+  .flightpath path{
+    fill:none;stroke:var(--line);stroke-width:1.4;
+  }
+  .flightpath .draw{
+    stroke:var(--gold-dim);
+    stroke-dasharray:1400;
+    stroke-dashoffset:1400;
+    transition:stroke-dashoffset 1.8s ease;
+  }
+  .flightpath.in-view .draw{stroke-dashoffset:0;}
+  .flightpath circle{fill:var(--bg);stroke:var(--cyan);stroke-width:1.5;}
+
+  /* ===== section shell ===== */
+  .section{
+    max-width:1180px;margin:0 auto;
+    padding:110px 40px;
+  }
+  .section-head{
+    display:flex;justify-content:space-between;align-items:flex-end;
+    gap:30px;margin-bottom:60px;flex-wrap:wrap;
+    opacity:0;transform:translateY(20px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .section-head.visible{opacity:1;transform:translateY(0);}
+  .section-tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;color:var(--cyan);letter-spacing:0.1em;
+    margin-bottom:14px;display:block;
+  }
+  .section-head h2{
+    font-family:'Unbounded',sans-serif;
+    font-weight:700;
+    font-size:clamp(1.7rem,3.4vw,2.6rem);
+    max-width:16ch;
+    line-height:1.15;
+  }
+  .section-head p{color:var(--text-dim);max-width:32ch;line-height:1.6;font-size:0.98rem;}
+
+  /* ===== services ===== */
+  .services-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+  }
+  .service-card{
+    background:var(--bg-panel);
+    padding:38px 30px;
+    position:relative;
+    opacity:0;transform:translateY(24px);
+    transition:opacity .7s ease, transform .7s ease, background .3s ease;
+  }
+  .service-card.visible{opacity:1;transform:translateY(0);}
+  .service-card:hover{background:var(--bg-panel-2);}
+  .service-card .tag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;color:var(--gold);letter-spacing:0.08em;
+    margin-bottom:22px;display:block;
+  }
+  .service-card h3{
+    font-family:'Unbounded',sans-serif;
+    font-size:1.18rem;font-weight:600;
+    margin-bottom:14px;line-height:1.3;
+  }
+  .service-card p{color:var(--text-dim);font-size:0.93rem;line-height:1.65;}
+  .service-icon{width:34px;height:34px;margin-bottom:22px;color:var(--cyan);}
+
+  /* ===== credentials strip ===== */
+  .credentials{
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:46px 40px;
+  }
+  .credentials-inner{
+    max-width:1180px;margin:0 auto;
+    display:grid;grid-template-columns:repeat(4,1fr);gap:30px;
+  }
+  .cred{
+    opacity:0;transform:translateY(16px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  .cred.visible{opacity:1;transform:translateY(0);}
+  .cred .num{
+    font-family:'JetBrains Mono',monospace;
+    color:var(--gold);font-size:0.78rem;letter-spacing:0.06em;
+    margin-bottom:10px;display:block;
+  }
+  .cred p{font-size:0.92rem;color:var(--text-dim);line-height:1.5;}
+
+  /* ===== gallery ===== */
+  .gallery-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
+  }
+  .tile{
+    position:relative;
+    aspect-ratio:4/5;
+    border-radius:3px;overflow:hidden;
+    opacity:0;transform:translateY(24px) scale(0.97);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .tile.visible{opacity:1;transform:translateY(0) scale(1);}
+  .tile .art{position:absolute;inset:0;}
+  .tile .overlay{
+    position:absolute;inset:0;
+    background:linear-gradient(0deg, rgba(10,14,19,0.92) 0%, rgba(10,14,19,0.15) 45%, transparent 70%);
+  }
+  .tile .label{
+    position:absolute;bottom:16px;left:16px;right:16px;
+    font-family:'JetBrains Mono',monospace;
+  }
+  .tile .label .name{font-size:0.9rem;color:var(--text);font-weight:500;margin-bottom:4px;font-family:'Unbounded',sans-serif;}
+  .tile .label .coord{font-size:10px;color:var(--text-faint);letter-spacing:0.04em;}
+
+  .art-costa{background:linear-gradient(160deg,#0e3b4a 0%,#1c5f6e 35%,#e8ae49 78%,#f4d99a 100%);}
+  .art-campo{background:linear-gradient(155deg,#1a2e15 0%,#3d5c28 40%,#8a9e4a 75%,#d8c96a 100%);}
+  .art-ciudad{background:linear-gradient(165deg,#0c1420 0%,#1c2940 45%,#3a4d6b 75%,#52d6de 100%);}
+  .art-evento{background:linear-gradient(150deg,#1c0f28 0%,#4a1f4a 40%,#a3416b 72%,#e8ae49 100%);}
+
+  /* ===== process / flight log ===== */
+  .process{position:relative;}
+  .process-line{
+    position:absolute;left:19px;top:8px;bottom:8px;width:1px;
+    background:var(--line);
+  }
+  .waypoint{
+    position:relative;
+    padding-left:60px;
+    padding-bottom:52px;
+    opacity:0;transform:translateY(20px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  .waypoint.visible{opacity:1;transform:translateY(0);}
+  .waypoint:last-child{padding-bottom:0;}
+  .waypoint::before{
+    content:'';
+    position:absolute;left:12px;top:4px;
+    width:15px;height:15px;border-radius:50%;
+    background:var(--bg);
+    border:1.5px solid var(--gold-dim);
+  }
+  .waypoint.visible::before{border-color:var(--gold);}
+  .waypoint .wtag{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11px;color:var(--cyan);letter-spacing:0.06em;
+    margin-bottom:8px;display:block;
+  }
+  .waypoint h4{
+    font-family:'Unbounded',sans-serif;
+    font-size:1.08rem;font-weight:600;margin-bottom:8px;
+  }
+  .waypoint p{color:var(--text-dim);font-size:0.94rem;line-height:1.6;max-width:52ch;}
+
+  /* ===== final cta ===== */
+  .finalcta{
+    text-align:center;
+    padding:130px 40px;
+    position:relative;
+  }
+  .finalcta::before{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(ellipse 600px 300px at 50% 40%, rgba(232,174,73,0.10), transparent 70%);
+  }
+  .finalcta-inner{position:relative;max-width:640px;margin:0 auto;}
+  .finalcta .section-tag{justify-content:center;display:flex;}
+  .finalcta h2{
+    font-family:'Unbounded',sans-serif;font-weight:700;
+    font-size:clamp(1.9rem,4.4vw,3rem);
+    line-height:1.15;margin-bottom:22px;
+  }
+  .finalcta p{color:var(--text-dim);margin-bottom:40px;font-size:1.02rem;line-height:1.6;}
+  .btn-lg{
+    font-family:'JetBrains Mono',monospace;
+    font-size:14px;font-weight:600;
+    background:var(--gold);color:#0a0e13;
+    padding:18px 34px;border-radius:2px;
+    display:inline-flex;align-items:center;gap:12px;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .btn-lg:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 16px 34px rgba(232,174,73,0.3);}
+
+  /* ===== footer ===== */
+  footer{
+    border-top:1px solid var(--line);
+    padding:44px 40px 34px;
+  }
+  .footer-inner{
+    max-width:1180px;margin:0 auto;
+    display:flex;justify-content:space-between;align-items:center;
+    flex-wrap:wrap;gap:20px;
+  }
+  .footer-brand{
+    font-family:'Unbounded',sans-serif;font-weight:700;font-size:15px;
+  }
+  .footer-meta{
+    font-family:'JetBrains Mono',monospace;
+    font-size:11.5px;color:var(--text-faint);
+    display:flex;gap:24px;flex-wrap:wrap;
+  }
+  .footer-meta a{color:var(--cyan);}
+
+  /* ===== floating ig button ===== */
+  .float-ig{
+    position:fixed;bottom:24px;right:24px;z-index:60;
+    width:54px;height:54px;border-radius:50%;
+    background:var(--gold);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 8px 24px rgba(232,174,73,0.35);
+    transition:transform .25s ease;
+  }
+  .float-ig:hover{transform:scale(1.08);}
+  .float-ig svg{width:24px;height:24px;color:#0a0e13;}
+
+  @media (max-width:860px){
+    .services-grid{grid-template-columns:1fr;}
+    .gallery-grid{grid-template-columns:repeat(2,1fr);}
+    .credentials-inner{grid-template-columns:repeat(2,1fr);}
+    .telemetry{gap:18px;padding:8px 16px;}
+    header.nav{padding:16px 20px;}
+    .section{padding:80px 20px;}
+    .hero{padding:40px 20px 70px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important;transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<div class="skyline"></div>
+<div class="grain"></div>
+
+<div class="telemetry mono" id="telemetry">
+  <span><span class="dot"></span>EN VUELO</span>
+  <span>ALT <span class="val" id="tAlt">118</span> m</span>
+  <span>VEL <span class="val" id="tVel">7.6</span> m/s</span>
+  <span>GPS <span class="val">-34.603, -58.381</span></span>
+  <span>BATT <span class="val" id="tBatt">92</span>%</span>
+  <span><b>OPERADOR ANAC 550/2025</b></span>
+</div>
+
+<header class="nav">
+  <div class="logo">FABEE DRONES <span class="badge">ANAC 550/2025</span></div>
+  <a class="nav-cta" href="https://www.instagram.com/fabee_drones/" target="_blank" rel="noopener">CONSULTAR →</a>
+</header>
+
+<section class="hero">
+  <span class="eyebrow mono">FILMACIÓN AÉREA · RECORRIDOS 360° · OPERADOR CERTIFICADO ANAC</span>
+  <h1>Tu proyecto, visto desde <em>donde nadie más filma.</em></h1>
+  <p class="sub">Servicio profesional de filmación con drones. Recorridos 360° y contenido de alto impacto para inmobiliarias, eventos y marcas que quieren destacar.</p>
+  <div class="hero-actions">
+    <a class="btn-primary" href="https://www.instagram.com/fabee_drones/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" stroke="none"/></svg>
+      Consultar en Instagram
+    </a>
+    <span class="hero-note"><span class="dot2"></span>Respondemos en menos de 24&nbsp;h</span>
+  </div>
+</section>
+
+<div class="flightpath-wrap">
+  <svg class="flightpath" id="fp1" viewBox="0 0 1100 60" preserveAspectRatio="none">
+    <path d="M0,45 C 220,45 260,15 460,15 S 700,50 900,50 S 1000,10 1100,10" />
+    <path class="draw" d="M0,45 C 220,45 260,15 460,15 S 700,50 900,50 S 1000,10 1100,10" />
+    <circle cx="0" cy="45" r="3"/><circle cx="1100" cy="10" r="3"/>
+  </svg>
+</div>
+
+<section class="section" id="servicios">
+  <div class="section-head">
+    <div>
+      <span class="section-tag">SERVICIOS</span>
+      <h2>Tres formas de mostrar lo que otros no ven</h2>
+    </div>
+    <p>Cada servicio se planifica según el objetivo del proyecto: venta, promoción o registro de un evento.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card vf">
+      <div class="c2"></div><div class="c3"></div>
+      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 8 L8 4 M4 8 L4 4 M4 8 L8 8 M20 8 L16 4 M20 8 L20 4 M20 8 L16 8 M4 16 L8 20 M4 16 L4 20 M4 16 L8 16 M20 16 L16 20 M20 16 L20 20 M20 16 L16 16"/><circle cx="12" cy="12" r="3.4"/></svg>
+      <span class="tag">01 — FILMACIÓN CON DRONES</span>
+      <h3>Tomas aéreas cinematográficas</h3>
+      <p>Grabación en 4K pensada para inmobiliarias, eventos, campañas publicitarias y proyectos audiovisuales que necesitan una perspectiva que no se consigue desde el suelo.</p>
+    </div>
+    <div class="service-card vf">
+      <div class="c2"></div><div class="c3"></div>
+      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="9" ry="3.6"/><ellipse cx="12" cy="12" rx="3.6" ry="9"/></svg>
+      <span class="tag">02 — RECORRIDOS 360°</span>
+      <h3>Experiencias inmersivas</h3>
+      <p>Tus clientes recorren el espacio antes de visitarlo en persona. Ideal para propiedades, predios y locales que se venden mejor cuando se pueden explorar.</p>
+    </div>
+    <div class="service-card vf">
+      <div class="c2"></div><div class="c3"></div>
+      <svg class="service-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 6 h16 M4 12 h11 M4 18 h7"/><circle cx="20" cy="18" r="2"/></svg>
+      <span class="tag">03 — CONTENIDO DE ALTO IMPACTO</span>
+      <h3>Edición pensada para redes</h3>
+      <p>Posproducción cinematográfica orientada a redes sociales, spots publicitarios y presentaciones corporativas: material listo para publicar, no solo para archivar.</p>
+    </div>
+  </div>
+</section>
+
+<div class="credentials">
+  <div class="credentials-inner">
+    <div class="cred"><span class="num mono">CERT · 550/2025</span><p>Operador certificado ante ANAC, con habilitación vigente para vuelos comerciales.</p></div>
+    <div class="cred"><span class="num mono">EQUIPO</span><p>Drones de última generación con estabilización y captura en alta resolución.</p></div>
+    <div class="cred"><span class="num mono">EDICIÓN</span><p>Posproducción cinematográfica incluida en cada proyecto.</p></div>
+    <div class="cred"><span class="num mono">ENTREGA</span><p>Material final listo para publicar, en los formatos que necesites.</p></div>
+  </div>
+</div>
+
+<section class="section" id="proyectos">
+  <div class="section-head">
+    <div>
+      <span class="section-tag">TIPOS DE PROYECTOS</span>
+      <h2>Cuatro escenarios, un mismo estándar</h2>
+    </div>
+    <p>Cada entorno pide un plan de vuelo distinto. Esta es una muestra ilustrativa de los formatos que trabajamos.</p>
+  </div>
+  <div class="gallery-grid">
+    <div class="tile vf">
+      <div class="c2"></div><div class="c3"></div>
+      <div class="art art-costa"></div>
+      <div class="overlay"></div>
+      <div class="label"><div class="name">Costa</div><div class="coord">FMT · LITORAL / TURISMO</div></div>
+    </div>
+    <div class="tile vf">
+      <div class="c2"></div><div class="c3"></div>
+      <div class="art art-campo"></div>
+      <div class="overlay"></div>
+      <div class="label"><div class="name">Campo</div><div class="coord">FMT · RURAL / AGRO</div></div>
+    </div>
+    <div class="tile vf">
+      <div class="c2"></div><div class="c3"></div>
+      <div class="art art-ciudad"></div>
+      <div class="overlay"></div>
+      <div class="label"><div class="name">Ciudad</div><div class="coord">FMT · INMOBILIARIO</div></div>
+    </div>
+    <div class="tile vf">
+      <div class="c2"></div><div class="c3"></div>
+      <div class="art art-evento"></div>
+      <div class="overlay"></div>
+      <div class="label"><div class="name">Evento</div><div class="coord">FMT · SOCIAL / CORPORATIVO</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="flightpath-wrap">
+  <svg class="flightpath" id="fp2" viewBox="0 0 1100 60" preserveAspectRatio="none">
+    <path d="M0,10 S 300,55 500,45 S 750,15 1100,45" />
+    <path class="draw" d="M0,10 S 300,55 500,45 S 750,15 1100,45" />
+    <circle cx="0" cy="10" r="3"/><circle cx="1100" cy="45" r="3"/>
+  </svg>
+</div>
+
+<section class="section process" id="proceso">
+  <div class="section-head">
+    <div>
+      <span class="section-tag">CÓMO TRABAJAMOS</span>
+      <h2>De la consulta a la entrega</h2>
+    </div>
+    <p>El mismo recorrido para cada proyecto, adaptado a la escala y el terreno.</p>
+  </div>
+  <div class="process-line"></div>
+  <div class="waypoint"><span class="wtag mono">WAYPOINT 01 — CONSULTA</span><h4>Contanos tu proyecto</h4><p>Nos escribís por Instagram con el objetivo, la ubicación y la fecha aproximada.</p></div>
+  <div class="waypoint"><span class="wtag mono">WAYPOINT 02 — PLAN DE VUELO</span><h4>Coordinamos los detalles</h4><p>Definimos fecha, ubicación, tomas necesarias y los permisos correspondientes.</p></div>
+  <div class="waypoint"><span class="wtag mono">WAYPOINT 03 — SESIÓN AÉREA</span><h4>Grabamos en terreno</h4><p>Ejecutamos el plan de vuelo priorizando seguridad, condiciones climáticas y calidad de imagen.</p></div>
+  <div class="waypoint"><span class="wtag mono">WAYPOINT 04 — POSPRODUCCIÓN</span><h4>Editamos el material</h4><p>Aplicamos un tratamiento cinematográfico al contenido capturado.</p></div>
+  <div class="waypoint"><span class="wtag mono">WAYPOINT 05 — ENTREGA</span><h4>Recibís tu contenido</h4><p>Te entregamos el material final en los formatos que necesites, listo para publicar.</p></div>
+</section>
+
+<section class="finalcta">
+  <div class="finalcta-inner">
+    <span class="section-tag mono">LISTO PARA DESPEGAR</span>
+    <h2>¿Le damos altura a tu próximo proyecto?</h2>
+    <p>Contanos qué querés filmar y coordinamos el plan de vuelo. Respondemos por Instagram en menos de 24&nbsp;horas.</p>
+    <a class="btn-lg" href="https://www.instagram.com/fabee_drones/" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="18" height="18"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" stroke="none"/></svg>
+      @fabee_drones en Instagram
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">FABEE DRONES</div>
+    <div class="footer-meta">
+      <span>OPERADOR CERTIFICADO ANAC 550/2025</span>
+      <span>ARGENTINA 🇦🇷</span>
+      <a href="https://www.instagram.com/fabee_drones/" target="_blank" rel="noopener">@fabee_drones ↗</a>
+    </div>
+  </div>
+</footer>
+
+<a class="float-ig" href="https://www.instagram.com/fabee_drones/" target="_blank" rel="noopener" aria-label="Instagram de Fabee Drones">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.6" fill="currentColor" stroke="none"/></svg>
+</a>
+
+<script>
+  // scroll reveal
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+      }
+    });
+  },{threshold:0.15});
+  document.querySelectorAll('.section-head, .service-card, .cred, .tile, .waypoint').forEach(el=>io.observe(el));
+
+  // flight path draw
+  const fpIo = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting) e.target.classList.add('in-view');
+    });
+  },{threshold:0.4});
+  document.querySelectorAll('.flightpath').forEach(el=>fpIo.observe(el));
+
+  // telemetry ticker (decorative)
+  const tAlt = document.getElementById('tAlt');
+  const tVel = document.getElementById('tVel');
+  const tBatt = document.getElementById('tBatt');
+  let batt = 92;
+  setInterval(()=>{
+    const alt = (110 + Math.random()*20).toFixed(0);
+    const vel = (6 + Math.random()*3).toFixed(1);
+    tAlt.textContent = alt;
+    tVel.textContent = vel;
+    if(Math.random() < 0.3 && batt > 60){ batt -= 1; tBatt.textContent = batt; }
+  }, 2200);
+</script>
+
+</body>
+</html>
