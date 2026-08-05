@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naty Arango | Hybrid Athlete &amp; Digital Creator</title>
+<meta name="description" content="Naty Arango — Hybrid Athlete, Digital Creator & Host of El Arte de Caer. Wellness, sport & food content that connects with real people.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gold: #F0C040;
+    --gold-deep: #D4AF37;
+    --gold-bright: #C9A84C;
+    --coral: #FF6B4A;
+    --tangerine: #FF9A3C;
+    --hotpink: #FF3D7F;
+    --plum: #7B2FF7;
+    --ink: #22112B;
+    --cream: #FFF7E8;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Manrope', sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(circle at 15% 20%, rgba(255,154,60,0.55), transparent 45%),
+      radial-gradient(circle at 85% 10%, rgba(255,61,127,0.45), transparent 50%),
+      radial-gradient(circle at 50% 90%, rgba(123,47,247,0.35), transparent 55%),
+      linear-gradient(160deg, #2b1140 0%, #5a1f5e 35%, #b53a3a 70%, #ff9a3c 100%);
+    background-attachment:fixed;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.logo{font-family:'Poppins', sans-serif;}
+  a{text-decoration:none;}
+  .container{max-width:1150px;margin:0 auto;padding:0 24px;}
+
+  /* NAV */
+  nav{
+    position:sticky; top:0; z-index:100;
+    background:rgba(34,17,43,0.55);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(240,192,64,0.25);
+  }
+  nav .container{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;}
+  .logo{font-weight:900;font-size:1.4rem;color:var(--gold);letter-spacing:0.5px;}
+  .logo span{color:#fff;}
+  .navlinks{display:flex;gap:28px;align-items:center;}
+  .navlinks a{color:#fff;font-weight:600;font-size:0.95rem;opacity:0.9;transition:.25s;}
+  .navlinks a:hover{opacity:1;color:var(--gold);}
+  .nav-cta{
+    background:linear-gradient(135deg, var(--gold), var(--gold-deep));
+    color:var(--ink)!important;
+    padding:10px 20px;border-radius:999px;font-weight:700;
+    box-shadow:0 4px 18px rgba(240,192,64,0.4);
+  }
+
+  /* HERO */
+  .hero{
+    padding:100px 0 90px;
+    position:relative;
+    display:flex;flex-wrap:wrap;align-items:center;gap:50px;
+  }
+  .hero .container{display:flex;flex-wrap:wrap;align-items:center;gap:50px;}
+  .hero-text{flex:1 1 460px;color:#fff;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(240,192,64,0.18);
+    border:1px solid rgba(240,192,64,0.5);
+    color:var(--gold);
+    padding:8px 16px;border-radius:999px;
+    font-weight:700;font-size:0.85rem;letter-spacing:1px;text-transform:uppercase;
+    margin-bottom:24px;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 5.5vw, 4rem);
+    font-weight:900;
+    line-height:1.08;
+    margin-bottom:20px;
+    text-shadow:0 4px 30px rgba(0,0,0,0.25);
+  }
+  .hero h1 .accent{
+    background:linear-gradient(120deg, var(--gold), var(--tangerine));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .hero p.lead{
+    font-size:1.2rem;
+    max-width:520px;
+    opacity:0.92;
+    margin-bottom:34px;
+    line-height:1.6;
+  }
+  .cta-row{display:flex;flex-wrap:wrap;gap:16px;}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:16px 30px;
+    border-radius:999px;
+    font-weight:700;
+    font-size:1rem;
+    transition:transform .25s, box-shadow .25s;
+  }
+  .btn-primary{
+    background:linear-gradient(135deg, var(--gold), var(--gold-deep));
+    color:var(--ink);
+    box-shadow:0 10px 30px rgba(240,192,64,0.4);
+  }
+  .btn-primary:hover{transform:translateY(-3px); box-shadow:0 14px 34px rgba(240,192,64,0.55);}
+  .btn-outline{
+    background:rgba(255,255,255,0.08);
+    border:1.5px solid rgba(255,255,255,0.6);
+    color:#fff;
+  }
+  .btn-outline:hover{transform:translateY(-3px); background:rgba(255,255,255,0.16);}
+
+  .hero-stats{display:flex;gap:34px;margin-top:44px;flex-wrap:wrap;}
+  .stat{color:#fff;}
+  .stat b{display:block;font-size:1.8rem;font-weight:900;color:var(--gold);}
+  .stat span{font-size:0.85rem;opacity:0.85;}
+
+  .hero-visual{flex:1 1 340px;display:flex;justify-content:center;}
+  .orb-wrap{position:relative;width:340px;height:340px;}
+  .orb-ring{
+    position:absolute;inset:0;
+    border-radius:50%;
+    border:2px dashed rgba(240,192,64,0.55);
+    animation:spin 22s linear infinite;
+  }
+  @keyframes spin{to{transform:rotate(360deg);}}
+  .orb-core{
+    position:absolute;inset:26px;
+    border-radius:50%;
+    background:linear-gradient(160deg, var(--tangerine), var(--hotpink) 60%, var(--plum));
+    box-shadow:0 0 60px rgba(255,154,60,0.55), inset 0 0 40px rgba(255,255,255,0.15);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .orb-core svg{width:62%;height:62%;}
+  .float-badge{
+    position:absolute;
+    background:rgba(255,255,255,0.95);
+    color:var(--ink);
+    padding:10px 16px;
+    border-radius:16px;
+    font-weight:700;
+    font-size:0.85rem;
+    box-shadow:0 10px 25px rgba(0,0,0,0.25);
+    display:flex;align-items:center;gap:6px;
+  }
+  .badge1{top:-6px; left:-10px; animation:float1 5s ease-in-out infinite;}
+  .badge2{bottom:6px; right:-18px; animation:float2 6s ease-in-out infinite;}
+  @keyframes float1{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);}}
+  @keyframes float2{0%,100%{transform:translateY(0);}50%{transform:translateY(12px);}}
+
+  /* SECTIONS GENERAL */
+  section{padding:90px 0;position:relative;}
+  .section-head{text-align:center;max-width:640px;margin:0 auto 56px;color:#fff;}
+  .section-head .eyebrow{margin-bottom:16px;}
+  .section-head h2{font-size:clamp(1.8rem,4vw,2.6rem);font-weight:900;margin-bottom:14px;}
+  .section-head p{opacity:0.9;font-size:1.05rem;line-height:1.6;}
+
+  .reveal{opacity:0; transform:translateY(36px); transition:opacity .8s ease, transform .8s ease;}
+  .reveal.visible{opacity:1; transform:translateY(0);}
+
+  /* ABOUT */
+  .about-grid{display:flex;gap:50px;flex-wrap:wrap;align-items:center;}
+  .about-card{
+    flex:1 1 420px;
+    background:rgba(255,255,255,0.95);
+    border-radius:26px;
+    padding:40px;
+    box-shadow:0 24px 60px rgba(0,0,0,0.3);
+    border:2px solid rgba(240,192,64,0.5);
+  }
+  .about-card h3{font-size:1.6rem;font-weight:800;margin-bottom:16px;color:var(--ink);}
+  .about-card p{line-height:1.75;margin-bottom:14px;color:#402b4a;}
+  .pill-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;}
+  .pill{
+    background:linear-gradient(135deg, var(--gold), var(--tangerine));
+    color:var(--ink);
+    padding:8px 16px;
+    border-radius:999px;
+    font-weight:700;
+    font-size:0.85rem;
+  }
+  .about-photo{
+    flex:1 1 320px;
+    display:flex;justify-content:center;
+  }
+  .photo-frame{
+    width:100%;max-width:320px;aspect-ratio:4/5;
+    border-radius:28px;
+    background:linear-gradient(160deg, var(--plum), var(--hotpink), var(--tangerine));
+    padding:8px;
+    box-shadow:0 30px 70px rgba(0,0,0,0.4);
+  }
+  .photo-inner{
+    width:100%;height:100%;border-radius:22px;
+    background:rgba(255,255,255,0.1);
+    display:flex;align-items:center;justify-content:center;
+    border:2px solid rgba(255,255,255,0.5);
+  }
+  .photo-inner svg{width:55%;height:55%;}
+
+  /* PILLARS */
+  .pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:28px;}
+  .pillar-card{
+    background:rgba(255,255,255,0.96);
+    border-radius:22px;
+    padding:34px 28px;
+    box-shadow:0 18px 45px rgba(0,0,0,0.28);
+    transition:transform .3s, box-shadow .3s;
+    border-top:5px solid var(--gold);
+  }
+  .pillar-card:hover{transform:translateY(-10px); box-shadow:0 26px 55px rgba(0,0,0,0.35);}
+  .pillar-icon{
+    width:60px;height:60px;border-radius:16px;
+    background:linear-gradient(135deg, var(--tangerine), var(--hotpink));
+    display:flex;align-items:center;justify-content:center;
+    margin-bottom:18px;
+  }
+  .pillar-icon svg{width:60%;height:60%;stroke:#fff;}
+  .pillar-card h3{font-size:1.25rem;font-weight:800;margin-bottom:10px;color:var(--ink);}
+  .pillar-card p{color:#4a3552;line-height:1.6;font-size:0.97rem;}
+
+  /* PODCAST */
+  .podcast-band{
+    background:linear-gradient(120deg, rgba(240,192,64,0.16), rgba(255,61,127,0.16));
+    border:2px solid rgba(240,192,64,0.5);
+    border-radius:28px;
+    padding:50px;
+    display:flex;flex-wrap:wrap;gap:40px;align-items:center;
+    color:#fff;
+  }
+  .podcast-mic{
+    width:120px;height:120px;flex-shrink:0;
+    border-radius:50%;
+    background:linear-gradient(145deg, var(--gold), var(--gold-deep));
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 0 50px rgba(240,192,64,0.55);
+  }
+  .podcast-mic svg{width:56%;height:56%;}
+  .podcast-band h3{font-size:1.7rem;font-weight:900;margin-bottom:10px;}
+  .podcast-band p{opacity:0.92;line-height:1.65;max-width:640px;}
+  .podcast-band a{color:var(--gold);font-weight:700;}
+
+  /* WHY WORK */
+  .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;}
+  .why-item{
+    text-align:center;color:#fff;
+    background:rgba(255,255,255,0.08);
+    border:1px solid rgba(255,255,255,0.25);
+    border-radius:20px;
+    padding:32px 20px;
+  }
+  .why-item .num{
+    font-size:2.2rem;font-weight:900;color:var(--gold);margin-bottom:10px;
+    display:block;
+  }
+  .why-item h4{font-weight:700;margin-bottom:8px;}
+  .why-item p{font-size:0.9rem;opacity:0.85;line-height:1.5;}
+
+  /* GALLERY STRIP */
+  .strip{display:flex;gap:18px;overflow-x:auto;padding-bottom:10px;}
+  .strip::-webkit-scrollbar{height:8px;}
+  .strip::-webkit-scrollbar-thumb{background:var(--gold); border-radius:8px;}
+  .strip-card{
+    flex:0 0 220px;height:280px;
+    border-radius:20px;
+    display:flex;align-items:flex-end;
+    padding:20px;
+    font-weight:800;color:#fff;
+    font-size:1.05rem;
+    box-shadow:0 16px 40px rgba(0,0,0,0.3);
+    position:relative;overflow:hidden;
+  }
+  .strip-card::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(to top, rgba(0,0,0,0.55), transparent 60%);
+  }
+  .strip-card span{position:relative;z-index:1;}
+  .sc1{background:linear-gradient(160deg,#FF9A3C,#FF3D7F);}
+  .sc2{background:linear-gradient(160deg,#7B2FF7,#FF3D7F);}
+  .sc3{background:linear-gradient(160deg,#F0C040,#FF6B4A);}
+  .sc4{background:linear-gradient(160deg,#2b1140,#7B2FF7);}
+  .sc5{background:linear-gradient(160deg,#FF6B4A,#F0C040);}
+
+  /* CONTACT / CTA */
+  .cta-section{
+    text-align:center;
+    background:linear-gradient(135deg, rgba(240,192,64,0.2), rgba(123,47,247,0.25));
+    border-radius:30px;
+    padding:70px 30px;
+    border:2px solid rgba(240,192,64,0.55);
+    color:#fff;
+  }
+  .cta-section h2{font-size:clamp(1.8rem,4vw,2.5rem);font-weight:900;margin-bottom:16px;}
+  .cta-section p{max-width:560px;margin:0 auto 34px;opacity:0.92;font-size:1.05rem;line-height:1.6;}
+  .cta-links{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;}
+
+  footer{
+    padding:40px 24px;
+    text-align:center;
+    color:rgba(255,255,255,0.75);
+    font-size:0.9rem;
+    border-top:1px solid rgba(255,255,255,0.15);
+  }
+  footer a{color:var(--gold);font-weight:700;}
+
+  /* FLOATING IG BUTTON */
+  .float-ig{
+    position:fixed;
+    bottom:26px;right:26px;
+    z-index:200;
+    width:64px;height:64px;
+    border-radius:50%;
+    background:linear-gradient(135deg, #FEDA75, #FA7E1E, #D62976, #962FBF, #4F5BD5);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 12px 30px rgba(0,0,0,0.4);
+    animation:pulse 2.4s ease-in-out infinite;
+  }
+  .float-ig svg{width:56%;height:56%;fill:#fff;}
+  @keyframes pulse{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.08);}
+  }
+
+  @media (max-width:640px){
+    .hero{padding:70px 0 60px;}
+    .navlinks a:not(.nav-cta){display:none;}
+    .podcast-band{padding:34px 24px;text-align:center;justify-content:center;}
+    .cta-row{justify-content:center;}
+    .hero-stats{justify-content:center;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="container">
+    <div class="logo">narang<span>om</span></div>
+    <div class="navlinks">
+      <a href="#about">About</a>
+      <a href="#work">Collab</a>
+      <a href="#podcast">Podcast</a>
+      <a href="#contact" class="nav-cta">Let's Talk</a>
+    </div>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-text">
+      <div class="eyebrow">✦ Digital Creator &amp; Hybrid Athlete</div>
+      <h1>Hi, I'm Naty —<br>creating <span class="accent">real experiences</span> through wellness, sport &amp; food</h1>
+      <p class="lead">Colombian-born, NYC-based creator building content that moves people — literally and emotionally. If you're a brand looking for authentic storytelling that actually converts, let's create something beautiful together.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://www.instagram.com/narangom/" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.65-.07-4.85s.02-3.58.07-4.85c.15-3.23 1.67-4.77 4.92-4.92 1.27-.06 1.65-.07 4.85-.07zM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.69.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zm0 10.16A4 4 0 1 1 16 12a4 4 0 0 1-4 4zm6.41-10.85a1.44 1.44 0 1 1-1.44-1.44 1.44 1.44 0 0 1 1.44 1.44z"/></svg>
+          Follow on Instagram
+        </a>
+        <a class="btn btn-outline" href="https://linktr.ee/narangom" target="_blank" rel="noopener">
+          🔗 All my links
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><b>31.6K</b><span>Followers</span></div>
+        <div class="stat"><b>1,565</b><span>Posts</span></div>
+        <div class="stat"><b>100%</b><span>Real content</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="orb-wrap">
+        <div class="orb-ring"></div>
+        <div class="orb-core">
+          <svg viewBox="0 0 100 100" fill="none">
+            <path d="M20 70 L35 40 L50 60 L65 25 L80 55" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="20" cy="70" r="5" fill="#fff"/>
+            <circle cx="80" cy="55" r="5" fill="#fff"/>
+          </svg>
+        </div>
+        <div class="float-badge badge1">🦾 Hybrid Athlete</div>
+        <div class="float-badge badge2">🎙️ El Arte de Caer</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-card reveal">
+        <h3>Wellness, sport &amp; food — with purpose</h3>
+        <p>I'm Naty Arango: digital creator, hybrid athlete, and host of <strong>El Arte de Caer</strong>. My content lives at the intersection of movement, nourishment and honest storytelling — the kind that makes people stop scrolling and actually feel something.</p>
+        <p>I work with brands who care about authenticity over perfection. UGC with purpose means every piece of content is built to connect first, convert second — and it works better because of it.</p>
+        <div class="pill-row">
+          <span class="pill">🥗 Food &amp; Nutrition</span>
+          <span class="pill">🏋️ Sport &amp; Training</span>
+          <span class="pill">🧘 Wellness</span>
+          <span class="pill">🎙️ Podcast Host</span>
+          <span class="pill">✨ UGC Creator</span>
+        </div>
+      </div>
+      <div class="about-photo reveal">
+        <div class="photo-frame">
+          <div class="photo-inner">
+            <svg viewBox="0 0 200 200" fill="none">
+              <circle cx="100" cy="70" r="35" stroke="#F0C040" stroke-width="5"/>
+              <path d="M50 180 Q100 110 150 180" stroke="#F0C040" stroke-width="5" fill="none"/>
+              <path d="M70 130 L60 160 M130 130 L140 160" stroke="#FF9A3C" stroke-width="5" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="section-head reveal">
+    <div class="eyebrow">✦ What I Bring to Your Brand</div>
+    <h2>Content built to perform, not just look good</h2>
+    <p>Every collaboration is crafted around your goals — awareness, engagement, or conversions — using formats my audience already trusts.</p>
+  </div>
+  <div class="container">
+    <div class="pillars">
+      <div class="pillar-card reveal">
+        <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4 12h16M4 6h16M4 18h16"/></svg></div>
+        <h3>UGC With Purpose</h3>
+        <p>Scroll-stopping, product-first video content designed for your paid and organic feeds — shot with intention, not just aesthetics.</p>
+      </div>
+      <div class="pillar-card reveal">
+        <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 2v20M4 8l8-6 8 6M4 16l8 6 8-6"/></svg></div>
+        <h3>Sport &amp; Training Collabs</h3>
+        <p>Hybrid-athlete training content, gear reviews, and real-progress storytelling that resonates with an active, motivated audience.</p>
+      </div>
+      <div class="pillar-card reveal">
+        <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M6 3v6a4 4 0 004 4M18 3v18M6 21V13"/></svg></div>
+        <h3>Food &amp; Wellness Features</h3>
+        <p>Recipes, reviews, and daily-life integrations for food, supplement and wellness brands that want to feel real, not staged.</p>
+      </div>
+      <div class="pillar-card reveal">
+        <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></svg></div>
+        <h3>Podcast Sponsorships</h3>
+        <p>Reach a loyal, engaged listener base through branded segments and mentions on El Arte de Caer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="podcast">
+  <div class="container">
+    <div class="podcast-band reveal">
+      <div class="podcast-mic">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#22112B" stroke-width="2"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0014 0M12 19v3M8 22h8"/></svg>
+      </div>
+      <div>
+        <h3>🎙️ El Arte de Caer</h3>
+        <p>Hosting <strong>El Arte de Caer</strong> — real conversations about falling, getting back up, and turning setbacks into strength. It's where my community goes deeper than the feed. Perfect space for brands who want meaningful, long-form connection with an engaged audience.</p>
+        <a href="https://www.instagram.com/narangom/" target="_blank" rel="noopener">Listen &amp; follow along on Instagram →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-head reveal">
+    <div class="eyebrow">✦ Why Brands Work With Me</div>
+    <h2>Numbers that back up the story</h2>
+  </div>
+  <div class="container">
+    <div class="why-grid">
+      <div class="why-item reveal">
+        <span class="num">31.6K</span>
+        <h4>Engaged Followers</h4>
+        <p>A community that watches, comments, and takes action.</p>
+      </div>
+      <div class="why-item reveal">
+        <span class="num">1,565+</span>
+        <h4>Pieces of Content</h4>
+        <p>A proven track record of consistent, quality storytelling.</p>
+      </div>
+      <div class="why-item reveal">
+        <span class="num">3</span>
+        <h4>Content Pillars</h4>
+        <p>Wellness, sport &amp; food — a niche audience brands love.</p>
+      </div>
+      <div class="why-item reveal">
+        <span class="num">1</span>
+        <h4>Podcast Platform</h4>
+        <p>El Arte de Caer extends reach beyond the feed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-head reveal">
+    <div class="eyebrow">✦ A Glimpse of the Content</div>
+    <h2>Wellness. Sport. Food. Real life.</h2>
+  </div>
+  <div class="container">
+    <div class="strip reveal">
+      <div class="strip-card sc1"><span>🏋️ Hybrid Training</span></div>
+      <div class="strip-card sc2"><span>🎙️ El Arte de Caer</span></div>
+      <div class="strip-card sc3"><span>🥗 Food &amp; Nutrition</span></div>
+      <div class="strip-card sc4"><span>🚴 Endurance &amp; Grit</span></div>
+      <div class="strip-card sc5"><span>✨ UGC With Purpose</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="cta-section reveal">
+      <h2>Let's create something beautiful ↓</h2>
+      <p>Looking for a creator who brings authenticity, athleticism, and heart to every collaboration? Let's talk about your next campaign.</p>
+      <div class="cta-links">
+        <a class="btn btn-primary" href="https://www.instagram.com/narangom/" target="_blank" rel="noopener">📸 Message on Instagram</a>
+        <a class="btn btn-outline" href="https://linktr.ee/narangom" target="_blank" rel="noopener">🔗 View Linktree</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Naty Arango — @narangom · Digital Creator &amp; Hybrid Athlete</p>
+  <p style="margin-top:8px;">
+    <a href="https://www.instagram.com/narangom/" target="_blank" rel="noopener">Instagram</a> ·
+    <a href="https://linktr.ee/narangom" target="_blank" rel="noopener">Linktree</a>
+  </p>
+</footer>
+
+<a class="float-ig" href="https://www.instagram.com/narangom/" target="_blank" rel="noopener" aria-label="Instagram">
+  <svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.65-.07-4.85s.02-3.58.07-4.85c.15-3.23 1.67-4.77 4.92-4.92 1.27-.06 1.65-.07 4.85-.07zM12 0C8.74 0 8.33.01 7.05.07 2.7.27.27 2.69.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zm0 10.16A4 4 0 1 1 16 12a4 4 0 0 1-4 4zm6.41-10.85a1.44 1.44 0 1 1-1.44-1.44 1.44 1.44 0 0 1 1.44 1.44z"/></svg>
+</a>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold:0.15});
+  revealEls.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
