@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vallejo Librería-Café — Libros, arte y café en San Isidro</title>
+<meta name="description" content="Vallejo Librería-Café: libros, arte y café de especialidad en Av. Camino Real 1119, San Isidro. Abierto todos los días.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#EFE6D3;
+    --paper-2:#E4D7BC;
+    --paper-3:#F7F1E4;
+    --ink:#2A2018;
+    --ink-soft:#4A3E30;
+    --forest:#3E4E3D;
+    --burgundy:#7C2F2C;
+    --burgundy-dark:#5E211F;
+    --gold:#A9812E;
+    --line: rgba(42,32,24,0.18);
+    --shadow: 0 18px 40px -20px rgba(42,32,24,0.35);
+    --radius: 3px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Serif 4', Georgia, serif;
+    font-size:17px;
+    line-height:1.6;
+    background-image:
+      radial-gradient(rgba(42,32,24,0.035) 1px, transparent 1px);
+    background-size: 4px 4px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  h1,h2,h3{
+    font-family:'Fraunces', Georgia, serif;
+    color:var(--ink);
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+
+  a{color:inherit;}
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--burgundy);
+    outline-offset:3px;
+  }
+
+  .wrap{max-width:1120px; margin:0 auto; padding:0 28px;}
+
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--burgundy);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px; height:1px; background:var(--burgundy);
+    display:inline-block;
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(239,230,211,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px;
+    max-width:1120px; margin:0 auto;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Fraunces', serif; font-weight:600; font-size:19px;
+    text-decoration:none;
+  }
+  .brand svg{flex-shrink:0;}
+  .nav-links{
+    display:flex; gap:28px; align-items:center;
+    font-family:'Space Mono', monospace; font-size:12.5px;
+    letter-spacing:0.06em; text-transform:uppercase;
+  }
+  .nav-links a{text-decoration:none; color:var(--ink-soft); padding:4px 0; border-bottom:1px solid transparent; transition:border-color .2s, color .2s;}
+  .nav-links a:hover{color:var(--burgundy); border-color:var(--burgundy);}
+  .nav-cta{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--burgundy); color:var(--paper-3);
+    font-family:'Space Mono', monospace; font-size:12px; letter-spacing:0.06em; text-transform:uppercase;
+    padding:9px 16px; border-radius:var(--radius); text-decoration:none;
+    transition:background .2s, transform .2s;
+  }
+  .nav-cta:hover{background:var(--burgundy-dark); transform:translateY(-1px);}
+  .nav-mobile-hide{display:none;}
+  @media(min-width:820px){.nav-mobile-hide{display:flex;}}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:64px 0 40px;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns: 1.1fr 0.9fr; gap:56px; align-items:center;
+  }
+  @media(max-width:900px){ .hero-grid{grid-template-columns:1fr; gap:40px;} }
+
+  .hero h1{
+    font-size:clamp(34px, 5.4vw, 58px);
+    line-height:1.05;
+    margin:18px 0 20px;
+  }
+  .hero h1 em{
+    font-style:italic; color:var(--burgundy); font-weight:500;
+  }
+  .hero p.lede{
+    font-size:18px; color:var(--ink-soft); max-width:46ch; margin-bottom:30px;
+  }
+  .cta-row{display:flex; flex-wrap:wrap; gap:14px; margin-bottom:10px;}
+  .btn{
+    display:inline-flex; align-items:center; gap:9px;
+    padding:14px 24px;
+    border-radius:var(--radius);
+    text-decoration:none;
+    font-family:'Space Mono', monospace;
+    font-size:13px; letter-spacing:0.05em; text-transform:uppercase;
+    border:1px solid transparent;
+    transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+    cursor:pointer;
+  }
+  .btn-primary{background:var(--burgundy); color:var(--paper-3); box-shadow:var(--shadow);}
+  .btn-primary:hover{transform:translateY(-2px); background:var(--burgundy-dark);}
+  .btn-secondary{background:transparent; border-color:var(--ink); color:var(--ink);}
+  .btn-secondary:hover{transform:translateY(-2px); background:var(--ink); color:var(--paper-3);}
+  .micro-note{font-family:'Space Mono',monospace; font-size:12px; color:var(--ink-soft); opacity:0.75; margin-top:6px;}
+
+  /* Library card visual */
+  .card-visual{
+    position:relative;
+    background:var(--paper-3);
+    border:1px solid var(--line);
+    box-shadow:var(--shadow);
+    border-radius:var(--radius);
+    padding:26px 26px 22px;
+    transform:rotate(2deg);
+    max-width:400px;
+    margin:0 auto;
+  }
+  .card-visual::before{
+    content:"";
+    position:absolute; inset:8px;
+    border:1px dashed var(--line);
+    pointer-events:none;
+  }
+  .card-visual .card-head{
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-family:'Space Mono',monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--ink-soft); border-bottom:1px solid var(--line); padding-bottom:10px; margin-bottom:14px;
+  }
+  .card-visual h3{font-size:22px; margin-bottom:4px;}
+  .card-visual .addr{font-family:'Space Mono',monospace; font-size:12.5px; color:var(--ink-soft); margin-bottom:16px;}
+  .stamp{
+    position:absolute; top:-18px; right:-14px;
+    width:104px; height:104px;
+    border:3px solid var(--forest);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    text-align:center;
+    color:var(--forest);
+    font-family:'Space Mono', monospace;
+    font-size:11px; font-weight:700; letter-spacing:0.06em; text-transform:uppercase;
+    transform:rotate(-14deg);
+    background:rgba(239,230,211,0.7);
+    animation:stampIn .6s cubic-bezier(.2,1.4,.4,1) .3s both;
+  }
+  .stamp span{display:block;}
+  .stamp .big{font-size:15px; margin:2px 0;}
+  @keyframes stampIn{
+    0%{opacity:0; transform:rotate(-14deg) scale(1.8);}
+    100%{opacity:1; transform:rotate(-14deg) scale(1);}
+  }
+
+  .hours-mini{font-family:'Space Mono',monospace; font-size:12.5px; line-height:2; color:var(--ink);}
+  .hours-mini .d{color:var(--ink-soft); display:inline-block; width:118px;}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:76px 0;}
+  .divider{
+    height:1px; background:var(--line); max-width:1120px; margin:0 auto;
+  }
+  .section-head{max-width:640px; margin-bottom:44px;}
+  .section-head h2{font-size:clamp(26px,3.4vw,36px); margin-top:14px;}
+  .section-head p{color:var(--ink-soft); margin-top:12px; font-size:16.5px;}
+
+  /* About */
+  .about{background:var(--paper-2);}
+  .about-grid{display:grid; grid-template-columns: 1fr 1fr; gap:56px; align-items:start;}
+  @media(max-width:860px){.about-grid{grid-template-columns:1fr;}}
+  .about-text p{color:var(--ink-soft); margin:0 0 16px;}
+  .about-text p:first-child{color:var(--ink); font-size:19px; font-family:'Fraunces',serif; font-weight:500;}
+
+  .icon-list{display:flex; flex-direction:column; gap:22px;}
+  .icon-item{display:flex; gap:16px; align-items:flex-start;}
+  .icon-item .icon-box{
+    flex-shrink:0; width:44px; height:44px; border-radius:50%;
+    background:var(--paper-3); border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .icon-item h4{margin:0 0 4px; font-family:'Fraunces',serif; font-size:16.5px; font-weight:600;}
+  .icon-item p{margin:0; color:var(--ink-soft); font-size:15px;}
+
+  /* Offer cards */
+  .cards{display:grid; grid-template-columns:repeat(3,1fr); gap:26px;}
+  @media(max-width:860px){.cards{grid-template-columns:1fr;}}
+  .offer-card{
+    background:var(--paper-3);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:30px 26px;
+    position:relative;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .offer-card:hover{transform:translateY(-6px); box-shadow:var(--shadow);}
+  .offer-card .tag{
+    font-family:'Space Mono',monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--gold); margin-bottom:16px; display:block;
+  }
+  .offer-card h3{font-size:21px; margin-bottom:10px;}
+  .offer-card p{color:var(--ink-soft); font-size:15px; margin:0;}
+  .offer-card .num{
+    position:absolute; top:24px; right:26px;
+    font-family:'Space Mono',monospace; font-size:12px; color:var(--line); color:var(--ink-soft); opacity:.4;
+  }
+
+  /* Location / hours */
+  .location{background:var(--ink); color:var(--paper-3);}
+  .location .section-head p{color:rgba(247,241,228,0.7);}
+  .location .eyebrow{color:var(--gold);}
+  .location-grid{display:grid; grid-template-columns:1fr 1fr; gap:56px;}
+  @media(max-width:860px){.location-grid{grid-template-columns:1fr;}}
+
+  .ticket{
+    background:var(--paper-3); color:var(--ink);
+    border-radius:var(--radius);
+    padding:0;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+  }
+  .ticket-top{
+    padding:22px 26px 18px;
+    border-bottom:1px dashed var(--line);
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .ticket-top .lib{font-family:'Fraunces',serif; font-weight:600; font-size:17px;}
+  .ticket-top .code{font-family:'Space Mono',monospace; font-size:11px; color:var(--ink-soft);}
+  .ticket-rows{padding:14px 26px 22px;}
+  .ticket-row{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:11px 0; border-bottom:1px solid var(--line);
+    font-family:'Space Mono', monospace; font-size:13.5px;
+  }
+  .ticket-row:last-child{border-bottom:none;}
+  .ticket-row .day{color:var(--ink-soft);}
+  .ticket-row .time{font-weight:700;}
+  .ticket-row.today .day, .ticket-row.today .time{color:var(--burgundy);}
+
+  .addr-block{margin-top:28px;}
+  .addr-block .label{font-family:'Space Mono',monospace; font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:var(--gold); margin-bottom:10px;}
+  .addr-block .street{font-family:'Fraunces',serif; font-size:22px; font-weight:500; margin-bottom:18px;}
+  .addr-btns{display:flex; flex-wrap:wrap; gap:12px;}
+
+  /* Community / social proof */
+  .community{background:var(--paper);}
+  .stamps-row{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
+  @media(max-width:860px){.stamps-row{grid-template-columns:repeat(2,1fr);}}
+  .social-stamp{
+    border:2px solid var(--forest);
+    border-radius:var(--radius);
+    padding:24px 18px;
+    text-align:center;
+    background:var(--paper-3);
+    position:relative;
+  }
+  .social-stamp .n{
+    font-family:'Fraunces',serif; font-weight:700; font-size:32px; color:var(--forest);
+    display:block;
+  }
+  .social-stamp .l{
+    font-family:'Space Mono',monospace; font-size:11.5px; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-soft);
+    display:block; margin-top:6px;
+  }
+  .social-links{display:flex; gap:16px; flex-wrap:wrap; margin-top:36px;}
+  .pill{
+    display:inline-flex; align-items:center; gap:9px;
+    border:1px solid var(--ink); border-radius:999px;
+    padding:11px 20px;
+    font-family:'Space Mono',monospace; font-size:12.5px; text-transform:uppercase; letter-spacing:0.05em;
+    text-decoration:none; color:var(--ink);
+    transition:background .2s, color .2s;
+  }
+  .pill:hover{background:var(--ink); color:var(--paper-3);}
+
+  /* Final CTA */
+  .final-cta{
+    background: var(--burgundy);
+    color:var(--paper-3);
+    text-align:center;
+    padding:88px 0;
+    position:relative;
+    overflow:hidden;
+  }
+  .final-cta h2{color:var(--paper-3); font-size:clamp(30px,4.4vw,46px); max-width:16ch; margin:0 auto 18px;}
+  .final-cta p{color:rgba(247,241,228,0.82); max-width:50ch; margin:0 auto 34px; font-size:17px;}
+  .final-cta .cta-row{justify-content:center;}
+  .final-cta .btn-primary{background:var(--paper-3); color:var(--burgundy-dark);}
+  .final-cta .btn-primary:hover{background:#fff;}
+  .final-cta .btn-secondary{border-color:var(--paper-3); color:var(--paper-3);}
+  .final-cta .btn-secondary:hover{background:var(--paper-3); color:var(--burgundy-dark);}
+
+  footer{
+    background:var(--ink); color:rgba(247,241,228,0.65);
+    padding:40px 0 30px;
+    font-family:'Space Mono',monospace; font-size:12.5px;
+  }
+  .foot-grid{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:20px;}
+  .foot-grid .brand-foot{color:var(--paper-3); font-family:'Fraunces',serif; font-size:16px; margin-bottom:8px;}
+  footer a{color:rgba(247,241,228,0.65); text-decoration:none;}
+  footer a:hover{color:var(--gold);}
+  .foot-links{display:flex; gap:18px; flex-wrap:wrap;}
+  .foot-bottom{margin-top:30px; padding-top:20px; border-top:1px solid rgba(247,241,228,0.12); opacity:0.6;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <a class="brand" href="#top">
+      <svg width="30" height="30" viewBox="0 0 30 30" fill="none">
+        <rect x="4" y="4" width="22" height="22" stroke="#2A2018" stroke-width="1.4"/>
+        <line x1="15" y1="4" x2="15" y2="26" stroke="#7C2F2C" stroke-width="1.4"/>
+        <path d="M8 10c1.5-1 3.5-1 5 0" stroke="#2A2018" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+      Vallejo Librería-Café
+    </a>
+    <nav class="nav-links nav-mobile-hide">
+      <a href="#sobre">Sobre nosotros</a>
+      <a href="#experiencia">Experiencia</a>
+      <a href="#ubicacion">Ubicación</a>
+      <a href="#comunidad">Comunidad</a>
+    </nav>
+    <a class="nav-cta" href="https://www.google.com/maps/search/?api=1&query=Av.+Camino+Real+1119,+San+Isidro,+Lima,+Peru" target="_blank" rel="noopener">Cómo llegar</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">San Isidro · Av. Camino Real 1119</div>
+        <h1>Donde el café se sirve<br>con un buen <em>libro</em> al lado.</h1>
+        <p class="lede">Vallejo Librería-Café es el rincón de San Isidro para perderte entre libros, sentarte con un café de especialidad y descubrir arte local en cada visita.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&query=Av.+Camino+Real+1119,+San+Isidro,+Lima,+Peru" target="_blank" rel="noopener">📍 Cómo llegar</a>
+          <a class="btn btn-secondary" href="https://www.instagram.com/vallejolibreriacafe/" target="_blank" rel="noopener">Síguenos en Instagram</a>
+        </div>
+        <p class="micro-note">Lunes a sábado 8 a.m.–10 p.m. · Domingo 8 a.m.–9 p.m.</p>
+      </div>
+
+      <div class="card-visual">
+        <div class="stamp"><span>ABIERTO</span><span class="big">HOY</span><span>8 AM–10 PM</span></div>
+        <div class="card-head"><span>Ficha de visita</span><span>N° 1119</span></div>
+        <h3>Vallejo Librería-Café</h3>
+        <div class="addr">Av. Camino Real 1119, San Isidro</div>
+        <div class="hours-mini">
+          <div><span class="d">Lun – Sáb</span>8:00 a.m. – 10:00 p.m.</div>
+          <div><span class="d">Domingo</span>8:00 a.m. – 9:00 p.m.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- SOBRE NOSOTROS -->
+  <section class="about" id="sobre">
+    <div class="wrap">
+      <div class="about-grid">
+        <div>
+          <div class="eyebrow">Sobre nosotros</div>
+          <div class="section-head" style="margin-top:14px;">
+            <h2>Libros, arte y café bajo un mismo techo</h2>
+          </div>
+          <div class="about-text">
+            <p>No somos solo una librería ni solo una cafetería: somos los dos a la vez, y un poco de galería también.</p>
+            <p>En Vallejo creemos que un buen libro se disfruta mejor con una buena taza de café cerca, y que el arte no debería quedarse encerrado en museos: por eso nuestras paredes cambian, y siempre hay algo nuevo que mirar mientras hojeas un título nuevo.</p>
+            <p>Es un espacio para leer, trabajar, conversar o simplemente hacer una pausa en medio de San Isidro.</p>
+          </div>
+        </div>
+
+        <div class="icon-list">
+          <div class="icon-item">
+            <div class="icon-box">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 5c3-1.5 6-1.5 8 0v14c-2-1.5-5-1.5-8 0V5Z" stroke="#7C2F2C" stroke-width="1.4"/><path d="M20 5c-3-1.5-6-1.5-8 0v14c2-1.5 5-1.5 8 0V5Z" stroke="#7C2F2C" stroke-width="1.4"/></svg>
+            </div>
+            <div><h4>Libros para todo lector</h4><p>Selección curada de literatura, arte e ilustración, con recomendaciones renovadas cada semana.</p></div>
+          </div>
+          <div class="icon-item">
+            <div class="icon-box">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 3v10a5 5 0 0 0 5 5h1a5 5 0 0 0 5-5V3" stroke="#3E4E3D" stroke-width="1.4"/><path d="M15 6h3a2 2 0 0 1 2 2v1a3 3 0 0 1-3 3h-2" stroke="#3E4E3D" stroke-width="1.4"/><line x1="4" y1="21" x2="14" y2="21" stroke="#3E4E3D" stroke-width="1.4"/></svg>
+            </div>
+            <div><h4>Café de especialidad</h4><p>Barra de café pensada para acompañar horas de lectura, trabajo o buena conversación.</p></div>
+          </div>
+          <div class="icon-item">
+            <div class="icon-box">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="#A9812E" stroke-width="1.4"/><circle cx="9" cy="10" r="1.2" fill="#A9812E"/><circle cx="14" cy="9" r="1.2" fill="#A9812E"/><circle cx="15" cy="14" r="1.2" fill="#A9812E"/></svg>
+            </div>
+            <div><h4>Arte en las paredes</h4><p>Exhibiciones y colaboraciones con artistas locales que renuevan el espacio constantemente.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCIA -->
+  <section id="experiencia">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Qué encontrarás</div>
+        <h2>Una visita, tres razones para quedarte</h2>
+        <p>Cada rincón de Vallejo está pensado para que puedas leer, tomar algo rico y descubrir algo nuevo, todo en la misma tarde.</p>
+      </div>
+
+      <div class="cards">
+        <div class="offer-card">
+          <span class="num">01</span>
+          <span class="tag">Librería</span>
+          <h3>Encuentra tu próxima lectura</h3>
+          <p>Novedades, clásicos y joyas de fondo editorial, organizados para que explorar sea parte del plan.</p>
+        </div>
+        <div class="offer-card">
+          <span class="num">02</span>
+          <span class="tag">Café</span>
+          <h3>Una pausa con buena taza</h3>
+          <p>Café e infusiones para acompañar una tarde de lectura, una reunión o un rato con amigos.</p>
+        </div>
+        <div class="offer-card">
+          <span class="num">03</span>
+          <span class="tag">Arte</span>
+          <h3>Exposiciones que cambian</h3>
+          <p>Colaboraciones con artistas e ilustradores que convierten cada visita en una experiencia distinta.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- UBICACIÓN -->
+  <section class="location" id="ubicacion">
+    <div class="wrap">
+      <div class="location-grid">
+        <div>
+          <div class="eyebrow">Horario y ubicación</div>
+          <div class="section-head" style="margin-top:14px;">
+            <h2>Te esperamos en San Isidro</h2>
+          </div>
+          <div class="addr-block">
+            <div class="label">Dirección</div>
+            <div class="street">Av. Camino Real 1119, San Isidro</div>
+            <div class="addr-btns">
+              <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&query=Av.+Camino+Real+1119,+San+Isidro,+Lima,+Peru" target="_blank" rel="noopener">📍 Ver en el mapa</a>
+              <a class="btn btn-secondary" href="https://wa.me/51965350240" target="_blank" rel="noopener">💬 Escribir por WhatsApp</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="ticket">
+          <div class="ticket-top">
+            <span class="lib">Horario de atención</span>
+            <span class="code">FICHA 03</span>
+          </div>
+          <div class="ticket-rows">
+            <div class="ticket-row"><span class="day">Lunes</span><span class="time">8:00 a.m. – 10:00 p.m.</span></div>
+            <div class="ticket-row"><span class="day">Martes</span><span class="time">8:00 a.m. – 10:00 p.m.</span></div>
+            <div class="ticket-row"><span class="day">Miércoles</span><span class="time">8:00 a.m. – 10:00 p.m.</span></div>
+            <div class="ticket-row"><span class="day">Jueves</span><span class="time">8:00 a.m. – 10:00 p.m.</span></div>
+            <div class="ticket-row"><span class="day">Viernes</span><span class="time">8:00 a.m. – 10:00 p.m.</span></div>
+            <div class="ticket-row"><span class="day">Sábado</span><span class="time">8:00 a.m. – 10:00 p.m.</span></div>
+            <div class="ticket-row"><span class="day">Domingo</span><span class="time">8:00 a.m. – 9:00 p.m.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMUNIDAD -->
+  <section class="community" id="comunidad">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Comunidad</div>
+        <h2>Una comunidad que sigue creciendo</h2>
+        <p>Miles de personas ya son parte del rincón de lectura, arte y café favorito de San Isidro.</p>
+      </div>
+
+      <div class="stamps-row">
+        <div class="social-stamp"><span class="n">30K+</span><span class="l">Seguidores en Instagram</span></div>
+        <div class="social-stamp"><span class="n">2.8K+</span><span class="l">Publicaciones compartidas</span></div>
+        <div class="social-stamp"><span class="n">20K+</span><span class="l">Seguidores en TikTok</span></div>
+        <div class="social-stamp"><span class="n">11K+</span><span class="l">Me gusta en Facebook</span></div>
+      </div>
+
+      <div class="social-links">
+        <a class="pill" href="https://www.instagram.com/vallejolibreriacafe/" target="_blank" rel="noopener">Instagram →</a>
+        <a class="pill" href="https://linktr.ee/vallejolibreria" target="_blank" rel="noopener">Todos nuestros enlaces (Linktree) →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="final-cta">
+    <div class="wrap">
+      <div class="eyebrow" style="justify-content:center; color:rgba(247,241,228,0.85);"><span style="border-color:rgba(247,241,228,0.85)"></span>Te esperamos</div>
+      <h2>Tu próxima buena tarde empieza con una visita a Vallejo.</h2>
+      <p>Ven por un libro, quédate por el café, vuelve por el arte. Abierto todos los días en Camino Real, San Isidro.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&query=Av.+Camino+Real+1119,+San+Isidro,+Lima,+Peru" target="_blank" rel="noopener">📍 Cómo llegar</a>
+        <a class="btn btn-secondary" href="https://www.instagram.com/vallejolibreriacafe/" target="_blank" rel="noopener">Síguenos en Instagram</a>
+        <a class="btn btn-secondary" href="https://linktr.ee/vallejolibreria" target="_blank" rel="noopener">Ver Linktree</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="brand-foot">Vallejo Librería-Café</div>
+        <div>Av. Camino Real 1119, San Isidro, Lima</div>
+        <div>Lun–Sáb 8 a.m.–10 p.m. · Dom 8 a.m.–9 p.m.</div>
+      </div>
+      <div class="foot-links">
+        <a href="https://www.instagram.com/vallejolibreriacafe/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://linktr.ee/vallejolibreria" target="_blank" rel="noopener">Linktree</a>
+        <a href="https://wa.me/51965350240" target="_blank" rel="noopener">WhatsApp</a>
+        <a href="https://www.google.com/maps/search/?api=1&query=Av.+Camino+Real+1119,+San+Isidro,+Lima,+Peru" target="_blank" rel="noopener">Mapa</a>
+      </div>
+    </div>
+    <div class="foot-bottom">© 2026 Vallejo Librería-Café · San Isidro, Lima, Perú</div>
+  </div>
+</footer>
+
+</body>
+</html>
