@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ignacia Alarcón — Fotografía & Videografía de Bodas | Sevilla & el mundo</title>
+<meta name="description" content="Fotografía y videografía de bodas con mirada documental. Basada en Sevilla, disponible en cualquier parte del mundo. Agenda 2027 abierta.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F1E9DA;
+    --paper-2:#E9DEC9;
+    --ink:#2A241D;
+    --ink-soft:#5C5346;
+    --azulejo:#2E5266;
+    --azulejo-deep:#1E3A47;
+    --gold:#B8863C;
+    --wine:#7A3030;
+    --line:rgba(42,36,29,0.14);
+    --radius:2px;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Manrope',sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    overflow-x:hidden;
+    background-image:
+      radial-gradient(circle at 1px 1px, rgba(42,36,29,0.05) 1px, transparent 0);
+    background-size:22px 22px;
+  }
+
+  h1,h2,h3,h4{
+    font-family:'Cormorant Garamond',serif;
+    font-weight:500;
+    color:var(--ink);
+    letter-spacing:0.01em;
+  }
+
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .container{max-width:1180px;margin:0 auto;padding:0 32px;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity 0.9s ease, transform 0.9s cubic-bezier(.2,.7,.2,1);}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  .reveal-delay-1{transition-delay:0.12s;}
+  .reveal-delay-2{transition-delay:0.24s;}
+  .reveal-delay-3{transition-delay:0.36s;}
+
+  /* ---------- eyebrow ---------- */
+  .eyebrow{
+    font-family:'Manrope',sans-serif;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--azulejo-deep);
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;height:1px;
+    background:var(--gold);
+    display:inline-block;
+  }
+
+  /* ---------- header ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(241,233,218,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1180px; margin:0 auto; padding:18px 32px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{
+    font-family:'Cormorant Garamond',serif;
+    font-size:22px; font-weight:600; letter-spacing:0.04em;
+  }
+  .brand span{color:var(--wine); font-style:italic; font-weight:500;}
+  nav ul{display:flex; gap:34px; list-style:none;}
+  nav a{
+    font-size:13px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--ink); position:relative; padding-bottom:4px;
+  }
+  nav a::after{
+    content:""; position:absolute; left:0; bottom:0; width:0; height:1px;
+    background:var(--gold); transition:width 0.3s ease;
+  }
+  nav a:hover::after{width:100%;}
+  .nav-cta{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--azulejo-deep); color:var(--paper);
+    padding:11px 20px; font-size:12px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase;
+    border-radius:var(--radius);
+    transition:background 0.25s ease, transform 0.25s ease;
+  }
+  .nav-cta:hover{background:var(--wine); transform:translateY(-1px);}
+  .burger{display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:6px;}
+  .burger span{width:24px; height:2px; background:var(--ink); display:block; transition:0.3s;}
+  .mobile-menu{
+    display:none; position:fixed; inset:0; z-index:99;
+    background:var(--paper); padding:100px 32px 40px;
+    flex-direction:column; gap:0;
+  }
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{
+    font-family:'Cormorant Garamond',serif; font-size:32px; padding:16px 0;
+    border-bottom:1px solid var(--line); color:var(--ink);
+  }
+  .mobile-menu .nav-cta{margin-top:28px; justify-content:center; text-align:center;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    min-height:100svh;
+    display:flex; align-items:center;
+    position:relative;
+    padding:130px 0 80px;
+    overflow:hidden;
+  }
+  .hero-tile-grid{
+    position:absolute; inset:0; z-index:0;
+    opacity:0.5;
+  }
+  .hero-inner{
+    position:relative; z-index:2;
+    max-width:1180px; margin:0 auto; padding:0 32px;
+    display:grid; grid-template-columns:1.15fr 0.85fr; gap:60px; align-items:center;
+  }
+  .hero-badge{
+    display:inline-flex; align-items:center; gap:10px;
+    background:var(--paper); border:1px solid var(--gold);
+    padding:8px 16px; border-radius:999px;
+    font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--wine); margin-bottom:28px;
+  }
+  .hero-badge .dot{
+    width:7px; height:7px; border-radius:50%; background:var(--wine);
+    animation:pulse-dot 2s ease-in-out infinite;
+  }
+  @keyframes pulse-dot{
+    0%,100%{opacity:1; transform:scale(1);}
+    50%{opacity:0.4; transform:scale(0.8);}
+  }
+  .hero h1{
+    font-size:clamp(52px, 7.2vw, 96px);
+    line-height:0.98;
+    font-weight:500;
+    margin-bottom:8px;
+  }
+  .hero h1 em{
+    font-style:italic; font-weight:400; color:var(--azulejo-deep);
+  }
+  .hero-sub{
+    font-size:19px; color:var(--ink-soft); max-width:480px; margin:24px 0 36px;
+    font-weight:400;
+  }
+  .hero-meta{
+    display:flex; gap:28px; flex-wrap:wrap; margin-bottom:40px;
+    font-size:13px; font-weight:600; letter-spacing:0.04em; color:var(--ink-soft);
+  }
+  .hero-meta strong{color:var(--ink); font-weight:700;}
+  .hero-ctas{display:flex; gap:16px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:16px 30px; font-size:13px; font-weight:700; letter-spacing:0.09em; text-transform:uppercase;
+    border-radius:var(--radius); transition:transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+    border:1px solid transparent;
+  }
+  .btn-primary{background:var(--azulejo-deep); color:var(--paper);}
+  .btn-primary:hover{background:var(--wine); transform:translateY(-2px); box-shadow:0 10px 24px rgba(30,58,71,0.25);}
+  .btn-outline{border-color:var(--ink); color:var(--ink);}
+  .btn-outline:hover{background:var(--ink); color:var(--paper); transform:translateY(-2px);}
+
+  .hero-visual{
+    position:relative;
+    aspect-ratio:3/4;
+    display:flex; align-items:center; justify-content:center;
+  }
+
+  /* ---------- section shell ---------- */
+  section{padding:120px 0; position:relative;}
+  .section-head{max-width:640px; margin-bottom:64px;}
+  .section-head h2{font-size:clamp(36px, 4.4vw, 54px); margin-top:18px; line-height:1.08;}
+  .section-head p{color:var(--ink-soft); font-size:17px; margin-top:20px; max-width:520px;}
+
+  hr.divider{
+    border:none; height:1px; background:var(--line); margin:0;
+  }
+
+  /* ---------- sobre mi ---------- */
+  .about{background:var(--paper-2);}
+  .about-grid{
+    display:grid; grid-template-columns:0.9fr 1.1fr; gap:70px; align-items:center;
+  }
+  .about-frame{
+    aspect-ratio:4/5;
+    background:var(--ink);
+    position:relative;
+    border-radius:var(--radius);
+    overflow:hidden;
+  }
+  .about-quote{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic; font-size:clamp(24px,2.6vw,32px);
+    line-height:1.4; color:var(--ink); margin-bottom:26px;
+  }
+  .about p.body-text{color:var(--ink-soft); font-size:16px; margin-bottom:16px;}
+  .about-sign{
+    margin-top:32px; font-family:'Cormorant Garamond',serif; font-style:italic;
+    font-size:22px; color:var(--wine);
+  }
+
+  /* ---------- servicios ---------- */
+  .services-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:2px;
+    background:var(--line); border:1px solid var(--line);
+  }
+  .service-card{
+    background:var(--paper); padding:52px 44px; position:relative;
+    transition:background 0.4s ease;
+  }
+  .service-card:hover{background:var(--paper-2);}
+  .service-num{
+    font-family:'Cormorant Garamond',serif; font-style:italic; font-size:15px;
+    color:var(--gold); margin-bottom:18px; display:block;
+  }
+  .service-card h3{font-size:32px; margin-bottom:16px;}
+  .service-card p{color:var(--ink-soft); font-size:15px; margin-bottom:20px;}
+  .service-list{list-style:none; font-size:14px; color:var(--ink-soft);}
+  .service-list li{padding:6px 0; border-top:1px dashed var(--line); display:flex; gap:10px;}
+  .service-list li:first-child{border-top:none;}
+  .service-list li::before{content:"—"; color:var(--gold);}
+
+  /* ---------- azulejo divider ---------- */
+  .tile-divider{
+    height:64px; width:100%;
+    display:flex;
+  }
+  .tile-divider svg{width:100%; height:100%; display:block;}
+
+  /* ---------- urgencia agenda ---------- */
+  .agenda{
+    background:var(--azulejo-deep); color:var(--paper);
+  }
+  .agenda .eyebrow{color:var(--gold);}
+  .agenda .eyebrow::before{background:var(--paper);}
+  .agenda-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:70px; align-items:start;}
+  .agenda h2{color:var(--paper); font-size:clamp(34px,4vw,50px);}
+  .agenda p.lede{color:rgba(241,233,218,0.75); font-size:17px; margin-top:20px; max-width:480px;}
+  .agenda-stats{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:rgba(241,233,218,0.18); margin-top:44px; border:1px solid rgba(241,233,218,0.18);}
+  .stat{padding:26px 28px; background:var(--azulejo-deep);}
+  .stat .n{font-family:'Cormorant Garamond',serif; font-size:44px; color:var(--gold); line-height:1;}
+  .stat .l{font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:rgba(241,233,218,0.7); margin-top:8px;}
+  .agenda-card{
+    background:rgba(241,233,218,0.06); border:1px solid rgba(241,233,218,0.18);
+    padding:40px; border-radius:var(--radius);
+  }
+  .agenda-card h3{color:var(--paper); font-size:26px; margin-bottom:16px;}
+  .agenda-card p{color:rgba(241,233,218,0.75); font-size:15px; margin-bottom:28px;}
+
+  /* ---------- proceso ---------- */
+  .process-list{display:grid; grid-template-columns:1fr; gap:0;}
+  .process-item{
+    display:grid; grid-template-columns:90px 1fr; gap:32px;
+    padding:34px 0; border-top:1px solid var(--line);
+    align-items:start;
+  }
+  .process-item:last-child{border-bottom:1px solid var(--line);}
+  .process-item .pnum{
+    font-family:'Cormorant Garamond',serif; font-style:italic; font-size:40px; color:var(--gold);
+  }
+  .process-item h4{font-size:24px; margin-bottom:8px;}
+  .process-item p{color:var(--ink-soft); font-size:15px; max-width:520px;}
+
+  /* ---------- cobertura ---------- */
+  .coverage{background:var(--paper-2);}
+  .coverage-grid{display:grid; grid-template-columns:1fr 1fr; gap:70px; align-items:center;}
+  .coverage-map{
+    aspect-ratio:1/1; position:relative;
+  }
+  .coverage-tags{display:flex; flex-wrap:wrap; gap:10px; margin-top:28px;}
+  .tag{
+    border:1px solid var(--ink); padding:8px 16px; font-size:12px; font-weight:700;
+    letter-spacing:0.06em; text-transform:uppercase; border-radius:999px;
+  }
+
+  /* ---------- contacto ---------- */
+  .contact{background:var(--ink); color:var(--paper);}
+  .contact .eyebrow{color:var(--gold);}
+  .contact .eyebrow::before{background:var(--paper);}
+  .contact h2{color:var(--paper);}
+  .contact-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:70px; align-items:end;}
+  .contact-lede{color:rgba(241,233,218,0.7); font-size:18px; max-width:460px; margin-top:20px;}
+  .contact-links{display:flex; flex-direction:column; gap:0; margin-top:20px;}
+  .contact-link{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 0; border-top:1px solid rgba(241,233,218,0.18);
+    font-size:19px; font-family:'Cormorant Garamond',serif;
+    transition:padding-left 0.3s ease, color 0.3s ease;
+  }
+  .contact-link:last-child{border-bottom:1px solid rgba(241,233,218,0.18);}
+  .contact-link:hover{padding-left:10px; color:var(--gold);}
+  .contact-link .arrow{font-family:'Manrope',sans-serif; font-size:14px;}
+
+  footer{
+    background:var(--ink); color:rgba(241,233,218,0.5);
+    padding:28px 0; border-top:1px solid rgba(241,233,218,0.12);
+    font-size:12px; letter-spacing:0.04em;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+  footer a{color:rgba(241,233,218,0.8);}
+
+  /* ---------- floating whatsapp ---------- */
+  .fab-wa{
+    position:fixed; bottom:26px; right:26px; z-index:200;
+    width:60px; height:60px; border-radius:50%;
+    background:#25D366; display:flex; align-items:center; justify-content:center;
+    box-shadow:0 10px 26px rgba(0,0,0,0.28);
+    transition:transform 0.3s ease;
+  }
+  .fab-wa:hover{transform:scale(1.08);}
+  .fab-wa svg{width:28px; height:28px;}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:920px){
+    nav ul, .nav-cta{display:none;}
+    .burger{display:flex;}
+    .hero-inner{grid-template-columns:1fr; gap:44px;}
+    .hero-visual{order:-1; max-width:280px; margin:0 auto;}
+    .about-grid, .services-grid, .agenda-grid, .coverage-grid, .contact-grid{grid-template-columns:1fr;}
+    .services-grid{grid-template-columns:1fr;}
+    section{padding:80px 0;}
+    .agenda-stats{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:520px){
+    .container{padding:0 22px;}
+    .hero{padding:120px 0 60px;}
+    .hero-meta{gap:18px;}
+    .btn{padding:14px 22px; font-size:12px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <div class="brand">Ignacia<span>fotoss</span></div>
+    <nav>
+      <ul>
+        <li><a href="#sobre-mi">Sobre mí</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#agenda">Agenda 2027</a></li>
+        <li><a href="#cobertura">Cobertura</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+    <a class="nav-cta" href="https://wa.me/34654668895?text=Hola%20Ignacia%2C%20quiero%20consultar%20disponibilidad%20para%20mi%20boda" target="_blank" rel="noopener">Consultar fecha</a>
+    <button class="burger" id="burgerBtn" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#sobre-mi">Sobre mí</a>
+  <a href="#servicios">Servicios</a>
+  <a href="#agenda">Agenda 2027</a>
+  <a href="#cobertura">Cobertura</a>
+  <a href="#contacto">Contacto</a>
+  <a class="nav-cta" href="https://wa.me/34654668895?text=Hola%20Ignacia%2C%20quiero%20consultar%20disponibilidad%20para%20mi%20boda" target="_blank" rel="noopener">Consultar por WhatsApp</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-tile-grid" id="tileGrid"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge reveal in"><span class="dot"></span> Agenda abierta — Bodas 2027</div>
+      <h1 class="reveal in">Historias de<br><em>boda</em>, contadas<br>con calma.</h1>
+      <p class="hero-sub reveal in reveal-delay-1">Fotografía y videografía documental para parejas que quieren recordar cómo se sintió el día, no solo cómo se vio. Basada en Sevilla — disponible en cualquier parte del mundo.</p>
+      <div class="hero-meta reveal in reveal-delay-2">
+        <span>Por <strong>@ignacia_alarcon</strong></span>
+        <span><strong>Sevilla</strong> · disponible worldwide</span>
+      </div>
+      <div class="hero-ctas reveal in reveal-delay-2">
+        <a class="btn btn-primary" href="https://wa.me/34654668895?text=Hola%20Ignacia%2C%20quiero%20consultar%20disponibilidad%20para%20mi%20boda" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+        <a class="btn btn-outline" href="https://www.instagram.com/ignaciafotoss/" target="_blank" rel="noopener">Ver Instagram</a>
+      </div>
+    </div>
+    <div class="hero-visual reveal in reveal-delay-1" id="heroVisual"></div>
+  </div>
+</section>
+
+<div class="tile-divider" id="tileDividerTop"></div>
+
+<!-- SOBRE MI -->
+<section class="about" id="sobre-mi">
+  <div class="container about-grid">
+    <div class="about-frame reveal" id="aboutFrame"></div>
+    <div class="reveal reveal-delay-1">
+      <span class="eyebrow">Sobre mí</span>
+      <p class="about-quote">"No persigo la boda perfecta. Persigo el segundo exacto en que dejáis de posar."</p>
+      <p class="body-text">Soy Ignacia, fotógrafa y videógrafa de bodas afincada en Sevilla. Trabajo desde un enfoque documental: me muevo entre los invitados, observo la luz antes de pedir nada, y dejo que el día se cuente solo. El resultado son fotos y películas que se sienten reales años después, no solo el día de la boda.</p>
+      <p class="body-text">He documentado bodas en Andalucía y fuera de España, adaptando siempre el equipo y el ritmo a cada celebración: intercambios íntimos de dos personas y bodas de tres días con cientos de invitados.</p>
+      <p class="about-sign">— Ignacia Alarcón</p>
+    </div>
+  </div>
+</section>
+
+<div class="tile-divider" id="tileDividerMid"></div>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Servicios</span>
+      <h2>Dos miradas, una<br>misma historia.</h2>
+      <p>Fotografía y vídeo se contratan por separado o juntos — la mayoría de parejas elige ambos para no perder ni la imagen fija ni el sonido del día.</p>
+    </div>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <span class="service-num">Servicio I</span>
+      <h3>Fotografía</h3>
+      <p>Cobertura completa del día, desde los preparativos hasta la pista de baile. Entrega editada con una narrativa clara, sin sobreproducir.</p>
+      <ul class="service-list">
+        <li>Preparativos, ceremonia, banquete y fiesta</li>
+        <li>Sesión de pareja incluida</li>
+        <li>Álbum editorial opcional</li>
+        <li>Galería digital privada de alta resolución</li>
+      </ul>
+    </div>
+    <div class="service-card reveal reveal-delay-1">
+      <span class="service-num">Servicio II</span>
+      <h3>Videografía</h3>
+      <p>Película documental con sonido ambiente y votos reales. Nada de guiones impostados: se edita a partir de lo que realmente pasó.</p>
+      <ul class="service-list">
+        <li>Película principal (8–15 min)</li>
+        <li>Corte corto para redes sociales</li>
+        <li>Audio directo de discursos y votos</li>
+        <li>Entrega en 4K</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<div class="tile-divider" id="tileDividerAgenda"></div>
+
+<!-- AGENDA / URGENCIA -->
+<section class="agenda" id="agenda">
+  <div class="container agenda-grid">
+    <div class="reveal">
+      <span class="eyebrow">Disponibilidad</span>
+      <h2>La agenda 2027<br>ya está abierta.</h2>
+      <p class="lede">Cada temporada acepto un número limitado de bodas para poder estar presente de verdad en cada una, sin encadenar entregas a toda prisa. Las fechas de primavera y otoño —las más buscadas en Andalucía— suelen confirmarse con más de un año de antelación.</p>
+      <div class="agenda-stats">
+        <div class="stat"><div class="n">2027</div><div class="l">Temporada actual</div></div>
+        <div class="stat"><div class="n">01</div><div class="l">Boda por finde</div></div>
+        <div class="stat"><div class="n">∞</div><div class="l">Alcance geográfico</div></div>
+        <div class="stat"><div class="n">100%</div><div class="l">Documental, sin poses forzadas</div></div>
+      </div>
+    </div>
+    <div class="agenda-card reveal reveal-delay-1">
+      <h3>Reserva tu fecha</h3>
+      <p>Cuéntame la fecha y el lugar de la celebración y te confirmo disponibilidad en menos de 24h. Sin compromiso, sin formularios eternos.</p>
+      <a class="btn btn-primary" href="https://wa.me/34654668895?text=Hola%20Ignacia%2C%20queremos%20reservar%20fecha%20para%20nuestra%20boda%20en%202027" target="_blank" rel="noopener" style="width:100%; justify-content:center; background:var(--gold); color:var(--ink);">Consultar mi fecha</a>
+    </div>
+  </div>
+</section>
+
+<div class="tile-divider" id="tileDividerProcess"></div>
+
+<!-- PROCESO -->
+<section>
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Cómo trabajamos</span>
+      <h2>Del primer mensaje<br>a la entrega final.</h2>
+    </div>
+    <div class="process-list">
+      <div class="process-item reveal">
+        <div class="pnum">01</div>
+        <div><h4>Primer contacto</h4><p>Me escribís por WhatsApp o Instagram con la fecha y el lugar. Respondo con disponibilidad y precios claros, sin letra pequeña.</p></div>
+      </div>
+      <div class="process-item reveal reveal-delay-1">
+        <div class="pnum">02</div>
+        <div><h4>Videollamada o café</h4><p>Hablamos del día, del ritmo que imagináis y de qué momentos os importa más conservar. Así ajusto la cobertura a vosotros, no al revés.</p></div>
+      </div>
+      <div class="process-item reveal reveal-delay-2">
+        <div class="pnum">03</div>
+        <div><h4>El día de la boda</h4><p>Llego antes de los preparativos y me quedo hasta que la pista de baile se vacía. Discreta, sin dirigir, siempre atenta a la luz.</p></div>
+      </div>
+      <div class="process-item reveal reveal-delay-3">
+        <div class="pnum">04</div>
+        <div><h4>Entrega</h4><p>Galería y película editadas con cuidado, entregadas en las semanas siguientes, listas para revivir y compartir.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COBERTURA -->
+<section class="coverage" id="cobertura">
+  <div class="container coverage-grid">
+    <div class="coverage-map reveal" id="coverageMap"></div>
+    <div class="reveal reveal-delay-1">
+      <span class="eyebrow">Cobertura</span>
+      <h2 style="margin-top:18px; font-size:clamp(32px,3.6vw,44px);">Con base en Sevilla,<br>disponible donde sea.</h2>
+      <p style="color:var(--ink-soft); font-size:16px; margin-top:20px; max-width:460px;">La mayoría de las bodas que documento ocurren en Andalucía, pero viajo con regularidad fuera de España. Si vuestra boda es destination wedding, hablamos de desplazamiento y logística desde el primer mensaje.</p>
+      <div class="coverage-tags">
+        <span class="tag">Sevilla</span>
+        <span class="tag">Andalucía</span>
+        <span class="tag">España</span>
+        <span class="tag">Destination weddings</span>
+        <span class="tag">Worldwide</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section class="contact" id="contacto">
+  <div class="container contact-grid">
+    <div class="reveal">
+      <span class="eyebrow">Contacto</span>
+      <h2 style="font-size:clamp(36px,4.6vw,58px); margin-top:18px;">Hablemos de<br>vuestra boda.</h2>
+      <p class="contact-lede">La forma más rápida de saber si tengo vuestra fecha libre es un mensaje directo. Suelo responder el mismo día.</p>
+    </div>
+    <div class="reveal reveal-delay-1">
+      <div class="contact-links">
+        <a class="contact-link" href="https://wa.me/34654668895?text=Hola%20Ignacia%2C%20quiero%20consultar%20disponibilidad%20para%20mi%20boda" target="_blank" rel="noopener">WhatsApp — 654 668 895 <span class="arrow">↗</span></a>
+        <a class="contact-link" href="https://www.instagram.com/ignaciafotoss/" target="_blank" rel="noopener">Instagram — @ignaciafotoss <span class="arrow">↗</span></a>
+        <a class="contact-link" href="mailto:Ignaciaalarcon14@gmail.com">Ignaciaalarcon14@gmail.com <span class="arrow">↗</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container" style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; width:100%;">
+    <span>© 2026 Ignacia Alarcón — Fotografía & Videografía de Bodas</span>
+    <span>Sevilla, España · <a href="https://www.instagram.com/ignaciafotoss/" target="_blank" rel="noopener">@ignaciafotoss</a></span>
+  </div>
+</footer>
+
+<a class="fab-wa" href="https://wa.me/34654668895?text=Hola%20Ignacia%2C%20quiero%20consultar%20disponibilidad%20para%20mi%20boda" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="white"><path d="M17.6 6.32A7.85 7.85 0 0012.05 4a7.94 7.94 0 00-6.9 11.9L4 20l4.2-1.1a7.9 7.9 0 003.85 1h0a7.94 7.94 0 007.94-7.94 7.9 7.9 0 00-2.4-5.63zm-5.55 12.2h0a6.6 6.6 0 01-3.36-.92l-.24-.14-2.5.65.67-2.44-.16-.25a6.6 6.6 0 01-1-3.51 6.6 6.6 0 0111.27-4.67 6.55 6.55 0 011.94 4.67 6.6 6.6 0 01-6.62 6.61zm3.62-4.94c-.2-.1-1.17-.58-1.35-.64s-.31-.1-.44.1-.5.64-.62.77-.23.15-.43.05a5.4 5.4 0 01-1.6-.99 6 6 0 01-1.1-1.37c-.12-.2 0-.3.09-.4.1-.1.2-.23.3-.35.1-.12.13-.2.2-.33a.36.36 0 000-.35c-.05-.1-.44-1.06-.6-1.45-.16-.38-.32-.33-.44-.33h-.38a.72.72 0 00-.52.24 2.2 2.2 0 00-.68 1.63c0 .96.7 1.9.8 2.03.1.13 1.37 2.1 3.33 2.94.46.2.83.32 1.11.41.47.15.9.13 1.24.08.38-.06 1.17-.48 1.33-.94.16-.46.16-.85.11-.94-.05-.09-.18-.14-.38-.24z"/></svg>
+</a>
+
+<script>
+  // reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal:not(.in)');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  },{threshold:0.15});
+  revealEls.forEach(el=>io.observe(el));
+
+  // mobile menu
+  const burgerBtn = document.getElementById('burgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  burgerBtn.addEventListener('click', ()=>{
+    mobileMenu.classList.toggle('open');
+  });
+  mobileMenu.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>mobileMenu.classList.remove('open')));
+
+  // ---- generative azulejo tile SVG helper ----
+  function tileMotif(size, strokeColor, fillColor){
+    return `
+      <path d="M${size/2} 4 C ${size*0.78} 4, ${size-4} ${size*0.22}, ${size-4} ${size/2}
+               C ${size-4} ${size*0.78}, ${size*0.78} ${size-4}, ${size/2} ${size-4}
+               C ${size*0.22} ${size-4}, 4 ${size*0.78}, 4 ${size/2}
+               C 4 ${size*0.22}, ${size*0.22} 4, ${size/2} 4 Z" fill="none" stroke="${strokeColor}" stroke-width="1"/>
+      <circle cx="${size/2}" cy="${size/2}" r="${size*0.14}" fill="${fillColor}" opacity="0.85"/>
+      <path d="M4 4 L${size-4} ${size-4} M${size-4} 4 L4 ${size-4}" stroke="${strokeColor}" stroke-width="0.6" opacity="0.4"/>
+    `;
+  }
+
+  // hero background tile grid
+  (function buildHeroGrid(){
+    const el = document.getElementById('tileGrid');
+    const cols = 14, rows = 8, size = 90;
+    const colors = ['#2E5266','#B8863C','#7A3030'];
+    let svg = `<svg viewBox="0 0 ${cols*size} ${rows*size}" preserveAspectRatio="xMidYMid slice" style="width:100%;height:100%;">`;
+    for(let r=0;r<rows;r++){
+      for(let c=0;c<cols;c++){
+        const idx = (r*cols+c) % 5;
+        if(idx===0){
+          const color = colors[(r+c)%colors.length];
+          svg += `<g transform="translate(${c*size},${r*size})" opacity="0.14">${tileMotif(size,'#2A241D',color)}</g>`;
+        }
+      }
+    }
+    svg += `</svg>`;
+    el.innerHTML = svg;
+  })();
+
+  // hero visual: large azulejo medallion animation
+  (function buildHeroVisual(){
+    const el = document.getElementById('heroVisual');
+    el.innerHTML = `
+      <svg viewBox="0 0 400 400" style="width:100%;height:100%;">
+        <circle cx="200" cy="200" r="176" fill="none" stroke="#2A241D" stroke-width="1" opacity="0.25"/>
+        <g id="ringOuter" style="transform-origin:200px 200px;">
+          ${Array.from({length:16}).map((_,i)=>{
+            const angle = (i/16)*360;
+            return `<g transform="rotate(${angle} 200 200) translate(200 30)">
+              <path d="M0 0 L10 22 L0 44 L-10 22 Z" fill="#B8863C" opacity="0.75"/>
+            </g>`;
+          }).join('')}
+        </g>
+        <circle cx="200" cy="200" r="128" fill="none" stroke="#2E5266" stroke-width="1.4"/>
+        <g id="ringInner" style="transform-origin:200px 200px;">
+          ${Array.from({length:10}).map((_,i)=>{
+            const angle = (i/10)*360;
+            return `<circle cx="200" cy="200" r="0" transform="rotate(${angle} 200 200) translate(0 -96)" fill="none"/>
+              <g transform="rotate(${angle} 200 200) translate(200 104)">
+                <circle r="6" fill="#7A3030" opacity="0.85"/>
+              </g>`;
+          }).join('')}
+        </g>
+        <circle cx="200" cy="200" r="70" fill="none" stroke="#2A241D" stroke-width="1" opacity="0.5" stroke-dasharray="2 6"/>
+        <text x="200" y="192" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-size="26" fill="#2A241D">Bodas</text>
+        <text x="200" y="222" text-anchor="middle" font-family="Manrope, sans-serif" font-size="12" letter-spacing="3" fill="#7A3030">SEVILLA · 2027</text>
+      </svg>
+    `;
+    const outer = el.querySelector('#ringOuter');
+    const inner = el.querySelector('#ringInner');
+    let a1=0, a2=0;
+    function spin(){
+      a1 += 0.05; a2 -= 0.03;
+      outer.style.transform = `rotate(${a1}deg)`;
+      inner.style.transform = `rotate(${a2}deg)`;
+      requestAnimationFrame(spin);
+    }
+    if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){ spin(); }
+  })();
+
+  // about portrait frame -> line-art figure silhouette placeholder (no fake photo)
+  (function buildAboutFrame(){
+    const el = document.getElementById('aboutFrame');
+    el.innerHTML = `
+      <svg viewBox="0 0 400 500" style="width:100%;height:100%;">
+        <rect width="400" height="500" fill="#2A241D"/>
+        <g opacity="0.9" stroke="#B8863C" stroke-width="1.4" fill="none">
+          <path d="M140 140 Q200 90 260 140 L260 260 Q200 320 140 260 Z"/>
+          <circle cx="200" cy="150" r="46"/>
+          <path d="M154 175 Q200 210 246 175"/>
+          <path d="M120 400 Q200 340 280 400 L280 470 L120 470 Z"/>
+        </g>
+        <g opacity="0.5" stroke="#F1E9DA" stroke-width="0.7">
+          <line x1="40" y1="40" x2="40" y2="460"/>
+          <line x1="360" y1="40" x2="360" y2="460"/>
+        </g>
+        <text x="200" y="450" text-anchor="middle" font-family="Cormorant Garamond, serif" font-style="italic" font-size="16" fill="#E9DEC9" opacity="0.8">Detrás de cámara</text>
+      </svg>
+    `;
+  })();
+
+  // tile dividers (thin decorative bands)
+  function buildDivider(id, palette){
+    const el = document.getElementById(id);
+    if(!el) return;
+    const size = 32, count = 40;
+    let svg = `<svg viewBox="0 0 ${count*size} ${size}" preserveAspectRatio="none" style="width:100%;height:100%;">`;
+    for(let i=0;i<count;i++){
+      const color = palette[i % palette.length];
+      svg += `<g transform="translate(${i*size},0)" opacity="0.9">${tileMotif(size, color, 'transparent')}</g>`;
+    }
+    svg += `</svg>`;
+    el.innerHTML = svg;
+  }
+  buildDivider('tileDividerTop', ['#2E5266','#B8863C']);
+  buildDivider('tileDividerMid', ['#7A3030','#2E5266']);
+  buildDivider('tileDividerAgenda', ['#B8863C','#7A3030']);
+  buildDivider('tileDividerProcess', ['#2E5266','#B8863C']);
+
+  // coverage: world dotted map with Sevilla pin + connecting arcs
+  (function buildCoverageMap(){
+    const el = document.getElementById('coverageMap');
+    const pts = [
+      [80,120],[100,150],[130,170],[160,140],[200,120],[240,150],
+      [270,180],[300,150],[320,190],[90,220],[130,240],[170,260],
+      [210,240],[250,260],[280,240],[60,260],[100,290],[150,300],
+      [190,290],[230,300],[270,290],[310,270],[70,180],[190,200]
+    ];
+    let svg = `<svg viewBox="0 0 380 380" style="width:100%;height:100%;">`;
+    pts.forEach(([x,y])=>{
+      svg += `<circle cx="${x}" cy="${y}" r="2.6" fill="#2A241D" opacity="0.22"/>`;
+    });
+    const seville = [78,150];
+    const dests = [[300,140],[250,300],[130,300],[330,220]];
+    dests.forEach(([x,y],i)=>{
+      svg += `<path d="M${seville[0]} ${seville[1]} Q${(seville[0]+x)/2} ${(seville[1]+y)/2-40} ${x} ${y}" fill="none" stroke="#7A3030" stroke-width="1" stroke-dasharray="4 5" opacity="0.55"/>`;
+      svg += `<circle cx="${x}" cy="${y}" r="4" fill="#2E5266"/>`;
+    });
+    svg += `<circle cx="${seville[0]}" cy="${seville[1]}" r="7" fill="#B8863C"/>`;
+    svg += `<circle cx="${seville[0]}" cy="${seville[1]}" r="13" fill="none" stroke="#B8863C" stroke-width="1.2"><animate attributeName="r" values="7;22;7" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.8;0;0.8" dur="3s" repeatCount="indefinite"/></circle>`;
+    svg += `<text x="${seville[0]}" y="${seville[1]-16}" text-anchor="middle" font-family="Manrope, sans-serif" font-size="11" font-weight="700" fill="#2A241D">SEVILLA</text>`;
+    svg += `</svg>`;
+    el.innerHTML = svg;
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Analía Stagno | Repostería creativa, temática y personalizada — Buenos Aires</title>
+<meta name="description" content="Tortas temáticas y personalizadas hechas a mano por Analía Stagno, Profesora de Decoración de Tortas en Buenos Aires. Consultas y pedidos por WhatsApp.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎂</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&family=Caveat:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF2E7;
+    --cream-2:#F5E7D8;
+    --cacao:#3B2418;
+    --cacao-soft:#6B4A3A;
+    --rose:#E8A6A0;
+    --rose-deep:#C97B79;
+    --pistachio:#A9BB8E;
+    --pistachio-deep:#7C9463;
+    --butter:#EFC15C;
+    --berry:#7A2E3B;
+    --berry-2:#5C2130;
+    --white:#FFFDF9;
+    --shadow: 0 14px 34px rgba(59,36,24,0.14);
+    --radius: 22px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--cacao);
+    font-family:'Nunito Sans', sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'DM Serif Display', serif;
+    font-weight:400;
+    margin:0;
+    color:var(--cacao);
+  }
+  .script{ font-family:'Caveat', cursive; font-weight:700; }
+  a{ color:inherit; text-decoration:none; }
+  img,svg{ display:block; max-width:100%; }
+  button{ font-family:inherit; cursor:pointer; }
+  ul{ margin:0; padding:0; list-style:none; }
+  :focus-visible{ outline:3px solid var(--berry); outline-offset:3px; }
+
+  .wrap{ max-width:1120px; margin:0 auto; padding:0 24px; }
+  .eyebrow{
+    font-family:'Caveat', cursive;
+    font-size:1.5rem;
+    font-weight:700;
+    color:var(--berry);
+    display:inline-block;
+    margin-bottom:6px;
+  }
+
+  /* ---------- scalloped divider (icing edge) ---------- */
+  .scallop{
+    height:26px;
+    width:100%;
+  }
+  .scallop.to-cream{
+    background: radial-gradient(circle at 12px 0, transparent 13px, var(--cream) 14px) 0 -1px / 26px 22px repeat-x;
+  }
+  .scallop.to-berry{
+    background: radial-gradient(circle at 12px 26px, transparent 13px, var(--berry) 14px) 0 0 / 26px 22px repeat-x;
+  }
+  .scallop.to-cream2{
+    background: radial-gradient(circle at 12px 0, transparent 13px, var(--cream-2) 14px) 0 -1px / 26px 22px repeat-x;
+  }
+
+  /* ---------- nav ---------- */
+  header.nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(251,242,231,0.0);
+    transition:background .35s ease, box-shadow .35s ease, padding .35s ease;
+    padding:20px 0;
+  }
+  header.nav.scrolled{
+    background:rgba(251,242,231,0.94);
+    backdrop-filter:blur(8px);
+    box-shadow:0 6px 20px rgba(59,36,24,0.08);
+    padding:12px 0;
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{ display:flex; align-items:center; gap:10px; }
+  .brand-mark{ width:38px; height:38px; flex:none; }
+  .brand-name{
+    font-family:'DM Serif Display', serif;
+    font-size:1.25rem;
+    letter-spacing:.2px;
+  }
+  .brand-name small{
+    display:block;
+    font-family:'Nunito Sans', sans-serif;
+    font-size:.62rem;
+    font-weight:700;
+    letter-spacing:2.5px;
+    text-transform:uppercase;
+    color:var(--berry);
+  }
+  nav.links{ display:flex; align-items:center; gap:32px; }
+  nav.links a{
+    font-weight:700; font-size:.92rem; color:var(--cacao-soft);
+    position:relative; padding:4px 0;
+  }
+  nav.links a::after{
+    content:''; position:absolute; left:0; bottom:-3px; height:2px; width:0;
+    background:var(--berry); transition:width .25s ease;
+  }
+  nav.links a:hover::after, nav.links a:focus-visible::after{ width:100%; }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:9px;
+    font-weight:800; font-size:.92rem;
+    padding:13px 24px; border-radius:100px; border:2px solid transparent;
+    transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+    white-space:nowrap;
+  }
+  .btn svg{ width:19px; height:19px; flex:none; }
+  .btn-primary{
+    background:var(--berry); color:var(--white); box-shadow:0 10px 24px rgba(122,46,59,0.35);
+  }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 14px 30px rgba(122,46,59,0.42); }
+  .btn-ghost{
+    background:transparent; border-color:var(--cacao); color:var(--cacao);
+  }
+  .btn-ghost:hover{ background:var(--cacao); color:var(--white); transform:translateY(-2px); }
+  .btn-cream{
+    background:var(--cream); color:var(--berry-2); box-shadow:0 10px 24px rgba(0,0,0,0.18);
+  }
+  .btn-cream:hover{ transform:translateY(-2px); }
+
+  .hamburger{ display:none; flex:none; width:42px; height:42px; border:none; background:none; position:relative; }
+  .hamburger span{
+    position:absolute; left:9px; right:9px; height:2.5px; background:var(--cacao); border-radius:2px;
+    transition:transform .3s ease, opacity .3s ease;
+  }
+  .hamburger span:nth-child(1){ top:14px; }
+  .hamburger span:nth-child(2){ top:20px; }
+  .hamburger span:nth-child(3){ top:26px; }
+  .hamburger.open span:nth-child(1){ transform:translateY(6px) rotate(45deg); }
+  .hamburger.open span:nth-child(2){ opacity:0; }
+  .hamburger.open span:nth-child(3){ transform:translateY(-6px) rotate(-45deg); }
+
+  .mobile-menu{
+    position:fixed; inset:0; background:var(--cream); z-index:99;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:30px;
+    transform:translateY(-100%); transition:transform .4s ease;
+  }
+  .mobile-menu.open{ transform:translateY(0); }
+  .mobile-menu a{ font-family:'DM Serif Display', serif; font-size:1.8rem; }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    padding:168px 0 70px;
+    overflow:hidden;
+    background:
+      radial-gradient(ellipse 60% 50% at 85% 8%, rgba(232,166,160,0.35), transparent 60%),
+      radial-gradient(ellipse 55% 45% at 8% 92%, rgba(169,187,142,0.28), transparent 60%),
+      var(--cream);
+  }
+  .hero-inner{
+    display:grid; grid-template-columns:1.05fr 0.95fr; gap:50px; align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 4.6vw, 3.6rem);
+    line-height:1.12;
+    margin:10px 0 20px;
+  }
+  .hero h1 em{ font-style:italic; color:var(--berry); }
+  .hero p.lede{
+    font-size:1.12rem; color:var(--cacao-soft); max-width:480px; margin:0 0 8px;
+  }
+  .hero .meta{
+    display:flex; flex-wrap:wrap; gap:18px; margin:18px 0 30px;
+    font-weight:700; font-size:.95rem; color:var(--cacao);
+  }
+  .hero .meta span{ display:inline-flex; align-items:center; gap:7px; }
+  .hero .meta svg{ width:18px; height:18px; color:var(--berry); flex:none; }
+  .hero .cta-row{ display:flex; flex-wrap:wrap; gap:14px; }
+
+  .hero-art{ position:relative; }
+  .sprinkle{
+    position:absolute; border-radius:2px; opacity:.85;
+    animation:drift 6s ease-in-out infinite;
+  }
+  @keyframes drift{
+    0%,100%{ transform:translateY(0) rotate(var(--r,0deg)); }
+    50%{ transform:translateY(-14px) rotate(calc(var(--r,0deg) + 20deg)); }
+  }
+
+  /* ---------- sections ---------- */
+  section{ position:relative; }
+  .section-pad{ padding:90px 0; }
+  .section-head{ text-align:center; max-width:640px; margin:0 auto 54px; }
+  .section-head h2{ font-size:clamp(1.9rem,3.4vw,2.5rem); margin-top:8px; }
+  .section-head p{ color:var(--cacao-soft); margin-top:12px; font-size:1.05rem; }
+
+  .reveal{ opacity:0; transform:translateY(28px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* about */
+  .about{ background:var(--cream-2); }
+  .about-inner{
+    display:grid; grid-template-columns:.85fr 1.15fr; gap:60px; align-items:center;
+  }
+  .badge-wrap{ display:flex; justify-content:center; }
+  .about-text h2{ font-size:clamp(1.9rem,3.2vw,2.4rem); margin:8px 0 18px; }
+  .about-text p{ color:var(--cacao-soft); margin:0 0 14px; font-size:1.03rem; }
+  .credentials{ display:flex; flex-wrap:wrap; gap:12px; margin-top:22px; }
+  .pill{
+    background:var(--white); border:1.5px solid var(--rose); color:var(--berry-2);
+    padding:9px 16px; border-radius:100px; font-weight:800; font-size:.85rem;
+  }
+
+  /* specialties */
+  .grid-4{ display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }
+  .spec-card{
+    background:var(--white); border-radius:var(--radius); padding:32px 24px;
+    box-shadow:var(--shadow); text-align:left;
+    border-top:5px solid var(--rose);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .spec-card:nth-child(2){ border-top-color:var(--pistachio); }
+  .spec-card:nth-child(3){ border-top-color:var(--butter); }
+  .spec-card:nth-child(4){ border-top-color:var(--berry); }
+  .spec-card:hover{ transform:translateY(-8px); box-shadow:0 20px 40px rgba(59,36,24,0.18); }
+  .spec-card .ic{
+    width:52px; height:52px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    background:var(--cream-2); margin-bottom:18px;
+  }
+  .spec-card .ic svg{ width:26px; height:26px; color:var(--berry-2); }
+  .spec-card h3{ font-size:1.2rem; margin-bottom:8px; }
+  .spec-card p{ color:var(--cacao-soft); font-size:.95rem; margin:0; }
+
+  /* process */
+  .process{ background:var(--cream-2); }
+  .steps{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:0; position:relative;
+  }
+  .step{ text-align:center; padding:0 16px; position:relative; }
+  .step .num{
+    width:60px; height:60px; border-radius:50%; margin:0 auto 18px;
+    background:var(--white); border:2.5px dashed var(--rose-deep);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'DM Serif Display', serif; font-size:1.4rem; color:var(--berry-2);
+  }
+  .step h3{ font-size:1.05rem; margin-bottom:8px; }
+  .step p{ color:var(--cacao-soft); font-size:.92rem; margin:0; }
+  .step-line{
+    position:absolute; top:30px; left:calc(50% + 40px); right:calc(-50% + 40px); height:2px;
+    background-image:linear-gradient(to right, var(--rose-deep) 60%, transparent 0%);
+    background-size:12px 2px; background-repeat:repeat-x;
+  }
+  .step:last-child .step-line{ display:none; }
+
+  /* cta final */
+  .cta-final{
+    background:var(--berry); color:var(--white); text-align:center;
+  }
+  .cta-final .section-pad{ padding:80px 0 70px; }
+  .cta-final .eyebrow{ color:var(--butter); }
+  .cta-final h2{ color:var(--white); font-size:clamp(2rem,4vw,2.9rem); margin:10px 0 16px; }
+  .cta-final p{ color:#F3D9DC; max-width:520px; margin:0 auto 34px; font-size:1.08rem; }
+  .cta-final .cta-row{ display:flex; justify-content:center; gap:16px; flex-wrap:wrap; }
+
+  /* footer */
+  footer{ background:var(--berry-2); color:#F3D9DC; padding:48px 0 30px; }
+  .footer-inner{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:24px; }
+  .footer-brand{ display:flex; align-items:center; gap:12px; }
+  .footer-brand .brand-name{ color:var(--white); }
+  .footer-brand .brand-name small{ color:var(--butter); }
+  .footer-social{ display:flex; gap:16px; }
+  .footer-social a{
+    width:42px; height:42px; border-radius:50%; border:1.5px solid rgba(255,255,255,0.3);
+    display:flex; align-items:center; justify-content:center; transition:background .2s ease, transform .2s ease;
+  }
+  .footer-social a svg{ width:19px; height:19px; }
+  .footer-social a:hover{ background:rgba(255,255,255,0.15); transform:translateY(-3px); }
+  .footer-bottom{
+    margin-top:34px; padding-top:22px; border-top:1px solid rgba(255,255,255,0.15);
+    font-size:.82rem; text-align:center; color:#D9A9AF;
+  }
+
+  /* floating whatsapp */
+  .float-wa{
+    position:fixed; right:22px; bottom:22px; z-index:90;
+    width:60px; height:60px; border-radius:50%; background:#25D366;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 10px 26px rgba(37,211,102,0.5);
+    animation:pulse 2.6s ease-in-out infinite;
+  }
+  .float-wa svg{ width:30px; height:30px; color:#fff; }
+  @keyframes pulse{
+    0%,100%{ box-shadow:0 10px 26px rgba(37,211,102,0.5); }
+    50%{ box-shadow:0 10px 26px rgba(37,211,102,0.85), 0 0 0 8px rgba(37,211,102,0.12); }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important; }
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width:980px){
+    .grid-4{ grid-template-columns:repeat(2,1fr); }
+    .steps{ grid-template-columns:repeat(2,1fr); row-gap:40px; }
+    .step-line{ display:none; }
+    .hero-inner, .about-inner{ grid-template-columns:1fr; }
+    .hero-art{ order:-1; max-width:340px; margin:0 auto; }
+  }
+  @media (max-width:720px){
+    nav.links, header.nav .cta-row{ display:none; }
+    .hamburger{ display:block; }
+    .hero{ padding:120px 0 50px; }
+    .hero .meta{ gap:12px; }
+    footer .footer-inner{ flex-direction:column; text-align:center; }
+  }
+  @media (max-width:520px){
+    .grid-4{ grid-template-columns:1fr; }
+    .steps{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<header class="nav" id="siteNav">
+  <div class="wrap nav-inner">
+    <a href="#inicio" class="brand" aria-label="Analía Stagno — inicio">
+      <svg class="brand-mark" viewBox="0 0 48 48" fill="none">
+        <path d="M8 30c0-3 2-5 4-6l1-9c0-2 5-4 11-4s11 2 11 4l1 9c2 1 4 3 4 6v9c0 2-2 3-4 3H12c-2 0-4-1-4-3v-9z" fill="var(--rose)"/>
+        <path d="M8 30c0-3 2-5 4-6h24c2 1 4 3 4 6" stroke="var(--berry-2)" stroke-width="1.5" fill="none"/>
+        <path d="M11 34c1.5 1.5 3 1.5 4.5 0s3-1.5 4.5 0 3 1.5 4.5 0 3-1.5 4.5 0 3 1.5 4.5 0" stroke="var(--white)" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <circle cx="24" cy="9" r="3" fill="var(--berry)"/>
+        <path d="M24 12v3" stroke="var(--berry-2)" stroke-width="1.5"/>
+      </svg>
+      <span class="brand-name">Analía Stagno<small>Repostería creativa</small></span>
+    </a>
+    <nav class="links">
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#especialidades">Especialidades</a>
+      <a href="#como-pedir">Cómo pedir</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://api.whatsapp.com/send?phone=541140793671&text=Hola%20Anal%C3%ADa!%20Quer%C3%ADa%20consultar%20por%20una%20torta%20%F0%9F%8E%82" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.6.1-.2.3-.7.9-.9 1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5C10 9 9.5 7.7 9.3 7.2c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9 1-.9 2.3s1 2.7 1.1 2.9c.1.2 2 3 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.5-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.3L2 22l4.8-1.5c1.5.8 3.3 1.2 5.2 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.7 0-3.4-.5-4.8-1.4l-.3-.2-3.3 1 1-3.2-.2-.3C3.5 14.5 3 13.3 3 12c0-4.9 4.1-9 9-9s9 4.1 9 9-4.1 9-9 9z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#sobre-mi">Sobre mí</a>
+  <a href="#especialidades">Especialidades</a>
+  <a href="#como-pedir">Cómo pedir</a>
+  <a href="#contacto">Contacto</a>
+  <a class="btn btn-primary" href="https://api.whatsapp.com/send?phone=541140793671&text=Hola%20Anal%C3%ADa!%20Quer%C3%ADa%20consultar%20por%20una%20torta%20%F0%9F%8E%82" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+</div>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="inicio">
+  <div class="wrap hero-inner">
+    <div class="hero-copy reveal in">
+      <span class="eyebrow">Profesora Deco Tortas 🎂</span>
+      <h1>Repostería creativa, <em>temática</em> y personalizada</h1>
+      <p class="lede">Cada torta se piensa y se decora a mano para tu festejo: un diseño único, contado en azúcar y manteca, hecho especialmente para vos.</p>
+      <div class="meta">
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.1-7-11a7 7 0 0 1 14 0c0 4.9-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          Buenos Aires, Argentina
+        </span>
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h8M8 11h8M8 15h5"/></svg>
+          Entrepreneur · Analía Stagno
+        </span>
+      </div>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="https://api.whatsapp.com/send?phone=541140793671&text=Hola%20Anal%C3%ADa!%20Quer%C3%ADa%20consultar%20por%20una%20torta%20%F0%9F%8E%82" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.6.1-.2.3-.7.9-.9 1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5C10 9 9.5 7.7 9.3 7.2c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9 1-.9 2.3s1 2.7 1.1 2.9c.1.2 2 3 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.5-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.3L2 22l4.8-1.5c1.5.8 3.3 1.2 5.2 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.7 0-3.4-.5-4.8-1.4l-.3-.2-3.3 1 1-3.2-.2-.3C3.5 14.5 3 13.3 3 12c0-4.9 4.1-9 9-9s9 4.1 9 9-4.1 9-9 9z"/></svg>
+          Consultar por WhatsApp
+        </a>
+        <a class="btn btn-ghost" href="https://www.instagram.com/analiastagnocakes/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          @analiastagnocakes
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-art reveal in">
+      <svg viewBox="0 0 420 420" width="100%" role="img" aria-label="Ilustración de una torta decorada de tres pisos">
+        <ellipse cx="210" cy="360" rx="140" ry="16" fill="rgba(59,36,24,0.08)"/>
+        <!-- plate -->
+        <ellipse cx="210" cy="345" rx="130" ry="14" fill="var(--white)" stroke="var(--rose-deep)" stroke-width="2"/>
+        <!-- tier 3 (bottom) -->
+        <rect x="95" y="270" width="230" height="70" rx="14" fill="var(--rose)"/>
+        <path d="M95 285 q11 -14 22 0 q11 14 22 0 q11 -14 22 0 q11 14 22 0 q11 -14 22 0 q11 14 22 0 q11 -14 22 0 q11 14 22 0" fill="none" stroke="var(--white)" stroke-width="5" stroke-linecap="round"/>
+        <!-- tier 2 -->
+        <rect x="130" y="195" width="160" height="65" rx="14" fill="var(--butter)"/>
+        <path d="M130 210 q10 -13 20 0 q10 13 20 0 q10 -13 20 0 q10 13 20 0 q10 -13 20 0 q10 13 20 0 q10 -13 20 0 q10 13 20 0" fill="none" stroke="var(--white)" stroke-width="5" stroke-linecap="round"/>
+        <!-- tier 1 (top) -->
+        <rect x="160" y="125" width="100" height="60" rx="14" fill="var(--pistachio)"/>
+        <path d="M160 138 q9 -12 18 0 q9 12 18 0 q9 -12 18 0 q9 12 18 0 q9 -12 18 0 q9 12 18 0" fill="none" stroke="var(--white)" stroke-width="5" stroke-linecap="round"/>
+        <!-- piping swirl top -->
+        <path d="M175 128 q35 -30 70 0" fill="none" stroke="var(--white)" stroke-width="7" stroke-linecap="round" stroke-dasharray="220" stroke-dashoffset="220">
+          <animate attributeName="stroke-dashoffset" from="220" to="0" dur="1.6s" fill="freeze" begin="0.3s"/>
+        </path>
+        <!-- cherry -->
+        <circle cx="210" cy="112" r="11" fill="var(--berry)"/>
+        <path d="M210 101c0-10 8-14 14-14" stroke="var(--pistachio-deep)" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <!-- dots decoration -->
+        <g fill="var(--white)">
+          <circle cx="150" cy="305" r="4"/><circle cx="175" cy="305" r="4"/><circle cx="200" cy="305" r="4"/>
+          <circle cx="225" cy="305" r="4"/><circle cx="250" cy="305" r="4"/><circle cx="275" cy="305" r="4"/>
+        </g>
+      </svg>
+      <div class="sprinkle" style="--r:20deg; width:10px;height:5px;background:var(--berry); top:8%; left:6%;"></div>
+      <div class="sprinkle" style="--r:-30deg; width:9px;height:5px;background:var(--pistachio-deep); top:16%; right:8%; animation-delay:.6s;"></div>
+      <div class="sprinkle" style="--r:10deg; width:10px;height:5px;background:var(--butter); bottom:14%; left:10%; animation-delay:1.1s;"></div>
+      <div class="sprinkle" style="--r:-15deg; width:9px;height:5px;background:var(--rose-deep); bottom:8%; right:14%; animation-delay:1.6s;"></div>
+    </div>
+  </div>
+</section>
+<div class="scallop to-cream2"></div>
+
+<!-- ================= SOBRE MÍ ================= -->
+<section class="about section-pad" id="sobre-mi">
+  <div class="wrap about-inner">
+    <div class="badge-wrap reveal">
+      <svg viewBox="0 0 260 260" width="240" height="240" role="img" aria-label="Insignia Analía Stagno, Profesora de Decoración de Tortas">
+        <circle cx="130" cy="130" r="120" fill="var(--white)" stroke="var(--rose)" stroke-width="3"/>
+        <circle cx="130" cy="130" r="98" fill="none" stroke="var(--rose-deep)" stroke-width="2" stroke-dasharray="3 9"/>
+        <text x="130" y="122" text-anchor="middle" font-family="DM Serif Display, serif" font-size="52" fill="var(--berry-2)">AS</text>
+        <text x="130" y="150" text-anchor="middle" font-family="Caveat, cursive" font-weight="700" font-size="20" fill="var(--pistachio-deep)">deco tortas</text>
+        <path d="M78 178c15 12 89 12 104 0" fill="none" stroke="var(--butter)" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="about-text reveal">
+      <span class="eyebrow">Quién hace tus tortas</span>
+      <h2>Analía Stagno</h2>
+      <p>Soy repostera y <strong>Profesora de Decoración de Tortas</strong>, y me dedico a transformar ideas en tortas que se comen con los ojos antes que con la boca. Trabajo en Buenos Aires diseñando piezas temáticas y personalizadas: cada encargo empieza escuchando tu festejo, tu estilo y tus sabores favoritos.</p>
+      <p>Nada de catálogos cerrados: si tenés una idea puntual —un personaje, una paleta de colores, un homenaje a algo que te encanta— la convierto en torta, de principio a fin, con acabados prolijos y sabor a la altura del diseño.</p>
+      <div class="credentials">
+        <span class="pill">🎓 Profesora Deco Tortas</span>
+        <span class="pill">🎂 Diseños 100% personalizados</span>
+        <span class="pill">📍 Buenos Aires, Argentina</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ESPECIALIDADES ================= -->
+<section class="section-pad" id="especialidades">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Lo que hago</span>
+      <h2>Especialidades</h2>
+      <p>Cada torta se arma a medida, pero estos son los pedidos que más disfruto preparar.</p>
+    </div>
+    <div class="grid-4">
+      <div class="spec-card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 21h16M6 21v-6a6 6 0 0 1 12 0v6M9 9c0-2 1-4 3-4s3 2 3 4"/></svg></div>
+        <h3>Tortas temáticas</h3>
+        <p>Personajes, hobbies, películas o el gusto que quieras celebrar, recreado en fondant y buttercream.</p>
+      </div>
+      <div class="spec-card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z"/></svg></div>
+        <h3>Diseños personalizados</h3>
+        <p>Cumpleaños, casamientos, baby showers y aniversarios: cada pieza se diseña para esa fecha en particular.</p>
+      </div>
+      <div class="spec-card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="13" r="8"/><path d="M9 13a3 3 0 0 1 6 0M12 5V3M9 4l1 1M15 4l-1 1"/></svg></div>
+        <h3>Cupcakes y mesas dulces</h3>
+        <p>Complementos a juego con la torta principal, para vestir toda la mesa dulce del evento.</p>
+      </div>
+      <div class="spec-card reveal">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10M12 10c-4 0-6-2-6-5 3 0 5 1 6 3 1-2 3-3 6-3 0 3-2 5-6 5z"/></svg></div>
+        <h3>Sabores a elección</h3>
+        <p>Definimos juntas el relleno y la cobertura para que la torta se vea tan bien como sabe.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="scallop to-cream2" style="transform:scaleY(-1);"></div>
+
+<!-- ================= CÓMO PEDIR ================= -->
+<section class="process section-pad" id="como-pedir">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Cuatro pasos</span>
+      <h2>Cómo pedir tu torta</h2>
+      <p>Del mensaje al festejo, así trabajamos juntas cada encargo.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="step-line"></div>
+        <div class="num">1</div>
+        <h3>Contame tu idea</h3>
+        <p>Escribime por WhatsApp con la fecha, el motivo y la cantidad de porciones.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-line"></div>
+        <div class="num">2</div>
+        <h3>Diseñamos juntas</h3>
+        <p>Definimos estilo, colores, sabor y relleno según lo que tengas en mente.</p>
+      </div>
+      <div class="step reveal">
+        <div class="step-line"></div>
+        <div class="num">3</div>
+        <h3>Coordinamos la seña</h3>
+        <p>Confirmamos el presupuesto y reservamos la fecha de tu pedido.</p>
+      </div>
+      <div class="step reveal">
+        <div class="num">4</div>
+        <h3>Retiro o entrega</h3>
+        <p>Coordinamos día y horario para que la torta llegue perfecta a tu festejo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA FINAL ================= -->
+<div class="scallop to-berry"></div>
+<section class="cta-final" id="contacto">
+  <div class="wrap section-pad">
+    <span class="eyebrow">¿Empezamos?</span>
+    <h2>Contame qué estás festejando<br>y diseñamos tu torta juntas</h2>
+    <p>Respondo consultas por WhatsApp e Instagram. Contame la fecha y el motivo, y arrancamos.</p>
+    <div class="cta-row">
+      <a class="btn btn-cream" href="https://api.whatsapp.com/send?phone=541140793671&text=Hola%20Anal%C3%ADa!%20Quer%C3%ADa%20consultar%20por%20una%20torta%20%F0%9F%8E%82" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.6.1-.2.3-.7.9-.9 1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5C10 9 9.5 7.7 9.3 7.2c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9 1-.9 2.3s1 2.7 1.1 2.9c.1.2 2 3 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.5-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.3L2 22l4.8-1.5c1.5.8 3.3 1.2 5.2 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.7 0-3.4-.5-4.8-1.4l-.3-.2-3.3 1 1-3.2-.2-.3C3.5 14.5 3 13.3 3 12c0-4.9 4.1-9 9-9s9 4.1 9 9-4.1 9-9 9z"/></svg>
+        Escribir por WhatsApp
+      </a>
+      <a class="btn btn-ghost" style="border-color:var(--white); color:var(--white);" href="https://www.instagram.com/analiastagnocakes/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        Ver Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <svg width="34" height="34" viewBox="0 0 48 48" fill="none">
+        <path d="M8 30c0-3 2-5 4-6l1-9c0-2 5-4 11-4s11 2 11 4l1 9c2 1 4 3 4 6v9c0 2-2 3-4 3H12c-2 0-4-1-4-3v-9z" fill="var(--rose)"/>
+        <circle cx="24" cy="9" r="3" fill="var(--butter)"/>
+      </svg>
+      <span class="brand-name">Analía Stagno<small>Repostería creativa</small></span>
+    </div>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/analiastagnocakes/" target="_blank" rel="noopener" aria-label="Instagram de Analía Stagno">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+      </a>
+      <a href="https://api.whatsapp.com/send?phone=541140793671&text=Hola%20Anal%C3%ADa!%20Quer%C3%ADa%20consultar%20por%20una%20torta%20%F0%9F%8E%82" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.6.1-.2.3-.7.9-.9 1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5C10 9 9.5 7.7 9.3 7.2c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9 1-.9 2.3s1 2.7 1.1 2.9c.1.2 2 3 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.5-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.3L2 22l4.8-1.5c1.5.8 3.3 1.2 5.2 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.7 0-3.4-.5-4.8-1.4l-.3-.2-3.3 1 1-3.2-.2-.3C3.5 14.5 3 13.3 3 12c0-4.9 4.1-9 9-9s9 4.1 9 9-4.1 9-9 9z"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Analía Stagno · Repostería creativa, temática y personalizada · Buenos Aires, Argentina</div>
+</footer>
+
+<!-- ================= FLOATING WHATSAPP ================= -->
+<a class="float-wa" href="https://api.whatsapp.com/send?phone=541140793671&text=Hola%20Anal%C3%ADa!%20Quer%C3%ADa%20consultar%20por%20una%20torta%20%F0%9F%8E%82" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.6.1-.2.3-.7.9-.9 1-.2.2-.3.2-.6.1-.3-.1-1.3-.5-2.4-1.5-.9-.8-1.5-1.8-1.7-2.1-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.4 0-.5C10 9 9.5 7.7 9.3 7.2c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.2.3-.9 1-.9 2.3s1 2.7 1.1 2.9c.1.2 2 3 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.5-.3z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.7 1.5 5.3L2 22l4.8-1.5c1.5.8 3.3 1.2 5.2 1.2 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18c-1.7 0-3.4-.5-4.8-1.4l-.3-.2-3.3 1 1-3.2-.2-.3C3.5 14.5 3 13.3 3 12c0-4.9 4.1-9 9-9s9 4.1 9 9-4.1 9-9 9z"/></svg>
+</a>
+
+<script>
+  // navbar scroll state
+  const nav = document.getElementById('siteNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 30);
+  });
+
+  // mobile menu
+  const hamburger = document.getElementById('hamburgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    hamburger.classList.toggle('open', open);
+    hamburger.setAttribute('aria-expanded', open);
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    hamburger.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', false);
+  }));
+
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
