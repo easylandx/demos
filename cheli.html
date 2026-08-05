@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cheli Peña Salas · Fisioterapia & Entrenamiento Personal · Madrid</title>
+<meta name="description" content="Fisioterapeuta especialista en actividad física y deporte. Recuperación de lesiones, readaptación deportiva y entrenamiento personal online. Madrid.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;700;900&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF2E4;
+    --ivory:#FFFAF1;
+    --coral:#FF5C39;
+    --coral-deep:#E23E1C;
+    --gold:#FFB627;
+    --sage:#7C9A5E;
+    --sage-deep:#5B7A44;
+    --plum:#3E2723;
+    --plum-soft:#6B4A42;
+    --line:#EBD9BE;
+    --shadow: 0 20px 50px -20px rgba(62,39,35,0.25);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--plum);
+    font-family:'DM Sans', sans-serif;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Barlow Condensed', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+    font-weight:800;
+    line-height:0.95;
+    color:var(--plum);
+  }
+  .eyebrow{
+    font-family:'Syne', sans-serif;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.18em;
+    font-size:0.72rem;
+  }
+  a{text-decoration:none; color:inherit;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1160px; margin:0 auto; padding:0 28px;}
+
+  /* ===== NAV ===== */
+  nav{
+    position:sticky; top:0; z-index:100;
+    background:rgba(251,242,228,0.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:16px; padding-bottom:16px;
+  }
+  .logo{
+    font-family:'Syne', sans-serif;
+    font-weight:800;
+    font-size:1.35rem;
+    letter-spacing:-0.01em;
+    display:flex; align-items:center; gap:8px;
+  }
+  .logo .dot{width:9px;height:9px;border-radius:50%;background:var(--coral); display:inline-block;}
+  .nav-links{display:flex; gap:28px; align-items:center;}
+  .nav-links a{
+    font-weight:700; font-size:0.92rem;
+  }
+  .nav-links a.social{
+    width:38px; height:38px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    background:var(--ivory); border:1.5px solid var(--line);
+    transition:all .2s ease;
+  }
+  .nav-links a.social:hover{background:var(--coral); border-color:var(--coral); color:#fff; transform:translateY(-2px);}
+  .btn-nav-wa{
+    background:var(--sage); color:#fff; padding:10px 20px; border-radius:100px;
+    font-weight:700; font-size:0.88rem; display:flex; align-items:center; gap:8px;
+    transition: transform .2s ease, background .2s ease;
+  }
+  .btn-nav-wa:hover{background:var(--sage-deep); transform:translateY(-2px);}
+  @media (max-width:760px){
+    .nav-links a:not(.social):not(.btn-nav-wa){display:none;}
+  }
+
+  /* ===== HERO ===== */
+  .hero{
+    padding:72px 0 40px;
+    position:relative;
+  }
+  .hero .wrap{
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:center;
+  }
+  .badge-loc{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--ivory); border:1.5px solid var(--line);
+    padding:7px 16px; border-radius:100px;
+    font-family:'Syne', sans-serif; font-weight:700; font-size:0.78rem;
+    letter-spacing:0.05em; margin-bottom:22px; color:var(--plum-soft);
+  }
+  .hero h1{
+    font-size:clamp(3rem, 6.2vw, 5.6rem);
+    margin-bottom:8px;
+  }
+  .hero h1 .accent{color:var(--coral); -webkit-text-stroke:0px;}
+  .hero h1 .accent2{color:var(--sage-deep);}
+  .hero p.lead{
+    font-size:1.18rem; color:var(--plum-soft); max-width:480px; margin:22px 0 32px;
+    line-height:1.55; font-weight:500;
+  }
+  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:38px;}
+  .btn-primary{
+    background:var(--coral); color:#fff; padding:17px 30px; border-radius:100px;
+    font-weight:700; font-size:1rem; display:inline-flex; align-items:center; gap:10px;
+    box-shadow:0 14px 30px -10px rgba(255,92,57,0.55);
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .btn-primary:hover{transform:translateY(-3px); box-shadow:0 18px 36px -8px rgba(255,92,57,0.6);}
+  .btn-secondary{
+    background:transparent; color:var(--plum); padding:17px 26px; border-radius:100px;
+    font-weight:700; font-size:1rem; border:2px solid var(--plum);
+    display:inline-flex; align-items:center; gap:10px;
+    transition:all .2s ease;
+  }
+  .btn-secondary:hover{background:var(--plum); color:var(--ivory); transform:translateY(-3px);}
+  .hero-stats{display:flex; gap:34px; flex-wrap:wrap;}
+  .hero-stats .stat b{
+    font-family:'Barlow Condensed', sans-serif; font-weight:800; font-size:2.1rem;
+    display:block; color:var(--coral-deep); line-height:1;
+  }
+  .hero-stats .stat span{font-size:0.8rem; font-weight:700; color:var(--plum-soft);}
+
+  .hero-visual{position:relative; aspect-ratio:1/1.05;}
+  .blob-card{
+    position:absolute; inset:0;
+    background:linear-gradient(155deg, var(--sage) 0%, var(--sage-deep) 100%);
+    border-radius:38% 62% 55% 45% / 48% 42% 58% 52%;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:var(--shadow);
+    animation:morph 12s ease-in-out infinite;
+  }
+  @keyframes morph{
+    0%,100%{border-radius:38% 62% 55% 45% / 48% 42% 58% 52%;}
+    50%{border-radius:58% 42% 40% 60% / 40% 55% 45% 60%;}
+  }
+  .blob-card svg{width:58%; height:58%;}
+  .float-chip{
+    position:absolute; background:var(--ivory); border-radius:20px;
+    padding:14px 18px; box-shadow:var(--shadow);
+    display:flex; align-items:center; gap:10px;
+    font-weight:700; font-size:0.85rem; border:1.5px solid var(--line);
+  }
+  .chip-1{top:6%; left:-6%; animation:float1 5s ease-in-out infinite;}
+  .chip-2{bottom:10%; right:-8%; animation:float2 6s ease-in-out infinite;}
+  .chip-3{bottom:-4%; left:8%; animation:float1 5.5s ease-in-out infinite reverse;}
+  @keyframes float1{0%,100%{transform:translateY(0px);}50%{transform:translateY(-14px);}}
+  @keyframes float2{0%,100%{transform:translateY(0px);}50%{transform:translateY(14px);}}
+  .chip-dot{width:10px;height:10px;border-radius:50%;background:var(--gold);}
+  @media (max-width:860px){
+    .hero .wrap{grid-template-columns:1fr; gap:44px;}
+    .hero-visual{max-width:340px; margin:0 auto;}
+    .float-chip{display:none;}
+  }
+
+  /* ===== SIGNATURE WAVE DIVIDER ===== */
+  .wave-divider{width:100%; display:block; margin:10px 0 -6px;}
+
+  /* ===== TICKER ===== */
+  .ticker-band{
+    background:var(--plum); overflow:hidden; padding:14px 0;
+  }
+  .ticker-track{
+    display:flex; gap:48px; white-space:nowrap;
+    animation:scroll-left 26s linear infinite;
+    width:max-content;
+  }
+  @keyframes scroll-left{from{transform:translateX(0);} to{transform:translateX(-50%);}}
+  .ticker-track span{
+    font-family:'Barlow Condensed', sans-serif; font-weight:700; text-transform:uppercase;
+    letter-spacing:0.04em; font-size:1.15rem; color:var(--cream); display:flex; align-items:center; gap:16px;
+  }
+  .ticker-track span:after{content:"●"; color:var(--coral); font-size:0.6rem;}
+
+  /* ===== SECTION GENERIC ===== */
+  section{padding:100px 0;}
+  .sec-head{max-width:640px; margin-bottom:56px;}
+  .sec-head .eyebrow{color:var(--coral-deep); margin-bottom:14px; display:block;}
+  .sec-head h2{font-size:clamp(2.2rem, 4.2vw, 3.4rem);}
+  .sec-head p{color:var(--plum-soft); font-size:1.08rem; margin-top:16px; font-weight:500; line-height:1.6;}
+
+  /* ===== ABOUT ===== */
+  .about-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:60px; align-items:center;}
+  .about-portrait{
+    aspect-ratio:4/5; border-radius:32px; overflow:hidden; position:relative;
+    background:linear-gradient(160deg, var(--gold) 0%, var(--coral) 100%);
+    box-shadow:var(--shadow);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .about-portrait svg{width:70%;height:70%;}
+  .about-tags{display:flex; flex-wrap:wrap; gap:10px; margin:26px 0 30px;}
+  .tag{
+    background:var(--ivory); border:1.5px solid var(--line); border-radius:100px;
+    padding:9px 16px; font-weight:700; font-size:0.85rem; display:flex; align-items:center; gap:8px;
+  }
+  .tag .tag-dot{width:8px;height:8px;border-radius:50%;}
+  .about-body p{color:var(--plum-soft); font-size:1.06rem; line-height:1.7; font-weight:500; margin-bottom:16px;}
+  @media (max-width:860px){.about-grid{grid-template-columns:1fr;} .about-portrait{max-width:340px; margin:0 auto;}}
+
+  /* ===== SERVICES ===== */
+  .services-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:24px;}
+  .service-card{
+    background:var(--ivory); border:1.5px solid var(--line); border-radius:26px;
+    padding:34px 28px; transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+    position:relative; overflow:hidden;
+  }
+  .service-card:hover{transform:translateY(-8px); box-shadow:var(--shadow);}
+  .service-card .icon-wrap{
+    width:58px; height:58px; border-radius:16px; display:flex; align-items:center; justify-content:center;
+    margin-bottom:22px;
+  }
+  .service-card h3{font-size:1.6rem; margin-bottom:10px; letter-spacing:0;}
+  .service-card p{color:var(--plum-soft); font-size:0.95rem; line-height:1.6; font-weight:500;}
+  .sc-1 .icon-wrap{background:#FFE3D8;}
+  .sc-2 .icon-wrap{background:#E4EEDC;}
+  .sc-3 .icon-wrap{background:#FFF0CC;}
+  .sc-4 .icon-wrap{background:#FFE3D8;}
+  .sc-5 .icon-wrap{background:#E4EEDC;}
+  .sc-6 .icon-wrap{background:#FFF0CC;}
+  @media (max-width:900px){.services-grid{grid-template-columns:1fr 1fr;}}
+  @media (max-width:600px){.services-grid{grid-template-columns:1fr;}}
+
+  /* ===== PROCESS ===== */
+  .process-wrap{position:relative;}
+  .process-line{
+    position:absolute; top:44px; left:0; right:0; height:3px;
+    background:repeating-linear-gradient(90deg, var(--line) 0 10px, transparent 10px 20px);
+    z-index:0;
+  }
+  .process-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:24px; position:relative; z-index:1;}
+  .process-step{text-align:left;}
+  .process-num{
+    width:88px; height:88px; border-radius:50%; background:var(--ivory); border:3px solid var(--plum);
+    display:flex; align-items:center; justify-content:center; margin-bottom:22px;
+    font-family:'Barlow Condensed', sans-serif; font-weight:800; font-size:2.1rem; color:var(--coral-deep);
+  }
+  .process-step h3{font-size:1.35rem; margin-bottom:8px; text-transform:none; letter-spacing:0;}
+  .process-step p{color:var(--plum-soft); font-size:0.92rem; font-weight:500; line-height:1.55;}
+  @media (max-width:860px){.process-grid{grid-template-columns:1fr 1fr; row-gap:40px;} .process-line{display:none;}}
+  @media (max-width:520px){.process-grid{grid-template-columns:1fr;}}
+
+  /* ===== STATS BAND ===== */
+  .stats-band{background:var(--plum); border-radius:36px; padding:64px 20px;}
+  .stats-inner{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:24px; text-align:center;
+    max-width:1000px; margin:0 auto;
+  }
+  .stats-inner .stat b{
+    font-family:'Barlow Condensed', sans-serif; font-weight:900; font-size:3.2rem; color:var(--gold);
+    display:block; line-height:1;
+  }
+  .stats-inner .stat span{
+    color:var(--cream); font-weight:700; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.05em;
+  }
+  @media (max-width:700px){.stats-inner{grid-template-columns:1fr 1fr; gap:36px;}}
+
+  /* ===== CTA FINAL ===== */
+  .cta-final{
+    background:linear-gradient(135deg, var(--coral) 0%, var(--coral-deep) 100%);
+    border-radius:40px; padding:80px 40px; text-align:center; position:relative; overflow:hidden;
+  }
+  .cta-final h2{color:#fff; font-size:clamp(2.2rem,5vw,3.8rem); margin-bottom:18px;}
+  .cta-final p{color:#FFE3D8; font-size:1.1rem; font-weight:500; max-width:480px; margin:0 auto 34px;}
+  .cta-final .btn-primary{background:var(--plum); box-shadow:0 14px 30px -10px rgba(0,0,0,0.4);}
+  .cta-final .btn-primary:hover{background:#241412;}
+  .cta-final .btn-secondary{border-color:#fff; color:#fff;}
+  .cta-final .btn-secondary:hover{background:#fff; color:var(--coral-deep);}
+  .cta-btns{display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
+  .cta-blob{position:absolute; border-radius:50%; opacity:0.15; background:#fff;}
+  .cb1{width:220px;height:220px; top:-80px; left:-60px;}
+  .cb2{width:160px;height:160px; bottom:-60px; right:-40px;}
+
+  /* ===== FOOTER ===== */
+  footer{padding:60px 0 32px; border-top:1px solid var(--line);}
+  .footer-top{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:24px; margin-bottom:36px;}
+  .footer-links{display:flex; gap:16px; flex-wrap:wrap;}
+  .footer-links a{
+    display:flex; align-items:center; gap:9px; background:var(--ivory); border:1.5px solid var(--line);
+    padding:11px 18px; border-radius:100px; font-weight:700; font-size:0.88rem; transition:all .2s ease;
+  }
+  .footer-links a:hover{background:var(--plum); color:var(--cream); border-color:var(--plum); transform:translateY(-2px);}
+  .footer-bottom{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;
+    color:var(--plum-soft); font-size:0.82rem; font-weight:500;
+  }
+  .footer-bottom a{font-weight:700; color:var(--plum-soft); border-bottom:1px solid var(--plum-soft);}
+
+  /* ===== FLOATING WHATSAPP ===== */
+  .float-wa{
+    position:fixed; bottom:26px; right:26px; z-index:200;
+    background:var(--sage); color:#fff; width:64px; height:64px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 14px 30px -8px rgba(91,122,68,0.6);
+    animation:pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{box-shadow:0 14px 30px -8px rgba(91,122,68,0.6);}
+    50%{box-shadow:0 14px 34px -4px rgba(91,122,68,0.85), 0 0 0 10px rgba(124,154,94,0.15);}
+  }
+
+  ::selection{background:var(--gold); color:var(--plum);}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="wrap">
+    <a href="#top" class="logo"><span class="dot"></span>cheli.ft</a>
+    <div class="nav-links">
+      <a href="#servicios">Servicios</a>
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#proceso">Cómo trabajo</a>
+      <a class="social" href="https://www.instagram.com/cheli.ft/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="6"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1"/></svg>
+      </a>
+      <a class="btn-nav-wa" href="https://api.whatsapp.com/send/?phone=3206814115&text=Hola%20Cheli%2C%20quiero%20info%20sobre%20fisioterapia%2Fentrenamiento" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.3A8.7 8.7 0 0 0 3.2 16.9L2 22l5.2-1.4a8.7 8.7 0 0 0 12.4-7.9 8.7 8.7 0 0 0-2-6.4Zm-6.4 13.4a7.2 7.2 0 0 1-3.7-1l-.3-.2-2.7.7.7-2.6-.2-.3a7.2 7.2 0 1 1 6.2 3.4Zm4-5.4c-.2-.1-1.3-.7-1.5-.7-.2-.1-.4-.1-.5.1-.2.2-.6.7-.7.9-.1.1-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5l.4-.5c.1-.1.1-.3.1-.4 0-.1-.5-1.2-.6-1.6-.2-.4-.4-.4-.5-.4h-.5c-.1 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.2 1.6 2.5 4 3.5.6.2 1 .4 1.3.5.6.2 1.1.2 1.5.1.5-.1 1.3-.5 1.5-1 .2-.5.2-.9.1-1l-.4-.2Z"/></svg>
+        WhatsApp
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div id="top" class="hero">
+  <div class="wrap">
+    <div>
+      <span class="badge-loc">📍 Madrid, España</span>
+      <h1>Del dolor<br><span class="accent">al movimiento.</span><br>Del movimiento<br>al <span class="accent2">rendimiento.</span></h1>
+      <p class="lead">Soy Cheli Peña Salas, fisioterapeuta especialista en actividad física y deporte. Te acompaño a recuperarte de una lesión y a llegar más fuerte de lo que estabas antes — en clínica y online.</p>
+      <div class="hero-ctas">
+        <a class="btn-primary" href="https://api.whatsapp.com/send/?phone=3206814115&text=Hola%20Cheli%2C%20quiero%20reservar%20una%20consulta" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.3A8.7 8.7 0 0 0 3.2 16.9L2 22l5.2-1.4a8.7 8.7 0 0 0 12.4-7.9 8.7 8.7 0 0 0-2-6.4Zm-6.4 13.4a7.2 7.2 0 0 1-3.7-1l-.3-.2-2.7.7.7-2.6-.2-.3a7.2 7.2 0 1 1 6.2 3.4Zm4-5.4c-.2-.1-1.3-.7-1.5-.7-.2-.1-.4-.1-.5.1-.2.2-.6.7-.7.9-.1.1-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5l.4-.5c.1-.1.1-.3.1-.4 0-.1-.5-1.2-.6-1.6-.2-.4-.4-.4-.5-.4h-.5c-.1 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.2 1.6 2.5 4 3.5.6.2 1 .4 1.3.5.6.2 1.1.2 1.5.1.5-.1 1.3-.5 1.5-1 .2-.5.2-.9.1-1l-.4-.2Z"/></svg>
+          Reservar por WhatsApp
+        </a>
+        <a class="btn-secondary" href="https://www.instagram.com/cheli.ft/" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="6"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1"/></svg>
+          Ver Instagram
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><b>264K</b><span>Comunidad en Instagram</span></div>
+        <div class="stat"><b>CF L1</b><span>Coach certificada</span></div>
+        <div class="stat"><b>100%</b><span>Fisio + deporte</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="blob-card">
+        <svg viewBox="0 0 200 200" fill="none">
+          <path d="M20 140 Q40 150 55 130 Q70 110 90 125 Q110 140 130 100 Q145 70 165 85" stroke="#FBF2E4" stroke-width="7" stroke-linecap="round" fill="none"/>
+          <circle cx="20" cy="140" r="7" fill="#FFB627"/>
+          <circle cx="165" cy="85" r="9" fill="#FF5C39"/>
+        </svg>
+      </div>
+      <div class="float-chip chip-1"><span class="chip-dot"></span>Readaptación deportiva</div>
+      <div class="float-chip chip-2"><span class="chip-dot" style="background:var(--coral)"></span>Online worldwide 💻</div>
+      <div class="float-chip chip-3"><span class="chip-dot" style="background:var(--sage)"></span>Wellness life 🥗</div>
+    </div>
+  </div>
+</div>
+
+<!-- WAVE SIGNATURE -->
+<svg class="wave-divider" viewBox="0 0 1200 90" preserveAspectRatio="none" style="height:90px;">
+  <path d="M0 70 L100 68 Q150 40 190 55 T280 30 Q320 15 360 45 T460 60 Q520 75 580 40 T700 20 Q760 10 820 35 T960 50 Q1040 60 1100 42 T1200 30 L1200 90 L0 90 Z" fill="var(--plum)"/>
+</svg>
+
+<!-- TICKER -->
+<div class="ticker-band">
+  <div class="ticker-track">
+    <span>Fisioterapia deportiva</span>
+    <span>Readaptación de lesiones</span>
+    <span>Entrenamiento personal online</span>
+    <span>CrossFit Coach L1</span>
+    <span>Wellness life</span>
+    <span>Madrid</span>
+    <span>Fisioterapia deportiva</span>
+    <span>Readaptación de lesiones</span>
+    <span>Entrenamiento personal online</span>
+    <span>CrossFit Coach L1</span>
+    <span>Wellness life</span>
+    <span>Madrid</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="sobre-mi">
+  <div class="wrap about-grid">
+    <div class="about-portrait">
+      <svg viewBox="0 0 200 200" fill="none">
+        <circle cx="100" cy="72" r="34" fill="#FFFAF1"/>
+        <path d="M50 175 Q50 120 100 120 Q150 120 150 175 Z" fill="#FFFAF1"/>
+        <path d="M70 100 Q100 130 130 100" stroke="#3E2723" stroke-width="4" fill="none" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="about-body">
+      <span class="eyebrow" style="color:var(--coral-deep); display:block; margin-bottom:14px;">Sobre mí</span>
+      <h2 style="font-size:clamp(2rem,4vw,2.8rem); margin-bottom:20px;">Fisioterapeuta y entrenadora, con la misma pasión por las dos cosas</h2>
+      <p>Soy fisioterapeuta especializada en actividad física y deporte. Mi trabajo empieza donde termina el dolor: entiendo el cuerpo desde la clínica, pero también desde el box y desde el gimnasio, porque ahí es donde de verdad se pone a prueba.</p>
+      <p>Como coach CF L1 y entrenadora personal, diseño procesos que unen la recuperación con el rendimiento — sin cortar tu progreso, sin miedo a moverte. Trabajo en Madrid de forma presencial y con clientas y clientes de toda España online.</p>
+      <div class="about-tags">
+        <span class="tag"><span class="tag-dot" style="background:var(--coral)"></span>Fisioterapeuta colegiada</span>
+        <span class="tag"><span class="tag-dot" style="background:var(--sage)"></span>Esp. Actividad Física y Deporte</span>
+        <span class="tag"><span class="tag-dot" style="background:var(--gold)"></span>CrossFit Coach L1</span>
+        <span class="tag"><span class="tag-dot" style="background:var(--coral)"></span>Personal Trainer Online</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="servicios" style="background:var(--ivory); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Servicios</span>
+      <h2>Un plan para cada momento de tu cuerpo</h2>
+      <p>Ya sea que vengas por una lesión, quieras entrenar mejor o busques acompañamiento a distancia, hay un camino pensado para ti.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card sc-1">
+        <div class="icon-wrap">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--coral-deep)" stroke-width="2"><path d="M12 2v20M2 12h20"/><circle cx="12" cy="12" r="9"/></svg>
+        </div>
+        <h3>Fisioterapia deportiva</h3>
+        <p>Valoración y tratamiento de lesiones musculoesqueléticas, dolor articular y sobrecargas por entrenamiento.</p>
+      </div>
+      <div class="service-card sc-2">
+        <div class="icon-wrap">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--sage-deep)" stroke-width="2"><path d="M4 12h4l2-8 4 16 2-8h4"/></svg>
+        </div>
+        <h3>Readaptación de lesiones</h3>
+        <p>Vuelta progresiva al deporte tras una lesión, con seguimiento real y objetivos por fases, no solo reposo.</p>
+      </div>
+      <div class="service-card sc-3">
+        <div class="icon-wrap">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="2"><path d="M6 20V10M12 20V4M18 20v-7"/></svg>
+        </div>
+        <h3>Entrenamiento personal</h3>
+        <p>Sesiones presenciales en Madrid, con programación adaptada a tu historial físico y tus objetivos.</p>
+      </div>
+      <div class="service-card sc-4">
+        <div class="icon-wrap">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--coral-deep)" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 20h8M12 18v2"/></svg>
+        </div>
+        <h3>Coaching online</h3>
+        <p>Entrenamiento personalizado a distancia con seguimiento semanal, esté donde estés en el mundo.</p>
+      </div>
+      <div class="service-card sc-5">
+        <div class="icon-wrap">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--sage-deep)" stroke-width="2"><path d="M12 21s-7-4.4-9.5-9C1 8 3 4 7 4c2 0 3.5 1.2 5 3 1.5-1.8 3-3 5-3 4 0 6 4 4.5 8-2.5 4.6-9.5 9-9.5 9Z"/></svg>
+        </div>
+        <h3>Wellness &amp; hábitos</h3>
+        <p>Orientación en nutrición, descanso y estilo de vida activo para sostener resultados en el tiempo.</p>
+      </div>
+      <div class="service-card sc-6">
+        <div class="icon-wrap">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#B8860B" stroke-width="2"><path d="M6 3v4M18 3v4M4 8h16M5 8v12h14V8"/></svg>
+        </div>
+        <h3>CrossFit coaching</h3>
+        <p>Técnica, movilidad y programación como Coach L1 para entrenar fuerte sin lesionarte por el camino.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="proceso">
+  <div class="wrap process-wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Cómo trabajo</span>
+      <h2>De la primera consulta a tu mejor versión</h2>
+    </div>
+    <div class="process-line"></div>
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="process-num">1</div>
+        <h3>Valoración</h3>
+        <p>Escuchamos tu historial, tu dolor y tus objetivos. Presencial en Madrid u online.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num">2</div>
+        <h3>Plan a medida</h3>
+        <p>Diseño un proceso de fisioterapia y/o entrenamiento adaptado a tu momento físico real.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num">3</div>
+        <h3>Acompañamiento</h3>
+        <p>Seguimos el progreso sesión a sesión y ajustamos lo que haga falta ajustar.</p>
+      </div>
+      <div class="process-step">
+        <div class="process-num">4</div>
+        <h3>Rendimiento</h3>
+        <p>Vuelves a moverte, entrenar y competir con confianza — más fuerte que antes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section style="padding-top:20px;">
+  <div class="wrap">
+    <div class="stats-band">
+      <div class="stats-inner">
+        <div class="stat"><b>264K</b><span>Comunidad IG</span></div>
+        <div class="stat"><b>L1</b><span>CrossFit Coach</span></div>
+        <div class="stat"><b>2017</b><span>Trayectoria en deporte</span></div>
+        <div class="stat"><b>MAD</b><span>Presencial &amp; online</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section>
+  <div class="wrap">
+    <div class="cta-final">
+      <div class="cta-blob cb1"></div>
+      <div class="cta-blob cb2"></div>
+      <h2>Empecemos hoy</h2>
+      <p>Cuéntame qué te pasa o qué quieres conseguir. Te respondo directo por WhatsApp.</p>
+      <div class="cta-btns">
+        <a class="btn-primary" href="https://api.whatsapp.com/send/?phone=3206814115&text=Hola%20Cheli%2C%20quiero%20info%20sobre%20tus%20servicios" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.3A8.7 8.7 0 0 0 3.2 16.9L2 22l5.2-1.4a8.7 8.7 0 0 0 12.4-7.9 8.7 8.7 0 0 0-2-6.4Zm-6.4 13.4a7.2 7.2 0 0 1-3.7-1l-.3-.2-2.7.7.7-2.6-.2-.3a7.2 7.2 0 1 1 6.2 3.4Zm4-5.4c-.2-.1-1.3-.7-1.5-.7-.2-.1-.4-.1-.5.1-.2.2-.6.7-.7.9-.1.1-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5l.4-.5c.1-.1.1-.3.1-.4 0-.1-.5-1.2-.6-1.6-.2-.4-.4-.4-.5-.4h-.5c-.1 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.2 1.6 2.5 4 3.5.6.2 1 .4 1.3.5.6.2 1.1.2 1.5.1.5-.1 1.3-.5 1.5-1 .2-.5.2-.9.1-1l-.4-.2Z"/></svg>
+          Escríbeme por WhatsApp
+        </a>
+        <a class="btn-secondary" href="https://linktr.ee/chelips" target="_blank" rel="noopener">Ver todos mis enlaces</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <a href="#top" class="logo"><span class="dot"></span>cheli.ft</a>
+      <div class="footer-links">
+        <a href="https://api.whatsapp.com/send/?phone=3206814115" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.3A8.7 8.7 0 0 0 3.2 16.9L2 22l5.2-1.4a8.7 8.7 0 0 0 12.4-7.9 8.7 8.7 0 0 0-2-6.4Z"/></svg>
+          WhatsApp
+        </a>
+        <a href="https://www.instagram.com/cheli.ft/" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="6"/><circle cx="12" cy="12" r="4.2"/></svg>
+          @cheli.ft
+        </a>
+        <a href="https://linktr.ee/chelips" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v14M6 10l6 6 6-6M5 20h14"/></svg>
+          Linktree
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Cheli Peña Salas · Fisioterapeuta &amp; Entrenadora Personal · Madrid</span>
+      <span>Sitio por <a href="#" target="_blank" rel="noopener">EasyPageX</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING WHATSAPP -->
+<a class="float-wa" href="https://api.whatsapp.com/send/?phone=3206814115&text=Hola%20Cheli%2C%20quiero%20info" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M17.6 6.3A8.7 8.7 0 0 0 3.2 16.9L2 22l5.2-1.4a8.7 8.7 0 0 0 12.4-7.9 8.7 8.7 0 0 0-2-6.4Zm-6.4 13.4a7.2 7.2 0 0 1-3.7-1l-.3-.2-2.7.7.7-2.6-.2-.3a7.2 7.2 0 1 1 6.2 3.4Zm4-5.4c-.2-.1-1.3-.7-1.5-.7-.2-.1-.4-.1-.5.1-.2.2-.6.7-.7.9-.1.1-.3.2-.5.1-.2-.1-1-.4-1.9-1.2-.7-.6-1.2-1.4-1.3-1.6-.1-.2 0-.4.1-.5l.4-.5c.1-.1.1-.3.1-.4 0-.1-.5-1.2-.6-1.6-.2-.4-.4-.4-.5-.4h-.5c-.1 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.4c.1.2 1.6 2.5 4 3.5.6.2 1 .4 1.3.5.6.2 1.1.2 1.5.1.5-.1 1.3-.5 1.5-1 .2-.5.2-.9.1-1l-.4-.2Z"/></svg>
+</a>
+
+</body>
+</html>
