@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nora Estilista Canino · Peluquería Canina en Quintanar de la Orden</title>
+<meta name="description" content="Peluquería canina Nora en Quintanar de la Orden. Cortes a máquina o tijera, baños y limpieza de oídos. Más de 5 años cuidando a tu mascota con flexibilidad de horarios.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FFF9F1;
+    --cream-2:#FFF1E2;
+    --ink:#2E1F3D;
+    --ink-soft:#4A3A5A;
+    --coral:#FF5C7A;
+    --coral-deep:#E8395C;
+    --mustard:#FFB627;
+    --mint:#6FB79A;
+    --mint-deep:#3F8A6E;
+    --paper:#ffffff;
+    --shadow: 0 12px 30px rgba(46,31,61,0.12);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink-soft);
+    font-family:'Nunito',sans-serif;
+    overflow-x:hidden;
+  }
+  h1,h2,h3, .display{
+    font-family:'Fredoka',sans-serif;
+    color:var(--ink);
+    margin:0;
+  }
+  a{color:inherit;}
+  img,svg{display:block;}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 24px;}
+  .eyebrow{
+    font-family:'Nunito',sans-serif;
+    font-weight:800;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    font-size:.78rem;
+    color:var(--coral-deep);
+  }
+
+  /* ---------- Cursor paw trail ---------- */
+  .paw-trail{
+    position:fixed;
+    width:20px;height:20px;
+    pointer-events:none;
+    z-index:9999;
+    opacity:0;
+    transition:opacity .4s ease;
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky;top:0;z-index:500;
+    background:rgba(255,249,241,.88);
+    backdrop-filter:blur(10px);
+    border-bottom:2px solid rgba(46,31,61,.06);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 24px;
+    max-width:1140px;margin:0 auto;
+  }
+  .brand{
+    display:flex;align-items:center;gap:10px;
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1.15rem;color:var(--ink);
+    text-decoration:none;
+  }
+  .brand svg{width:38px;height:38px;flex-shrink:0;}
+  .nav-links{display:flex;align-items:center;gap:26px;}
+  .nav-links a{
+    text-decoration:none;font-weight:700;color:var(--ink-soft);font-size:.92rem;
+  }
+  .nav-links a:hover{color:var(--coral-deep);}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'Nunito',sans-serif;font-weight:800;
+    padding:11px 22px;border-radius:999px;
+    text-decoration:none;font-size:.92rem;
+    border:2px solid transparent;
+    cursor:pointer;
+    transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .btn:hover{transform:translateY(-2px);}
+  .btn-primary{
+    background:linear-gradient(135deg,var(--coral),var(--coral-deep));
+    color:#fff;
+    box-shadow:0 8px 20px rgba(232,57,92,.35);
+  }
+  .btn-primary:hover{box-shadow:0 12px 26px rgba(232,57,92,.45);}
+  .btn-ghost{
+    background:transparent;border-color:var(--ink);color:var(--ink);
+  }
+  .btn-ghost:hover{background:var(--ink);color:#fff;}
+  .nav .btn{padding:9px 18px;font-size:.85rem;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:70px 24px 40px;
+    overflow:hidden;
+  }
+  .hero-blob{
+    position:absolute;border-radius:50%;filter:blur(2px);opacity:.55;z-index:0;
+  }
+  .hero-grid{
+    max-width:1140px;margin:0 auto;
+    display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;
+    position:relative;z-index:2;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem,5.2vw,3.8rem);
+    line-height:1.04;
+    font-weight:700;
+  }
+  .hero h1 span{color:var(--coral-deep);}
+  .hero p.lead{
+    font-size:1.18rem;
+    margin-top:18px;
+    max-width:520px;
+    font-weight:600;
+    color:var(--ink-soft);
+  }
+  .hero-ctas{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap;}
+  .hero-badges{
+    display:flex;gap:22px;margin-top:38px;flex-wrap:wrap;
+  }
+  .hero-badge{display:flex;align-items:center;gap:10px;font-weight:800;color:var(--ink);font-size:.92rem;}
+  .hero-badge svg{width:26px;height:26px;color:var(--mint-deep);}
+
+  .hero-art{position:relative;z-index:2;}
+  .snip-note{
+    position:absolute;top:-6px;right:14px;
+    background:var(--mustard);color:var(--ink);
+    font-family:'Fredoka',sans-serif;font-weight:600;
+    padding:8px 14px;border-radius:14px;
+    font-size:.85rem;
+    box-shadow:var(--shadow);
+    transform:rotate(6deg);
+  }
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section{padding:86px 24px;}
+  .section-head{max-width:640px;margin:0 auto 50px;text-align:center;}
+  .section-head h2{font-size:clamp(1.9rem,3.6vw,2.6rem);margin-top:10px;}
+  .section-head p{font-size:1.05rem;margin-top:12px;color:var(--ink-soft);}
+  .section-alt{background:var(--paper);border-radius:48px;margin:0 16px;}
+
+  /* ---------- STYLE PICKER (signature interactive) ---------- */
+  .picker{
+    display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:center;
+  }
+  .picker-tabs{display:flex;flex-direction:column;gap:14px;}
+  .picker-tab{
+    text-align:left;
+    background:var(--cream-2);
+    border:2px solid transparent;
+    border-radius:20px;
+    padding:18px 20px;
+    cursor:pointer;
+    display:flex;gap:14px;align-items:flex-start;
+    transition:all .2s ease;
+    font-family:'Nunito',sans-serif;
+  }
+  .picker-tab svg{width:30px;height:30px;flex-shrink:0;color:var(--coral-deep);}
+  .picker-tab strong{display:block;font-family:'Fredoka',sans-serif;color:var(--ink);font-size:1.05rem;}
+  .picker-tab span{font-size:.9rem;color:var(--ink-soft);}
+  .picker-tab.active{
+    background:#fff;
+    border-color:var(--coral);
+    box-shadow:var(--shadow);
+    transform:translateX(6px);
+  }
+  .picker-stage{
+    position:relative;
+    background:var(--cream-2);
+    border-radius:32px;
+    padding:30px;
+    display:flex;align-items:center;justify-content:center;
+    min-height:380px;
+  }
+  .picker-caption{
+    position:absolute;bottom:22px;left:50%;transform:translateX(-50%);
+    background:var(--ink);color:#fff;
+    padding:8px 18px;border-radius:999px;
+    font-weight:800;font-size:.85rem;
+    white-space:nowrap;
+  }
+
+  /* ---------- SERVICIOS ---------- */
+  .services{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;}
+  .service-card{
+    background:var(--paper);
+    border-radius:26px;
+    padding:30px 24px;
+    box-shadow:var(--shadow);
+    text-align:left;
+    transition:transform .22s ease;
+    cursor:pointer;
+  }
+  .service-card:hover{transform:translateY(-8px);}
+  .service-icon{
+    width:58px;height:58px;border-radius:18px;
+    display:flex;align-items:center;justify-content:center;
+    margin-bottom:18px;
+  }
+  .service-icon svg{width:30px;height:30px;color:#fff;}
+  .service-card h3{font-size:1.12rem;margin-bottom:8px;}
+  .service-card p{font-size:.9rem;margin:0;color:var(--ink-soft);}
+  .sc-1 .service-icon{background:var(--coral);}
+  .sc-2 .service-icon{background:var(--mustard);}
+  .sc-3 .service-icon{background:var(--mint-deep);}
+  .sc-4 .service-icon{background:#8B6BC7;}
+
+  /* ---------- POR QUE / STATS ---------- */
+  .why{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+  .why-list{display:flex;flex-direction:column;gap:22px;margin-top:26px;}
+  .why-item{display:flex;gap:16px;align-items:flex-start;}
+  .why-item .num{
+    font-family:'Fredoka',sans-serif;font-weight:600;font-size:1rem;
+    width:38px;height:38px;border-radius:50%;
+    background:var(--coral);color:#fff;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .why-item h3{font-size:1.05rem;margin-bottom:4px;}
+  .why-item p{margin:0;font-size:.92rem;}
+  .stat-panel{
+    background:linear-gradient(160deg,var(--ink) 0%,#402a55 100%);
+    border-radius:32px;padding:40px;color:#fff;
+    display:grid;grid-template-columns:1fr 1fr;gap:28px;
+  }
+  .stat{}
+  .stat .n{font-family:'Fredoka',sans-serif;font-size:2.4rem;font-weight:600;color:var(--mustard);}
+  .stat .l{font-size:.85rem;font-weight:700;opacity:.85;margin-top:4px;}
+
+  /* ---------- GALERIA ---------- */
+  .gallery{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;}
+  .gallery-item{
+    aspect-ratio:1/1;border-radius:22px;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:var(--shadow);
+    transition:transform .25s ease;
+  }
+  .gallery-item:hover{transform:scale(1.05) rotate(-1deg);}
+  .gallery-item svg{width:78%;height:78%;}
+
+  /* ---------- CONTACTO ---------- */
+  .contact{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:stretch;}
+  .contact-card{
+    background:var(--paper);border-radius:32px;padding:40px;box-shadow:var(--shadow);
+  }
+  .contact-row{display:flex;gap:16px;align-items:flex-start;margin-bottom:22px;}
+  .contact-row svg{width:26px;height:26px;color:var(--coral-deep);flex-shrink:0;margin-top:3px;}
+  .contact-row strong{display:block;font-family:'Fredoka',sans-serif;color:var(--ink);}
+  .contact-row span{font-size:.94rem;}
+  .map-wrap{border-radius:32px;overflow:hidden;box-shadow:var(--shadow);min-height:360px;}
+  .map-wrap iframe{width:100%;height:100%;min-height:360px;border:0;}
+  .ig-cta{
+    margin-top:10px;padding:22px;border-radius:20px;
+    background:linear-gradient(135deg,#F58529,#DD2A7B 45%,#8134AF 75%,#515BD4);
+    color:#fff;display:flex;align-items:center;gap:16px;
+  }
+  .ig-cta svg{width:34px;height:34px;flex-shrink:0;}
+  .ig-cta a{text-decoration:none;font-weight:800;color:#fff;}
+  .ig-cta .ig-text{font-size:.9rem;line-height:1.4;}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--ink);color:#fff;padding:52px 24px 28px;text-align:center;
+  }
+  footer .brand{color:#fff;justify-content:center;}
+  footer p{opacity:.7;font-size:.85rem;margin-top:14px;}
+  .footer-links{display:flex;gap:22px;justify-content:center;margin-top:20px;flex-wrap:wrap;}
+  .footer-links a{text-decoration:none;font-weight:700;font-size:.88rem;opacity:.85;}
+  .footer-links a:hover{opacity:1;color:var(--mustard);}
+  .powered{
+    margin-top:34px;font-size:.78rem;opacity:.55;
+  }
+  .powered a{color:var(--mustard);text-decoration:none;font-weight:800;}
+
+  /* ---------- FLOATING INSTAGRAM BUTTON ---------- */
+  .float-ig{
+    position:fixed;bottom:26px;right:26px;z-index:600;
+    width:60px;height:60px;border-radius:50%;
+    background:linear-gradient(135deg,#F58529,#DD2A7B 45%,#8134AF 75%,#515BD4);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 10px 26px rgba(221,42,123,.45);
+    text-decoration:none;
+    animation:float-bounce 3.2s ease-in-out infinite;
+  }
+  .float-ig svg{width:28px;height:28px;color:#fff;}
+  @keyframes float-bounce{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-8px);}
+  }
+
+  /* ---------- REVEAL ---------- */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  @media(max-width:900px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero p.lead{max-width:none;}
+    .services{grid-template-columns:repeat(2,1fr);}
+    .picker{grid-template-columns:1fr;}
+    .why{grid-template-columns:1fr;}
+    .contact{grid-template-columns:1fr;}
+    .gallery{grid-template-columns:repeat(3,1fr);}
+    .nav-links{display:none;}
+    .stat-panel{grid-template-columns:1fr 1fr;}
+  }
+  @media(max-width:520px){
+    .gallery{grid-template-columns:repeat(2,1fr);}
+    .section{padding:60px 18px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important;transition:none !important;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<div class="paw-trail" id="pawTrail">
+  <svg viewBox="0 0 24 24" fill="var(--coral-deep)"><ellipse cx="12" cy="16" rx="6" ry="5"/><circle cx="5" cy="8" r="2.4"/><circle cx="10.5" cy="4.5" r="2.4"/><circle cx="15.5" cy="4.5" r="2.4"/><circle cx="19" cy="8" r="2.4"/></svg>
+</div>
+
+<header>
+  <nav class="nav">
+    <a href="#top" class="brand">
+      <svg viewBox="0 0 60 60" fill="none">
+        <circle cx="30" cy="30" r="29" fill="#FF5C7A"/>
+        <ellipse cx="30" cy="37" rx="13" ry="11" fill="#fff"/>
+        <circle cx="17" cy="19" r="6" fill="#fff"/>
+        <circle cx="27" cy="13" r="6" fill="#fff"/>
+        <circle cx="37" cy="13" r="6" fill="#fff"/>
+        <circle cx="45" cy="19" r="6" fill="#fff"/>
+      </svg>
+      Nora Estilista Canino
+    </a>
+    <div class="nav-links">
+      <a href="#servicios">Servicios</a>
+      <a href="#estilos">Estilos</a>
+      <a href="#nosotros">Nora</a>
+      <a href="#galeria">Galería</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <a class="btn btn-primary" href="https://www.instagram.com/noraestilistacanino/" target="_blank" rel="noopener">
+      Reservar por Instagram
+    </a>
+  </nav>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="hero-blob" style="width:420px;height:420px;background:var(--mustard);top:-140px;right:-120px;"></div>
+    <div class="hero-blob" style="width:300px;height:300px;background:var(--mint);top:220px;left:-140px;opacity:.35;"></div>
+
+    <div class="hero-grid">
+      <div>
+        <p class="eyebrow">Peluquería canina · Quintanar de la Orden</p>
+        <h1>Tu perro sale <span>guapo</span>, feliz y sin estrés</h1>
+        <p class="lead">Cortes a máquina o a tijera, baños y limpieza de oídos, con más de 5 años cuidando a las mascotas de Quintanar. Trato cercano, mucha paciencia y horarios flexibles para que encajes tu cita.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="https://www.instagram.com/noraestilistacanino/" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.25.07 1.63.07 4.81s-.01 3.56-.07 4.81c-.15 3.23-1.66 4.77-4.92 4.92-1.25.06-1.63.07-4.85.07s-3.6-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.25-.07-1.63-.07-4.81s.01-3.56.07-4.81c.15-3.23 1.67-4.77 4.92-4.92C8.4 2.21 8.8 2.2 12 2.2zM12 0C8.74 0 8.33.01 7.05.07c-4.35.2-6.78 2.62-6.98 6.98C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 4-4 4 4 0 0 1-4 4zm6.4-11.85a1.44 1.44 0 1 0 1.44 1.44 1.44 1.44 0 0 0-1.44-1.44z"/></svg>
+            Escríbenos por Instagram
+          </a>
+          <a class="btn btn-ghost" href="#servicios">Ver servicios</a>
+        </div>
+        <div class="hero-badges">
+          <div class="hero-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 12l5 5L20 6"/></svg>
+            +5 años de experiencia
+          </div>
+          <div class="hero-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+            Horarios flexibles
+          </div>
+          <div class="hero-badge">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M20 21c0-4-3.6-6-8-6s-8 2-8 6"/><circle cx="12" cy="7" r="4"/></svg>
+            +1.900 familias peludas nos siguen
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-art">
+        <div class="snip-note">✂️ ¡snip snip!</div>
+        <svg viewBox="0 0 420 420" id="heroDog">
+          <ellipse cx="210" cy="380" rx="150" ry="18" fill="#2E1F3D" opacity=".08"/>
+          <!-- body -->
+          <ellipse cx="210" cy="270" rx="120" ry="90" fill="#FFD9A0"/>
+          <ellipse cx="210" cy="270" rx="120" ry="90" fill="url(#fluff)" opacity=".5"/>
+          <!-- legs -->
+          <rect x="130" y="320" width="26" height="55" rx="13" fill="#FFD9A0"/>
+          <rect x="264" y="320" width="26" height="55" rx="13" fill="#FFD9A0"/>
+          <!-- ears -->
+          <ellipse cx="128" cy="150" rx="30" ry="46" fill="#E8395C" transform="rotate(-18 128 150)"/>
+          <ellipse cx="292" cy="150" rx="30" ry="46" fill="#E8395C" transform="rotate(18 292 150)"/>
+          <!-- head -->
+          <circle cx="210" cy="185" r="95" fill="#FFE3B8"/>
+          <!-- snout -->
+          <ellipse cx="210" cy="222" rx="52" ry="40" fill="#FFF3DE"/>
+          <circle cx="210" cy="212" r="14" fill="#2E1F3D"/>
+          <path d="M195 236 Q210 250 225 236" stroke="#2E1F3D" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <!-- eyes -->
+          <circle cx="172" cy="170" r="9" fill="#2E1F3D"/>
+          <circle cx="248" cy="170" r="9" fill="#2E1F3D"/>
+          <circle cx="175" cy="167" r="2.6" fill="#fff"/>
+          <circle cx="251" cy="167" r="2.6" fill="#fff"/>
+          <!-- bow -->
+          <path d="M175 128 L152 112 L152 144 Z" fill="#FF5C7A"/>
+          <path d="M175 128 L198 112 L198 144 Z" fill="#FF5C7A"/>
+          <circle cx="175" cy="128" r="8" fill="#E8395C"/>
+          <!-- scissors -->
+          <g id="scissors" transform="translate(300 250) rotate(24)">
+            <circle cx="0" cy="0" r="9" fill="none" stroke="#3F8A6E" stroke-width="4"/>
+            <circle cx="0" cy="22" r="9" fill="none" stroke="#3F8A6E" stroke-width="4"/>
+            <path d="M6 6 L52 -30" stroke="#8B6BC7" stroke-width="5" stroke-linecap="round"/>
+            <path d="M6 16 L52 52" stroke="#8B6BC7" stroke-width="5" stroke-linecap="round"/>
+          </g>
+          <defs>
+            <pattern id="fluff" width="14" height="14" patternUnits="userSpaceOnUse">
+              <circle cx="3" cy="3" r="2" fill="#fff" opacity=".4"/>
+            </pattern>
+          </defs>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ESTILOS / SIGNATURE PICKER ================= -->
+  <section class="section" id="estilos">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Elige el look</p>
+        <h2>Cada perro, con el corte que le sienta</h2>
+        <p>Nora te aconseja el estilo según raza, pelo y estación. Toca cada opción para verla.</p>
+      </div>
+
+      <div class="picker reveal">
+        <div class="picker-tabs">
+          <button class="picker-tab active" data-style="maquina">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="9" width="12" height="6" rx="2"/><path d="M15 10l6-2v8l-6-2z"/></svg>
+            <span><strong>Corte a máquina</strong><span>Uniforme, corto y fácil de mantener. Ideal para el calor y perros muy activos.</span></span>
+          </button>
+          <button class="picker-tab" data-style="tijera">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="7" r="2.4"/><circle cx="6" cy="17" r="2.4"/><path d="M8 9l12 10M8 15L20 5"/></svg>
+            <span><strong>Corte a tijera</strong><span>Trabajo artesanal a mano, con volumen y forma. Perfecto para razas de exposición.</span></span>
+          </button>
+          <button class="picker-tab" data-style="bano">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h16M6 12V7a2 2 0 012-2h2M18 12v7a2 2 0 01-2 2H8a2 2 0 01-2-2v-3"/><circle cx="10" cy="4" r="1"/></svg>
+            <span><strong>Baño completo</strong><span>Champú específico, secado y cepillado para dejarlo suave y sin nudos.</span></span>
+          </button>
+          <button class="picker-tab" data-style="oidos">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3a7 7 0 017 7c0 3-2 4-2 7a3 3 0 01-6 0"/></svg>
+            <span><strong>Limpieza de oídos</strong><span>Revisión e higiene delicada para evitar infecciones y molestias.</span></span>
+          </button>
+        </div>
+
+        <div class="picker-stage">
+          <svg viewBox="0 0 300 300" width="260" id="stageDog">
+            <ellipse cx="150" cy="270" rx="100" ry="14" fill="#2E1F3D" opacity=".08"/>
+            <ellipse id="stageBody" cx="150" cy="190" rx="82" ry="62" fill="#FFD9A0"/>
+            <circle id="stageHead" cx="150" cy="115" r="64" fill="#FFE3B8"/>
+            <ellipse cx="150" cy="140" rx="34" ry="26" fill="#FFF3DE"/>
+            <circle cx="150" cy="132" r="9" fill="#2E1F3D"/>
+            <circle cx="122" cy="105" r="6" fill="#2E1F3D"/>
+            <circle cx="178" cy="105" r="6" fill="#2E1F3D"/>
+            <ellipse id="earL" cx="90" cy="95" rx="20" ry="30" fill="#E8395C" transform="rotate(-16 90 95)"/>
+            <ellipse id="earR" cx="210" cy="95" rx="20" ry="30" fill="#E8395C" transform="rotate(16 210 95)"/>
+            <g id="bubbles" opacity="0">
+              <circle cx="90" cy="180" r="8" fill="#fff" opacity=".8"/>
+              <circle cx="210" cy="160" r="10" fill="#fff" opacity=".8"/>
+              <circle cx="220" cy="220" r="6" fill="#fff" opacity=".8"/>
+              <circle cx="80" cy="230" r="7" fill="#fff" opacity=".8"/>
+            </g>
+            <g id="sparkle" opacity="0">
+              <path d="M110 60 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4z" fill="#FFB627"/>
+              <path d="M200 70 l3 8 8 3 -8 3 -3 8 -3 -8 -8 -3 8 -3z" fill="#FFB627"/>
+            </g>
+          </svg>
+          <div class="picker-caption" id="stageCaption">Corte a máquina</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SERVICIOS ================= -->
+  <section class="section section-alt" id="servicios">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Servicios</p>
+        <h2>Todo lo que tu peludo necesita</h2>
+        <p>Precio y duración según raza, tamaño y estado del pelo. Escríbenos y te damos presupuesto sin compromiso.</p>
+      </div>
+      <div class="services">
+        <div class="service-card sc-1 reveal" data-sound="snip">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="9" width="12" height="6" rx="2"/><path d="M15 10l6-2v8l-6-2z"/></svg>
+          </div>
+          <h3>Corte a máquina</h3>
+          <p>Rápido, homogéneo y perfecto para el día a día y el calor del verano.</p>
+        </div>
+        <div class="service-card sc-2 reveal" data-sound="snip">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><circle cx="6" cy="7" r="2.4"/><circle cx="6" cy="17" r="2.4"/><path d="M8 9l12 10M8 15L20 5"/></svg>
+          </div>
+          <h3>Corte a tijera</h3>
+          <p>Acabado artesanal con forma y volumen, a mano, para un resultado de exposición.</p>
+        </div>
+        <div class="service-card sc-3 reveal">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M4 12h16M6 12V7a2 2 0 012-2h2M18 12v7a2 2 0 01-2 2H8a2 2 0 01-2-2v-3"/><circle cx="10" cy="4" r="1"/></svg>
+          </div>
+          <h3>Baños</h3>
+          <p>Champús adaptados a cada tipo de piel y pelo, con secado y cepillado incluidos.</p>
+        </div>
+        <div class="service-card sc-4 reveal">
+          <div class="service-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M9 3a7 7 0 017 7c0 3-2 4-2 7a3 3 0 01-6 0"/></svg>
+          </div>
+          <h3>Limpieza de oídos</h3>
+          <p>Higiene delicada para prevenir infecciones y mantener a tu perro cómodo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= NOSOTROS / STATS ================= -->
+  <section class="section" id="nosotros">
+    <div class="wrap">
+      <div class="why">
+        <div class="reveal">
+          <p class="eyebrow">Quién te va a cuidar el peludo</p>
+          <h2>Nora, estilista canina de Quintanar de la Orden</h2>
+          <div class="why-list">
+            <div class="why-item">
+              <div class="num">1</div>
+              <div><h3>Experiencia real</h3><p>Más de 5 años dedicados en exclusiva al cuidado y la estética canina y felina.</p></div>
+            </div>
+            <div class="why-item">
+              <div class="num">2</div>
+              <div><h3>Flexibilidad de horarios</h3><p>Nos adaptamos a tu rutina para que llevar a tu mascota nunca sea un problema.</p></div>
+            </div>
+            <div class="why-item">
+              <div class="num">3</div>
+              <div><h3>Trato cercano y sin prisas</h3><p>Cada mascota tiene su ritmo, y Nora se lo respeta para que la visita sea tranquila.</p></div>
+            </div>
+          </div>
+        </div>
+        <div class="stat-panel reveal">
+          <div class="stat"><div class="n">5+</div><div class="l">Años de experiencia</div></div>
+          <div class="stat"><div class="n">1.9K</div><div class="l">Familias peludas en Instagram</div></div>
+          <div class="stat"><div class="n">4</div><div class="l">Servicios de cuidado completo</div></div>
+          <div class="stat"><div class="n">100%</div><div class="l">Flexibilidad de horario</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= GALERIA ================= -->
+  <section class="section section-alt" id="galeria">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Nuestros clientes peludos</p>
+        <h2>Cada raza, con su propio estilo</h2>
+        <p>Un adelanto de la variedad que pasa cada semana por la peluquería. Más fotos y vídeos reales en Instagram.</p>
+      </div>
+      <div class="gallery" id="gallery"></div>
+      <div style="text-align:center;margin-top:34px;" class="reveal">
+        <a class="btn btn-primary" href="https://www.instagram.com/noraestilistacanino/" target="_blank" rel="noopener">Ver más en Instagram →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACTO ================= -->
+  <section class="section" id="contacto">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Reserva tu cita</p>
+        <h2>Te esperamos en Quintanar de la Orden</h2>
+        <p>Escríbenos por Instagram contándonos la raza y el pelo de tu perro y te decimos disponibilidad.</p>
+      </div>
+      <div class="contact reveal">
+        <div class="contact-card">
+          <div class="contact-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            <div><strong>Dirección</strong><span>Pasaje Ángel y María, 6 · 45800 Quintanar de la Orden, Toledo</span></div>
+          </div>
+          <div class="contact-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+            <div><strong>Horario</strong><span>Flexible — te lo adaptamos según tu disponibilidad. Consúltanos por Instagram.</span></div>
+          </div>
+          <div class="contact-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+            <div><strong>Servicios</strong><span>Cortes a máquina o tijera, baños y limpieza de oídos.</span></div>
+          </div>
+          <div class="ig-cta">
+            <svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.25.07 1.63.07 4.81s-.01 3.56-.07 4.81c-.15 3.23-1.66 4.77-4.92 4.92-1.25.06-1.63.07-4.85.07s-3.6-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.25-.07-1.63-.07-4.81s.01-3.56.07-4.81c.15-3.23 1.67-4.77 4.92-4.92C8.4 2.21 8.8 2.2 12 2.2zM12 0C8.74 0 8.33.01 7.05.07c-4.35.2-6.78 2.62-6.98 6.98C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 4-4 4 4 0 0 1-4 4zm6.4-11.85a1.44 1.44 0 1 0 1.44 1.44 1.44 1.44 0 0 0-1.44-1.44z"/></svg>
+            <div class="ig-text">
+              <a href="https://www.instagram.com/noraestilistacanino/" target="_blank" rel="noopener">@noraestilistacanino</a><br>
+              Escríbenos por Instagram para reservar tu cita
+            </div>
+          </div>
+        </div>
+        <div class="map-wrap">
+          <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-3.0620%2C39.5920%2C-3.0300%2C39.6070&layer=mapnik&marker=39.5992%2C-3.0463" loading="lazy" title="Mapa Quintanar de la Orden"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <a href="#top" class="brand">
+    <svg viewBox="0 0 60 60" fill="none">
+      <circle cx="30" cy="30" r="29" fill="#FF5C7A"/>
+      <ellipse cx="30" cy="37" rx="13" ry="11" fill="#fff"/>
+      <circle cx="17" cy="19" r="6" fill="#fff"/>
+      <circle cx="27" cy="13" r="6" fill="#fff"/>
+      <circle cx="37" cy="13" r="6" fill="#fff"/>
+      <circle cx="45" cy="19" r="6" fill="#fff"/>
+    </svg>
+    Nora Estilista Canino
+  </a>
+  <p>Cuidamos de tu mascota · Quintanar de la Orden, Toledo</p>
+  <div class="footer-links">
+    <a href="#servicios">Servicios</a>
+    <a href="#estilos">Estilos</a>
+    <a href="#galeria">Galería</a>
+    <a href="https://www.instagram.com/noraestilistacanino/" target="_blank" rel="noopener">Instagram</a>
+  </div>
+  <p class="powered">Página creada con <a href="https://easypagex.github.io" target="_blank" rel="noopener">EasyPageX</a></p>
+</footer>
+
+<a class="float-ig" href="https://www.instagram.com/noraestilistacanino/" target="_blank" rel="noopener" aria-label="Instagram de Nora Estilista Canino">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.25.07 1.63.07 4.81s-.01 3.56-.07 4.81c-.15 3.23-1.66 4.77-4.92 4.92-1.25.06-1.63.07-4.85.07s-3.6-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.25-.07-1.63-.07-4.81s.01-3.56.07-4.81c.15-3.23 1.67-4.77 4.92-4.92C8.4 2.21 8.8 2.2 12 2.2zM12 0C8.74 0 8.33.01 7.05.07c-4.35.2-6.78 2.62-6.98 6.98C.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 4-4 4 4 0 0 1-4 4zm6.4-11.85a1.44 1.44 0 1 0 1.44 1.44 1.44 1.44 0 0 0-1.44-1.44z"/></svg>
+</a>
+
+<script>
+/* ---------------- Cursor paw trail ---------------- */
+(function(){
+  const trailEls = [];
+  const trailCount = 6;
+  for(let i=0;i<trailCount;i++){
+    const el = document.createElement('div');
+    el.className = 'paw-trail';
+    el.innerHTML = document.getElementById('pawTrail').innerHTML;
+    document.body.appendChild(el);
+    trailEls.push({el, x:0, y:0, active:false});
+  }
+  document.getElementById('pawTrail').remove();
+  let idx = 0, lastMove = 0;
+  window.addEventListener('mousemove', (e)=>{
+    const now = Date.now();
+    if(now - lastMove < 130) return;
+    lastMove = now;
+    const t = trailEls[idx % trailCount];
+    idx++;
+    t.el.style.left = (e.clientX - 10) + 'px';
+    t.el.style.top = (e.clientY - 10) + 'px';
+    t.el.style.opacity = '.55';
+    t.el.style.transform = 'rotate(' + (Math.random()*40-20) + 'deg)';
+    clearTimeout(t.timeout);
+    t.timeout = setTimeout(()=>{ t.el.style.opacity = '0'; }, 700);
+  });
+})();
+
+/* ---------------- Scroll reveal ---------------- */
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){ entry.target.classList.add('in'); io.unobserve(entry.target); }
+  });
+},{threshold:.15});
+revealEls.forEach(el=>io.observe(el));
+
+/* ---------------- Snip sound (Web Audio) ---------------- */
+let actx;
+function playSnip(){
+  try{
+    actx = actx || new (window.AudioContext||window.webkitAudioContext)();
+    const now = actx.currentTime;
+    const osc = actx.createOscillator();
+    const gain = actx.createGain();
+    osc.type = 'square';
+    osc.frequency.setValueAtTime(1800, now);
+    osc.frequency.exponentialRampToValueAtTime(600, now+0.06);
+    gain.gain.setValueAtTime(0.06, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now+0.09);
+    osc.connect(gain).connect(actx.destination);
+    osc.start(now); osc.stop(now+0.1);
+  }catch(e){}
+}
+document.querySelectorAll('[data-sound="snip"]').forEach(el=>{
+  el.addEventListener('mouseenter', playSnip);
+});
+document.getElementById('scissors')?.addEventListener('mouseenter', playSnip);
+
+/* ---------------- Style picker (signature interactive) ---------------- */
+const stageBody = document.getElementById('stageBody');
+const stageHead = document.getElementById('stageHead');
+const earL = document.getElementById('earL');
+const earR = document.getElementById('earR');
+const bubbles = document.getElementById('bubbles');
+const sparkle = document.getElementById('sparkle');
+const caption = document.getElementById('stageCaption');
+const tabs = document.querySelectorAll('.picker-tab');
+
+const styles = {
+  maquina: { body:'#FFD9A0', head:'#FFE3B8', bubbles:0, sparkle:0, capt:'Corte a máquina — corto y uniforme' },
+  tijera:  { body:'#F4C98A', head:'#F9DDAF', bubbles:0, sparkle:1, capt:'Corte a tijera — con forma y volumen' },
+  bano:    { body:'#BFE3F5', head:'#D7EEF9', bubbles:1, sparkle:0, capt:'Baño completo — suave y sin nudos' },
+  oidos:   { body:'#FFD9A0', head:'#FFE3B8', bubbles:0, sparkle:0, capt:'Limpieza de oídos — cuidado delicado' }
+};
+
+tabs.forEach(tab=>{
+  tab.addEventListener('click', ()=>{
+    tabs.forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    const s = styles[tab.dataset.style];
+    stageBody.setAttribute('fill', s.body);
+    stageHead.setAttribute('fill', s.head);
+    bubbles.style.opacity = s.bubbles;
+    sparkle.style.opacity = s.sparkle;
+    caption.textContent = s.capt;
+    playSnip();
+  });
+});
+
+/* ---------------- Procedural gallery of dog portraits ---------------- */
+const coatColors = ['#FFD9A0','#8B6BC7','#6FB79A','#FF5C7A','#3D2645','#FFB627','#B98A5A','#E8395C','#7FBEA0','#F4C98A','#4A3A5A','#F58529'];
+const earShapes = ['floppy','pointy','round'];
+const galleryWrap = document.getElementById('gallery');
+function dogSVG(seedIndex){
+  const coat = coatColors[seedIndex % coatColors.length];
+  const bg = coatColors[(seedIndex+5) % coatColors.length];
+  const ear = earShapes[seedIndex % earShapes.length];
+  let earPath = '';
+  if(ear === 'floppy'){
+    earPath = `<ellipse cx="24" cy="46" rx="14" ry="22" fill="${bg}" transform="rotate(-18 24 46)"/><ellipse cx="76" cy="46" rx="14" ry="22" fill="${bg}" transform="rotate(18 76 46)"/>`;
+  } else if(ear === 'pointy'){
+    earPath = `<path d="M22 40 L10 12 L38 34 Z" fill="${bg}"/><path d="M78 40 L90 12 L62 34 Z" fill="${bg}"/>`;
+  } else {
+    earPath = `<circle cx="20" cy="38" r="13" fill="${bg}"/><circle cx="80" cy="38" r="13" fill="${bg}"/>`;
+  }
+  return `<svg viewBox="0 0 100 100">
+    <rect width="100" height="100" fill="${bg}" opacity="0.18"/>
+    ${earPath}
+    <circle cx="50" cy="52" r="34" fill="${coat}"/>
+    <ellipse cx="50" cy="62" rx="16" ry="13" fill="#FFF3DE"/>
+    <circle cx="50" cy="58" r="5" fill="#2E1F3D"/>
+    <circle cx="38" cy="44" r="3.4" fill="#2E1F3D"/>
+    <circle cx="62" cy="44" r="3.4" fill="#2E1F3D"/>
+    <path d="M43 68 Q50 74 57 68" stroke="#2E1F3D" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+  </svg>`;
+}
+for(let i=0;i<12;i++){
+  const div = document.createElement('div');
+  div.className = 'gallery-item reveal';
+  div.innerHTML = dogSVG(i);
+  galleryWrap.appendChild(div);
+}
+setTimeout(()=>{ document.querySelectorAll('.gallery-item').forEach(el=>io.observe(el)); }, 50);
+</script>
+
+</body>
+</html>
