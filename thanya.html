@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Thanya · Planes Juntos — Senderismo y viajes grupales desde Villavicencio</title>
+<meta name="description" content="Thanya Baquero organiza senderismo, viajes grupales y escapadas desde Villavicencio, Meta. Entérate de cada plan y súmate.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@500;700;900&family=Space+Mono:wght@400;700&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #142218;
+    --bg-panel: #1c3024;
+    --bg-panel-2: #223a2c;
+    --contour: #2e4a38;
+    --contour-soft: #24382b;
+    --gold: #e6ac3f;
+    --gold-dim: #b98a34;
+    --rust: #c05a34;
+    --paper: #f3ecd9;
+    --paper-dim: #cdc7b3;
+    --ink: #0f1c13;
+    --muted: #a9b8a8;
+    --line: rgba(243,236,217,0.14);
+    --max: 1180px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--paper);
+    font-family:'Work Sans', sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4{
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:900;
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+    margin:0;
+    color:var(--paper);
+  }
+  a{color:inherit; text-decoration:none;}
+  .mono{font-family:'Space Mono', monospace;}
+  img{max-width:100%; display:block;}
+  ::selection{background:var(--gold); color:var(--ink);}
+
+  /* Texture: faint topo contour rings across the whole page */
+  body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:0;
+    opacity:0.5;
+    background-image:
+      radial-gradient(circle at 12% 8%, transparent 0 60px, var(--contour-soft) 61px 63px, transparent 64px 120px, var(--contour-soft) 121px 123px, transparent 124px),
+      radial-gradient(circle at 88% 30%, transparent 0 80px, var(--contour-soft) 81px 83px, transparent 84px 150px, var(--contour-soft) 151px 153px, transparent 154px),
+      radial-gradient(circle at 20% 75%, transparent 0 70px, var(--contour-soft) 71px 73px, transparent 74px 140px, var(--contour-soft) 141px 143px, transparent 144px),
+      radial-gradient(circle at 75% 90%, transparent 0 90px, var(--contour-soft) 91px 93px, transparent 94px 160px, var(--contour-soft) 161px 163px, transparent 164px);
+    background-repeat:no-repeat;
+    background-size:100% 2400px;
+    background-position:top center;
+  }
+
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 28px; position:relative; z-index:1;}
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(20,34,24,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:var(--max); margin:0 auto; padding:16px 28px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Big Shoulders Display', sans-serif;
+    font-weight:700; font-size:1.35rem; text-transform:uppercase; letter-spacing:0.02em;
+  }
+  .brand .mark{
+    width:30px; height:30px; flex:none;
+  }
+  .nav-links{display:flex; gap:28px; align-items:center;}
+  .nav-links a{
+    font-size:0.86rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted);
+    transition:color .2s;
+  }
+  .nav-links a:hover{color:var(--gold);}
+  .nav-cta{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--gold); color:var(--ink);
+    padding:9px 18px; border-radius:3px;
+    font-weight:700; font-size:0.82rem; text-transform:uppercase; letter-spacing:0.06em;
+    transition:transform .2s, background .2s;
+  }
+  .nav-cta:hover{background:var(--paper); transform:translateY(-1px);}
+  .nav-mobile-hide{display:flex;}
+  @media(max-width:820px){ .nav-mobile-hide{display:none;} }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:120px 0 100px;
+    overflow:hidden;
+    border-bottom:1px solid var(--line);
+  }
+  .hero-bg-line{
+    position:absolute; inset:0; z-index:0; opacity:0.9;
+  }
+  .hero .wrap{position:relative; z-index:2;}
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    font-size:0.78rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gold);
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:22px;
+  }
+  .eyebrow .dot{width:7px; height:7px; border-radius:50%; background:var(--gold); box-shadow:0 0 0 4px rgba(230,172,63,0.18);}
+  .hero h1{
+    font-size:clamp(2.8rem, 7vw, 5.6rem);
+    line-height:0.94;
+    max-width:920px;
+    letter-spacing:0.005em;
+  }
+  .hero h1 em{
+    font-style:normal; color:var(--gold);
+  }
+  .hero-sub{
+    max-width:560px;
+    font-size:1.15rem;
+    color:var(--paper-dim);
+    margin-top:26px;
+    font-weight:300;
+  }
+  .hero-ctas{display:flex; flex-wrap:wrap; gap:14px; margin-top:38px;}
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:15px 26px; border-radius:3px;
+    font-weight:700; font-size:0.92rem; text-transform:uppercase; letter-spacing:0.05em;
+    transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+    border:1px solid transparent;
+  }
+  .btn-primary{background:var(--gold); color:var(--ink);}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 10px 24px rgba(230,172,63,0.25);}
+  .btn-ghost{border-color:var(--line); color:var(--paper);}
+  .btn-ghost:hover{border-color:var(--gold); color:var(--gold); transform:translateY(-2px);}
+  .btn svg{width:18px; height:18px; flex:none;}
+
+  .hero-coords{
+    margin-top:56px;
+    display:flex; gap:34px; flex-wrap:wrap;
+    font-family:'Space Mono', monospace;
+    font-size:0.8rem; color:var(--muted); letter-spacing:0.03em;
+  }
+  .hero-coords span b{color:var(--paper);}
+
+  .scroll-cue{
+    margin-top:70px;
+    display:flex; align-items:center; gap:12px;
+    font-family:'Space Mono', monospace;
+    font-size:0.72rem; text-transform:uppercase; letter-spacing:0.14em; color:var(--muted);
+  }
+  .scroll-cue .line{width:40px; height:1px; background:var(--muted); position:relative; overflow:hidden;}
+  .scroll-cue .line::after{
+    content:""; position:absolute; left:-100%; top:0; width:100%; height:100%; background:var(--gold);
+    animation:trail 2.2s linear infinite;
+  }
+  @keyframes trail{ to{left:100%;} }
+
+  /* ---------- SECTION SCAFFOLD ---------- */
+  section{ position:relative; padding:100px 0; }
+  .section-alt{ background:var(--bg-panel); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+
+  .waypoint{
+    display:flex; align-items:center; gap:14px;
+    margin-bottom:20px;
+  }
+  .wp-num{
+    font-family:'Space Mono', monospace;
+    font-size:0.8rem; color:var(--ink); background:var(--gold);
+    width:30px; height:30px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; flex:none;
+    font-weight:700;
+  }
+  .wp-label{
+    font-family:'Space Mono', monospace;
+    font-size:0.78rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted);
+  }
+  .connector{
+    width:1px; height:52px; margin-left:15px;
+    background:repeating-linear-gradient(to bottom, var(--gold) 0 6px, transparent 6px 12px);
+    opacity:0.6;
+  }
+
+  .section-title{
+    font-size:clamp(2rem, 4vw, 3rem);
+    max-width:680px;
+    margin-bottom:18px;
+  }
+  .section-lede{
+    color:var(--paper-dim); max-width:600px; font-size:1.05rem; font-weight:300;
+  }
+
+  /* reveal animation */
+  .reveal{ opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{
+    display:grid; grid-template-columns:280px 1fr; gap:60px; margin-top:50px; align-items:start;
+  }
+  @media(max-width:760px){ .about-grid{grid-template-columns:1fr;} }
+  .portrait{
+    width:100%; aspect-ratio:1/1.1; border-radius:6px; overflow:hidden;
+    border:1px solid var(--line); position:relative; background:var(--bg-panel-2);
+  }
+  .portrait svg{width:100%; height:100%;}
+  .badge-loc{
+    margin-top:16px; display:flex; align-items:center; gap:8px;
+    font-family:'Space Mono', monospace; font-size:0.76rem; color:var(--muted);
+  }
+  .about-text p{ font-size:1.08rem; color:var(--paper-dim); font-weight:300; max-width:620px; }
+  .about-text p + p{margin-top:16px;}
+  .about-text .highlight{ color:var(--paper); font-weight:500;}
+  .about-contact{
+    margin-top:30px; display:flex; flex-wrap:wrap; gap:14px;
+  }
+  .pill{
+    display:inline-flex; align-items:center; gap:8px;
+    border:1px solid var(--line); padding:9px 16px; border-radius:30px;
+    font-size:0.85rem; color:var(--paper-dim); font-family:'Space Mono', monospace;
+    transition:border-color .2s, color .2s;
+  }
+  .pill:hover{border-color:var(--gold); color:var(--gold);}
+  .pill svg{width:14px; height:14px;}
+
+  /* ---------- STEPS ---------- */
+  .steps{
+    margin-top:54px;
+    display:grid; grid-template-columns:repeat(3,1fr); gap:0;
+    border-top:1px solid var(--line);
+  }
+  @media(max-width:820px){ .steps{grid-template-columns:1fr;} }
+  .step{
+    padding:34px 30px; border-right:1px solid var(--line); border-bottom:1px solid var(--line);
+    position:relative;
+  }
+  .steps .step:last-child{border-right:1px solid var(--line);}
+  @media(max-width:820px){ .step{border-right:1px solid var(--line);} }
+  .step-num{
+    font-family:'Big Shoulders Display', sans-serif; font-weight:900; font-size:3.2rem;
+    color:var(--contour); line-height:1; margin-bottom:14px;
+  }
+  .step h3{ font-size:1.35rem; margin-bottom:10px; }
+  .step p{ color:var(--paper-dim); font-weight:300; font-size:0.96rem; }
+
+  /* ---------- PLANES (categories) ---------- */
+  .planes-grid{
+    margin-top:54px;
+    display:grid; grid-template-columns:repeat(3,1fr); gap:22px;
+  }
+  @media(max-width:900px){ .planes-grid{grid-template-columns:1fr;} }
+  .plan-card{
+    background:var(--bg-panel-2);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:32px 28px;
+    transition:transform .25s ease, border-color .25s ease;
+  }
+  .plan-card:hover{ transform:translateY(-6px); border-color:var(--gold); }
+  .plan-icon{
+    width:52px; height:52px; margin-bottom:22px;
+    color:var(--gold);
+  }
+  .plan-icon svg{width:100%; height:100%;}
+  .plan-card h3{ font-size:1.5rem; margin-bottom:10px; }
+  .plan-card p{ color:var(--paper-dim); font-weight:300; font-size:0.95rem; }
+  .plan-tag{
+    display:inline-block; margin-top:18px;
+    font-family:'Space Mono', monospace; font-size:0.72rem; letter-spacing:0.1em;
+    color:var(--gold-dim); text-transform:uppercase;
+    border-top:1px solid var(--line); padding-top:14px; width:100%;
+  }
+
+  /* ---------- UNETE / channels ---------- */
+  .channels-grid{
+    margin-top:54px;
+    display:grid; grid-template-columns:repeat(2,1fr); gap:18px;
+  }
+  @media(max-width:760px){ .channels-grid{grid-template-columns:1fr;} }
+  .channel-card{
+    display:flex; align-items:center; gap:20px;
+    background:var(--bg-panel-2); border:1px solid var(--line); border-radius:6px;
+    padding:26px 26px; transition:border-color .2s, transform .2s;
+  }
+  .channel-card:hover{ border-color:var(--gold); transform:translateX(4px); }
+  .channel-icon{
+    width:50px; height:50px; flex:none; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    background:var(--bg); border:1px solid var(--line); color:var(--gold);
+  }
+  .channel-icon svg{width:24px; height:24px;}
+  .channel-body h4{
+    font-family:'Work Sans', sans-serif; text-transform:none; font-weight:600; font-size:1.05rem; color:var(--paper);
+  }
+  .channel-body p{ font-size:0.88rem; color:var(--muted); margin-top:4px; font-weight:300; }
+  .channel-arrow{ margin-left:auto; color:var(--muted); flex:none; }
+  .channel-arrow svg{width:18px; height:18px; transition:transform .2s;}
+  .channel-card:hover .channel-arrow svg{ transform:translateX(4px); color:var(--gold); }
+
+  /* ---------- ALIADOS ---------- */
+  .aliados-grid{
+    margin-top:44px;
+    display:grid; grid-template-columns:repeat(2,1fr); gap:18px;
+  }
+  @media(max-width:760px){ .aliados-grid{grid-template-columns:1fr;} }
+  .aliado-card{
+    border:1px dashed var(--line); border-radius:6px; padding:24px 26px;
+    display:flex; justify-content:space-between; align-items:center; gap:16px;
+    transition:border-color .2s;
+  }
+  .aliado-card:hover{ border-color:var(--rust); }
+  .aliado-card h4{ font-family:'Work Sans',sans-serif; text-transform:none; font-weight:600; font-size:1rem; color:var(--paper); }
+  .aliado-card p{ font-size:0.82rem; color:var(--muted); margin-top:3px; }
+  .aliado-go{ color:var(--rust); font-family:'Space Mono',monospace; font-size:0.78rem; flex:none; }
+
+  /* ---------- CTA BAND ---------- */
+  .cta-band{
+    padding:90px 0; text-align:center;
+    background:linear-gradient(180deg, var(--bg-panel), var(--bg));
+    border-top:1px solid var(--line);
+  }
+  .cta-band h2{ font-size:clamp(2rem,5vw,3.4rem); max-width:760px; margin:0 auto 20px; }
+  .cta-band p{ color:var(--paper-dim); max-width:520px; margin:0 auto; font-weight:300; }
+  .cta-band .hero-ctas{ justify-content:center; margin-top:34px; }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding:56px 0 30px;
+    border-top:1px solid var(--line);
+  }
+  .footer-top{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:30px; padding-bottom:36px;
+  }
+  .footer-brand{ max-width:320px; }
+  .footer-brand .brand{ margin-bottom:14px; }
+  .footer-brand p{ color:var(--muted); font-size:0.9rem; font-weight:300; }
+  .footer-cols{ display:flex; gap:60px; flex-wrap:wrap; }
+  .footer-col h5{
+    font-family:'Space Mono', monospace; font-size:0.74rem; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--muted); margin-bottom:14px;
+  }
+  .footer-col a{
+    display:block; color:var(--paper-dim); font-size:0.9rem; margin-bottom:10px; transition:color .2s;
+  }
+  .footer-col a:hover{ color:var(--gold); }
+  .footer-bottom{
+    border-top:1px solid var(--line); padding-top:24px;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px;
+    font-size:0.78rem; color:var(--muted); font-family:'Space Mono', monospace;
+  }
+  .made-with{
+    display:inline-flex; align-items:center; gap:8px;
+    color:var(--muted); transition:color .2s;
+  }
+  .made-with:hover{ color:var(--gold); }
+  .made-with .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);}
+
+  /* ---------- FLOATING BUTTONS ---------- */
+  .float-stack{
+    position:fixed; right:22px; bottom:22px; z-index:60;
+    display:flex; flex-direction:column; gap:12px; align-items:flex-end;
+  }
+  .float-btn{
+    width:56px; height:56px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 8px 22px rgba(0,0,0,0.35);
+    transition:transform .2s ease;
+  }
+  .float-btn:hover{ transform:scale(1.08); }
+  .float-btn svg{ width:26px; height:26px; }
+  .fb-wa{ background:#25D366; color:#0b2415; }
+  .fb-ig{ background:radial-gradient(circle at 30% 110%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%); color:#fff; }
+
+  @media(max-width:600px){
+    .hero{padding:90px 0 70px;}
+    section{padding:70px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand">
+      <svg class="mark" viewBox="0 0 32 32" fill="none">
+        <path d="M2 24L11 10L16 17L21 8L30 24" stroke="#e6ac3f" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>
+      </svg>
+      Thanya · Planes Juntos
+    </a>
+    <nav class="nav-links nav-mobile-hide">
+      <a href="#sobre">Sobre mí</a>
+      <a href="#como-funciona">Cómo funciona</a>
+      <a href="#planes">Planes</a>
+      <a href="#unete">Únete</a>
+    </nav>
+    <a class="nav-cta" href="https://whatsapp.com/channel/0029VaoBnTaDJ6H97R5ZkQ3l" target="_blank" rel="noopener">Ver planes</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <svg class="hero-bg-line" viewBox="0 0 1200 700" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M-50 550 C 150 500, 250 620, 420 540 S 700 380, 850 430 S 1100 300, 1250 340"
+            fill="none" stroke="#2e4a38" stroke-width="2" stroke-dasharray="1 10" stroke-linecap="round"/>
+      <path d="M-50 610 C 180 640, 320 560, 500 610 S 780 500, 950 540 S 1150 460, 1300 500"
+            fill="none" stroke="#2e4a38" stroke-width="1.4" stroke-dasharray="1 8" stroke-linecap="round" opacity="0.7"/>
+    </svg>
+    <div class="wrap">
+      <div class="eyebrow"><span class="dot"></span> Villavicencio, Meta — Colombia</div>
+      <h1>Rutas que<br>se viven <em>juntas.</em></h1>
+      <p class="hero-sub">Senderismo, viajes grupales y planes que empiezan en Villavicencio y no tienen mapa de regreso. Cada salida la organizo yo, Thanya — tú solo confirmas el cupo.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="https://whatsapp.com/channel/0029VaoBnTaDJ6H97R5ZkQ3l" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.28-1.38c1.44.79 3.06 1.2 4.71 1.2h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0012.04 2m0 1.67c2.19 0 4.25.85 5.8 2.4a8.18 8.18 0 012.4 5.81c0 4.53-3.68 8.21-8.21 8.21-1.43 0-2.83-.37-4.06-1.07l-.29-.17-3.03.8.81-2.95-.19-.3a8.15 8.15 0 01-1.25-4.36c0-4.53 3.69-8.22 8.22-8.22m-4.6 4.2c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.67 2.67 4.15 3.64 2.05.8 2.47.65 2.92.6.45-.04 1.44-.58 1.64-1.15.2-.56.2-1.04.14-1.15-.06-.1-.22-.16-.46-.28-.24-.12-1.44-.71-1.66-.8-.22-.08-.39-.12-.55.12-.16.24-.63.79-.78.96-.14.16-.29.18-.53.06-.24-.12-1.02-.38-1.95-1.21-.72-.64-1.21-1.43-1.35-1.67-.14-.24-.02-.37.1-.49.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.35-.76-1.84-.2-.48-.4-.42-.55-.42h-.47" /></svg>
+          Ver planes en WhatsApp
+        </a>
+        <a class="btn btn-ghost" href="https://instagram.com/thanyaplanesjuntos" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+          Seguir en Instagram
+        </a>
+      </div>
+      <div class="hero-coords mono">
+        <span>04°09' N · 73°38' O</span>
+        <span><b>Base:</b> Villavicencio, Meta</span>
+        <span><b>Contacto:</b> tbaqueroca@gmail.com</span>
+      </div>
+      <div class="scroll-cue"><span class="line"></span> Sigue la ruta</div>
+    </div>
+  </section>
+
+  <!-- SOBRE -->
+  <section id="sobre">
+    <div class="wrap reveal">
+      <div class="waypoint"><span class="wp-num">01</span><span class="wp-label">Punto de partida</span></div>
+      <h2 class="section-title">Quien organiza el plan</h2>
+      <div class="about-grid">
+        <div>
+          <div class="portrait">
+            <svg viewBox="0 0 280 310" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="skyg" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#3a5c46"/>
+                  <stop offset="100%" stop-color="#1c3024"/>
+                </linearGradient>
+              </defs>
+              <rect width="280" height="310" fill="url(#skyg)"/>
+              <path d="M0 210 L60 140 L100 180 L150 110 L200 170 L240 130 L280 190 L280 310 L0 310 Z" fill="#22392b"/>
+              <path d="M0 240 L80 190 L140 230 L210 175 L280 220 L280 310 L0 310 Z" fill="#16241c"/>
+              <circle cx="140" cy="112" r="48" fill="#e6ac3f" opacity="0.9"/>
+              <g stroke="#142218" stroke-width="3" fill="none" opacity="0.5">
+                <circle cx="140" cy="112" r="60"/>
+                <circle cx="140" cy="112" r="74"/>
+              </g>
+            </svg>
+          </div>
+          <div class="badge-loc mono">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#e6ac3f" stroke-width="2"><path d="M12 21s7-6.5 7-12a7 7 0 10-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>
+            Villavicencio · Meta · Colombia
+          </div>
+        </div>
+        <div class="about-text">
+          <p><span class="highlight">Soy Thanya Baquero</span>, creadora digital y organizadora de viajes. Llevo la montaña, el llano y la carretera a quienes quieren vivirlos acompañados — no de espectadores, sino de grupo.</p>
+          <p>Cada plan nace de una ruta ya caminada, un transporte ya coordinado y un punto de encuentro claro. Tú decides si te sumas; yo me encargo de que el camino tenga sentido de principio a fin.</p>
+          <p>Los planes se anuncian primero por Instagram y por el canal de WhatsApp — ahí están las fechas, los cupos y los detalles de cada salida.</p>
+          <div class="about-contact">
+            <a class="pill" href="mailto:tbaqueroca@gmail.com">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+              tbaqueroca@gmail.com
+            </a>
+            <a class="pill" href="https://instagram.com/thanyaplanesjuntos" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/></svg>
+              @thanyaplanesjuntos
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section id="como-funciona" class="section-alt">
+    <div class="wrap reveal">
+      <div class="waypoint"><span class="wp-num">02</span><span class="wp-label">La ruta para unirte</span></div>
+      <h2 class="section-title">Cómo funciona</h2>
+      <p class="section-lede">Tres pasos, sin vueltas — desde que ves el plan hasta que estás en la ruta.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <h3>Entérate del plan</h3>
+          <p>Sigue el canal de WhatsApp o Instagram, donde se publica cada ruta con fecha, punto de encuentro y cupo disponible.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <h3>Aparta tu cupo</h3>
+          <p>Escribe directo por WhatsApp para confirmar tu lugar. Los cupos son limitados y se llenan por orden de confirmación.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <h3>Viaja en grupo</h3>
+          <p>Llega al punto de encuentro y súmate: transporte, ruta y acompañamiento durante todo el recorrido, de ida y vuelta.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIPOS DE PLANES -->
+  <section id="planes">
+    <div class="wrap reveal">
+      <div class="waypoint"><span class="wp-num">03</span><span class="wp-label">Tres formas de viajar</span></div>
+      <h2 class="section-title">Tipos de planes</h2>
+      <p class="section-lede">De una caminata de un día a una escapada más larga — siempre en grupo, siempre acompañados.</p>
+      <div class="planes-grid">
+        <div class="plan-card">
+          <div class="plan-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+              <path d="M4 38L18 14L24 24L30 12L44 38Z"/>
+              <path d="M14 38L18 30L22 38"/>
+            </svg>
+          </div>
+          <h3>Senderismo</h3>
+          <p>Caminatas a páramos, cascadas y miradores por el Meta y la Cordillera Oriental, a ritmo de grupo.</p>
+          <span class="plan-tag">⛰ Rutas a pie</span>
+        </div>
+        <div class="plan-card">
+          <div class="plan-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+              <rect x="6" y="14" width="36" height="20" rx="3"/>
+              <path d="M6 24H42"/>
+              <circle cx="14" cy="38" r="3"/>
+              <circle cx="34" cy="38" r="3"/>
+            </svg>
+          </div>
+          <h3>Viajes grupales</h3>
+          <p>Salidas de uno o varios días a destinos naturales cercanos, con transporte y logística coordinados de punta a punta.</p>
+          <span class="plan-tag">🚌 Por tierra</span>
+        </div>
+        <div class="plan-card">
+          <div class="plan-icon">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" stroke-linecap="round">
+              <path d="M6 26L40 10L30 26L40 38L6 26Z"/>
+              <path d="M18 26L14 34"/>
+            </svg>
+          </div>
+          <h3>Escapadas más lejos</h3>
+          <p>Para quienes quieren ir un poco más allá del Meta — planes de mayor alcance, anunciados con anticipación.</p>
+          <span class="plan-tag">✈ Fuera de la región</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- UNETE -->
+  <section id="unete" class="section-alt">
+    <div class="wrap reveal">
+      <div class="waypoint"><span class="wp-num">04</span><span class="wp-label">Todos los canales</span></div>
+      <h2 class="section-title">Únete a la comunidad</h2>
+      <p class="section-lede">Cada plan se anuncia primero acá. Elige el canal que más uses y no te pierdas la próxima salida.</p>
+      <div class="channels-grid">
+        <a class="channel-card" href="https://instagram.com/thanyaplanesjuntos" target="_blank" rel="noopener">
+          <div class="channel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg></div>
+          <div class="channel-body">
+            <h4>Instagram</h4>
+            <p>Fotos, historias y el detrás de cámara de cada plan.</p>
+          </div>
+          <div class="channel-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        </a>
+        <a class="channel-card" href="https://wa.me/c/573144018304" target="_blank" rel="noopener">
+          <div class="channel-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.28-1.38c1.44.79 3.06 1.2 4.71 1.2h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0012.04 2"/></svg></div>
+          <div class="channel-body">
+            <h4>Catálogo de WhatsApp</h4>
+            <p>Explora los planes disponibles y sus cupos.</p>
+          </div>
+          <div class="channel-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        </a>
+        <a class="channel-card" href="https://whatsapp.com/channel/0029VaoBnTaDJ6H97R5ZkQ3l" target="_blank" rel="noopener">
+          <div class="channel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4l16 8-16 8V4z"/></svg></div>
+          <div class="channel-body">
+            <h4>Canal de WhatsApp</h4>
+            <p>Recibe el aviso apenas se publica un plan nuevo.</p>
+          </div>
+          <div class="channel-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        </a>
+        <a class="channel-card" href="https://youtube.com/@thanyaplanesjuntos" target="_blank" rel="noopener">
+          <div class="channel-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="12" rx="3"/><path d="M11 10l4 2-4 2v-4z" fill="currentColor" stroke="none"/></svg></div>
+          <div class="channel-body">
+            <h4>YouTube</h4>
+            <p>Recorridos completos en video, del punto de encuentro al final de la ruta.</p>
+          </div>
+          <div class="channel-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALIADOS -->
+  <section id="aliados">
+    <div class="wrap reveal">
+      <div class="waypoint"><span class="wp-num">05</span><span class="wp-label">Marcas del camino</span></div>
+      <h2 class="section-title">Aliados</h2>
+      <p class="section-lede">Marcas que acompañan el recorrido.</p>
+      <div class="aliados-grid">
+        <a class="aliado-card" href="https://instagram.com/sirenasfashion.col" target="_blank" rel="noopener">
+          <div>
+            <h4>Sirenas Fashion Col</h4>
+            <p>@sirenasfashion.col en Instagram</p>
+          </div>
+          <span class="aliado-go mono">Ver →</span>
+        </a>
+        <a class="aliado-card" href="https://instagram.com/marrothacueros.co" target="_blank" rel="noopener">
+          <div>
+            <h4>Marroth Cueros Co</h4>
+            <p>@marrothacueros.co en Instagram</p>
+          </div>
+          <span class="aliado-go mono">Ver →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BAND -->
+  <section class="cta-band">
+    <div class="wrap reveal">
+      <div class="waypoint" style="justify-content:center;"><span class="wp-num">06</span><span class="wp-label">Destino: contigo</span></div>
+      <h2>El próximo plan<br>ya tiene fecha.</h2>
+      <p>Súmate al canal de WhatsApp para enterarte apenas se publique, o escribe directo para reservar tu cupo.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="https://whatsapp.com/channel/0029VaoBnTaDJ6H97R5ZkQ3l" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.28-1.38c1.44.79 3.06 1.2 4.71 1.2h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0012.04 2"/></svg>
+          Unirme al canal
+        </a>
+        <a class="btn btn-ghost" href="https://wa.me/c/573144018304" target="_blank" rel="noopener">Ver catálogo de planes</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="brand">
+          <svg class="mark" viewBox="0 0 32 32" fill="none"><path d="M2 24L11 10L16 17L21 8L30 24" stroke="#e6ac3f" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/></svg>
+          Thanya · Planes Juntos
+        </div>
+        <p>Senderismo, viajes grupales y planes que empiezan en Villavicencio, Meta, y se viven en grupo.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h5>Canales</h5>
+          <a href="https://instagram.com/thanyaplanesjuntos" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://wa.me/c/573144018304" target="_blank" rel="noopener">Catálogo WhatsApp</a>
+          <a href="https://whatsapp.com/channel/0029VaoBnTaDJ6H97R5ZkQ3l" target="_blank" rel="noopener">Canal de WhatsApp</a>
+          <a href="https://youtube.com/@thanyaplanesjuntos" target="_blank" rel="noopener">YouTube</a>
+        </div>
+        <div class="footer-col">
+          <h5>Aliados</h5>
+          <a href="https://instagram.com/sirenasfashion.col" target="_blank" rel="noopener">Sirenas Fashion Col</a>
+          <a href="https://instagram.com/marrothacueros.co" target="_blank" rel="noopener">Marroth Cueros Co</a>
+        </div>
+        <div class="footer-col">
+          <h5>Contacto</h5>
+          <a href="mailto:tbaqueroca@gmail.com">tbaqueroca@gmail.com</a>
+          <a href="#top">Villavicencio, Meta · Colombia</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Thanya Planes Juntos — Villavicencio, Meta.</span>
+      <a class="made-with" href="https://easypagex.github.io" target="_blank" rel="noopener"><span class="dot"></span> Hecho con EasyPageX</a>
+    </div>
+  </div>
+</footer>
+
+<div class="float-stack">
+  <a class="float-btn fb-wa" href="https://whatsapp.com/channel/0029VaoBnTaDJ6H97R5ZkQ3l" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.28-1.38c1.44.79 3.06 1.2 4.71 1.2h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.86 9.86 0 0012.04 2m0 1.67c2.19 0 4.25.85 5.8 2.4a8.18 8.18 0 012.4 5.81c0 4.53-3.68 8.21-8.21 8.21-1.43 0-2.83-.37-4.06-1.07l-.29-.17-3.03.8.81-2.95-.19-.3a8.15 8.15 0 01-1.25-4.36c0-4.53 3.69-8.22 8.22-8.22m-4.6 4.2c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.32.98 2.48c.12.16 1.67 2.67 4.15 3.64 2.05.8 2.47.65 2.92.6.45-.04 1.44-.58 1.64-1.15.2-.56.2-1.04.14-1.15-.06-.1-.22-.16-.46-.28-.24-.12-1.44-.71-1.66-.8-.22-.08-.39-.12-.55.12-.16.24-.63.79-.78.96-.14.16-.29.18-.53.06-.24-.12-1.02-.38-1.95-1.21-.72-.64-1.21-1.43-1.35-1.67-.14-.24-.02-.37.1-.49.11-.11.24-.29.36-.43.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.55-1.35-.76-1.84-.2-.48-.4-.42-.55-.42h-.47" /></svg>
+  </a>
+  <a class="float-btn fb-ig" href="https://instagram.com/thanyaplanesjuntos" target="_blank" rel="noopener" aria-label="Instagram">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+  </a>
+</div>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.12});
+  revealEls.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
