@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paola Garcés | Entrenamiento Personal & Ciclismo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pink-1:#ff8fc0;
+    --pink-2:#ff5da2;
+    --pink-3:#d6337d;
+    --pink-deep:#8f1f56;
+    --gold:#F0C040;
+    --gold-deep:#C9A84C;
+    --cream:#fff5fa;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(160deg,#ffd6ea 0%, #ff9fcb 30%, #ff5da2 65%, #d6337d 100%);
+    background-attachment:fixed;
+    color:#4a1030;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.brand{font-family:'Fredoka',sans-serif;}
+
+  /* NAV */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:18px 6%;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(255,255,255,0.3);
+  }
+  .brand{font-size:1.5rem;font-weight:700;color:#fff;text-shadow:0 2px 8px rgba(143,31,86,0.4);letter-spacing:1px;}
+  .brand span{color:var(--gold);}
+  .nav-links{display:flex;gap:28px;}
+  .nav-links a{color:#fff;text-decoration:none;font-weight:500;font-size:0.95rem;transition:color .3s;}
+  .nav-links a:hover{color:var(--gold);}
+  @media(max-width:700px){.nav-links{display:none;}}
+
+  /* HERO */
+  .hero{
+    min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:120px 6% 60px;position:relative;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 20% 20%, rgba(255,255,255,0.25), transparent 40%),
+               radial-gradient(circle at 80% 70%, rgba(240,192,64,0.25), transparent 45%);
+    pointer-events:none;
+  }
+  .badge{
+    display:inline-block;background:linear-gradient(90deg,var(--gold),#fff2c4);
+    color:var(--pink-deep);font-weight:700;padding:8px 22px;border-radius:50px;
+    font-size:0.85rem;letter-spacing:1px;margin-bottom:22px;
+    box-shadow:0 4px 18px rgba(0,0,0,0.15);
+  }
+  .hero h1{
+    font-size:clamp(2.4rem,6vw,4.2rem);color:#fff;line-height:1.1;
+    text-shadow:0 4px 20px rgba(143,31,86,0.5);margin-bottom:18px;
+  }
+  .hero h1 em{font-style:normal;color:var(--gold);}
+  .hero p.sub{
+    max-width:600px;color:#fff0f8;font-size:1.15rem;font-weight:300;margin-bottom:36px;
+    text-shadow:0 2px 10px rgba(143,31,86,0.3);
+  }
+  .cta-group{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;}
+  .btn{
+    padding:16px 36px;border-radius:50px;font-weight:600;text-decoration:none;
+    font-size:1rem;transition:transform .25s, box-shadow .25s;display:inline-flex;align-items:center;gap:10px;
+  }
+  .btn-primary{
+    background:linear-gradient(90deg,var(--gold-deep),var(--gold));color:var(--pink-deep);
+    box-shadow:0 8px 25px rgba(240,192,64,0.4);
+  }
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 12px 30px rgba(240,192,64,0.55);}
+  .btn-outline{
+    background:rgba(255,255,255,0.15);color:#fff;border:2px solid #fff;
+  }
+  .btn-outline:hover{background:#fff;color:var(--pink-deep);transform:translateY(-3px);}
+
+  .emoji-row{margin-top:40px;font-size:1.8rem;letter-spacing:12px;opacity:0.9;}
+
+  /* SECTIONS */
+  section{padding:90px 6%;position:relative;}
+  .reveal{opacity:0;transform:translateY(40px);transition:opacity .8s ease, transform .8s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+
+  .section-title{text-align:center;margin-bottom:12px;color:#fff;font-size:clamp(1.8rem,4vw,2.6rem);text-shadow:0 3px 15px rgba(143,31,86,0.4);}
+  .section-sub{text-align:center;color:#ffe6f2;max-width:560px;margin:0 auto 50px;font-weight:300;}
+
+  /* ABOUT */
+  .about-wrap{
+    max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;
+  }
+  @media(max-width:800px){.about-wrap{grid-template-columns:1fr;}}
+  .about-card{
+    background:rgba(255,255,255,0.92);border-radius:24px;padding:40px;
+    box-shadow:0 20px 50px rgba(143,31,86,0.25);border:2px solid var(--gold);
+  }
+  .about-card h3{color:var(--pink-3);font-size:1.6rem;margin-bottom:16px;}
+  .about-card p{color:#5a2340;line-height:1.7;font-size:1rem;margin-bottom:14px;}
+  .about-icons{display:flex;gap:16px;font-size:2rem;margin-top:20px;}
+
+  .about-illustration{display:flex;justify-content:center;}
+
+  /* SERVICES */
+  .services-grid{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:30px;max-width:1100px;margin:0 auto;
+  }
+  .service-card{
+    background:rgba(255,255,255,0.95);border-radius:22px;padding:36px 28px;text-align:center;
+    box-shadow:0 15px 40px rgba(143,31,86,0.2);transition:transform .3s, box-shadow .3s;
+    border-bottom:5px solid var(--gold);
+  }
+  .service-card:hover{transform:translateY(-10px);box-shadow:0 22px 50px rgba(143,31,86,0.32);}
+  .service-icon{
+    width:70px;height:70px;margin:0 auto 20px;border-radius:50%;
+    background:linear-gradient(135deg,var(--pink-2),var(--pink-3));
+    display:flex;align-items:center;justify-content:center;font-size:2rem;
+    box-shadow:0 8px 20px rgba(214,51,125,0.4);
+  }
+  .service-card h3{color:var(--pink-deep);margin-bottom:12px;font-size:1.25rem;}
+  .service-card p{color:#6b3350;font-size:0.95rem;line-height:1.6;}
+
+  /* WHY / STATS */
+  .stats-wrap{
+    display:flex;justify-content:center;gap:60px;flex-wrap:wrap;max-width:900px;margin:0 auto;
+  }
+  .stat{text-align:center;color:#fff;}
+  .stat .num{font-family:'Fredoka',sans-serif;font-size:3rem;color:var(--gold);text-shadow:0 3px 10px rgba(0,0,0,0.2);}
+  .stat .label{font-size:0.95rem;opacity:0.9;}
+
+  /* TESTIMONIAL */
+  .testimonial-wrap{max-width:800px;margin:0 auto;text-align:center;}
+  .testimonial-card{
+    background:rgba(255,255,255,0.95);border-radius:24px;padding:44px;
+    box-shadow:0 20px 50px rgba(143,31,86,0.25);border:2px dashed var(--gold-deep);
+  }
+  .testimonial-card p{font-size:1.15rem;color:#5a2340;font-style:italic;line-height:1.7;margin-bottom:20px;}
+  .testimonial-card .stars{color:var(--gold);font-size:1.4rem;margin-bottom:16px;}
+  .testimonial-card .name{font-weight:600;color:var(--pink-3);}
+
+  /* CTA FINAL */
+  .final-cta{
+    text-align:center;background:linear-gradient(135deg,var(--pink-deep),var(--pink-3));
+    border-radius:32px;max-width:900px;margin:0 auto;padding:70px 40px;
+    box-shadow:0 25px 60px rgba(0,0,0,0.3);border:3px solid var(--gold);
+  }
+  .final-cta h2{color:#fff;font-size:clamp(1.8rem,4vw,2.5rem);margin-bottom:16px;}
+  .final-cta p{color:#ffe0ef;margin-bottom:30px;font-weight:300;font-size:1.05rem;}
+
+  /* FOOTER */
+  footer{
+    text-align:center;padding:50px 6% 40px;color:#fff0f8;
+  }
+  .insta-link{
+    display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,0.15);
+    padding:14px 30px;border-radius:50px;color:#fff;text-decoration:none;font-weight:600;
+    border:2px solid var(--gold);margin-bottom:20px;transition:all .3s;
+  }
+  .insta-link:hover{background:var(--gold);color:var(--pink-deep);transform:scale(1.05);}
+  footer .fine{font-size:0.85rem;opacity:0.7;margin-top:14px;}
+
+  /* WHATSAPP FLOATING BUTTON */
+  .wa-float{
+    position:fixed;bottom:26px;right:26px;z-index:200;
+    background:#25D366;width:64px;height:64px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 8px 25px rgba(0,0,0,0.35);
+    animation:pulse 2.4s infinite;text-decoration:none;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(37,211,102,0.6);}
+    70%{box-shadow:0 0 0 18px rgba(37,211,102,0);}
+    100%{box-shadow:0 0 0 0 rgba(37,211,102,0);}
+  }
+  .wa-float svg{width:32px;height:32px;fill:#fff;}
+
+  /* Decorative bike/dumbbell SVG accents */
+  .deco-svg{opacity:0.85;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="brand">Paola<span>Garcés</span></div>
+  <div class="nav-links">
+    <a href="#sobre-mi">Sobre mí</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#testimonios">Testimonios</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="badge">✩ CUPOS LIMITADOS ESTE MES ✩</div>
+  <h1>Entrena con <em>energía</em>,<br>vive con <em>buena vibra</em> 🩷</h1>
+  <p class="sub">Ciclismo, fuerza y acompañamiento personalizado para que alcances tu mejor versión — dentro y fuera del box. Contigo en cada pedalazo y cada repetición.</p>
+  <div class="cta-group">
+    <a href="#contacto" class="btn btn-primary">🚴🏽‍♀️ Reserva tu primera clase</a>
+    <a href="https://www.instagram.com/paolisg25/" target="_blank" rel="noopener" class="btn btn-outline">📸 Ver Instagram</a>
+  </div>
+  <div class="emoji-row">✩🤍🚴🏾‍♀️🏋🏾‍♀️✩</div>
+</section>
+
+<section id="sobre-mi" class="reveal">
+  <h2 class="section-title">Sobre mí</h2>
+  <p class="section-sub">Buenas vibras, disciplina y mucho corazón en cada sesión.</p>
+  <div class="about-wrap">
+    <div class="about-card">
+      <h3>¡Hola, soy Paola! 🤍</h3>
+      <p>Soy mamá 🩷👧🏻 y entrenadora apasionada por el ciclismo y el entrenamiento de fuerza. Creo en un fitness real: sin extremos, con constancia y con buena energía.</p>
+      <p>Te acompaño a construir un hábito que dure, adaptado a tu ritmo de vida — ya seas principiante o quieras llevar tu resistencia al siguiente nivel.</p>
+      <div class="about-icons">🚴🏾‍♀️ 🏋🏾‍♀️ 🤍 ✩</div>
+    </div>
+    <div class="about-illustration">
+      <svg class="deco-svg" width="280" height="280" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="140" cy="140" r="130" fill="#ffffff" opacity="0.15"/>
+        <circle cx="90" cy="180" r="38" fill="none" stroke="#F0C040" stroke-width="6"/>
+        <circle cx="190" cy="180" r="38" fill="none" stroke="#F0C040" stroke-width="6"/>
+        <line x1="90" y1="180" x2="140" y2="120" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
+        <line x1="190" y1="180" x2="140" y2="120" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
+        <line x1="140" y1="120" x2="150" y2="90" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
+        <line x1="90" y1="180" x2="150" y2="90" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
+        <circle cx="150" cy="90" r="8" fill="#F0C040"/>
+        <line x1="150" y1="90" x2="170" y2="95" stroke="#fff" stroke-width="6" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section id="servicios" class="reveal">
+  <h2 class="section-title">Servicios</h2>
+  <p class="section-sub">Elige el camino que se adapte a tu meta y comencemos juntas.</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🚴🏽‍♀️</div>
+      <h3>Ciclismo indoor / outdoor</h3>
+      <p>Rutinas de resistencia y cardio diseñadas para quemar calorías y mejorar tu capacidad aeróbica con buena energía.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🏋🏽‍♀️</div>
+      <h3>Entrenamiento de fuerza</h3>
+      <p>Planes de fuerza funcional para tonificar, ganar masa muscular y sentirte más fuerte cada semana.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📋</div>
+      <h3>Plan personalizado</h3>
+      <p>Programa 100% adaptado a tu objetivo, tiempo disponible y nivel actual — presencial u online.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🤍</div>
+      <h3>Acompañamiento & mindset</h3>
+      <p>Seguimiento constante, motivación real y buena vibra para que el hábito se mantenga en el tiempo.</p>
+    </div>
+  </div>
+</section>
+
+<section class="reveal">
+  <h2 class="section-title">¿Por qué entrenar conmigo?</h2>
+  <div class="stats-wrap">
+    <div class="stat"><div class="num">+3</div><div class="label">años de experiencia</div></div>
+    <div class="stat"><div class="num">100%</div><div class="label">planes personalizados</div></div>
+    <div class="stat"><div class="num">✩</div><div class="label">buena vibra garantizada</div></div>
+  </div>
+</section>
+
+<section id="testimonios" class="reveal">
+  <h2 class="section-title">Lo que dicen de mí</h2>
+  <div class="testimonial-wrap">
+    <div class="testimonial-card">
+      <div class="stars">★★★★★</div>
+      <p>"Paola cambió mi forma de ver el ejercicio. Sus clases de ciclismo son súper motivadoras y siempre salgo con energía extra."</p>
+      <div class="name">— Alumna satisfecha</div>
+    </div>
+  </div>
+</section>
+
+<section id="contacto" class="reveal">
+  <div class="final-cta">
+    <h2>¿Lista para empezar? ✩🤍</h2>
+    <p>Escríbeme y arma tu plan de entrenamiento personalizado hoy mismo.</p>
+    <div class="cta-group" style="justify-content:center;">
+      <a href="https://wa.me/34600000000?text=Hola%20Paola!%20Quiero%20info%20sobre%20tus%20clases" target="_blank" rel="noopener" class="btn btn-primary">💬 Escríbeme por WhatsApp</a>
+      <a href="https://www.instagram.com/paolisg25/" target="_blank" rel="noopener" class="btn btn-outline">📸 @paolisg25</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <a class="insta-link" href="https://www.instagram.com/paolisg25/" target="_blank" rel="noopener">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 3.3.15 4.8 1.7 4.9 4.9.06 1.3.07 1.6.07 4.8s0 3.6-.07 4.8c-.15 3.2-1.7 4.8-4.9 4.9-1.3.06-1.6.07-4.9.07s-3.6 0-4.8-.07c-3.2-.15-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.3 2.2 12s0-3.6.07-4.8c.15-3.2 1.7-4.8 4.9-4.9C8.4 2.2 8.8 2.2 12 2.2zm0 1.8c-3.1 0-3.5 0-4.7.07-2.4.1-3.5 1.2-3.6 3.6C3.6 8.6 3.6 9 3.6 12s0 3.4.07 4.6c.1 2.4 1.2 3.5 3.6 3.6 1.2.05 1.6.07 4.7.07s3.5 0 4.7-.07c2.4-.1 3.5-1.2 3.6-3.6.05-1.2.07-1.6.07-4.6s0-3.4-.07-4.6c-.1-2.4-1.2-3.5-3.6-3.6C15.5 4 15.1 4 12 4zm0 3.5a4.5 4.5 0 110 9 4.5 4.5 0 010-9zm0 1.8a2.7 2.7 0 100 5.4 2.7 2.7 0 000-5.4zm5.7-1.9a1.05 1.05 0 11-2.1 0 1.05 1.05 0 012.1 0z"/></svg>
+    @paolisg25
+  </a>
+  <div class="fine">Paola Garcés · Entrenamiento personal & ciclismo · ✩🤍</div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/34600000000?text=Hola%20Paola!%20Quiero%20info%20sobre%20tus%20clases" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.4-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6.1-.1.3-.3.4-.5.1-.1.2-.3.3-.4.1-.2 0-.3 0-.5 0-.1-.7-1.7-1-2.3-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.3-.6-.4z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.8.5 3.6 1.4 5.1L2 22l5-1.3c1.4.8 3.1 1.3 4.9 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.2c-1.6 0-3.2-.4-4.5-1.2l-.3-.2-3 .8.8-2.9-.2-.3C4 15 3.6 13.5 3.6 12c0-4.6 3.8-8.4 8.4-8.4s8.4 3.8 8.4 8.4-3.8 8.2-8.4 8.2z"/></svg>
+</a>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('visible'); }
+    });
+  },{threshold:0.15});
+  reveals.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
