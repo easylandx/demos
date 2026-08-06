@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sara Suaza | Entrenamiento y Bienestar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@300;400;500;600;700;800&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep:#1B1030;
+    --bg-mid:#2E1A4A;
+    --coral:#FF6A4D;
+    --coral-soft:#FF8F6B;
+    --gold:#F0C040;
+    --gold-deep:#D4AF37;
+    --lilac:#E9D9FA;
+    --cream:#F6F1E8;
+    --court:#3A2360;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Work Sans', sans-serif;
+    background:
+      radial-gradient(circle at 15% 10%, rgba(255,106,77,0.18), transparent 40%),
+      radial-gradient(circle at 90% 80%, rgba(240,192,64,0.14), transparent 45%),
+      linear-gradient(160deg, var(--bg-deep) 0%, var(--bg-mid) 55%, #24123E 100%);
+    color:var(--cream);
+    overflow-x:hidden;
+  }
+  .display{font-family:'Anton', sans-serif; letter-spacing:0.5px;}
+  .eyebrow{font-family:'Bebas Neue', sans-serif; letter-spacing:4px; text-transform:uppercase; font-size:0.85rem; color:var(--gold);}
+
+  a{color:inherit; text-decoration:none;}
+  section{position:relative; padding:110px 8vw;}
+  .wrap{max-width:1180px; margin:0 auto;}
+
+  /* subtle court-line texture */
+  .court-lines{
+    position:absolute; inset:0; pointer-events:none; opacity:0.06;
+    background-image:
+      repeating-linear-gradient(90deg, transparent, transparent 118px, var(--gold) 118px, var(--gold) 119px),
+      repeating-linear-gradient(0deg, transparent, transparent 118px, var(--gold) 118px, var(--gold) 119px);
+  }
+
+  /* NAV */
+  nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:22px 8vw;
+    backdrop-filter:blur(10px);
+    background:rgba(27,16,48,0.55);
+    border-bottom:1px solid rgba(240,192,64,0.15);
+    transition:padding 0.3s ease;
+  }
+  .logo{font-family:'Anton'; font-size:1.4rem; color:var(--cream); letter-spacing:1px;}
+  .logo span{color:var(--coral);}
+  .nav-links{display:flex; gap:34px; font-size:0.92rem; font-weight:500;}
+  .nav-links a{opacity:0.85; transition:opacity 0.2s, color 0.2s;}
+  .nav-links a:hover{opacity:1; color:var(--gold);}
+  .nav-cta{
+    background:linear-gradient(120deg, var(--coral), var(--gold-deep));
+    padding:11px 24px; border-radius:100px; font-weight:700; font-size:0.88rem;
+    color:#1B1030; box-shadow:0 6px 20px rgba(255,106,77,0.35);
+  }
+  .burger{display:none;}
+
+  /* HERO */
+  .hero{
+    min-height:100vh; display:flex; align-items:center;
+    padding-top:120px;
+  }
+  .hero-grid{display:grid; grid-template-columns:1.15fr 0.85fr; gap:60px; align-items:center; width:100%;}
+  .hero h1{
+    font-size:clamp(3rem, 6vw, 5.2rem);
+    line-height:0.98; text-transform:uppercase;
+    background:linear-gradient(100deg, var(--cream) 20%, var(--coral-soft) 55%, var(--gold) 90%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    margin:18px 0 26px;
+  }
+  .hero p.lead{font-size:1.15rem; max-width:480px; opacity:0.88; line-height:1.6; margin-bottom:38px;}
+  .hero-ctas{display:flex; gap:16px; flex-wrap:wrap;}
+  .btn-primary{
+    background:linear-gradient(120deg, var(--coral), var(--gold-deep));
+    color:#1B1030; padding:16px 32px; border-radius:100px; font-weight:800;
+    font-size:1rem; box-shadow:0 10px 30px rgba(255,106,77,0.4);
+    display:inline-flex; align-items:center; gap:10px; transition:transform 0.25s ease;
+  }
+  .btn-primary:hover{transform:translateY(-3px);}
+  .btn-ghost{
+    border:1.5px solid rgba(233,217,250,0.4); padding:16px 30px; border-radius:100px;
+    font-weight:600; display:inline-flex; align-items:center; gap:10px;
+    transition:border-color 0.25s, background 0.25s;
+  }
+  .btn-ghost:hover{border-color:var(--gold); background:rgba(240,192,64,0.08);}
+
+  .hero-portrait{
+    position:relative; aspect-ratio:3/4; border-radius:28px; overflow:hidden;
+    background:linear-gradient(150deg, var(--court), #4A2C7A);
+    display:flex; align-items:center; justify-content:center;
+    border:1px solid rgba(240,192,64,0.25);
+  }
+  .hero-portrait::before{
+    content:"S"; font-family:'Anton'; font-size:22rem; color:rgba(240,192,64,0.08);
+    position:absolute; top:-4%; right:-10%;
+  }
+  .hero-portrait .initials{
+    font-family:'Anton'; font-size:4.5rem; color:var(--cream); z-index:2;
+    text-align:center; line-height:1;
+  }
+  .hero-portrait .initials small{display:block; font-family:'Work Sans'; font-size:0.9rem; font-weight:500; letter-spacing:3px; color:var(--gold); margin-top:14px; text-transform:uppercase;}
+  .badge-float{
+    position:absolute; bottom:22px; left:22px; right:22px;
+    background:rgba(27,16,48,0.75); backdrop-filter:blur(8px);
+    border:1px solid rgba(240,192,64,0.3); border-radius:16px;
+    padding:16px 20px; display:flex; justify-content:space-between;
+  }
+  .badge-float .num{font-family:'Anton'; font-size:1.5rem; color:var(--gold);}
+  .badge-float .lbl{font-size:0.72rem; opacity:0.75; text-transform:uppercase; letter-spacing:1px;}
+
+  /* reveal animation */
+  .reveal{opacity:0; transform:translateY(28px); transition:opacity 0.8s ease, transform 0.8s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* STATS STRIP */
+  .stats-strip{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:0;
+    border-top:1px solid rgba(240,192,64,0.15); border-bottom:1px solid rgba(240,192,64,0.15);
+    padding:46px 8vw;
+  }
+  .stat{text-align:center; border-right:1px solid rgba(240,192,64,0.12);}
+  .stat:last-child{border-right:none;}
+  .stat .num{font-family:'Anton'; font-size:2.6rem; background:linear-gradient(120deg,var(--coral-soft),var(--gold)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+  .stat .lbl{font-size:0.8rem; opacity:0.75; text-transform:uppercase; letter-spacing:1.5px; margin-top:6px;}
+
+  /* SECTION HEAD */
+  .section-head{max-width:640px; margin-bottom:54px;}
+  .section-head h2{font-size:clamp(2.2rem,4vw,3.2rem); text-transform:uppercase; margin-top:10px; line-height:1.05;}
+  .section-head p{opacity:0.8; margin-top:16px; font-size:1.05rem; line-height:1.6;}
+
+  /* ABOUT */
+  .about-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:70px; align-items:center;}
+  .about-visual{
+    aspect-ratio:1/1; border-radius:24px; position:relative; overflow:hidden;
+    background:conic-gradient(from 200deg, var(--coral), var(--court), var(--gold), var(--coral));
+    display:flex; align-items:center; justify-content:center;
+  }
+  .about-visual .ring{
+    width:78%; height:78%; border-radius:50%; border:2px dashed rgba(246,241,232,0.35);
+    display:flex; align-items:center; justify-content:center; text-align:center;
+  }
+  .about-visual .ring .q{font-family:'Anton'; font-size:1.5rem; color:var(--cream); padding:0 20px; line-height:1.3;}
+  .about-text p{opacity:0.88; line-height:1.75; margin-bottom:18px; font-size:1.05rem;}
+  .pill-row{display:flex; flex-wrap:wrap; gap:10px; margin-top:26px;}
+  .pill{
+    border:1px solid rgba(240,192,64,0.35); padding:9px 18px; border-radius:100px;
+    font-size:0.85rem; font-weight:600; color:var(--gold);
+  }
+
+  /* SERVICES */
+  .services-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:26px;}
+  .service-card{
+    background:linear-gradient(160deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+    border:1px solid rgba(240,192,64,0.18); border-radius:22px; padding:38px 30px;
+    transition:transform 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+  }
+  .service-card:hover{transform:translateY(-8px); border-color:var(--coral); background:linear-gradient(160deg, rgba(255,106,77,0.08), rgba(255,255,255,0.02));}
+  .service-icon{
+    width:52px; height:52px; border-radius:14px; margin-bottom:22px;
+    background:linear-gradient(135deg, var(--coral), var(--gold-deep));
+    display:flex; align-items:center; justify-content:center; font-size:1.4rem;
+  }
+  .service-card h3{font-family:'Anton'; font-size:1.3rem; text-transform:uppercase; margin-bottom:12px; letter-spacing:0.5px;}
+  .service-card p{opacity:0.78; font-size:0.95rem; line-height:1.6;}
+
+  /* WHY / PROCESS */
+  .why-list{display:flex; flex-direction:column; gap:0;}
+  .why-item{
+    display:grid; grid-template-columns:70px 1fr; gap:24px; padding:28px 0;
+    border-bottom:1px solid rgba(240,192,64,0.14);
+  }
+  .why-item:first-child{border-top:1px solid rgba(240,192,64,0.14);}
+  .why-num{font-family:'Anton'; font-size:2.2rem; color:rgba(240,192,64,0.4);}
+  .why-item h4{font-family:'Bebas Neue'; letter-spacing:1px; font-size:1.3rem; margin-bottom:6px; color:var(--cream);}
+  .why-item p{opacity:0.78; font-size:0.98rem; line-height:1.6; max-width:640px;}
+
+  /* SOCIAL PROOF / CHANNELS */
+  .channels-grid{display:grid; grid-template-columns:1fr 1fr; gap:26px;}
+  .channel-card{
+    border-radius:24px; padding:44px 36px; position:relative; overflow:hidden;
+    border:1px solid rgba(240,192,64,0.2);
+  }
+  .channel-card.ig{background:linear-gradient(135deg, #5B2A86, #FF6A4D 70%, #F0C040);}
+  .channel-card.yt{background:linear-gradient(135deg, #2E1A4A, #B02020 75%, #F0C040);}
+  .channel-card h3{font-family:'Anton'; font-size:1.7rem; text-transform:uppercase; margin-bottom:10px;}
+  .channel-card p{opacity:0.92; font-size:0.98rem; margin-bottom:26px; max-width:340px;}
+  .channel-btn{
+    display:inline-flex; align-items:center; gap:10px; background:rgba(27,16,48,0.55);
+    backdrop-filter:blur(6px); padding:13px 26px; border-radius:100px; font-weight:700;
+    font-size:0.92rem; border:1px solid rgba(255,255,255,0.25); transition:background 0.25s;
+  }
+  .channel-btn:hover{background:rgba(27,16,48,0.8);}
+
+  /* TESTIMONIALS */
+  .testi-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .testi-card{
+    background:rgba(255,255,255,0.03); border:1px solid rgba(240,192,64,0.15);
+    border-radius:20px; padding:32px 28px;
+  }
+  .testi-card .stars{color:var(--gold); font-size:0.95rem; margin-bottom:16px; letter-spacing:2px;}
+  .testi-card p{font-size:0.98rem; line-height:1.65; opacity:0.9; margin-bottom:20px; font-style:italic;}
+  .testi-who{display:flex; align-items:center; gap:12px;}
+  .testi-avatar{
+    width:38px; height:38px; border-radius:50%; background:linear-gradient(135deg, var(--coral), var(--gold));
+    display:flex; align-items:center; justify-content:center; font-family:'Anton'; font-size:0.9rem; color:#1B1030;
+  }
+  .testi-who .name{font-weight:700; font-size:0.9rem;}
+  .testi-who .role{font-size:0.78rem; opacity:0.6;}
+
+  /* CTA FINAL */
+  .cta-final{
+    text-align:center; border-radius:32px; margin:0 8vw; padding:90px 6vw;
+    background:linear-gradient(140deg, var(--coral) 0%, #C93B6B 45%, var(--gold-deep) 100%);
+    color:#1B1030;
+  }
+  .cta-final h2{font-size:clamp(2.4rem,5vw,3.6rem); text-transform:uppercase; line-height:1;}
+  .cta-final p{max-width:520px; margin:20px auto 34px; font-size:1.1rem; opacity:0.9; font-weight:500;}
+  .cta-final .btn-primary{background:#1B1030; color:var(--cream); box-shadow:0 10px 30px rgba(27,16,48,0.35);}
+
+  /* FOOTER */
+  footer{padding:60px 8vw 40px; border-top:1px solid rgba(240,192,64,0.15); margin-top:60px;}
+  .footer-grid{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;}
+  .footer-links{display:flex; gap:26px; font-size:0.9rem; opacity:0.75;}
+  .footer-links a:hover{color:var(--gold);}
+  .foot-note{opacity:0.5; font-size:0.8rem; margin-top:24px;}
+
+  /* FLOATING IG BUTTON */
+  .float-ig{
+    position:fixed; bottom:26px; right:26px; z-index:200;
+    display:flex; align-items:center; gap:10px;
+    background:linear-gradient(135deg, #5B2A86, #FF6A4D 60%, #F0C040);
+    color:#fff; padding:15px 22px; border-radius:100px; font-weight:700; font-size:0.9rem;
+    box-shadow:0 10px 28px rgba(255,106,77,0.45);
+    animation:pulse-btn 2.6s ease-in-out infinite;
+  }
+  @keyframes pulse-btn{0%,100%{transform:scale(1);}50%{transform:scale(1.05);}}
+
+  @media (max-width:900px){
+    .hero-grid, .about-grid, .channels-grid{grid-template-columns:1fr;}
+    .services-grid, .testi-grid{grid-template-columns:1fr;}
+    .stats-strip{grid-template-columns:repeat(2,1fr); row-gap:30px;}
+    .stat{border-right:none; border-bottom:1px solid rgba(240,192,64,0.12); padding-bottom:20px;}
+    .nav-links{display:none;}
+    section{padding:80px 6vw;}
+    .cta-final{margin:0 6vw;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{transition:none; opacity:1; transform:none;}
+    .float-ig{animation:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="court-lines"></div>
+
+<nav>
+  <div class="logo">SARA<span>SUAZA</span></div>
+  <div class="nav-links">
+    <a href="#sobre">Sobre mí</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#porque">Por qué elegirme</a>
+    <a href="#redes">Redes</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+  <a href="https://www.instagram.com/sarasuaza18/" target="_blank" class="nav-cta">Empieza ya</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow reveal">Profesional en deporte · Bienestar activo</div>
+      <h1 class="display reveal">Cultiva tu salud a través del movimiento</h1>
+      <p class="lead reveal">Entrenamiento, hábitos y acompañamiento real para mujeres que quieren sentirse fuertes, con energía y en paz con su cuerpo. Sin fórmulas mágicas, con constancia y criterio profesional.</p>
+      <div class="hero-ctas reveal">
+        <a href="https://www.instagram.com/sarasuaza18/" target="_blank" class="btn-primary">Escríbeme por Instagram →</a>
+        <a href="https://youtube.com/@sarasuaza18" target="_blank" class="btn-ghost">Ver en YouTube</a>
+      </div>
+    </div>
+    <div class="hero-portrait reveal">
+      <div class="initials">SS<small>Sara Suaza</small></div>
+      <div class="badge-float">
+        <div><div class="num">25.9K</div><div class="lbl">Seguidoras</div></div>
+        <div><div class="num">483</div><div class="lbl">Publicaciones</div></div>
+        <div><div class="num">100%</div><div class="lbl">Compromiso</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-strip" style="padding-top:0; padding-bottom:0;">
+  <div class="stat reveal"><div class="num">25.9K</div><div class="lbl">Comunidad activa</div></div>
+  <div class="stat reveal"><div class="num">2</div><div class="lbl">Marcas embajadora</div></div>
+  <div class="stat reveal"><div class="num">483+</div><div class="lbl">Contenidos de valor</div></div>
+  <div class="stat reveal"><div class="num">1:1</div><div class="lbl">Acompañamiento real</div></div>
+</section>
+
+<!-- ABOUT -->
+<section id="sobre">
+  <div class="wrap about-grid">
+    <div class="about-visual reveal">
+      <div class="ring"><div class="q">"El movimiento<br>es medicina<br>diaria"</div></div>
+    </div>
+    <div class="about-text">
+      <div class="eyebrow reveal">Sobre Sara</div>
+      <h2 class="display reveal" style="font-size:clamp(2rem,3.6vw,2.8rem); text-transform:uppercase; margin:12px 0 22px;">Deporte, constancia y bienestar real</h2>
+      <p class="reveal">Soy profesional en deporte y llevo años acompañando a mi comunidad a cultivar salud y bienestar a través del ejercicio. No busco transformaciones exprés, busco hábitos que se sostengan en el tiempo.</p>
+      <p class="reveal">Como embajadora de marcas como Khuda.co e Infocus, combino entrenamiento funcional, movimiento consciente y contenido educativo que ya ha llegado a más de 25.9K personas en redes.</p>
+      <div class="pill-row reveal">
+        <div class="pill">🏀 Formación en deporte</div>
+        <div class="pill">🧠 Enfoque en hábitos</div>
+        <div class="pill">🤝 Acompañamiento cercano</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="servicios">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow reveal">Servicios</div>
+      <h2 class="display reveal">Lo que puedo hacer por ti</h2>
+      <p class="reveal">Programas pensados para que el ejercicio deje de ser una obligación y se convierta en parte de tu identidad.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">🏋️‍♀️</div>
+        <h3>Entrenamiento personalizado</h3>
+        <p>Planes de ejercicio a tu medida, según tu nivel, tus objetivos y tu tiempo disponible. Progresión real, sin plantillas genéricas.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">💻</div>
+        <h3>Asesoría online</h3>
+        <p>Seguimiento a distancia con rutinas, ajustes semanales y acompañamiento directo para que nunca entrenes sin rumbo.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🌿</div>
+        <h3>Hábitos y bienestar</h3>
+        <p>Trabajo integral de movimiento, descanso y mentalidad para que el bienestar se sostenga más allá del gimnasio.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY -->
+<section id="porque">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow reveal">Por qué elegirme</div>
+      <h2 class="display reveal">Un proceso, no una promesa</h2>
+    </div>
+    <div class="why-list">
+      <div class="why-item reveal">
+        <div class="why-num">01</div>
+        <div><h4>Base profesional real</h4><p>Formación en deporte y experiencia acompañando a una comunidad activa de miles de personas.</p></div>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-num">02</div>
+        <div><h4>Cercanía y seguimiento</h4><p>Nada de planes que se envían y se olvidan: ajusto contigo según cómo responde tu cuerpo y tu día a día.</p></div>
+      </div>
+      <div class="why-item reveal">
+        <div class="why-num">03</div>
+        <div><h4>Respaldo de marca</h4><p>Embajadora de marcas del sector deportivo, lo que se traduce en criterio actualizado y contenido de valor constante.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHANNELS -->
+<section id="redes">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow reveal">Sígueme</div>
+      <h2 class="display reveal">Contenido que suma cada semana</h2>
+    </div>
+    <div class="channels-grid">
+      <div class="channel-card ig reveal">
+        <h3>Instagram</h3>
+        <p>Rutinas, tips y el día a día del entrenamiento con @sarasuaza18. 25.9K personas ya forman parte de esta comunidad.</p>
+        <a href="https://www.instagram.com/sarasuaza18/" target="_blank" class="channel-btn">@sarasuaza18 →</a>
+      </div>
+      <div class="channel-card yt reveal">
+        <h3>YouTube</h3>
+        <p>Rutinas completas, explicaciones a fondo y contenido educativo sobre ejercicio y bienestar.</p>
+        <a href="https://youtube.com/@sarasuaza18" target="_blank" class="channel-btn">Ver canal →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonios">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow reveal">Testimonios</div>
+      <h2 class="display reveal">Lo que dice mi comunidad</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="stars">★★★★★</div>
+        <p>"Cambié por completo mi relación con el ejercicio. Sara explica todo con una claridad que se nota en cada rutina."</p>
+        <div class="testi-who"><div class="testi-avatar">M</div><div><div class="name">Marta R.</div><div class="role">Seguidora desde 2023</div></div></div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="stars">★★★★★</div>
+        <p>"Por fin un enfoque realista, sin promesas vacías. Los ajustes semanales marcaron la diferencia."</p>
+        <div class="testi-who"><div class="testi-avatar">L</div><div><div class="name">Laura G.</div><div class="role">Asesoría online</div></div></div>
+      </div>
+      <div class="testi-card reveal">
+        <div class="stars">★★★★★</div>
+        <p>"Su contenido en Instagram ya me ayudaba, pero el acompañamiento personalizado lo llevó a otro nivel."</p>
+        <div class="testi-who"><div class="testi-avatar">C</div><div><div class="name">Camila V.</div><div class="role">Entrenamiento personalizado</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="contacto" style="padding-top:20px;">
+  <div class="cta-final reveal">
+    <h2 class="display">Empecemos a moverte hoy</h2>
+    <p>Cuéntame tu objetivo por Instagram y te cuento cómo puedo acompañarte en tu proceso.</p>
+    <a href="https://www.instagram.com/sarasuaza18/" target="_blank" class="btn-primary">Escríbeme ahora →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-grid">
+    <div class="logo">SARA<span>SUAZA</span></div>
+    <div class="footer-links">
+      <a href="https://www.instagram.com/sarasuaza18/" target="_blank">Instagram</a>
+      <a href="https://youtube.com/@sarasuaza18" target="_blank">YouTube</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+  </div>
+  <div class="wrap foot-note">© 2026 Sara Suaza — Cultivando salud y bienestar a través del ejercicio.</div>
+</footer>
+
+<a href="https://www.instagram.com/sarasuaza18/" target="_blank" class="float-ig">📸 @sarasuaza18</a>
+
+<script>
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); observer.unobserve(e.target); } });
+  }, {threshold:0.15});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+
+</body>
+</html>
