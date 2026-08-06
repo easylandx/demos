@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vanessa Puello — Runner · Cyclist · Ambassador</title>
+<meta name="description" content="Vanessa Puello — Marathoner, Ultramarathoner and Cyclist. 27 marathons and counting. Ambassador for Threshold Experts. Available for brand partnerships and collaborations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sand:#FBF3E4;
+    --sand-deep:#F3E6CE;
+    --ink:#20281F;
+    --ink-soft:#4B5245;
+    --sunrise:#E85C2B;
+    --sunrise-deep:#C6461C;
+    --trail:#2F6F4E;
+    --gold:#C99A1F;
+    --line:#D9CAA4;
+    --white:#FFFDF8;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--sand);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    overflow-x:hidden;
+  }
+  ::selection{background:var(--sunrise);color:var(--white);}
+
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+
+  h1,h2,h3{font-family:'Anton', sans-serif; font-weight:400; text-transform:uppercase; letter-spacing:0.01em; line-height:0.95;}
+
+  a{color:inherit; text-decoration:none;}
+
+  .eyebrow{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--sunrise-deep);
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:18px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:26px; height:2px;
+    background:var(--sunrise);
+    display:inline-block;
+  }
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(251,243,228,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 32px;
+    max-width:1180px; margin:0 auto;
+  }
+  .brand{
+    font-family:'Anton', sans-serif;
+    font-size:20px;
+    letter-spacing:0.03em;
+    text-transform:uppercase;
+    display:flex; align-items:center; gap:10px;
+  }
+  .brand .bib{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    background:var(--ink);
+    color:var(--sand);
+    padding:3px 7px;
+    border-radius:3px;
+    letter-spacing:0.05em;
+  }
+  .nav-links{
+    display:flex; gap:36px; align-items:center;
+    font-size:14.5px; font-weight:500;
+  }
+  .nav-links a{
+    position:relative; padding:4px 0;
+    transition:color .2s ease;
+  }
+  .nav-links a:not(.nav-cta)::after{
+    content:""; position:absolute; left:0; bottom:0;
+    width:0; height:2px; background:var(--sunrise);
+    transition:width .25s ease;
+  }
+  .nav-links a:not(.nav-cta):hover::after{width:100%;}
+  .nav-cta{
+    background:var(--ink);
+    color:var(--sand)!important;
+    padding:10px 20px;
+    border-radius:30px;
+    font-size:13.5px;
+    font-weight:600;
+    display:flex; align-items:center; gap:8px;
+    transition:background .2s ease, transform .2s ease;
+  }
+  .nav-cta:hover{background:var(--sunrise); transform:translateY(-1px);}
+  .nav-toggle{display:none;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:110px 0 90px;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:60px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(46px, 6.4vw, 92px);
+    color:var(--ink);
+  }
+  .hero h1 span{color:var(--sunrise); display:block;}
+  .hero-sub{
+    margin-top:26px;
+    font-size:18px;
+    line-height:1.6;
+    color:var(--ink-soft);
+    max-width:480px;
+    font-weight:400;
+  }
+  .hero-actions{
+    margin-top:38px;
+    display:flex; gap:16px; flex-wrap:wrap;
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:15px 28px;
+    border-radius:32px;
+    font-size:14.5px; font-weight:600;
+    letter-spacing:0.01em;
+    transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+    border:2px solid transparent;
+  }
+  .btn-primary{
+    background:var(--sunrise);
+    color:var(--white);
+    box-shadow:0 8px 24px rgba(232,92,43,0.28);
+  }
+  .btn-primary:hover{background:var(--sunrise-deep); transform:translateY(-2px); box-shadow:0 12px 28px rgba(232,92,43,0.36);}
+  .btn-ghost{
+    border-color:var(--ink);
+    color:var(--ink);
+  }
+  .btn-ghost:hover{background:var(--ink); color:var(--sand); transform:translateY(-2px);}
+
+  /* hero bib number panel */
+  .hero-panel{
+    position:relative;
+    background:var(--ink);
+    border-radius:22px;
+    padding:44px 34px;
+    color:var(--sand);
+    overflow:hidden;
+  }
+  .hero-panel::before{
+    content:"";
+    position:absolute; inset:0;
+    background:
+      repeating-linear-gradient(115deg, rgba(232,92,43,0.10) 0 2px, transparent 2px 34px);
+    pointer-events:none;
+  }
+  .bib-number{
+    font-family:'Anton', sans-serif;
+    font-size:120px;
+    line-height:0.85;
+    color:var(--sunrise);
+    letter-spacing:-0.01em;
+  }
+  .bib-label{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--sand);
+    opacity:0.75;
+    margin-top:4px;
+  }
+  .bib-divider{
+    height:1px; background:rgba(251,243,228,0.18);
+    margin:26px 0;
+  }
+  .bib-row{
+    display:flex; justify-content:space-between;
+    font-family:'JetBrains Mono', monospace;
+    font-size:13px;
+    padding:9px 0;
+    border-bottom:1px dashed rgba(251,243,228,0.16);
+  }
+  .bib-row:last-child{border-bottom:none;}
+  .bib-row .k{opacity:0.65;}
+  .bib-row .v{font-weight:700; color:var(--sand);}
+
+  /* ---------- STAT STRIP ---------- */
+  .stat-strip{
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    background:var(--white);
+  }
+  .stat-strip .wrap{
+    display:grid; grid-template-columns:repeat(4,1fr);
+    padding:36px 32px;
+  }
+  .stat-item{
+    text-align:center;
+    padding:0 12px;
+    border-right:1px solid var(--line);
+  }
+  .stat-item:last-child{border-right:none;}
+  .stat-item .num{
+    font-family:'Anton', sans-serif;
+    font-size:40px;
+    color:var(--sunrise);
+  }
+  .stat-item .lab{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin-top:6px;
+  }
+
+  /* ---------- SECTION SHARED ---------- */
+  section{padding:110px 0;}
+  .section-head{
+    max-width:640px;
+    margin-bottom:60px;
+  }
+  .section-head h2{font-size:clamp(32px,4vw,48px);}
+  .section-head p{
+    margin-top:18px;
+    font-size:17px;
+    color:var(--ink-soft);
+    line-height:1.65;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about{background:var(--sand-deep);}
+  .about-grid{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:70px;
+    align-items:center;
+  }
+  .about-visual{
+    aspect-ratio:4/5;
+    border-radius:20px;
+    background:
+      linear-gradient(160deg, var(--trail) 0%, #1E4A34 100%);
+    position:relative;
+    overflow:hidden;
+    display:flex; align-items:flex-end;
+    padding:30px;
+  }
+  .about-visual svg{position:absolute; inset:0; width:100%; height:100%; opacity:0.5;}
+  .about-visual .tag{
+    position:relative;
+    color:var(--sand);
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    line-height:1.7;
+  }
+  .about-copy p{
+    font-size:17px;
+    line-height:1.75;
+    color:var(--ink-soft);
+    margin-bottom:20px;
+  }
+  .about-copy strong{color:var(--ink); font-weight:700;}
+  .pill-row{
+    display:flex; gap:10px; flex-wrap:wrap;
+    margin-top:28px;
+  }
+  .pill{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.06em;
+    padding:9px 16px;
+    border:1px solid var(--ink);
+    border-radius:20px;
+    color:var(--ink);
+  }
+
+  /* ---------- JOURNEY / ELEVATION ---------- */
+  .journey .section-head{margin-left:auto; margin-right:auto; text-align:center;}
+  .elevation-wrap{
+    position:relative;
+    margin-top:20px;
+  }
+  .elevation-wrap svg{width:100%; height:auto; display:block;}
+  .elev-path{
+    fill:none;
+    stroke:var(--sunrise);
+    stroke-width:3;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+    stroke-dasharray:1400;
+    stroke-dashoffset:1400;
+    transition:stroke-dashoffset 1.8s cubic-bezier(.2,.7,.2,1);
+  }
+  .elevation-wrap.in-view .elev-path{stroke-dashoffset:0;}
+  .elev-fill{
+    fill:url(#elevGrad);
+    opacity:0;
+    transition:opacity 1s ease 0.6s;
+  }
+  .elevation-wrap.in-view .elev-fill{opacity:1;}
+  .elev-marker circle{fill:var(--ink);}
+  .elev-marker text{
+    font-family:'JetBrains Mono', monospace;
+    font-size:11px;
+    fill:var(--ink-soft);
+  }
+  .elev-marker .m-title{
+    font-family:'Work Sans', sans-serif;
+    font-weight:700;
+    font-size:14px;
+    fill:var(--ink);
+  }
+
+  /* ---------- SERVICES / PARTNERSHIPS ---------- */
+  .services{background:var(--white);}
+  .service-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:26px;
+  }
+  .service-card{
+    background:var(--sand);
+    border:1px solid var(--line);
+    border-radius:18px;
+    padding:36px 30px;
+    transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .service-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 20px 40px rgba(32,40,31,0.10);
+    border-color:var(--sunrise);
+  }
+  .service-num{
+    font-family:'JetBrains Mono', monospace;
+    font-size:12px;
+    color:var(--sunrise-deep);
+    letter-spacing:0.1em;
+  }
+  .service-card h3{
+    font-family:'Anton', sans-serif;
+    font-size:23px;
+    text-transform:none;
+    margin-top:14px;
+    margin-bottom:12px;
+    line-height:1.15;
+  }
+  .service-card p{
+    font-size:15px;
+    line-height:1.65;
+    color:var(--ink-soft);
+  }
+
+  /* ---------- INSTAGRAM CALLOUT ---------- */
+  .insta{
+    background:var(--ink);
+    color:var(--sand);
+    position:relative;
+    overflow:hidden;
+  }
+  .insta::before{
+    content:"";
+    position:absolute; inset:0;
+    background:repeating-linear-gradient(120deg, rgba(232,92,43,0.08) 0 2px, transparent 2px 40px);
+  }
+  .insta-inner{
+    position:relative;
+    display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; gap:30px;
+  }
+  .insta-left .eyebrow{color:var(--gold);}
+  .insta-left .eyebrow::before{background:var(--gold);}
+  .insta h2{font-size:clamp(30px,4vw,44px); color:var(--sand);}
+  .insta-handle{
+    font-family:'JetBrains Mono', monospace;
+    color:var(--sunrise);
+    font-size:18px;
+    margin-top:10px;
+  }
+  .insta-btn{
+    background:var(--sand);
+    color:var(--ink);
+    padding:17px 32px;
+    border-radius:32px;
+    font-weight:700;
+    font-size:15px;
+    display:inline-flex; align-items:center; gap:12px;
+    transition:transform .2s ease, background .2s ease;
+  }
+  .insta-btn:hover{background:var(--sunrise); color:var(--white); transform:translateY(-2px);}
+  .insta-btn svg{width:20px; height:20px;}
+
+  /* ---------- CONTACT ---------- */
+  .contact{background:var(--sand-deep);}
+  .contact-box{
+    background:var(--white);
+    border:1px solid var(--line);
+    border-radius:24px;
+    padding:64px;
+    text-align:center;
+    position:relative;
+  }
+  .contact-box h2{font-size:clamp(30px,4.5vw,50px);}
+  .contact-box p{
+    max-width:520px; margin:20px auto 36px;
+    font-size:17px; color:var(--ink-soft); line-height:1.65;
+  }
+  .contact-actions{
+    display:flex; gap:16px; justify-content:center; flex-wrap:wrap;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--ink);
+    color:var(--sand);
+    padding:50px 0 30px;
+  }
+  .footer-inner{
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:20px;
+    padding-bottom:30px;
+    border-bottom:1px solid rgba(251,243,228,0.14);
+  }
+  .footer-brand{
+    font-family:'Anton', sans-serif;
+    font-size:20px; letter-spacing:0.02em;
+  }
+  .footer-social{display:flex; gap:16px;}
+  .footer-social a{
+    width:38px; height:38px;
+    border:1px solid rgba(251,243,228,0.3);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    transition:background .2s ease, border-color .2s ease;
+  }
+  .footer-social a:hover{background:var(--sunrise); border-color:var(--sunrise);}
+  .footer-bottom{
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:14px;
+    padding-top:24px;
+    font-size:13px;
+    color:rgba(251,243,228,0.6);
+  }
+  .built-by{
+    display:inline-flex; align-items:center; gap:8px;
+    background:rgba(251,243,228,0.08);
+    padding:9px 16px;
+    border-radius:20px;
+    font-family:'JetBrains Mono', monospace;
+    font-size:11.5px;
+    letter-spacing:0.05em;
+    color:var(--sand);
+    border:1px solid rgba(251,243,228,0.16);
+    transition:background .2s ease, border-color .2s ease;
+  }
+  .built-by:hover{background:var(--sunrise); border-color:var(--sunrise);}
+
+  /* ---------- REVEAL ---------- */
+  .reveal{opacity:0; transform:translateY(28px); transition:opacity .8s ease, transform .8s ease;}
+  .reveal.show{opacity:1; transform:translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+    .elev-path{transition:none; stroke-dashoffset:0;}
+    .elev-fill{transition:none; opacity:1;}
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:3px solid var(--trail);
+    outline-offset:3px;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 920px){
+    .hero-grid{grid-template-columns:1fr;}
+    .about-grid{grid-template-columns:1fr;}
+    .about-visual{aspect-ratio:16/9;}
+    .service-grid{grid-template-columns:1fr 1fr;}
+    .stat-strip .wrap{grid-template-columns:repeat(2,1fr); row-gap:24px;}
+    .stat-item:nth-child(2){border-right:none;}
+  }
+  @media (max-width: 720px){
+    .nav-links{
+      position:fixed; top:0; right:-100%; height:100vh; width:78%;
+      background:var(--white);
+      flex-direction:column; justify-content:center; align-items:flex-start;
+      padding:40px; gap:28px;
+      transition:right .3s ease;
+      box-shadow:-10px 0 30px rgba(0,0,0,0.08);
+    }
+    .nav-links.open{right:0;}
+    .nav-toggle{
+      display:flex; flex-direction:column; gap:5px;
+      background:none; border:none; cursor:pointer; padding:6px;
+      z-index:101;
+    }
+    .nav-toggle span{width:24px; height:2px; background:var(--ink);}
+    .service-grid{grid-template-columns:1fr;}
+    .contact-box{padding:40px 24px;}
+    .insta-inner{flex-direction:column; align-items:flex-start;}
+    .footer-inner, .footer-bottom{flex-direction:column; align-items:flex-start;}
+  }
+  @media (max-width: 480px){
+    .stat-strip .wrap{grid-template-columns:1fr 1fr;}
+    .bib-number{font-size:88px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="nav">
+    <div class="brand"><span class="bib">27</span> Vanessa Puello</div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#journey">Journey</a>
+      <a href="#partner">Partnerships</a>
+      <a href="https://www.instagram.com/vane_run_bike/" target="_blank" rel="noopener" class="nav-cta">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        Follow the Journey
+      </a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">Runner · Cyclist · Ambassador</p>
+      <h1>Twenty-Seven<br>Marathons In.<span>The Next Start Line Is Already Calling.</span></h1>
+      <p class="hero-sub">Vanessa Puello is a marathoner and ultramarathoner who trains on two feet and two wheels — documenting every mile, climb and finish line as the diary of a working athlete. Ambassador for Threshold Experts, and always chasing the next distance.</p>
+      <div class="hero-actions">
+        <a href="#partner" class="btn btn-primary">Partner With Vanessa</a>
+        <a href="https://www.instagram.com/vane_run_bike/" target="_blank" rel="noopener" class="btn btn-ghost">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          @vane_run_bike
+        </a>
+      </div>
+    </div>
+    <div class="hero-panel reveal">
+      <div class="bib-number">27</div>
+      <div class="bib-label">Marathons finished</div>
+      <div class="bib-divider"></div>
+      <div class="bib-row"><span class="k">Discipline</span><span class="v">Run + Bike</span></div>
+      <div class="bib-row"><span class="k">Distance Class</span><span class="v">Marathon → Ultra</span></div>
+      <div class="bib-row"><span class="k">Ambassador</span><span class="v">Threshold Experts</span></div>
+      <div class="bib-row"><span class="k">Status</span><span class="v">Open for Partnerships</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="stat-strip">
+  <div class="wrap">
+    <div class="stat-item reveal"><div class="num">27+</div><div class="lab">Marathons Completed</div></div>
+    <div class="stat-item reveal"><div class="num">Ultra</div><div class="lab">Distance Racing</div></div>
+    <div class="stat-item reveal"><div class="num">2</div><div class="lab">Disciplines — Run & Bike</div></div>
+    <div class="stat-item reveal"><div class="num">1</div><div class="lab">Ambassadorship — Threshold Experts</div></div>
+  </div>
+</div>
+
+<section class="about" id="about">
+  <div class="wrap about-grid">
+    <div class="about-visual reveal">
+      <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice">
+        <path d="M0,420 L40,380 L80,400 L120,340 L160,370 L200,300 L240,330 L280,260 L320,290 L360,220 L400,250 L400,500 L0,500 Z" fill="rgba(251,243,228,0.14)"/>
+        <path d="M0,460 L50,430 L100,450 L150,410 L200,440 L250,390 L300,415 L350,370 L400,395" fill="none" stroke="rgba(251,243,228,0.35)" stroke-width="2"/>
+      </svg>
+      <div class="tag">Diary of a Cyclist<br>&amp; Runner<br>— Est. on the road —</div>
+    </div>
+    <div class="about-copy">
+      <p class="eyebrow">About Vanessa</p>
+      <p><strong>Every finish line has a story, and Vanessa has been writing hers one mile at a time.</strong> What began as a personal training diary has become a public record of discipline: 27 marathons, a growing list of ultramarathons, and the daily miles logged on the bike between race days.</p>
+      <p>Vanessa races and trains across both disciplines — <strong>running and cycling</strong> — sharing the honest, unfiltered process behind endurance sport: the early alarms, the long climbs, the recovery days, and the race-day nerves that never fully go away no matter how many bibs you've pinned on.</p>
+      <p>As an ambassador for <strong>Threshold Experts</strong>, she brings that same discipline to every partnership: consistent, credible, and genuinely lived-in content for brands that serve endurance athletes.</p>
+      <div class="pill-row">
+        <span class="pill">Marathoner</span>
+        <span class="pill">Ultramarathoner</span>
+        <span class="pill">Road Cyclist</span>
+        <span class="pill">Content Creator</span>
+        <span class="pill">Brand Ambassador</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="journey" id="journey">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow" style="justify-content:center;">The Climb So Far</p>
+      <h2>From First Marathon<br>to Ultra Distance</h2>
+      <p>Read left to right like a race elevation profile — every rise on this line is a threshold Vanessa pushed past on the way to the next one.</p>
+    </div>
+    <div class="elevation-wrap reveal" id="elevWrap">
+      <svg viewBox="0 0 1000 320" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <linearGradient id="elevGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#E85C2B" stop-opacity="0.22"/>
+            <stop offset="100%" stop-color="#E85C2B" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <path class="elev-fill" d="M20,260 L200,210 L380,225 L560,150 L740,170 L960,60 L960,300 L20,300 Z"/>
+        <path class="elev-path" d="M20,260 L200,210 L380,225 L560,150 L740,170 L960,60"/>
+        <g class="elev-marker">
+          <circle cx="20" cy="260" r="6"/>
+          <text x="20" y="290" text-anchor="start">Start</text>
+          <text class="m-title" x="20" y="240" text-anchor="start">First Marathon</text>
+        </g>
+        <g class="elev-marker">
+          <circle cx="380" cy="225" r="6"/>
+          <text x="380" y="255" text-anchor="middle">Miles logged</text>
+          <text class="m-title" x="380" y="205" text-anchor="middle">Marathon Regular</text>
+        </g>
+        <g class="elev-marker">
+          <circle cx="560" cy="150" r="6"/>
+          <text x="560" y="180" text-anchor="middle">Distance +</text>
+          <text class="m-title" x="560" y="130" text-anchor="middle">Ultramarathoner</text>
+        </g>
+        <g class="elev-marker">
+          <circle cx="960" cy="60" r="6"/>
+          <text x="945" y="90" text-anchor="end">Today</text>
+          <text class="m-title" x="945" y="42" text-anchor="end">27 Marathons + Ambassador</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="partner">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="eyebrow">Work Together</p>
+      <h2>Ways to Partner<br>With Vanessa</h2>
+      <p>Vanessa works with endurance and lifestyle brands looking for an athlete voice that's credible on race day and consistent every day in between.</p>
+    </div>
+    <div class="service-grid">
+      <div class="service-card reveal">
+        <div class="service-num">01 — BRAND</div>
+        <h3>Brand Ambassadorship</h3>
+        <p>Ongoing partnerships built around real training and racing — gear, nutrition, footwear and endurance brands featured naturally across the season.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">02 — CONTENT</div>
+        <h3>Race Coverage &amp; Content</h3>
+        <p>Race-day recaps, training diaries, and behind-the-scenes content from marathons, ultras and long rides — shot and shared as they happen.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-num">03 — COMMUNITY</div>
+        <h3>Community &amp; Events</h3>
+        <p>Appearances, group runs and rides, and speaking on training consistency, race prep and the mindset behind ultra-distance sport.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="insta">
+  <div class="wrap insta-inner">
+    <div class="insta-left reveal">
+      <p class="eyebrow">Follow Along</p>
+      <h2>The Diary Lives<br>on Instagram</h2>
+      <div class="insta-handle">@vane_run_bike</div>
+    </div>
+    <a href="https://www.instagram.com/vane_run_bike/" target="_blank" rel="noopener" class="insta-btn reveal">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+      View the Feed
+    </a>
+  </div>
+</section>
+
+<section class="contact">
+  <div class="wrap">
+    <div class="contact-box reveal">
+      <p class="eyebrow" style="justify-content:center;">Let's Talk</p>
+      <h2>Ready to Go the Distance Together?</h2>
+      <p>For collaborations, ambassador programs and race partnerships, reach out on Instagram — Vanessa reads every message.</p>
+      <div class="contact-actions">
+        <a href="https://www.instagram.com/vane_run_bike/" target="_blank" rel="noopener" class="btn btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          Message on Instagram
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-inner">
+      <div class="footer-brand">Vanessa Puello</div>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/vane_run_bike/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Vanessa Puello. All rights reserved.</span>
+      <a href="https://easypagex.github.io" target="_blank" rel="noopener" class="built-by">Built by EasyPageX</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Elevation profile draw-in
+  const elevWrap = document.getElementById('elevWrap');
+  const elevIo = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        elevWrap.classList.add('in-view');
+        elevIo.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  elevIo.observe(elevWrap);
+</script>
+
+</body>
+</html>
