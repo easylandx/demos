@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Xiomy Guerrero — Ciclismo, Enduro & Lifestyle</title>
+<meta name="description" content="Xiomy Guerrero — creadora de contenido, ciclismo de enduro y lifestyle. Embajadora de marcas. Colaboraciones y alianzas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Big+Shoulders+Display:wght@600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#121309;
+    --ink-2:#1B1D11;
+    --panel:#F3EEE0;
+    --sand:#EDE6D2;
+    --lime:#C6FF3D;
+    --lime-dim:#95C22C;
+    --rust:#C1552B;
+    --moss:#4A5A38;
+    --cream:#F7F4EA;
+    --line:rgba(247,244,234,0.14);
+    --line-strong:rgba(247,244,234,0.28);
+    --font-display:'Anton', sans-serif;
+    --font-alt:'Big Shoulders Display', sans-serif;
+    --font-body:'Inter', sans-serif;
+    --font-mono:'JetBrains Mono', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--cream);
+    font-family:var(--font-body);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:12px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--lime);
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .eyebrow::before{content:''; width:22px; height:1px; background:var(--lime);}
+  h1,h2,h3{font-family:var(--font-display); text-transform:uppercase; letter-spacing:0.01em; line-height:0.95;}
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:var(--font-mono); font-size:13px; letter-spacing:0.06em; text-transform:uppercase;
+    padding:15px 26px; border-radius:2px; border:1px solid var(--line-strong);
+    transition:all .22s ease; white-space:nowrap;
+  }
+  .btn-primary{background:var(--lime); color:var(--ink); border-color:var(--lime); font-weight:600;}
+  .btn-primary:hover{background:var(--cream); border-color:var(--cream); transform:translateY(-2px);}
+  .btn-ghost{background:transparent; color:var(--cream);}
+  .btn-ghost:hover{border-color:var(--lime); color:var(--lime);}
+  .btn svg{width:14px; height:14px;}
+
+  /* NAV */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(18,19,9,0.86); backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  nav{display:flex; align-items:center; justify-content:space-between; padding:18px 32px; max-width:1180px; margin:0 auto;}
+  .logo{font-family:var(--font-display); font-size:20px; letter-spacing:0.02em;}
+  .logo span{color:var(--lime);}
+  .nav-links{display:flex; align-items:center; gap:34px; font-family:var(--font-mono); font-size:12px; text-transform:uppercase; letter-spacing:0.08em;}
+  .nav-links a{opacity:0.75; transition:opacity .2s;}
+  .nav-links a:hover{opacity:1; color:var(--lime);}
+  .nav-cta{display:flex; align-items:center; gap:18px;}
+  .menu-toggle{display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:4px;}
+  .menu-toggle span{width:22px; height:2px; background:var(--cream);}
+
+  /* HERO */
+  .hero{
+    position:relative;
+    padding:168px 0 0;
+    background:
+      radial-gradient(circle at 82% 8%, rgba(198,255,61,0.10), transparent 40%),
+      linear-gradient(180deg, var(--ink) 0%, var(--ink-2) 100%);
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.15fr 0.85fr; gap:40px; align-items:end;
+    padding-bottom:80px;
+  }
+  .hero-tag{margin-bottom:26px;}
+  .hero h1{font-size:clamp(52px,7.4vw,104px); letter-spacing:-0.01em;}
+  .hero h1 .out{-webkit-text-stroke:1.5px var(--cream); color:transparent;}
+  .hero-lede{
+    font-size:18px; color:rgba(247,244,234,0.72); max-width:460px; margin:26px 0 36px; line-height:1.65;
+  }
+  .hero-actions{display:flex; gap:14px; flex-wrap:wrap;}
+  .hero-side{
+    border-left:1px solid var(--line-strong); padding-left:28px; align-self:end;
+  }
+  .hero-side p{font-family:var(--font-mono); font-size:13px; color:rgba(247,244,234,0.6); line-height:1.85;}
+  .hero-side strong{color:var(--lime); display:block; font-family:var(--font-mono); font-size:12px; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:10px;}
+
+  /* elevation profile signature svg */
+  .elevation{width:100%; height:auto; display:block;}
+  .elevation-wrap{position:relative; margin-top:20px;}
+  .elevation-labels{
+    display:flex; justify-content:space-between;
+    font-family:var(--font-mono); font-size:11px; color:rgba(247,244,234,0.4); letter-spacing:0.06em; text-transform:uppercase;
+    padding:0 4px 8px;
+  }
+
+  section{padding:110px 0;}
+  .section-head{display:flex; justify-content:space-between; align-items:flex-end; gap:40px; margin-bottom:64px; flex-wrap:wrap;}
+  .section-head h2{font-size:clamp(36px,4.6vw,58px); max-width:640px;}
+  .section-head p{color:rgba(247,244,234,0.62); max-width:340px; font-size:15px;}
+
+  /* ABOUT */
+  .about{background:var(--ink-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .about-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:64px; align-items:start;}
+  .about-copy p{font-size:17px; color:rgba(247,244,234,0.82); margin-bottom:20px; max-width:520px;}
+  .about-copy p:first-child{font-size:21px; color:var(--cream); font-weight:500;}
+  .stat-row{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin-top:40px;}
+  .stat{background:var(--ink-2); padding:26px 20px;}
+  .stat .num{font-family:var(--font-alt); font-size:38px; font-weight:800; color:var(--lime); line-height:1;}
+  .stat .lbl{font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:rgba(247,244,234,0.55); margin-top:8px;}
+  .pillars{display:flex; flex-direction:column; gap:0; border-top:1px solid var(--line);}
+  .pillar{display:grid; grid-template-columns:56px 1fr; gap:18px; padding:26px 0; border-bottom:1px solid var(--line);}
+  .pillar .idx{font-family:var(--font-mono); color:var(--lime-dim); font-size:13px; padding-top:3px;}
+  .pillar h3{font-family:var(--font-alt); font-weight:700; font-size:20px; text-transform:none; letter-spacing:0; margin-bottom:8px;}
+  .pillar p{color:rgba(247,244,234,0.65); font-size:14.5px; max-width:460px;}
+
+  /* BRANDS */
+  .brands{background:var(--ink);}
+  .brand-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line); border:1px solid var(--line);}
+  .brand-card{background:var(--ink); padding:44px 34px; position:relative; transition:background .25s;}
+  .brand-card:hover{background:var(--ink-2);}
+  .brand-tag{font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:0.1em; color:var(--rust); margin-bottom:16px;}
+  .brand-card h3{font-family:var(--font-alt); font-weight:700; font-size:25px; text-transform:none; letter-spacing:0; margin-bottom:10px;}
+  .brand-card p{color:rgba(247,244,234,0.6); font-size:14px;}
+
+  /* PROJECTS */
+  .projects{background:var(--panel); color:var(--ink);}
+  .projects .eyebrow{color:var(--rust);}
+  .projects .eyebrow::before{background:var(--rust);}
+  .projects .section-head p{color:rgba(18,19,9,0.6);}
+  .project-list{display:flex; flex-direction:column;}
+  .project-row{
+    display:grid; grid-template-columns:110px 1fr 220px; align-items:center; gap:24px;
+    padding:34px 0; border-top:1px solid rgba(18,19,9,0.14);
+    transition:padding-left .25s ease, background .25s ease;
+  }
+  .project-row:last-child{border-bottom:1px solid rgba(18,19,9,0.14);}
+  .project-row:hover{padding-left:14px; background:rgba(18,19,9,0.04);}
+  .project-num{font-family:var(--font-mono); font-size:13px; color:var(--rust);}
+  .project-name{font-family:var(--font-alt); font-weight:700; font-size:28px; text-transform:none;}
+  .project-desc{color:rgba(18,19,9,0.62); font-size:14.5px; margin-top:6px;}
+  .project-link{
+    justify-self:end; font-family:var(--font-mono); font-size:12px; text-transform:uppercase; letter-spacing:0.08em;
+    display:inline-flex; align-items:center; gap:8px; color:var(--ink); border-bottom:1px solid var(--ink); padding-bottom:3px;
+  }
+
+  /* WHY */
+  .why{background:var(--ink-2); border-top:1px solid var(--line);}
+  .why-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--line); border:1px solid var(--line); margin-top:20px;}
+  .why-card{background:var(--ink-2); padding:32px 24px;}
+  .why-card .n{font-family:var(--font-mono); color:var(--lime); font-size:12px; margin-bottom:18px;}
+  .why-card h3{font-family:var(--font-alt); font-weight:700; font-size:19px; text-transform:none; letter-spacing:0; margin-bottom:10px;}
+  .why-card p{color:rgba(247,244,234,0.6); font-size:13.5px;}
+
+  /* CONTACT */
+  .contact{
+    background:linear-gradient(180deg, var(--ink-2) 0%, var(--ink) 100%);
+    text-align:center; padding:140px 0 110px; position:relative;
+  }
+  .contact h2{font-size:clamp(44px,8vw,108px); line-height:0.92;}
+  .contact .lime{color:var(--lime);}
+  .contact p{color:rgba(247,244,234,0.65); font-size:17px; max-width:520px; margin:26px auto 44px;}
+  .contact-actions{display:flex; justify-content:center; gap:16px; flex-wrap:wrap; margin-bottom:56px;}
+  .contact-meta{display:flex; justify-content:center; gap:40px; flex-wrap:wrap; font-family:var(--font-mono); font-size:12px; color:rgba(247,244,234,0.5); text-transform:uppercase; letter-spacing:0.08em;}
+  .contact-meta a{color:var(--lime);}
+
+  footer{
+    border-top:1px solid var(--line); padding:32px; background:var(--ink);
+  }
+  .footer-row{display:flex; justify-content:space-between; align-items:center; max-width:1180px; margin:0 auto; flex-wrap:wrap; gap:16px;}
+  .footer-row p{font-family:var(--font-mono); font-size:11px; color:rgba(247,244,234,0.4); text-transform:uppercase; letter-spacing:0.06em;}
+  .footer-links{display:flex; gap:22px; font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:0.06em;}
+  .footer-links a{color:rgba(247,244,234,0.55);}
+  .footer-links a:hover{color:var(--lime);}
+
+  ::selection{background:var(--lime); color:var(--ink);}
+
+  @media (max-width:920px){
+    .nav-links{display:none;}
+    .menu-toggle{display:flex;}
+    .hero-grid{grid-template-columns:1fr; gap:44px;}
+    .hero-side{border-left:none; border-top:1px solid var(--line-strong); padding-left:0; padding-top:24px;}
+    .about-grid{grid-template-columns:1fr; gap:44px;}
+    .stat-row{grid-template-columns:1fr;}
+    .brand-grid{grid-template-columns:1fr;}
+    .why-grid{grid-template-columns:1fr 1fr;}
+    .project-row{grid-template-columns:1fr; text-align:left; gap:10px;}
+    .project-link{justify-self:start;}
+    .section-head{flex-direction:column; align-items:flex-start;}
+  }
+  @media (max-width:560px){
+    .wrap{padding:0 20px;}
+    nav{padding:16px 20px;}
+    .why-grid{grid-template-columns:1fr;}
+    .hero{padding-top:130px;}
+    .contact{padding:100px 0 80px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#top" class="logo">XIOMY<span>.</span>GUERRERO</a>
+    <div class="nav-links">
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#marcas">Marcas</a>
+      <a href="#proyectos">Proyectos</a>
+      <a href="#colabora">Colabora</a>
+    </div>
+    <div class="nav-cta">
+      <a href="https://www.instagram.com/xiomy.guerrero/" target="_blank" rel="noopener" class="btn btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        Instagram
+      </a>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow hero-tag">Creadora de contenido · Bogotá, Colombia</div>
+          <h1>CICLISMO.<br>ENDURO.<br><span class="out">LIFESTYLE.</span></h1>
+          <p class="hero-lede">Xiomy Guerrero — arriba de la bici, en la montaña y en cámara. Contenido auténtico de enduro y estilo de vida para marcas que quieren hablarle a una comunidad activa, real y apasionada por el trail.</p>
+          <div class="hero-actions">
+            <a href="https://www.instagram.com/xiomy.guerrero/" target="_blank" rel="noopener" class="btn btn-primary">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+              @xiomy.guerrero
+            </a>
+            <a href="#colabora" class="btn btn-ghost">Quiero colaborar con Xiomy</a>
+          </div>
+        </div>
+        <div class="hero-side">
+          <strong>Nothing else matters 🤌🏽</strong>
+          <p>Embajadora de Scott Sports Colombia, GW Bicycles y Shimano Colombia. Creadora detrás de Mi Closet Xsale, Mi Finca y Glow Up Sister Col.</p>
+        </div>
+      </div>
+
+      <div class="elevation-wrap">
+        <svg class="elevation" viewBox="0 0 1180 130" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="0" y1="129" x2="1180" y2="129" stroke="rgba(247,244,234,0.18)" stroke-width="1"/>
+          <polyline points="0,110 90,95 160,100 240,60 320,72 400,30 470,48 560,20 640,42 720,15 800,38 880,55 960,35 1040,68 1120,50 1180,58" fill="none" stroke="var(--lime)" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+          <polyline points="0,110 90,95 160,100 240,60 320,72 400,30 470,48 560,20 640,42 720,15 800,38 880,55 960,35 1040,68 1120,50 1180,58 1180,130 0,130" fill="rgba(198,255,61,0.06)" stroke="none"/>
+        </svg>
+        <div class="elevation-labels">
+          <span>Km 0 — Base</span>
+          <span>Perfil de altimetría — Sector Enduro</span>
+          <span>Meta</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="sobre-mi">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Sobre mí</div>
+          <h2 style="margin-top:14px;">La bici no es un hobby, es el eje</h2>
+        </div>
+      </div>
+      <div class="about-grid">
+        <div class="about-copy">
+          <p>Soy Xiomy Guerrero: rodante de enduro, creadora de contenido y amante de la vida al aire libre.</p>
+          <p>Documento cada salida al trail, cada caída, cada cumbre y cada carrera tal como es: sin filtros de más. Mi comunidad me sigue por el ciclismo, pero se queda por el estilo de vida — montaña, finca, moda y una energía que contagia.</p>
+          <p>Trabajo con marcas que entienden que la autenticidad vende más que un anuncio perfecto. Si tu marca vive en la montaña, en la ruta o en el lifestyle activo, hablemos.</p>
+          <div class="stat-row">
+            <div class="stat"><div class="num">03</div><div class="lbl">Marcas embajadora</div></div>
+            <div class="stat"><div class="num">03</div><div class="lbl">Proyectos propios</div></div>
+            <div class="stat"><div class="num">100%</div><div class="lbl">Contenido auténtico</div></div>
+          </div>
+        </div>
+        <div class="pillars">
+          <div class="pillar"><div class="idx">01</div><div><h3>Enduro & trail</h3><p>Rodadas, técnica, equipo y la cultura del ciclismo de montaña desde adentro.</p></div></div>
+          <div class="pillar"><div class="idx">02</div><div><h3>Lifestyle activo</h3><p>Vida de finca, rutina, disciplina y todo lo que pasa fuera de la bici.</p></div></div>
+          <div class="pillar"><div class="idx">03</div><div><h3>Moda & belleza</h3><p>Estilo personal y colaboraciones con marcas de moda y cuidado, con un toque real.</p></div></div>
+          <div class="pillar" style="border-bottom:none;"><div class="idx">04</div><div><h3>Comunidad</h3><p>Una audiencia comprometida que confía en sus recomendaciones y las sigue de cerca.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRANDS -->
+  <section class="brands" id="marcas">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Embajadora</div>
+          <h2 style="margin-top:14px;">Marcas que ya confían en ella</h2>
+        </div>
+        <p>Alianzas activas en ciclismo, equipo técnico y componentes.</p>
+      </div>
+      <div class="brand-grid">
+        <div class="brand-card">
+          <div class="brand-tag">Embajadora oficial</div>
+          <h3>Scott Sports Colombia</h3>
+          <p>Bicicletas y equipo de alto desempeño para ciclismo de montaña.</p>
+        </div>
+        <div class="brand-card">
+          <div class="brand-tag">Embajadora oficial</div>
+          <h3>GW Bicycles</h3>
+          <p>Bicicletas colombianas pensadas para el trail y la ruta.</p>
+        </div>
+        <div class="brand-card">
+          <div class="brand-tag">Embajadora oficial</div>
+          <h3>Shimano Colombia</h3>
+          <p>Componentes y tecnología de referencia mundial en ciclismo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="projects" id="proyectos">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Proyectos propios</div>
+          <h2 style="margin-top:14px;">Más allá de la bici</h2>
+        </div>
+        <p>Emprendimientos y espacios creados y curados por Xiomy.</p>
+      </div>
+      <div class="project-list">
+        <div class="project-row">
+          <div class="project-num">01</div>
+          <div><div class="project-name">Mi Closet Xsale</div><div class="project-desc">Venta de ropa y artículos seleccionados directamente por Xiomy.</div></div>
+          <a href="https://www.instagram.com/micloset.xsale" target="_blank" rel="noopener" class="project-link">Ver perfil →</a>
+        </div>
+        <div class="project-row">
+          <div class="project-num">02</div>
+          <div><div class="project-name">Mi Finca</div><div class="project-desc">La vida de campo, naturaleza y desconexión que complementa el lifestyle activo.</div></div>
+          <a href="https://www.instagram.com/_mi_finca_" target="_blank" rel="noopener" class="project-link">Ver perfil →</a>
+        </div>
+        <div class="project-row">
+          <div class="project-num">03</div>
+          <div><div class="project-name">Glow Up Sister Col</div><div class="project-desc">Proyecto enfocado en belleza, cuidado personal y transformación.</div></div>
+          <a href="https://www.instagram.com/glowupsistercol" target="_blank" rel="noopener" class="project-link">Ver perfil →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section class="why">
+    <div class="wrap">
+      <div class="eyebrow">Para marcas</div>
+      <h2 style="margin-top:14px; font-size:clamp(32px,4.2vw,50px); max-width:640px;">Por qué colaborar con Xiomy</h2>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="n">01</div>
+          <h3>Nicho especializado</h3>
+          <p>Autoridad real dentro del ciclismo de enduro y montaña, no contenido genérico.</p>
+        </div>
+        <div class="why-card">
+          <div class="n">02</div>
+          <h3>Contenido propio</h3>
+          <p>Fotografía y video producidos en trail, con estética consistente y reconocible.</p>
+        </div>
+        <div class="why-card">
+          <div class="n">03</div>
+          <h3>Multi-vertical</h3>
+          <p>Cubre deporte, lifestyle, moda y belleza bajo una sola voz auténtica.</p>
+        </div>
+        <div class="why-card">
+          <div class="n">04</div>
+          <h3>Trayectoria probada</h3>
+          <p>Alianzas activas y sostenidas con marcas líderes del sector ciclístico.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="colabora">
+    <div class="wrap">
+      <div class="eyebrow" style="justify-content:center;">Trabajemos juntos</div>
+      <h2 style="margin-top:22px;">HABLEMOS<br>DE TU <span class="lime">MARCA</span></h2>
+      <p>¿Tienes un producto o marca que encaje con ciclismo, montaña o lifestyle activo? Escríbeme por Instagram y armamos una propuesta a la medida.</p>
+      <div class="contact-actions">
+        <a href="https://www.instagram.com/xiomy.guerrero/" target="_blank" rel="noopener" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          Escríbeme por Instagram
+        </a>
+      </div>
+      <div class="contact-meta">
+        <span>Instagram: <a href="https://www.instagram.com/xiomy.guerrero/" target="_blank" rel="noopener">@xiomy.guerrero</a></span>
+        <span>Base: Colombia</span>
+        <span>Disponible para alianzas y campañas</span>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-row">
+    <p>© 2026 Xiomy Guerrero — Ciclismo · Enduro · Lifestyle</p>
+    <div class="footer-links">
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#marcas">Marcas</a>
+      <a href="#proyectos">Proyectos</a>
+      <a href="https://www.instagram.com/xiomy.guerrero/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
