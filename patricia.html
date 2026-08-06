@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Patricia Uehara | Visibilización y Bienestar para Mujeres 50+</title>
+<meta name="description" content="Visibilización, bienestar, estilo de vida y salud para mujeres de 50 años y más. Marketing digital y fotografía por Patricia Uehara.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,500&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gold: #D4AF37;
+    --gold-light: #F0C040;
+    --gold-deep: #C9A84C;
+    --plum: #7A3B69;
+    --coral: #E8635A;
+    --cream: #FFF8ED;
+    --ink: #2B1B2E;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Poppins', sans-serif;
+    color: var(--ink);
+    background: linear-gradient(160deg,#F6D9A8 0%, #EFA7B0 35%, #C97BAE 65%, #7A3B69 100%);
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.serif{ font-family:'Fraunces', serif; }
+
+  a{ text-decoration:none; }
+
+  /* ---------- Reveal on scroll ---------- */
+  .reveal{ opacity:0; transform: translateY(40px); transition: all 0.9s cubic-bezier(.22,1,.36,1); }
+  .reveal.visible{ opacity:1; transform: translateY(0); }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 18px 6%;
+    background: rgba(43,27,46,0.35);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(212,175,55,0.35);
+  }
+  .logo{
+    font-family:'Fraunces', serif;
+    font-size: 1.4rem;
+    color: var(--gold-light);
+    letter-spacing: 1px;
+  }
+  .logo span{ color:#fff; }
+  nav a{
+    color:#fff; margin-left: 26px; font-size:0.9rem; font-weight:500;
+    position:relative; padding-bottom:4px;
+  }
+  nav a::after{
+    content:''; position:absolute; left:0; bottom:0; width:0; height:2px;
+    background: var(--gold-light); transition: width .3s ease;
+  }
+  nav a:hover::after{ width:100%; }
+  .nav-links{ display:flex; align-items:center; }
+  .burger{ display:none; flex-direction:column; gap:5px; cursor:pointer; }
+  .burger div{ width:26px; height:2px; background:#fff; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height: 100vh;
+    display:flex; align-items:center; justify-content:center;
+    position:relative;
+    padding: 140px 6% 80px;
+    text-align:center;
+    flex-direction:column;
+  }
+  .hero-badge{
+    display:inline-flex; align-items:center; gap:8px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid var(--gold-light);
+    color:#fff; padding: 8px 20px; border-radius: 40px;
+    font-size:0.8rem; letter-spacing:1.5px; text-transform:uppercase;
+    margin-bottom: 28px;
+  }
+  .hero-badge svg{ width:14px; height:14px; fill: var(--gold-light);}
+  .hero h1{
+    color:#fff;
+    font-size: clamp(2.4rem, 6vw, 5rem);
+    line-height:1.05;
+    font-weight:500;
+    max-width: 900px;
+    text-shadow: 0 6px 30px rgba(0,0,0,0.25);
+  }
+  .hero h1 em{
+    font-style:italic; color: var(--gold-light);
+  }
+  .hero p.sub{
+    color: rgba(255,255,255,0.92);
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    max-width: 620px;
+    margin: 26px auto 40px;
+    font-weight:300;
+  }
+  .cta-row{ display:flex; gap:18px; flex-wrap:wrap; justify-content:center; }
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding: 16px 34px;
+    border-radius: 50px;
+    font-weight:600;
+    font-size: 1rem;
+    cursor:pointer;
+    border: none;
+    transition: all .35s ease;
+  }
+  .btn-primary{
+    background: linear-gradient(120deg, var(--gold-light), var(--gold-deep));
+    color: var(--ink);
+    box-shadow: 0 10px 30px rgba(212,175,55,0.45);
+  }
+  .btn-primary:hover{ transform: translateY(-4px); box-shadow: 0 16px 36px rgba(212,175,55,0.6);}
+  .btn-outline{
+    background: transparent;
+    border: 2px solid #fff;
+    color:#fff;
+  }
+  .btn-outline:hover{ background:#fff; color: var(--plum); transform: translateY(-4px); }
+
+  .hero-orb{
+    position:absolute; border-radius:50%;
+    filter: blur(4px);
+    opacity:0.6;
+  }
+  .orb1{ width:260px; height:260px; background: radial-gradient(circle, var(--gold-light), transparent 70%); top:8%; left:6%; animation: float1 9s ease-in-out infinite; }
+  .orb2{ width:180px; height:180px; background: radial-gradient(circle, var(--coral), transparent 70%); bottom:10%; right:8%; animation: float2 11s ease-in-out infinite; }
+  @keyframes float1{ 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(-30px);} }
+  @keyframes float2{ 0%,100%{ transform: translateY(0);} 50%{ transform: translateY(28px);} }
+
+  .scroll-cue{
+    position:absolute; bottom: 30px; left:50%; transform: translateX(-50%);
+    color:#fff; font-size:0.75rem; letter-spacing:2px; text-transform:uppercase;
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+    opacity:0.85;
+  }
+  .scroll-cue .line{ width:1px; height:40px; background: linear-gradient(#fff, transparent); animation: dropline 1.8s ease-in-out infinite; }
+  @keyframes dropline{ 0%{ transform: scaleY(0); transform-origin: top;} 50%{ transform: scaleY(1); transform-origin: top;} 51%{ transform-origin: bottom;} 100%{ transform: scaleY(0); transform-origin: bottom;} }
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{ padding: 110px 6%; position:relative; }
+  .section-label{
+    color: var(--gold-light); text-transform:uppercase; letter-spacing:3px;
+    font-size:0.8rem; font-weight:600; margin-bottom:14px; display:block; text-align:center;
+  }
+  .section-title{
+    color:#fff; text-align:center; font-size: clamp(2rem,4vw,3rem); font-weight:500; max-width:750px; margin:0 auto 20px;
+  }
+  .section-sub{
+    color: rgba(255,255,255,0.85); text-align:center; max-width:620px; margin: 0 auto 60px; font-weight:300; line-height:1.7;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about{
+    background: var(--cream);
+    border-radius: 40px;
+    margin: 0 3%;
+    padding: 90px 6%;
+  }
+  .about-grid{
+    display:grid; grid-template-columns: 0.9fr 1.1fr; gap:70px; align-items:center; max-width:1100px; margin:0 auto;
+  }
+  .about-photo{
+    position:relative;
+    aspect-ratio: 4/5;
+    border-radius: 30px;
+    background: linear-gradient(150deg, var(--plum), var(--coral) 60%, var(--gold-light));
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 30px 60px rgba(122,59,105,0.35);
+  }
+  .about-photo .ring{
+    position:absolute; inset: -18px; border: 2px solid var(--gold-light); border-radius: 34px; opacity:0.6;
+  }
+  .about-photo svg{ width:55%; }
+  .stat-pill{
+    position:absolute; bottom:-24px; left:-24px;
+    background:#fff; border-radius:20px; padding: 16px 22px;
+    box-shadow: 0 12px 30px rgba(43,27,46,0.2);
+    display:flex; flex-direction:column; align-items:center;
+  }
+  .stat-pill b{ font-family:'Fraunces', serif; font-size:1.6rem; color:var(--plum); }
+  .stat-pill span{ font-size:0.7rem; text-transform:uppercase; letter-spacing:1px; color:#8a7a86;}
+  .about-text .section-label{ text-align:left; }
+  .about-text h2{ font-size: clamp(1.8rem,3.5vw,2.6rem); color: var(--ink); margin-bottom:22px; font-weight:500;}
+  .about-text p{ color:#4c3b49; line-height:1.85; font-weight:300; margin-bottom:16px; }
+  .badges{ display:flex; gap:14px; margin-top:28px; flex-wrap:wrap;}
+  .badge{
+    background: linear-gradient(120deg, var(--gold-light), var(--gold-deep));
+    color: var(--ink); padding: 10px 18px; border-radius: 40px; font-size:0.8rem; font-weight:600;
+    display:flex; align-items:center; gap:8px;
+  }
+
+  /* ---------- SERVICES ---------- */
+  .services-grid{
+    display:grid; grid-template-columns: repeat(3, 1fr); gap: 30px; max-width:1150px; margin:0 auto;
+  }
+  .service-card{
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(212,175,55,0.4);
+    border-radius: 24px;
+    padding: 40px 30px;
+    backdrop-filter: blur(6px);
+    transition: all .4s ease;
+  }
+  .service-card:hover{
+    transform: translateY(-10px);
+    background: rgba(255,255,255,0.16);
+    box-shadow: 0 24px 50px rgba(0,0,0,0.25);
+  }
+  .service-icon{
+    width:58px; height:58px; border-radius:16px;
+    background: linear-gradient(135deg, var(--gold-light), var(--coral));
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom: 22px;
+  }
+  .service-icon svg{ width:28px; height:28px; fill:#fff; }
+  .service-card h3{ color:#fff; font-size:1.3rem; margin-bottom:12px; font-weight:500;}
+  .service-card p{ color: rgba(255,255,255,0.82); font-weight:300; line-height:1.7; font-size:0.95rem;}
+
+  /* ---------- WHY / PILLARS ---------- */
+  .pillars{
+    background: var(--ink);
+    border-radius: 40px;
+    margin: 0 3%;
+    padding: 100px 6%;
+  }
+  .pillars .section-title, .pillars .section-sub{ color:#fff; }
+  .pillars .section-sub{ color: rgba(255,255,255,0.6); }
+  .pillar-row{
+    display:grid; grid-template-columns: repeat(4, 1fr); gap:26px; max-width:1150px; margin: 0 auto;
+  }
+  .pillar{
+    text-align:center; padding: 30px 16px;
+    border-top: 3px solid var(--gold-light);
+  }
+  .pillar .num{ font-family:'Fraunces', serif; font-size:2.4rem; color: var(--gold-light); }
+  .pillar h4{ color:#fff; margin: 10px 0 8px; font-weight:500; }
+  .pillar p{ color: rgba(255,255,255,0.6); font-size:0.85rem; font-weight:300; line-height:1.6;}
+
+  /* ---------- SOCIAL PROOF NUMBERS ---------- */
+  .numbers{
+    display:flex; justify-content:center; gap: 70px; flex-wrap:wrap; max-width: 900px; margin: 0 auto;
+  }
+  .number-item{ text-align:center; }
+  .number-item b{
+    font-family:'Fraunces', serif; font-size: clamp(2.2rem,5vw,3.4rem); color:#fff; display:block;
+    background: linear-gradient(120deg,#fff, var(--gold-light));
+    -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  }
+  .number-item span{ color: rgba(255,255,255,0.85); font-size:0.85rem; text-transform:uppercase; letter-spacing:1.5px; }
+
+  /* ---------- SOCIAL CTA ---------- */
+  .social-cta{
+    text-align:center;
+  }
+  .social-cards{
+    display:flex; gap: 28px; justify-content:center; flex-wrap:wrap; max-width: 700px; margin: 0 auto;
+  }
+  .social-card{
+    flex:1; min-width:240px; max-width:300px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(212,175,55,0.45);
+    border-radius: 26px;
+    padding: 40px 28px;
+    text-align:center;
+    transition: all .35s ease;
+    backdrop-filter: blur(6px);
+  }
+  .social-card:hover{ transform: translateY(-8px); background: rgba(255,255,255,0.18); }
+  .social-card .icon-circle{
+    width:70px; height:70px; margin:0 auto 20px;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    background: linear-gradient(135deg, var(--gold-light), var(--coral));
+  }
+  .social-card .icon-circle svg{ width:32px; height:32px; fill:#fff; }
+  .social-card h3{ color:#fff; margin-bottom:6px; font-weight:500;}
+  .social-card p{ color: rgba(255,255,255,0.75); font-size:0.85rem; margin-bottom:22px; font-weight:300;}
+  .social-btn{
+    display:inline-block; padding: 12px 28px; border-radius:40px;
+    background: linear-gradient(120deg, var(--gold-light), var(--gold-deep));
+    color: var(--ink); font-weight:600; font-size:0.9rem;
+    transition: all .3s ease;
+  }
+  .social-btn:hover{ transform: scale(1.05); }
+
+  /* ---------- TESTIMONIAL ---------- */
+  .testimonial{
+    max-width: 780px; margin: 0 auto; text-align:center;
+  }
+  .quote-mark{ font-family:'Fraunces', serif; font-size:5rem; color: var(--gold-light); line-height:0.5; display:block; margin-bottom:20px;}
+  .testimonial p{ color:#fff; font-size: clamp(1.1rem,2.4vw,1.5rem); font-weight:300; font-style:italic; line-height:1.7;}
+  .testimonial .author{ margin-top:26px; color: var(--gold-light); font-weight:600; font-style:normal;}
+
+  /* ---------- FINAL CTA ---------- */
+  .final-cta{
+    background: linear-gradient(135deg, var(--plum), var(--coral) 60%, var(--gold-light));
+    border-radius: 40px;
+    margin: 0 3%;
+    padding: 100px 6%;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .final-cta h2{ color:#fff; font-size: clamp(2rem,5vw,3.2rem); font-weight:500; margin-bottom:20px;}
+  .final-cta p{ color: rgba(255,255,255,0.9); max-width:560px; margin:0 auto 40px; font-weight:300; }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding: 60px 6% 30px;
+    text-align:center;
+  }
+  footer .logo{ display:block; margin-bottom: 14px; }
+  footer .foot-links{ display:flex; gap:26px; justify-content:center; margin: 20px 0; flex-wrap:wrap;}
+  footer .foot-links a{ color: rgba(255,255,255,0.85); font-size:0.9rem; }
+  footer .foot-links a:hover{ color: var(--gold-light); }
+  footer .copyright{ color: rgba(255,255,255,0.5); font-size:0.78rem; margin-top: 20px; }
+
+  /* ---------- FLOATING SOCIAL BUTTONS ---------- */
+  .float-stack{
+    position:fixed; bottom: 26px; right: 26px; z-index:200;
+    display:flex; flex-direction:column; gap:14px; align-items:flex-end;
+  }
+  .float-btn{
+    width:58px; height:58px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+    animation: pulse 2.6s ease-in-out infinite;
+  }
+  .float-btn.ig{ background: linear-gradient(135deg,#f9ce34,#ee2a7b,#6228d7); }
+  .float-btn.tk{ background: #010101; border: 2px solid var(--gold-light); }
+  .float-btn svg{ width:26px; height:26px; fill:#fff; }
+  @keyframes pulse{ 0%,100%{ transform:scale(1);} 50%{ transform:scale(1.08);} }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 900px){
+    .about-grid{ grid-template-columns:1fr; }
+    .services-grid{ grid-template-columns:1fr 1fr; }
+    .pillar-row{ grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width: 640px){
+    nav.nav-links{
+      position:fixed; top:64px; right: -100%; height:100vh; width: 70%;
+      background: rgba(43,27,46,0.97); flex-direction:column; padding-top:50px; transition: right .4s ease;
+    }
+    nav.nav-links.open{ right:0; }
+    nav a{ margin: 16px 0; font-size:1.1rem; }
+    .burger{ display:flex; }
+    .services-grid{ grid-template-columns:1fr; }
+    .pillar-row{ grid-template-columns:1fr; }
+    .numbers{ gap:36px; }
+    .about{ margin:0; border-radius:0;}
+    .pillars, .final-cta{ margin:0; border-radius:0;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Patricia <span>Uehara</span></div>
+  <div class="nav-links" id="navLinks">
+    <a href="#sobre">Sobre mí</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#pilares">Método</a>
+    <a href="#contacto">Contacto</a>
+  </div>
+  <div class="burger" id="burger"><div></div><div></div><div></div></div>
+</header>
+
+<section class="hero">
+  <div class="hero-orb orb1"></div>
+  <div class="hero-orb orb2"></div>
+  <div class="hero-badge">
+    <svg viewBox="0 0 24 24"><path d="M12 2l2.9 6.3L21 9.3l-4.5 4.4L17.8 20 12 16.8 6.2 20l1.3-6.3L3 9.3l6.1-1z"/></svg>
+    Visibilización · Bienestar · Estilo de vida
+  </div>
+  <h1>Mujeres de <em>50 años y más</em>,<br>es hora de brillar</h1>
+  <p class="sub">Marketing digital y fotografía pensados para visibilizar tu bienestar, tu salud y tu estilo de vida. Contenido auténtico que conecta con tu esencia.</p>
+  <div class="cta-row">
+    <a class="btn btn-primary" href="https://www.instagram.com/chinauehara/" target="_blank" rel="noopener">
+      Sígueme en Instagram
+    </a>
+    <a class="btn btn-outline" href="https://www.tiktok.com/@mamagatito" target="_blank" rel="noopener">
+      Ver TikTok +40K
+    </a>
+  </div>
+  <div class="scroll-cue"><span>Descubre más</span><div class="line"></div></div>
+</section>
+
+<section class="about" id="sobre">
+  <div class="about-grid">
+    <div class="reveal about-photo">
+      <div class="ring"></div>
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="100" cy="75" r="42" fill="#fff" opacity="0.9"/>
+        <path d="M40 190 Q100 110 160 190 Z" fill="#fff" opacity="0.9"/>
+        <circle cx="100" cy="75" r="42" fill="none" stroke="#D4AF37" stroke-width="3"/>
+      </svg>
+      <div class="stat-pill">
+        <b>32K+</b>
+        <span>Instagram</span>
+      </div>
+    </div>
+    <div class="reveal about-text">
+      <span class="section-label">Sobre Patricia</span>
+      <h2>Visibilizando mujeres reales, con propósito y estilo</h2>
+      <p>Soy Patricia Uehara, creadora de contenido especializada en <strong>visibilización, bienestar, estilo de vida y salud para mujeres de 50 años y más</strong>. Mi comunidad crece cada día porque comparto algo que muchas marcas olvidan: que esta etapa de la vida es para brillar, no para desaparecer.</p>
+      <p>Combino <strong>marketing digital y fotografía</strong> para ayudarte a construir una presencia auténtica, ya sea que quieras mostrar tu marca personal, tu negocio o simplemente reconectar con tu mejor versión frente a cámara.</p>
+      <div class="badges">
+        <span class="badge">📸 Fotografía profesional</span>
+        <span class="badge">📱 MKT Digital</span>
+        <span class="badge">✨ TikTok +40K</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="servicios">
+  <span class="section-label reveal">Lo que hago por ti</span>
+  <h2 class="section-title reveal">Servicios pensados para tu momento de vida</h2>
+  <p class="section-sub reveal">Contenido, estrategia e imagen para mujeres que quieren ser vistas, escuchadas y recordadas.</p>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M9 2a1 1 0 00-1 1v1H5a2 2 0 00-2 2v13a2 2 0 002 2h14a2 2 0 002-2V6a2 2 0 00-2-2h-3V3a1 1 0 00-1-1H9zm3 6a5 5 0 110 10 5 5 0 010-10zm0 2a3 3 0 100 6 3 3 0 000-6zm6.5-1a1 1 0 110 2 1 1 0 010-2z"/></svg></div>
+      <h3>Sesiones de fotografía</h3>
+      <p>Sesiones profesionales pensadas para resaltar tu esencia, tu marca personal o tu negocio con una mirada auténtica y actual.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v2H4V4zm0 7h16v2H4v-2zm0 7h10v2H4v-2zm14-3l4 4-4 4v-3h-4v-2h4v-3z"/></svg></div>
+      <h3>Marketing digital</h3>
+      <p>Estrategias de contenido y presencia digital adaptadas a tu momento vital: Instagram, TikTok y más, con enfoque real y cercano.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3 6 6.5.9-4.7 4.6 1.1 6.5L12 17l-5.9 3 1.1-6.5L2.5 8.9 9 8l3-6z"/></svg></div>
+      <h3>Visibilización personal</h3>
+      <p>Acompañamiento para perder el miedo a la cámara, mostrar tu voz y construir una comunidad que valore tu etapa de vida.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 21s-8-4.6-8-11a5 5 0 019-3 5 5 0 019 3c0 6.4-8 11-8 11z"/></svg></div>
+      <h3>Bienestar y salud</h3>
+      <p>Contenido y hábitos enfocados en el bienestar físico y emocional, diseñados especialmente para mujeres de 50+.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 100 18 9 9 0 000-18zm1 4v5.4l4.2 2.5-.8 1.3-5-3V7h1.6z"/></svg></div>
+      <h3>Estilo de vida</h3>
+      <p>Ideas y contenido inspirador para vivir esta etapa con plenitud, estilo y una actitud imparable.</p>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M17 2H7a2 2 0 00-2 2v16a2 2 0 002 2h10a2 2 0 002-2V4a2 2 0 00-2-2zm-5 18a1.5 1.5 0 110-3 1.5 1.5 0 010 3zM7 15V5h10v10H7z"/></svg></div>
+      <h3>Producción de video/TikTok</h3>
+      <p>Contenido audiovisual con formato viral y storytelling, pensado para conectar con tu comunidad de forma genuina.</p>
+    </div>
+  </div>
+</section>
+
+<section class="pillars" id="pilares">
+  <span class="section-label reveal">Mi método</span>
+  <h2 class="section-title reveal">Cuatro pilares para brillar sin miedo</h2>
+  <p class="section-sub reveal">Cada proyecto combina estrategia, imagen y comunidad para que tu presencia digital tenga sentido.</p>
+  <div class="pillar-row">
+    <div class="pillar reveal"><span class="num">01</span><h4>Escucha</h4><p>Entiendo tu historia, tu momento y tu objetivo antes de crear cualquier contenido.</p></div>
+    <div class="pillar reveal"><span class="num">02</span><h4>Estrategia</h4><p>Diseño un plan de visibilización adaptado a tu ritmo y tu personalidad.</p></div>
+    <div class="pillar reveal"><span class="num">03</span><h4>Creación</h4><p>Producimos fotografía y video con una estética auténtica y profesional.</p></div>
+    <div class="pillar reveal"><span class="num">04</span><h4>Comunidad</h4><p>Construimos una audiencia que valora y celebra tu etapa de vida.</p></div>
+  </div>
+</section>
+
+<section>
+  <span class="section-label reveal">Comunidad</span>
+  <h2 class="section-title reveal">Una comunidad que crece cada día</h2>
+  <div class="numbers reveal">
+    <div class="number-item"><b>32K+</b><span>Seguidoras en Instagram</span></div>
+    <div class="number-item"><b>40K+</b><span>Seguidoras en TikTok</span></div>
+    <div class="number-item"><b>2,450+</b><span>Publicaciones</span></div>
+  </div>
+</section>
+
+<section>
+  <div class="testimonial reveal">
+    <span class="quote-mark">“</span>
+    <p>Después de los 50 aprendí que visibilizarme no era vanidad, era necesidad. Hoy acompaño a otras mujeres a descubrir lo mismo, frente y detrás de cámara.</p>
+    <div class="author">— Patricia Uehara</div>
+  </div>
+</section>
+
+<section class="social-cta" id="contacto">
+  <span class="section-label reveal">Conecta conmigo</span>
+  <h2 class="section-title reveal">Sígueme y sé parte del cambio</h2>
+  <p class="section-sub reveal">Todo el contenido, tips y bastidores están en mis redes. Únete a la comunidad.</p>
+  <div class="social-cards">
+    <div class="social-card reveal">
+      <div class="icon-circle">
+        <svg viewBox="0 0 24 24"><path d="M12 2c2.7 0 3.05.01 4.12.06 1.06.05 1.79.22 2.43.47a4.9 4.9 0 011.77 1.15 4.9 4.9 0 011.15 1.77c.25.64.42 1.37.47 2.43.05 1.07.06 1.42.06 4.12s-.01 3.05-.06 4.12c-.05 1.06-.22 1.79-.47 2.43a4.9 4.9 0 01-1.15 1.77 4.9 4.9 0 01-1.77 1.15c-.64.25-1.37.42-2.43.47-1.07.05-1.42.06-4.12.06s-3.05-.01-4.12-.06c-1.06-.05-1.79-.22-2.43-.47a4.9 4.9 0 01-1.77-1.15 4.9 4.9 0 01-1.15-1.77c-.25-.64-.42-1.37-.47-2.43C2.01 15.05 2 14.7 2 12s.01-3.05.06-4.12c.05-1.06.22-1.79.47-2.43a4.9 4.9 0 011.15-1.77A4.9 4.9 0 015.45 2.53c.64-.25 1.37-.42 2.43-.47C8.95 2.01 9.3 2 12 2zm0 2.16c-2.65 0-2.98.01-4.03.06-.87.04-1.34.18-1.65.3-.42.16-.72.36-1.03.67-.31.31-.51.61-.67 1.03-.12.31-.26.78-.3 1.65-.05 1.05-.06 1.38-.06 4.03s.01 2.98.06 4.03c.04.87.18 1.34.3 1.65.16.42.36.72.67 1.03.31.31.61.51 1.03.67.31.12.78.26 1.65.3 1.05.05 1.38.06 4.03.06s2.98-.01 4.03-.06c.87-.04 1.34-.18 1.65-.3.42-.16.72-.36 1.03-.67.31-.31.51-.61.67-1.03.12-.31.26-.78.3-1.65.05-1.05.06-1.38.06-4.03s-.01-2.98-.06-4.03c-.04-.87-.18-1.34-.3-1.65a2.75 2.75 0 00-.67-1.03 2.75 2.75 0 00-1.03-.67c-.31-.12-.78-.26-1.65-.3-1.05-.05-1.38-.06-4.03-.06zm0 3.68a4.16 4.16 0 110 8.32 4.16 4.16 0 010-8.32zm0 6.86a2.7 2.7 0 100-5.4 2.7 2.7 0 000 5.4zm5.3-7.03a.97.97 0 11-1.94 0 .97.97 0 011.94 0z"/></svg>
+      </div>
+      <h3>@chinauehara</h3>
+      <p>Bienestar, estilo de vida y visibilización para mujeres 50+</p>
+      <a class="social-btn" href="https://www.instagram.com/chinauehara/" target="_blank" rel="noopener">Ir a Instagram</a>
+    </div>
+    <div class="social-card reveal">
+      <div class="icon-circle">
+        <svg viewBox="0 0 24 24"><path d="M16.6 5.82c-.9-.9-1.4-2.13-1.4-3.42h-3.14v14.1a2.7 2.7 0 11-2.34-2.68V10.4a5.85 5.85 0 105.06 5.8V9.6a7.15 7.15 0 004.3 1.42V7.9a4.2 4.2 0 01-2.48-2.08z"/></svg>
+      </div>
+      <h3>@mamagatito</h3>
+      <p>Contenido viral y cercano con más de 40K seguidoras</p>
+      <a class="social-btn" href="https://www.tiktok.com/@mamagatito" target="_blank" rel="noopener">Ir a TikTok</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="final-cta reveal">
+    <h2>¿Lista para visibilizarte?</h2>
+    <p>Escríbeme por Instagram o TikTok y hablemos sobre tu próximo proyecto de fotografía, marca personal o contenido digital.</p>
+    <div class="cta-row" style="justify-content:center;">
+      <a class="btn btn-primary" href="https://www.instagram.com/chinauehara/" target="_blank" rel="noopener">Escríbeme por Instagram</a>
+      <a class="btn btn-outline" href="https://www.tiktok.com/@mamagatito" target="_blank" rel="noopener">Ver en TikTok</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="logo">Patricia <span>Uehara</span></div>
+  <div class="foot-links">
+    <a href="#sobre">Sobre mí</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#pilares">Método</a>
+    <a href="https://www.instagram.com/chinauehara/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://www.tiktok.com/@mamagatito" target="_blank" rel="noopener">TikTok</a>
+  </div>
+  <div class="copyright">© 2026 Patricia Uehara · Visibilización, bienestar y estilo de vida para mujeres 50+</div>
+</footer>
+
+<div class="float-stack">
+  <a class="float-btn ig" href="https://www.instagram.com/chinauehara/" target="_blank" rel="noopener" title="Instagram">
+    <svg viewBox="0 0 24 24"><path d="M12 2c2.7 0 3.05.01 4.12.06 1.06.05 1.79.22 2.43.47a4.9 4.9 0 011.77 1.15 4.9 4.9 0 011.15 1.77c.25.64.42 1.37.47 2.43.05 1.07.06 1.42.06 4.12s-.01 3.05-.06 4.12c-.05 1.06-.22 1.79-.47 2.43a4.9 4.9 0 01-1.15 1.77 4.9 4.9 0 01-1.77 1.15c-.64.25-1.37.42-2.43.47-1.07.05-1.42.06-4.12.06s-3.05-.01-4.12-.06c-1.06-.05-1.79-.22-2.43-.47a4.9 4.9 0 01-1.77-1.15 4.9 4.9 0 01-1.15-1.77c-.25-.64-.42-1.37-.47-2.43C2.01 15.05 2 14.7 2 12s.01-3.05.06-4.12c.05-1.06.22-1.79.47-2.43a4.9 4.9 0 011.15-1.77A4.9 4.9 0 015.45 2.53c.64-.25 1.37-.42 2.43-.47C8.95 2.01 9.3 2 12 2zm0 2.16c-2.65 0-2.98.01-4.03.06-.87.04-1.34.18-1.65.3-.42.16-.72.36-1.03.67-.31.31-.51.61-.67 1.03-.12.31-.26.78-.3 1.65-.05 1.05-.06 1.38-.06 4.03s.01 2.98.06 4.03c.04.87.18 1.34.3 1.65.16.42.36.72.67 1.03.31.31.61.51 1.03.67.31.12.78.26 1.65.3 1.05.05 1.38.06 4.03.06s2.98-.01 4.03-.06c.87-.04 1.34-.18 1.65-.3.42-.16.72-.36 1.03-.67.31-.31.51-.61.67-1.03.12-.31.26-.78.3-1.65.05-1.05.06-1.38.06-4.03s-.01-2.98-.06-4.03c-.04-.87-.18-1.34-.3-1.65a2.75 2.75 0 00-.67-1.03 2.75 2.75 0 00-1.03-.67c-.31-.12-.78-.26-1.65-.3-1.05-.05-1.38-.06-4.03-.06zm0 3.68a4.16 4.16 0 110 8.32 4.16 4.16 0 010-8.32zm0 6.86a2.7 2.7 0 100-5.4 2.7 2.7 0 000 5.4zm5.3-7.03a.97.97 0 11-1.94 0 .97.97 0 011.94 0z"/></svg>
+  </a>
+  <a class="float-btn tk" href="https://www.tiktok.com/@mamagatito" target="_blank" rel="noopener" title="TikTok">
+    <svg viewBox="0 0 24 24"><path d="M16.6 5.82c-.9-.9-1.4-2.13-1.4-3.42h-3.14v14.1a2.7 2.7 0 11-2.34-2.68V10.4a5.85 5.85 0 105.06 5.8V9.6a7.15 7.15 0 004.3 1.42V7.9a4.2 4.2 0 01-2.48-2.08z"/></svg>
+  </a>
+</div>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Mobile nav toggle
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => navLinks.classList.remove('open'));
+  });
+
+  // Header background on scroll
+  const header = document.querySelector('header');
+  window.addEventListener('scroll', () => {
+    if(window.scrollY > 60){
+      header.style.background = 'rgba(43,27,46,0.75)';
+    } else {
+      header.style.background = 'rgba(43,27,46,0.35)';
+    }
+  });
+</script>
+
+</body>
+</html>
