@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carla Pérez | Moda, belleza, viajes & estilo</title>
+<meta name="description" content="Carla Pérez — creadora digital entre La Rioja y Santander. Moda, belleza, viajes y estilo con looks reales. Colaboraciones de marca.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;0,9..144,700;1,9..144,500&family=Manrope:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --wine-deep:#5C1730;
+    --wine:#7C2540;
+    --wine-light:#B4506B;
+    --sea-deep:#0B4A54;
+    --sea:#146B77;
+    --sea-light:#4FAAB2;
+    --cream:#F8EFE2;
+    --gold:#D4AF37;
+    --gold-light:#F0C862;
+    --ink:#2A1420;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Manrope',sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--gold-light);color:var(--wine-deep);}
+  a{color:inherit;text-decoration:none;}
+  img,svg{display:block;max-width:100%;}
+  .eyebrow{
+    font-family:'Space Mono',monospace;
+    font-size:.72rem;
+    letter-spacing:.22em;
+    text-transform:uppercase;
+    font-weight:700;
+  }
+  h1,h2,h3{font-family:'Fraunces',serif;font-weight:600;line-height:1.05;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px;}
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--gold);
+    outline-offset:3px;
+    border-radius:4px;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important;}
+  }
+
+  /* ===== NAV ===== */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    padding:20px 0;
+    background:rgba(248,239,226,0);
+    transition:background .35s ease, box-shadow .35s ease, padding .35s ease;
+  }
+  header.scrolled{
+    background:rgba(248,239,226,.92);
+    backdrop-filter:blur(10px);
+    box-shadow:0 1px 0 rgba(42,20,32,.08);
+    padding:13px 0;
+  }
+  nav.wrap{display:flex;align-items:center;justify-content:space-between;}
+  .logo{
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    font-size:1.3rem;
+    display:flex;align-items:center;gap:10px;
+    color:var(--wine-deep);
+  }
+  .logo .dot{
+    width:9px;height:9px;border-radius:50%;
+    background:var(--gold);
+    box-shadow:0 0 0 3px rgba(212,175,55,.25);
+  }
+  .nav-links{display:flex;gap:34px;align-items:center;}
+  .nav-links a{
+    font-family:'Space Mono',monospace;
+    font-size:.74rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--ink);
+    position:relative;
+    padding-bottom:3px;
+  }
+  .nav-links a::after{
+    content:'';position:absolute;left:0;bottom:0;width:0;height:1px;
+    background:var(--gold);transition:width .3s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{
+    font-family:'Space Mono',monospace;
+    font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+    background:var(--wine-deep);color:var(--cream);
+    padding:11px 20px;border-radius:100px;
+    border:1px solid var(--wine-deep);
+    transition:transform .25s ease, background .25s ease;
+  }
+  .nav-cta:hover{background:var(--gold);border-color:var(--gold);color:var(--wine-deep);transform:translateY(-2px);}
+  .nav-toggle{display:none;}
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    padding:140px 0 90px;
+    background:linear-gradient(120deg, var(--wine-deep) 0%, var(--wine) 38%, var(--sea) 62%, var(--sea-deep) 100%);
+    overflow:hidden;
+  }
+  .hero::before{
+    content:'';position:absolute;inset:0;
+    background:
+      radial-gradient(circle at 15% 20%, rgba(240,200,98,.18), transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(240,200,98,.14), transparent 45%);
+    pointer-events:none;
+  }
+  .seam{
+    position:absolute;top:0;bottom:0;left:50%;width:1px;
+    background-image:linear-gradient(to bottom, var(--gold-light) 0 8px, transparent 8px 16px);
+    background-size:1px 16px;
+    opacity:.55;
+    transform:translateX(-50%);
+  }
+  .hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center;}
+  .hero-eyebrow{color:var(--gold-light);margin-bottom:22px;display:flex;align-items:center;gap:10px;}
+  .hero-eyebrow::before{content:'';width:26px;height:1px;background:var(--gold-light);}
+  .hero h1{
+    font-size:clamp(3rem, 7vw, 5.4rem);
+    color:var(--cream);
+    letter-spacing:-.01em;
+  }
+  .hero h1 em{
+    font-style:italic;
+    font-weight:500;
+    color:var(--gold-light);
+  }
+  .hero-sub{
+    margin-top:22px;
+    font-size:1.18rem;
+    color:rgba(248,239,226,.88);
+    max-width:480px;
+    line-height:1.55;
+  }
+  .hero-tags{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;}
+  .tag{
+    font-family:'Space Mono',monospace;
+    font-size:.72rem;letter-spacing:.08em;
+    color:var(--cream);
+    border:1px solid rgba(248,239,226,.35);
+    padding:7px 14px;border-radius:100px;
+    background:rgba(248,239,226,.06);
+  }
+  .hero-loc{
+    margin-top:30px;
+    font-family:'Space Mono',monospace;
+    font-size:.85rem;color:var(--gold-light);
+    display:flex;align-items:center;gap:8px;
+  }
+  .hero-actions{display:flex;gap:14px;margin-top:38px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:9px;
+    padding:15px 26px;border-radius:100px;
+    font-family:'Space Mono',monospace;
+    font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease;
+    border:1px solid transparent;
+  }
+  .btn-gold{
+    background:linear-gradient(120deg, var(--gold) 0%, var(--gold-light) 100%);
+    color:var(--wine-deep);font-weight:700;
+  }
+  .btn-gold:hover{transform:translateY(-3px);box-shadow:0 12px 28px rgba(212,175,55,.35);}
+  .btn-outline{
+    border-color:rgba(248,239,226,.5);color:var(--cream);
+  }
+  .btn-outline:hover{background:rgba(248,239,226,.12);transform:translateY(-3px);}
+
+  /* hero visual - fashion silhouette illustration */
+  .hero-visual{position:relative;display:flex;justify-content:center;}
+  .hero-card{
+    position:relative;
+    width:100%;max-width:340px;
+    background:rgba(248,239,226,.08);
+    border:1px solid rgba(248,239,226,.22);
+    border-radius:6px;
+    padding:26px;
+    backdrop-filter:blur(6px);
+    transform:rotate(-2deg);
+  }
+  .hero-card svg{width:100%;height:auto;}
+  .hero-pin{
+    position:absolute;
+    font-family:'Space Mono',monospace;
+    font-size:.68rem;letter-spacing:.08em;
+    background:var(--cream);color:var(--wine-deep);
+    padding:6px 12px;border-radius:100px;
+    box-shadow:0 8px 20px rgba(0,0,0,.25);
+    display:flex;align-items:center;gap:6px;
+  }
+  .hero-pin.p1{top:-14px;right:-6px;transform:rotate(4deg);}
+  .hero-pin.p2{bottom:14px;left:-24px;transform:rotate(-3deg);}
+
+  /* scroll cue */
+  .scroll-cue{
+    position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+    display:flex;flex-direction:column;align-items:center;gap:8px;
+    color:rgba(248,239,226,.65);
+    font-family:'Space Mono',monospace;font-size:.65rem;letter-spacing:.15em;
+    z-index:2;
+  }
+  .scroll-cue .line{width:1px;height:34px;background:linear-gradient(to bottom, rgba(248,239,226,.7), transparent);animation:scrollcue 2s ease-in-out infinite;}
+  @keyframes scrollcue{0%,100%{transform:scaleY(1);opacity:.6;}50%{transform:scaleY(1.3);opacity:1;}}
+
+  /* ===== reveal ===== */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease, transform .8s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* ===== SECTION generic ===== */
+  section{padding:120px 0;position:relative;}
+  .section-head{max-width:640px;margin-bottom:64px;}
+  .section-head .eyebrow{color:var(--sea);margin-bottom:16px;}
+  .section-head h2{font-size:clamp(2.1rem,4vw,3rem);color:var(--wine-deep);}
+  .section-head p{margin-top:16px;font-size:1.05rem;color:#5a4550;line-height:1.6;}
+
+  /* ===== LOOKS REALES gallery ===== */
+  .looks{background:var(--cream);}
+  .looks-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:26px;
+  }
+  .look-card{
+    background:#fff;
+    border-radius:4px;
+    padding:30px 24px 26px;
+    box-shadow:0 14px 34px rgba(92,23,48,.09);
+    position:relative;
+    transition:transform .35s ease, box-shadow .35s ease;
+  }
+  .look-card:nth-child(1){transform:rotate(-2.2deg);}
+  .look-card:nth-child(2){transform:rotate(1.4deg);margin-top:22px;}
+  .look-card:nth-child(3){transform:rotate(-1.1deg);}
+  .look-card:nth-child(4){transform:rotate(2deg);margin-top:14px;}
+  .look-card:hover{transform:rotate(0deg) translateY(-8px);box-shadow:0 22px 46px rgba(92,23,48,.16);}
+  .pin-dot{
+    position:absolute;top:-9px;left:50%;transform:translateX(-50%);
+    width:16px;height:16px;border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, var(--gold-light), var(--gold) 60%, #a3811f 100%);
+    box-shadow:0 3px 6px rgba(0,0,0,.25);
+  }
+  .look-card svg{width:52px;height:52px;margin-bottom:18px;}
+  .look-card h3{font-size:1.2rem;color:var(--wine-deep);margin-bottom:8px;}
+  .look-card p{font-size:.92rem;color:#6b5560;line-height:1.55;}
+
+  /* ===== ENTRE DOS MUNDOS ===== */
+  .between{
+    background:linear-gradient(180deg, var(--cream) 0%, #fff 100%);
+  }
+  .between-inner{
+    display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;
+  }
+  .route-svg{width:100%;height:auto;}
+  .between-copy .eyebrow{color:var(--wine);margin-bottom:16px;}
+  .between-copy h2{font-size:clamp(2rem,3.6vw,2.7rem);color:var(--wine-deep);margin-bottom:20px;}
+  .between-copy p{color:#5a4550;line-height:1.7;font-size:1.02rem;margin-bottom:16px;}
+  .between-cities{display:flex;gap:28px;margin-top:26px;}
+  .city{
+    font-family:'Space Mono',monospace;font-size:.78rem;letter-spacing:.06em;
+    display:flex;align-items:center;gap:8px;color:var(--wine-deep);
+  }
+  .city .sw{width:10px;height:10px;border-radius:50%;}
+  .sw-wine{background:var(--wine);}
+  .sw-sea{background:var(--sea);}
+
+  /* ===== OTRO YO ===== */
+  .altego{
+    padding:70px 0;
+  }
+  .altego .wrap{
+    background:var(--wine-deep);
+    border-radius:8px;
+    padding:56px 56px;
+    display:flex;align-items:center;justify-content:space-between;gap:40px;
+    flex-wrap:wrap;
+    position:relative;
+    overflow:hidden;
+  }
+  .altego .wrap::after{
+    content:'';position:absolute;inset:0;
+    background:radial-gradient(circle at 90% 10%, rgba(212,175,55,.16), transparent 45%);
+  }
+  .altego-text{position:relative;z-index:1;max-width:560px;}
+  .altego .eyebrow{color:var(--gold-light);margin-bottom:12px;}
+  .altego h3{color:var(--cream);font-size:1.7rem;margin-bottom:10px;}
+  .altego p{color:rgba(248,239,226,.78);line-height:1.6;font-size:.98rem;}
+  .altego-badge{
+    position:relative;z-index:1;
+    font-family:'Space Mono',monospace;
+    font-size:.88rem;letter-spacing:.05em;
+    color:var(--wine-deep);
+    background:var(--gold-light);
+    padding:16px 26px;border-radius:100px;
+    white-space:nowrap;
+    box-shadow:0 10px 24px rgba(0,0,0,.25);
+    transition:transform .25s ease;
+  }
+  .altego-badge:hover{transform:translateY(-3px) scale(1.02);}
+
+  /* ===== FOR BRANDS ===== */
+  .brands{background:linear-gradient(180deg, #fff 0%, var(--cream) 100%);}
+  .brand-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+  .brand-card{
+    border:1px solid rgba(92,23,48,.12);
+    border-radius:6px;
+    padding:34px 28px;
+    background:#fff;
+    transition:transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+  }
+  .brand-card:hover{transform:translateY(-6px);border-color:var(--gold);box-shadow:0 18px 36px rgba(92,23,48,.1);}
+  .brand-num{
+    font-family:'Space Mono',monospace;
+    font-size:.72rem;color:var(--gold);
+    letter-spacing:.12em;
+    margin-bottom:16px;
+    display:block;
+  }
+  .brand-card h3{font-size:1.28rem;color:var(--wine-deep);margin-bottom:10px;}
+  .brand-card p{color:#6b5560;font-size:.95rem;line-height:1.6;}
+
+  .brands-cta{
+    margin-top:60px;
+    display:flex;align-items:center;justify-content:space-between;
+    flex-wrap:wrap;gap:24px;
+    padding:38px 40px;
+    border-radius:8px;
+    background:linear-gradient(120deg, var(--wine-deep), var(--sea-deep));
+  }
+  .brands-cta p{color:var(--cream);font-family:'Fraunces',serif;font-size:1.3rem;max-width:460px;}
+  .brands-cta p em{color:var(--gold-light);font-style:italic;}
+
+  /* ===== CONTACT / FOOTER ===== */
+  footer{
+    background:var(--ink);
+    padding:90px 0 40px;
+    color:var(--cream);
+  }
+  .footer-top{
+    display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:50px;
+    padding-bottom:60px;
+    border-bottom:1px solid rgba(248,239,226,.14);
+  }
+  footer h2{
+    font-size:clamp(2rem,4vw,2.8rem);
+    margin-bottom:20px;
+    color:var(--cream);
+  }
+  footer h2 em{color:var(--gold-light);font-style:italic;font-weight:500;}
+  footer p.lead{color:rgba(248,239,226,.72);line-height:1.6;max-width:400px;margin-bottom:26px;}
+  .footer-col .eyebrow{color:var(--gold-light);margin-bottom:18px;display:block;}
+  .footer-link{
+    display:flex;align-items:center;gap:10px;
+    padding:12px 0;
+    border-bottom:1px solid rgba(248,239,226,.1);
+    font-size:.95rem;
+    transition:color .25s ease, padding-left .25s ease;
+  }
+  .footer-link:hover{color:var(--gold-light);padding-left:6px;}
+  .footer-link svg{width:16px;height:16px;flex-shrink:0;}
+  .footer-bottom{
+    display:flex;justify-content:space-between;align-items:center;
+    padding-top:30px;flex-wrap:wrap;gap:14px;
+    font-family:'Space Mono',monospace;font-size:.72rem;
+    color:rgba(248,239,226,.45);letter-spacing:.05em;
+  }
+
+  /* floating button */
+  .floaty{
+    position:fixed;right:26px;bottom:26px;z-index:200;
+    width:60px;height:60px;border-radius:50%;
+    background:linear-gradient(135deg, var(--gold), var(--gold-light));
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 12px 28px rgba(212,175,55,.45);
+    transition:transform .3s ease, box-shadow .3s ease;
+  }
+  .floaty:hover{transform:scale(1.08) rotate(-4deg);box-shadow:0 16px 34px rgba(212,175,55,.55);}
+  .floaty svg{width:26px;height:26px;}
+
+  /* ===== responsive ===== */
+  @media (max-width:960px){
+    .hero .wrap{grid-template-columns:1fr;gap:50px;}
+    .hero-visual{order:-1;max-width:280px;margin:0 auto;}
+    .looks-grid{grid-template-columns:repeat(2,1fr);}
+    .between-inner{grid-template-columns:1fr;gap:40px;}
+    .brand-grid{grid-template-columns:1fr;}
+    .footer-top{grid-template-columns:1fr;gap:40px;}
+    .nav-links{display:none;}
+    .altego .wrap{flex-direction:column;text-align:center;padding:44px 30px;}
+    .altego-text{max-width:100%;}
+  }
+  @media (max-width:560px){
+    .wrap{padding:0 22px;}
+    section{padding:80px 0;}
+    .hero{padding:120px 0 70px;}
+    .looks-grid{grid-template-columns:1fr;}
+    .look-card, .look-card:nth-child(2), .look-card:nth-child(4){transform:none;margin-top:0;}
+    .hero-actions .btn{flex:1;justify-content:center;}
+    .brands-cta{flex-direction:column;align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <nav class="wrap">
+    <div class="logo"><span class="dot"></span>Carla Pérez</div>
+    <div class="nav-links">
+      <a href="#looks">Looks</a>
+      <a href="#mundo">Mi mundo</a>
+      <a href="#marcas">Para marcas</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <a class="nav-cta" href="mailto:carla@grupo720.com">Colaboremos</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="seam"></div>
+  <div class="wrap">
+    <div class="hero-text">
+      <div class="hero-eyebrow eyebrow">Digital Creator</div>
+      <h1>Carla<br>Pérez <em>·</em></h1>
+      <p class="hero-sub">Moda, belleza, viajes &amp; estilo — contados como se viven de verdad. Looks reales 💫, sin filtros de más.</p>
+      <div class="hero-tags">
+        <span class="tag">MODA</span>
+        <span class="tag">BELLEZA</span>
+        <span class="tag">VIAJES</span>
+        <span class="tag">ESTILO</span>
+      </div>
+      <div class="hero-loc">📍 Entre La Rioja y Santander</div>
+      <div class="hero-actions">
+        <a class="btn btn-gold" href="https://www.instagram.com/carlaperezru/" target="_blank" rel="noopener">Ver Instagram</a>
+        <a class="btn btn-outline" href="mailto:carla@grupo720.com">Hablemos de tu marca</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card">
+        <svg viewBox="0 0 220 280" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M110 18C122 18 131 27 131 39C131 51 122 60 110 60C98 60 89 51 89 39C89 27 98 18 110 18Z" stroke="#F0C862" stroke-width="2"/>
+          <path d="M78 62L60 90L78 100L88 78V260H132V78L142 100L160 90L142 62C142 62 128 74 110 74C92 74 78 62 78 62Z" stroke="#F8EFE2" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M96 74C96 74 102 88 110 88C118 88 124 74 124 74" stroke="#D4AF37" stroke-width="2"/>
+          <circle cx="110" cy="150" r="3" fill="#F0C862"/>
+          <circle cx="110" cy="180" r="3" fill="#F0C862"/>
+          <circle cx="110" cy="210" r="3" fill="#F0C862"/>
+        </svg>
+        <div class="hero-pin p1">✨ looks reales</div>
+        <div class="hero-pin p2">🌊 + 🍇</div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>SCROLL</span><span class="line"></span></div>
+</section>
+
+<section class="looks" id="looks">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Looks reales</div>
+      <h2>Contenido que se ve, se prueba<br>y se vive.</h2>
+      <p>Cuatro pilares, un mismo estilo: cercano, cuidado y siempre auténtico. Así es como Carla conecta con su comunidad.</p>
+    </div>
+    <div class="looks-grid">
+      <div class="look-card reveal">
+        <span class="pin-dot"></span>
+        <svg viewBox="0 0 60 60" fill="none"><path d="M20 12L12 22L20 27L24 20V50H36V20L40 27L48 22L40 12C40 12 34 18 30 18C26 18 20 12 20 12Z" stroke="#7C2540" stroke-width="2.2" stroke-linejoin="round"/></svg>
+        <h3>Moda</h3>
+        <p>Prendas de armario real, combinaciones fáciles de copiar y tendencias adaptadas al día a día.</p>
+      </div>
+      <div class="look-card reveal">
+        <span class="pin-dot"></span>
+        <svg viewBox="0 0 60 60" fill="none"><ellipse cx="30" cy="34" rx="14" ry="16" stroke="#146B77" stroke-width="2.2"/><path d="M22 22C22 16 26 12 30 12C34 12 38 16 38 22" stroke="#146B77" stroke-width="2.2"/><circle cx="30" cy="34" r="4" fill="#D4AF37"/></svg>
+        <h3>Belleza</h3>
+        <p>Rutinas honestas, productos probados de verdad y rituales que caben en una agenda apretada.</p>
+      </div>
+      <div class="look-card reveal">
+        <span class="pin-dot"></span>
+        <svg viewBox="0 0 60 60" fill="none"><rect x="16" y="20" width="28" height="24" rx="2" stroke="#7C2540" stroke-width="2.2"/><path d="M24 20V15C24 12.8 25.8 11 28 11H32C34.2 11 36 12.8 36 15V20" stroke="#7C2540" stroke-width="2.2"/><path d="M16 30H44" stroke="#D4AF37" stroke-width="2"/></svg>
+        <h3>Viajes</h3>
+        <p>Escapadas entre montaña y costa, planes locales y descubrimientos fuera de la ruta habitual.</p>
+      </div>
+      <div class="look-card reveal">
+        <span class="pin-dot"></span>
+        <svg viewBox="0 0 60 60" fill="none"><path d="M30 10C36 10 40 16 40 24C40 34 30 48 30 48C30 48 20 34 20 24C20 16 24 10 30 10Z" stroke="#146B77" stroke-width="2.2"/><circle cx="30" cy="24" r="5" fill="#D4AF37"/></svg>
+        <h3>Estilo</h3>
+        <p>Una forma de vestir y de vivir que mezcla lo clásico riojano con el aire libre de Cantabria.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="between" id="mundo">
+  <div class="wrap between-inner">
+    <div class="between-copy reveal">
+      <div class="eyebrow">Su mundo</div>
+      <h2>De los viñedos de La Rioja al mar de Santander.</h2>
+      <p>El contenido de Carla se mueve entre dos paisajes muy distintos: la calma y la tierra de La Rioja, y el aire y el horizonte de Cantabria. Esa doble vida es lo que hace que sus looks y sus rutinas se sientan reales — pensados para vivirse, no solo para publicarse.</p>
+      <p>Esta dualidad es también lo que la conecta con una comunidad que busca contenido cercano, sin poses forzadas.</p>
+      <div class="between-cities">
+        <div class="city"><span class="sw sw-wine"></span>La Rioja</div>
+        <div class="city"><span class="sw sw-sea"></span>Santander</div>
+      </div>
+    </div>
+    <div class="reveal">
+      <svg class="route-svg" viewBox="0 0 420 320" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M60 240C130 200 150 120 220 90C280 65 340 90 360 60" stroke="#D4AF37" stroke-width="2" stroke-dasharray="2 10" stroke-linecap="round"/>
+        <circle cx="60" cy="240" r="9" fill="#7C2540"/>
+        <circle cx="60" cy="240" r="16" stroke="#7C2540" stroke-width="1.4" opacity=".4"/>
+        <circle cx="360" cy="60" r="9" fill="#146B77"/>
+        <circle cx="360" cy="60" r="16" stroke="#146B77" stroke-width="1.4" opacity=".4"/>
+        <text x="20" y="272" font-family="Space Mono, monospace" font-size="11" fill="#7C2540" letter-spacing="1">LA RIOJA</text>
+        <text x="308" y="42" font-family="Space Mono, monospace" font-size="11" fill="#146B77" letter-spacing="1">SANTANDER</text>
+        <path d="M180 160C185 150 195 150 200 160C200 168 190 178 190 178C190 178 180 168 180 160Z" stroke="#D4AF37" stroke-width="1.6" opacity=".8"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<section class="altego">
+  <div class="wrap">
+    <div class="altego-text reveal">
+      <div class="eyebrow">También es</div>
+      <h3>Su otro yo, en otro ritmo.</h3>
+      <p>Además de Carla Pérez, existe @entonolento — su lado más pausado, otra forma de mirar el día a día lejos del scroll rápido.</p>
+    </div>
+    <a class="altego-badge reveal" href="https://www.instagram.com/entonolento/" target="_blank" rel="noopener">→ @entonolento</a>
+  </div>
+</section>
+
+<section class="brands" id="marcas">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Para marcas</div>
+      <h2>Colaboremos en algo<br>que se vea real.</h2>
+      <p>Contenido cuidado, entregado a tiempo y pensado para que tu marca encaje de forma natural en el día a día de la comunidad.</p>
+    </div>
+    <div class="brand-grid">
+      <div class="brand-card reveal">
+        <span class="brand-num">FORMATOS</span>
+        <h3>Reels, stories & UGC</h3>
+        <p>Contenido nativo para Instagram y TikTok, adaptado al tono de cada marca sin perder autenticidad.</p>
+      </div>
+      <div class="brand-card reveal">
+        <span class="brand-num">TERRITORIO</span>
+        <h3>Norte de España</h3>
+        <p>Una comunidad cercana entre La Rioja y Cantabria — ideal para marcas de moda, belleza, turismo y estilo de vida.</p>
+      </div>
+      <div class="brand-card reveal">
+        <span class="brand-num">PROCESO</span>
+        <h3>De la idea al contenido final</h3>
+        <p>Briefing claro, propuesta creativa y entrega puntual. Sin sorpresas, con seguimiento en cada paso.</p>
+      </div>
+    </div>
+    <div class="brands-cta reveal">
+      <p>¿Tienes una marca y quieres <em>looks reales</em>?</p>
+      <a class="btn btn-gold" href="mailto:carla@grupo720.com">Escribir a carla@grupo720.com</a>
+    </div>
+  </div>
+</section>
+
+<footer id="contacto">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="reveal">
+        <h2>Sigamos<br>en <em>contacto</em>.</h2>
+        <p class="lead">Para colaboraciones, propuestas de marca o simplemente para saludar — aquí abajo tienes todo.</p>
+        <a class="footer-link" href="mailto:carla@grupo720.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          carla@grupo720.com
+        </a>
+      </div>
+      <div class="footer-col reveal">
+        <span class="eyebrow">Sígueme</span>
+        <a class="footer-link" href="https://www.instagram.com/carlaperezru/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          Instagram — @carlaperezru
+        </a>
+        <a class="footer-link" href="https://www.tiktok.com/@carlaperezru" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 3v10.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M16 3c0 3 2 5 5 5"/></svg>
+          TikTok — @carlaperezru
+        </a>
+      </div>
+      <div class="footer-col reveal">
+        <span class="eyebrow">Mi otro yo</span>
+        <a class="footer-link" href="https://www.instagram.com/entonolento/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          @entonolento
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© Carla Pérez — Moda, belleza, viajes &amp; estilo</span>
+      <span>Entre La Rioja y Santander</span>
+    </div>
+  </div>
+</footer>
+
+<a class="floaty" href="mailto:carla@grupo720.com" aria-label="Escribir a Carla por email">
+  <svg viewBox="0 0 24 24" fill="none" stroke="#5C1730" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+</a>
+
+<script>
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
