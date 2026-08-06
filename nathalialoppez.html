@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nathalia López | Content Creator — Lifestyle, Fitness & Hyrox</title>
+<meta name="description" content="Nathalia López · Content Creator. Lifestyle, Gym, Hyrox, Fitness y Running. Portafolio y colaboraciones para marcas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,500;0,600;1,500&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --gold: #D4AF37;
+    --gold-light: #F0C040;
+    --gold-deep: #C9A84C;
+    --coral: #FF6F6F;
+    --pink: #FF3E88;
+    --purple: #7A2BE0;
+    --peach: #FFB199;
+    --cream: #FFF7EC;
+    --ink: #2B1832;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Poppins', sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(circle at 15% 10%, rgba(255,111,111,.55), transparent 45%),
+      radial-gradient(circle at 85% 20%, rgba(122,43,224,.5), transparent 50%),
+      radial-gradient(circle at 50% 90%, rgba(255,62,136,.45), transparent 55%),
+      linear-gradient(160deg, #2b1832 0%, #4a1e5c 30%, #8a2a6b 60%, #ff6f6f 100%);
+    background-attachment:fixed;
+    overflow-x:hidden;
+  }
+  a{text-decoration:none;color:inherit;}
+  .container{max-width:1100px;margin:0 auto;padding:0 24px;}
+
+  /* NAV */
+  header{
+    position:sticky; top:0; z-index:50;
+    backdrop-filter: blur(14px);
+    background:rgba(43,24,50,.55);
+    border-bottom:1px solid rgba(212,175,55,.35);
+  }
+  nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1100px;margin:0 auto;}
+  .logo{font-family:'Fraunces', serif;font-weight:600;font-size:1.3rem;color:#fff;letter-spacing:.5px;}
+  .logo span{color:var(--gold-light);}
+  .nav-links{display:flex;gap:28px;font-size:.9rem;font-weight:500;}
+  .nav-links a{color:#f4e9d8;opacity:.85;transition:.25s;}
+  .nav-links a:hover{opacity:1;color:var(--gold-light);}
+  .nav-cta{
+    background:linear-gradient(135deg, var(--gold-light), var(--gold-deep));
+    color:#2B1832; padding:9px 20px; border-radius:30px; font-weight:700; font-size:.85rem;
+    box-shadow:0 4px 18px rgba(212,175,55,.4);
+    white-space:nowrap;
+  }
+  @media(max-width:720px){ .nav-links{display:none;} }
+
+  /* HERO */
+  .hero{
+    padding:90px 24px 70px;
+    text-align:center;
+    position:relative;
+  }
+  .badge{
+    display:inline-flex;align-items:center;gap:8px;
+    background:rgba(255,255,255,.1);
+    border:1px solid rgba(212,175,55,.5);
+    color:var(--gold-light);
+    padding:8px 18px;border-radius:40px;font-size:.8rem;font-weight:600;letter-spacing:.5px;
+    margin-bottom:22px;
+  }
+  .hero h1{
+    font-family:'Fraunces', serif;
+    font-size:clamp(2.4rem, 6vw, 4.2rem);
+    color:#fff;
+    line-height:1.05;
+    font-weight:600;
+    margin-bottom:18px;
+    text-shadow:0 4px 30px rgba(0,0,0,.25);
+  }
+  .hero h1 em{
+    font-style:italic;
+    background:linear-gradient(90deg, var(--gold-light), #fff2c9, var(--gold-deep));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p.tag{
+    font-size:1.15rem; color:#f6e9f7; opacity:.92; max-width:620px; margin:0 auto 34px;
+    font-weight:300;
+  }
+  .pill-row{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-bottom:38px;}
+  .pill{
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.25);
+    padding:9px 18px;border-radius:30px;font-size:.9rem;font-weight:500;color:#fff;
+    display:flex;align-items:center;gap:7px;
+  }
+  .pill svg{width:16px;height:16px;}
+
+  .cta-row{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:50px;}
+  .btn-primary{
+    background:linear-gradient(135deg, var(--gold-light), var(--gold-deep));
+    color:#2B1832;font-weight:700;padding:16px 34px;border-radius:40px;font-size:1rem;
+    box-shadow:0 10px 30px rgba(212,175,55,.45);
+    transition:transform .25s ease, box-shadow .25s ease;
+    display:inline-flex;align-items:center;gap:10px;
+  }
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 36px rgba(212,175,55,.6);}
+  .btn-outline{
+    border:1.5px solid rgba(255,255,255,.6);color:#fff;font-weight:600;padding:16px 30px;border-radius:40px;
+    display:inline-flex;align-items:center;gap:10px;transition:.25s;
+  }
+  .btn-outline:hover{background:rgba(255,255,255,.12);border-color:var(--gold-light);}
+
+  .stats-strip{
+    display:flex;justify-content:center;gap:0;flex-wrap:wrap;
+    max-width:620px;margin:0 auto;
+  }
+  .stat{padding:0 26px;text-align:center;border-right:1px solid rgba(255,255,255,.25);}
+  .stat:last-child{border-right:none;}
+  .stat .num{font-family:'Fraunces',serif;font-size:1.9rem;color:var(--gold-light);font-weight:600;}
+  .stat .lab{font-size:.75rem;color:#f0dede;opacity:.85;letter-spacing:.5px;text-transform:uppercase;}
+
+  /* SECTION GENERIC */
+  section{padding:80px 24px;position:relative;}
+  .section-head{text-align:center;max-width:640px;margin:0 auto 50px;}
+  .eyebrow{
+    color:var(--gold-light);font-weight:700;font-size:.8rem;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;display:block;
+  }
+  .section-head h2{
+    font-family:'Fraunces',serif;font-size:clamp(1.8rem,4vw,2.6rem);color:#fff;font-weight:600;line-height:1.2;
+  }
+  .section-head p{color:#f0e4ec;opacity:.85;margin-top:14px;font-weight:300;}
+
+  /* CONTENT PILLARS */
+  .card-glass{
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(212,175,55,.3);
+    border-radius:22px;
+    padding:32px 26px;
+    backdrop-filter:blur(10px);
+    transition:transform .35s ease, border-color .35s ease, background .35s ease;
+  }
+  .card-glass:hover{transform:translateY(-8px);border-color:var(--gold-light);background:rgba(255,255,255,.13);}
+  .pillars-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:22px;max-width:1000px;margin:0 auto;}
+  .pillar-icon{
+    width:56px;height:56px;border-radius:16px;
+    background:linear-gradient(135deg, var(--gold-light), var(--pink));
+    display:flex;align-items:center;justify-content:center;margin-bottom:18px;
+  }
+  .pillar-icon svg{width:28px;height:28px;stroke:#2B1832;}
+  .card-glass h3{color:#fff;font-size:1.15rem;margin-bottom:8px;font-weight:600;font-family:'Fraunces',serif;}
+  .card-glass p{color:#f2e6f0;font-size:.92rem;opacity:.85;line-height:1.5;font-weight:300;}
+
+  /* WHY WORK WITH ME */
+  .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:26px;max-width:1000px;margin:0 auto;}
+  .why-item{display:flex;gap:16px;align-items:flex-start;}
+  .why-num{
+    font-family:'Fraunces',serif;font-size:1.6rem;color:var(--gold-light);font-weight:600;
+    border:1.5px solid var(--gold-light);width:46px;height:46px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .why-item h4{color:#fff;font-size:1.05rem;margin-bottom:6px;font-family:'Fraunces',serif;}
+  .why-item p{color:#f2e6f0;opacity:.8;font-size:.9rem;font-weight:300;line-height:1.5;}
+
+  /* SERVICES / PACKAGES */
+  .pack-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;max-width:1000px;margin:0 auto;}
+  .pack{
+    background:linear-gradient(160deg, rgba(255,255,255,.1), rgba(255,255,255,.03));
+    border:1px solid rgba(212,175,55,.35);
+    border-radius:24px;padding:34px 28px;position:relative;overflow:hidden;
+  }
+  .pack.featured{border:2px solid var(--gold-light);box-shadow:0 15px 40px rgba(212,175,55,.25);}
+  .pack .tagfeat{
+    position:absolute;top:18px;right:-34px;background:var(--gold-light);color:#2B1832;font-weight:700;font-size:.7rem;
+    padding:5px 40px;transform:rotate(35deg);letter-spacing:1px;
+  }
+  .pack h3{font-family:'Fraunces',serif;color:#fff;font-size:1.3rem;margin-bottom:10px;}
+  .pack ul{margin:18px 0;padding:0;list-style:none;}
+  .pack li{color:#f2e6f0;font-size:.92rem;padding:7px 0;padding-left:26px;position:relative;font-weight:300;}
+  .pack li::before{
+    content:'✦';position:absolute;left:0;color:var(--gold-light);
+  }
+  .pack .mini-cta{
+    display:inline-block;margin-top:12px;color:var(--gold-light);font-weight:600;font-size:.9rem;
+    border-bottom:1px solid var(--gold-light);padding-bottom:2px;
+  }
+
+  /* GALLERY STRIP (SVG illustrations, no real photos) */
+  .gallery-strip{display:flex;gap:18px;overflow-x:auto;padding:10px 0 30px;max-width:1100px;margin:0 auto;scrollbar-width:thin;}
+  .gallery-strip .tile{
+    min-width:200px;height:260px;border-radius:20px;flex-shrink:0;
+    display:flex;align-items:flex-end;padding:18px;
+    position:relative;overflow:hidden;border:1px solid rgba(212,175,55,.35);
+  }
+  .gallery-strip .tile span{color:#fff;font-weight:600;font-size:.95rem;position:relative;z-index:2;}
+  .gallery-strip .tile::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg, transparent 40%, rgba(0,0,0,.55));}
+
+  /* TESTIMONIAL / QUOTE STRIP */
+  .quote-band{
+    max-width:760px;margin:0 auto;text-align:center;
+  }
+  .quote-band blockquote{
+    font-family:'Fraunces',serif;font-style:italic;font-size:clamp(1.2rem,2.6vw,1.6rem);color:#fff;line-height:1.5;
+  }
+  .quote-band .who{margin-top:18px;color:var(--gold-light);font-weight:600;font-size:.9rem;}
+
+  /* FINAL CTA */
+  .final-cta{
+    text-align:center;
+    background:linear-gradient(135deg, rgba(212,175,55,.18), rgba(255,62,136,.18));
+    border-top:1px solid rgba(212,175,55,.3);
+    border-bottom:1px solid rgba(212,175,55,.3);
+  }
+  .final-cta h2{
+    font-family:'Fraunces',serif;color:#fff;font-size:clamp(1.8rem,4.5vw,2.8rem);margin-bottom:20px;font-weight:600;
+  }
+  .final-cta p{color:#f2e6f0;opacity:.9;max-width:520px;margin:0 auto 32px;font-weight:300;}
+
+  footer{
+    text-align:center;padding:40px 24px;color:#e9d9d9;opacity:.7;font-size:.85rem;
+  }
+  footer a{color:var(--gold-light);font-weight:600;}
+
+  /* WHATSAPP-STYLE FLOATING IG BUTTON */
+  .float-ig{
+    position:fixed;bottom:26px;right:26px;z-index:100;
+    width:64px;height:64px;border-radius:50%;
+    background:linear-gradient(135deg,#feda75 0%,#fa7e1e 20%,#d62976 55%,#962fbf 80%,#4f5bd5 100%);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 8px 26px rgba(0,0,0,.4);
+    animation:pulse 2.4s infinite;
+  }
+  .float-ig svg{width:30px;height:30px;fill:#fff;}
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(214,41,118,.55);}
+    70%{box-shadow:0 0 0 18px rgba(214,41,118,0);}
+    100%{box-shadow:0 0 0 0 rgba(214,41,118,0);}
+  }
+
+  /* SCROLL REVEAL */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s ease, transform .8s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+
+  ::-webkit-scrollbar{height:8px;width:8px;}
+  ::-webkit-scrollbar-thumb{background:var(--gold-deep);border-radius:10px;}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">Nathalia <span>López</span></div>
+    <div class="nav-links">
+      <a href="#pilares">Contenido</a>
+      <a href="#porque">Por qué yo</a>
+      <a href="#packs">Colaboraciones</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <a class="nav-cta" href="https://www.instagram.com/nathalialoppez/" target="_blank" rel="noopener">Ver Instagram</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="badge reveal">✨ Portafolio & Colaboraciones abiertas</div>
+    <h1 class="reveal">Contenido que <em>mueve</em><br>marcas y comunidades</h1>
+    <p class="tag reveal">Nathalia López — Content Creator especializada en Lifestyle, Gym, Hyrox, Fitness y Running. Contenido auténtico que conecta con una audiencia activa y comprometida.</p>
+
+    <div class="pill-row reveal">
+      <div class="pill">🌸 Lifestyle</div>
+      <div class="pill">💪🏼 Gym</div>
+      <div class="pill">🏋️‍♀️ Hyrox</div>
+      <div class="pill">🍏 Fitness</div>
+      <div class="pill">🏃🏼‍♀️ Running</div>
+    </div>
+
+    <div class="cta-row reveal">
+      <a class="btn-primary" href="https://www.instagram.com/nathalialoppez/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="#2B1832"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.25.07 1.6.07 4.81s-.01 3.56-.07 4.81c-.15 3.23-1.66 4.77-4.92 4.92-1.25.06-1.6.07-4.85.07s-3.6-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.25-.07-1.6-.07-4.81s.01-3.56.07-4.81C2.35 3.96 3.87 2.42 7.15 2.27 8.4 2.2 8.8 2.2 12 2.2Zm0 1.8c-3.15 0-3.5 0-4.73.07-2.35.1-3.47 1.24-3.57 3.57-.06 1.23-.07 1.58-.07 4.73s.01 3.5.07 4.73c.1 2.33 1.22 3.47 3.57 3.57 1.23.06 1.58.07 4.73.07s3.5-.01 4.73-.07c2.35-.1 3.47-1.23 3.57-3.57.06-1.23.07-1.58.07-4.73s-.01-3.5-.07-4.73c-.1-2.33-1.23-3.47-3.57-3.57C15.5 4 15.15 4 12 4Zm0 3.05a4.95 4.95 0 1 1 0 9.9 4.95 4.95 0 0 1 0-9.9Zm0 1.8a3.15 3.15 0 1 0 0 6.3 3.15 3.15 0 0 0 0-6.3Zm5.2-1.98a1.16 1.16 0 1 1-2.32 0 1.16 1.16 0 0 1 2.32 0Z"/></svg>
+        Seguir @nathalialoppez
+      </a>
+      <a class="btn-outline" href="#contacto">Solicitar colaboración</a>
+    </div>
+
+    <div class="stats-strip reveal">
+      <div class="stat"><div class="num">55K</div><div class="lab">Seguidores</div></div>
+      <div class="stat"><div class="num">203</div><div class="lab">Publicaciones</div></div>
+      <div class="stat"><div class="num">5</div><div class="lab">Nichos activos</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="pilares">
+  <div class="section-head reveal">
+    <span class="eyebrow">Contenido</span>
+    <h2>Pilares de contenido</h2>
+    <p>Cada publicación combina estilo de vida real con entrenamiento constante — el tipo de contenido que genera confianza y conversión para marcas de fitness, nutrición y lifestyle.</p>
+  </div>
+  <div class="pillars-grid">
+
+    <div class="card-glass reveal">
+      <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 21s-7-4.35-9.5-8.5C.5 8.5 3 5 6.5 5c2 0 3.2 1 3.5 2 .3-1 1.5-2 3.5-2 3.5 0 6 3.5 4 7.5C17 16.65 12 21 12 21Z"/></svg></div>
+      <h3>Lifestyle</h3>
+      <p>Rutina diaria, viajes, moda activa y momentos reales que humanizan cada marca que colabora conmigo.</p>
+    </div>
+
+    <div class="card-glass reveal">
+      <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M6.5 6.5 3 10l4 4M17.5 17.5 21 14l-4-4M9 9l6 6M7 7l2-2 8 8-2 2Z"/></svg></div>
+      <h3>Gym</h3>
+      <p>Entrenamientos de fuerza, técnica y progreso documentado — contenido ideal para ropa deportiva y suplementación.</p>
+    </div>
+
+    <div class="card-glass reveal">
+      <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="6" r="2"/><path d="M12 8v4l3 3M9 21l3-6 2-2 3 1M4 17l4-6 3 1"/></svg></div>
+      <h3>Hyrox</h3>
+      <p>Preparación y carreras Hyrox: resistencia, disciplina y comunidad — perfecto para marcas de rendimiento.</p>
+    </div>
+
+    <div class="card-glass reveal">
+      <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 2a10 10 0 1 0 0 20 6 6 0 0 1-1-11.5A6 6 0 0 1 12 2Z"/></svg></div>
+      <h3>Fitness</h3>
+      <p>Hábitos saludables, nutrición y bienestar integral, con foco en resultados sostenibles a largo plazo.</p>
+    </div>
+
+    <div class="card-glass reveal">
+      <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><circle cx="17" cy="5" r="2"/><path d="M4 21l4-6 3-3 5 2 3-4M7 15l-3-1"/></svg></div>
+      <h3>Running</h3>
+      <p>Salidas de running, carreras y progresión de marcas personales — contenido dinámico y de alta constancia.</p>
+    </div>
+
+  </div>
+</section>
+
+<section id="porque">
+  <div class="section-head reveal">
+    <span class="eyebrow">Por qué colaborar conmigo</span>
+    <h2>Contenido que convierte, no solo que decora</h2>
+  </div>
+  <div class="why-grid">
+    <div class="why-item reveal">
+      <div class="why-num">01</div>
+      <div><h4>Audiencia activa y afín</h4><p>Comunidad interesada en fitness, running y estilo de vida saludable, con alta interacción real.</p></div>
+    </div>
+    <div class="why-item reveal">
+      <div class="why-num">02</div>
+      <div><h4>Contenido 100% auténtico</h4><p>Sin guiones forzados: entreno, corro y vivo lo que promociono, lo que genera confianza en la audiencia.</p></div>
+    </div>
+    <div class="why-item reveal">
+      <div class="why-num">03</div>
+      <div><h4>Experiencia con marcas</h4><p>Colaboraciones activas con marcas de nutrición y suplementación, con entregas puntuales y profesionales.</p></div>
+    </div>
+    <div class="why-item reveal">
+      <div class="why-num">04</div>
+      <div><h4>Formatos versátiles</h4><p>Reels, stories, posts y contenido de larga duración — adaptado a cada objetivo de campaña.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="packs">
+  <div class="section-head reveal">
+    <span class="eyebrow">Colaboraciones</span>
+    <h2>Formas de trabajar juntos</h2>
+    <p>Paquetes flexibles según objetivo de campaña. Todos incluyen brief previo y aprobación de contenido antes de publicar.</p>
+  </div>
+  <div class="pack-grid">
+    <div class="card-glass pack reveal">
+      <h3>Colab puntual</h3>
+      <ul>
+        <li>1 Reel o 1 post en feed</li>
+        <li>2–3 stories con mención</li>
+        <li>Entrega en 3–5 días</li>
+        <li>Ideal para lanzamientos</li>
+      </ul>
+      <a class="mini-cta" href="#contacto">Consultar disponibilidad →</a>
+    </div>
+
+    <div class="card-glass pack featured reveal">
+      <div class="tagfeat">Más pedido</div>
+      <h3>Paquete mensual</h3>
+      <ul>
+        <li>2 Reels + 1 post en feed</li>
+        <li>Stories semanales</li>
+        <li>Código de descuento personalizado</li>
+        <li>Reporte de resultados</li>
+      </ul>
+      <a class="mini-cta" href="#contacto">Consultar disponibilidad →</a>
+    </div>
+
+    <div class="card-glass pack reveal">
+      <h3>Embajadora de marca</h3>
+      <ul>
+        <li>Presencia continua 3+ meses</li>
+        <li>Contenido a medida por temporada</li>
+        <li>Prioridad en eventos y carreras</li>
+        <li>Tarifa preferencial a largo plazo</li>
+      </ul>
+      <a class="mini-cta" href="#contacto">Consultar disponibilidad →</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="section-head reveal">
+    <span class="eyebrow">Portafolio</span>
+    <h2>El día a día detrás del contenido</h2>
+  </div>
+  <div class="gallery-strip reveal">
+    <div class="tile" style="background:linear-gradient(160deg, var(--pink), var(--purple));"><span>Sesiones de Gym 💪🏼</span></div>
+    <div class="tile" style="background:linear-gradient(160deg, var(--gold-light), var(--coral));"><span>Carreras Hyrox 🏋️‍♀️</span></div>
+    <div class="tile" style="background:linear-gradient(160deg, var(--purple), #2B1832);"><span>Running matinal 🏃🏼‍♀️</span></div>
+    <div class="tile" style="background:linear-gradient(160deg, var(--coral), var(--pink));"><span>Lifestyle diario 🌸</span></div>
+    <div class="tile" style="background:linear-gradient(160deg, var(--gold-deep), var(--purple));"><span>Fitness & nutrición 🍏</span></div>
+  </div>
+</section>
+
+<section>
+  <div class="quote-band reveal">
+    <blockquote>"El contenido que conecta no se fuerza — se entrena, se corre y se vive todos los días."</blockquote>
+    <div class="who">— Nathalia López</div>
+  </div>
+</section>
+
+<section id="contacto" class="final-cta">
+  <div class="container reveal">
+    <h2>¿Trabajamos juntos?</h2>
+    <p>Escríbeme por Instagram para portafolio completo, tarifas y disponibilidad de colaboración.</p>
+    <div class="cta-row">
+      <a class="btn-primary" href="https://www.instagram.com/nathalialoppez/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="#2B1832"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.25.07 1.6.07 4.81s-.01 3.56-.07 4.81c-.15 3.23-1.66 4.77-4.92 4.92-1.25.06-1.6.07-4.85.07s-3.6-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.25-.07-1.6-.07-4.81s.01-3.56.07-4.81C2.35 3.96 3.87 2.42 7.15 2.27 8.4 2.2 8.8 2.2 12 2.2Zm0 1.8c-3.15 0-3.5 0-4.73.07-2.35.1-3.47 1.24-3.57 3.57-.06 1.23-.07 1.58-.07 4.73s.01 3.5.07 4.73c.1 2.33 1.22 3.47 3.57 3.57 1.23.06 1.58.07 4.73.07s3.5-.01 4.73-.07c2.35-.1 3.47-1.23 3.57-3.57.06-1.23.07-1.58.07-4.73s-.01-3.5-.07-4.73c-.1-2.33-1.23-3.47-3.57-3.57C15.5 4 15.15 4 12 4Zm0 3.05a4.95 4.95 0 1 1 0 9.9 4.95 4.95 0 0 1 0-9.9Zm0 1.8a3.15 3.15 0 1 0 0 6.3 3.15 3.15 0 0 0 0-6.3Zm5.2-1.98a1.16 1.16 0 1 1-2.32 0 1.16 1.16 0 0 1 2.32 0Z"/></svg>
+        DM en Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Nathalia López · Content Creator — Lifestyle · Gym · Hyrox · Fitness · Running<br>
+  <a href="https://www.instagram.com/nathalialoppez/" target="_blank" rel="noopener">@nathalialoppez</a>
+</footer>
+
+<a class="float-ig" href="https://www.instagram.com/nathalialoppez/" target="_blank" rel="noopener" aria-label="Instagram">
+  <svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.25.07 1.6.07 4.81s-.01 3.56-.07 4.81c-.15 3.23-1.66 4.77-4.92 4.92-1.25.06-1.6.07-4.85.07s-3.6-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.25-.07-1.6-.07-4.81s.01-3.56.07-4.81C2.35 3.96 3.87 2.42 7.15 2.27 8.4 2.2 8.8 2.2 12 2.2Zm0 1.8c-3.15 0-3.5 0-4.73.07-2.35.1-3.47 1.24-3.57 3.57-.06 1.23-.07 1.58-.07 4.73s.01 3.5.07 4.73c.1 2.33 1.22 3.47 3.57 3.57 1.23.06 1.58.07 4.73.07s3.5-.01 4.73-.07c2.35-.1 3.47-1.23 3.57-3.57.06-1.23.07-1.58.07-4.73s-.01-3.5-.07-4.73c-.1-2.33-1.23-3.47-3.57-3.57C15.5 4 15.15 4 12 4Zm0 3.05a4.95 4.95 0 1 1 0 9.9 4.95 4.95 0 0 1 0-9.9Zm0 1.8a3.15 3.15 0 1 0 0 6.3 3.15 3.15 0 0 0 0-6.3Zm5.2-1.98a1.16 1.16 0 1 1-2.32 0 1.16 1.16 0 0 1 2.32 0Z"/></svg>
+</a>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold:0.15});
+  revealEls.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
