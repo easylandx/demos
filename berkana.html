@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Berkana Studio · Pilates Clásico en Lanús Oeste</title>
+<meta name="description" content="Berkana Studio - Pilates clásico con Ceci. Clases personalizadas y online en Lanús Oeste. Reservá tu clase.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --pine:#22352A;
+    --pine-deep:#182620;
+    --cream:#F4ECDC;
+    --clay:#B85C3E;
+    --sage:#93A889;
+    --gold:#C9A84C;
+    --gold-light:#E4CD8C;
+    --ink:#22352A;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:'Jost', sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    overflow-x:hidden;
+    font-weight:400;
+  }
+
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    letter-spacing:-0.01em;
+  }
+
+  a{text-decoration:none;color:inherit;}
+  ul{list-style:none;}
+  img{max-width:100%;display:block;}
+
+  .label{
+    text-transform:uppercase;
+    letter-spacing:0.22em;
+    font-size:0.72rem;
+    font-weight:500;
+    color:var(--clay);
+  }
+
+  /* ===== NAV ===== */
+  nav{
+    position:fixed;
+    top:0;left:0;right:0;
+    z-index:100;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:22px 6%;
+    background:rgba(244,236,220,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(34,53,42,0.08);
+    transition:padding 0.3s ease;
+  }
+
+  .logo{
+    font-family:'Fraunces', serif;
+    font-size:1.35rem;
+    font-weight:500;
+    color:var(--pine);
+    display:flex;
+    align-items:baseline;
+    gap:6px;
+  }
+  .logo span{color:var(--clay); font-style:italic; font-size:0.95rem;}
+
+  .nav-links{
+    display:flex;
+    gap:36px;
+    align-items:center;
+  }
+  .nav-links a{
+    font-size:0.9rem;
+    letter-spacing:0.02em;
+    color:var(--pine);
+    position:relative;
+    padding-bottom:4px;
+  }
+  .nav-links a::after{
+    content:'';
+    position:absolute;
+    left:0;bottom:0;
+    width:0;height:1px;
+    background:var(--clay);
+    transition:width 0.3s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+
+  .nav-ig{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    padding:9px 20px;
+    border:1px solid var(--pine);
+    border-radius:100px;
+    font-size:0.82rem;
+    letter-spacing:0.03em;
+    transition:all 0.3s ease;
+  }
+  .nav-ig:hover{background:var(--pine); color:var(--cream);}
+
+  .menu-toggle{display:none; background:none; border:none; cursor:pointer;}
+  .menu-toggle span, .menu-toggle span::before, .menu-toggle span::after{
+    content:'';
+    display:block;
+    width:24px;height:2px;
+    background:var(--pine);
+    position:relative;
+    transition:0.3s;
+  }
+  .menu-toggle span::before{position:absolute; top:-8px;}
+  .menu-toggle span::after{position:absolute; top:8px;}
+
+  /* ===== HERO ===== */
+  .hero{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    padding:120px 6% 60px;
+    position:relative;
+    background:
+      radial-gradient(ellipse at 80% 20%, rgba(201,168,76,0.18), transparent 55%),
+      var(--cream);
+  }
+
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:60px;
+    width:100%;
+    align-items:center;
+  }
+
+  .hero-eyebrow{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:22px;
+  }
+  .hero-eyebrow .flag{font-size:0.95rem;}
+  .hero-eyebrow .line{width:32px; height:1px; background:var(--clay);}
+
+  .hero h1{
+    font-size:clamp(2.6rem, 5.2vw, 4.6rem);
+    line-height:1.02;
+    color:var(--pine);
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--clay);
+    font-weight:400;
+  }
+
+  .hero-sub{
+    margin-top:26px;
+    font-size:1.08rem;
+    line-height:1.65;
+    color:#3f4f43;
+    max-width:460px;
+    font-weight:300;
+  }
+
+  .hero-cta{
+    display:flex;
+    gap:16px;
+    margin-top:38px;
+    flex-wrap:wrap;
+  }
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:15px 30px;
+    border-radius:100px;
+    font-size:0.92rem;
+    letter-spacing:0.02em;
+    font-weight:500;
+    cursor:pointer;
+    transition:all 0.35s cubic-bezier(.2,.8,.2,1);
+    border:1px solid transparent;
+  }
+  .btn-primary{
+    background:var(--clay);
+    color:var(--cream);
+  }
+  .btn-primary:hover{
+    background:var(--pine);
+    transform:translateY(-2px);
+  }
+  .btn-ghost{
+    border-color:var(--pine);
+    color:var(--pine);
+  }
+  .btn-ghost:hover{
+    background:var(--pine);
+    color:var(--cream);
+  }
+
+  .hero-tags{
+    display:flex;
+    gap:24px;
+    margin-top:48px;
+    flex-wrap:wrap;
+  }
+  .hero-tags div{
+    font-size:0.8rem;
+    color:#5a6b5e;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .hero-tags div::before{
+    content:'';
+    width:5px;height:5px;
+    border-radius:50%;
+    background:var(--gold);
+  }
+
+  /* Breathing circle - signature element */
+  .breath-wrap{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    height:440px;
+  }
+  .breath-circle{
+    position:relative;
+    width:280px;
+    height:280px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .ring{
+    position:absolute;
+    border-radius:50%;
+    border:1px solid var(--sage);
+    opacity:0.5;
+  }
+  .ring1{width:100%; height:100%; animation:breathe 6s ease-in-out infinite;}
+  .ring2{width:78%; height:78%; border-color:var(--gold); animation:breathe 6s ease-in-out infinite -1s;}
+  .ring3{width:56%; height:56%; border-color:var(--clay); animation:breathe 6s ease-in-out infinite -2s;}
+  .breath-core{
+    width:34%;
+    height:34%;
+    border-radius:50%;
+    background:var(--pine);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:2;
+  }
+  .breath-core span{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    color:var(--cream);
+    font-size:0.78rem;
+    text-align:center;
+    line-height:1.3;
+  }
+  @keyframes breathe{
+    0%,100%{transform:scale(0.85); opacity:0.35;}
+    50%{transform:scale(1); opacity:0.75;}
+  }
+  .breath-caption{
+    margin-top:22px;
+    font-size:0.78rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color:#5a6b5e;
+  }
+
+  /* ===== SECTION SHARED ===== */
+  section{
+    padding:120px 6%;
+    position:relative;
+  }
+  .section-head{
+    max-width:640px;
+    margin-bottom:64px;
+  }
+  .section-head .label{margin-bottom:16px; display:block;}
+  .section-head h2{
+    font-size:clamp(2rem, 3.6vw, 3rem);
+    line-height:1.1;
+  }
+  .section-head p{
+    margin-top:18px;
+    color:#4a5a4e;
+    font-size:1.02rem;
+    line-height:1.6;
+    font-weight:300;
+  }
+
+  .reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible{opacity:1; transform:translateY(0);}
+
+  /* ===== ABOUT ===== */
+  .about{
+    background:var(--pine);
+    color:var(--cream);
+  }
+  .about .section-head p{color:#cdd8cd;}
+  .about-grid{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:70px;
+    align-items:center;
+  }
+  .about-portrait{
+    aspect-ratio:4/5;
+    border-radius:6px;
+    background:
+      linear-gradient(160deg, rgba(201,168,76,0.25), rgba(184,92,62,0.2)),
+      var(--pine-deep);
+    border:1px solid rgba(228,205,140,0.3);
+    display:flex;
+    align-items:flex-end;
+    padding:30px;
+    position:relative;
+    overflow:hidden;
+  }
+  .about-portrait::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background-image:
+      radial-gradient(circle at 30% 25%, rgba(228,205,140,0.18) 0, transparent 40%),
+      radial-gradient(circle at 75% 70%, rgba(184,92,62,0.25) 0, transparent 45%);
+  }
+  .about-portrait .tag{
+    position:relative;
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.4rem;
+    color:var(--gold-light);
+  }
+
+  .about-text h3{
+    font-size:1.7rem;
+    color:var(--gold-light);
+    margin-bottom:22px;
+  }
+  .about-text p{
+    color:#d7e0d5;
+    line-height:1.75;
+    font-weight:300;
+    margin-bottom:16px;
+  }
+  .about-signature{
+    margin-top:28px;
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .about-signature .line{width:44px; height:1px; background:var(--gold);}
+  .about-signature span{font-family:'Fraunces', serif; font-style:italic; color:var(--gold-light);}
+
+  /* ===== MÉTODO ===== */
+  .method-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:1px;
+    background:rgba(34,53,42,0.12);
+    border:1px solid rgba(34,53,42,0.12);
+  }
+  .method-card{
+    background:var(--cream);
+    padding:42px 28px;
+    transition:background 0.4s ease;
+  }
+  .method-card:hover{background:#eee3cd;}
+  .method-num{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    color:var(--clay);
+    font-size:1.1rem;
+    margin-bottom:22px;
+    display:block;
+  }
+  .method-card h3{
+    font-size:1.15rem;
+    margin-bottom:12px;
+    color:var(--pine);
+  }
+  .method-card p{
+    font-size:0.92rem;
+    color:#556355;
+    line-height:1.6;
+    font-weight:300;
+  }
+
+  /* ===== CLASES ===== */
+  .classes{background:var(--cream);}
+  .classes-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:28px;
+  }
+  .class-card{
+    padding:48px 40px;
+    border-radius:8px;
+    position:relative;
+    overflow:hidden;
+    min-height:340px;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+  }
+  .class-card.presencial{
+    background:linear-gradient(155deg, #3a4f3f, var(--pine));
+    color:var(--cream);
+  }
+  .class-card.online{
+    background:linear-gradient(155deg, var(--clay), #96482f);
+    color:var(--cream);
+  }
+  .class-card .cc-label{
+    font-size:0.75rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    opacity:0.75;
+    margin-bottom:14px;
+  }
+  .class-card h3{
+    font-size:1.7rem;
+    margin-bottom:14px;
+  }
+  .class-card p{
+    font-size:0.94rem;
+    line-height:1.6;
+    opacity:0.92;
+    font-weight:300;
+    max-width:340px;
+  }
+  .class-card .cc-icon{
+    position:absolute;
+    top:36px; right:36px;
+    width:46px;height:46px;
+    border:1px solid rgba(244,236,220,0.4);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:1.1rem;
+  }
+
+  /* ===== BENEFICIOS ===== */
+  .benefits{background:#EFE4CD;}
+  .benefits-list{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:0;
+    border-top:1px solid rgba(34,53,42,0.15);
+  }
+  .benefit-row{
+    display:flex;
+    align-items:center;
+    gap:20px;
+    padding:26px 10px;
+    border-bottom:1px solid rgba(34,53,42,0.15);
+  }
+  .benefit-row:nth-child(odd){border-right:1px solid rgba(34,53,42,0.15);}
+  .benefit-row .b-mark{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    color:var(--gold);
+    font-size:1.3rem;
+    width:34px;
+    flex-shrink:0;
+  }
+  .benefit-row p{
+    font-size:0.98rem;
+    color:var(--pine);
+    font-weight:400;
+  }
+
+  /* ===== UBICACIÓN ===== */
+  .location{
+    background:var(--pine);
+    color:var(--cream);
+  }
+  .location-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+  }
+  .location-text h2{color:var(--cream); font-size:clamp(2rem,3.4vw,2.8rem); margin-bottom:20px;}
+  .location-text p{color:#cdd8cd; line-height:1.7; font-weight:300; margin-bottom:28px;}
+  .location-item{
+    display:flex;
+    gap:16px;
+    align-items:flex-start;
+    margin-bottom:20px;
+  }
+  .location-item .li-mark{
+    color:var(--gold-light);
+    font-size:1.1rem;
+    margin-top:2px;
+  }
+  .location-item div h4{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size:1.02rem;
+    margin-bottom:4px;
+    color:var(--gold-light);
+  }
+  .location-item div p{
+    font-size:0.9rem;
+    color:#c3cec1;
+    margin:0;
+  }
+  .map-frame{
+    aspect-ratio:1/1;
+    border-radius:8px;
+    border:1px solid rgba(228,205,140,0.3);
+    position:relative;
+    overflow:hidden;
+    background:var(--pine-deep);
+  }
+  .map-frame::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background-image:
+      linear-gradient(rgba(228,205,140,0.12) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(228,205,140,0.12) 1px, transparent 1px);
+    background-size:32px 32px;
+  }
+  .map-pin{
+    position:absolute;
+    top:50%;left:50%;
+    transform:translate(-50%,-50%);
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:10px;
+  }
+  .map-pin .dot{
+    width:16px;height:16px;
+    border-radius:50%;
+    background:var(--clay);
+    box-shadow:0 0 0 8px rgba(184,92,62,0.25);
+  }
+  .map-pin span{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    color:var(--gold-light);
+    font-size:0.95rem;
+  }
+
+  /* ===== CTA FINAL ===== */
+  .final-cta{
+    background:var(--clay);
+    text-align:center;
+    padding:130px 6%;
+  }
+  .final-cta .label{color:rgba(244,236,220,0.75);}
+  .final-cta h2{
+    color:var(--cream);
+    font-size:clamp(2.2rem, 5vw, 3.6rem);
+    max-width:760px;
+    margin:20px auto 36px;
+    line-height:1.1;
+  }
+  .final-cta .btn-primary{
+    background:var(--pine);
+  }
+  .final-cta .btn-primary:hover{
+    background:var(--pine-deep);
+  }
+
+  /* ===== FOOTER ===== */
+  footer{
+    background:var(--pine-deep);
+    color:#a9b8ab;
+    padding:50px 6% 34px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:20px;
+  }
+  footer .logo{color:var(--cream);}
+  footer .f-links{display:flex; gap:26px; font-size:0.85rem;}
+  footer .f-links a:hover{color:var(--gold-light);}
+  footer .f-bottom{font-size:0.78rem; opacity:0.6;}
+
+  /* ===== FLOATING IG ===== */
+  .float-ig{
+    position:fixed;
+    bottom:28px; right:28px;
+    z-index:200;
+    width:58px; height:58px;
+    border-radius:50%;
+    background:linear-gradient(135deg, var(--clay), var(--gold));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 8px 24px rgba(184,92,62,0.4);
+    transition:transform 0.3s ease;
+  }
+  .float-ig:hover{transform:scale(1.08);}
+  .float-ig svg{width:26px; height:26px;}
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width:900px){
+    .nav-links{display:none;}
+    .menu-toggle{display:block;}
+    .hero-grid, .about-grid, .location-grid{grid-template-columns:1fr; gap:44px;}
+    .method-grid{grid-template-columns:repeat(2,1fr);}
+    .classes-grid{grid-template-columns:1fr;}
+    .benefits-list{grid-template-columns:1fr;}
+    .benefit-row:nth-child(odd){border-right:none;}
+    section{padding:80px 6%;}
+    .breath-wrap{height:320px;}
+    .breath-circle{width:220px; height:220px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .ring{animation:none;}
+    .reveal{transition:none; opacity:1; transform:none;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#top" class="logo">Berkana<span>studio</span></a>
+  <div class="nav-links">
+    <a href="#about">Sobre Ceci</a>
+    <a href="#metodo">Método</a>
+    <a href="#clases">Clases</a>
+    <a href="#ubicacion">Ubicación</a>
+  </div>
+  <a href="https://www.instagram.com/ceci.pilates/" target="_blank" rel="noopener" class="nav-ig">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+    @ceci.pilates
+  </a>
+</nav>
+
+<section class="hero" id="top">
+  <div class="hero-grid">
+    <div>
+      <div class="hero-eyebrow">
+        <span class="flag">🇦🇷</span>
+        <span class="line"></span>
+        <span class="label">Berkana Studio · Lanús Oeste</span>
+      </div>
+      <h1>Pilates <em>clásico</em>,<br>a tu ritmo y con<br>toda tu atención.</h1>
+      <p class="hero-sub">Clases guiadas por Ceci, pensadas para vos: control, precisión y respiración en cada movimiento. Presenciales en el estudio o desde donde estés, de forma online.</p>
+      <div class="hero-cta">
+        <a href="https://www.instagram.com/ceci.pilates/" target="_blank" rel="noopener" class="btn btn-primary">Reservar mi clase</a>
+        <a href="#metodo" class="btn btn-ghost">Conocer el método</a>
+      </div>
+      <div class="hero-tags">
+        <div>Clases personalizadas</div>
+        <div>Clases online</div>
+        <div>Pilates clásico</div>
+      </div>
+    </div>
+    <div class="breath-wrap">
+      <div class="breath-circle">
+        <div class="ring ring1"></div>
+        <div class="ring ring2"></div>
+        <div class="ring ring3"></div>
+        <div class="breath-core"><span>Inhalá<br>Exhalá</span></div>
+      </div>
+      <div class="breath-caption">El cuerpo en control</div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="about-grid">
+    <div class="about-portrait reveal">
+      <div class="tag">Ceci</div>
+    </div>
+    <div class="about-text reveal">
+      <span class="label" style="color:var(--gold-light)">Sobre el studio</span>
+      <h3 style="margin-top:16px">Berkana nace de una idea simple: crecer se hace de a poco.</h3>
+      <p>Berkana Studio es el espacio de Ceci para practicar Pilates clásico en Lanús Oeste. Un lugar donde cada clase se piensa para la persona que la toma, no al revés: tu cuerpo, tu momento, tu progreso.</p>
+      <p>Trabajamos sobre los principios originales del método —control, concentración, respiración, precisión, fluidez y centro— con una mirada cercana y atenta a cada detalle.</p>
+      <div class="about-signature">
+        <div class="line"></div>
+        <span>Ceci, Berkana Studio</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="metodo">
+  <div class="section-head reveal">
+    <span class="label">Pilates clásico</span>
+    <h2>Un método, seis principios, un solo objetivo: vos.</h2>
+    <p>No se trata de repetir ejercicios, sino de entenderlos. Cada clase respeta la secuencia y la lógica original del método, adaptada a tu nivel y tus objetivos.</p>
+  </div>
+  <div class="method-grid reveal">
+    <div class="method-card">
+      <span class="method-num">Control</span>
+      <h3>Cada movimiento, consciente</h3>
+      <p>Nada de automatismo: cada ejercicio se ejecuta con intención y control total del cuerpo.</p>
+    </div>
+    <div class="method-card">
+      <span class="method-num">Respiración</span>
+      <h3>El motor del movimiento</h3>
+      <p>La respiración guía cada ejercicio, oxigena el trabajo muscular y ordena el ritmo de la clase.</p>
+    </div>
+    <div class="method-card">
+      <span class="method-num">Centro</span>
+      <h3>Todo nace del core</h3>
+      <p>La energía y la estabilidad se generan desde el centro del cuerpo hacia afuera.</p>
+    </div>
+    <div class="method-card">
+      <span class="method-num">Precisión</span>
+      <h3>Calidad sobre cantidad</h3>
+      <p>Menos repeticiones, mejor ejecutadas. La forma correcta es siempre la prioridad.</p>
+    </div>
+  </div>
+</section>
+
+<section class="classes" id="clases">
+  <div class="section-head reveal">
+    <span class="label">Clases</span>
+    <h2>Elegí cómo practicar tu Pilates.</h2>
+    <p>Dos formas de entrenar con Ceci, con el mismo nivel de atención y seguimiento personal.</p>
+  </div>
+  <div class="classes-grid">
+    <div class="class-card presencial reveal">
+      <div class="cc-icon">🤍</div>
+      <div class="cc-label">En el studio</div>
+      <h3>Clases personalizadas</h3>
+      <p>Sesiones individuales o en grupos muy reducidos, adaptadas a tu cuerpo, tu historia y tus objetivos. Corrección constante y seguimiento real de tu progreso.</p>
+    </div>
+    <div class="class-card online reveal">
+      <div class="cc-icon">👩🏻‍💻</div>
+      <div class="cc-label">Desde donde estés</div>
+      <h3>Clases online</h3>
+      <p>El mismo método, la misma atención personal, a distancia. Ideal si no podés venir al studio pero no querés resignar calidad ni acompañamiento.</p>
+    </div>
+  </div>
+</section>
+
+<section class="benefits">
+  <div class="section-head reveal">
+    <span class="label">Por qué Pilates</span>
+    <h2>Lo que vas a notar, clase a clase.</h2>
+  </div>
+  <div class="benefits-list reveal">
+    <div class="benefit-row"><span class="b-mark">01</span><p>Mejor postura y alineación corporal</p></div>
+    <div class="benefit-row"><span class="b-mark">02</span><p>Más fuerza y estabilidad en el centro</p></div>
+    <div class="benefit-row"><span class="b-mark">03</span><p>Mayor flexibilidad y movilidad articular</p></div>
+    <div class="benefit-row"><span class="b-mark">04</span><p>Reducción de tensiones y dolores posturales</p></div>
+    <div class="benefit-row"><span class="b-mark">05</span><p>Conexión real entre cuerpo, respiración y mente</p></div>
+    <div class="benefit-row"><span class="b-mark">06</span><p>Progreso sostenido, clase tras clase</p></div>
+  </div>
+</section>
+
+<section class="location" id="ubicacion">
+  <div class="location-grid">
+    <div class="location-text reveal">
+      <span class="label" style="color:var(--gold-light)">Ubicación</span>
+      <h2>Te esperamos en Lanús Oeste.</h2>
+      <p>Un espacio pensado para practicar con calma, sin apuro y con toda la atención puesta en vos.</p>
+      <div class="location-item">
+        <span class="li-mark">📍</span>
+        <div><h4>Studio</h4><p>Lanús Oeste, Buenos Aires</p></div>
+      </div>
+      <div class="location-item">
+        <span class="li-mark">🤍</span>
+        <div><h4>Cupos limitados</h4><p>Grupos reducidos para una atención realmente personalizada</p></div>
+      </div>
+      <div class="location-item">
+        <span class="li-mark">👩🏻‍💻</span>
+        <div><h4>Opción online</h4><p>Para quienes prefieren entrenar desde casa</p></div>
+      </div>
+      <a href="https://www.instagram.com/ceci.pilates/" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top:10px">Consultar disponibilidad</a>
+    </div>
+    <div class="map-frame reveal">
+      <div class="map-pin">
+        <div class="dot"></div>
+        <span>Lanús Oeste</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <span class="label">Empezá hoy</span>
+  <h2 class="reveal">Tu primera clase de Pilates clásico te está esperando.</h2>
+  <a href="https://www.instagram.com/ceci.pilates/" target="_blank" rel="noopener" class="btn btn-primary">Escribinos por Instagram</a>
+</section>
+
+<footer>
+  <a href="#top" class="logo">Berkana<span>studio</span></a>
+  <div class="f-links">
+    <a href="https://www.instagram.com/ceci.pilates/" target="_blank" rel="noopener">@ceci.pilates</a>
+    <a href="#metodo">Método</a>
+    <a href="#ubicacion">Ubicación</a>
+  </div>
+  <div class="f-bottom">© Berkana Studio — Pilates clásico en Lanús Oeste</div>
+</footer>
+
+<a href="https://www.instagram.com/ceci.pilates/" target="_blank" rel="noopener" class="float-ig" aria-label="Instagram Berkana Studio">
+  <svg viewBox="0 0 24 24" fill="none" stroke="#F4ECDC" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+</a>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
