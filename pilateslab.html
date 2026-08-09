@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pilates Lab · Estudio de Pilates en La Laguna</title>
+<meta name="description" content="Pilates Lab, La Laguna. Pilates Máquina, Barre, Movimiento Acrobático y Formación de Profesores. Clases adaptadas a tus necesidades. Reserva por WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FFF6EA;
+    --cream-soft:#FFFBF3;
+    --ink:#231331;
+    --ink-soft:#4A3B58;
+    --coral:#FF6F5C;
+    --coral-dark:#D6402C;
+    --teal:#0E7C77;
+    --teal-dark:#0A5C58;
+    --teal-deep:#0B4340;
+    --yellow:#FFC64B;
+    --yellow-dark:#B9770A;
+    --lilac:#B58CFF;
+    --lilac-dark:#6B3FCF;
+    --plum:#2E1240;
+    --plum-deep:#1C0A2B;
+    --radius-lg:28px;
+    --radius-md:18px;
+    --shadow-soft:0 18px 40px rgba(35,19,49,0.14);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:'Plus Jakarta Sans', sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.6;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,h4{
+    font-family:'Fredoka', sans-serif;
+    font-weight:600;
+    line-height:1.08;
+    letter-spacing:-0.01em;
+  }
+
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;}
+  img{max-width:100%;display:block;}
+
+  .container{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    text-transform:uppercase;
+    letter-spacing:0.16em;
+    font-size:12.5px;
+    font-weight:700;
+  }
+
+  /* ===== HEADER ===== */
+  header{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:rgba(255,246,234,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:2px solid rgba(35,19,49,0.08);
+  }
+  .nav-wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px 28px;
+    max-width:1180px;
+    margin:0 auto;
+  }
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Fredoka', sans-serif;
+    font-weight:700;
+    font-size:21px;
+    color:var(--ink);
+  }
+  .logo-mark{
+    width:38px;height:38px;
+    border-radius:50%;
+    background:var(--coral);
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+  }
+  .logo-mark svg{width:20px;height:20px;}
+
+  nav.links{
+    display:flex;
+    gap:30px;
+    align-items:center;
+  }
+  nav.links a{
+    font-size:14.5px;
+    font-weight:600;
+    color:var(--ink-soft);
+    transition:color .2s;
+    position:relative;
+  }
+  nav.links a:hover{color:var(--coral-dark);}
+
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'Plus Jakarta Sans', sans-serif;
+    font-weight:700;
+    font-size:15px;
+    padding:13px 26px;
+    border-radius:100px;
+    cursor:pointer;
+    border:none;
+    transition:transform .25s cubic-bezier(.2,.8,.2,1), box-shadow .25s;
+    white-space:nowrap;
+  }
+  .btn:hover{transform:translateY(-3px);}
+  .btn-coral{background:var(--coral);color:#fff;box-shadow:0 10px 24px rgba(255,111,92,0.4);}
+  .btn-coral:hover{box-shadow:0 14px 30px rgba(255,111,92,0.5);}
+  .btn-outline{background:transparent;color:var(--ink);border:2px solid var(--ink);}
+  .btn-outline:hover{background:var(--ink);color:var(--cream);}
+  .btn-cream{background:var(--cream);color:var(--plum);box-shadow:0 10px 24px rgba(0,0,0,0.18);}
+  .btn-yellow{background:var(--yellow);color:var(--yellow-dark);box-shadow:0 10px 24px rgba(255,198,75,0.4);}
+  .btn-nav{
+    padding:11px 22px;
+    font-size:14px;
+  }
+  .btn svg{width:18px;height:18px;flex-shrink:0;}
+
+  .mobile-toggle{display:none;}
+
+  /* ===== HERO ===== */
+  .hero{
+    position:relative;
+    background:linear-gradient(160deg, var(--teal-deep) 0%, var(--teal-dark) 45%, var(--teal) 100%);
+    color:#fff;
+    padding:88px 0 0;
+    overflow:hidden;
+  }
+  .hero-inner{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:40px;
+    align-items:center;
+    max-width:1180px;
+    margin:0 auto;
+    padding:60px 28px 90px;
+    position:relative;
+    z-index:2;
+  }
+  .hero-eyebrow{
+    color:var(--yellow);
+    margin-bottom:18px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .hero-eyebrow::before{
+    content:"";
+    width:8px;height:8px;border-radius:50%;
+    background:var(--coral);
+    display:inline-block;
+    animation:pulse-dot 1.8s infinite;
+  }
+  @keyframes pulse-dot{
+    0%,100%{opacity:1;transform:scale(1);}
+    50%{opacity:.4;transform:scale(1.4);}
+  }
+  .hero h1{
+    font-size:clamp(38px, 5.4vw, 64px);
+    color:#fff;
+    margin-bottom:22px;
+  }
+  .hero h1 .accent{color:var(--yellow);}
+  .hero h1 .accent2{color:var(--coral);}
+  .hero p.lead{
+    font-size:18px;
+    color:rgba(255,255,255,0.82);
+    max-width:480px;
+    margin-bottom:34px;
+  }
+  .hero-ctas{
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+    margin-bottom:36px;
+  }
+  .hero-tags{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .hero-tag{
+    font-family:'Space Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.04em;
+    padding:7px 14px;
+    border-radius:100px;
+    border:1.5px solid rgba(255,255,255,0.28);
+    color:rgba(255,255,255,0.85);
+  }
+
+  .hero-visual{
+    position:relative;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    height:440px;
+  }
+  .hero-visual svg{width:100%;height:100%;}
+
+  .hero-wave{
+    position:absolute;
+    bottom:-2px;left:0;right:0;
+    line-height:0;
+    z-index:1;
+  }
+  .hero-wave svg{width:100%;height:auto;display:block;}
+
+  /* marquee ticker */
+  .ticker{
+    background:var(--ink);
+    color:var(--cream);
+    overflow:hidden;
+    white-space:nowrap;
+    padding:16px 0;
+    position:relative;
+  }
+  .ticker-track{
+    display:inline-flex;
+    animation:scroll-left 26s linear infinite;
+  }
+  .ticker-track span{
+    font-family:'Fredoka', sans-serif;
+    font-weight:600;
+    font-size:20px;
+    padding:0 26px;
+    display:inline-flex;
+    align-items:center;
+    gap:26px;
+  }
+  .ticker-track span.dot{color:var(--coral);}
+  @keyframes scroll-left{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+
+  /* ===== SECTION GENERAL ===== */
+  section{
+    padding:100px 0;
+    position:relative;
+  }
+  .section-head{
+    max-width:640px;
+    margin:0 0 56px;
+  }
+  .section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+  .section-head .eyebrow{color:var(--coral-dark);margin-bottom:14px;display:block;}
+  .section-head h2{
+    font-size:clamp(30px,4vw,44px);
+    color:var(--ink);
+  }
+  .section-head p{
+    font-size:16.5px;
+    color:var(--ink-soft);
+    margin-top:16px;
+  }
+
+  .reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity .7s cubic-bezier(.2,.8,.2,1), transform .7s cubic-bezier(.2,.8,.2,1);
+  }
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* ===== SERVICIOS ===== */
+  .servicios{background:var(--cream);}
+  .servicios-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:22px;
+  }
+  .servicio-card{
+    background:var(--cream-soft);
+    border-radius:var(--radius-md);
+    padding:32px 26px;
+    border:2px solid rgba(35,19,49,0.08);
+    transition:transform .3s cubic-bezier(.2,.8,.2,1), border-color .3s, box-shadow .3s;
+  }
+  .servicio-card:hover{
+    transform:translateY(-10px) rotate(-0.6deg);
+    box-shadow:var(--shadow-soft);
+  }
+  .servicio-icon{
+    width:58px;height:58px;
+    border-radius:16px;
+    display:flex;align-items:center;justify-content:center;
+    margin-bottom:22px;
+  }
+  .servicio-icon svg{width:30px;height:30px;}
+  .servicio-card:nth-child(1) .servicio-icon{background:var(--coral);}
+  .servicio-card:nth-child(1):hover{border-color:var(--coral);}
+  .servicio-card:nth-child(2) .servicio-icon{background:var(--teal);}
+  .servicio-card:nth-child(2):hover{border-color:var(--teal);}
+  .servicio-card:nth-child(3) .servicio-icon{background:var(--lilac);}
+  .servicio-card:nth-child(3):hover{border-color:var(--lilac);}
+  .servicio-card:nth-child(4) .servicio-icon{background:var(--yellow);}
+  .servicio-card:nth-child(4):hover{border-color:var(--yellow);}
+  .servicio-card h3{
+    font-size:20px;
+    margin-bottom:10px;
+    color:var(--ink);
+  }
+  .servicio-card p{
+    font-size:14.5px;
+    color:var(--ink-soft);
+  }
+
+  /* ===== POR QUE / ADAPTADAS ===== */
+  .porque{
+    background:var(--plum);
+    color:var(--cream);
+    border-radius:48px;
+    margin:0 20px;
+    overflow:hidden;
+  }
+  .porque-inner{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:60px;
+    align-items:center;
+    padding:90px 28px;
+  }
+  .porque h2{color:#fff;font-size:clamp(28px,3.6vw,40px);margin-bottom:20px;}
+  .porque p.lead{color:rgba(255,255,255,0.7);font-size:16.5px;margin-bottom:30px;max-width:460px;}
+  .feature-list{display:flex;flex-direction:column;gap:20px;}
+  .feature-item{
+    display:flex;
+    gap:16px;
+    align-items:flex-start;
+  }
+  .feature-check{
+    width:30px;height:30px;
+    border-radius:50%;
+    background:var(--coral);
+    flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    margin-top:2px;
+  }
+  .feature-check svg{width:15px;height:15px;}
+  .feature-item h4{font-family:'Plus Jakarta Sans';font-size:16.5px;font-weight:700;color:#fff;margin-bottom:3px;}
+  .feature-item p{font-size:14.5px;color:rgba(255,255,255,0.62);}
+
+  .porque-visual{
+    position:relative;
+    height:420px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .porque-visual svg{width:100%;height:100%;}
+
+  /* ===== HORARIO ===== */
+  .horario{background:var(--cream);}
+  .horario-wrap{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:50px;
+    align-items:center;
+  }
+  .horario-card{
+    background:var(--teal-deep);
+    border-radius:var(--radius-lg);
+    padding:46px 42px;
+    color:#fff;
+    position:relative;
+    overflow:hidden;
+  }
+  .horario-card::before{
+    content:"";
+    position:absolute;
+    width:220px;height:220px;
+    border-radius:50%;
+    background:var(--yellow);
+    opacity:0.14;
+    top:-60px;right:-60px;
+  }
+  .horario-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px 0;
+    border-bottom:1.5px dashed rgba(255,255,255,0.2);
+  }
+  .horario-row:last-child{border-bottom:none;}
+  .horario-label{
+    font-family:'Space Mono', monospace;
+    font-size:13px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--yellow);
+  }
+  .horario-time{
+    font-family:'Fredoka';
+    font-weight:600;
+    font-size:24px;
+  }
+  .horario-note{
+    margin-top:24px;
+    font-size:13.5px;
+    color:rgba(255,255,255,0.6);
+  }
+  .horario-text h3{font-size:clamp(24px,3vw,32px);margin-bottom:16px;color:var(--ink);}
+  .horario-text p{color:var(--ink-soft);font-size:16px;margin-bottom:26px;}
+
+  /* ===== FORMACION ===== */
+  .formacion{
+    background:linear-gradient(135deg, var(--coral) 0%, var(--coral-dark) 100%);
+    color:#fff;
+    border-radius:48px;
+    margin:0 20px;
+  }
+  .formacion-inner{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:center;
+    padding:90px 28px;
+  }
+  .formacion .eyebrow{color:var(--plum);opacity:0.85;}
+  .formacion h2{color:#fff;font-size:clamp(28px,3.8vw,42px);margin:16px 0 20px;}
+  .formacion p.lead{color:rgba(255,255,255,0.88);font-size:17px;margin-bottom:32px;max-width:480px;}
+  .formacion-list{display:flex;flex-direction:column;gap:14px;margin-bottom:34px;}
+  .formacion-list li{
+    display:flex;gap:12px;align-items:center;
+    font-size:15px;font-weight:600;
+  }
+  .formacion-list li::before{
+    content:"";
+    width:9px;height:9px;
+    border-radius:50%;
+    background:var(--yellow);
+    flex-shrink:0;
+  }
+  .formacion-visual{display:flex;align-items:center;justify-content:center;height:360px;}
+  .formacion-visual svg{width:100%;height:100%;}
+
+  /* ===== UBICACION ===== */
+  .ubicacion{background:var(--cream);}
+  .ubicacion-wrap{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:center;
+  }
+  .ubicacion-map{
+    background:var(--lilac);
+    border-radius:var(--radius-lg);
+    height:380px;
+    position:relative;
+    overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .ubicacion-map svg{width:100%;height:100%;}
+  .ubicacion-info h3{font-size:clamp(24px,3vw,32px);margin-bottom:16px;color:var(--ink);}
+  .ubicacion-info p{color:var(--ink-soft);font-size:16px;margin-bottom:10px;}
+  .ubicacion-chip{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:var(--cream-soft);
+    border:2px solid rgba(35,19,49,0.1);
+    padding:14px 20px;
+    border-radius:100px;
+    margin:18px 0 30px;
+    font-weight:700;
+    font-size:15px;
+  }
+  .ubicacion-chip svg{width:20px;height:20px;color:var(--coral-dark);}
+
+  /* ===== CTA FINAL ===== */
+  .cta-final{
+    background:var(--teal-deep);
+    color:#fff;
+    text-align:center;
+    border-radius:48px;
+    margin:0 20px;
+    padding:90px 28px;
+    position:relative;
+    overflow:hidden;
+  }
+  .cta-final h2{
+    color:#fff;
+    font-size:clamp(32px,5vw,54px);
+    margin-bottom:20px;
+    position:relative;z-index:2;
+  }
+  .cta-final p{
+    color:rgba(255,255,255,0.72);
+    font-size:17px;
+    max-width:480px;
+    margin:0 auto 36px;
+    position:relative;z-index:2;
+  }
+  .cta-final-btns{
+    display:flex;gap:16px;justify-content:center;flex-wrap:wrap;
+    position:relative;z-index:2;
+  }
+  .cta-blob{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(0px);
+  }
+  .cta-blob.b1{width:280px;height:280px;background:var(--coral);opacity:0.16;top:-100px;left:-80px;}
+  .cta-blob.b2{width:220px;height:220px;background:var(--yellow);opacity:0.14;bottom:-90px;right:-60px;}
+
+  /* ===== FOOTER ===== */
+  footer{
+    background:var(--plum-deep);
+    color:rgba(255,255,255,0.6);
+    padding:60px 0 30px;
+  }
+  .footer-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    flex-wrap:wrap;
+    gap:30px;
+    padding-bottom:36px;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+    margin-bottom:26px;
+  }
+  .footer-logo{
+    display:flex;align-items:center;gap:10px;
+    font-family:'Fredoka';font-weight:700;font-size:20px;color:#fff;
+    margin-bottom:12px;
+  }
+  .footer-logo .logo-mark{width:32px;height:32px;}
+  .footer-logo .logo-mark svg{width:17px;height:17px;}
+  .footer-col p{font-size:14px;max-width:280px;}
+  .footer-links{display:flex;gap:14px;}
+  .footer-links a{
+    width:42px;height:42px;
+    border-radius:50%;
+    border:1.5px solid rgba(255,255,255,0.2);
+    display:flex;align-items:center;justify-content:center;
+    transition:background .2s, border-color .2s, transform .2s;
+  }
+  .footer-links a:hover{background:var(--coral);border-color:var(--coral);transform:translateY(-3px);}
+  .footer-links a svg{width:19px;height:19px;color:#fff;}
+  .footer-bottom{
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+    font-size:12.5px;
+  }
+
+  /* ===== WHATSAPP FLOAT ===== */
+  .wa-float{
+    position:fixed;
+    bottom:26px;right:26px;
+    width:62px;height:62px;
+    border-radius:50%;
+    background:var(--coral);
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 12px 30px rgba(255,111,92,0.5);
+    z-index:200;
+    animation:float-bounce 3s ease-in-out infinite;
+  }
+  .wa-float svg{width:29px;height:29px;color:#fff;}
+  @keyframes float-bounce{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-8px);}
+  }
+
+  @media(max-width:920px){
+    nav.links{display:none;}
+    .hero-inner{grid-template-columns:1fr;text-align:center;padding-bottom:60px;}
+    .hero p.lead{margin-left:auto;margin-right:auto;}
+    .hero-ctas{justify-content:center;}
+    .hero-tags{justify-content:center;}
+    .hero-visual{height:300px;order:-1;}
+    .servicios-grid{grid-template-columns:repeat(2,1fr);}
+    .porque-inner,.horario-wrap,.formacion-inner,.ubicacion-wrap{grid-template-columns:1fr;}
+    .porque-visual,.formacion-visual{height:260px;order:-1;}
+    .porque,.formacion,.cta-final{border-radius:28px;margin:0 12px;}
+    section{padding:70px 0;}
+  }
+  @media(max-width:560px){
+    .servicios-grid{grid-template-columns:1fr;}
+    .container{padding:0 20px;}
+    .hero-inner{padding:44px 20px 50px;}
+    .btn{padding:12px 20px;font-size:14px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <div class="logo">
+      <span class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="5" r="2.4"/><path d="M12 8v6M12 14l-4 6M12 14l4 6M8 11h8"/></svg>
+      </span>
+      Pilates Lab
+    </div>
+    <nav class="links">
+      <a href="#servicios">Servicios</a>
+      <a href="#horario">Horario</a>
+      <a href="#formacion">Formación</a>
+      <a href="#ubicacion">Ubicación</a>
+    </nav>
+    <a class="btn btn-coral btn-nav" href="https://wa.me/34672244816?text=Hola%20Pilates%20Lab%2C%20quiero%20informaci%C3%B3n%20sobre%20las%20clases" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-1.5-.7-2.5-1.3-3.5-3-.3-.5.3-.4.8-1.4.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.9-2-.2-.5-.5-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.1 3 .1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2-.1-.2-.3-.2-.6-.4z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.1L2 22l5-1.3c1.4.8 3.1 1.3 4.9 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3C4.1 15.2 3.7 13.6 3.7 12c0-4.6 3.7-8.3 8.3-8.3s8.3 3.7 8.3 8.3-3.7 8.3-8.3 8.3z"/></svg>
+      Reservar
+    </a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow eyebrow">PILATES STUDIO · LA LAGUNA</div>
+      <h1>Tu cuerpo es tu <span class="accent">laboratorio</span>.<br>Experimenta el <span class="accent2">movimiento</span>.</h1>
+      <p class="lead">En Pilates Lab combinamos Pilates Máquina, Barre y Movimiento Acrobático en clases adaptadas a ti. Clases pensadas para cada cuerpo, cada objetivo y cada momento.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-coral" href="https://wa.me/34672244816?text=Hola%20Pilates%20Lab%2C%20quiero%20informaci%C3%B3n%20sobre%20las%20clases" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-1.5-.7-2.5-1.3-3.5-3-.3-.5.3-.4.8-1.4.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.9-2-.2-.5-.5-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.1 3 .1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2-.1-.2-.3-.2-.6-.4z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.1L2 22l5-1.3c1.4.8 3.1 1.3 4.9 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3C4.1 15.2 3.7 13.6 3.7 12c0-4.6 3.7-8.3 8.3-8.3s8.3 3.7 8.3 8.3-3.7 8.3-8.3 8.3z"/></svg>
+          Reserva tu clase por WhatsApp
+        </a>
+        <a class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.5);" href="https://www.instagram.com/pi_la_tes_lab/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          Ver Instagram
+        </a>
+      </div>
+      <div class="hero-tags">
+        <span class="hero-tag">Pilates Máquina</span>
+        <span class="hero-tag">Barre</span>
+        <span class="hero-tag">Mov. Acrobático</span>
+        <span class="hero-tag">Formación de profesores</span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <svg viewBox="0 0 420 420" fill="none">
+        <circle cx="210" cy="210" r="170" fill="#FFC64B" opacity="0.12"/>
+        <circle cx="210" cy="210" r="130" stroke="#FF6F5C" stroke-width="2" stroke-dasharray="6 10" opacity="0.5"/>
+        <path id="ribbon-path" d="M70 300 C 120 180, 180 340, 230 200 S 340 90, 360 150" stroke="#FF6F5C" stroke-width="6" stroke-linecap="round" fill="none" opacity="0.9"/>
+        <circle cx="215" cy="150" r="26" fill="#FFC64B"/>
+        <path d="M215 176 C 200 210, 190 230, 175 260" stroke="#FFC64B" stroke-width="10" stroke-linecap="round" fill="none"/>
+        <path d="M215 176 C 232 208, 244 226, 258 256" stroke="#FFC64B" stroke-width="10" stroke-linecap="round" fill="none"/>
+        <path d="M215 190 C 190 200, 168 196, 148 178" stroke="#FFC64B" stroke-width="10" stroke-linecap="round" fill="none"/>
+        <path d="M215 190 C 240 202, 262 200, 284 186" stroke="#FFC64B" stroke-width="10" stroke-linecap="round" fill="none"/>
+        <circle cx="120" cy="330" r="10" fill="#B58CFF"/>
+        <circle cx="330" cy="110" r="14" fill="#0B4340" stroke="#B58CFF" stroke-width="3"/>
+      </svg>
+    </div>
+  </div>
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0,40 C240,90 480,0 720,30 C960,60 1200,10 1440,40 L1440,90 L0,90 Z" fill="#FFF6EA"/></svg>
+  </div>
+</section>
+
+<div class="ticker">
+  <div class="ticker-track">
+    <span>PILATES MÁQUINA <span class="dot">●</span> BARRE <span class="dot">●</span> MOVIMIENTO ACROBÁTICO <span class="dot">●</span> FORMACIÓN DE PROFESORES <span class="dot">●</span> CLASES ADAPTADAS A TI <span class="dot">●</span></span>
+    <span>PILATES MÁQUINA <span class="dot">●</span> BARRE <span class="dot">●</span> MOVIMIENTO ACROBÁTICO <span class="dot">●</span> FORMACIÓN DE PROFESORES <span class="dot">●</span> CLASES ADAPTADAS A TI <span class="dot">●</span></span>
+  </div>
+</div>
+
+<section class="servicios" id="servicios">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Qué hacemos en el lab</span>
+      <h2>Cuatro formas de moverte, un mismo cuidado</h2>
+      <p>Cada disciplina está pensada para que entrenes con propósito, sea cual sea tu punto de partida.</p>
+    </div>
+    <div class="servicios-grid">
+      <div class="servicio-card reveal">
+        <div class="servicio-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="14" width="20" height="4" rx="1"/><path d="M4 18v2M20 18v2M4 14v-2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2"/><path d="M9 10V7M15 10V7"/></svg>
+        </div>
+        <h3>Pilates Máquina</h3>
+        <p>Reformer y máquinas especializadas para trabajar fuerza, control y postura sin impacto en las articulaciones.</p>
+      </div>
+      <div class="servicio-card reveal">
+        <div class="servicio-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h20M4 8V6a1 1 0 0 1 1-1h1M20 8V6a1 1 0 0 1-1-1h-1"/><circle cx="12" cy="4" r="2"/><path d="M12 6v6M9 22l3-10 3 10M7 15h10"/></svg>
+        </div>
+        <h3>Barre</h3>
+        <p>Ballet, pilates y fitness en una sola clase. Tonifica piernas, glúteos y core apoyándote en la barra.</p>
+      </div>
+      <div class="servicio-card reveal">
+        <div class="servicio-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="4" r="2"/><path d="M12 6c-2 3-6 4-6 8 0 3 2 5 2 5M12 6c2 3 6 4 6 8 0 3-2 5-2 5M8 19h8"/></svg>
+        </div>
+        <h3>Movimiento Acrobático</h3>
+        <p>Control corporal, equilibrio y fuerza a través de bases acrobáticas guiadas paso a paso.</p>
+      </div>
+      <div class="servicio-card reveal">
+        <div class="servicio-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5-10-5z"/><path d="M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/><path d="M22 9v6"/></svg>
+        </div>
+        <h3>Formación de Profesores</h3>
+        <p>Programa profesional para dar el salto a la enseñanza con una base técnica sólida y real.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="porque reveal">
+    <div class="porque-inner">
+      <div>
+        <span class="eyebrow" style="color:var(--yellow);">Por qué Pilates Lab</span>
+        <h2>Cada cuerpo tiene su propio ritmo</h2>
+        <p class="lead">No creemos en el "café para todos". Cada clase se ajusta a lo que tu cuerpo necesita hoy, no al plan genérico de siempre.</p>
+        <div class="feature-list">
+          <div class="feature-item">
+            <span class="feature-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+            <div><h4>Clases adaptadas a tus necesidades</h4><p>Ajustamos intensidad y ejercicios a tu nivel, lesiones u objetivos.</p></div>
+          </div>
+          <div class="feature-item">
+            <span class="feature-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+            <div><h4>Grupos reducidos</h4><p>Atención cercana y correcciones reales en cada sesión.</p></div>
+          </div>
+          <div class="feature-item">
+            <span class="feature-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+            <div><h4>Profesores con formación certificada</h4><p>Equipo con experiencia real dentro y fuera del estudio.</p></div>
+          </div>
+          <div class="feature-item">
+            <span class="feature-check"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></span>
+            <div><h4>En el corazón de La Laguna</h4><p>Un espacio cercano para hacer del movimiento un hábito.</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="porque-visual">
+        <svg viewBox="0 0 380 380" fill="none">
+          <circle cx="190" cy="190" r="160" fill="#FF6F5C" opacity="0.1"/>
+          <path d="M60 250 Q 120 100 190 190 T 320 130" stroke="#FFC64B" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.8"/>
+          <circle cx="190" cy="120" r="24" fill="#B58CFF"/>
+          <path d="M190 144 L190 220" stroke="#B58CFF" stroke-width="10" stroke-linecap="round"/>
+          <path d="M190 165 L140 200" stroke="#B58CFF" stroke-width="10" stroke-linecap="round"/>
+          <path d="M190 165 L240 145" stroke="#B58CFF" stroke-width="10" stroke-linecap="round"/>
+          <path d="M190 220 L150 300" stroke="#B58CFF" stroke-width="10" stroke-linecap="round"/>
+          <path d="M190 220 L235 290" stroke="#B58CFF" stroke-width="10" stroke-linecap="round"/>
+          <circle cx="90" cy="90" r="8" fill="#FF6F5C"/>
+          <circle cx="320" cy="280" r="12" fill="#FFC64B"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="horario" id="horario">
+  <div class="container">
+    <div class="horario-wrap">
+      <div class="horario-text reveal">
+        <span class="eyebrow" style="color:var(--coral-dark);">Horario</span>
+        <h3>Encaja el movimiento en tu día</h3>
+        <p>Abrimos en horario de mañana y tarde para que entrenar no sea lo que sacrificas, sino lo que te organiza el día.</p>
+        <a class="btn btn-coral" href="https://wa.me/34672244816?text=Hola%20Pilates%20Lab%2C%20quiero%20consultar%20horarios%20disponibles" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-1.5-.7-2.5-1.3-3.5-3-.3-.5.3-.4.8-1.4.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.9-2-.2-.5-.5-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.1 3 .1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2-.1-.2-.3-.2-.6-.4z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.1L2 22l5-1.3c1.4.8 3.1 1.3 4.9 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3C4.1 15.2 3.7 13.6 3.7 12c0-4.6 3.7-8.3 8.3-8.3s8.3 3.7 8.3 8.3-3.7 8.3-8.3 8.3z"/></svg>
+          Consulta disponibilidad
+        </a>
+      </div>
+      <div class="horario-card reveal">
+        <div class="horario-row">
+          <span class="horario-label">Turno mañana</span>
+          <span class="horario-time">8:30 – 11:30</span>
+        </div>
+        <div class="horario-row">
+          <span class="horario-label">Turno tarde</span>
+          <span class="horario-time">15:30 – 20:30</span>
+        </div>
+        <p class="horario-note">Escríbenos por WhatsApp y te confirmamos el horario exacto de tu clase.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="formacion">
+  <div class="formacion reveal">
+    <div class="formacion-inner">
+      <div>
+        <span class="eyebrow">Para futuros profesores</span>
+        <h2>Fórmate como profesor de Pilates</h2>
+        <p class="lead">Si el movimiento es tu vocación, damos el siguiente paso contigo: un programa de formación de profesores con base técnica real, pensado para enseñar con criterio propio.</p>
+        <ul class="formacion-list">
+          <li>Formación práctica y técnica</li>
+          <li>Acompañamiento de profesores con experiencia</li>
+          <li>Preparación para dar tus propias clases</li>
+        </ul>
+        <a class="btn btn-cream" href="https://wa.me/34672244816?text=Hola%20Pilates%20Lab%2C%20quiero%20informaci%C3%B3n%20sobre%20la%20formaci%C3%B3n%20de%20profesores" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-1.5-.7-2.5-1.3-3.5-3-.3-.5.3-.4.8-1.4.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.9-2-.2-.5-.5-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.1 3 .1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2-.1-.2-.3-.2-.6-.4z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.1L2 22l5-1.3c1.4.8 3.1 1.3 4.9 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3C4.1 15.2 3.7 13.6 3.7 12c0-4.6 3.7-8.3 8.3-8.3s8.3 3.7 8.3 8.3-3.7 8.3-8.3 8.3z"/></svg>
+          Quiero información sobre la formación
+        </a>
+      </div>
+      <div class="formacion-visual">
+        <svg viewBox="0 0 360 360" fill="none">
+          <rect x="30" y="30" width="300" height="300" rx="40" fill="#fff" opacity="0.08"/>
+          <path d="M80 150l100-50 100 50-100 50-100-50z" stroke="#fff" stroke-width="4" fill="none" stroke-linejoin="round"/>
+          <path d="M110 165v45c0 18 32 32 70 32s70-14 70-32v-45" stroke="#fff" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path d="M280 150v55" stroke="#FFC64B" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="280" cy="215" r="7" fill="#FFC64B"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ubicacion" id="ubicacion">
+  <div class="container">
+    <div class="ubicacion-wrap">
+      <div class="ubicacion-map reveal">
+        <svg viewBox="0 0 380 380" fill="none">
+          <circle cx="190" cy="190" r="150" fill="#fff" opacity="0.12"/>
+          <path d="M190 100c-38 0-68 30-68 68 0 51 68 112 68 112s68-61 68-112c0-38-30-68-68-68z" fill="#fff"/>
+          <circle cx="190" cy="168" r="28" fill="#6B3FCF"/>
+        </svg>
+      </div>
+      <div class="ubicacion-info reveal">
+        <span class="eyebrow" style="color:var(--coral-dark);">Ubicación</span>
+        <h3>Te esperamos en La Laguna</h3>
+        <p>Un espacio pensado para moverte con calma, en pleno corazón de La Laguna.</p>
+        <div class="ubicacion-chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21c-4-4-8-8.5-8-13a8 8 0 0 1 16 0c0 4.5-4 9-8 13z"/><circle cx="12" cy="8" r="3"/></svg>
+          La Laguna
+        </div>
+        <p>¿Primera vez por aquí? Escríbenos por WhatsApp y te decimos exactamente cómo llegar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="cta-final reveal">
+    <div class="cta-blob b1"></div>
+    <div class="cta-blob b2"></div>
+    <h2>Tu primera clase empieza con un mensaje</h2>
+    <p>Cuéntanos qué buscas y te ayudamos a encontrar la clase perfecta para ti.</p>
+    <div class="cta-final-btns">
+      <a class="btn btn-coral" href="https://wa.me/34672244816?text=Hola%20Pilates%20Lab%2C%20quiero%20reservar%20mi%20primera%20clase" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-1.5-.7-2.5-1.3-3.5-3-.3-.5.3-.4.8-1.4.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.9-2-.2-.5-.5-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.1 3 .1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2-.1-.2-.3-.2-.6-.4z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.1L2 22l5-1.3c1.4.8 3.1 1.3 4.9 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3C4.1 15.2 3.7 13.6 3.7 12c0-4.6 3.7-8.3 8.3-8.3s8.3 3.7 8.3 8.3-3.7 8.3-8.3 8.3z"/></svg>
+        Escríbenos por WhatsApp
+      </a>
+      <a class="btn btn-yellow" href="https://www.instagram.com/pi_la_tes_lab/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        Síguenos en Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-col">
+        <div class="footer-logo">
+          <span class="logo-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="5" r="2.4"/><path d="M12 8v6M12 14l-4 6M12 14l4 6M8 11h8"/></svg>
+          </span>
+          Pilates Lab
+        </div>
+        <p>Pilates Máquina, Barre, Movimiento Acrobático y Formación de Profesores en La Laguna.</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://www.instagram.com/pi_la_tes_lab/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        </a>
+        <a href="https://wa.me/34672244816" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-1.5-.7-2.5-1.3-3.5-3-.3-.5.3-.4.8-1.4.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.9-2-.2-.5-.5-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.1 3 .1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2-.1-.2-.3-.2-.6-.4z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.1L2 22l5-1.3c1.4.8 3.1 1.3 4.9 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3C4.1 15.2 3.7 13.6 3.7 12c0-4.6 3.7-8.3 8.3-8.3s8.3 3.7 8.3 8.3-3.7 8.3-8.3 8.3z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Pilates Lab · La Laguna</span>
+      <span>Escríbenos: 672 244 816</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/34672244816?text=Hola%20Pilates%20Lab%2C%20quiero%20informaci%C3%B3n" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.6-.8-1.9-.9-.3-.1-.4-.1-.6.1-.2.3-.7.9-.8 1-.2.2-.3.2-.5.1-1.5-.7-2.5-1.3-3.5-3-.3-.5.3-.4.8-1.4.1-.2 0-.4 0-.5-.1-.1-.6-1.5-.9-2-.2-.5-.5-.5-.6-.5h-.5c-.2 0-.5.1-.7.3-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.1 3 .1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.6-.7 1.9-1.3.2-.6.2-1.1.2-1.2-.1-.2-.3-.2-.6-.4z"/><path d="M12 2C6.5 2 2 6.5 2 12c0 1.9.5 3.6 1.4 5.1L2 22l5-1.3c1.4.8 3.1 1.3 4.9 1.3 5.5 0 10-4.5 10-10S17.5 2 12 2zm0 18.3c-1.6 0-3.1-.4-4.4-1.2l-.3-.2-3 .8.8-2.9-.2-.3C4.1 15.2 3.7 13.6 3.7 12c0-4.6 3.7-8.3 8.3-8.3s8.3 3.7 8.3 8.3-3.7 8.3-8.3 8.3z"/></svg>
+</a>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => observer.observe(el));
+
+  const ribbon = document.getElementById('ribbon-path');
+  if (ribbon) {
+    const len = ribbon.getTotalLength();
+    ribbon.style.strokeDasharray = len;
+    ribbon.style.strokeDashoffset = len;
+    ribbon.animate(
+      [{ strokeDashoffset: len }, { strokeDashoffset: 0 }],
+      { duration: 2200, easing: 'cubic-bezier(.2,.8,.2,1)', fill: 'forwards' }
+    );
+  }
+</script>
+
+</body>
+</html>
