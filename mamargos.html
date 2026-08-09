@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>María Amargós · Wellnesspop</title>
+<meta name="description" content="María Amargós — Profesora de yoga y pilates. Wellnesspop para un bienestar consciente. Movimiento sin exigencia.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FFF4E6;
+    --pink:#FF5D8F;
+    --pink-soft:#FFD6E4;
+    --orange:#FF9B4A;
+    --yellow:#FFCE3F;
+    --teal:#18B6A3;
+    --teal-soft:#CFF3EC;
+    --purple:#5B3A80;
+    --ink:#2E1B3D;
+    --white:#FFFEFB;
+    --r-hero: 40px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Manrope',sans-serif;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{font-family:'Fredoka',sans-serif;}
+  .script{font-family:'Caveat',cursive;}
+  a{text-decoration:none;color:inherit;}
+  img{max-width:100%;display:block;}
+  ::selection{background:var(--pink);color:var(--white);}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible{
+    outline:3px solid var(--purple);
+    outline-offset:3px;
+    border-radius:6px;
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:18px 6vw;
+    background:rgba(255,244,230,0.82);
+    backdrop-filter:blur(10px);
+    border-bottom:2px solid transparent;
+    transition:border-color .3s ease, background .3s ease;
+  }
+  header.scrolled{border-bottom-color:rgba(91,58,128,0.12);}
+  .logo{
+    font-size:1.3rem;font-weight:600;color:var(--purple);
+    display:flex;align-items:center;gap:8px;
+    letter-spacing:.2px;
+  }
+  .logo .dot{
+    width:10px;height:10px;border-radius:50%;
+    background:var(--pink);
+    box-shadow:0 0 0 5px var(--pink-soft);
+  }
+  .nav-cta{
+    background:var(--purple);color:var(--white);
+    padding:11px 22px;border-radius:999px;font-weight:600;
+    font-family:'Fredoka',sans-serif;font-size:.95rem;
+    box-shadow:0 4px 0 #3d2657;
+    transition:transform .15s ease, box-shadow .15s ease;
+    display:inline-flex;align-items:center;gap:8px;
+  }
+  .nav-cta:hover{transform:translateY(-2px);box-shadow:0 6px 0 #3d2657;}
+  .nav-cta:active{transform:translateY(2px);box-shadow:0 2px 0 #3d2657;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;
+    padding:140px 6vw 100px;
+    overflow:hidden;
+  }
+  .blob{
+    position:absolute;
+    filter:blur(0px);
+    opacity:.9;
+    z-index:0;
+    animation:morph 9s ease-in-out infinite, drift 14s ease-in-out infinite;
+  }
+  @keyframes morph{
+    0%,100%{border-radius:42% 58% 65% 35% / 45% 40% 60% 55%;}
+    33%{border-radius:65% 35% 40% 60% / 55% 65% 35% 45%;}
+    66%{border-radius:35% 65% 55% 45% / 40% 55% 45% 60%;}
+  }
+  @keyframes drift{
+    0%,100%{transform:translate(0,0) rotate(0deg);}
+    50%{transform:translate(14px,-18px) rotate(8deg);}
+  }
+  .blob-1{width:340px;height:340px;background:var(--pink-soft);top:-60px;left:-90px;animation-delay:0s, 1s;}
+  .blob-2{width:260px;height:260px;background:var(--yellow);opacity:.55;bottom:-40px;right:-60px;animation-delay:2s, 0s;}
+  .blob-3{width:190px;height:190px;background:var(--teal-soft);top:20%;right:6%;animation-delay:1.2s, 2.4s;}
+
+  .eyebrow{
+    position:relative;z-index:2;
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--white);
+    padding:8px 18px;border-radius:999px;
+    font-weight:700;font-size:.78rem;letter-spacing:1.5px;
+    color:var(--pink);
+    box-shadow:0 3px 0 rgba(91,58,128,.15);
+    margin-bottom:26px;
+    text-transform:uppercase;
+  }
+  .hero h1{
+    position:relative;z-index:2;
+    font-size:clamp(3rem, 9vw, 6.4rem);
+    line-height:0.98;
+    font-weight:700;
+    color:var(--purple);
+    letter-spacing:-1px;
+  }
+  .hero h1 span{
+    display:block;
+    color:var(--pink);
+    -webkit-text-stroke:1.5px var(--purple);
+  }
+  .hero .tag{
+    position:relative;z-index:2;
+    margin-top:22px;
+    font-size:clamp(1.1rem,2.4vw,1.5rem);
+    max-width:640px;
+    color:var(--ink);
+    font-weight:500;
+  }
+  .hero .movimiento{
+    position:relative;z-index:2;
+    font-family:'Caveat',cursive;
+    font-size:clamp(2rem,4vw,2.8rem);
+    color:var(--teal);
+    margin-top:10px;
+    font-weight:700;
+  }
+  .hero-ctas{
+    position:relative;z-index:2;
+    display:flex;gap:16px;flex-wrap:wrap;justify-content:center;
+    margin-top:38px;
+  }
+  .btn{
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;font-size:1rem;
+    padding:15px 30px;border-radius:999px;
+    display:inline-flex;align-items:center;gap:10px;
+    transition:transform .15s ease, box-shadow .15s ease;
+    cursor:pointer;border:none;
+  }
+  .btn-primary{
+    background:var(--pink);color:var(--white);
+    box-shadow:0 5px 0 #c23e6b;
+  }
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 8px 0 #c23e6b;}
+  .btn-primary:active{transform:translateY(2px);box-shadow:0 2px 0 #c23e6b;}
+  .btn-outline{
+    background:var(--white);color:var(--purple);
+    box-shadow:0 5px 0 rgba(91,58,128,.25);
+  }
+  .btn-outline:hover{transform:translateY(-3px);box-shadow:0 8px 0 rgba(91,58,128,.25);}
+
+  /* ---------- MARQUEE (signature) ---------- */
+  .marquee-wrap{
+    position:relative;
+    background:var(--purple);
+    padding:16px 0;
+    overflow:hidden;
+    transform:rotate(-1.4deg);
+    margin:-30px 0 0;
+    z-index:5;
+  }
+  .marquee{
+    display:flex;
+    width:max-content;
+    animation:scroll 28s linear infinite;
+  }
+  @keyframes scroll{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+  .marquee span{
+    font-family:'Fredoka',sans-serif;
+    font-size:1.15rem;font-weight:600;
+    color:var(--yellow);
+    white-space:nowrap;
+    padding:0 26px;
+    display:flex;align-items:center;gap:26px;
+  }
+  .marquee span::after{content:"✦";color:var(--pink);}
+
+  /* ---------- SECTION SHARED ---------- */
+  section{
+    padding:110px 6vw;
+    position:relative;
+  }
+  .section-head{
+    max-width:640px;
+    margin:0 auto 60px;
+    text-align:center;
+  }
+  .section-head .kicker{
+    font-weight:700;color:var(--teal);
+    letter-spacing:1.5px;text-transform:uppercase;font-size:.8rem;
+    margin-bottom:12px;display:block;
+  }
+  .section-head h2{
+    font-size:clamp(2rem,4.4vw,3rem);
+    color:var(--purple);
+    line-height:1.1;
+  }
+  .reveal{
+    opacity:0;transform:translateY(28px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  /* ---------- SOBRE MI ---------- */
+  .about{
+    background:var(--white);
+    border-radius:36px;
+    max-width:1080px;margin:0 auto;
+    display:grid;grid-template-columns:0.85fr 1.15fr;
+    overflow:hidden;
+    box-shadow:0 10px 0 rgba(91,58,128,.08);
+  }
+  .about-visual{
+    background:linear-gradient(150deg, var(--pink) 0%, var(--orange) 100%);
+    position:relative;
+    display:flex;align-items:center;justify-content:center;
+    min-height:340px;
+    padding:40px;
+  }
+  .about-visual .badge{
+    background:var(--white);
+    color:var(--purple);
+    font-family:'Fredoka',sans-serif;
+    font-weight:600;
+    border-radius:24px;
+    padding:26px;
+    text-align:center;
+    box-shadow:0 8px 0 rgba(0,0,0,.1);
+    transform:rotate(-4deg);
+  }
+  .about-visual .badge .num{font-size:2.6rem;color:var(--pink);display:block;line-height:1;}
+  .about-visual .badge .lbl{font-size:.85rem;color:var(--ink);font-weight:500;}
+  .about-copy{padding:52px 48px;}
+  .about-copy h3{font-size:1.7rem;color:var(--purple);margin-bottom:18px;}
+  .about-copy p{font-size:1.05rem;line-height:1.7;color:#4a3a58;margin-bottom:16px;}
+  .about-copy p:last-child{margin-bottom:0;}
+  .about-copy strong{color:var(--pink);}
+
+  /* ---------- WELLNESSPOP PHILOSOPHY ---------- */
+  .philosophy{
+    background:var(--purple);
+    color:var(--white);
+    border-radius:36px;
+    max-width:1080px;margin:110px auto;
+    padding:70px 6vw;
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .philosophy::before, .philosophy::after{
+    content:"";position:absolute;border-radius:50%;
+    background:rgba(255,255,255,.06);
+  }
+  .philosophy::before{width:300px;height:300px;top:-120px;left:-100px;}
+  .philosophy::after{width:220px;height:220px;bottom:-100px;right:-60px;}
+  .philosophy h2{
+    font-size:clamp(1.8rem,4vw,2.6rem);
+    margin-bottom:20px;position:relative;z-index:2;
+  }
+  .philosophy .script{
+    font-size:clamp(1.6rem,3vw,2.1rem);
+    color:var(--yellow);
+    display:block;margin-bottom:26px;position:relative;z-index:2;
+  }
+  .philosophy p{
+    max-width:600px;margin:0 auto;
+    font-size:1.08rem;line-height:1.75;
+    color:#EADFF5;position:relative;z-index:2;
+  }
+  .pillars{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    gap:22px;margin-top:48px;position:relative;z-index:2;
+  }
+  .pillar{
+    background:rgba(255,255,255,.08);
+    border:1px solid rgba(255,255,255,.16);
+    border-radius:20px;padding:26px 20px;
+    text-align:left;
+  }
+  .pillar .ico{font-size:1.6rem;margin-bottom:10px;display:block;}
+  .pillar h4{font-family:'Fredoka',sans-serif;font-size:1.05rem;margin-bottom:8px;color:var(--yellow);}
+  .pillar p{font-size:.92rem;color:#E4D6F2;margin:0;max-width:none;}
+
+  /* ---------- CLASES ---------- */
+  .classes-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    gap:28px;max-width:1160px;margin:0 auto;
+  }
+  .class-card{
+    background:var(--white);
+    border-radius:28px;
+    padding:38px 30px;
+    position:relative;
+    box-shadow:0 8px 0 rgba(91,58,128,.08);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .class-card:hover{transform:translateY(-8px);box-shadow:0 14px 0 rgba(91,58,128,.1);}
+  .class-card .chip{
+    width:56px;height:56px;border-radius:18px;
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.6rem;margin-bottom:22px;
+  }
+  .chip-1{background:var(--pink-soft);}
+  .chip-2{background:var(--teal-soft);}
+  .chip-3{background:#FFE9B8;}
+  .class-card h3{font-size:1.35rem;color:var(--purple);margin-bottom:12px;}
+  .class-card p{color:#5a4a68;line-height:1.65;font-size:.98rem;}
+
+  /* ---------- PARA QUIEN ---------- */
+  .forwhom{
+    max-width:1080px;margin:0 auto;
+    display:grid;grid-template-columns:1fr 1fr;
+    gap:50px;align-items:center;
+  }
+  .forwhom-visual{
+    background:linear-gradient(160deg, var(--teal-soft), var(--yellow) 120%);
+    border-radius:32px;
+    min-height:380px;
+    display:flex;align-items:center;justify-content:center;
+    position:relative;
+    padding:30px;
+  }
+  .forwhom-visual .quote{
+    background:var(--white);
+    border-radius:22px;
+    padding:34px;
+    max-width:300px;
+    box-shadow:0 8px 0 rgba(0,0,0,.08);
+    transform:rotate(3deg);
+  }
+  .forwhom-visual .quote p{
+    font-family:'Caveat',cursive;
+    font-size:1.5rem;color:var(--purple);line-height:1.35;
+  }
+  .forwhom ul{list-style:none;}
+  .forwhom li{
+    display:flex;gap:16px;align-items:flex-start;
+    padding:16px 0;
+    border-bottom:1px solid rgba(91,58,128,.12);
+  }
+  .forwhom li:last-child{border-bottom:none;}
+  .forwhom li .mark{
+    flex-shrink:0;width:30px;height:30px;border-radius:50%;
+    background:var(--pink);color:var(--white);
+    display:flex;align-items:center;justify-content:center;
+    font-weight:700;font-size:.9rem;
+    font-family:'Fredoka',sans-serif;
+  }
+  .forwhom li p{color:#4a3a58;font-size:1.02rem;line-height:1.6;}
+  .forwhom li strong{color:var(--purple);}
+
+  /* ---------- CTA INSTAGRAM ---------- */
+  .ig-cta{
+    background:linear-gradient(120deg, var(--pink) 0%, var(--orange) 55%, var(--yellow) 100%);
+    border-radius:40px;
+    max-width:1080px;margin:0 auto;
+    padding:80px 6vw;
+    text-align:center;
+    color:var(--white);
+    position:relative;
+    overflow:hidden;
+  }
+  .ig-cta h2{
+    font-size:clamp(2rem,4.6vw,3.1rem);
+    margin-bottom:16px;
+    color:var(--white);
+  }
+  .ig-cta p{
+    max-width:520px;margin:0 auto 34px;
+    font-size:1.08rem;color:#FFF3E8;
+  }
+  .ig-btn{
+    background:var(--white);color:var(--pink);
+    font-family:'Fredoka',sans-serif;font-weight:700;
+    padding:18px 38px;border-radius:999px;
+    display:inline-flex;align-items:center;gap:12px;
+    font-size:1.1rem;
+    box-shadow:0 6px 0 rgba(0,0,0,.15);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .ig-btn:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 9px 0 rgba(0,0,0,.15);}
+  .ig-btn:active{transform:translateY(2px);box-shadow:0 2px 0 rgba(0,0,0,.15);}
+  .ig-handle{
+    margin-top:18px;font-size:.95rem;color:rgba(255,255,255,.9);
+    font-weight:600;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding:60px 6vw 40px;
+    text-align:center;
+  }
+  footer .logo{justify-content:center;margin-bottom:18px;}
+  footer .foot-links{
+    display:flex;gap:22px;justify-content:center;margin-bottom:22px;
+    flex-wrap:wrap;
+  }
+  footer .foot-links a{
+    font-weight:600;color:var(--purple);
+    padding:8px 4px;border-bottom:2px solid transparent;
+    transition:border-color .2s ease;
+  }
+  footer .foot-links a:hover{border-color:var(--pink);}
+  footer .fine{color:#8a7896;font-size:.85rem;}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:900px){
+    .about{grid-template-columns:1fr;}
+    .about-visual{min-height:220px;}
+    .pillars{grid-template-columns:1fr;}
+    .classes-grid{grid-template-columns:1fr;}
+    .forwhom{grid-template-columns:1fr;}
+    .forwhom-visual{min-height:220px;order:2;}
+  }
+  @media (max-width:560px){
+    section{padding:80px 6vw;}
+    .about-copy{padding:34px 26px;}
+    .philosophy{padding:50px 6vw;}
+    header{padding:16px 5vw;}
+    .nav-cta span.full{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <a href="#" class="logo"><span class="dot"></span>María Amargós</a>
+  <a href="https://www.instagram.com/mariaamargos/" target="_blank" rel="noopener" class="nav-cta">
+    <span class="full">Sígueme en</span> Instagram
+  </a>
+</header>
+
+<section class="hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <span class="eyebrow">✦ Wellnesspop ✦</span>
+  <h1>María<span>Amargós</span></h1>
+  <p class="tag">Profesora de yoga y pilates. Madre de mellizos. Wellnesspop para un bienestar consciente.</p>
+  <p class="movimiento">"Movimiento sin exigencia"</p>
+
+  <div class="hero-ctas">
+    <a href="https://www.instagram.com/mariaamargos/" target="_blank" rel="noopener" class="btn btn-primary">
+      📸 Ver Instagram
+    </a>
+    <a href="#clases" class="btn btn-outline">
+      🧘 Descubre las clases
+    </a>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee" id="marqueeTrack">
+    <span>Sin exigencia</span><span>Con consciencia</span><span>A tu ritmo</span><span>Wellnesspop</span>
+    <span>Sin exigencia</span><span>Con consciencia</span><span>A tu ritmo</span><span>Wellnesspop</span>
+  </div>
+</div>
+
+<section id="sobre-mi">
+  <div class="section-head reveal">
+    <span class="kicker">Sobre mí</span>
+    <h2>Yoga, pilates y maternidad, desde la misma calma</h2>
+  </div>
+
+  <div class="about reveal">
+    <div class="about-visual">
+      <div class="badge">
+        <span class="num">🌿</span>
+        <span class="lbl">Bienestar<br>consciente</span>
+      </div>
+    </div>
+    <div class="about-copy">
+      <h3>Hola, soy María</h3>
+      <p>Soy profesora de yoga y pilates, y también madre de mellizos. Sé lo que es buscar un ratito de calma entre pañales, horarios imposibles y una lista de tareas que nunca acaba — y sé lo bien que sienta encontrarlo.</p>
+      <p>Por eso construyo mis clases desde la <strong>experiencia real</strong>, no desde la exigencia: cada cuerpo, cada etapa y cada momento del día tienen su propio ritmo, y mi trabajo es ayudarte a encontrar el tuyo.</p>
+      <p>Nada de posturas perfectas ni comparaciones. Solo tú, tu respiración y un espacio seguro para moverte.</p>
+    </div>
+  </div>
+</section>
+
+<section id="wellnesspop">
+  <div class="philosophy reveal">
+    <h2>¿Qué es Wellnesspop?</h2>
+    <span class="script">Bienestar sin filtros, con color y con calma</span>
+    <p>Wellnesspop es mi manera de entender el bienestar: consciente pero cercana, profunda pero divertida. Une la técnica del yoga y el pilates con una actitud amable hacia una misma — sin metas imposibles, sin cuerpos ideales, sin prisa.</p>
+
+    <div class="pillars">
+      <div class="pillar">
+        <span class="ico">🌸</span>
+        <h4>Consciente</h4>
+        <p>Cada clase parte de escuchar el cuerpo, no de forzarlo.</p>
+      </div>
+      <div class="pillar">
+        <span class="ico">🎨</span>
+        <h4>Pop</h4>
+        <p>Bienestar con energía, color y ganas de disfrutar el proceso.</p>
+      </div>
+      <div class="pillar">
+        <span class="ico">🕊️</span>
+        <h4>Sin exigencia</h4>
+        <p>Aquí no se compite ni se persigue la perfección. Se practica.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="clases">
+  <div class="section-head reveal">
+    <span class="kicker">Clases</span>
+    <h2>Encuentra el espacio que necesita tu cuerpo hoy</h2>
+  </div>
+
+  <div class="classes-grid">
+    <div class="class-card reveal">
+      <div class="chip chip-1">🧘‍♀️</div>
+      <h3>Yoga</h3>
+      <p>Práctica consciente que combina movimiento, respiración y pausa. Ideal para soltar tensión y reconectar contigo, estés donde estés en tu día.</p>
+    </div>
+    <div class="class-card reveal">
+      <div class="chip chip-2">🤸‍♀️</div>
+      <h3>Pilates</h3>
+      <p>Trabajo de fuerza, control y postura desde el respeto al cuerpo. Sesiones pensadas para sostenerte, no para agotarte.</p>
+    </div>
+    <div class="class-card reveal">
+      <div class="chip chip-3">✨</div>
+      <h3>Wellnesspop</h3>
+      <p>Encuentros donde el movimiento se mezcla con bienestar consciente: menos exigencia, más presencia y mucho espacio para ti.</p>
+    </div>
+  </div>
+</section>
+
+<section id="para-quien">
+  <div class="section-head reveal">
+    <span class="kicker">¿Es para ti?</span>
+    <h2>Un espacio pensado para acompañarte, no para exigirte</h2>
+  </div>
+
+  <div class="forwhom">
+    <div class="forwhom-visual reveal">
+      <div class="quote">
+        <p>"El movimiento sin exigencia también es movimiento."</p>
+      </div>
+    </div>
+    <ul class="reveal">
+      <li>
+        <span class="mark">1</span>
+        <p><strong>Si eres madre</strong> y buscas un ratito solo tuyo, sin culpa ni prisa.</p>
+      </li>
+      <li>
+        <span class="mark">2</span>
+        <p><strong>Si empiezas de cero</strong> y quieres moverte sin compararte con nadie.</p>
+      </li>
+      <li>
+        <span class="mark">3</span>
+        <p><strong>Si vuelves</strong> después de una pausa y necesitas ir despacio.</p>
+      </li>
+      <li>
+        <span class="mark">4</span>
+        <p><strong>Si simplemente buscas</strong> un espacio consciente en medio del ruido diario.</p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section id="contacto">
+  <div class="ig-cta reveal">
+    <h2>Sigamos en contacto</h2>
+    <p>Clases, reflexiones y el día a día de Wellnesspop, contado sin filtros. Te espero en Instagram.</p>
+    <a href="https://www.instagram.com/mariaamargos/" target="_blank" rel="noopener" class="ig-btn">
+      📸 @mariaamargos
+    </a>
+    <div class="ig-handle">instagram.com/mariaamargos</div>
+  </div>
+</section>
+
+<footer>
+  <a href="#" class="logo"><span class="dot"></span>María Amargós</a>
+  <div class="foot-links">
+    <a href="#sobre-mi">Sobre mí</a>
+    <a href="#wellnesspop">Wellnesspop</a>
+    <a href="#clases">Clases</a>
+    <a href="https://www.instagram.com/mariaamargos/" target="_blank" rel="noopener">Instagram</a>
+  </div>
+  <p class="fine">Yoga · Pilates · Wellnesspop — Movimiento sin exigencia</p>
+</footer>
+
+<script>
+  // Header scroll state
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 20);
+  }, { passive: true });
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
