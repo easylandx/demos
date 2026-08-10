@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sara Gil Fitness | Pilates, Hipopresivos y Entrenamiento Funcional en Valdebebas</title>
+<meta name="description" content="Entrenadora personal y de grupos reducidos en Valdebebas, Madrid. Pilates, Hipopresivos y Entrenamiento Funcional a tu medida.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal:#0E4A47;
+    --teal-deep:#0A3634;
+    --coral:#FF6E4E;
+    --coral-deep:#E8562F;
+    --cream:#FFF6EC;
+    --gold:#D4AF37;
+    --gold-light:#F0C040;
+    --ink:#17221F;
+    --white:#FFFFFF;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Work Sans',sans-serif;
+    color:var(--ink);
+    background:var(--cream);
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  a{text-decoration:none;color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+  .eyebrow{
+    font-size:0.78rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    font-weight:600;
+  }
+
+  /* NAV */
+  nav{
+    position:fixed;
+    top:0;left:0;right:0;
+    z-index:100;
+    background:rgba(14,74,71,0.94);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(212,175,55,0.25);
+  }
+  nav .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height:76px;
+  }
+  .logo{
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    font-size:1.3rem;
+    color:var(--cream);
+  }
+  .logo span{color:var(--gold-light);}
+  .nav-links{
+    display:flex;
+    gap:34px;
+    list-style:none;
+  }
+  .nav-links a{
+    color:var(--cream);
+    font-size:0.9rem;
+    font-weight:500;
+    opacity:0.85;
+    transition:opacity .2s, color .2s;
+  }
+  .nav-links a:hover{opacity:1;color:var(--gold-light);}
+  .nav-cta{
+    background:var(--coral);
+    color:var(--white);
+    padding:10px 22px;
+    border-radius:100px;
+    font-weight:600;
+    font-size:0.88rem;
+    transition:transform .2s, background .2s;
+  }
+  .nav-cta:hover{background:var(--coral-deep);transform:translateY(-1px);}
+  .nav-toggle{display:none;background:none;border:none;color:var(--cream);font-size:1.6rem;cursor:pointer;}
+
+  @media(max-width:860px){
+    .nav-links{
+      position:absolute;
+      top:76px;left:0;right:0;
+      background:var(--teal-deep);
+      flex-direction:column;
+      gap:0;
+      max-height:0;
+      overflow:hidden;
+      transition:max-height .3s ease;
+    }
+    .nav-links.open{max-height:320px;}
+    .nav-links a{
+      padding:16px 32px;
+      display:block;
+      width:100%;
+      border-top:1px solid rgba(255,255,255,0.08);
+    }
+    .nav-cta{display:none;}
+    .nav-toggle{display:block;}
+  }
+
+  /* HERO */
+  .hero{
+    background:var(--teal);
+    color:var(--cream);
+    padding:150px 0 100px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero .wrap{
+    display:grid;
+    grid-template-columns:1.15fr 0.85fr;
+    gap:60px;
+    align-items:center;
+  }
+  .hero .eyebrow{color:var(--gold-light);margin-bottom:18px;}
+  .hero h1{
+    font-size:clamp(2.6rem,4.6vw,4rem);
+    line-height:1.04;
+    margin-bottom:22px;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--coral);
+  }
+  .hero p.lead{
+    font-size:1.12rem;
+    line-height:1.6;
+    max-width:480px;
+    color:rgba(255,246,236,0.86);
+    margin-bottom:34px;
+  }
+  .hero-ctas{display:flex;gap:16px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    padding:15px 30px;
+    border-radius:100px;
+    font-weight:600;
+    font-size:0.95rem;
+    transition:transform .2s, box-shadow .2s, background .2s;
+  }
+  .btn-primary{
+    background:var(--coral);
+    color:var(--white);
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(255,110,78,0.35);}
+  .btn-outline{
+    border:1.5px solid rgba(255,246,236,0.4);
+    color:var(--cream);
+  }
+  .btn-outline:hover{border-color:var(--gold-light);color:var(--gold-light);}
+
+  /* Breathing circle - signature element */
+  .breath-wrap{
+    position:relative;
+    height:380px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .breath-ring{
+    position:absolute;
+    border-radius:50%;
+    border:1.5px solid rgba(212,175,55,0.35);
+  }
+  .r1{width:340px;height:340px;animation:pulse 6s ease-in-out infinite;}
+  .r2{width:260px;height:260px;animation:pulse 6s ease-in-out infinite .4s;}
+  .r3{width:180px;height:180px;background:var(--coral);opacity:0.9;animation:pulse 6s ease-in-out infinite .8s;}
+  .breath-label{
+    position:relative;
+    z-index:2;
+    text-align:center;
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    font-size:1.05rem;
+    color:var(--cream);
+  }
+  @keyframes pulse{
+    0%,100%{transform:scale(0.92);}
+    50%{transform:scale(1.05);}
+  }
+  @media(prefers-reduced-motion:reduce){
+    .breath-ring{animation:none;}
+  }
+
+  @media(max-width:900px){
+    .hero .wrap{grid-template-columns:1fr;text-align:left;}
+    .breath-wrap{height:260px;order:-1;}
+    .r1{width:220px;height:220px;}
+    .r2{width:170px;height:170px;}
+    .r3{width:120px;height:120px;}
+  }
+
+  /* SECTION HEADERS */
+  .section-head{
+    max-width:640px;
+    margin-bottom:56px;
+  }
+  .section-head .eyebrow{color:var(--coral-deep);margin-bottom:14px;}
+  .section-head h2{
+    font-size:clamp(1.9rem,3.4vw,2.6rem);
+    line-height:1.12;
+    color:var(--teal-deep);
+  }
+
+  /* SERVICES */
+  .services{
+    background:var(--cream);
+    padding:110px 0;
+  }
+  .service-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:2px;
+    background:rgba(23,34,31,0.08);
+    border:1px solid rgba(23,34,31,0.08);
+  }
+  .service-card{
+    background:var(--cream);
+    padding:40px 34px;
+    transition:background .25s, transform .25s;
+    opacity:0;
+    transform:translateY(24px);
+  }
+  .service-card.in{opacity:1;transform:translateY(0);}
+  .service-card:hover{background:var(--white);}
+  .service-num{
+    font-family:'Fraunces',serif;
+    font-style:italic;
+    color:var(--gold);
+    font-size:0.95rem;
+    margin-bottom:18px;
+    display:block;
+  }
+  .service-card h3{
+    font-size:1.3rem;
+    color:var(--teal-deep);
+    margin-bottom:12px;
+  }
+  .service-card p{
+    font-size:0.94rem;
+    line-height:1.6;
+    color:#4A544F;
+  }
+  @media(max-width:860px){
+    .service-grid{grid-template-columns:1fr;}
+  }
+
+  /* ABOUT */
+  .about{
+    background:var(--coral);
+    color:var(--white);
+    padding:110px 0;
+  }
+  .about .wrap{
+    display:grid;
+    grid-template-columns:0.85fr 1.15fr;
+    gap:64px;
+    align-items:center;
+  }
+  .about-figure{
+    aspect-ratio:4/5;
+    border-radius:14px;
+    background:var(--teal);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .about-figure svg{width:62%;height:62%;}
+  .about .eyebrow{color:var(--teal-deep);margin-bottom:14px;}
+  .about h2{
+    color:var(--white);
+    font-size:clamp(1.9rem,3.2vw,2.5rem);
+    margin-bottom:20px;
+    line-height:1.12;
+  }
+  .about p{
+    line-height:1.7;
+    font-size:1.02rem;
+    color:rgba(255,255,255,0.92);
+    margin-bottom:16px;
+    max-width:520px;
+  }
+  .about-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:26px;
+  }
+  .about-tags span{
+    border:1px solid rgba(255,255,255,0.5);
+    padding:8px 16px;
+    border-radius:100px;
+    font-size:0.82rem;
+    font-weight:500;
+  }
+  @media(max-width:860px){
+    .about .wrap{grid-template-columns:1fr;}
+    .about-figure{max-width:280px;}
+  }
+
+  /* WHY / VALUES */
+  .why{
+    background:var(--teal-deep);
+    color:var(--cream);
+    padding:100px 0;
+  }
+  .why .section-head .eyebrow{color:var(--gold-light);}
+  .why .section-head h2{color:var(--cream);}
+  .why-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:36px;
+  }
+  .why-item{
+    border-top:2px solid var(--gold);
+    padding-top:20px;
+  }
+  .why-item h4{
+    font-family:'Fraunces',serif;
+    font-size:1.1rem;
+    margin-bottom:10px;
+    color:var(--gold-light);
+  }
+  .why-item p{
+    font-size:0.9rem;
+    line-height:1.6;
+    color:rgba(255,246,236,0.78);
+  }
+  @media(max-width:860px){
+    .why-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media(max-width:520px){
+    .why-grid{grid-template-columns:1fr;}
+  }
+
+  /* LOCATION */
+  .location{
+    background:var(--cream);
+    padding:110px 0;
+  }
+  .loc-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:stretch;
+  }
+  .loc-card{
+    background:var(--teal);
+    color:var(--cream);
+    border-radius:16px;
+    padding:44px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+  .loc-card .eyebrow{color:var(--gold-light);margin-bottom:16px;}
+  .loc-card h3{font-size:1.6rem;margin-bottom:18px;}
+  .loc-row{
+    display:flex;
+    gap:14px;
+    margin-bottom:16px;
+    font-size:0.96rem;
+    line-height:1.55;
+    color:rgba(255,246,236,0.9);
+  }
+  .loc-row b{color:var(--cream);}
+  .map-embed{
+    border-radius:16px;
+    overflow:hidden;
+    min-height:340px;
+    border:1px solid rgba(23,34,31,0.1);
+  }
+  .map-embed iframe{width:100%;height:100%;min-height:340px;border:0;}
+  @media(max-width:860px){
+    .loc-grid{grid-template-columns:1fr;}
+  }
+
+  /* CTA BAND */
+  .cta-band{
+    background:var(--gold);
+    color:var(--teal-deep);
+    padding:64px 0;
+    text-align:center;
+  }
+  .cta-band h2{
+    font-size:clamp(1.7rem,3vw,2.3rem);
+    margin-bottom:22px;
+  }
+  .cta-band .btn-primary{background:var(--teal-deep);color:var(--cream);}
+  .cta-band .btn-primary:hover{background:var(--teal);}
+
+  /* FOOTER */
+  footer{
+    background:var(--teal-deep);
+    color:rgba(255,246,236,0.7);
+    padding:50px 0 36px;
+  }
+  footer .wrap{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:20px;
+  }
+  .foot-logo{
+    font-family:'Fraunces',serif;
+    color:var(--cream);
+    font-size:1.15rem;
+    font-weight:700;
+  }
+  .foot-ig{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:var(--gold-light);
+    font-weight:600;
+    font-size:0.92rem;
+    transition:opacity .2s;
+  }
+  .foot-ig:hover{opacity:0.75;}
+  footer small{display:block;margin-top:26px;text-align:center;font-size:0.78rem;opacity:0.6;}
+
+  /* FLOATING BUTTON */
+  .float-ig{
+    position:fixed;
+    bottom:26px;
+    right:26px;
+    z-index:200;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:var(--coral);
+    color:var(--white);
+    padding:14px 22px;
+    border-radius:100px;
+    font-weight:600;
+    font-size:0.9rem;
+    box-shadow:0 12px 28px rgba(0,0,0,0.25);
+    transition:transform .2s;
+  }
+  .float-ig:hover{transform:translateY(-3px);}
+  @media(max-width:520px){
+    .float-ig span{display:none;}
+    .float-ig{padding:14px;}
+  }
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#top" class="logo">Sara Gil <span>Fitness</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#sara">Sobre mí</a></li>
+      <li><a href="#ubicacion">Ubicación</a></li>
+      <li><a href="https://www.instagram.com/saragil_fitness/" target="_blank" rel="noopener">Instagram</a></li>
+    </ul>
+    <a class="nav-cta" href="https://www.instagram.com/saragil_fitness/" target="_blank" rel="noopener">Reserva tu clase</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">☰</button>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Entrenadora personal · Valdebebas, Madrid</p>
+      <h1>Entrena con <em>método</em>,<br>respira con propósito.</h1>
+      <p class="lead">Sara Gil del Saz es entrenadora personal y de grupos reducidos, especializada en Pilates, Hipopresivos y Entrenamiento Funcional. Sesiones a tu medida, en un espacio cercano y sin prisas.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="https://www.instagram.com/saragil_fitness/" target="_blank" rel="noopener">Reservar primera clase</a>
+        <a class="btn btn-outline" href="#servicios">Ver especialidades</a>
+      </div>
+    </div>
+    <div class="breath-wrap">
+      <div class="breath-ring r1"></div>
+      <div class="breath-ring r2"></div>
+      <div class="breath-ring r3"></div>
+      <p class="breath-label">inhala&nbsp;·&nbsp;exhala<br>trabaja el centro</p>
+    </div>
+  </div>
+</header>
+
+<section class="services" id="servicios">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Especialidades</p>
+      <h2>Cada método tiene su momento en tu semana.</h2>
+    </div>
+    <div class="service-grid">
+      <div class="service-card reveal">
+        <span class="service-num">Pilates</span>
+        <h3>Pilates mat y suelo</h3>
+        <p>Control postural, movilidad y fuerza del centro, adaptado a tu nivel desde la primera sesión.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-num">Hipopresivos</span>
+        <h3>Gimnasia hipopresiva</h3>
+        <p>Técnicas de respiración y activación abdominal profunda para fortalecer el suelo pélvico y la faja abdominal.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-num">Funcional</span>
+        <h3>Entrenamiento funcional</h3>
+        <p>Movimientos aplicados al día a día: fuerza, estabilidad y energía real, sin máquinas complicadas.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-num">Personal</span>
+        <h3>Entrenamiento personal</h3>
+        <p>Sesiones 1 a 1 con seguimiento cercano de objetivos, técnica y progreso.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-num">Grupos</span>
+        <h3>Grupos reducidos</h3>
+        <p>La motivación del grupo con la atención del entrenamiento individual. Máximo cuidado, mínimo grupo.</p>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-num">A medida</span>
+        <h3>Planes personalizados</h3>
+        <p>Combina especialidades según tu objetivo: tonificar, recuperar o simplemente moverte mejor.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="sara">
+  <div class="wrap">
+    <div class="about-figure">
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="32" r="16" stroke="#FFF6EC" stroke-width="2"/>
+        <path d="M20 90c2-22 14-34 30-34s28 12 30 34" stroke="#FFF6EC" stroke-width="2" stroke-linecap="round"/>
+        <path d="M35 58c4 8 10 12 15 12s11-4 15-12" stroke="#D4AF37" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div>
+      <p class="eyebrow">Sobre Sara</p>
+      <h2>Sara Gil del Saz</h2>
+      <p>Entrenadora personal y de grupos reducidos, especialista en Pilates, Hipopresivos y Entrenamiento Funcional. Un método propio que une técnica, respiración y constancia para que cada sesión tenga sentido.</p>
+      <p>Formación continua, atención cercana y sesiones pensadas para tu cuerpo, no para una plantilla genérica.</p>
+      <div class="about-tags">
+        <span>Pilates</span>
+        <span>Hipopresivos</span>
+        <span>Entrenamiento funcional</span>
+        <span>Grupos reducidos</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="why">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Por qué entrenar aquí</p>
+      <h2>Un método pensado para durar, no para una temporada.</h2>
+    </div>
+    <div class="why-grid">
+      <div class="why-item reveal">
+        <h4>Cercanía real</h4>
+        <p>Grupos reducidos y sesiones personales: Sara conoce tu progreso, no solo tu nombre.</p>
+      </div>
+      <div class="why-item reveal">
+        <h4>Método combinado</h4>
+        <p>Pilates, hipopresivos y funcional trabajando juntos hacia un mismo objetivo.</p>
+      </div>
+      <div class="why-item reveal">
+        <h4>Ubicación cómoda</h4>
+        <p>En pleno Valdebebas, fácil de incorporar a tu rutina semanal.</p>
+      </div>
+      <div class="why-item reveal">
+        <h4>Progreso medible</h4>
+        <p>Seguimiento continuo de técnica, fuerza y movilidad sesión a sesión.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="location" id="ubicacion">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Ubicación</p>
+      <h2>Te espero en Valdebebas.</h2>
+    </div>
+    <div class="loc-grid">
+      <div class="loc-card">
+        <p class="eyebrow">Dirección</p>
+        <h3>Sara Gil Fitness</h3>
+        <div class="loc-row"><b>📍</b><span>C/ Jordi Solé Turá 6, local 7.<br>Valdebebas, Madrid, España 28055</span></div>
+        <div class="loc-row"><b>📷</b><span><a href="https://www.instagram.com/saragil_fitness/" target="_blank" rel="noopener" style="color:var(--gold-light);">@saragil_fitness</a></span></div>
+        <a class="btn btn-primary" style="margin-top:10px;align-self:flex-start;" href="https://www.instagram.com/saragil_fitness/" target="_blank" rel="noopener">Escríbeme por Instagram</a>
+      </div>
+      <div class="map-embed reveal">
+        <iframe src="https://www.google.com/maps?q=C%2F+Jordi+Sol%C3%A9+Tur%C3%A1+6%2C+Valdebebas%2C+Madrid%2C+28055&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Tu primera sesión empieza con un mensaje.</h2>
+    <a class="btn btn-primary" href="https://www.instagram.com/saragil_fitness/" target="_blank" rel="noopener">Reservar por Instagram</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span class="foot-logo">Sara Gil Fitness</span>
+    <a class="foot-ig" href="https://www.instagram.com/saragil_fitness/" target="_blank" rel="noopener">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="6" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor"/></svg>
+      @saragil_fitness
+    </a>
+  </div>
+  <small>C/ Jordi Solé Turá 6, local 7. Valdebebas, Madrid · Pilates · Hipopresivos · Entrenamiento Funcional</small>
+</footer>
+
+<a class="float-ig" href="https://www.instagram.com/saragil_fitness/" target="_blank" rel="noopener">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="2" y="2" width="20" height="20" rx="6" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor"/></svg>
+  <span>Sígueme</span>
+</a>
+
+<script>
+  // mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  // scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold:0.15});
+  document.querySelectorAll('.reveal, .service-card').forEach(el => io.observe(el));
+</script>
+</body>
+</html>
