@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Silvia Santos · Centro de Estética | San Cristóbal de La Laguna</title>
+<meta name="description" content="Belleza y ciencia se unen. Tratamientos faciales y corporales, diagnóstico, manicura y pedicura, depilación láser e hilo en San Cristóbal de La Laguna.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --teal:#0B3D3A;
+    --teal-deep:#082B29;
+    --blush:#F4DACB;
+    --blush-deep:#EEC9B4;
+    --gold:#C9A84C;
+    --gold-light:#F0C040;
+    --ink:#0E2320;
+    --paper:#FBF3EC;
+    --line: rgba(14,35,32,0.14);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:'Space Grotesk', sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    line-height:1.05;
+  }
+
+  a{text-decoration:none;color:inherit;}
+  img{max-width:100%;display:block;}
+
+  .eyebrow{
+    font-size:0.72rem;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    font-weight:600;
+    color:var(--gold);
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position:fixed;
+    top:0;left:0;right:0;
+    z-index:100;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:22px 6%;
+    background:rgba(11,61,58,0.92);
+    backdrop-filter:blur(6px);
+    color:var(--paper);
+  }
+  .nav-logo{
+    font-family:'Fraunces', serif;
+    font-size:1.25rem;
+    letter-spacing:0.01em;
+  }
+  .nav-logo span{color:var(--gold-light);}
+  .nav-cta{
+    border:1px solid var(--gold);
+    padding:9px 20px;
+    border-radius:100px;
+    font-size:0.82rem;
+    font-weight:600;
+    letter-spacing:0.02em;
+    transition:background .25s ease, color .25s ease;
+  }
+  .nav-cta:hover{background:var(--gold);color:var(--teal-deep);}
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    position:relative;
+    min-height:100svh;
+    display:flex;
+    align-items:center;
+    background:var(--teal);
+    color:var(--paper);
+    overflow:hidden;
+    padding:120px 6% 80px;
+  }
+
+  .scan-line{
+    position:absolute;
+    top:0; left:-10%;
+    width:2px;
+    height:100%;
+    background:linear-gradient(180deg, transparent, var(--gold-light), transparent);
+    box-shadow:0 0 24px 2px rgba(240,192,64,0.6);
+    animation: sweep 5s ease-in-out infinite;
+    opacity:0.85;
+  }
+  @keyframes sweep{
+    0%{left:-5%;}
+    50%{left:105%;}
+    100%{left:-5%;}
+  }
+
+  .hero-grid{
+    position:absolute;
+    inset:0;
+    background-image:
+      linear-gradient(rgba(244,218,203,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(244,218,203,0.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 70% 60% at 60% 40%, black, transparent);
+  }
+
+  .hero-content{
+    position:relative;
+    z-index:2;
+    max-width:760px;
+  }
+
+  .hero h1{
+    font-size:clamp(2.6rem, 6vw, 4.6rem);
+    margin:18px 0 26px;
+    font-weight:500;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--gold-light);
+    font-weight:400;
+  }
+
+  .hero p.lead{
+    font-size:1.08rem;
+    max-width:520px;
+    line-height:1.6;
+    color:rgba(251,243,236,0.82);
+    margin-bottom:38px;
+  }
+
+  .hero-actions{
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+
+  .btn-solid{
+    background:var(--gold);
+    color:var(--teal-deep);
+    padding:15px 30px;
+    border-radius:100px;
+    font-weight:600;
+    font-size:0.92rem;
+    letter-spacing:0.01em;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    transition:transform .2s ease, background .2s ease;
+  }
+  .btn-solid:hover{background:var(--gold-light); transform:translateY(-2px);}
+
+  .btn-outline{
+    border:1px solid rgba(251,243,236,0.4);
+    color:var(--paper);
+    padding:15px 30px;
+    border-radius:100px;
+    font-weight:600;
+    font-size:0.92rem;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    transition:border-color .2s ease, background .2s ease;
+  }
+  .btn-outline:hover{border-color:var(--gold-light); background:rgba(251,243,236,0.06);}
+
+  .hero-address{
+    position:absolute;
+    bottom:34px;
+    right:6%;
+    z-index:2;
+    text-align:right;
+    font-size:0.8rem;
+    color:rgba(251,243,236,0.65);
+    max-width:220px;
+  }
+
+  /* ---------- REVEAL ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .reveal.visible{opacity:1; transform:translateY(0);}
+
+  /* ---------- INTRO / PHILOSOPHY ---------- */
+  .intro{
+    background:var(--paper);
+    padding:110px 6%;
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:60px;
+    align-items:start;
+  }
+  .intro h2{
+    font-size:clamp(1.9rem,3.4vw,2.6rem);
+    color:var(--teal);
+  }
+  .intro-copy p{
+    font-size:1.02rem;
+    line-height:1.75;
+    color:rgba(14,35,32,0.78);
+    margin-bottom:18px;
+    max-width:560px;
+  }
+  .intro-copy p:last-child{margin-bottom:0;}
+  .intro-stat{
+    margin-top:34px;
+    display:flex;
+    gap:36px;
+  }
+  .intro-stat div span{
+    display:block;
+    font-family:'Fraunces', serif;
+    font-size:2.1rem;
+    color:var(--gold);
+  }
+  .intro-stat div small{
+    font-size:0.72rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:rgba(14,35,32,0.55);
+  }
+
+  /* ---------- SERVICES ---------- */
+  .services{
+    background:var(--teal-deep);
+    color:var(--paper);
+    padding:110px 6%;
+  }
+  .services-head{
+    max-width:600px;
+    margin-bottom:60px;
+  }
+  .services-head h2{
+    font-size:clamp(2rem,3.6vw,2.8rem);
+    margin-top:14px;
+  }
+
+  .service-list{
+    display:flex;
+    flex-direction:column;
+    border-top:1px solid rgba(251,243,236,0.16);
+  }
+  .service-row{
+    display:grid;
+    grid-template-columns:60px 1.1fr 1.4fr auto;
+    gap:24px;
+    align-items:center;
+    padding:30px 0;
+    border-bottom:1px solid rgba(251,243,236,0.16);
+    transition:background .3s ease;
+  }
+  .service-row:hover{background:rgba(251,243,236,0.04);}
+  .service-num{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    color:var(--gold-light);
+    font-size:1rem;
+    opacity:0.7;
+  }
+  .service-row h3{
+    font-size:1.4rem;
+    font-weight:500;
+  }
+  .service-row p{
+    font-size:0.92rem;
+    color:rgba(251,243,236,0.68);
+    line-height:1.6;
+    max-width:420px;
+  }
+  .service-arrow{
+    width:38px;height:38px;
+    border-radius:50%;
+    border:1px solid rgba(251,243,236,0.3);
+    display:flex;align-items:center;justify-content:center;
+    font-size:1rem;
+    color:var(--gold-light);
+    flex-shrink:0;
+  }
+
+  @media (max-width:820px){
+    .service-row{grid-template-columns:40px 1fr; row-gap:8px;}
+    .service-arrow{display:none;}
+    .service-row p{grid-column:2;}
+  }
+
+  /* ---------- WHY / DUALITY BAND ---------- */
+  .duality{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    min-height:560px;
+  }
+  .duality-panel{
+    padding:80px 7%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+  }
+  .duality-panel.science{
+    background:var(--teal);
+    color:var(--paper);
+  }
+  .duality-panel.beauty{
+    background:var(--blush);
+    color:var(--teal-deep);
+  }
+  .duality-panel h3{
+    font-size:1.9rem;
+    margin:14px 0 16px;
+  }
+  .duality-panel p{
+    font-size:0.98rem;
+    line-height:1.7;
+    max-width:400px;
+    opacity:0.85;
+  }
+  .duality-panel .eyebrow.on-light{color:#8a6a2e;}
+
+  @media (max-width:820px){
+    .duality{grid-template-columns:1fr;}
+  }
+
+  /* ---------- LOCATION ---------- */
+  .location{
+    background:var(--blush-deep);
+    padding:100px 6%;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:center;
+  }
+  .location h2{
+    font-size:clamp(1.9rem,3.2vw,2.5rem);
+    color:var(--teal-deep);
+    margin:14px 0 20px;
+  }
+  .location p{
+    font-size:1rem;
+    line-height:1.7;
+    color:rgba(14,35,32,0.75);
+    max-width:440px;
+    margin-bottom:26px;
+  }
+  .address-card{
+    background:var(--paper);
+    border:1px solid rgba(14,35,32,0.1);
+    border-radius:18px;
+    padding:34px;
+  }
+  .address-card .eyebrow{margin-bottom:10px;display:block;}
+  .address-card address{
+    font-style:normal;
+    font-family:'Fraunces', serif;
+    font-size:1.3rem;
+    color:var(--teal-deep);
+    line-height:1.4;
+    margin-bottom:22px;
+  }
+  .address-card .btn-solid{width:100%; justify-content:center;}
+
+  @media (max-width:820px){
+    .location{grid-template-columns:1fr;}
+  }
+
+  /* ---------- FOOTER / CTA ---------- */
+  footer{
+    background:var(--teal-deep);
+    color:var(--paper);
+    padding:90px 6% 40px;
+    text-align:center;
+  }
+  footer h2{
+    font-size:clamp(2rem,4vw,3rem);
+    max-width:700px;
+    margin:0 auto 30px;
+  }
+  .footer-actions{
+    display:flex;
+    justify-content:center;
+    gap:16px;
+    flex-wrap:wrap;
+    margin-bottom:70px;
+  }
+  .footer-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:16px;
+    border-top:1px solid rgba(251,243,236,0.14);
+    padding-top:26px;
+    font-size:0.8rem;
+    color:rgba(251,243,236,0.55);
+  }
+  .footer-bottom a{color:var(--gold-light); font-weight:600;}
+
+  /* ---------- FLOATING BUTTONS ---------- */
+  .floating-ig{
+    position:fixed;
+    bottom:26px;
+    right:26px;
+    z-index:200;
+    width:58px;height:58px;
+    border-radius:50%;
+    background:linear-gradient(135deg, var(--gold-light), var(--gold));
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 10px 26px rgba(0,0,0,0.28);
+    transition:transform .25s ease;
+  }
+  .floating-ig:hover{transform:scale(1.08);}
+  .floating-ig svg{width:26px;height:26px;}
+
+  @media (max-width:820px){
+    .intro{grid-template-columns:1fr;}
+    nav{padding:18px 5%;}
+    .hero-address{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Silvia Santos <span>·</span> Estética</div>
+  <a class="nav-cta" href="https://www.instagram.com/silvia.santos.centroesteticasb/" target="_blank" rel="noopener">Reservar cita</a>
+</nav>
+
+<header class="hero">
+  <div class="hero-grid"></div>
+  <div class="scan-line"></div>
+  <div class="hero-content">
+    <span class="eyebrow">Centro de estética · San Cristóbal de La Laguna</span>
+    <h1>Belleza y <em>ciencia</em><br>se unen en tu piel.</h1>
+    <p class="lead">Tratamientos faciales y corporales con base en diagnóstico real. En Silvia Santos Centro de Estética cuidamos tu piel con precisión clínica y un trato cercano, tratamiento a tratamiento.</p>
+    <div class="hero-actions">
+      <a class="btn-solid" href="https://www.instagram.com/silvia.santos.centroesteticasb/" target="_blank" rel="noopener">
+        Pide tu cita por Instagram →
+      </a>
+      <a class="btn-outline" href="#servicios">Ver tratamientos</a>
+    </div>
+  </div>
+  <div class="hero-address">
+    Calle Buenaventura Bonnet 9<br>
+    San Cristóbal de La Laguna, 38203
+  </div>
+</header>
+
+<section class="intro reveal">
+  <div>
+    <span class="eyebrow">Nuestra filosofía</span>
+    <h2>Cada tratamiento empieza con un diagnóstico, no con una promesa.</h2>
+  </div>
+  <div class="intro-copy">
+    <p>No creemos en tratamientos genéricos. Antes de cualquier sesión facial o corporal, estudiamos tu piel para entender qué necesita de verdad — y a partir de ahí diseñamos un plan que combina técnica, cosmética avanzada y cuidado personal.</p>
+    <p>Ese es el sentido de "belleza y ciencia": resultados visibles, sostenidos en el tiempo, con un trato que nunca deja de ser cercano.</p>
+    <div class="intro-stat">
+      <div><span>360°</span><small>Diagnóstico previo</small></div>
+      <div><span>5</span><small>Áreas de tratamiento</small></div>
+      <div><span>1&nbsp;a&nbsp;1</span><small>Atención personalizada</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="servicios">
+  <div class="services-head reveal">
+    <span class="eyebrow">Tratamientos</span>
+    <h2>Lo que hacemos por tu piel</h2>
+  </div>
+  <div class="service-list">
+
+    <div class="service-row reveal">
+      <span class="service-num">01</span>
+      <h3>Faciales y Corporales</h3>
+      <p>Tratamientos personalizados para el rostro y el cuerpo, adaptados a las necesidades reales de tu piel.</p>
+      <span class="service-arrow">↗</span>
+    </div>
+
+    <div class="service-row reveal">
+      <span class="service-num">02</span>
+      <h3>Diagnóstico</h3>
+      <p>El punto de partida de cada plan de tratamiento: analizamos tu piel antes de proponer cualquier sesión.</p>
+      <span class="service-arrow">↗</span>
+    </div>
+
+    <div class="service-row reveal">
+      <span class="service-num">03</span>
+      <h3>Manicura y Pedicura</h3>
+      <p>Cuidado completo de manos y pies, con acabados impecables y máxima higiene.</p>
+      <span class="service-arrow">↗</span>
+    </div>
+
+    <div class="service-row reveal">
+      <span class="service-num">04</span>
+      <h3>Depilación Láser</h3>
+      <p>Reducción progresiva y duradera del vello con tecnología láser, para piel suave sin complicaciones.</p>
+      <span class="service-arrow">↗</span>
+    </div>
+
+    <div class="service-row reveal">
+      <span class="service-num">05</span>
+      <h3>Depilación a Hilo</h3>
+      <p>La técnica tradicional para un contorno preciso, ideal para cejas y zonas del rostro.</p>
+      <span class="service-arrow">↗</span>
+    </div>
+
+  </div>
+</section>
+
+<section class="duality">
+  <div class="duality-panel science reveal">
+    <span class="eyebrow">La ciencia</span>
+    <h3>Precisión antes que nada</h3>
+    <p>Diagnóstico, protocolos y tecnología aplicada con criterio. Cada decisión sobre tu piel está respaldada por un análisis real, no por intuición.</p>
+  </div>
+  <div class="duality-panel beauty reveal">
+    <span class="eyebrow on-light">La belleza</span>
+    <h3>Un cuidado que se nota</h3>
+    <p>El resultado se ve, pero también se siente: manos expertas, un espacio cuidado y la calma de saber que tu piel está en buenas manos.</p>
+  </div>
+</section>
+
+<section class="location reveal">
+  <div>
+    <span class="eyebrow">Dónde estamos</span>
+    <h2>Te esperamos en La Laguna</h2>
+    <p>Un espacio pensado para que cada visita sea un paréntesis de cuidado real, en el corazón de San Cristóbal de La Laguna.</p>
+  </div>
+  <div class="address-card">
+    <span class="eyebrow">Dirección</span>
+    <address>
+      Calle Buenaventura Bonnet 9<br>
+      San Cristóbal de La Laguna<br>
+      38203, Santa Cruz de Tenerife
+    </address>
+    <a class="btn-solid" href="https://www.instagram.com/silvia.santos.centroesteticasb/" target="_blank" rel="noopener">Escríbenos por Instagram</a>
+  </div>
+</section>
+
+<footer>
+  <span class="eyebrow">Empecemos</span>
+  <h2>Tu piel se merece un diagnóstico, no una suposición.</h2>
+  <div class="footer-actions">
+    <a class="btn-solid" href="https://www.instagram.com/silvia.santos.centroesteticasb/" target="_blank" rel="noopener">Reservar cita por Instagram →</a>
+  </div>
+  <div class="footer-bottom">
+    <span>Silvia Santos Centro de Estética · San Cristóbal de La Laguna</span>
+    <a href="https://www.instagram.com/silvia.santos.centroesteticasb/" target="_blank" rel="noopener">@silvia.santos.centroesteticasb</a>
+  </div>
+</footer>
+
+<a class="floating-ig" href="https://www.instagram.com/silvia.santos.centroesteticasb/" target="_blank" rel="noopener" aria-label="Instagram">
+  <svg viewBox="0 0 24 24" fill="none" stroke="#0B3D3A" stroke-width="1.8">
+    <rect x="2" y="2" width="20" height="20" rx="6"/>
+    <circle cx="12" cy="12" r="4.2"/>
+    <circle cx="17.4" cy="6.6" r="1.1" fill="#0B3D3A" stroke="none"/>
+  </svg>
+</a>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.15});
+  revealEls.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
