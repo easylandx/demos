@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beto Carcagno | Pilates Clásico Online</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink: #10233A;
+    --ink-2: #16304F;
+    --cream: #F4EFE4;
+    --cream-dim: #CBC3B0;
+    --gold: #C9A84C;
+    --gold-soft: #E4CD8E;
+    --line: rgba(244,239,228,0.18);
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background: var(--ink);
+    color: var(--cream);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .display{
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+
+  a{ color: inherit; text-decoration: none; }
+
+  .wrap{
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  .eyebrow{
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 22px 0;
+    background: rgba(16,35,58,0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .brand{
+    font-family:'Cormorant Garamond', serif;
+    font-size: 22px;
+    letter-spacing: 0.04em;
+  }
+  .brand span{ color: var(--gold); }
+  .nav-cta{
+    border: 1px solid var(--gold);
+    color: var(--gold-soft);
+    padding: 9px 20px;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: all .25s ease;
+  }
+  .nav-cta:hover{ background: var(--gold); color: var(--ink); }
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    min-height: 100vh;
+    display:flex;
+    align-items:center;
+    position: relative;
+    padding-top: 90px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 60px;
+    align-items:center;
+    width:100%;
+  }
+
+  .hero h1{
+    font-size: clamp(44px, 6vw, 78px);
+    line-height: 1.03;
+    margin: 18px 0 26px;
+  }
+  .hero h1 em{
+    font-style: italic;
+    color: var(--gold-soft);
+  }
+
+  .hero p.lead{
+    font-size: 18px;
+    line-height: 1.7;
+    color: var(--cream-dim);
+    max-width: 480px;
+    margin-bottom: 34px;
+  }
+
+  .romo-tag{
+    display:inline-block;
+    border: 1px solid var(--line);
+    padding: 10px 18px;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--gold-soft);
+    margin-bottom: 30px;
+  }
+  .romo-tag b{ color: var(--gold); font-weight: 500; }
+
+  .btn-row{ display:flex; gap: 16px; flex-wrap: wrap; }
+
+  .btn-primary{
+    background: var(--gold);
+    color: var(--ink);
+    padding: 16px 30px;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    display:inline-flex;
+    align-items:center;
+    gap: 10px;
+    transition: transform .25s ease, background .25s ease;
+  }
+  .btn-primary:hover{ background: var(--gold-soft); transform: translateY(-2px); }
+
+  .btn-outline{
+    border: 1px solid var(--line);
+    color: var(--cream);
+    padding: 16px 26px;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: border-color .25s ease, color .25s ease;
+  }
+  .btn-outline:hover{ border-color: var(--gold); color: var(--gold-soft); }
+
+  /* signature dial visual */
+  .dial-wrap{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+  }
+  .dial-wrap svg{ width: 100%; max-width: 380px; height: auto; }
+  .dial-spin{
+    transform-origin: 200px 200px;
+    animation: spin 40s linear infinite;
+  }
+  @keyframes spin{ to{ transform: rotate(360deg); } }
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{ padding: 120px 0; border-bottom: 1px solid var(--line); }
+
+  .section-head{ max-width: 620px; margin-bottom: 64px; }
+  .section-head h2{ font-size: clamp(32px, 4vw, 46px); margin-top: 14px; }
+  .section-head p{ color: var(--cream-dim); margin-top: 18px; font-size: 17px; line-height: 1.7; }
+
+  .reveal{
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity .8s ease, transform .8s ease;
+  }
+  .reveal.in{ opacity: 1; transform: translateY(0); }
+
+  /* ---------- METHOD ---------- */
+  .method-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  .method-card{
+    background: var(--ink);
+    padding: 40px 32px;
+  }
+  .method-card .num{
+    font-family:'Cormorant Garamond', serif;
+    font-size: 42px;
+    color: var(--gold);
+    display:block;
+    margin-bottom: 18px;
+  }
+  .method-card h3{ font-size: 24px; margin-bottom: 12px; }
+  .method-card p{ color: var(--cream-dim); font-size: 15px; line-height: 1.65; }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 70px;
+    align-items:center;
+  }
+  .about-frame{
+    aspect-ratio: 4/5;
+    border: 1px solid var(--gold);
+    padding: 18px;
+  }
+  .about-frame-inner{
+    width:100%; height:100%;
+    background: var(--ink-2);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position: relative;
+  }
+  .about-frame-inner svg{ width: 62%; }
+
+  .about-copy h2{ font-size: clamp(30px,3.6vw,42px); margin-bottom: 22px; }
+  .about-copy p{ color: var(--cream-dim); font-size: 16px; line-height: 1.8; margin-bottom: 16px; }
+  .about-copy .quote{
+    font-family:'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--gold-soft);
+    border-left: 2px solid var(--gold);
+    padding-left: 20px;
+    margin: 26px 0;
+  }
+
+  /* ---------- STEPS ---------- */
+  .steps{ display:flex; flex-direction:column; gap: 0; }
+  .step{
+    display:grid;
+    grid-template-columns: 90px 1fr;
+    gap: 30px;
+    padding: 32px 0;
+    border-top: 1px solid var(--line);
+  }
+  .step:last-child{ border-bottom: 1px solid var(--line); }
+  .step .step-num{
+    font-family:'Cormorant Garamond', serif;
+    font-size: 40px;
+    color: var(--gold);
+  }
+  .step h3{ font-size: 22px; margin-bottom: 8px; }
+  .step p{ color: var(--cream-dim); font-size: 15px; line-height: 1.65; max-width: 520px; }
+
+  /* ---------- BENEFITS ---------- */
+  .benefit-list{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px 50px;
+  }
+  .benefit{ display:flex; gap: 18px; align-items:flex-start; }
+  .benefit .mark{
+    width: 26px; height: 26px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    flex-shrink: 0;
+    display:flex; align-items:center; justify-content:center;
+    color: var(--gold);
+    font-size: 13px;
+    margin-top: 3px;
+  }
+  .benefit h4{ font-family:'Jost',sans-serif; font-weight: 500; font-size: 16px; margin-bottom: 6px; letter-spacing: 0.02em; }
+  .benefit p{ color: var(--cream-dim); font-size: 14.5px; line-height: 1.6; }
+
+  /* ---------- CTA ---------- */
+  .cta-section{
+    text-align:center;
+    border-bottom: none;
+  }
+  .cta-section .eyebrow{ display:block; margin-bottom: 16px; }
+  .cta-section h2{ font-size: clamp(36px,5vw,58px); max-width: 700px; margin: 0 auto 30px; }
+  .cta-section p{ color: var(--cream-dim); max-width: 480px; margin: 0 auto 40px; font-size: 17px; line-height: 1.7; }
+
+  /* ---------- FOOTER ---------- */
+  footer{ padding: 50px 0; }
+  footer .wrap{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  footer .brand{ font-size: 18px; }
+  footer .ig-link{
+    display:flex; align-items:center; gap: 10px;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    color: var(--cream-dim);
+    transition: color .25s ease;
+  }
+  footer .ig-link:hover{ color: var(--gold-soft); }
+
+  /* ---------- FLOATING IG BUTTON ---------- */
+  .float-ig{
+    position: fixed;
+    bottom: 26px;
+    right: 26px;
+    z-index: 200;
+    background: var(--gold);
+    color: var(--ink);
+    width: 58px; height: 58px;
+    border-radius: 50%;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    transition: transform .25s ease;
+  }
+  .float-ig:hover{ transform: scale(1.08); }
+  .float-ig svg{ width: 26px; height: 26px; }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 860px){
+    .hero-grid{ grid-template-columns: 1fr; }
+    .dial-wrap{ order: -1; margin-bottom: 20px; }
+    .dial-wrap svg{ max-width: 220px; }
+    .method-grid{ grid-template-columns: 1fr; }
+    .about-grid{ grid-template-columns: 1fr; gap: 40px; }
+    .benefit-list{ grid-template-columns: 1fr; }
+    .step{ grid-template-columns: 60px 1fr; }
+    section{ padding: 80px 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .dial-spin{ animation: none; }
+    .reveal{ transition: none; opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">Beto <span>Carcagno</span></div>
+    <a class="nav-cta" href="https://www.instagram.com/betocarcagno_pilates/" target="_blank" rel="noopener">Escribime</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Classical Pilates Teacher · @abcontrology</span>
+      <h1>Pilates clásico, <em>a control remoto.</em></h1>
+      <p class="lead">Clases online de Pilates Clásico uno a uno, coordinadas por DM. El método original de Joseph Pilates &mdash; Contrology &mdash; adaptado a tu casa, tu horario y tu cuerpo.</p>
+      <div class="romo-tag">Dejá el FOMO. Esto es <b>ROMO</b> &mdash; Relief Of Missing Out.</div>
+      <div class="btn-row">
+        <a class="btn-primary" href="https://www.instagram.com/betocarcagno_pilates/" target="_blank" rel="noopener">Reservar por Instagram →</a>
+        <a class="btn-outline" href="#metodo">Conocer el método</a>
+      </div>
+    </div>
+    <div class="dial-wrap">
+      <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="200" cy="200" r="150" stroke="#C9A84C" stroke-width="1"/>
+        <circle cx="200" cy="200" r="115" stroke="#C9A84C" stroke-width="1" opacity="0.5"/>
+        <g class="dial-spin">
+          <line x1="200" y1="200" x2="200" y2="60" stroke="#E4CD8E" stroke-width="2"/>
+          <circle cx="200" cy="60" r="6" fill="#E4CD8E"/>
+        </g>
+        <g stroke="#C9A84C" stroke-width="1" opacity="0.7">
+          <line x1="200" y1="50" x2="200" y2="70"/>
+          <line x1="200" y1="330" x2="200" y2="350"/>
+          <line x1="50" y1="200" x2="70" y2="200"/>
+          <line x1="330" y1="200" x2="350" y2="200"/>
+          <line x1="96" y1="96" x2="110" y2="110"/>
+          <line x1="290" y1="290" x2="304" y2="304"/>
+          <line x1="96" y1="304" x2="110" y2="290"/>
+          <line x1="290" y1="110" x2="304" y2="96"/>
+        </g>
+        <circle cx="200" cy="200" r="6" fill="#F4EFE4"/>
+        <text x="200" y="212" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="15" fill="#F4EFE4" opacity="0.6" letter-spacing="3">CONTROLOGY</text>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<section id="metodo">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">El método</span>
+      <h2>No es fitness. Es control.</h2>
+      <p>Joseph Pilates lo llamó Contrology: el arte del movimiento controlado. Cada clase con Beto sigue la secuencia clásica original, sin atajos ni modas &mdash; precisión, respiración y trabajo profundo del centro.</p>
+    </div>
+    <div class="method-grid reveal">
+      <div class="method-card">
+        <span class="num">01</span>
+        <h3>Secuencia clásica</h3>
+        <p>El repertorio original de mat y aparatos, tal como fue diseñado, progresando a tu ritmo real.</p>
+      </div>
+      <div class="method-card">
+        <span class="num">02</span>
+        <h3>Atención uno a uno</h3>
+        <p>Sin clases grupales genéricas. Cada sesión se ajusta a tu cuerpo, tu historial y tu objetivo.</p>
+      </div>
+      <div class="method-card">
+        <span class="num">03</span>
+        <h3>100% online</h3>
+        <p>Todo coordinado por DM en Instagram: horarios, seguimiento y clases en vivo desde donde estés.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap about-grid">
+    <div class="about-frame reveal">
+      <div class="about-frame-inner">
+        <svg viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="100" cy="40" rx="26" ry="28" stroke="#C9A84C" stroke-width="1.4"/>
+          <path d="M100 68 L100 150" stroke="#C9A84C" stroke-width="1.4"/>
+          <path d="M100 90 L55 130" stroke="#C9A84C" stroke-width="1.4"/>
+          <path d="M100 90 L145 130" stroke="#C9A84C" stroke-width="1.4"/>
+          <path d="M100 150 L65 220" stroke="#C9A84C" stroke-width="1.4"/>
+          <path d="M100 150 L135 220" stroke="#C9A84C" stroke-width="1.4"/>
+          <circle cx="100" cy="118" r="2.5" fill="#E4CD8E"/>
+        </svg>
+      </div>
+    </div>
+    <div class="about-copy reveal">
+      <span class="eyebrow">Sobre Beto</span>
+      <h2>Coach y profesor de Pilates Clásico</h2>
+      <p>Beto Carcagno enseña Pilates Clásico bajo la línea de @abcontrology, con foco en la técnica original y el trabajo consciente del cuerpo. Su enfoque combina disciplina, cercanía y humor &mdash; sin perder nunca el rigor del método.</p>
+      <p class="quote">"Enjoying the ROMO: Relief Of Missing Out."</p>
+      <p>Cada clase se agenda directo por Instagram. Nada de formularios largos ni intermediarios: le escribís y arman el horario juntos.</p>
+      <div class="btn-row">
+        <a class="btn-outline" href="https://www.instagram.com/betocarcagno_pilates/" target="_blank" rel="noopener">Ver perfil de Instagram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Cómo funciona</span>
+      <h2>De un DM a tu primera clase</h2>
+    </div>
+    <div class="steps reveal">
+      <div class="step">
+        <span class="step-num">01</span>
+        <div>
+          <h3>Escribís por Instagram</h3>
+          <p>Le mandás un mensaje a @betocarcagno_pilates contando tu nivel y disponibilidad.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">02</span>
+        <div>
+          <h3>Coordinan el horario</h3>
+          <p>Entre los dos definen día y hora fija para tus clases online en vivo.</p>
+        </div>
+      </div>
+      <div class="step">
+        <span class="step-num">03</span>
+        <div>
+          <h3>Empezás a moverte</h3>
+          <p>Primera clase por videollamada, con seguimiento y ajustes personalizados desde el minuto uno.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Por qué online</span>
+      <h2>Todo el método, sin salir de casa</h2>
+    </div>
+    <div class="benefit-list reveal">
+      <div class="benefit">
+        <span class="mark">✓</span>
+        <div><h4>Horarios flexibles</h4><p>Clases que se acomodan a tu día, sin traslados ni excusas.</p></div>
+      </div>
+      <div class="benefit">
+        <span class="mark">✓</span>
+        <div><h4>Seguimiento real</h4><p>Beto ve tu progreso clase a clase y ajusta la secuencia con vos.</p></div>
+      </div>
+      <div class="benefit">
+        <span class="mark">✓</span>
+        <div><h4>Postura y control</h4><p>Trabajo consciente de alineación, respiración y centro.</p></div>
+      </div>
+      <div class="benefit">
+        <span class="mark">✓</span>
+        <div><h4>Cercanía directa</h4><p>Comunicación directa por Instagram, sin plataformas complicadas.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="wrap">
+    <span class="eyebrow">Empezá hoy</span>
+    <h2>Tu próxima clase de Pilates Clásico empieza con un mensaje.</h2>
+    <p>Sin vueltas, sin formularios. Escribile a Beto por Instagram y coordinen tu primera clase online.</p>
+    <a class="btn-primary" href="https://www.instagram.com/betocarcagno_pilates/" target="_blank" rel="noopener">Escribir a @betocarcagno_pilates →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand">Beto <span style="color:var(--gold);">Carcagno</span></div>
+    <a class="ig-link" href="https://www.instagram.com/betocarcagno_pilates/" target="_blank" rel="noopener">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+      @betocarcagno_pilates
+    </a>
+  </div>
+</footer>
+
+<a class="float-ig" href="https://www.instagram.com/betocarcagno_pilates/" target="_blank" rel="noopener" aria-label="Instagram">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg>
+</a>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  reveals.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
