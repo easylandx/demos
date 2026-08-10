@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TAKA Pilates Auténtico | Laura Ponce de León · Chascomús</title>
+<meta name="description" content="Método Pilates Auténtico con Laura 'Taka' Ponce de León en Chascomús, Buenos Aires. Clases grupales, individuales y online.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;1,9..144,450&family=Work+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream: #FBF6EF;
+    --cream-2: #F4ECE0;
+    --iris: #7C5AA6;
+    --iris-deep: #4F3868;
+    --plum: #2E2138;
+    --blush: #F0D3DE;
+    --sage: #93A97C;
+    --gold: #D9A75C;
+    --white: #FFFDFA;
+    --shadow: 0 20px 50px rgba(79,56,104,0.14);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Work Sans', sans-serif;
+    background:var(--cream);
+    color:var(--plum);
+    overflow-x:hidden;
+    line-height:1.6;
+  }
+  h1,h2,h3,.serif{
+    font-family:'Fraunces', serif;
+    font-weight:450;
+    letter-spacing:-0.01em;
+  }
+  a{text-decoration:none;color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 32px;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(251,246,239,0.85);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(124,90,166,0.12);
+  }
+  nav.wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 32px;
+  }
+  .logo{
+    font-family:'Fraunces', serif;
+    font-size:1.5rem;
+    font-weight:600;
+    color:var(--iris-deep);
+    display:flex; align-items:center; gap:8px;
+  }
+  .logo span{font-size:1.1rem;}
+  nav ul{display:flex; gap:36px; list-style:none;}
+  nav ul li a{
+    font-size:0.92rem;
+    font-weight:500;
+    color:var(--plum);
+    position:relative;
+    padding:4px 0;
+    transition:color .3s;
+  }
+  nav ul li a::after{
+    content:'';
+    position:absolute; left:0; bottom:-2px;
+    width:0; height:2px; background:var(--gold);
+    transition:width .3s;
+  }
+  nav ul li a:hover{color:var(--iris-deep);}
+  nav ul li a:hover::after{width:100%;}
+  .nav-cta{
+    background:var(--iris);
+    color:var(--white) !important;
+    padding:11px 22px;
+    border-radius:100px;
+    font-weight:600;
+    font-size:0.88rem;
+    box-shadow:0 8px 20px rgba(124,90,166,0.3);
+    transition:transform .25s, box-shadow .25s;
+  }
+  .nav-cta:hover{transform:translateY(-2px); box-shadow:0 12px 26px rgba(124,90,166,0.4);}
+  .nav-toggle{display:none;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:170px 0 120px;
+    overflow:hidden;
+  }
+  .hero .wrap{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:60px;
+    align-items:center;
+  }
+  .petal{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(2px);
+    opacity:0.5;
+  }
+  .petal.p1{width:280px;height:280px; background:var(--blush); top:-80px; right:8%;}
+  .petal.p2{width:180px;height:180px; background:var(--sage); opacity:.25; bottom:20px; left:-60px;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:0.82rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--iris-deep);
+    background:rgba(124,90,166,0.1);
+    padding:8px 16px; border-radius:100px;
+    margin-bottom:24px;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 5vw, 3.6rem);
+    color:var(--iris-deep);
+    line-height:1.1;
+    margin-bottom:22px;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--gold);
+  }
+  .hero p.lead{
+    font-size:1.15rem;
+    max-width:480px;
+    color:#5A4A6B;
+    margin-bottom:34px;
+  }
+  .hero-ctas{display:flex; gap:16px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:15px 28px;
+    border-radius:100px;
+    font-weight:600;
+    font-size:0.95rem;
+    transition:transform .25s, box-shadow .25s;
+    cursor:pointer;
+    border:none;
+  }
+  .btn-primary{
+    background:var(--iris);
+    color:var(--white);
+    box-shadow:0 10px 24px rgba(124,90,166,0.35);
+  }
+  .btn-primary:hover{transform:translateY(-3px); box-shadow:0 16px 30px rgba(124,90,166,0.45);}
+  .btn-outline{
+    background:transparent;
+    color:var(--iris-deep);
+    border:1.5px solid var(--iris-deep);
+  }
+  .btn-outline:hover{background:var(--iris-deep); color:var(--white); transform:translateY(-3px);}
+
+  .signature{
+    position:relative;
+    display:flex; align-items:center; justify-content:center;
+    height:420px;
+  }
+  .breath-ring{
+    position:absolute;
+    border-radius:50%;
+    border:1.5px solid rgba(124,90,166,0.35);
+  }
+  .r1{width:220px;height:220px; animation:breathe 6s ease-in-out infinite;}
+  .r2{width:300px;height:300px; animation:breathe 6s ease-in-out infinite; animation-delay:.4s; border-color:rgba(217,167,92,0.4);}
+  .r3{width:380px;height:380px; animation:breathe 6s ease-in-out infinite; animation-delay:.8s; border-color:rgba(147,169,124,0.35);}
+  .breath-core{
+    position:relative;
+    width:150px; height:150px;
+    background:radial-gradient(circle at 35% 30%, #A783CC, var(--iris-deep));
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 25px 50px rgba(79,56,104,0.35);
+    animation:breathe 6s ease-in-out infinite;
+    z-index:2;
+  }
+  .breath-core span{
+    font-family:'Fraunces', serif;
+    color:var(--white);
+    font-style:italic;
+    font-size:1.05rem;
+    text-align:center;
+  }
+  @keyframes breathe{
+    0%, 100%{transform:scale(0.92);}
+    50%{transform:scale(1.06);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .breath-ring, .breath-core{animation:none;}
+  }
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{padding:110px 0;}
+  .section-head{
+    max-width:640px;
+    margin:0 auto 64px;
+    text-align:center;
+  }
+  .section-head .eyebrow{margin-bottom:18px;}
+  .section-head h2{
+    font-size:clamp(1.9rem, 3.6vw, 2.6rem);
+    color:var(--iris-deep);
+    margin-bottom:16px;
+  }
+  .section-head p{color:#5A4A6B; font-size:1.05rem;}
+
+  .reveal{opacity:0; transform:translateY(28px); transition:opacity .8s ease, transform .8s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ---------- METODO ---------- */
+  .metodo{background:var(--white);}
+  .principles{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:28px;
+  }
+  .principle-card{
+    background:var(--cream);
+    border-radius:22px;
+    padding:36px 30px;
+    text-align:left;
+    transition:transform .35s, box-shadow .35s;
+    border:1px solid rgba(124,90,166,0.08);
+  }
+  .principle-card:hover{transform:translateY(-8px); box-shadow:var(--shadow);}
+  .principle-num{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:0.95rem;
+    color:var(--gold);
+    margin-bottom:14px;
+    display:block;
+  }
+  .principle-card h3{font-size:1.25rem; color:var(--iris-deep); margin-bottom:10px;}
+  .principle-card p{font-size:0.95rem; color:#5A4A6B;}
+
+  /* ---------- ABOUT ---------- */
+  .about{
+    background:linear-gradient(180deg, var(--cream) 0%, var(--cream-2) 100%);
+  }
+  .about .wrap{
+    display:grid;
+    grid-template-columns:0.85fr 1.15fr;
+    gap:64px;
+    align-items:center;
+  }
+  .about-visual{
+    position:relative;
+    aspect-ratio:1/1.05;
+    border-radius:40px;
+    background:linear-gradient(150deg, var(--blush) 0%, var(--iris) 100%);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:var(--shadow);
+  }
+  .about-visual .initials{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:6rem;
+    color:var(--white);
+    opacity:0.9;
+  }
+  .about-visual .tag{
+    position:absolute; bottom:28px; left:28px; right:28px;
+    background:rgba(255,253,250,0.92);
+    border-radius:16px;
+    padding:16px 20px;
+    font-size:0.9rem;
+    color:var(--iris-deep);
+    font-weight:600;
+  }
+  .about-text .eyebrow{margin-bottom:18px;}
+  .about-text h2{
+    font-size:clamp(1.9rem, 3.4vw, 2.5rem);
+    color:var(--iris-deep);
+    margin-bottom:20px;
+  }
+  .about-text p{color:#5A4A6B; margin-bottom:18px; font-size:1.02rem;}
+  .about-signature{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.3rem;
+    color:var(--iris-deep);
+    margin-top:12px;
+  }
+
+  /* ---------- CLASES ---------- */
+  .clases{background:var(--white);}
+  .clases-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:28px;
+  }
+  .clase-card{
+    border-radius:26px;
+    padding:40px 32px;
+    background:var(--cream);
+    position:relative;
+    overflow:hidden;
+    transition:transform .35s, box-shadow .35s;
+  }
+  .clase-card::before{
+    content:'';
+    position:absolute; top:-40px; right:-40px;
+    width:140px; height:140px; border-radius:50%;
+    background:rgba(124,90,166,0.08);
+  }
+  .clase-card:hover{transform:translateY(-8px); box-shadow:var(--shadow);}
+  .clase-card.feat{
+    background:linear-gradient(160deg, var(--iris) 0%, var(--iris-deep) 100%);
+    color:var(--white);
+  }
+  .clase-card.feat::before{background:rgba(255,255,255,0.12);}
+  .clase-card.feat p, .clase-card.feat .price{color:rgba(255,255,255,0.85);}
+  .clase-icon{
+    width:52px; height:52px;
+    border-radius:16px;
+    background:rgba(124,90,166,0.12);
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.5rem;
+    margin-bottom:22px;
+    position:relative;
+  }
+  .clase-card.feat .clase-icon{background:rgba(255,255,255,0.18);}
+  .clase-card h3{font-size:1.3rem; margin-bottom:10px; position:relative;}
+  .clase-card p{font-size:0.95rem; color:#5A4A6B; margin-bottom:20px; position:relative;}
+  .clase-card .price{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:0.95rem;
+    color:var(--gold);
+    position:relative;
+  }
+
+  /* ---------- QUOTE / BENEFITS ---------- */
+  .benefits{
+    background:var(--iris-deep);
+    color:var(--white);
+    padding:90px 0;
+  }
+  .benefits .wrap{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:32px;
+    text-align:center;
+  }
+  .benefit-item .num{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:2.2rem;
+    color:var(--gold);
+    display:block;
+    margin-bottom:8px;
+  }
+  .benefit-item p{font-size:0.92rem; color:rgba(255,255,255,0.8);}
+
+  /* ---------- UBICACION / CONTACTO ---------- */
+  .contact{
+    background:var(--cream);
+    position:relative;
+  }
+  .contact-box{
+    background:linear-gradient(135deg, var(--blush) 0%, var(--cream-2) 100%);
+    border-radius:36px;
+    padding:70px 60px;
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:50px;
+    align-items:center;
+    box-shadow:var(--shadow);
+  }
+  .contact-box h2{
+    font-size:clamp(1.8rem, 3.4vw, 2.4rem);
+    color:var(--iris-deep);
+    margin-bottom:18px;
+  }
+  .contact-box p{color:#5A4A6B; margin-bottom:28px; font-size:1.02rem;}
+  .contact-info{
+    display:flex; align-items:center; gap:10px;
+    font-size:0.95rem;
+    color:var(--iris-deep);
+    font-weight:600;
+    margin-bottom:14px;
+  }
+  .contact-visual{
+    background:var(--white);
+    border-radius:26px;
+    padding:36px;
+    text-align:center;
+  }
+  .contact-visual .ig-icon{
+    width:64px; height:64px;
+    margin:0 auto 18px;
+    border-radius:18px;
+    background:linear-gradient(45deg, #F09433, #E6683C, #DC2743, #CC2366, #BC1888);
+    display:flex; align-items:center; justify-content:center;
+    color:var(--white);
+    font-size:1.8rem;
+  }
+  .contact-visual h3{font-size:1.15rem; color:var(--iris-deep); margin-bottom:6px;}
+  .contact-visual p{font-size:0.9rem; color:#5A4A6B; margin-bottom:20px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--plum);
+    color:rgba(255,255,255,0.7);
+    padding:56px 0 30px;
+  }
+  footer .wrap{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:24px;
+    padding-bottom:30px;
+    border-bottom:1px solid rgba(255,255,255,0.1);
+  }
+  footer .logo{color:var(--white);}
+  footer nav ul{display:flex; gap:28px; list-style:none; font-size:0.88rem;}
+  footer nav ul a:hover{color:var(--gold);}
+  .footer-bottom{
+    padding-top:24px;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+    font-size:0.82rem;
+    color:rgba(255,255,255,0.45);
+  }
+  .footer-bottom a{color:rgba(255,255,255,0.6);}
+
+  /* ---------- FLOATING BUTTON ---------- */
+  .floating-ig{
+    position:fixed;
+    bottom:26px; right:26px;
+    z-index:200;
+    display:flex; align-items:center; gap:10px;
+    background:linear-gradient(45deg, #F09433, #E6683C, #DC2743, #CC2366, #BC1888);
+    color:var(--white);
+    padding:14px 22px;
+    border-radius:100px;
+    font-weight:600;
+    font-size:0.9rem;
+    box-shadow:0 14px 32px rgba(220,39,67,0.35);
+    animation:float 3.5s ease-in-out infinite;
+  }
+  .floating-ig:hover{animation-play-state:paused; transform:translateY(-3px);}
+  @keyframes float{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-6px);}
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 900px){
+    nav ul{display:none;}
+    .hero .wrap{grid-template-columns:1fr; text-align:center;}
+    .hero p.lead{margin-left:auto; margin-right:auto;}
+    .hero-ctas{justify-content:center;}
+    .signature{height:320px; margin-top:20px;}
+    .r3{width:280px;height:280px;}
+    .r2{width:220px;height:220px;}
+    .r1{width:160px;height:160px;}
+    .breath-core{width:110px;height:110px;}
+    .principles, .clases-grid{grid-template-columns:1fr;}
+    .about .wrap{grid-template-columns:1fr;}
+    .benefits .wrap{grid-template-columns:repeat(2,1fr);}
+    .contact-box{grid-template-columns:1fr; padding:44px 28px; border-radius:28px;}
+    footer .wrap{flex-direction:column; align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav class="wrap">
+    <a href="#" class="logo"><span>🪻</span> TAKA Pilates</a>
+    <ul>
+      <li><a href="#metodo">Método</a></li>
+      <li><a href="#taka">Taka</a></li>
+      <li><a href="#clases">Clases</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <a href="https://www.instagram.com/taka.pilates/" target="_blank" rel="noopener" class="nav-cta">Seguir en Instagram</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="petal p1"></div>
+  <div class="petal p2"></div>
+  <div class="wrap">
+    <div class="hero-text">
+      <span class="eyebrow">🪻 Método Pilates Auténtico</span>
+      <h1>Enseño Pilates.<br>Entreno Pilates.<br><em>Vivo Pilates.</em></h1>
+      <p class="lead">Soy Laura Ponce de León, para todos <strong>Taka</strong>. En Chascomús te acompaño a reconectar con tu cuerpo a través de un Pilates real, consciente y sin atajos.</p>
+      <div class="hero-ctas">
+        <a href="https://www.instagram.com/taka.pilates/" target="_blank" rel="noopener" class="btn btn-primary">📸 Ver clases en Instagram</a>
+        <a href="#contacto" class="btn btn-outline">Reservá tu clase</a>
+      </div>
+    </div>
+    <div class="signature" aria-hidden="true">
+      <div class="breath-ring r3"></div>
+      <div class="breath-ring r2"></div>
+      <div class="breath-ring r1"></div>
+      <div class="breath-core"><span>Inhalá<br>Exhalá</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="metodo" id="metodo">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">🪻 Fundamentos</span>
+      <h2>El Método Auténtico</h2>
+      <p>No es una moda fitness. Es una forma de moverte, respirar y habitar tu cuerpo con conciencia. Trabajamos sobre los principios originales del Pilates, aplicados a tu cuerpo real, hoy.</p>
+    </div>
+    <div class="principles">
+      <div class="principle-card reveal">
+        <span class="principle-num">Respiración</span>
+        <h3>El motor del movimiento</h3>
+        <p>Cada ejercicio nace de una respiración consciente. Sin ella, no hay Pilates auténtico: es el hilo que conecta mente y cuerpo.</p>
+      </div>
+      <div class="principle-card reveal">
+        <span class="principle-num">Centro</span>
+        <h3>La energía que sostiene</h3>
+        <p>Fortalecemos el centro de poder —el "powerhouse"— para que cada movimiento nazca desde un lugar estable y seguro.</p>
+      </div>
+      <div class="principle-card reveal">
+        <span class="principle-num">Control &amp; Precisión</span>
+        <h3>Calidad sobre cantidad</h3>
+        <p>No se trata de repetir, se trata de sentir. Cada ejercicio se ejecuta con intención, control y precisión anatómica.</p>
+      </div>
+      <div class="principle-card reveal">
+        <span class="principle-num">Concentración</span>
+        <h3>Presencia total</h3>
+        <p>Durante la clase, el afuera desaparece. Solo existe tu cuerpo, tu respiración y el movimiento presente.</p>
+      </div>
+      <div class="principle-card reveal">
+        <span class="principle-num">Fluidez</span>
+        <h3>Movimiento sin fricción</h3>
+        <p>Encadenamos los ejercicios de manera orgánica, para que el cuerpo se mueva como una unidad, sin cortes ni tensión.</p>
+      </div>
+      <div class="principle-card reveal">
+        <span class="principle-num">Constancia</span>
+        <h3>El cambio real</h3>
+        <p>Los resultados del Pilates auténtico se construyen clase a clase. Te acompaño en ese proceso, sin apuro y sin atajos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="taka">
+  <div class="wrap">
+    <div class="about-visual reveal">
+      <span class="initials">Taka</span>
+      <div class="tag">📍 Chascomús, Buenos Aires</div>
+    </div>
+    <div class="about-text reveal">
+      <span class="eyebrow">🪻 Quién enseña</span>
+      <h2>Soy Laura, pero para todos soy Taka</h2>
+      <p>Enseño Pilates hace años y, sobre todo, lo vivo todos los días. No busco moldear cuerpos "perfectos": busco cuerpos que se muevan mejor, que respiren mejor y que se sientan en casa dentro de sí mismos.</p>
+      <p>Cada clase está pensada para vos: seas principiante o tengas experiencia, el Método Auténtico se adapta a tu cuerpo, tu ritmo y tu historia. En Chascomús armé un espacio donde el Pilates se enseña como se aprendió originalmente: con atención, respeto y presencia real.</p>
+      <p class="about-signature">"Enseño Pilates, entreno Pilates. Vivo Pilates."</p>
+    </div>
+  </div>
+</section>
+
+<section class="clases" id="clases">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">🪻 Propuestas</span>
+      <h2>Elegí cómo moverte</h2>
+      <p>Clases pensadas para distintos ritmos de vida, todas con el mismo compromiso: Pilates auténtico, sin atajos.</p>
+    </div>
+    <div class="clases-grid">
+      <div class="clase-card reveal">
+        <div class="clase-icon">🧘🏼‍♀️</div>
+        <h3>Clases Grupales</h3>
+        <p>Grupos reducidos en Chascomús, con seguimiento personalizado dentro de la clase colectiva. Ideal para sostener el hábito acompañada.</p>
+        <span class="price">Cupos limitados por grupo</span>
+      </div>
+      <div class="clase-card feat reveal">
+        <div class="clase-icon">🪻</div>
+        <h3>Clases Individuales</h3>
+        <p>Sesiones 1 a 1 diseñadas para tu cuerpo, tu objetivo y tu proceso. La forma más profunda de vivir el Método Auténtico.</p>
+        <span class="price">Consultá disponibilidad</span>
+      </div>
+      <div class="clase-card reveal">
+        <div class="clase-icon">💻</div>
+        <h3>Clases Online</h3>
+        <p>Para quienes no están en Chascomús o prefieren entrenar desde casa, sin resignar la calidad ni la atención personal.</p>
+        <span class="price">Desde cualquier lugar</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="benefits">
+  <div class="wrap">
+    <div class="benefit-item reveal">
+      <span class="num">100%</span>
+      <p>Método auténtico, sin atajos ni modas pasajeras</p>
+    </div>
+    <div class="benefit-item reveal">
+      <span class="num">1 a 1</span>
+      <p>Atención personalizada en cada clase</p>
+    </div>
+    <div class="benefit-item reveal">
+      <span class="num">🪻</span>
+      <p>Grupos reducidos para un mejor acompañamiento</p>
+    </div>
+    <div class="benefit-item reveal">
+      <span class="num">📍</span>
+      <p>Con base en Chascomús y alcance online</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contacto">
+  <div class="wrap">
+    <div class="contact-box">
+      <div class="contact-copy reveal">
+        <span class="eyebrow">🪻 Empecemos</span>
+        <h2>Tu primera clase te está esperando</h2>
+        <p>Escribime por Instagram y te cuento los horarios disponibles, la modalidad que mejor se adapta a vos y cómo es tu primera clase con el Método Auténtico.</p>
+        <div class="contact-info">📍 Chascomús, Buenos Aires</div>
+        <div class="contact-info">🪻 @taka.pilates</div>
+        <a href="https://www.instagram.com/taka.pilates/" target="_blank" rel="noopener" class="btn btn-primary">Escribirme por Instagram</a>
+      </div>
+      <div class="contact-visual reveal">
+        <div class="ig-icon">📷</div>
+        <h3>@taka.pilates</h3>
+        <p>Mirá clases, tips de movimiento y el día a día del estudio.</p>
+        <a href="https://www.instagram.com/taka.pilates/" target="_blank" rel="noopener" class="btn btn-outline">Ir al perfil</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <a href="#" class="logo"><span>🪻</span> TAKA Pilates</a>
+    <nav>
+      <ul>
+        <li><a href="#metodo">Método</a></li>
+        <li><a href="#taka">Taka</a></li>
+        <li><a href="#clases">Clases</a></li>
+        <li><a href="https://www.instagram.com/taka.pilates/" target="_blank" rel="noopener">Instagram</a></li>
+      </ul>
+    </nav>
+  </div>
+  <div class="wrap footer-bottom">
+    <span>© 2026 TAKA Pilates Auténtico · Laura Ponce de León · Chascomús, Bs. As.</span>
+    <span>Built by <a href="#">EasyLandX</a></span>
+  </div>
+</footer>
+
+<a href="https://www.instagram.com/taka.pilates/" target="_blank" rel="noopener" class="floating-ig">📸 @taka.pilates</a>
+
+<script>
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold:0.15});
+  els.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
