@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ely de la Rosa | Bienestar Integral — Pilates, Masaje y Terapia Emocional</title>
+<meta name="description" content="Pilates, masaje y terapia emocional con Ely de la Rosa. Clases, talleres y asesoramiento integral personalizado. Presencial y online.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --sage: #6b7f5e;
+    --sage-dark: #4a5940;
+    --terracota: #c9724f;
+    --crema: #f5efe3;
+    --crema-2: #ece2cc;
+    --gold: #c9a84c;
+    --gold-light: #e8cf8a;
+    --texto: #2f3527;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:'Jost', sans-serif;
+    background:var(--crema);
+    color:var(--texto);
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    letter-spacing:-0.01em;
+  }
+
+  a{text-decoration:none; color:inherit;}
+
+  .container{max-width:1100px; margin:0 auto; padding:0 24px;}
+
+  /* ---------- REVEAL ---------- */
+  .reveal{opacity:0; transform:translateY(28px); transition:opacity .8s ease, transform .8s ease;}
+  .reveal.visible{opacity:1; transform:translateY(0);}
+
+  /* ---------- HEADER / NAV ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(245,239,227,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(107,127,94,0.15);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px; max-width:1100px; margin:0 auto;
+  }
+  .logo{
+    font-family:'Fraunces', serif;
+    font-size:1.4rem;
+    color:var(--sage-dark);
+    display:flex; align-items:center; gap:8px;
+  }
+  .logo span{color:var(--terracota);}
+  .nav-links{display:flex; gap:32px; font-size:0.95rem;}
+  .nav-links a{position:relative; padding:4px 0; transition:color .3s;}
+  .nav-links a:hover{color:var(--terracota);}
+  .nav-cta{
+    background:var(--sage);
+    color:#fff !important;
+    padding:10px 22px;
+    border-radius:30px;
+    font-size:0.9rem;
+    transition:background .3s, transform .3s;
+  }
+  .nav-cta:hover{background:var(--sage-dark); transform:translateY(-2px);}
+  .burger{display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none;}
+  .burger span{width:26px; height:2px; background:var(--sage-dark);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex; align-items:center;
+    background:
+      radial-gradient(circle at 85% 15%, rgba(201,168,76,0.25), transparent 45%),
+      radial-gradient(circle at 10% 85%, rgba(201,114,79,0.18), transparent 45%),
+      var(--crema);
+    padding:120px 0 80px;
+    position:relative;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:50px;
+    align-items:center;
+  }
+  .hero-eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--crema-2);
+    border:1px solid var(--gold-light);
+    color:var(--sage-dark);
+    padding:7px 16px;
+    border-radius:30px;
+    font-size:0.8rem;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    margin-bottom:22px;
+  }
+  .hero h1{
+    font-size:3.2rem;
+    line-height:1.12;
+    color:var(--sage-dark);
+    margin-bottom:20px;
+  }
+  .hero h1 em{
+    font-style:normal;
+    color:var(--terracota);
+  }
+  .hero p.lead{
+    font-size:1.15rem;
+    color:#4c5340;
+    max-width:520px;
+    margin-bottom:34px;
+    line-height:1.6;
+  }
+  .hero-buttons{display:flex; gap:16px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--terracota);
+    color:#fff;
+    padding:15px 32px;
+    border-radius:30px;
+    font-size:1rem;
+    font-weight:500;
+    display:inline-flex; align-items:center; gap:10px;
+    transition:background .3s, transform .3s, box-shadow .3s;
+    box-shadow:0 8px 20px rgba(201,114,79,0.3);
+  }
+  .btn-primary:hover{background:#a85c3d; transform:translateY(-3px); box-shadow:0 12px 26px rgba(201,114,79,0.4);}
+  .btn-secondary{
+    background:transparent;
+    border:1.5px solid var(--sage);
+    color:var(--sage-dark);
+    padding:14px 30px;
+    border-radius:30px;
+    font-size:1rem;
+    display:inline-flex; align-items:center; gap:10px;
+    transition:all .3s;
+  }
+  .btn-secondary:hover{background:var(--sage); color:#fff;}
+
+  .hero-visual{
+    position:relative;
+    aspect-ratio:1/1.1;
+    border-radius:32px;
+    background:linear-gradient(150deg, var(--sage) 0%, var(--sage-dark) 100%);
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden;
+  }
+  .hero-visual svg{width:78%; height:78%;}
+  .hero-visual::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:radial-gradient(circle at 70% 20%, rgba(232,207,138,0.35), transparent 55%);
+  }
+  .badge-float{
+    position:absolute;
+    bottom:22px; left:22px;
+    background:#fff;
+    padding:14px 20px;
+    border-radius:16px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+    display:flex; align-items:center; gap:10px;
+    z-index:2;
+  }
+  .badge-float .dot{width:10px; height:10px; border-radius:50%; background:var(--gold);}
+  .badge-float span{font-size:0.9rem; font-weight:500; color:var(--sage-dark);}
+
+  /* ---------- SERVICIOS ---------- */
+  .servicios{
+    padding:110px 0;
+    background:var(--crema-2);
+  }
+  .section-tag{
+    text-align:center;
+    color:var(--terracota);
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    font-size:0.85rem;
+    margin-bottom:14px;
+    font-weight:500;
+  }
+  .section-title{
+    text-align:center;
+    font-size:2.4rem;
+    color:var(--sage-dark);
+    margin-bottom:16px;
+  }
+  .section-desc{
+    text-align:center;
+    max-width:560px;
+    margin:0 auto 60px;
+    color:#5a5f4d;
+    font-size:1.05rem;
+    line-height:1.6;
+  }
+  .servicios-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:30px;
+  }
+  .servicio-card{
+    background:#fff;
+    border-radius:22px;
+    padding:42px 30px;
+    text-align:center;
+    box-shadow:0 6px 24px rgba(74,89,64,0.08);
+    transition:transform .35s, box-shadow .35s;
+    border-top:4px solid var(--gold);
+  }
+  .servicio-card:hover{transform:translateY(-8px); box-shadow:0 16px 36px rgba(74,89,64,0.15);}
+  .servicio-icon{
+    width:66px; height:66px;
+    margin:0 auto 22px;
+    border-radius:50%;
+    background:var(--sage);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .servicio-icon svg{width:30px; height:30px; stroke:#fff;}
+  .servicio-card h3{
+    font-size:1.3rem;
+    color:var(--sage-dark);
+    margin-bottom:12px;
+  }
+  .servicio-card p{
+    color:#666b58;
+    font-size:0.95rem;
+    line-height:1.6;
+  }
+
+  /* ---------- SOBRE ELY ---------- */
+  .sobre{
+    padding:110px 0;
+    background:var(--crema);
+  }
+  .sobre-grid{
+    display:grid;
+    grid-template-columns:0.85fr 1.15fr;
+    gap:60px;
+    align-items:center;
+  }
+  .sobre-visual{
+    aspect-ratio:4/5;
+    border-radius:26px;
+    background:linear-gradient(160deg, var(--terracota), var(--gold));
+    position:relative;
+    overflow:hidden;
+    display:flex;
+    align-items:flex-end;
+    padding:30px;
+  }
+  .sobre-visual svg{position:absolute; top:0; left:0; width:100%; height:100%; opacity:0.25;}
+  .sobre-visual-label{
+    position:relative;
+    z-index:2;
+    background:rgba(255,255,255,0.9);
+    padding:16px 20px;
+    border-radius:14px;
+  }
+  .sobre-visual-label p{font-family:'Fraunces', serif; font-size:1.1rem; color:var(--sage-dark);}
+  .sobre-visual-label span{font-size:0.85rem; color:var(--terracota);}
+  .sobre-text .section-tag{text-align:left;}
+  .sobre-text h2{
+    font-size:2.2rem;
+    color:var(--sage-dark);
+    text-align:left;
+    margin-bottom:22px;
+  }
+  .sobre-text p{
+    color:#575c48;
+    line-height:1.75;
+    margin-bottom:18px;
+    font-size:1.02rem;
+  }
+  .pilares{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+    margin-top:30px;
+  }
+  .pilar{
+    display:flex; align-items:center; gap:12px;
+    background:var(--crema-2);
+    padding:14px 18px;
+    border-radius:14px;
+  }
+  .pilar .dot{width:8px; height:8px; border-radius:50%; background:var(--terracota); flex-shrink:0;}
+  .pilar span{font-size:0.92rem; color:var(--sage-dark); font-weight:500;}
+
+  /* ---------- MODALIDADES ---------- */
+  .modalidades{
+    padding:100px 0;
+    background:var(--sage-dark);
+    color:#fff;
+  }
+  .modalidades .section-tag{color:var(--gold-light);}
+  .modalidades .section-title{color:#fff;}
+  .modalidades .section-desc{color:#d9ddce;}
+  .modal-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:24px;
+  }
+  .modal-card{
+    background:rgba(255,255,255,0.06);
+    border:1px solid rgba(232,207,138,0.25);
+    border-radius:18px;
+    padding:32px 22px;
+    text-align:center;
+    transition:background .3s, transform .3s;
+  }
+  .modal-card:hover{background:rgba(255,255,255,0.12); transform:translateY(-6px);}
+  .modal-card .num{
+    font-family:'Fraunces', serif;
+    font-size:1.6rem;
+    color:var(--gold-light);
+    margin-bottom:10px;
+  }
+  .modal-card h4{font-size:1.05rem; margin-bottom:8px; font-weight:500;}
+  .modal-card p{font-size:0.88rem; color:#c9cebc; line-height:1.5;}
+
+  /* ---------- TESTIMONIOS ---------- */
+  .testimonios{
+    padding:110px 0;
+    background:var(--crema-2);
+  }
+  .test-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:26px;
+  }
+  .test-card{
+    background:#fff;
+    border-radius:20px;
+    padding:32px 28px;
+    box-shadow:0 6px 20px rgba(74,89,64,0.07);
+  }
+  .stars{color:var(--gold); margin-bottom:16px; letter-spacing:2px; font-size:1rem;}
+  .test-card p{color:#575c48; line-height:1.65; font-size:0.96rem; margin-bottom:20px; font-style:italic;}
+  .test-author{display:flex; align-items:center; gap:12px;}
+  .test-avatar{
+    width:42px; height:42px; border-radius:50%;
+    background:var(--sage);
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; font-family:'Fraunces', serif; font-size:1rem;
+  }
+  .test-author strong{display:block; font-size:0.92rem; color:var(--sage-dark);}
+  .test-author span{font-size:0.8rem; color:#8a8f7c;}
+
+  /* ---------- CTA FINAL ---------- */
+  .cta-final{
+    padding:110px 0;
+    background:
+      radial-gradient(circle at 20% 30%, rgba(201,168,76,0.3), transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(201,114,79,0.25), transparent 50%),
+      var(--sage);
+    text-align:center;
+  }
+  .cta-final h2{
+    font-size:2.6rem;
+    color:#fff;
+    margin-bottom:18px;
+  }
+  .cta-final p{
+    color:#eaeee0;
+    max-width:520px;
+    margin:0 auto 38px;
+    font-size:1.08rem;
+    line-height:1.6;
+  }
+  .cta-buttons{display:flex; gap:18px; justify-content:center; flex-wrap:wrap;}
+  .btn-white{
+    background:#fff;
+    color:var(--sage-dark);
+    padding:16px 34px;
+    border-radius:30px;
+    font-weight:500;
+    display:inline-flex; align-items:center; gap:10px;
+    transition:transform .3s, box-shadow .3s;
+  }
+  .btn-white:hover{transform:translateY(-3px); box-shadow:0 14px 30px rgba(0,0,0,0.2);}
+  .btn-outline-white{
+    border:1.5px solid rgba(255,255,255,0.6);
+    color:#fff;
+    padding:15px 32px;
+    border-radius:30px;
+    display:inline-flex; align-items:center; gap:10px;
+    transition:all .3s;
+  }
+  .btn-outline-white:hover{background:rgba(255,255,255,0.15);}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--sage-dark);
+    color:#c9cebc;
+    padding:50px 0 26px;
+  }
+  .footer-grid{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:20px;
+    padding-bottom:30px;
+    border-bottom:1px solid rgba(255,255,255,0.12);
+    margin-bottom:24px;
+  }
+  .footer-logo{font-family:'Fraunces', serif; font-size:1.3rem; color:#fff;}
+  .footer-social{display:flex; gap:14px;}
+  .footer-social a{
+    width:40px; height:40px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.08);
+    display:flex; align-items:center; justify-content:center;
+    transition:background .3s, transform .3s;
+  }
+  .footer-social a:hover{background:var(--gold); transform:translateY(-3px);}
+  .footer-social svg{width:18px; height:18px; stroke:#fff;}
+  .footer-bottom{
+    text-align:center;
+    font-size:0.85rem;
+    color:#9aa08a;
+  }
+
+  /* ---------- FLOATING BUTTONS ---------- */
+  .float-buttons{
+    position:fixed;
+    bottom:26px; right:26px;
+    display:flex; flex-direction:column; gap:14px;
+    z-index:200;
+  }
+  .float-btn{
+    width:58px; height:58px;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 8px 24px rgba(0,0,0,0.25);
+    transition:transform .3s;
+  }
+  .float-btn:hover{transform:scale(1.1);}
+  .float-btn.whatsapp{background:#25D366;}
+  .float-btn.instagram{background:radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);}
+  .float-btn svg{width:26px; height:26px; fill:#fff;}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 900px){
+    .hero-grid{grid-template-columns:1fr; text-align:center;}
+    .hero p.lead{margin:0 auto 34px;}
+    .hero-buttons{justify-content:center;}
+    .hero-visual{max-width:380px; margin:0 auto;}
+    .servicios-grid{grid-template-columns:1fr; }
+    .sobre-grid{grid-template-columns:1fr;}
+    .sobre-text .section-tag, .sobre-text h2{text-align:center;}
+    .sobre-text p{text-align:center;}
+    .pilares{grid-template-columns:1fr 1fr;}
+    .modal-grid{grid-template-columns:1fr 1fr;}
+    .test-grid{grid-template-columns:1fr;}
+    .nav-links{display:none;}
+    .burger{display:flex;}
+  }
+  @media (max-width:520px){
+    .hero h1{font-size:2.3rem;}
+    .section-title{font-size:1.9rem;}
+    .modal-grid{grid-template-columns:1fr;}
+    .pilares{grid-template-columns:1fr;}
+    .cta-final h2{font-size:2rem;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">Ely <span>de la Rosa</span></div>
+    <div class="nav-links">
+      <a href="#servicios">Servicios</a>
+      <a href="#sobre">Sobre mí</a>
+      <a href="#modalidades">Modalidades</a>
+      <a href="#testimonios">Opiniones</a>
+    </div>
+    <a href="https://wa.me/34600000000" class="nav-cta" target="_blank" rel="noopener">Reservar sesión</a>
+    <button class="burger" aria-label="menú"><span></span><span></span><span></span></button>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="reveal visible">
+      <div class="hero-eyebrow">✦ Bienestar Integral</div>
+      <h1>Reconecta con tu cuerpo, <em>tu mente</em> y tus emociones</h1>
+      <p class="lead">Pilates, masaje y terapia emocional con un enfoque personalizado. Clases, talleres y acompañamiento integral para que avances a tu propio ritmo — presencial u online.</p>
+      <div class="hero-buttons">
+        <a href="https://wa.me/34600000000" class="btn-primary" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.83L2 22l5.42-1.36c1.4.76 3 1.19 4.62 1.19h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2zm0 18.14c-1.51 0-2.98-.4-4.26-1.16l-.31-.18-3.16.8.84-3.08-.2-.32a8.15 8.15 0 0 1-1.26-4.29c0-4.51 3.68-8.19 8.2-8.19 4.51 0 8.18 3.67 8.18 8.19s-3.67 8.23-8.03 8.23z"/></svg>
+          Escríbeme por WhatsApp
+        </a>
+        <a href="https://www.instagram.com/elizabeth_bienestarintegral/" class="btn-secondary" target="_blank" rel="noopener">
+          Ver Instagram
+        </a>
+      </div>
+    </div>
+    <div class="hero-visual reveal visible">
+      <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="100" cy="60" r="26" stroke="#fff" stroke-width="2" opacity="0.85"/>
+        <path d="M50 190C50 150 70 120 100 120C130 120 150 150 150 190" stroke="#fff" stroke-width="2" opacity="0.85"/>
+        <path d="M40 100C55 90 75 85 100 85C125 85 145 90 160 100" stroke="#fff" stroke-width="2" opacity="0.6"/>
+        <path d="M100 120L100 85" stroke="#fff" stroke-width="2" opacity="0.6"/>
+        <circle cx="100" cy="100" r="90" stroke="#e8cf8a" stroke-width="1" opacity="0.4"/>
+      </svg>
+      <div class="badge-float"><div class="dot"></div><span>+ de 5 años acompañando procesos</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="servicios" id="servicios">
+  <div class="container">
+    <p class="section-tag reveal">Lo que trabajamos juntas</p>
+    <h2 class="section-title reveal">Servicios de Bienestar Integral</h2>
+    <p class="section-desc reveal">Un espacio donde el cuerpo, la mente y las emociones se abordan de forma conjunta, adaptado a tus necesidades reales.</p>
+    <div class="servicios-grid">
+      <div class="servicio-card reveal">
+        <div class="servicio-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="2"/><path d="M12 7v6l-4 8m4-8l4 8M6 11l6-2 6 2"/></svg>
+        </div>
+        <h3>Pilates</h3>
+        <p>Clases individuales y grupales para fortalecer, mejorar postura y ganar consciencia corporal, a tu nivel.</p>
+      </div>
+      <div class="servicio-card reveal">
+        <div class="servicio-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        </div>
+        <h3>Masaje</h3>
+        <p>Terapias manuales para liberar tensión, aliviar el estrés físico y devolver el equilibrio al cuerpo.</p>
+      </div>
+      <div class="servicio-card reveal">
+        <div class="servicio-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h3>Terapia Emocional</h3>
+        <p>Acompañamiento para gestionar emociones, procesos personales y encontrar claridad desde la calma.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sobre" id="sobre">
+  <div class="container sobre-grid">
+    <div class="sobre-visual reveal">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="100" cy="100" r="70" fill="#fff" opacity="0.15"/>
+        <circle cx="140" cy="60" r="30" fill="#fff" opacity="0.15"/>
+      </svg>
+      <div class="sobre-visual-label">
+        <p>Ely de la Rosa</p>
+        <span>Instructora & Terapeuta</span>
+      </div>
+    </div>
+    <div class="sobre-text">
+      <p class="section-tag reveal">Sobre mí</p>
+      <h2 class="reveal">Un acompañamiento cercano, honesto y a tu medida</h2>
+      <p class="reveal">Soy Ely de la Rosa. Combino pilates, masaje y terapia emocional para ofrecer un asesoramiento integral personalizado, pensado para cada persona y su momento vital.</p>
+      <p class="reveal">Ya sea en clases individuales, talleres grupales o eventos, mi objetivo es que encuentres herramientas reales para tu bienestar físico y emocional — sin prisas, con presencia y escucha.</p>
+      <div class="pilares">
+        <div class="pilar reveal"><div class="dot"></div><span>Clases y talleres</span></div>
+        <div class="pilar reveal"><div class="dot"></div><span>Eventos de bienestar</span></div>
+        <div class="pilar reveal"><div class="dot"></div><span>Asesoramiento personalizado</span></div>
+        <div class="pilar reveal"><div class="dot"></div><span>Presencial y online</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="modalidades" id="modalidades">
+  <div class="container">
+    <p class="section-tag reveal">Cómo trabajamos</p>
+    <h2 class="section-title reveal">Modalidades disponibles</h2>
+    <p class="section-desc reveal">Elige el formato que mejor se adapta a tu rutina y tus objetivos.</p>
+    <div class="modal-grid">
+      <div class="modal-card reveal">
+        <div class="num">01</div>
+        <h4>Clases</h4>
+        <p>Sesiones individuales o en grupo reducido, presenciales u online.</p>
+      </div>
+      <div class="modal-card reveal">
+        <div class="num">02</div>
+        <h4>Talleres</h4>
+        <p>Encuentros temáticos para profundizar en cuerpo y emociones.</p>
+      </div>
+      <div class="modal-card reveal">
+        <div class="num">03</div>
+        <h4>Eventos</h4>
+        <p>Experiencias grupales de bienestar para desconectar y reconectar.</p>
+      </div>
+      <div class="modal-card reveal">
+        <div class="num">04</div>
+        <h4>Asesoramiento</h4>
+        <p>Acompañamiento integral y personalizado según tu proceso.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonios" id="testimonios">
+  <div class="container">
+    <p class="section-tag reveal">Testimonios</p>
+    <h2 class="section-title reveal">Lo que dicen quienes ya lo vivieron</h2>
+    <p class="section-desc reveal">Historias reales de personas que encontraron equilibrio con Ely.</p>
+    <div class="test-grid">
+      <div class="test-card reveal">
+        <div class="stars">★★★★★</div>
+        <p>"Empecé pilates para mejorar la espalda y terminé encontrando un espacio de calma que necesitaba en mi día a día."</p>
+        <div class="test-author">
+          <div class="test-avatar">M</div>
+          <div><strong>Marta G.</strong><span>Clases de Pilates</span></div>
+        </div>
+      </div>
+      <div class="test-card reveal">
+        <div class="stars">★★★★★</div>
+        <p>"El acompañamiento emocional de Ely me ayudó a poner en palabras cosas que llevaba mucho tiempo sin entender."</p>
+        <div class="test-author">
+          <div class="test-avatar">L</div>
+          <div><strong>Laura R.</strong><span>Terapia Emocional</span></div>
+        </div>
+      </div>
+      <div class="test-card reveal">
+        <div class="stars">★★★★★</div>
+        <p>"Los masajes con Ely son diferentes: se nota que escucha lo que necesitas antes de empezar la sesión."</p>
+        <div class="test-author">
+          <div class="test-avatar">C</div>
+          <div><strong>Carla P.</strong><span>Masaje terapéutico</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="container">
+    <h2 class="reveal">Empieza tu proceso de bienestar hoy</h2>
+    <p class="reveal">Escríbeme y cuéntame qué necesitas. Diseñamos juntas el acompañamiento que mejor se adapta a ti, presencial u online.</p>
+    <div class="cta-buttons reveal">
+      <a href="https://wa.me/34600000000" class="btn-white" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.83L2 22l5.42-1.36c1.4.76 3 1.19 4.62 1.19h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2zm0 18.14c-1.51 0-2.98-.4-4.26-1.16l-.31-.18-3.16.8.84-3.08-.2-.32a8.15 8.15 0 0 1-1.26-4.29c0-4.51 3.68-8.19 8.2-8.19 4.51 0 8.18 3.67 8.18 8.19s-3.67 8.23-8.03 8.23z"/></svg>
+        Reservar por WhatsApp
+      </a>
+      <a href="https://www.instagram.com/elizabeth_bienestarintegral/" class="btn-outline-white" target="_blank" rel="noopener">Seguir en Instagram</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-logo">Ely de la Rosa — Bienestar Integral</div>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/elizabeth_bienestarintegral/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        </a>
+        <a href="https://wa.me/34600000000" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.83L2 22l5.42-1.36c1.4.76 3 1.19 4.62 1.19h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Ely de la Rosa · Pilates · Masaje · Terapia Emocional · Presencial y Online</div>
+  </div>
+</footer>
+
+<div class="float-buttons">
+  <a href="https://wa.me/34600000000" class="float-btn whatsapp" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.83L2 22l5.42-1.36c1.4.76 3 1.19 4.62 1.19h.01c5.46 0 9.9-4.45 9.9-9.91C21.95 6.45 17.5 2 12.04 2zm0 18.14c-1.51 0-2.98-.4-4.26-1.16l-.31-.18-3.16.8.84-3.08-.2-.32a8.15 8.15 0 0 1-1.26-4.29c0-4.51 3.68-8.19 8.2-8.19 4.51 0 8.18 3.67 8.18 8.19s-3.67 8.23-8.03 8.23z"/></svg>
+  </a>
+  <a href="https://www.instagram.com/elizabeth_bienestarintegral/" class="float-btn instagram" target="_blank" rel="noopener" aria-label="Instagram">
+    <svg viewBox="0 0 24 24"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 3.25.15 4.77 1.69 4.92 4.92.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.15 3.23-1.66 4.77-4.92 4.92-1.27.06-1.64.07-4.85.07s-3.58-.01-4.85-.07c-3.26-.15-4.77-1.7-4.92-4.92-.06-1.27-.07-1.65-.07-4.85s.02-3.58.07-4.85c.15-3.23 1.66-4.77 4.92-4.92 1.27-.06 1.65-.07 4.85-.07zM12 0C8.74 0 8.33.01 7.05.07c-4.35.2-6.78 2.62-6.98 6.98C0 8.33 0 8.74 0 12s.01 3.67.07 4.95c.2 4.36 2.62 6.78 6.98 6.98C8.33 24 8.74 24 12 24s3.67-.01 4.95-.07c4.35-.2 6.78-2.62 6.98-6.98.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.2-4.35-2.62-6.78-6.98-6.98C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 4-4 4 4 0 0 1-4 4zm6.41-10.85a1.44 1.44 0 1 0 1.44 1.44 1.44 1.44 0 0 0-1.44-1.44z"/></svg>
+  </a>
+</div>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
