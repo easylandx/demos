@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="es-PY">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ÁNGA — Café Arte Bar | Gastronomía paraguaya frente al Palacio de los López</title>
+<meta name="description" content="ÁNGA Café Arte Bar. Café de especialidad, gastronomía paraguaya y arte nacional frente al Palacio de los López, Asunción. Reservá por WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500;1,9..144,600;1,9..144,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream: #FBF1E2;
+    --cream-2: #F2E1BE;
+    --paper: #FFFAF1;
+    --ink: #2A1710;
+    --ink-soft: #5B4536;
+    --terracotta: #C1502E;
+    --terracotta-deep: #9A3B20;
+    --jungle: #1E4A38;
+    --jungle-deep: #133527;
+    --gold: #E4A233;
+    --magenta: #B23A6B;
+    --line: rgba(42,23,16,0.14);
+    --radius: 22px;
+    --maxw: 1180px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Space Grotesk', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    margin:0;
+  }
+  .italic{font-style:italic; font-weight:500;}
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 28px;}
+  ::selection{background:var(--gold); color:var(--ink);}
+
+  /* Focus visibility */
+  a:focus-visible, button:focus-visible{
+    outline:3px solid var(--terracotta);
+    outline-offset:3px;
+    border-radius:6px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
+  }
+
+  /* ---------- NANDUTI SVG PATTERN (signature motif) ---------- */
+  .nandu-bg{
+    position:absolute; inset:0;
+    background-image:
+      radial-gradient(circle at center, transparent 0 40%, rgba(42,23,16,0.05) 41% 42%, transparent 43%),
+      radial-gradient(circle at center, transparent 0 30%, rgba(42,23,16,0.05) 31% 32%, transparent 33%);
+    pointer-events:none;
+  }
+
+  /* ---------- TOP BAR ---------- */
+  .topbar{
+    position:sticky; top:0; z-index:50;
+    background:rgba(251,241,226,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .topbar .wrap{
+    display:flex; align-items:center; justify-content:space-between;
+    height:76px;
+  }
+  .logo{
+    font-family:'Fraunces', serif;
+    font-weight:900;
+    font-size:1.5rem;
+    letter-spacing:0.02em;
+    display:flex; align-items:center; gap:10px;
+  }
+  .logo .dot{
+    width:10px;height:10px;border-radius:50%;
+    background:var(--terracotta);
+    display:inline-block;
+  }
+  nav{display:flex; align-items:center; gap:30px;}
+  nav .navlinks{display:flex; gap:26px;}
+  nav .navlinks a{
+    font-size:0.94rem; font-weight:500; color:var(--ink-soft);
+    position:relative; padding:4px 0;
+    transition:color .2s ease;
+  }
+  nav .navlinks a::after{
+    content:''; position:absolute; left:0; bottom:-2px; height:2px; width:0;
+    background:var(--terracotta); transition:width .25s ease;
+  }
+  nav .navlinks a:hover{color:var(--ink);}
+  nav .navlinks a:hover::after{width:100%;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:12px 22px;
+    border-radius:100px;
+    font-weight:600; font-size:0.92rem;
+    border:none; cursor:pointer;
+    transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+    white-space:nowrap;
+  }
+  .btn-primary{
+    background:var(--terracotta); color:var(--paper);
+    box-shadow:0 6px 18px rgba(193,80,46,0.35);
+  }
+  .btn-primary:hover{background:var(--terracotta-deep); transform:translateY(-2px); box-shadow:0 10px 22px rgba(193,80,46,0.4);}
+  .btn-ghost{
+    background:transparent; color:var(--ink); border:1.5px solid var(--ink);
+  }
+  .btn-ghost:hover{background:var(--ink); color:var(--cream);}
+  .btn-light{
+    background:var(--paper); color:var(--jungle-deep);
+  }
+  .btn-light:hover{transform:translateY(-2px); box-shadow:0 8px 20px rgba(0,0,0,0.25);}
+  .btn svg{width:18px; height:18px; flex-shrink:0;}
+  .navcta{display:flex; gap:10px;}
+  .menu-toggle{display:none;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:64px 0 40px;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap:50px;
+    align-items:center;
+    position:relative; z-index:2;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-size:0.82rem; font-weight:600; letter-spacing:0.08em; text-transform:uppercase;
+    color:var(--terracotta-deep);
+    background:rgba(193,80,46,0.1);
+    padding:8px 16px; border-radius:100px;
+    margin-bottom:22px;
+  }
+  .eyebrow .flag{font-size:1rem;}
+  .hero h1{
+    font-size:clamp(2.6rem, 5.2vw, 4.4rem);
+    line-height:1.02;
+    color:var(--ink);
+  }
+  .hero h1 em{
+    font-style:italic; font-weight:500; color:var(--terracotta);
+    display:block;
+  }
+  .hero p.sub{
+    font-size:1.15rem;
+    color:var(--ink-soft);
+    max-width:490px;
+    margin:26px 0 34px;
+    line-height:1.55;
+  }
+  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap; margin-bottom:34px;}
+  .hero-meta{
+    display:flex; gap:28px; flex-wrap:wrap;
+    padding-top:26px; border-top:1px solid var(--line);
+    max-width:520px;
+  }
+  .hero-meta div{display:flex; flex-direction:column; gap:2px;}
+  .hero-meta .num{font-family:'Fraunces',serif; font-size:1.5rem; font-weight:700; color:var(--jungle-deep);}
+  .hero-meta .lbl{font-size:0.82rem; color:var(--ink-soft);}
+
+  /* hero visual: nandutí lace medallion made of concentric SVG-like rings via CSS */
+  .hero-visual{
+    position:relative;
+    aspect-ratio:1/1;
+    max-width:480px;
+    margin:0 auto;
+  }
+  .lace{
+    position:absolute; inset:0;
+    border-radius:50%;
+    animation:spin 90s linear infinite;
+  }
+  @keyframes spin{ to{ transform:rotate(360deg);} }
+  .lace svg{width:100%; height:100%;}
+  .hero-visual .core{
+    position:absolute; inset:18%;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #fff7e8, var(--gold) 55%, var(--terracotta) 100%);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 30px 60px rgba(154,59,32,0.35), inset 0 0 0 8px rgba(255,250,241,0.6);
+  }
+  .hero-visual .core span{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:600;
+    font-size:1.3rem; color:var(--jungle-deep);
+    text-align:center; line-height:1.3;
+    max-width:60%;
+  }
+  .floatbadge{
+    position:absolute;
+    background:var(--paper);
+    border-radius:16px;
+    padding:12px 16px;
+    box-shadow:0 14px 30px rgba(42,23,16,0.15);
+    font-size:0.85rem;
+    font-weight:600;
+    display:flex; align-items:center; gap:8px;
+    animation:float 6s ease-in-out infinite;
+  }
+  .floatbadge.b1{top:2%; left:-8%; animation-delay:0s;}
+  .floatbadge.b2{bottom:6%; right:-10%; animation-delay:1.4s;}
+  @keyframes float{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-12px);}
+  }
+
+  /* ---------- MARQUEE ---------- */
+  .marquee{
+    background:var(--jungle);
+    color:var(--cream);
+    overflow:hidden;
+    white-space:nowrap;
+    padding:16px 0;
+    border-top:1px solid rgba(0,0,0,0.15);
+    border-bottom:1px solid rgba(0,0,0,0.15);
+  }
+  .marquee-track{
+    display:inline-flex;
+    animation:scroll 32s linear infinite;
+  }
+  .marquee-track span{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:500;
+    font-size:1.35rem;
+    padding:0 32px;
+    display:inline-flex; align-items:center; gap:14px;
+    color:var(--cream);
+  }
+  .marquee-track span::after{content:'☕'; font-style:normal; opacity:0.7; font-size:1rem;}
+  @keyframes scroll{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:110px 0;}
+  .section-head{
+    max-width:640px;
+    margin-bottom:56px;
+  }
+  .section-head .eyebrow{margin-bottom:18px;}
+  .section-head h2{
+    font-size:clamp(2rem, 3.6vw, 3rem);
+    line-height:1.08;
+  }
+  .section-head p{
+    color:var(--ink-soft); font-size:1.08rem; margin-top:18px; line-height:1.6;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about{background:var(--paper);}
+  .about-grid{
+    display:grid; grid-template-columns: 0.85fr 1.15fr;
+    gap:60px; align-items:center;
+  }
+  .about-art{
+    position:relative;
+    aspect-ratio:4/5;
+    border-radius:var(--radius);
+    background:
+      radial-gradient(circle at 30% 20%, rgba(228,162,51,0.5), transparent 45%),
+      radial-gradient(circle at 75% 70%, rgba(178,58,107,0.45), transparent 50%),
+      linear-gradient(155deg, var(--jungle), var(--jungle-deep));
+    overflow:hidden;
+    box-shadow:0 30px 60px rgba(19,53,39,0.25);
+  }
+  .about-art .rings{
+    position:absolute; inset:0;
+    background-image:
+      repeating-radial-gradient(circle at 50% 45%, rgba(251,241,226,0.12) 0 2px, transparent 2px 26px);
+  }
+  .about-art .tag{
+    position:absolute; bottom:24px; left:24px; right:24px;
+    color:var(--cream);
+    font-family:'Fraunces',serif; font-style:italic; font-weight:500;
+    font-size:1.4rem; line-height:1.3;
+  }
+  .about-copy p{color:var(--ink-soft); font-size:1.08rem; line-height:1.7; margin:0 0 20px;}
+  .about-copy .pillars{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:34px;
+  }
+  .pillar{
+    background:var(--cream);
+    border-radius:16px;
+    padding:20px 16px;
+    text-align:left;
+    border:1px solid var(--line);
+  }
+  .pillar .ic{font-size:1.6rem; margin-bottom:10px; display:block;}
+  .pillar h4{font-family:'Fraunces',serif; font-weight:600; font-size:1rem; margin-bottom:4px;}
+  .pillar p{font-size:0.86rem; margin:0; color:var(--ink-soft); line-height:1.4;}
+
+  /* ---------- MENU ---------- */
+  .menu{background:var(--cream);}
+  .menu-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+  }
+  .menu-card{
+    background:var(--paper);
+    border-radius:var(--radius);
+    padding:32px 28px;
+    border:1px solid var(--line);
+    transition:transform .3s ease, box-shadow .3s ease;
+    position:relative;
+    overflow:hidden;
+  }
+  .menu-card:hover{transform:translateY(-6px); box-shadow:0 20px 40px rgba(42,23,16,0.12);}
+  .menu-card .swatch{
+    width:52px; height:52px; border-radius:14px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.5rem; margin-bottom:20px;
+  }
+  .menu-card h3{font-size:1.25rem; margin-bottom:10px;}
+  .menu-card p{color:var(--ink-soft); font-size:0.95rem; line-height:1.55; margin:0;}
+  .menu-card.c1 .swatch{background:#F6DDBE; }
+  .menu-card.c2 .swatch{background:#E7C9CE;}
+  .menu-card.c3 .swatch{background:#CFE0D2;}
+  .menu-card.c4 .swatch{background:#F3D9A8;}
+  .menu-card.c5 .swatch{background:#DCCBE8;}
+  .menu-card.c6 .swatch{background:#F1C6B8;}
+
+  .menu-cta{
+    margin-top:48px;
+    display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; gap:20px;
+    background:var(--ink);
+    color:var(--cream);
+    border-radius:var(--radius);
+    padding:32px 36px;
+  }
+  .menu-cta p{margin:0; color:rgba(251,241,226,0.75); font-size:0.98rem;}
+  .menu-cta h3{color:var(--cream); font-size:1.5rem; margin-bottom:6px;}
+
+  /* ---------- ART SECTION ---------- */
+  .art{
+    background:var(--jungle-deep);
+    color:var(--cream);
+    position:relative;
+  }
+  .art .section-head p{color:rgba(251,241,226,0.72);}
+  .art .eyebrow{background:rgba(251,241,226,0.12); color:var(--gold);}
+  .art-gallery{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    grid-auto-rows:150px;
+    gap:16px;
+  }
+  .art-tile{
+    border-radius:16px;
+    position:relative;
+    overflow:hidden;
+    transition:transform .35s ease;
+  }
+  .art-tile:hover{transform:scale(1.03);}
+  .art-tile span{
+    position:absolute; bottom:12px; left:14px;
+    font-family:'Fraunces',serif; font-style:italic; font-size:0.92rem;
+    color:rgba(255,255,255,0.9);
+  }
+  .art-tile.big{grid-column:span 2; grid-row:span 2;}
+  .t1{background:conic-gradient(from 90deg at 50% 50%, var(--terracotta), var(--gold), var(--magenta), var(--terracotta));}
+  .t2{background:radial-gradient(circle at 30% 30%, var(--gold), var(--terracotta-deep) 70%);}
+  .t3{background:repeating-linear-gradient(45deg, var(--magenta) 0 12px, var(--jungle) 12px 24px);}
+  .t4{background:radial-gradient(circle at 60% 40%, var(--cream-2), var(--jungle) 75%);}
+  .t5{background:conic-gradient(from 45deg, var(--jungle), var(--magenta), var(--gold), var(--jungle));}
+  .t6{background:repeating-radial-gradient(circle at 50% 50%, var(--gold) 0 8px, var(--terracotta) 8px 16px);}
+
+  /* ---------- LOCATION ---------- */
+  .location{background:var(--paper);}
+  .loc-grid{
+    display:grid; grid-template-columns:0.9fr 1.1fr; gap:50px; align-items:stretch;
+  }
+  .loc-info{
+    background:var(--cream);
+    border-radius:var(--radius);
+    padding:40px;
+    border:1px solid var(--line);
+  }
+  .loc-info h3{font-size:1.6rem; margin-bottom:22px;}
+  .loc-row{
+    display:flex; gap:16px; align-items:flex-start;
+    padding:16px 0; border-top:1px solid var(--line);
+  }
+  .loc-row:first-of-type{border-top:none;}
+  .loc-row .ic{
+    width:42px; height:42px; border-radius:12px; background:var(--terracotta); color:var(--paper);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:1.2rem;
+  }
+  .loc-row h5{margin:0 0 4px; font-family:'Fraunces',serif; font-size:1.02rem;}
+  .loc-row p{margin:0; color:var(--ink-soft); font-size:0.92rem; line-height:1.5;}
+  .loc-map{
+    border-radius:var(--radius);
+    overflow:hidden;
+    min-height:380px;
+    border:1px solid var(--line);
+  }
+  .loc-map iframe{width:100%; height:100%; min-height:380px; border:0; display:block;}
+
+  /* ---------- FINAL CTA ---------- */
+  .final-cta{
+    background:linear-gradient(155deg, var(--terracotta) 0%, var(--terracotta-deep) 100%);
+    color:var(--paper);
+    text-align:center;
+    position:relative;
+    overflow:hidden;
+  }
+  .final-cta::before{
+    content:'';
+    position:absolute; inset:-30%;
+    background-image:radial-gradient(circle, rgba(255,255,255,0.14) 0 3px, transparent 3px);
+    background-size:46px 46px;
+    opacity:0.5;
+  }
+  .final-cta .inner{position:relative; z-index:2; max-width:680px; margin:0 auto;}
+  .final-cta h2{font-size:clamp(2.1rem,4vw,3.2rem); margin-bottom:20px; color:var(--paper);}
+  .final-cta p{font-size:1.1rem; color:rgba(255,250,241,0.85); margin-bottom:38px;}
+  .final-ctas{display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--ink);
+    color:rgba(251,241,226,0.7);
+    padding:60px 0 30px;
+  }
+  .foot-grid{
+    display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:40px;
+    padding-bottom:40px; border-bottom:1px solid rgba(251,241,226,0.12);
+  }
+  .foot-logo{font-family:'Fraunces',serif; font-weight:900; font-size:1.5rem; color:var(--cream); margin-bottom:14px;}
+  .foot-grid p{font-size:0.92rem; line-height:1.6; max-width:320px;}
+  .foot-col h5{color:var(--cream); font-family:'Fraunces',serif; font-weight:600; margin-bottom:16px; font-size:1rem;}
+  .foot-col a{display:block; font-size:0.92rem; margin-bottom:12px; color:rgba(251,241,226,0.7); transition:color .2s;}
+  .foot-col a:hover{color:var(--gold);}
+  .foot-bottom{
+    padding-top:26px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+    font-size:0.82rem;
+  }
+
+  /* ---------- REVEAL ANIMATION ---------- */
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 980px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-visual{order:-1; max-width:340px;}
+    .about-grid{grid-template-columns:1fr;}
+    .menu-grid{grid-template-columns:repeat(2,1fr);}
+    .art-gallery{grid-template-columns:repeat(2,1fr);}
+    .art-tile.big{grid-column:span 2;}
+    .loc-grid{grid-template-columns:1fr;}
+    .foot-grid{grid-template-columns:1fr; gap:28px;}
+  }
+  @media (max-width: 720px){
+    nav .navlinks{display:none;}
+    .menu-toggle{
+      display:flex; background:none; border:none; cursor:pointer; padding:8px;
+    }
+    .navcta .btn-ghost{display:none;}
+    .menu-grid{grid-template-columns:1fr;}
+    .pillars{grid-template-columns:1fr !important;}
+    .menu-cta{flex-direction:column; align-items:flex-start;}
+    section{padding:70px 0;}
+    .floatbadge{display:none;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ TOP BAR ============ -->
+<header class="topbar">
+  <div class="wrap">
+    <a href="#top" class="logo"><span class="dot"></span>ÁNGA</a>
+    <nav>
+      <div class="navlinks">
+        <a href="#nosotros">Nosotros</a>
+        <a href="#menu">Menú</a>
+        <a href="#arte">Arte</a>
+        <a href="#ubicacion">Ubicación</a>
+      </div>
+      <div class="navcta">
+        <a class="btn btn-ghost" href="https://www.instagram.com/angacafepy/" target="_blank" rel="noopener">Instagram</a>
+        <a class="btn btn-primary" href="https://api.whatsapp.com/send/?phone=595992500560" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.3A8.9 8.9 0 0 0 3.1 16.9L2 22l5.2-1.4A8.9 8.9 0 0 0 21 12a8.9 8.9 0 0 0-3.4-5.7Zm-5.6 13.6a7.4 7.4 0 0 1-3.8-1l-.3-.2-2.8.7.8-2.7-.2-.3a7.4 7.4 0 1 1 6.3 3.5Zm4.1-5.5c-.2-.1-1.3-.7-1.5-.7-.2-.1-.4-.1-.5.1-.2.2-.6.7-.7.9-.1.1-.3.2-.5.1-.7-.3-1.4-.8-2-1.4-.5-.5-.9-1.1-1-1.3-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.1.1-.3 0-.4-.1-.1-.5-1.3-.7-1.8-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.3c.1.2 1.6 2.5 3.9 3.4.5.2 1 .4 1.3.5.5.2 1 .1 1.4-.1.4-.2 1.3-.5 1.5-1 .2-.5.2-.9.1-1l-.4-.2Z"/></svg>
+          Reservar
+        </a>
+      </div>
+      <button class="menu-toggle" aria-label="Abrir menú">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="top" class="hero">
+  <div class="wrap hero-grid">
+    <div class="reveal in">
+      <div class="eyebrow"><span class="flag">🇵🇾</span> Frente al Palacio de los López · Asunción</div>
+      <h1>Café, arte y<br><em>alma paraguaya</em></h1>
+      <p class="sub">ÁNGA es café de especialidad, gastronomía paraguaya y arte nacional en un mismo lugar. Un rincón con historia para sentarte, probar algo rico y dejarte llevar por el ambiente.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="https://api.whatsapp.com/send/?phone=595992500560" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.3A8.9 8.9 0 0 0 3.1 16.9L2 22l5.2-1.4A8.9 8.9 0 0 0 21 12a8.9 8.9 0 0 0-3.4-5.7Zm-5.6 13.6a7.4 7.4 0 0 1-3.8-1l-.3-.2-2.8.7.8-2.7-.2-.3a7.4 7.4 0 1 1 6.3 3.5Zm4.1-5.5c-.2-.1-1.3-.7-1.5-.7-.2-.1-.4-.1-.5.1-.2.2-.6.7-.7.9-.1.1-.3.2-.5.1-.7-.3-1.4-.8-2-1.4-.5-.5-.9-1.1-1-1.3-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.1.1-.3 0-.4-.1-.1-.5-1.3-.7-1.8-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.3c.1.2 1.6 2.5 3.9 3.4.5.2 1 .4 1.3.5.5.2 1 .1 1.4-.1.4-.2 1.3-.5 1.5-1 .2-.5.2-.9.1-1l-.4-.2Z"/></svg>
+          Reservar por WhatsApp
+        </a>
+        <a class="btn btn-ghost" href="https://linktr.ee/angacafepy" target="_blank" rel="noopener">Ver menú completo</a>
+      </div>
+      <div class="hero-meta">
+        <div><span class="num">100%</span><span class="lbl">Café de especialidad</span></div>
+        <div><span class="num">PY</span><span class="lbl">Cocina paraguaya de autor</span></div>
+        <div><span class="num">Arte</span><span class="lbl">Artistas nacionales en sala</span></div>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal in">
+      <div class="lace">
+        <svg viewBox="0 0 400 400">
+          <g fill="none" stroke="#9A3B20" stroke-width="1.4" opacity="0.55">
+            <circle cx="200" cy="200" r="190"/>
+            <circle cx="200" cy="200" r="160"/>
+            <circle cx="200" cy="200" r="130"/>
+            <g id="petals"></g>
+          </g>
+          <script>
+            // (decorative petals rendered via CSS conic pattern below; SVG kept minimal for perf)
+          </script>
+        </svg>
+      </div>
+      <div class="lace" style="animation-duration:70s; animation-direction:reverse;">
+        <svg viewBox="0 0 400 400">
+          <g fill="none" stroke="#E4A233" stroke-width="1.2" opacity="0.6">
+            <circle cx="200" cy="200" r="175" stroke-dasharray="6 10"/>
+            <circle cx="200" cy="200" r="145" stroke-dasharray="3 8"/>
+          </g>
+        </svg>
+      </div>
+      <div class="core"><span>Café Arte Bar</span></div>
+      <div class="floatbadge b1">📍 Frente al Palacio de los López</div>
+      <div class="floatbadge b2">🎨 Arte nacional en cada rincón</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>Café de especialidad</span><span>Gastronomía paraguaya</span><span>Arte nacional</span><span>Frente al Palacio de los López</span>
+    <span>Café de especialidad</span><span>Gastronomía paraguaya</span><span>Arte nacional</span><span>Frente al Palacio de los López</span>
+  </div>
+</div>
+
+<!-- ============ ABOUT ============ -->
+<section id="nosotros" class="about">
+  <div class="wrap about-grid">
+    <div class="about-art reveal">
+      <div class="rings"></div>
+      <div class="tag">"Ánga" viene del guaraní y habla del alma. Así nació este lugar: para alimentar el alma con café, comida y arte.</div>
+    </div>
+    <div class="about-copy reveal">
+      <div class="eyebrow">Sobre nosotros</div>
+      <h2 style="font-size:clamp(1.9rem,3vw,2.6rem); margin-bottom:20px;">Un café, un bar y una galería, todo en el mismo lugar</h2>
+      <p>En ÁNGA combinamos tres pasiones: el café de especialidad preparado con cuidado, la cocina paraguaya reinterpretada con identidad propia, y el arte de creadores locales que viste cada rincón del espacio.</p>
+      <p>Estamos ubicados frente al Palacio de los López, en el corazón de Asunción. Un lugar pensado para quedarte, conversar y descubrir algo nuevo cada visita.</p>
+      <div class="pillars">
+        <div class="pillar"><span class="ic">☕</span><h4>Café de especialidad</h4><p>Granos seleccionados y métodos cuidados, taza por taza.</p></div>
+        <div class="pillar"><span class="ic">🍽️</span><h4>Gastronomía paraguaya</h4><p>Sabores tradicionales con una mirada de autor.</p></div>
+        <div class="pillar"><span class="ic">🎨</span><h4>Arte nacional</h4><p>Obras de artistas paraguayos en exhibición permanente.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MENU ============ -->
+<section id="menu" class="menu">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Para disfrutar</div>
+      <h2>Lo que te vas a encontrar en la carta</h2>
+      <p>Una selección que mezcla lo tradicional paraguayo con guiños de autor. Pedí el menú completo y actualizado por WhatsApp o Linktree.</p>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-card c1 reveal">
+        <div class="swatch">🫓</div>
+        <h3>Chipa &amp; mbeju</h3>
+        <p>Los clásicos de siempre, preparados como en casa y servidos con una vuelta de autor.</p>
+      </div>
+      <div class="menu-card c2 reveal">
+        <div class="swatch">🍲</div>
+        <h3>Cocina paraguaya</h3>
+        <p>Platos de identidad nacional revisitados, para almorzar o compartir en la sobremesa.</p>
+      </div>
+      <div class="menu-card c3 reveal">
+        <div class="swatch">☕</div>
+        <h3>Café de especialidad</h3>
+        <p>Métodos de filtrado, espresso y opciones frías. Café bueno, sin vueltas.</p>
+      </div>
+      <div class="menu-card c4 reveal">
+        <div class="swatch">🧉</div>
+        <h3>Tereré &amp; mate</h3>
+        <p>La tradición paraguaya en versión café-bar, ideal para las tardes de charla.</p>
+      </div>
+      <div class="menu-card c5 reveal">
+        <div class="swatch">🍰</div>
+        <h3>Postres artesanales</h3>
+        <p>Dulces de producción propia, pensados para acompañar cualquier café.</p>
+      </div>
+      <div class="menu-card c6 reveal">
+        <div class="swatch">🍹</div>
+        <h3>Barra &amp; tragos</h3>
+        <p>Cuando cae la tarde, la barra se enciende con una propuesta de autor.</p>
+      </div>
+    </div>
+
+    <div class="menu-cta reveal">
+      <div>
+        <h3>¿Querés ver la carta completa?</h3>
+        <p>Te la enviamos al toque por WhatsApp, o encontrá todos nuestros links en un solo lugar.</p>
+      </div>
+      <div style="display:flex; gap:12px; flex-wrap:wrap;">
+        <a class="btn btn-primary" href="https://api.whatsapp.com/send/?phone=595992500560" target="_blank" rel="noopener">Pedir menú por WhatsApp</a>
+        <a class="btn btn-light" href="https://linktr.ee/angacafepy" target="_blank" rel="noopener">linktr.ee/angacafepy</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ART ============ -->
+<section id="arte" class="art">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Arte nacional</div>
+      <h2>Las paredes de ÁNGA también cuentan una historia</h2>
+      <p>Exhibimos obra de artistas paraguayos: pintura, ilustración y diseño inspirado en nuestras tradiciones, como el ñandutí y el ao po'i. Cada visita es distinta.</p>
+    </div>
+    <div class="art-gallery">
+      <div class="art-tile big t1 reveal"><span>Obra en sala 01</span></div>
+      <div class="art-tile t2 reveal"><span>Obra en sala 02</span></div>
+      <div class="art-tile t3 reveal"><span>Obra en sala 03</span></div>
+      <div class="art-tile t4 reveal"><span>Obra en sala 04</span></div>
+      <div class="art-tile t5 reveal"><span>Obra en sala 05</span></div>
+      <div class="art-tile t6 reveal"><span>Obra en sala 06</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LOCATION ============ -->
+<section id="ubicacion" class="location">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Cómo llegar</div>
+      <h2>Te esperamos frente al Palacio de los López</h2>
+    </div>
+    <div class="loc-grid">
+      <div class="loc-info reveal">
+        <h3>Ánga Café Arte Bar</h3>
+        <div class="loc-row">
+          <div class="ic">📍</div>
+          <div><h5>Ubicación</h5><p>Frente al Palacio de los López, Asunción, Paraguay.</p></div>
+        </div>
+        <div class="loc-row">
+          <div class="ic">💬</div>
+          <div><h5>Reservas y menú</h5><p>Coordinamos todo por WhatsApp: <a href="https://api.whatsapp.com/send/?phone=595992500560" target="_blank" rel="noopener" style="text-decoration:underline;">+595 992 500560</a></p></div>
+        </div>
+        <div class="loc-row">
+          <div class="ic">🔗</div>
+          <div><h5>Todos nuestros links</h5><p><a href="https://linktr.ee/angacafepy" target="_blank" rel="noopener" style="text-decoration:underline;">linktr.ee/angacafepy</a></p></div>
+        </div>
+        <div class="loc-row">
+          <div class="ic">📸</div>
+          <div><h5>Instagram</h5><p><a href="https://www.instagram.com/angacafepy/" target="_blank" rel="noopener" style="text-decoration:underline;">@angacafepy</a></p></div>
+        </div>
+      </div>
+      <div class="loc-map reveal">
+        <iframe
+          src="https://www.google.com/maps?q=Palacio%20de%20los%20L%C3%B3pez%2C%20Asunci%C3%B3n%2C%20Paraguay&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Mapa: frente al Palacio de los López, Asunción">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA ============ -->
+<section class="final-cta">
+  <div class="wrap">
+    <div class="inner reveal">
+      <h2>Reservá tu mesa en ÁNGA</h2>
+      <p>Contanos cuántos son y a qué hora te esperamos. Te respondemos por WhatsApp con la disponibilidad y el menú del día.</p>
+      <div class="final-ctas">
+        <a class="btn btn-light" href="https://api.whatsapp.com/send/?phone=595992500560" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 6.3A8.9 8.9 0 0 0 3.1 16.9L2 22l5.2-1.4A8.9 8.9 0 0 0 21 12a8.9 8.9 0 0 0-3.4-5.7Zm-5.6 13.6a7.4 7.4 0 0 1-3.8-1l-.3-.2-2.8.7.8-2.7-.2-.3a7.4 7.4 0 1 1 6.3 3.5Zm4.1-5.5c-.2-.1-1.3-.7-1.5-.7-.2-.1-.4-.1-.5.1-.2.2-.6.7-.7.9-.1.1-.3.2-.5.1-.7-.3-1.4-.8-2-1.4-.5-.5-.9-1.1-1-1.3-.1-.2 0-.4.1-.5l.4-.4c.1-.1.2-.3.2-.4.1-.1.1-.3 0-.4-.1-.1-.5-1.3-.7-1.8-.2-.4-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 1.9s.8 2.2.9 2.3c.1.2 1.6 2.5 3.9 3.4.5.2 1 .4 1.3.5.5.2 1 .1 1.4-.1.4-.2 1.3-.5 1.5-1 .2-.5.2-.9.1-1l-.4-.2Z"/></svg>
+          Escribinos al 0992 500560
+        </a>
+        <a class="btn btn-ghost" style="border-color:var(--paper); color:var(--paper);" href="https://www.instagram.com/angacafepy/" target="_blank" rel="noopener">Seguinos en Instagram</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo">ÁNGA</div>
+        <p>Café Arte Bar. Gastronomía paraguaya con alma, café de especialidad y arte nacional, frente al Palacio de los López, Asunción.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Navegación</h5>
+        <a href="#nosotros">Nosotros</a>
+        <a href="#menu">Menú</a>
+        <a href="#arte">Arte</a>
+        <a href="#ubicacion">Ubicación</a>
+      </div>
+      <div class="foot-col">
+        <h5>Conectá con nosotros</h5>
+        <a href="https://www.instagram.com/angacafepy/" target="_blank" rel="noopener">Instagram — @angacafepy</a>
+        <a href="https://api.whatsapp.com/send/?phone=595992500560" target="_blank" rel="noopener">WhatsApp — Reservas</a>
+        <a href="https://linktr.ee/angacafepy" target="_blank" rel="noopener">Linktree — Todos los links</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 ÁNGA Café Arte Bar. Todos los derechos reservados.</span>
+      <span>Asunción, Paraguay 🇵🇾</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu toggle -> just links to WhatsApp/Instagram directly for simplicity on small screens
+  document.querySelector('.menu-toggle')?.addEventListener('click', () => {
+    window.open('https://linktr.ee/angacafepy', '_blank', 'noopener');
+  });
+
+  // Scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.15});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
