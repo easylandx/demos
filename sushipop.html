@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="es-PY">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sushi POP Paraguay 🍣 | Terrazas del Paseo La Galería</title>
+<meta name="description" content="Sushi POP Paraguay: sushi, nikkei y after office en la terraza del Paseo La Galería. Pedí por delivery al 0986 660404.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1a1712;
+    --paper:#fff6e6;
+    --paper-2:#ffefd3;
+    --pop-red:#ff3b30;
+    --pop-pink:#ff7aa2;
+    --wasabi:#8fc93a;
+    --yolk:#ffc93c;
+    --nori:#2c2a25;
+    --line:#1a1712;
+    --shadow: 6px 6px 0px var(--ink);
+    --shadow-sm: 4px 4px 0px var(--ink);
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3, .display{
+    font-family:'Archivo Black', sans-serif;
+    text-transform:uppercase;
+    line-height:0.95;
+    letter-spacing:-0.01em;
+  }
+
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    font-size:0.72rem;
+    font-weight:700;
+  }
+
+  a{color:inherit; text-decoration:none;}
+  img,svg{display:block; max-width:100%;}
+
+  .halftone{
+    background-image: radial-gradient(var(--ink) 1.4px, transparent 1.4px);
+    background-size: 13px 13px;
+  }
+
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  /* ---------- Buttons ---------- */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Space Mono', monospace;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    font-size:0.85rem;
+    padding:14px 24px;
+    border:3px solid var(--ink);
+    border-radius:100px;
+    background:var(--paper);
+    box-shadow: var(--shadow-sm);
+    transition: transform .15s ease, box-shadow .15s ease;
+    cursor:pointer;
+    white-space:nowrap;
+  }
+  .btn:hover{ transform: translate(-2px,-2px); box-shadow: 6px 6px 0px var(--ink); }
+  .btn:active{ transform: translate(1px,1px); box-shadow: 2px 2px 0px var(--ink); }
+  .btn-red{ background:var(--pop-red); color:var(--paper); }
+  .btn-yolk{ background:var(--yolk); color:var(--ink); }
+  .btn-dark{ background:var(--ink); color:var(--paper); }
+  .btn-ghost{ background:transparent; }
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:var(--paper);
+    border-bottom:3px solid var(--ink);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 24px;
+  }
+  .logo{
+    font-family:'Archivo Black', sans-serif;
+    font-size:1.4rem;
+    text-transform:uppercase;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+  .logo .dot{
+    width:10px;height:10px;border-radius:50%;
+    background:var(--pop-red);
+    display:inline-block;
+  }
+  .nav-links{
+    display:flex; gap:28px; align-items:center;
+    font-family:'Space Mono', monospace;
+    font-size:0.8rem;
+    text-transform:uppercase;
+    letter-spacing:0.04em;
+    font-weight:700;
+  }
+  .nav-links a{ position:relative; padding-bottom:3px;}
+  .nav-links a:hover{ color:var(--pop-red); }
+  .nav-cta{ display:flex; gap:10px; }
+  .burger{ display:none; }
+
+  @media (max-width:900px){
+    .nav-links{ display:none; }
+    .nav-cta .btn span.long{ display:none; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative;
+    padding:70px 0 40px;
+    border-bottom:3px solid var(--ink);
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap:40px;
+    align-items:center;
+  }
+  @media (max-width:860px){ .hero-grid{ grid-template-columns:1fr; } }
+
+  .hero-eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--ink); color:var(--paper);
+    padding:6px 14px; border-radius:100px;
+    font-family:'Space Mono', monospace;
+    font-size:0.72rem; text-transform:uppercase; letter-spacing:0.1em; font-weight:700;
+    margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 6.5vw, 4.6rem);
+    margin-bottom:18px;
+  }
+  .hero h1 .accent{ color:var(--pop-red); -webkit-text-stroke:2px var(--ink); }
+  .hero h1 .accent2{ color:var(--wasabi); -webkit-text-stroke:2px var(--ink); }
+  .hero p.lead{
+    font-size:1.15rem;
+    max-width:480px;
+    margin-bottom:28px;
+    font-weight:500;
+  }
+  .hero-ctas{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:30px;}
+  .hero-tags{ display:flex; gap:10px; flex-wrap:wrap; }
+  .tag{
+    font-family:'Space Mono', monospace;
+    font-size:0.72rem; text-transform:uppercase; letter-spacing:0.05em; font-weight:700;
+    border:2px solid var(--ink); padding:5px 12px; border-radius:100px;
+    background:var(--paper-2);
+  }
+
+  .hero-art{
+    position:relative;
+    display:flex; align-items:center; justify-content:center;
+    min-height:380px;
+  }
+  .hero-art .halo{
+    position:absolute; inset:0;
+    background: radial-gradient(circle at center, var(--yolk) 0%, var(--yolk) 60%, transparent 61%);
+    border-radius:50%;
+    width:340px; height:340px; margin:auto;
+    border:3px solid var(--ink);
+    z-index:0;
+  }
+  .hero-art svg{ position:relative; z-index:2; width:100%; max-width:380px; }
+  .burst{
+    position:absolute;
+    font-family:'Archivo Black', sans-serif;
+    background:var(--pop-red);
+    color:var(--paper);
+    border:3px solid var(--ink);
+    padding:10px 14px;
+    border-radius:50%;
+    font-size:0.85rem;
+    line-height:1.05;
+    text-align:center;
+    transform:rotate(-12deg);
+    box-shadow: var(--shadow-sm);
+    z-index:3;
+  }
+  .burst.b1{ top:0px; right:10px; width:100px; height:100px; display:flex; align-items:center; justify-content:center;}
+  .burst.b2{ bottom:10px; left:-10px; background:var(--wasabi); color:var(--ink); width:88px; height:88px; display:flex; align-items:center; justify-content:center; transform:rotate(9deg); }
+
+  /* ---------- Marquee ---------- */
+  .marquee{
+    background:var(--ink);
+    color:var(--paper);
+    border-bottom:3px solid var(--ink);
+    overflow:hidden;
+    white-space:nowrap;
+    padding:12px 0;
+  }
+  .marquee-track{
+    display:inline-block;
+    font-family:'Space Mono', monospace;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    font-size:0.85rem;
+    animation: scroll 26s linear infinite;
+  }
+  .marquee-track span{ margin:0 20px; color:var(--yolk); }
+  @keyframes scroll{
+    from{ transform:translateX(0); }
+    to{ transform:translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .marquee-track{ animation:none; }
+  }
+
+  /* ---------- Sections generic ---------- */
+  section{ padding:80px 0; border-bottom:3px solid var(--ink); position:relative;}
+  section:last-of-type{ border-bottom:none; }
+  .section-head{ max-width:640px; margin-bottom:48px; }
+  .section-head .eyebrow{ color:var(--pop-red); margin-bottom:10px; display:block; }
+  .section-head h2{ font-size:clamp(1.9rem, 4vw, 2.8rem); }
+  .section-head p{ margin-top:14px; font-size:1.05rem; max-width:520px; }
+
+  /* ---------- Menu cards ---------- */
+  .menu-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:20px;
+  }
+  @media (max-width:960px){ .menu-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:560px){ .menu-grid{ grid-template-columns:1fr; } }
+
+  .menu-card{
+    background:var(--paper-2);
+    border:3px solid var(--ink);
+    border-radius:20px;
+    padding:26px 22px;
+    box-shadow: var(--shadow-sm);
+    transition: transform .18s ease;
+    display:flex; flex-direction:column; gap:14px;
+  }
+  .menu-card:hover{ transform:translateY(-6px) rotate(-1deg); }
+  .menu-card .icon-wrap{
+    width:64px; height:64px;
+    border-radius:50%;
+    border:3px solid var(--ink);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .menu-card:nth-child(1) .icon-wrap{ background:var(--pop-red); }
+  .menu-card:nth-child(2) .icon-wrap{ background:var(--wasabi); }
+  .menu-card:nth-child(3) .icon-wrap{ background:var(--yolk); }
+  .menu-card:nth-child(4) .icon-wrap{ background:var(--pop-pink); }
+  .menu-card .icon-wrap svg{ width:34px; height:34px; }
+  .menu-card h3{ font-size:1.15rem; }
+  .menu-card p{ font-size:0.92rem; font-weight:500; opacity:0.85; }
+
+  /* ---------- Ambiente split ---------- */
+  .ambiente{ background:var(--ink); color:var(--paper); }
+  .ambiente .section-head p{ color:var(--paper-2); }
+  .ambiente .section-head .eyebrow{ color:var(--yolk); }
+  .amb-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:26px;
+  }
+  @media (max-width:800px){ .amb-grid{ grid-template-columns:1fr; } }
+  .amb-card{
+    border:3px solid var(--paper-2);
+    border-radius:20px;
+    padding:30px;
+    background:#232019;
+  }
+  .amb-card .num{
+    font-family:'Space Mono', monospace;
+    color:var(--yolk);
+    font-weight:700;
+    font-size:0.85rem;
+    letter-spacing:0.08em;
+    margin-bottom:10px;
+    display:block;
+  }
+  .amb-card h3{ font-size:1.5rem; margin-bottom:12px; color:var(--paper);}
+  .amb-card p{ color:var(--paper-2); font-size:0.98rem; line-height:1.55; }
+
+  .quote{
+    margin-top:40px;
+    border-top:2px dashed var(--paper-2);
+    padding-top:28px;
+    font-family:'Archivo Black', sans-serif;
+    text-transform:none;
+    font-size:1.4rem;
+    line-height:1.35;
+    max-width:640px;
+  }
+  .quote span{ color:var(--pop-pink); }
+
+  /* ---------- Delivery steps ---------- */
+  .steps{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:24px;
+  }
+  @media (max-width:820px){ .steps{ grid-template-columns:1fr; } }
+  .step{
+    position:relative;
+    padding:30px 24px 24px;
+    border:3px solid var(--ink);
+    border-radius:20px;
+    background:var(--paper);
+  }
+  .step .step-num{
+    position:absolute; top:-22px; left:20px;
+    width:44px; height:44px;
+    border-radius:50%;
+    background:var(--pop-red);
+    color:var(--paper);
+    border:3px solid var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Archivo Black', sans-serif;
+    font-size:1.1rem;
+  }
+  .step h3{ margin-top:12px; font-size:1.15rem; margin-bottom:10px;}
+  .step p{ font-size:0.95rem; font-weight:500; opacity:0.85; margin-bottom:16px;}
+
+  .delivery-cta{
+    margin-top:40px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:14px;
+    align-items:center;
+    justify-content:space-between;
+    background:var(--paper-2);
+    border:3px solid var(--ink);
+    border-radius:20px;
+    padding:26px 30px;
+    box-shadow: var(--shadow-sm);
+  }
+  .delivery-cta .phone{
+    font-family:'Space Mono', monospace;
+    font-weight:700;
+    font-size:1.3rem;
+  }
+  .delivery-cta .phone small{
+    display:block;
+    font-family:'Work Sans', sans-serif;
+    font-weight:600;
+    font-size:0.72rem;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--pop-red);
+    margin-bottom:4px;
+  }
+
+  /* ---------- Ubicacion ---------- */
+  .loc-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+    align-items:start;
+  }
+  @media (max-width:860px){ .loc-grid{ grid-template-columns:1fr; } }
+
+  .info-line{
+    display:flex; gap:14px; align-items:flex-start;
+    padding:16px 0;
+    border-bottom:2px dashed var(--ink);
+  }
+  .info-line:last-child{ border-bottom:none; }
+  .info-line .ic{
+    width:38px; height:38px; flex:none;
+    border-radius:50%;
+    border:2.5px solid var(--ink);
+    background:var(--yolk);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .info-line .ic svg{ width:18px; height:18px; }
+  .info-line h4{ font-family:'Space Mono', monospace; text-transform:uppercase; font-size:0.78rem; letter-spacing:0.06em; margin-bottom:4px;}
+  .info-line p{ font-size:0.98rem; font-weight:500; }
+
+  .hours-table{ width:100%; border-collapse:collapse; margin-top:6px; }
+  .hours-table td{ padding:4px 0; font-size:0.92rem; }
+  .hours-table td:first-child{ font-weight:700; width:120px; }
+
+  .map-card{
+    border:3px solid var(--ink);
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    background:var(--paper-2);
+  }
+  .map-card .map-fake{
+    height:260px;
+    position:relative;
+    background:
+      repeating-linear-gradient(45deg, transparent 0 12px, rgba(26,23,18,0.05) 12px 13px),
+      var(--paper-2);
+    display:flex; align-items:center; justify-content:center;
+    border-bottom:3px solid var(--ink);
+  }
+  .map-card .pin{
+    width:56px; height:56px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .map-card .map-info{ padding:20px 22px; }
+  .map-card .map-info p{ font-size:0.9rem; font-weight:600; margin-bottom:14px; }
+
+  /* ---------- Final CTA ---------- */
+  .final-cta{
+    text-align:center;
+    background:var(--pop-red);
+    color:var(--paper);
+    border-bottom:3px solid var(--ink);
+    position:relative;
+    overflow:hidden;
+  }
+  .final-cta::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image: radial-gradient(rgba(255,246,230,0.35) 1.6px, transparent 1.6px);
+    background-size:16px 16px;
+    opacity:0.5;
+  }
+  .final-cta .wrap{ position:relative; z-index:1; }
+  .final-cta h2{
+    font-size:clamp(2.2rem, 5.5vw, 3.4rem);
+    margin-bottom:16px;
+    -webkit-text-stroke:1.5px var(--ink);
+  }
+  .final-cta p{ font-size:1.05rem; margin-bottom:32px; font-weight:600; max-width:520px; margin-left:auto; margin-right:auto;}
+  .final-cta .hero-ctas{ justify-content:center; }
+  .final-cta .btn-dark{ background:var(--ink); }
+  .final-cta .btn-yolk{ }
+
+  /* ---------- Footer ---------- */
+  footer{
+    padding:40px 0 30px;
+    background:var(--ink);
+    color:var(--paper-2);
+  }
+  .foot-grid{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px;
+    padding-bottom:24px;
+    border-bottom:1px solid #3a362c;
+    margin-bottom:20px;
+  }
+  .foot-logo{ font-family:'Archivo Black', sans-serif; font-size:1.2rem; text-transform:uppercase; color:var(--paper); }
+  .foot-links{ display:flex; gap:22px; font-family:'Space Mono', monospace; font-size:0.78rem; text-transform:uppercase; letter-spacing:0.05em; font-weight:700; flex-wrap:wrap;}
+  .foot-links a:hover{ color:var(--yolk); }
+  .foot-bottom{ font-size:0.78rem; opacity:0.7; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;}
+
+  /* ---------- Floating WhatsApp ---------- */
+  .float-wa{
+    position:fixed;
+    bottom:22px; right:22px;
+    z-index:60;
+    width:60px; height:60px;
+    border-radius:50%;
+    background:var(--wasabi);
+    border:3px solid var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:var(--shadow-sm);
+    transition:transform .15s ease;
+  }
+  .float-wa:hover{ transform:scale(1.08) rotate(-6deg); }
+  .float-wa svg{ width:28px; height:28px; }
+
+  ::selection{ background:var(--yolk); color:var(--ink); }
+
+  :focus-visible{
+    outline: 3px solid var(--pop-red);
+    outline-offset: 3px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav wrap">
+    <a href="#top" class="logo"><span class="dot"></span>Sushi POP</a>
+    <nav class="nav-links">
+      <a href="#menu">Menú</a>
+      <a href="#ambiente">Ambiente</a>
+      <a href="#delivery">Delivery</a>
+      <a href="#ubicacion">Ubicación</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-red" href="https://api.whatsapp.com/send?phone=595986660404" target="_blank" rel="noopener">
+        🍣 <span class="long">Pedí ahora</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" style="padding-top:70px;">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="hero-eyebrow">📍 Terrazas del Paseo La Galería · Asunción</span>
+        <h1>El lugar <span class="accent">perfecto</span><br>para celebrar<br>con <span class="accent2">sushi</span> 🥢</h1>
+        <p class="lead">Rolls clásicos, creaciones propias y tapas nikkei en una terraza con onda para el after office, cumpleaños y encuentros con amigos. También llega directo a tu casa.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-red" href="https://api.whatsapp.com/send?phone=595986660404" target="_blank" rel="noopener">💬 Pedí por WhatsApp</a>
+          <a class="btn btn-yolk" href="https://fiweex.com/links/sushipop" target="_blank" rel="noopener">🧾 Ver catálogo</a>
+          <a class="btn btn-ghost" href="https://www.instagram.com/sushipop.py/" target="_blank" rel="noopener">📸 @sushipop.py</a>
+        </div>
+        <div class="hero-tags">
+          <span class="tag">Delivery express</span>
+          <span class="tag">Nikkei fusión</span>
+          <span class="tag">Terraza p/ 100 personas</span>
+          <span class="tag">After office</span>
+        </div>
+      </div>
+
+      <div class="hero-art">
+        <div class="halo"></div>
+        <div class="burst b1">POP<br>FLAVOR</div>
+        <div class="burst b2">100%<br>FRESCO</div>
+        <!-- Maki illustration -->
+        <svg viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="160" cy="160" r="92" fill="#fff6e6" stroke="#1a1712" stroke-width="6"/>
+          <circle cx="160" cy="160" r="68" fill="#2c2a25" stroke="#1a1712" stroke-width="6"/>
+          <circle cx="160" cy="160" r="40" fill="#ffffff" stroke="#1a1712" stroke-width="6"/>
+          <circle cx="160" cy="160" r="16" fill="#ff7aa2" stroke="#1a1712" stroke-width="5"/>
+          <circle cx="120" cy="120" r="7" fill="#ff3b30" stroke="#1a1712" stroke-width="3"/>
+          <circle cx="205" cy="130" r="6" fill="#8fc93a" stroke="#1a1712" stroke-width="3"/>
+          <circle cx="205" cy="200" r="7" fill="#ffc93c" stroke="#1a1712" stroke-width="3"/>
+          <circle cx="118" cy="205" r="6" fill="#ff3b30" stroke="#1a1712" stroke-width="3"/>
+          <!-- chopsticks -->
+          <rect x="230" y="40" width="120" height="10" rx="5" fill="#ffc93c" stroke="#1a1712" stroke-width="4" transform="rotate(35 230 40)"/>
+          <rect x="245" y="30" width="120" height="10" rx="5" fill="#ffc93c" stroke="#1a1712" stroke-width="4" transform="rotate(35 245 30)"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee">
+    <div class="marquee-track">
+      <span>🍣 DELIVERY AL 0986 660404</span><span>·</span>
+      <span>🥢 SUSHI · NIKKEI · TAPAS</span><span>·</span>
+      <span>🎉 TERRAZA PARA EVENTOS Y CUMPLEAÑOS</span><span>·</span>
+      <span>📍 PASEO LA GALERÍA, ASUNCIÓN</span><span>·</span>
+      <span>🍣 DELIVERY AL 0986 660404</span><span>·</span>
+      <span>🥢 SUSHI · NIKKEI · TAPAS</span><span>·</span>
+      <span>🎉 TERRAZA PARA EVENTOS Y CUMPLEAÑOS</span><span>·</span>
+      <span>📍 PASEO LA GALERÍA, ASUNCIÓN</span><span>·</span>
+    </div>
+  </div>
+
+  <!-- MENU -->
+  <section id="menu">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">// La propuesta</span>
+        <h2>Sushi para cada momento</h2>
+        <p>De los clásicos que nunca fallan a las creaciones propias que nos identifican, con opciones para compartir en grupo o disfrutar solo.</p>
+      </div>
+
+      <div class="menu-grid">
+        <div class="menu-card">
+          <div class="icon-wrap">
+            <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="17" fill="#fff6e6" stroke="#1a1712" stroke-width="3"/><circle cx="20" cy="20" r="7" fill="#ff7aa2" stroke="#1a1712" stroke-width="2.5"/></svg>
+          </div>
+          <h3>Clásicos</h3>
+          <p>Los rolls de siempre, bien hechos: philadelphia, california, tempurizados y más.</p>
+        </div>
+        <div class="menu-card">
+          <div class="icon-wrap">
+            <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="17" fill="#1a1712"/><circle cx="20" cy="20" r="8" fill="#fff6e6"/></svg>
+          </div>
+          <h3>Creaciones propias</h3>
+          <p>Combinaciones originales que nacieron en nuestra cocina y ya son parte de la carta.</p>
+        </div>
+        <div class="menu-card">
+          <div class="icon-wrap">
+            <svg viewBox="0 0 40 40"><rect x="6" y="14" width="28" height="12" rx="6" fill="#fff6e6" stroke="#1a1712" stroke-width="3"/><circle cx="14" cy="20" r="2.4" fill="#ff3b30"/><circle cx="20" cy="20" r="2.4" fill="#8fc93a"/><circle cx="26" cy="20" r="2.4" fill="#ff3b30"/></svg>
+          </div>
+          <h3>Tapas nikkei</h3>
+          <p>Fusión japonesa-peruana para picar antes o compartir en el medio de la mesa.</p>
+        </div>
+        <div class="menu-card">
+          <div class="icon-wrap">
+            <svg viewBox="0 0 40 40"><rect x="7" y="7" width="26" height="26" rx="8" fill="#fff6e6" stroke="#1a1712" stroke-width="3"/><path d="M13 20 L18 25 L27 15" stroke="#1a1712" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Combinados</h3>
+          <p>Tablas pensadas para probar un poco de todo, ideales para compartir en grupo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AMBIENTE -->
+  <section id="ambiente" class="ambiente">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">// El lugar</span>
+        <h2>Dos ambientes, una sola onda</h2>
+        <p>Pensado para que elijas cómo vivir tu momento: algo más íntimo o algo bien social.</p>
+      </div>
+
+      <div class="amb-grid">
+        <div class="amb-card">
+          <span class="num">SALÓN</span>
+          <h3>Para lo íntimo</h3>
+          <p>El espacio cerrado está pensado para parejas y grupos pequeños que buscan una cena tranquila, con buena música de fondo.</p>
+        </div>
+        <div class="amb-card">
+          <span class="num">TERRAZA</span>
+          <h3>Para lo social</h3>
+          <p>Con capacidad para 50 personas, la terraza es el punto de encuentro para after office, cumpleaños y celebraciones al aire libre.</p>
+        </div>
+      </div>
+
+      <p class="quote">“El lugar perfecto para <span>celebrar</span> 🍣🥢”</p>
+    </div>
+  </section>
+
+  <!-- DELIVERY -->
+  <section id="delivery">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">// A domicilio</span>
+        <h2>Pedí sin moverte de casa</h2>
+        <p>Elegí tus rolls favoritos y recibilos donde estés. Así de simple.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <h3>Elegí tu pedido</h3>
+          <p>Mirá las opciones en nuestro Instagram o directo en el catálogo de Fiweex.</p>
+          <a class="btn btn-ghost" style="padding:10px 18px; font-size:0.75rem;" href="https://fiweex.com/links/sushipop" target="_blank" rel="noopener">Ver catálogo →</a>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <h3>Escribinos</h3>
+          <p>Confirmá tu pedido por WhatsApp y coordiná forma de pago y dirección.</p>
+          <a class="btn btn-ghost" style="padding:10px 18px; font-size:0.75rem;" href="https://api.whatsapp.com/send?phone=595986660404" target="_blank" rel="noopener">Escribir ahora →</a>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <h3>Recibí y disfrutá</h3>
+          <p>Tu pedido llega fresco a tu puerta, listo para compartir o disfrutar solo.</p>
+        </div>
+      </div>
+
+      <div class="delivery-cta">
+        <div class="phone">
+          <small>Delivery directo</small>
+          📞 0986 660404
+        </div>
+        <a class="btn btn-red" href="https://api.whatsapp.com/send?phone=595986660404" target="_blank" rel="noopener">💬 Chatear por WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- UBICACION -->
+  <section id="ubicacion">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">// Encontranos</span>
+        <h2>Te esperamos en La Galería</h2>
+        <p>En el sector gastronómico de las Terrazas, junto al resto de los restaurantes del shopping.</p>
+      </div>
+
+      <div class="loc-grid">
+        <div>
+          <div class="info-line">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M12 21s7-6.5 7-11.5A7 7 0 1 0 5 9.5C5 14.5 12 21 12 21z" stroke="#1a1712" stroke-width="2"/><circle cx="12" cy="9.5" r="2.4" stroke="#1a1712" stroke-width="2"/></svg></div>
+            <div>
+              <h4>Dirección</h4>
+              <p>Terrazas del Paseo La Galería, Nivel S2<br>Av. Santa Teresa entre Aviadores del Chaco y Herminio Maldonado, Asunción</p>
+            </div>
+          </div>
+          <div class="info-line">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#1a1712" stroke-width="2"/><path d="M12 7v5l3 2" stroke="#1a1712" stroke-width="2" stroke-linecap="round"/></svg></div>
+            <div>
+              <h4>Horarios</h4>
+              <table class="hours-table">
+                <tr><td>Dom – Jue</td><td>11:00 a 00:00</td></tr>
+                <tr><td>Vie – Sáb</td><td>11:00 a 01:00</td></tr>
+              </table>
+            </div>
+          </div>
+          <div class="info-line">
+            <div class="ic"><svg viewBox="0 0 24 24" fill="none"><path d="M4 5h16v14H4z" stroke="#1a1712" stroke-width="2"/><path d="M4 6l8 7 8-7" stroke="#1a1712" stroke-width="2"/></svg></div>
+            <div>
+              <h4>Contacto</h4>
+              <p>WhatsApp / Delivery: 0986 660404<br>Instagram: <a href="https://www.instagram.com/sushipop.py/" target="_blank" rel="noopener" style="text-decoration:underline;">@sushipop.py</a></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="map-card">
+          <div class="map-fake">
+            <div class="pin">
+              <svg viewBox="0 0 24 24" fill="none" width="56" height="56"><path d="M12 21s7-6.5 7-11.5A7 7 0 1 0 5 9.5C5 14.5 12 21 12 21z" fill="#ff3b30" stroke="#1a1712" stroke-width="2"/><circle cx="12" cy="9.5" r="2.6" fill="#fff6e6" stroke="#1a1712" stroke-width="2"/></svg>
+            </div>
+          </div>
+          <div class="map-info">
+            <p>📍 Paseo La Galería, Terrazas Nivel S2 — Asunción, Paraguay</p>
+            <a class="btn btn-dark" style="width:100%; justify-content:center;" href="https://www.google.com/maps/search/?api=1&query=Sushi+Pop+Paseo+La+Galeria+Asuncion" target="_blank" rel="noopener">🗺️ Cómo llegar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <div class="wrap">
+      <span class="eyebrow" style="color:var(--ink);">// Andá directo al grano</span>
+      <h2 style="margin-top:12px;">¿Pedimos sushi hoy?</h2>
+      <p>Elegí tu roll favorito, escribinos y nosotros nos encargamos del resto.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-dark" href="https://api.whatsapp.com/send?phone=595986660404" target="_blank" rel="noopener">💬 Pedí por WhatsApp</a>
+        <a class="btn btn-yolk" href="https://fiweex.com/links/sushipop" target="_blank" rel="noopener">🧾 Ver catálogo Fiweex</a>
+        <a class="btn btn-ghost" style="border-color:var(--ink); color:var(--ink);" href="https://www.instagram.com/sushipop.py/" target="_blank" rel="noopener">📸 Seguinos</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-logo">🍣 Sushi POP Paraguay</div>
+      <div class="foot-links">
+        <a href="#menu">Menú</a>
+        <a href="#ambiente">Ambiente</a>
+        <a href="#delivery">Delivery</a>
+        <a href="#ubicacion">Ubicación</a>
+        <a href="https://www.instagram.com/sushipop.py/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://fiweex.com/links/sushipop" target="_blank" rel="noopener">Catálogo</a>
+      </div>
+    </div>
+    <div class="foot-bottom wrap" style="padding:0;">
+      <span>Terrazas del Paseo La Galería, Asunción · Delivery 0986 660404</span>
+      <span>Sitio no oficial creado como landing de contacto</span>
+    </div>
+  </div>
+</footer>
+
+<a class="float-wa" href="https://api.whatsapp.com/send?phone=595986660404" target="_blank" rel="noopener" aria-label="Pedir por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="none"><path d="M20 4a10 10 0 0 0-16.7 11L2 22l7.2-1.9A10 10 0 1 0 20 4z" stroke="#1a1712" stroke-width="1.6" fill="#fff6e6"/><path d="M8.5 8.7c.2-.5.4-.5.7-.5h.5c.2 0 .4 0 .6.4.2.5.7 1.6.8 1.7.1.2.1.4 0 .6-.1.2-.2.3-.4.5-.2.2-.4.4-.2.7.2.4 1 1.5 2 2.3 1.1.9 1.9 1.1 2.2 1.2.3.1.5.1.7-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1.2.1 1.6.7 1.9.9.3.1.4.2.5.3.1.2.1 1-.3 1.6-.4.6-1.6 1.2-2.3 1.2-.7 0-1.7-.1-3.9-1.1-2.8-1.2-4.5-4-4.7-4.2-.2-.2-1.4-1.8-1.4-3.5 0-1.7.9-2.5 1.2-2.9z" fill="#1a1712"/></svg>
+</a>
+
+</body>
+</html>
