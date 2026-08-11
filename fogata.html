@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="es-PY">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fogata PY · Hamburguesas de Asado a Leña</title>
+<meta name="description" content="Fogata PY — Hamburguesas cocinadas con leña. Fernando de la Mora, Asunción y Lambaré. Pedí por WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@500;700&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --char:#1a130f;
+    --char-2:#241a14;
+    --char-3:#2f2119;
+    --ember:#ff6a2b;
+    --ember-deep:#d9451a;
+    --flame-yellow:#ffb627;
+    --cream:#f6ecd9;
+    --cream-dim:#d9c9ac;
+    --wood:#5c3a21;
+    --smoke:#a5947f;
+    --line:rgba(246,236,217,0.12);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  body{
+    background:var(--char);
+    color:var(--cream);
+    font-family:'Sora', sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3,.display{
+    font-family:'Anton', sans-serif;
+    font-weight:400;
+    text-transform:uppercase;
+    letter-spacing:0.01em;
+    line-height:0.95;
+  }
+
+  .tag-script{
+    font-family:'Caveat', cursive;
+    font-weight:700;
+  }
+
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  section{position:relative;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 28px;}
+
+  ::selection{background:var(--ember); color:var(--char);}
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible{
+    outline:3px solid var(--flame-yellow);
+    outline-offset:3px;
+    border-radius:4px;
+  }
+
+  /* ---------- texture ---------- */
+  .grain{
+    position:fixed; inset:0; pointer-events:none; z-index:999;
+    opacity:0.04; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:16px 30px;
+    font-family:'Sora', sans-serif;
+    font-weight:700;
+    font-size:0.95rem;
+    letter-spacing:0.02em;
+    border-radius:100px;
+    border:2px solid transparent;
+    cursor:pointer;
+    transition:transform 0.25s cubic-bezier(.2,.8,.2,1), box-shadow 0.25s ease, background 0.25s ease;
+    white-space:nowrap;
+  }
+  .btn-primary{
+    background:linear-gradient(135deg, var(--flame-yellow), var(--ember) 55%, var(--ember-deep));
+    color:#1a1109;
+    box-shadow:0 8px 28px -6px rgba(255,106,43,0.55);
+  }
+  .btn-primary:hover{ transform:translateY(-3px); box-shadow:0 14px 34px -6px rgba(255,106,43,0.7);}
+  .btn-ghost{
+    border-color:var(--line);
+    color:var(--cream);
+    background:rgba(246,236,217,0.03);
+  }
+  .btn-ghost:hover{ border-color:var(--ember); background:rgba(255,106,43,0.08); transform:translateY(-3px);}
+
+  /* ---------- header ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:200;
+    background:rgba(26,19,15,0.75);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px; max-width:1180px; margin:0 auto;
+  }
+  .logo{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Anton', sans-serif; font-size:1.4rem; letter-spacing:0.03em;
+  }
+  .logo svg{width:30px; height:30px;}
+  .nav-links{display:flex; align-items:center; gap:34px; font-weight:600; font-size:0.92rem;}
+  .nav-links a{position:relative; padding:4px 0; color:var(--cream-dim);}
+  .nav-links a:hover{color:var(--flame-yellow);}
+  .nav-links a::after{
+    content:''; position:absolute; left:0; bottom:-2px; height:2px; width:0;
+    background:var(--ember); transition:width 0.25s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{display:none;}
+  @media(min-width:980px){ .nav-cta{display:inline-flex;} }
+  .burger{
+    display:flex; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:8px;
+  }
+  .burger span{width:24px; height:2px; background:var(--cream); display:block; transition:0.3s;}
+  @media(min-width:980px){ .burger{display:none;} }
+  .mobile-menu{
+    display:none; flex-direction:column; gap:0; background:var(--char-2);
+    border-top:1px solid var(--line);
+  }
+  .mobile-menu.open{display:flex;}
+  .mobile-menu a{padding:16px 28px; border-bottom:1px solid var(--line); font-weight:600;}
+  @media(min-width:980px){ .nav-links{display:flex;} }
+  @media(max-width:979px){ .nav-links{display:none;} }
+
+  /* ---------- hero ---------- */
+  .hero{
+    min-height:100svh;
+    display:flex; align-items:center;
+    padding:130px 0 90px;
+    background:
+      radial-gradient(ellipse 90% 60% at 50% 100%, rgba(255,106,43,0.35), transparent 70%),
+      radial-gradient(ellipse 60% 40% at 20% 0%, rgba(255,182,39,0.12), transparent 60%),
+      var(--char);
+    overflow:hidden;
+  }
+  .embers{position:absolute; inset:0; overflow:hidden; pointer-events:none;}
+  .ember-particle{
+    position:absolute; bottom:-20px; border-radius:50%;
+    background:radial-gradient(circle, var(--flame-yellow), var(--ember) 70%, transparent);
+    opacity:0; filter:blur(0.3px);
+    animation:rise linear infinite;
+  }
+  @keyframes rise{
+    0%{ transform:translateY(0) translateX(0); opacity:0;}
+    8%{ opacity:1;}
+    100%{ transform:translateY(-115vh) translateX(var(--drift,20px)); opacity:0;}
+  }
+
+  .hero-inner{position:relative; z-index:2;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-weight:700; letter-spacing:0.14em; text-transform:uppercase;
+    font-size:0.78rem; color:var(--flame-yellow);
+    padding:8px 16px; border:1px solid rgba(255,182,39,0.35); border-radius:100px;
+    background:rgba(255,182,39,0.06);
+    margin-bottom:26px;
+  }
+  .hero h1{
+    font-size:clamp(2.8rem, 9vw, 7rem);
+    background:linear-gradient(180deg, var(--cream) 30%, var(--flame-yellow) 78%, var(--ember));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    max-width:14ch;
+  }
+  .hero .sub{
+    margin-top:26px; max-width:520px;
+    font-size:1.15rem; color:var(--cream-dim); font-weight:500;
+  }
+  .hero-ctas{margin-top:42px; display:flex; gap:16px; flex-wrap:wrap;}
+  .hero-meta{
+    margin-top:56px; display:flex; gap:36px; flex-wrap:wrap;
+    padding-top:26px; border-top:1px solid var(--line);
+  }
+  .hero-meta div{font-size:0.85rem; color:var(--smoke);}
+  .hero-meta strong{display:block; font-family:'Anton'; font-size:1.6rem; color:var(--cream); font-weight:400;}
+
+  /* ---------- section headers ---------- */
+  .section-pad{padding:110px 0;}
+  .eyebrow-sm{
+    font-weight:700; letter-spacing:0.16em; text-transform:uppercase; font-size:0.78rem;
+    color:var(--ember); margin-bottom:16px; display:block;
+  }
+  h2.title{font-size:clamp(2.1rem, 5vw, 3.4rem); margin-bottom:20px;}
+
+  /* ---------- about / fire story ---------- */
+  .about{
+    background:var(--char-2);
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  }
+  .about-grid{
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:70px; align-items:center;
+  }
+  @media(max-width:860px){ .about-grid{grid-template-columns:1fr; gap:50px;} }
+  .about p{color:var(--cream-dim); font-size:1.05rem; max-width:52ch; margin-bottom:16px;}
+  .about-list{margin-top:30px; display:flex; flex-direction:column; gap:18px;}
+  .about-list li{display:flex; gap:14px; align-items:flex-start; list-style:none; font-weight:600; color:var(--cream);}
+  .about-list svg{flex-shrink:0; margin-top:3px;}
+
+  .flame-visual{
+    position:relative; aspect-ratio:1/1; display:flex; align-items:center; justify-content:center;
+  }
+  .flame-visual .ring{
+    position:absolute; inset:0; border-radius:50%;
+    border:1px dashed rgba(255,106,43,0.3);
+    animation:spin 40s linear infinite;
+  }
+  @keyframes spin{ to{ transform:rotate(360deg);} }
+  .flame-visual .ring2{inset:14%; animation-duration:55s; animation-direction:reverse; border-color:rgba(255,182,39,0.25);}
+  .flame-big{width:46%; filter:drop-shadow(0 0 40px rgba(255,106,43,0.55));}
+
+  /* ---------- locations ---------- */
+  .locations{background:var(--char);}
+  .loc-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:26px; margin-top:56px;
+  }
+  @media(max-width:900px){ .loc-grid{grid-template-columns:1fr; max-width:480px; margin-left:auto; margin-right:auto;} }
+  .loc-card{
+    background:var(--char-2);
+    border:1px solid var(--line);
+    border-radius:22px;
+    padding:34px 28px;
+    position:relative;
+    overflow:hidden;
+    transition:transform 0.3s ease, border-color 0.3s ease;
+  }
+  .loc-card:hover{ transform:translateY(-6px); border-color:rgba(255,106,43,0.4); }
+  .loc-card::before{
+    content:''; position:absolute; top:-40%; right:-40%; width:70%; height:70%;
+    background:radial-gradient(circle, rgba(255,106,43,0.18), transparent 70%);
+  }
+  .loc-pin{
+    width:52px; height:52px; border-radius:16px;
+    display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(135deg, var(--ember), var(--ember-deep));
+    margin-bottom:22px; font-size:1.5rem;
+    box-shadow:0 10px 24px -8px rgba(255,106,43,0.6);
+  }
+  .loc-card .tag-script{ color:var(--flame-yellow); font-size:1.3rem; display:block; margin-bottom:2px;}
+  .loc-card h3{font-family:'Sora'; text-transform:none; font-weight:800; font-size:1.3rem; letter-spacing:0; margin-bottom:8px;}
+  .loc-card p{color:var(--smoke); font-size:0.95rem; margin-bottom:16px;}
+  .loc-card a.mini{
+    font-weight:700; font-size:0.85rem; color:var(--flame-yellow); display:inline-flex; gap:6px; align-items:center;
+  }
+  .loc-card a.mini:hover{text-decoration:underline;}
+
+  /* ---------- steps ---------- */
+  .steps{background:var(--char-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .steps-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:0; margin-top:60px; counter-reset:step;
+  }
+  @media(max-width:860px){ .steps-grid{grid-template-columns:1fr; gap:40px;} }
+  .step{
+    position:relative; padding:0 30px;
+    border-left:1px solid var(--line);
+  }
+  .step:first-child{border-left:none; padding-left:0;}
+  @media(max-width:860px){ .step{border-left:none; padding-left:0;} }
+  .step-num{
+    font-family:'Anton'; font-size:3.2rem;
+    background:linear-gradient(135deg,var(--flame-yellow),var(--ember));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    display:block; margin-bottom:14px;
+  }
+  .step h3{font-family:'Sora'; text-transform:none; font-weight:800; font-size:1.2rem; letter-spacing:0; margin-bottom:10px;}
+  .step p{color:var(--smoke); font-size:0.95rem;}
+
+  /* ---------- CTA banner ---------- */
+  .cta-banner{
+    background:
+      radial-gradient(ellipse 80% 100% at 50% 0%, rgba(255,106,43,0.35), transparent 65%),
+      var(--char);
+    text-align:center;
+    padding:130px 0;
+  }
+  .cta-banner h2{font-size:clamp(2.4rem,7vw,4.6rem); max-width:16ch; margin:0 auto 22px;}
+  .cta-banner p{color:var(--cream-dim); max-width:46ch; margin:0 auto 42px; font-size:1.1rem;}
+  .cta-row{display:flex; justify-content:center; gap:18px; flex-wrap:wrap;}
+  .cta-links{
+    margin-top:50px; display:flex; justify-content:center; gap:28px; flex-wrap:wrap;
+  }
+  .cta-links a{
+    display:flex; align-items:center; gap:10px; font-weight:700; color:var(--cream-dim);
+    padding:10px 18px; border:1px solid var(--line); border-radius:100px;
+  }
+  .cta-links a:hover{ color:var(--flame-yellow); border-color:var(--ember);}
+
+  /* ---------- footer ---------- */
+  footer{
+    background:var(--char-2); border-top:1px solid var(--line);
+    padding:56px 0 34px;
+  }
+  .foot-grid{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:26px;
+    padding-bottom:34px; border-bottom:1px solid var(--line);
+  }
+  .foot-social{display:flex; gap:14px;}
+  .foot-social a{
+    width:42px; height:42px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    border:1px solid var(--line); transition:0.25s;
+  }
+  .foot-social a:hover{border-color:var(--ember); background:rgba(255,106,43,0.1); transform:translateY(-3px);}
+  .foot-bottom{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+    padding-top:26px; font-size:0.85rem; color:var(--smoke);
+  }
+
+  /* ---------- floating whatsapp ---------- */
+  .float-wa{
+    position:fixed; bottom:24px; right:24px; z-index:300;
+    width:60px; height:60px; border-radius:50%;
+    background:linear-gradient(135deg, var(--flame-yellow), var(--ember));
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 10px 30px -6px rgba(255,106,43,0.7);
+    animation:pulse 2.6s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{ box-shadow:0 10px 30px -6px rgba(255,106,43,0.7);}
+    50%{ box-shadow:0 10px 40px -2px rgba(255,106,43,0.95);}
+  }
+  .float-wa:hover{ transform:scale(1.08); }
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ================= HEADER ================= -->
+<header>
+  <nav class="nav">
+    <a href="#top" class="logo">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C12 2 7 7.5 7 12.5C7 16 9.5 18 12 18C14.5 18 17 16 17 12.5C17 11 16 9.5 16 9.5C16 9.5 15.5 11 14 11C14 11 15 8 12 2Z" fill="#ff6a2b"/>
+        <path d="M12 8C12 8 9.5 11.5 9.5 14C9.5 15.8 10.6 17 12 17C13.4 17 14.5 15.8 14.5 14C14.5 11.5 12 8 12 8Z" fill="#ffb627"/>
+      </svg>
+      FOGATA
+    </a>
+    <div class="nav-links">
+      <a href="#fuego">El fuego</a>
+      <a href="#locales">Locales</a>
+      <a href="#pedir">Cómo pedir</a>
+      <a href="https://www.instagram.com/fogata_py/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+    <a class="btn btn-primary nav-cta" href="https://api.whatsapp.com/send?phone=595972792448" target="_blank" rel="noopener">Pedir ahora</a>
+    <button class="burger" id="burgerBtn" aria-label="Abrir menú" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#fuego">El fuego</a>
+    <a href="#locales">Locales</a>
+    <a href="#pedir">Cómo pedir</a>
+    <a href="https://www.instagram.com/fogata_py/" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://api.whatsapp.com/send?phone=595972792448" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div class="embers" id="embers" aria-hidden="true"></div>
+  <div class="wrap hero-inner">
+    <span class="eyebrow">🔥 Burger Restaurant · Paraguay</span>
+    <h1>Hamburguesas<br>de asado</h1>
+    <p class="sub">Cocinamos con leña, como se hace un buen asado. Nada de humo de mentira: acá el fuego es de verdad y se nota en cada bocado.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="https://api.whatsapp.com/send?phone=595972792448" target="_blank" rel="noopener">
+        Pedir por WhatsApp
+      </a>
+      <a class="btn btn-ghost" href="https://www.instagram.com/fogata_py/" target="_blank" rel="noopener">
+        Ver en Instagram
+      </a>
+    </div>
+    <div class="hero-meta">
+      <div><strong>3</strong>locales en Central</div>
+      <div><strong>100%</strong>a leña, sin atajos</div>
+      <div><strong>🔥</strong>Fdo. de la Mora · Asunción · Lambaré</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EL FUEGO ================= -->
+<section class="about section-pad" id="fuego">
+  <div class="wrap about-grid">
+    <div>
+      <span class="eyebrow-sm">Por qué leña</span>
+      <h2 class="title">El fuego<br>es el punto.</h2>
+      <p>No usamos plancha ni gas. Cocinamos con leña de verdad, la misma que se usa para un asado familiar de domingo. Eso le da a la carne un sabor ahumado que ninguna otra técnica logra.</p>
+      <p>Cada hamburguesa sale de la parrilla con ese toque a fuego de leño que reconocés al primer mordisco.</p>
+      <ul class="about-list">
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#ffb627" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Carne cocinada 100% a la leña
+        </li>
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#ffb627" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Receta pensada como un asado, no como un fast food
+        </li>
+        <li>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="#ffb627" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          3 locales en Central para que siempre tengas uno cerca
+        </li>
+      </ul>
+    </div>
+    <div class="flame-visual" aria-hidden="true">
+      <div class="ring"></div>
+      <div class="ring ring2"></div>
+      <svg class="flame-big" viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M100 10C100 10 40 90 40 150C40 195 68 220 100 220C132 220 160 195 160 150C160 120 140 95 140 95C140 95 128 130 108 130C108 130 130 60 100 10Z" fill="url(#g1)"/>
+        <path d="M100 90C100 90 72 135 72 165C72 188 84 202 100 202C116 202 128 188 128 165C128 135 100 90 100 90Z" fill="url(#g2)"/>
+        <defs>
+          <linearGradient id="g1" x1="100" y1="10" x2="100" y2="220" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#d9451a"/><stop offset="1" stop-color="#ff6a2b"/>
+          </linearGradient>
+          <linearGradient id="g2" x1="100" y1="90" x2="100" y2="202" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#ffb627"/><stop offset="1" stop-color="#ffe3a3"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LOCALES ================= -->
+<section class="locations section-pad" id="locales">
+  <div class="wrap">
+    <span class="eyebrow-sm">Dónde encontrarnos</span>
+    <h2 class="title">Nuestros locales</h2>
+    <p style="color:var(--cream-dim); max-width:50ch;">Tres puntos de fuego encendidos en Central, listos para recibirte.</p>
+
+    <div class="loc-grid">
+      <div class="loc-card">
+        <div class="loc-pin">🔥</div>
+        <span class="tag-script">Casa Central</span>
+        <h3>Fernando de la Mora</h3>
+        <p>Nuestro local original, donde arrancó todo. El primer fuego de Fogata.</p>
+        <a class="mini" href="https://api.whatsapp.com/send?phone=595972792448" target="_blank" rel="noopener">Pedir acá →</a>
+      </div>
+      <div class="loc-card">
+        <div class="loc-pin">🔥</div>
+        <span class="tag-script">Los Laureles Park</span>
+        <h3>Asunción</h3>
+        <p>Dentro de Los Laureles Park — ideal para ir en familia o con amigos.</p>
+        <a class="mini" href="https://api.whatsapp.com/send?phone=595972792448" target="_blank" rel="noopener">Pedir acá →</a>
+      </div>
+      <div class="loc-card">
+        <div class="loc-pin">🔥</div>
+        <span class="tag-script">Nuevo fuego</span>
+        <h3>Lambaré</h3>
+        <p>Nuestra tercera parrilla encendida, cada vez más cerca tuyo.</p>
+        <a class="mini" href="https://api.whatsapp.com/send?phone=595972792448" target="_blank" rel="noopener">Pedir acá →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= COMO PEDIR ================= -->
+<section class="steps section-pad" id="pedir">
+  <div class="wrap">
+    <span class="eyebrow-sm">Es fácil</span>
+    <h2 class="title">Cómo pedir</h2>
+
+    <div class="steps-grid">
+      <div class="step">
+        <span class="step-num">01</span>
+        <h3>Elegí tu local</h3>
+        <p>Fernando de la Mora, Asunción o Lambaré — el que te quede más cerca.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">02</span>
+        <h3>Escribinos por WhatsApp</h3>
+        <p>Contanos qué se te antoja y coordinamos tu pedido al instante.</p>
+      </div>
+      <div class="step">
+        <span class="step-num">03</span>
+        <h3>Retirá o recibí en casa</h3>
+        <p>Tu hamburguesa sale recién salida del fuego, directo para vos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA BANNER ================= -->
+<section class="cta-banner">
+  <div class="wrap">
+    <span class="eyebrow-sm" style="justify-content:center; display:flex;">Se te está por antojar</span>
+    <h2>¿Tenés hambre<br>de fuego?</h2>
+    <p>Escribinos ahora y armamos tu pedido. El fuego ya está encendido, solo falta el tuyo.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://api.whatsapp.com/send?phone=595972792448" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+      <a class="btn btn-ghost" href="https://fiweex.com/links" target="_blank" rel="noopener">Todos nuestros links</a>
+    </div>
+    <div class="cta-links">
+      <a href="https://www.instagram.com/fogata_py/" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.5" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg>
+        @fogata_py
+      </a>
+      <a href="https://api.whatsapp.com/send?phone=595972792448" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12C2 13.85 2.5 15.58 3.38 17.06L2 22L7.06 20.65C8.5 21.5 10.2 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2Z" stroke="currentColor" stroke-width="2"/></svg>
+        WhatsApp
+      </a>
+      <a href="https://fiweex.com/links" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Más links
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <a href="#top" class="logo">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C12 2 7 7.5 7 12.5C7 16 9.5 18 12 18C14.5 18 17 16 17 12.5C17 11 16 9.5 16 9.5C16 9.5 15.5 11 14 11C14 11 15 8 12 2Z" fill="#ff6a2b"/>
+          <path d="M12 8C12 8 9.5 11.5 9.5 14C9.5 15.8 10.6 17 12 17C13.4 17 14.5 15.8 14.5 14C14.5 11.5 12 8 12 8Z" fill="#ffb627"/>
+        </svg>
+        FOGATA
+      </a>
+      <div class="foot-social">
+        <a href="https://www.instagram.com/fogata_py/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><rect x="2" y="2" width="20" height="20" rx="5" stroke="#f6ecd9" stroke-width="2"/><circle cx="12" cy="12" r="4.5" stroke="#f6ecd9" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="#f6ecd9"/></svg>
+        </a>
+        <a href="https://api.whatsapp.com/send?phone=595972792448" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12C2 13.85 2.5 15.58 3.38 17.06L2 22L7.06 20.65C8.5 21.5 10.2 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2Z" stroke="#f6ecd9" stroke-width="2"/></svg>
+        </a>
+        <a href="https://fiweex.com/links" target="_blank" rel="noopener" aria-label="Todos los links">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" stroke="#f6ecd9" stroke-width="2" stroke-linecap="round"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" stroke="#f6ecd9" stroke-width="2" stroke-linecap="round"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Fogata PY — Hamburguesas de Asado. Fdo. de la Mora · Asunción · Lambaré.</span>
+      <span>Cocinamos con leña 🪵</span>
+    </div>
+  </div>
+</footer>
+
+<a class="float-wa" href="https://api.whatsapp.com/send?phone=595972792448" target="_blank" rel="noopener" aria-label="Pedir por WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.48 2 2 6.48 2 12C2 13.85 2.5 15.58 3.38 17.06L2 22L7.06 20.65C8.5 21.5 10.2 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2Z" stroke="#1a1109" stroke-width="2"/></svg>
+</a>
+
+<script>
+  // Mobile menu toggle
+  const burgerBtn = document.getElementById('burgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  burgerBtn.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    burgerBtn.setAttribute('aria-expanded', isOpen);
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mobileMenu.classList.remove('open');
+    burgerBtn.setAttribute('aria-expanded', 'false');
+  }));
+
+  // Ember particles
+  const embersEl = document.getElementById('embers');
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!prefersReduced){
+    const count = window.innerWidth < 640 ? 18 : 34;
+    for(let i=0;i<count;i++){
+      const p = document.createElement('div');
+      p.className = 'ember-particle';
+      const size = 2 + Math.random()*5;
+      p.style.width = size+'px';
+      p.style.height = size+'px';
+      p.style.left = Math.random()*100+'%';
+      p.style.setProperty('--drift', (Math.random()*80-40)+'px');
+      const duration = 6 + Math.random()*8;
+      p.style.animationDuration = duration+'s';
+      p.style.animationDelay = (Math.random()*duration)+'s';
+      embersEl.appendChild(p);
+    }
+  }
+</script>
+
+</body>
+</html>
