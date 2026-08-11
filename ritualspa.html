@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ritual Spa · Tratamientos Estéticos Faciales y Corporales</title>
+<meta name="description" content="Ritual Spa — Tratamientos faciales, corporales y postoperatorios. Bienestar y belleza en cada detalle. Agenda tu cita por WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;1,9..144,400;1,9..144,500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF1E6;
+    --cream-deep:#F4E4D6;
+    --rosewood:#6E2F42;
+    --rosewood-deep:#4C1F2E;
+    --terracotta:#E0937B;
+    --gold:#C89A3E;
+    --gold-light:#E7C878;
+    --blush:#F3D6C9;
+    --ink:#3A2430;
+    --sage:#8C9A6B;
+    --shadow: 0 20px 60px -20px rgba(76,31,46,0.35);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Outfit', sans-serif;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+    font-weight:450;
+    letter-spacing:-0.01em;
+    color:var(--rosewood-deep);
+  }
+  .italic{font-style:italic; font-weight:400;}
+  a{text-decoration:none; color:inherit;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+  ::selection{background:var(--gold-light); color:var(--rosewood-deep);}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0; transform:translateY(28px); transition:opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1);}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1; transform:none; transition:none;}
+    *{animation-duration:.001s !important; animation-iteration-count:1 !important;}
+  }
+
+  /* ---------- nav ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    padding:20px 0;
+    transition:background .4s ease, padding .4s ease, box-shadow .4s ease;
+  }
+  header.scrolled{
+    background:rgba(251,241,230,0.9);
+    backdrop-filter:blur(10px);
+    padding:12px 0;
+    box-shadow:0 8px 30px -20px rgba(76,31,46,0.4);
+  }
+  nav{display:flex; align-items:center; justify-content:space-between;}
+  .logo{
+    font-family:'Fraunces', serif;
+    font-size:24px;
+    font-weight:500;
+    color:var(--rosewood-deep);
+    letter-spacing:0.01em;
+  }
+  .logo em{font-style:italic; color:var(--terracotta);}
+  .nav-links{display:flex; gap:36px; align-items:center;}
+  .nav-links a{
+    font-size:14px; letter-spacing:0.03em; text-transform:uppercase;
+    color:var(--rosewood); font-weight:500;
+    position:relative;
+  }
+  .nav-links a::after{
+    content:''; position:absolute; left:0; bottom:-6px; width:0; height:1px;
+    background:var(--terracotta); transition:width .3s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{
+    background:var(--rosewood-deep); color:var(--cream) !important;
+    padding:11px 24px; border-radius:100px; font-size:13px;
+    text-transform:uppercase; letter-spacing:0.05em; font-weight:600;
+    transition:background .3s ease, transform .3s ease;
+  }
+  .nav-cta:hover{background:var(--terracotta); transform:translateY(-2px);}
+  .nav-cta::after{display:none;}
+  .burger{display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:6px;}
+  .burger span{width:24px; height:2px; background:var(--rosewood-deep); display:block;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex; align-items:center;
+    padding-top:110px;
+    overflow:hidden;
+    background:
+      radial-gradient(ellipse 60% 50% at 85% 15%, rgba(224,147,123,0.35), transparent 60%),
+      radial-gradient(ellipse 50% 40% at 10% 90%, rgba(200,154,62,0.25), transparent 60%),
+      var(--cream);
+  }
+  .glow-orb{
+    position:absolute; top:50%; right:6%; transform:translateY(-50%);
+    width:520px; height:520px; border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, rgba(231,200,120,0.85), rgba(224,147,123,0.55) 45%, rgba(110,47,66,0.15) 75%, transparent 80%);
+    filter:blur(6px);
+    animation:pulse-glow 7s ease-in-out infinite;
+  }
+  @keyframes pulse-glow{
+    0%,100%{transform:translateY(-50%) scale(1); opacity:0.9;}
+    50%{transform:translateY(-50%) scale(1.06); opacity:1;}
+  }
+  .glow-ring{
+    position:absolute; top:50%; right:6%; transform:translate(0,-50%);
+    width:520px; height:520px; border-radius:50%;
+    border:1px solid rgba(200,154,62,0.35);
+  }
+  .glow-ring.r2{width:640px; height:640px; border-color:rgba(200,154,62,0.2);}
+  .hero-inner{position:relative; z-index:2; width:100%;}
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-size:13px; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--terracotta); font-weight:600; margin-bottom:24px;
+  }
+  .eyebrow::before{content:''; width:28px; height:1px; background:var(--terracotta);}
+  .hero h1{
+    font-size:clamp(44px, 7vw, 86px);
+    line-height:1.02;
+    max-width:820px;
+    margin-bottom:28px;
+  }
+  .hero p.lead{
+    font-size:19px; line-height:1.6; max-width:480px; color:#5B4450;
+    margin-bottom:40px; font-weight:300;
+  }
+  .hero-ctas{display:flex; gap:18px; flex-wrap:wrap; margin-bottom:56px;}
+  .btn-primary{
+    background:var(--rosewood-deep); color:var(--cream);
+    padding:17px 34px; border-radius:100px;
+    font-size:14px; text-transform:uppercase; letter-spacing:0.06em; font-weight:600;
+    display:inline-flex; align-items:center; gap:10px;
+    transition:background .35s ease, transform .35s ease, box-shadow .35s ease;
+    box-shadow:0 14px 30px -14px rgba(76,31,46,0.5);
+  }
+  .btn-primary:hover{background:var(--terracotta); transform:translateY(-3px); box-shadow:0 18px 36px -14px rgba(224,147,123,0.6);}
+  .btn-secondary{
+    border:1px solid var(--rosewood-deep); color:var(--rosewood-deep);
+    padding:16px 30px; border-radius:100px;
+    font-size:14px; text-transform:uppercase; letter-spacing:0.06em; font-weight:600;
+    display:inline-flex; align-items:center; gap:10px;
+    transition:background .3s ease, color .3s ease;
+  }
+  .btn-secondary:hover{background:var(--rosewood-deep); color:var(--cream);}
+  .hero-stats{display:flex; gap:48px; flex-wrap:wrap;}
+  .hero-stats div{border-left:1px solid rgba(110,47,66,0.25); padding-left:16px;}
+  .hero-stats strong{display:block; font-family:'Fraunces', serif; font-size:30px; color:var(--rosewood-deep); font-weight:500;}
+  .hero-stats span{font-size:13px; color:#7A5C68; letter-spacing:0.02em;}
+
+  /* ---------- marquee ---------- */
+  .marquee-wrap{background:var(--rosewood-deep); padding:16px 0; overflow:hidden;}
+  .marquee{display:flex; white-space:nowrap; animation:scroll-marquee 26s linear infinite;}
+  .marquee span{
+    font-family:'Fraunces', serif; font-style:italic; font-size:20px; color:var(--gold-light);
+    padding:0 28px; display:flex; align-items:center; gap:28px;
+  }
+  .marquee span::after{content:'✦'; color:var(--terracotta); font-style:normal;}
+  @keyframes scroll-marquee{
+    from{transform:translateX(0);} to{transform:translateX(-50%);}
+  }
+
+  /* ---------- section titles ---------- */
+  .section{padding:120px 0;}
+  .section-head{max-width:640px; margin-bottom:72px;}
+  .section-head .eyebrow{margin-bottom:18px;}
+  .section-head h2{font-size:clamp(32px, 4.2vw, 52px); line-height:1.08;}
+  .section-head p{font-size:17px; color:#6B4E5A; margin-top:18px; line-height:1.6; font-weight:300;}
+
+  /* ---------- about ---------- */
+  .about{background:var(--cream-deep); position:relative;}
+  .about-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:80px; align-items:center;}
+  .about-visual{position:relative; aspect-ratio:4/5; border-radius:28px; overflow:hidden;
+    background:linear-gradient(155deg, var(--blush), var(--terracotta) 55%, var(--rosewood) 120%);
+  }
+  .about-visual::before{
+    content:''; position:absolute; inset:0;
+    background-image:radial-gradient(circle at 30% 25%, rgba(255,255,255,0.35) 0, transparent 35%),
+      radial-gradient(circle at 75% 70%, rgba(255,255,255,0.2) 0, transparent 40%);
+  }
+  .about-visual .badge{
+    position:absolute; bottom:28px; left:28px; right:28px;
+    background:rgba(251,241,230,0.92); backdrop-filter:blur(6px);
+    border-radius:18px; padding:22px 24px;
+  }
+  .about-visual .badge strong{display:block; font-family:'Fraunces', serif; font-size:22px; color:var(--rosewood-deep); font-weight:500;}
+  .about-visual .badge span{font-size:13px; color:#6B4E5A;}
+  .about-text h2{margin-bottom:22px;}
+  .about-text p{font-size:16.5px; line-height:1.75; color:#5B4450; font-weight:300; margin-bottom:18px;}
+  .about-list{margin-top:32px; display:grid; gap:16px;}
+  .about-list li{display:flex; gap:14px; align-items:flex-start; list-style:none; font-size:15px; color:#4C3540;}
+  .about-list li::before{content:'✦'; color:var(--terracotta); font-size:14px; margin-top:2px;}
+
+  /* ---------- treatments ---------- */
+  .treat-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:28px;}
+  .treat-card{
+    background:var(--cream); border:1px solid rgba(110,47,66,0.12);
+    border-radius:24px; padding:40px 32px; position:relative; overflow:hidden;
+    transition:transform .45s cubic-bezier(.16,1,.3,1), box-shadow .45s ease, border-color .45s ease;
+  }
+  .treat-card:hover{transform:translateY(-10px); box-shadow:var(--shadow); border-color:transparent;}
+  .treat-card .num{
+    font-family:'Fraunces', serif; font-style:italic; font-size:15px; color:var(--terracotta);
+    margin-bottom:26px; display:block;
+  }
+  .treat-card h3{font-size:25px; margin-bottom:14px; font-weight:500;}
+  .treat-card p{font-size:15px; color:#6B4E5A; line-height:1.65; font-weight:300; margin-bottom:22px;}
+  .treat-card ul{list-style:none; display:grid; gap:9px; margin-bottom:26px;}
+  .treat-card ul li{font-size:13.5px; color:#5B4450; display:flex; gap:8px; align-items:center;}
+  .treat-card ul li::before{content:''; width:5px; height:5px; border-radius:50%; background:var(--gold); flex-shrink:0;}
+  .treat-card .link{
+    font-size:13px; text-transform:uppercase; letter-spacing:0.05em; font-weight:600;
+    color:var(--rosewood-deep); display:inline-flex; align-items:center; gap:8px;
+  }
+  .treat-card::after{
+    content:''; position:absolute; top:-40px; right:-40px; width:140px; height:140px; border-radius:50%;
+    background:var(--blush); opacity:0.5; transition:transform .5s ease;
+  }
+  .treat-card:hover::after{transform:scale(1.3);}
+  .treat-card.facial::after{background:var(--blush);}
+  .treat-card.corporal::after{background:#E4D9B6;}
+  .treat-card.postop::after{background:#DCE0C4;}
+
+  /* ---------- ritual steps ---------- */
+  .steps{background:var(--rosewood-deep); color:var(--cream); position:relative; overflow:hidden;}
+  .steps::before{
+    content:''; position:absolute; top:-20%; left:-10%; width:60%; height:140%;
+    background:radial-gradient(circle, rgba(224,147,123,0.18), transparent 65%);
+  }
+  .steps .section-head h2, .steps .section-head p{color:var(--cream);}
+  .steps .section-head p{color:#D8B9C3;}
+  .steps .eyebrow{color:var(--gold-light);}
+  .steps .eyebrow::before{background:var(--gold-light);}
+  .step-row{display:grid; grid-template-columns:repeat(4, 1fr); gap:24px; position:relative; z-index:1;}
+  .step{padding-top:28px; border-top:1px solid rgba(251,241,230,0.22);}
+  .step .step-num{
+    font-family:'Fraunces', serif; font-style:italic; font-size:44px; color:var(--gold-light);
+    display:block; margin-bottom:18px;
+  }
+  .step h3{color:var(--cream); font-size:20px; font-weight:500; margin-bottom:10px;}
+  .step p{font-size:14px; color:#D8B9C3; line-height:1.6; font-weight:300;}
+
+  /* ---------- gallery ---------- */
+  .gallery{background:var(--cream);}
+  .gallery-grid{
+    display:grid; grid-template-columns:repeat(4, 1fr); grid-template-rows:repeat(2, 160px);
+    gap:18px;
+  }
+  .gtile{
+    border-radius:20px; position:relative; overflow:hidden;
+    display:flex; align-items:flex-end; padding:18px;
+  }
+  .gtile span{font-family:'Fraunces', serif; font-style:italic; color:var(--cream); font-size:16px; position:relative; z-index:2;}
+  .gtile::before{content:''; position:absolute; inset:0; background:linear-gradient(0deg, rgba(76,31,46,0.55), transparent 60%); z-index:1;}
+  .gtile.g1{grid-column:span 2; grid-row:span 2; background:linear-gradient(135deg, var(--terracotta), var(--rosewood));}
+  .gtile.g2{background:linear-gradient(135deg, var(--gold-light), var(--gold));}
+  .gtile.g3{background:linear-gradient(135deg, var(--blush), var(--terracotta));}
+  .gtile.g4{background:linear-gradient(135deg, #DCE0C4, var(--sage)); grid-column:span 2;}
+  .gtile.g5{background:linear-gradient(135deg, var(--rosewood), var(--rosewood-deep));}
+
+  /* ---------- testimonials ---------- */
+  .testi{background:var(--cream-deep);}
+  .testi-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:26px;}
+  .tcard{
+    background:var(--cream); border-radius:22px; padding:34px 30px;
+    border:1px solid rgba(110,47,66,0.1);
+  }
+  .tcard .stars{color:var(--gold); font-size:15px; margin-bottom:18px; letter-spacing:2px;}
+  .tcard p{font-size:15.5px; line-height:1.7; color:#4C3540; font-weight:300; margin-bottom:22px;}
+  .tcard .who{display:flex; align-items:center; gap:12px;}
+  .tcard .avatar{
+    width:42px; height:42px; border-radius:50%;
+    background:linear-gradient(135deg, var(--terracotta), var(--gold));
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces', serif; color:var(--cream); font-weight:500;
+  }
+  .tcard .who strong{display:block; font-size:14px; color:var(--rosewood-deep);}
+  .tcard .who span{font-size:12.5px; color:#8A6C78;}
+
+  /* ---------- faq ---------- */
+  .faq-list{max-width:760px;}
+  .faq-item{border-bottom:1px solid rgba(110,47,66,0.15); padding:26px 0;}
+  .faq-q{display:flex; justify-content:space-between; align-items:center; cursor:pointer; gap:20px;}
+  .faq-q h4{font-family:'Fraunces', serif; font-weight:450; font-size:19px; color:var(--rosewood-deep);}
+  .faq-q .plus{font-size:22px; color:var(--terracotta); transition:transform .35s ease; flex-shrink:0;}
+  .faq-item.open .plus{transform:rotate(45deg);}
+  .faq-a{max-height:0; overflow:hidden; transition:max-height .4s ease;}
+  .faq-item.open .faq-a{max-height:200px;}
+  .faq-a p{font-size:15px; color:#6B4E5A; padding-top:14px; line-height:1.7; font-weight:300;}
+
+  /* ---------- cta final ---------- */
+  .cta-final{
+    position:relative; overflow:hidden; text-align:center;
+    background:linear-gradient(160deg, var(--terracotta), var(--rosewood-deep) 75%);
+    padding:130px 0; color:var(--cream);
+  }
+  .cta-final::before{
+    content:''; position:absolute; top:-30%; right:-10%; width:60%; height:160%;
+    background:radial-gradient(circle, rgba(231,200,120,0.35), transparent 60%);
+  }
+  .cta-final .eyebrow{color:var(--gold-light); justify-content:center;}
+  .cta-final .eyebrow::before{display:none;}
+  .cta-final h2{color:var(--cream); font-size:clamp(34px, 5vw, 58px); max-width:720px; margin:18px auto 26px; position:relative; z-index:1;}
+  .cta-final p{color:#F6E2D9; max-width:520px; margin:0 auto 42px; font-weight:300; font-size:17px; position:relative; z-index:1;}
+  .cta-final .hero-ctas{justify-content:center; position:relative; z-index:1;}
+  .cta-final .btn-secondary{border-color:var(--cream); color:var(--cream);}
+  .cta-final .btn-secondary:hover{background:var(--cream); color:var(--rosewood-deep);}
+  .cta-final .btn-primary{background:var(--cream); color:var(--rosewood-deep); box-shadow:0 14px 30px -14px rgba(0,0,0,0.35);}
+  .cta-final .btn-primary:hover{background:var(--gold-light);}
+
+  /* ---------- footer ---------- */
+  footer{background:var(--rosewood-deep); color:#D8B9C3; padding:70px 0 30px;}
+  .footer-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:50px; margin-bottom:60px;}
+  .footer-logo{font-family:'Fraunces', serif; font-size:26px; color:var(--cream); margin-bottom:16px;}
+  .footer-logo em{font-style:italic; color:var(--terracotta);}
+  footer p{font-size:14px; line-height:1.7; max-width:320px; font-weight:300;}
+  footer h5{color:var(--cream); font-size:13px; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:20px; font-weight:600;}
+  footer ul{list-style:none; display:grid; gap:12px;}
+  footer ul a{font-size:14.5px; transition:color .3s ease;}
+  footer ul a:hover{color:var(--gold-light);}
+  .footer-bottom{
+    border-top:1px solid rgba(216,185,195,0.2); padding-top:26px;
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px;
+    font-size:13px; color:#B98F9C;
+  }
+
+  /* ---------- floating buttons ---------- */
+  .float-wrap{position:fixed; bottom:26px; right:26px; z-index:200; display:flex; flex-direction:column; gap:14px; align-items:flex-end;}
+  .float-btn{
+    width:58px; height:58px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 14px 30px -10px rgba(76,31,46,0.5);
+    transition:transform .3s ease;
+  }
+  .float-btn:hover{transform:scale(1.1) translateY(-2px);}
+  .float-btn.wa{background:#25D366;}
+  .float-btn.ig{background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);}
+  .float-btn svg{width:26px; height:26px;}
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 980px){
+    .nav-links{position:fixed; top:0; right:0; height:100vh; width:78%; max-width:340px;
+      background:var(--cream); flex-direction:column; justify-content:center; align-items:flex-start;
+      padding:40px; gap:26px; transform:translateX(100%); transition:transform .4s ease; box-shadow:-20px 0 50px rgba(0,0,0,0.15);}
+    .nav-links.open{transform:translateX(0);}
+    .burger{display:flex;}
+    .about-grid{grid-template-columns:1fr; gap:48px;}
+    .treat-grid{grid-template-columns:1fr;}
+    .step-row{grid-template-columns:repeat(2, 1fr); row-gap:36px;}
+    .gallery-grid{grid-template-columns:repeat(2, 1fr); grid-template-rows:repeat(3, 150px);}
+    .gtile.g1{grid-column:span 2;}
+    .gtile.g4{grid-column:span 2;}
+    .testi-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr; gap:36px;}
+    .hero-stats{gap:30px;}
+  }
+  @media (max-width: 560px){
+    .wrap{padding:0 20px;}
+    .hero{padding-top:100px;}
+    .glow-orb, .glow-ring{width:340px; height:340px; right:-10%;}
+    .glow-ring.r2{width:420px; height:420px;}
+    .section{padding:80px 0;}
+    .section-head{margin-bottom:44px;}
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <div class="wrap">
+    <nav>
+      <a href="#top" class="logo">Ritual <em>Spa</em></a>
+      <div class="nav-links" id="navLinks">
+        <a href="#tratamientos">Tratamientos</a>
+        <a href="#ritual">El Ritual</a>
+        <a href="#galeria">Galería</a>
+        <a href="#opiniones">Opiniones</a>
+        <a href="#preguntas">Preguntas</a>
+        <a href="https://api.whatsapp.com/send/?phone=595994392775&text=Hola%20Ritual%20Spa%2C%20quiero%20agendar%20una%20cita" target="_blank" rel="noopener" class="nav-cta">Agenda tu cita</a>
+      </div>
+      <button class="burger" id="burger" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="glow-ring r2"></div>
+  <div class="glow-ring"></div>
+  <div class="glow-orb"></div>
+  <div class="wrap hero-inner">
+    <div class="eyebrow reveal">Ritual Spa · Estética Facial &amp; Corporal</div>
+    <h1 class="reveal">Bienestar y belleza <span class="italic">en cada detalle.</span></h1>
+    <p class="lead reveal">Tratamientos faciales, corporales y de acompañamiento postoperatorio, diseñados para devolverle a tu piel su equilibrio y a vos, tu confianza.</p>
+    <div class="hero-ctas reveal">
+      <a href="https://api.whatsapp.com/send/?phone=595994392775&text=Hola%20Ritual%20Spa%2C%20quiero%20agendar%20una%20cita" target="_blank" rel="noopener" class="btn-primary">
+        Agenda tu cita por WhatsApp →
+      </a>
+      <a href="https://www.instagram.com/ritualpy/" target="_blank" rel="noopener" class="btn-secondary">Ver Instagram @ritualpy</a>
+    </div>
+    <div class="hero-stats reveal">
+      <div><strong>+3</strong><span>Áreas de tratamiento</span></div>
+      <div><strong>100%</strong><span>Atención personalizada</span></div>
+      <div><strong>1:1</strong><span>Acompañamiento postoperatorio</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee">
+    <span>Faciales</span><span>Corporales</span><span>Postoperatorios</span><span>Bienestar</span><span>Belleza</span>
+    <span>Faciales</span><span>Corporales</span><span>Postoperatorios</span><span>Bienestar</span><span>Belleza</span>
+  </div>
+</div>
+
+<section class="about" id="ritual">
+  <div class="wrap about-grid">
+    <div class="about-visual reveal">
+      <div class="badge">
+        <strong>Un espacio pensado para vos</strong>
+        <span>Cada sesión comienza en calma y termina en resultados visibles.</span>
+      </div>
+    </div>
+    <div class="about-text reveal">
+      <div class="eyebrow">Sobre Ritual Spa</div>
+      <h2>La estética como <span class="italic">ceremonia,</span> no como trámite.</h2>
+      <p>En Ritual Spa creemos que cuidar tu piel y tu cuerpo merece tiempo, técnica y presencia. Combinamos protocolos faciales y corporales con un acompañamiento cercano en cada etapa, incluyendo el proceso postoperatorio.</p>
+      <p>Nuestro enfoque es simple: escuchar primero, tratar con precisión después y acompañar siempre. Así logramos resultados que se notan y se sienten.</p>
+      <ul class="about-list">
+        <li>Protocolos personalizados según tu piel y objetivo</li>
+        <li>Seguimiento cercano en tratamientos postoperatorios</li>
+        <li>Ambiente cálido, privado y profesional</li>
+        <li>Agenda flexible por WhatsApp</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="tratamientos">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Tratamientos</div>
+      <h2>Elegí el ritual que tu cuerpo está pidiendo.</h2>
+      <p>Tres líneas de tratamiento, un mismo compromiso: cuidarte con criterio profesional y calidez humana.</p>
+    </div>
+    <div class="treat-grid">
+      <div class="treat-card facial reveal">
+        <span class="num">01 — Rostro</span>
+        <h3>Tratamientos Faciales</h3>
+        <p>Limpiezas profundas, hidratación y protocolos de rejuvenecimiento adaptados a cada tipo de piel.</p>
+        <ul>
+          <li>Limpieza facial profunda</li>
+          <li>Hidratación y luminosidad</li>
+          <li>Protocolos anti-edad</li>
+        </ul>
+        <a href="https://api.whatsapp.com/send/?phone=595994392775&text=Hola%2C%20quiero%20consultar%20por%20tratamientos%20faciales" target="_blank" rel="noopener" class="link">Consultar por WhatsApp ↗</a>
+      </div>
+      <div class="treat-card corporal reveal">
+        <span class="num">02 — Cuerpo</span>
+        <h3>Tratamientos Corporales</h3>
+        <p>Protocolos de modelado, drenaje y firmeza para acompañar y potenciar los resultados de tu cuerpo.</p>
+        <ul>
+          <li>Drenaje linfático</li>
+          <li>Modelado corporal</li>
+          <li>Tratamientos reafirmantes</li>
+        </ul>
+        <a href="https://api.whatsapp.com/send/?phone=595994392775&text=Hola%2C%20quiero%20consultar%20por%20tratamientos%20corporales" target="_blank" rel="noopener" class="link">Consultar por WhatsApp ↗</a>
+      </div>
+      <div class="treat-card postop reveal">
+        <span class="num">03 — Cuidado</span>
+        <h3>Postoperatorios</h3>
+        <p>Acompañamiento profesional en la etapa post cirugía, cuidando la piel y favoreciendo la recuperación.</p>
+        <ul>
+          <li>Drenaje postoperatorio</li>
+          <li>Control de fibrosis</li>
+          <li>Seguimiento personalizado</li>
+        </ul>
+        <a href="https://api.whatsapp.com/send/?phone=595994392775&text=Hola%2C%20quiero%20consultar%20por%20cuidado%20postoperatorio" target="_blank" rel="noopener" class="link">Consultar por WhatsApp ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section steps">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Cómo es tu sesión</div>
+      <h2>Un ritual con orden y propósito.</h2>
+      <p>Cada visita sigue cuatro momentos pensados para que el resultado sea consistente, sesión tras sesión.</p>
+    </div>
+    <div class="step-row">
+      <div class="step reveal">
+        <span class="step-num">01</span>
+        <h3>Consulta</h3>
+        <p>Evaluamos tu piel, tu cuerpo y tu objetivo para armar un plan a medida.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">02</span>
+        <h3>Protocolo</h3>
+        <p>Aplicamos la técnica indicada, con productos y equipos profesionales.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">03</span>
+        <h3>Acompañamiento</h3>
+        <p>Seguimos de cerca tu evolución, especialmente en procesos postoperatorios.</p>
+      </div>
+      <div class="step reveal">
+        <span class="step-num">04</span>
+        <h3>Resultado</h3>
+        <p>Piel y cuerpo en equilibrio, con recomendaciones para sostener el resultado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section gallery" id="galeria">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Galería</div>
+      <h2>El espacio Ritual.</h2>
+      <p>Un vistazo al ambiente y a los momentos que compartimos con cada clienta. Sumate a la comunidad en Instagram.</p>
+    </div>
+    <a href="https://www.instagram.com/ritualpy/" target="_blank" rel="noopener" style="display:contents;">
+      <div class="gallery-grid reveal">
+        <div class="gtile g1"><span>Sala de tratamientos</span></div>
+        <div class="gtile g2"><span>Ritual facial</span></div>
+        <div class="gtile g3"><span>Cuidado corporal</span></div>
+        <div class="gtile g4"><span>Acompañamiento postoperatorio</span></div>
+        <div class="gtile g5"><span>@ritualpy</span></div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section class="section testi" id="opiniones">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Testimonios</div>
+      <h2>Lo que dicen quienes ya vivieron el ritual.</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="tcard reveal">
+        <div class="stars">★★★★★</div>
+        <p>Fui por un tratamiento facial y salí con la piel renovada. La atención fue súper cálida y profesional de principio a fin.</p>
+        <div class="who">
+          <div class="avatar">M</div>
+          <div><strong>Mariana G.</strong><span>Tratamiento facial</span></div>
+        </div>
+      </div>
+      <div class="tcard reveal">
+        <div class="stars">★★★★★</div>
+        <p>El acompañamiento postoperatorio fue clave en mi recuperación. Se notó la experiencia y el cuidado en cada sesión.</p>
+        <div class="who">
+          <div class="avatar">L</div>
+          <div><strong>Lucía R.</strong><span>Postoperatorio</span></div>
+        </div>
+      </div>
+      <div class="tcard reveal">
+        <div class="stars">★★★★★</div>
+        <p>Los tratamientos corporales superaron mis expectativas. Muy buen ambiente y resultados visibles desde las primeras sesiones.</p>
+        <div class="who">
+          <div class="avatar">V</div>
+          <div><strong>Valentina S.</strong><span>Tratamiento corporal</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="preguntas">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Preguntas frecuentes</div>
+      <h2>Todo lo que necesitás saber.</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item open reveal">
+        <div class="faq-q"><h4>¿Cómo agendo una cita?</h4><span class="plus">+</span></div>
+        <div class="faq-a"><p>Escribinos directamente por WhatsApp con el botón de "Agenda tu cita" y coordinamos día y horario según tu disponibilidad.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q"><h4>¿Cuántas sesiones necesito?</h4><span class="plus">+</span></div>
+        <div class="faq-a"><p>Depende del tratamiento y de tu objetivo. En la consulta inicial evaluamos tu caso y armamos un plan de sesiones a medida.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q"><h4>¿Atienden cuidado postoperatorio?</h4><span class="plus">+</span></div>
+        <div class="faq-a"><p>Sí, contamos con protocolos específicos de acompañamiento postoperatorio, con seguimiento personalizado en cada etapa.</p></div>
+      </div>
+      <div class="faq-item reveal">
+        <div class="faq-q"><h4>¿Dónde puedo ver más trabajos?</h4><span class="plus">+</span></div>
+        <div class="faq-a"><p>Podés seguirnos en Instagram <a href="https://www.instagram.com/ritualpy/" target="_blank" rel="noopener" style="color:var(--terracotta); text-decoration:underline;">@ritualpy</a> para ver el detrás de escena y novedades.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="wrap">
+    <div class="eyebrow reveal">Empezá hoy</div>
+    <h2 class="reveal">Tu piel merece este momento.</h2>
+    <p class="reveal">Escribinos y armamos juntos el ritual ideal para vos. Cupos limitados cada semana.</p>
+    <div class="hero-ctas reveal">
+      <a href="https://api.whatsapp.com/send/?phone=595994392775&text=Hola%20Ritual%20Spa%2C%20quiero%20agendar%20una%20cita" target="_blank" rel="noopener" class="btn-primary">Agenda tu cita por WhatsApp →</a>
+      <a href="https://www.instagram.com/ritualpy/" target="_blank" rel="noopener" class="btn-secondary">Seguinos en Instagram</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">Ritual <em>Spa</em></div>
+        <p>Tratamientos estéticos faciales y corporales. Bienestar y belleza en cada detalle, con acompañamiento postoperatorio personalizado.</p>
+      </div>
+      <div>
+        <h5>Explorar</h5>
+        <ul>
+          <li><a href="#tratamientos">Tratamientos</a></li>
+          <li><a href="#ritual">El Ritual</a></li>
+          <li><a href="#galeria">Galería</a></li>
+          <li><a href="#opiniones">Opiniones</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contacto</h5>
+        <ul>
+          <li><a href="https://api.whatsapp.com/send/?phone=595994392775&text=Hola%20Ritual%20Spa%2C%20quiero%20agendar%20una%20cita" target="_blank" rel="noopener">WhatsApp: +595 994 392775</a></li>
+          <li><a href="https://www.instagram.com/ritualpy/" target="_blank" rel="noopener">Instagram @ritualpy</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Ritual Spa. Todos los derechos reservados.</span>
+      <span>Built by EasyLandX</span>
+    </div>
+  </div>
+</footer>
+
+<div class="float-wrap">
+  <a class="float-btn wa" href="https://api.whatsapp.com/send/?phone=595994392775&text=Hola%20Ritual%20Spa%2C%20quiero%20agendar%20una%20cita" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg viewBox="0 0 32 32" fill="white"><path d="M16 0C7.163 0 0 7.163 0 16c0 2.82.735 5.47 2.02 7.77L0 32l8.4-2.005A15.93 15.93 0 0 0 16 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.09c-2.5 0-4.84-.735-6.8-2l-.487-.29-4.98 1.19 1.22-4.85-.317-.5A13.05 13.05 0 0 1 2.91 16C2.91 8.77 8.77 2.91 16 2.91S29.09 8.77 29.09 16 23.23 29.09 16 29.09zm7.15-9.79c-.39-.196-2.31-1.14-2.67-1.27-.36-.13-.62-.196-.88.196-.26.39-1.01 1.27-1.24 1.53-.23.26-.46.29-.85.098-.39-.196-1.64-.605-3.12-1.93-1.15-1.026-1.93-2.293-2.16-2.683-.23-.39-.024-.6.17-.795.175-.174.39-.455.585-.683.196-.228.26-.39.39-.65.13-.26.065-.488-.033-.683-.098-.196-.88-2.12-1.205-2.9-.317-.76-.64-.657-.88-.668-.228-.01-.488-.012-.748-.012s-.683.098-1.04.488c-.357.39-1.365 1.334-1.365 3.253s1.398 3.774 1.593 4.033c.196.26 2.75 4.2 6.663 5.888.93.401 1.657.641 2.223.82.934.297 1.784.255 2.456.155.75-.112 2.31-.944 2.635-1.856.325-.912.325-1.694.228-1.856-.098-.163-.36-.26-.75-.456z"/></svg>
+  </a>
+  <a class="float-btn ig" href="https://www.instagram.com/ritualpy/" target="_blank" rel="noopener" aria-label="Instagram">
+    <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5.5"/><circle cx="12" cy="12" r="4.4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+  </a>
+</div>
+
+<script>
+  // reveal on scroll
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:0.15});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+  // header on scroll
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', ()=>{
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // mobile nav
+  const burger = document.getElementById('burger');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', ()=>{
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(a=>{
+    a.addEventListener('click', ()=> navLinks.classList.remove('open'));
+  });
+
+  // faq accordion
+  document.querySelectorAll('.faq-item').forEach(item=>{
+    item.querySelector('.faq-q').addEventListener('click', ()=>{
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+      if(!wasOpen) item.classList.add('open');
+    });
+  });
+</script>
+</body>
+</html>
