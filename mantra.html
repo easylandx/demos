@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mantra Clínica de Belleza | Medicina Estética y Antienvejecimiento — Maracaibo</title>
+<meta name="description" content="Mantra Clínica de Belleza — Creadores de Mantra System. Medicina estética avanzada y antienvejecimiento en Plaza 75, Maracaibo. Agenda tu cita por WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --espresso:#2A1B15;
+    --espresso-2:#3A2A1E;
+    --gold:#B98A52;
+    --gold-light:#D9B586;
+    --blush:#F0D9CE;
+    --cream:#FBF5EF;
+    --cream-2:#F5EAE0;
+    --ink:#241712;
+    --white:#FFFFFF;
+    --ok:#5C7A5E;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Jost', sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--gold-light); color:var(--espresso); }
+
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    letter-spacing:-0.01em;
+    line-height:1.05;
+  }
+  .script{
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    font-weight:500;
+    color:var(--gold);
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  .container{max-width:1180px; margin:0 auto; padding:0 24px;}
+  .eyebrow{
+    font-family:'Jost', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.22em;
+    font-size:12px;
+    font-weight:500;
+    color:var(--gold);
+  }
+
+  /* ---------- reduced motion ---------- */
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
+  }
+
+  /* ---------- focus ---------- */
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--gold);
+    outline-offset:3px;
+    border-radius:4px;
+  }
+
+  /* ================= NAV ================= */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    padding:18px 0;
+    background:rgba(42,27,21,0.0);
+    transition:background .4s ease, box-shadow .4s ease, padding .4s ease;
+  }
+  header.scrolled{
+    background:rgba(42,27,21,0.92);
+    backdrop-filter:blur(10px);
+    padding:12px 0;
+    box-shadow:0 8px 30px rgba(0,0,0,0.25);
+  }
+  nav{display:flex; align-items:center; justify-content:space-between;}
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Fraunces', serif;
+    font-size:22px;
+    color:var(--white);
+    letter-spacing:0.02em;
+  }
+  .brand-mark{
+    width:34px; height:34px; border-radius:50%;
+    border:1px solid var(--gold-light);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Cormorant Garamond', serif;
+    font-style:italic;
+    color:var(--gold-light);
+    font-size:19px;
+  }
+  .nav-links{display:flex; gap:34px; align-items:center;}
+  .nav-links a{
+    color:var(--blush);
+    font-size:13px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    position:relative;
+    padding-bottom:4px;
+  }
+  .nav-links a::after{
+    content:''; position:absolute; left:0; bottom:0; height:1px; width:0;
+    background:var(--gold-light); transition:width .3s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{
+    background:var(--gold);
+    color:var(--espresso) !important;
+    padding:11px 22px;
+    border-radius:100px;
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    display:flex; align-items:center; gap:8px;
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+  }
+  .nav-cta:hover{ background:var(--gold-light); transform:translateY(-2px); box-shadow:0 10px 24px rgba(185,138,82,0.35);}
+  .menu-toggle{display:none; background:none; border:none; color:var(--white); font-size:26px; cursor:pointer;}
+
+  @media (max-width:880px){
+    .nav-links{
+      position:fixed; inset:0 0 0 auto; height:100vh; width:78%; max-width:340px;
+      background:var(--espresso); flex-direction:column; justify-content:center; align-items:flex-start;
+      padding:40px; gap:26px; transform:translateX(100%); transition:transform .4s ease;
+    }
+    .nav-links.open{transform:translateX(0);}
+    .nav-links a{font-size:16px;}
+    .menu-toggle{display:block;}
+  }
+
+  /* ================= HERO ================= */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex; align-items:center;
+    background:
+      radial-gradient(ellipse at 20% 15%, rgba(185,138,82,0.25), transparent 55%),
+      radial-gradient(ellipse at 85% 80%, rgba(217,181,134,0.18), transparent 50%),
+      linear-gradient(160deg, var(--espresso) 0%, var(--espresso-2) 55%, #241712 100%);
+    overflow:hidden;
+    padding-top:110px;
+  }
+  .hero::before{
+    content:'';
+    position:absolute; inset:0;
+    background-image:
+      repeating-radial-gradient(circle at 50% 50%, rgba(255,255,255,0.035) 0, rgba(255,255,255,0.035) 1px, transparent 1px, transparent 42px);
+    opacity:0.5;
+  }
+  .hero-ring{
+    position:absolute; right:-180px; top:50%; transform:translateY(-50%);
+    width:620px; height:620px; border-radius:50%;
+    border:1px solid rgba(217,181,134,0.25);
+  }
+  .hero-ring.r2{width:480px; height:480px; right:-110px; border-color:rgba(217,181,134,0.16);}
+  .hero-ring.r3{width:800px; height:800px; right:-280px; border-color:rgba(217,181,134,0.1);}
+
+  .hero-grid{
+    position:relative; z-index:2;
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:60px; align-items:center;
+    width:100%;
+  }
+  .hero-copy .eyebrow{color:var(--gold-light); margin-bottom:22px; display:inline-block;}
+  .hero-copy h1{
+    color:var(--white);
+    font-size:clamp(40px, 5.4vw, 68px);
+    margin-bottom:22px;
+  }
+  .hero-copy p.lead{
+    color:rgba(255,240,230,0.78);
+    font-size:18px; line-height:1.7;
+    max-width:480px;
+    margin-bottom:36px;
+    font-weight:300;
+  }
+  .hero-actions{display:flex; gap:16px; flex-wrap:wrap; margin-bottom:46px;}
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:16px 30px;
+    border-radius:100px;
+    font-size:14px; letter-spacing:0.05em; text-transform:uppercase; font-weight:500;
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease, color .25s ease;
+    border:1px solid transparent;
+    cursor:pointer;
+  }
+  .btn-gold{
+    background:var(--gold); color:var(--espresso);
+  }
+  .btn-gold:hover{background:var(--gold-light); transform:translateY(-3px); box-shadow:0 14px 30px rgba(185,138,82,0.4);}
+  .btn-ghost{
+    color:var(--cream); border-color:rgba(240,217,206,0.45);
+  }
+  .btn-ghost:hover{background:rgba(255,255,255,0.08); transform:translateY(-3px);}
+
+  .hero-stats{display:flex; gap:38px; flex-wrap:wrap;}
+  .hero-stats div{border-left:1px solid rgba(217,181,134,0.35); padding-left:16px;}
+  .hero-stats strong{
+    font-family:'Fraunces', serif; font-size:26px; color:var(--white); display:block;
+  }
+  .hero-stats span{font-size:12px; color:rgba(255,240,230,0.6); letter-spacing:0.04em;}
+
+  .hero-visual{
+    position:relative; z-index:2;
+    aspect-ratio:3/4;
+    border-radius:6px;
+    background:
+      linear-gradient(200deg, rgba(217,181,134,0.35), rgba(42,27,21,0) 60%),
+      linear-gradient(340deg, rgba(240,217,206,0.12), rgba(240,217,206,0) 50%),
+      #4A362A;
+    border:1px solid rgba(217,181,134,0.35);
+    display:flex; align-items:flex-end; padding:26px;
+    overflow:hidden;
+  }
+  .hero-visual::before{
+    content:'';
+    position:absolute; inset:0;
+    background-image:
+      radial-gradient(circle at 30% 25%, rgba(255,255,255,0.10), transparent 45%),
+      radial-gradient(circle at 75% 70%, rgba(217,181,134,0.28), transparent 50%);
+  }
+  .hero-visual-tag{
+    position:relative; z-index:1;
+    background:rgba(20,13,10,0.55);
+    backdrop-filter:blur(6px);
+    border:1px solid rgba(217,181,134,0.4);
+    padding:16px 20px;
+    border-radius:4px;
+    color:var(--cream);
+    width:100%;
+  }
+  .hero-visual-tag .script{font-size:20px; display:block; margin-bottom:4px;}
+  .hero-visual-tag span{font-size:12px; color:rgba(240,217,206,0.7);}
+
+  @media (max-width:960px){
+    .hero-grid{grid-template-columns:1fr; text-align:left;}
+    .hero-visual{aspect-ratio:16/10; margin-top:10px;}
+  }
+
+  /* scroll cue */
+  .scroll-cue{
+    position:absolute; bottom:28px; left:50%; transform:translateX(-50%);
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+    color:rgba(240,217,206,0.55); font-size:11px; letter-spacing:0.15em; text-transform:uppercase;
+    z-index:2;
+  }
+  .scroll-cue .line{width:1px; height:34px; background:linear-gradient(var(--gold-light), transparent); animation:pulseLine 2.2s ease-in-out infinite;}
+  @keyframes pulseLine{0%,100%{opacity:0.3;} 50%{opacity:1;}}
+
+  /* ================= MARQUEE STRIP ================= */
+  .strip{
+    background:var(--gold);
+    color:var(--espresso);
+    overflow:hidden;
+    white-space:nowrap;
+    padding:13px 0;
+  }
+  .strip-track{display:inline-flex; gap:40px; animation:scrollLeft 26s linear infinite;}
+  .strip-track span{
+    font-family:'Fraunces', serif; font-style:italic; font-size:15px; font-weight:500;
+    display:inline-flex; align-items:center; gap:40px;
+  }
+  .strip-track span::after{content:'✦'; opacity:0.6; font-style:normal;}
+  @keyframes scrollLeft{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+
+  /* ================= SECTION GENERIC ================= */
+  section{padding:110px 0;}
+  .section-head{max-width:640px; margin-bottom:64px;}
+  .section-head .eyebrow{margin-bottom:16px; display:inline-block;}
+  .section-head h2{font-size:clamp(32px, 4vw, 46px); color:var(--espresso);}
+  .section-head p{margin-top:18px; font-size:17px; line-height:1.7; color:#5C4B3F; font-weight:300;}
+  .center{text-align:center; margin-left:auto; margin-right:auto;}
+
+  /* ================= ABOUT / MANTRA SYSTEM ================= */
+  .about{background:var(--cream);}
+  .about-grid{display:grid; grid-template-columns:0.85fr 1.15fr; gap:70px; align-items:center;}
+  .about-frame{
+    position:relative; aspect-ratio:4/5;
+    background:linear-gradient(150deg, var(--blush), var(--cream-2));
+    border-radius:6px;
+    display:flex; align-items:center; justify-content:center;
+    border:1px solid rgba(185,138,82,0.25);
+  }
+  .about-frame .mark{
+    width:70%; aspect-ratio:1; border-radius:50%;
+    border:1px solid var(--gold);
+    display:flex; align-items:center; justify-content:center;
+    text-align:center;
+    padding:20px;
+  }
+  .about-frame .mark span{
+    font-family:'Cormorant Garamond', serif; font-style:italic; font-size:26px; color:var(--espresso);
+    display:block; line-height:1.3;
+  }
+  .about-copy h2{color:var(--espresso); font-size:clamp(30px,3.6vw,42px); margin-bottom:22px;}
+  .about-copy p{font-size:17px; line-height:1.8; color:#5C4B3F; font-weight:300; margin-bottom:18px;}
+  .about-list{list-style:none; margin-top:28px; display:grid; gap:16px;}
+  .about-list li{
+    display:flex; gap:14px; align-items:flex-start; font-size:15px; color:var(--espresso-2);
+  }
+  .about-list li .dot{
+    width:8px; height:8px; margin-top:6px; border-radius:50%; background:var(--gold); flex-shrink:0;
+  }
+
+  @media (max-width:860px){
+    .about-grid{grid-template-columns:1fr;}
+  }
+
+  /* ================= TREATMENTS ================= */
+  .treatments{background:var(--espresso); color:var(--cream); position:relative;}
+  .treatments .section-head h2{color:var(--white);}
+  .treatments .section-head p{color:rgba(240,217,206,0.75);}
+  .treatments .eyebrow{color:var(--gold-light);}
+
+  .grid-cards{display:grid; grid-template-columns:repeat(3, 1fr); gap:2px; background:rgba(217,181,134,0.2); border:1px solid rgba(217,181,134,0.2); border-radius:6px; overflow:hidden;}
+  .card{
+    background:var(--espresso-2);
+    padding:40px 32px;
+    transition:background .35s ease, transform .35s ease;
+    position:relative;
+  }
+  .card:hover{background:#4A362A; transform:translateY(-4px);}
+  .card .num{font-family:'Fraunces', serif; font-style:normal; color:var(--gold-light); font-size:13px; letter-spacing:0.1em; opacity:0.8;}
+  .card h3{font-size:22px; color:var(--white); margin:18px 0 12px; font-weight:500;}
+  .card p{font-size:14.5px; line-height:1.7; color:rgba(240,217,206,0.72); font-weight:300;}
+
+  @media (max-width:860px){ .grid-cards{grid-template-columns:1fr;} }
+
+  /* ================= WHY / SIGNATURE ================= */
+  .why{background:var(--cream-2);}
+  .why-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:rgba(185,138,82,0.25); border:1px solid rgba(185,138,82,0.25); border-radius:6px; overflow:hidden;}
+  .why-item{background:var(--cream); padding:38px 26px; text-align:left;}
+  .why-item .ic{
+    width:46px; height:46px; border-radius:50%; border:1px solid var(--gold);
+    display:flex; align-items:center; justify-content:center; margin-bottom:20px;
+    font-family:'Cormorant Garamond', serif; font-style:italic; color:var(--gold); font-size:20px;
+  }
+  .why-item h3{font-size:18px; color:var(--espresso); margin-bottom:10px; font-weight:500;}
+  .why-item p{font-size:14px; color:#6b584a; line-height:1.65; font-weight:300;}
+  @media (max-width:860px){ .why-grid{grid-template-columns:1fr 1fr;} }
+  @media (max-width:560px){ .why-grid{grid-template-columns:1fr;} }
+
+  /* ================= TESTIMONIALS ================= */
+  .testimonials{background:var(--cream);}
+  .t-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:28px;}
+  .t-card{
+    background:var(--white);
+    border:1px solid rgba(185,138,82,0.2);
+    border-radius:8px;
+    padding:32px;
+    position:relative;
+  }
+  .t-card .stars{color:var(--gold); font-size:14px; letter-spacing:2px; margin-bottom:16px;}
+  .t-card p{font-size:15.5px; line-height:1.75; color:#4a3a30; font-style:italic; font-family:'Cormorant Garamond', serif; font-size:19px;}
+  .t-card .who{margin-top:20px; font-size:13px; color:var(--gold); letter-spacing:0.04em; font-style:normal; font-family:'Jost', sans-serif;}
+  @media (max-width:860px){ .t-grid{grid-template-columns:1fr;} }
+
+  /* ================= LOCATION / CTA ================= */
+  .visit{
+    background:linear-gradient(150deg, var(--espresso), #1E130E);
+    color:var(--cream);
+    position:relative; overflow:hidden;
+  }
+  .visit::before{
+    content:''; position:absolute; left:-140px; bottom:-140px; width:420px; height:420px; border-radius:50%;
+    border:1px solid rgba(217,181,134,0.18);
+  }
+  .visit-grid{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; position:relative; z-index:1;}
+  .visit-copy h2{color:var(--white); font-size:clamp(30px,3.6vw,42px); margin-bottom:20px;}
+  .visit-copy p{color:rgba(240,217,206,0.78); font-size:16.5px; line-height:1.8; font-weight:300; margin-bottom:28px; max-width:460px;}
+  .info-line{display:flex; gap:14px; align-items:flex-start; margin-bottom:18px;}
+  .info-line .ic{color:var(--gold-light); font-size:18px; margin-top:2px;}
+  .info-line strong{display:block; color:var(--white); font-size:14.5px; font-weight:500;}
+  .info-line span{font-size:14px; color:rgba(240,217,206,0.7);}
+
+  .visit-card{
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(217,181,134,0.3);
+    border-radius:10px;
+    padding:42px;
+    backdrop-filter:blur(6px);
+  }
+  .visit-card .script{font-size:24px; display:block; margin-bottom:6px;}
+  .visit-card h3{color:var(--white); font-size:24px; margin-bottom:14px;}
+  .visit-card p{color:rgba(240,217,206,0.72); font-size:14.5px; line-height:1.7; margin-bottom:28px; font-weight:300;}
+  .visit-card .btn{width:100%; justify-content:center; margin-bottom:14px;}
+  .social-row{display:flex; gap:12px; margin-top:6px;}
+  .social-row a{
+    flex:1; display:flex; align-items:center; justify-content:center; gap:8px;
+    border:1px solid rgba(217,181,134,0.4); padding:13px; border-radius:100px; font-size:13px;
+    color:var(--cream); letter-spacing:0.03em; transition:all .25s ease;
+  }
+  .social-row a:hover{background:rgba(217,181,134,0.15); border-color:var(--gold-light); transform:translateY(-2px);}
+
+  @media (max-width:900px){ .visit-grid{grid-template-columns:1fr;} }
+
+  /* ================= FOOTER ================= */
+  footer{background:#1E130E; color:rgba(240,217,206,0.6); padding:48px 0 30px;}
+  .foot-grid{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px; border-bottom:1px solid rgba(217,181,134,0.15); padding-bottom:30px; margin-bottom:24px;}
+  .foot-brand{display:flex; align-items:center; gap:10px; font-family:'Fraunces', serif; color:var(--cream); font-size:19px;}
+  .foot-links{display:flex; gap:24px; flex-wrap:wrap;}
+  .foot-links a{font-size:13px; color:rgba(240,217,206,0.65);}
+  .foot-links a:hover{color:var(--gold-light);}
+  .foot-bottom{display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:12.5px;}
+
+  /* ================= FLOATING WHATSAPP ================= */
+  .float-wa{
+    position:fixed; right:22px; bottom:22px; z-index:200;
+    width:60px; height:60px; border-radius:50%;
+    background:#25D366;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.35);
+    animation:floatPulse 2.6s ease-in-out infinite;
+  }
+  .float-wa svg{width:30px; height:30px;}
+  @keyframes floatPulse{
+    0%,100%{ box-shadow:0 10px 30px rgba(0,0,0,0.35), 0 0 0 0 rgba(37,211,102,0.5);}
+    50%{ box-shadow:0 10px 30px rgba(0,0,0,0.35), 0 0 0 12px rgba(37,211,102,0);}
+  }
+
+  /* reveal on scroll */
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity .8s ease, transform .8s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header id="siteHeader">
+  <div class="container">
+    <nav>
+      <a href="#top" class="brand">
+        <span class="brand-mark">M</span>
+        Mantra
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#nosotros">Nosotros</a>
+        <a href="#tratamientos">Tratamientos</a>
+        <a href="#porque">Por qué Mantra</a>
+        <a href="#testimonios">Clientas</a>
+        <a href="#visitanos">Visítanos</a>
+        <a class="nav-cta" href="https://api.whatsapp.com/send/?phone=584246317918" target="_blank" rel="noopener">Agendar cita</a>
+      </div>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
+    </nav>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <div class="hero-ring r3"></div>
+  <div class="hero-ring r1"></div>
+  <div class="hero-ring r2"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">Medicina estética · Antienvejecimiento</span>
+        <h1>Tu mejor versión, <span class="script">sin prisa y sin dolor.</span></h1>
+        <p class="lead">Somos Mantra Clínica de Belleza, creadores de <strong style="color:#F0D9CE;">Mantra System</strong>: protocolos de estética avanzada diseñados para realzar tu piel y tu cuerpo de forma segura, progresiva y natural.</p>
+        <div class="hero-actions">
+          <a class="btn btn-gold" href="https://api.whatsapp.com/send/?phone=584246317918" target="_blank" rel="noopener">Reserva por WhatsApp →</a>
+          <a class="btn btn-ghost" href="https://www.instagram.com/mantradebelleza/" target="_blank" rel="noopener">Ver antes/después en Instagram</a>
+        </div>
+        <div class="hero-stats">
+          <div><strong>+2.800</strong><span>Publicaciones de resultados reales</span></div>
+          <div><strong>42K+</strong><span>Personas confían en Mantra</span></div>
+          <div><strong>Lun–Vie</strong><span>8:00 a.m. — 6:00 p.m.</span></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-visual-tag">
+          <span class="script">Mantra System</span>
+          <span>Protocolo propio de rejuvenecimiento facial y corporal, exclusivo de nuestra clínica.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>Descubre más</span><div class="line"></div></div>
+</section>
+
+<!-- ================= MARQUEE STRIP ================= -->
+<div class="strip">
+  <div class="strip-track">
+    <span>Medicina estética avanzada</span>
+    <span>Antienvejecimiento</span>
+    <span>Mantra System</span>
+    <span>Plaza 75, Maracaibo</span>
+    <span>Resultados naturales</span>
+    <span>Medicina estética avanzada</span>
+    <span>Antienvejecimiento</span>
+    <span>Mantra System</span>
+    <span>Plaza 75, Maracaibo</span>
+    <span>Resultados naturales</span>
+  </div>
+</div>
+
+<!-- ================= ABOUT ================= -->
+<section class="about" id="nosotros">
+  <div class="container about-grid">
+    <div class="about-frame reveal">
+      <div class="mark">
+        <span>"Un ritual de cuidado, no solo un tratamiento."</span>
+      </div>
+    </div>
+    <div class="about-copy reveal">
+      <span class="eyebrow">Quiénes somos</span>
+      <h2>Creadores de Mantra System</h2>
+      <p>En Mantra Clínica de Belleza combinamos tecnología estética de vanguardia con un enfoque personalizado para cada piel, cada cuerpo y cada objetivo. No creemos en soluciones genéricas: creemos en protocolos diseñados a tu medida.</p>
+      <p>Ubicados en Plaza 75, dentro del Mall Paseo San Francisco, somos un punto de referencia en Maracaibo para quienes buscan verse y sentirse mejor con procedimientos seguros y respaldados por especialistas.</p>
+      <ul class="about-list">
+        <li><span class="dot"></span> Equipos y tecnología de última generación</li>
+        <li><span class="dot"></span> Protocolos personalizados según tu tipo de piel y objetivo</li>
+        <li><span class="dot"></span> Ambiente cálido, privado y profesional</li>
+        <li><span class="dot"></span> Seguimiento cercano en cada sesión</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TREATMENTS ================= -->
+<section class="treatments" id="tratamientos">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Nuestros servicios</span>
+      <h2>Tratamientos pensados para vos</h2>
+      <p>Desde el cuidado facial hasta la remodelación corporal: un menú de tratamientos de medicina estética no invasiva, diseñado para mujeres y hombres.</p>
+    </div>
+    <div class="grid-cards reveal">
+      <div class="card">
+        <span class="num">Facial</span>
+        <h3>Rejuvenecimiento facial</h3>
+        <p>Protocolos con radiofrecuencia, electroporación y peeling para una piel más firme, luminosa y descansada.</p>
+      </div>
+      <div class="card">
+        <span class="num">Corporal</span>
+        <h3>Remodelación corporal</h3>
+        <p>Tratamientos para reducir flacidez, adiposidad localizada y celulitis, con resultados progresivos y visibles.</p>
+      </div>
+      <div class="card">
+        <span class="num">Antiedad</span>
+        <h3>Antienvejecimiento</h3>
+        <p>Mantra System: nuestro protocolo insignia para prevenir y tratar los signos del paso del tiempo.</p>
+      </div>
+      <div class="card">
+        <span class="num">Relax</span>
+        <h3>Masajes terapéuticos</h3>
+        <p>Una experiencia de relajación completa que además potencia los resultados de tus tratamientos estéticos.</p>
+      </div>
+      <div class="card">
+        <span class="num">Hombres</span>
+        <h3>Estética masculina</h3>
+        <p>Tratamientos diseñados especialmente para el cuidado facial y corporal del hombre moderno.</p>
+      </div>
+      <div class="card">
+        <span class="num">A medida</span>
+        <h3>Diagnóstico personalizado</h3>
+        <p>Evaluamos tu piel y objetivos para armar el plan de tratamiento ideal, paso a paso.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= WHY MANTRA ================= -->
+<section class="why" id="porque">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Por qué elegirnos</span>
+      <h2>La diferencia Mantra</h2>
+    </div>
+    <div class="why-grid reveal">
+      <div class="why-item">
+        <div class="ic">M</div>
+        <h3>Protocolo propio</h3>
+        <p>Mantra System es exclusivo de nuestra clínica: no lo vas a encontrar en ningún otro lugar.</p>
+      </div>
+      <div class="why-item">
+        <div class="ic">✓</div>
+        <h3>Seguridad primero</h3>
+        <p>Procedimientos no invasivos, aplicados por personal capacitado y con equipos certificados.</p>
+      </div>
+      <div class="why-item">
+        <div class="ic">◐</div>
+        <h3>Resultados progresivos</h3>
+        <p>Nada de promesas irreales: trabajamos por sesiones, con seguimiento real de tu evolución.</p>
+      </div>
+      <div class="why-item">
+        <div class="ic">♥</div>
+        <h3>Trato cercano</h3>
+        <p>Cada cliente recibe atención personalizada, desde la primera consulta hasta el resultado final.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIALS ================= -->
+<section class="testimonials" id="testimonios">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Lo que dicen de nosotros</span>
+      <h2>Clientas que confían en Mantra</h2>
+    </div>
+    <div class="t-grid reveal">
+      <div class="t-card">
+        <div class="stars">★★★★★</div>
+        <p>"Empecé el Mantra System hace tres meses y el cambio en mi piel es notorio. Un trato increíble."</p>
+        <div class="who">— Cliente de Maracaibo</div>
+      </div>
+      <div class="t-card">
+        <div class="stars">★★★★★</div>
+        <p>"Fui por un tratamiento corporal y terminé enamorada del ambiente y la atención. Volveré siempre."</p>
+        <div class="who">— Cliente frecuente</div>
+      </div>
+      <div class="t-card">
+        <div class="stars">★★★★★</div>
+        <p>"Profesionalismo total. Me explicaron cada paso antes de empezar y respetaron mis tiempos."</p>
+        <div class="who">— Cliente de Plaza 75</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= VISIT / CTA ================= -->
+<section class="visit" id="visitanos">
+  <div class="container visit-grid">
+    <div class="visit-copy reveal">
+      <span class="eyebrow" style="color:var(--gold-light);">Te esperamos</span>
+      <h2>Empieza tu ritual de belleza hoy</h2>
+      <p>Escríbenos por WhatsApp y agenda tu evaluación inicial. Te ayudamos a armar el plan de tratamiento ideal para tu piel, tu cuerpo y tu tiempo.</p>
+
+      <div class="info-line">
+        <span class="ic">📍</span>
+        <div><strong>Dirección</strong><span>Plaza 75, Mall Paseo San Francisco — Maracaibo, Venezuela</span></div>
+      </div>
+      <div class="info-line">
+        <span class="ic">🕖</span>
+        <div><strong>Horario</strong><span>Lunes a viernes, 8:00 a.m. — 6:00 p.m.</span></div>
+      </div>
+      <div class="info-line">
+        <span class="ic">💬</span>
+        <div><strong>WhatsApp</strong><span>+58 424-6317918</span></div>
+      </div>
+    </div>
+
+    <div class="visit-card reveal">
+      <span class="script">Reserva tu cita</span>
+      <h3>Cupos limitados esta semana</h3>
+      <p>Contáctanos directamente y con gusto resolvemos tus dudas antes de tu primera sesión.</p>
+      <a class="btn btn-gold" href="https://api.whatsapp.com/send/?phone=584246317918" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+      <div class="social-row">
+        <a href="https://www.instagram.com/mantradebelleza/" target="_blank" rel="noopener">Instagram @mantradebelleza</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand"><span class="brand-mark" style="border-color:rgba(217,181,134,0.4); color:var(--gold-light);">M</span> Mantra Clínica de Belleza</div>
+      <div class="foot-links">
+        <a href="#nosotros">Nosotros</a>
+        <a href="#tratamientos">Tratamientos</a>
+        <a href="#testimonios">Clientas</a>
+        <a href="https://www.instagram.com/mantradebelleza/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://api.whatsapp.com/send/?phone=584246317918" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Mantra Clínica de Belleza. Todos los derechos reservados.</span>
+      <span>Plaza 75, Mall Paseo San Francisco — Maracaibo, Venezuela</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= FLOATING WHATSAPP ================= -->
+<a class="float-wa" href="https://api.whatsapp.com/send/?phone=584246317918" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+  <svg viewBox="0 0 32 32" fill="white" xmlns="http://www.w3.org/2000/svg">
+    <path d="M16.001 3.2c-7.07 0-12.8 5.73-12.8 12.8 0 2.257.594 4.373 1.633 6.207L3.2 28.8l6.77-1.775a12.74 12.74 0 0 0 6.031 1.536h.005c7.07 0 12.8-5.73 12.8-12.8s-5.735-12.561-12.805-12.561zm0 23.253h-.004a10.6 10.6 0 0 1-5.398-1.478l-.387-.23-4.017 1.053 1.072-3.917-.252-.402a10.55 10.55 0 0 1-1.617-5.632c0-5.847 4.759-10.605 10.61-10.605 2.834 0 5.498 1.104 7.501 3.108a10.53 10.53 0 0 1 3.104 7.504c0 5.848-4.763 10.599-10.612 10.599zm5.815-7.938c-.318-.16-1.886-.931-2.178-1.037-.292-.107-.505-.16-.717.16-.213.319-.823 1.037-1.01 1.25-.186.213-.372.24-.69.08-.318-.16-1.343-.495-2.559-1.578-.946-.844-1.585-1.886-1.771-2.204-.186-.319-.02-.491.14-.65.144-.143.318-.373.478-.56.16-.186.213-.319.319-.53.107-.213.053-.4-.027-.56-.08-.16-.717-1.728-.983-2.366-.259-.622-.523-.538-.717-.548l-.611-.011c-.213 0-.559.08-.851.4-.292.319-1.117 1.09-1.117 2.659 0 1.568 1.144 3.083 1.303 3.296.16.213 2.253 3.44 5.46 4.826.763.33 1.36.526 1.825.673.767.244 1.464.21 2.016.128.615-.092 1.886-.771 2.152-1.516.266-.744.266-1.383.186-1.516-.08-.133-.292-.213-.61-.373z"/>
+  </svg>
+</a>
+
+<script>
+  // header scroll state
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // mobile menu
+  const toggle = document.getElementById('menuToggle');
+  const links = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => links.classList.toggle('open'));
+  links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+
+  // reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
