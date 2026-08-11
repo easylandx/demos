@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Casita | Pilates Clásico — Estudio de Contrología</title>
+<meta name="description" content="La Casita | Pilates Clásico. Estudio auténtico de Contrología en Pago Largo 1182. Reservá tu clase por WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500;1,9..144,600&family=Work+Sans:wght@300;400;500;600&family=Space+Grotesk:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream: #FBF3E6;
+    --cream-2: #F5EAD9;
+    --ink: #2E2A20;
+    --sage: #6E8F68;
+    --sage-dk: #4F6B4B;
+    --clay: #C1694F;
+    --clay-dk: #A6543C;
+    --blush: #EFC9AF;
+    --gold: #B98A2B;
+    --line: rgba(46,42,32,0.14);
+    --radius-arch: 120px 120px 14px 14px;
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; }
+
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+
+  .eyebrow{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:0.72rem;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--sage-dk);
+  }
+
+  .wrap{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  a:focus-visible, button:focus-visible{
+    outline:3px solid var(--gold);
+    outline-offset:3px;
+  }
+
+  /* ---------- NAV ---------- */
+  header.site{
+    position:sticky; top:0; z-index:50;
+    background:rgba(251,243,230,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 28px;
+    max-width:1120px; margin:0 auto;
+  }
+  .nav .brand{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:500;
+    font-size:1.35rem;
+    letter-spacing:0;
+  }
+  .nav .brand span{ color:var(--clay); font-style:normal; }
+  .nav-links{
+    display:flex; align-items:center; gap:28px;
+    font-size:0.92rem;
+  }
+  .nav-links a{ text-decoration:none; opacity:0.8; transition:opacity .2s; }
+  .nav-links a:hover{ opacity:1; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Work Sans', sans-serif;
+    font-weight:600;
+    font-size:0.92rem;
+    text-decoration:none;
+    padding:12px 24px;
+    border-radius:999px;
+    border:1.5px solid var(--ink);
+    transition:transform .18s ease, background .18s ease, color .18s ease, box-shadow .18s ease;
+    white-space:nowrap;
+  }
+  .btn-primary{
+    background:var(--clay);
+    border-color:var(--clay);
+    color:var(--cream);
+  }
+  .btn-primary:hover{
+    background:var(--clay-dk);
+    border-color:var(--clay-dk);
+    transform:translateY(-2px);
+    box-shadow:0 10px 22px rgba(193,105,79,0.32);
+  }
+  .btn-ghost{
+    background:transparent;
+    color:var(--ink);
+  }
+  .btn-ghost:hover{ background:var(--ink); color:var(--cream); }
+  .nav .btn{ padding:10px 20px; font-size:0.85rem; }
+
+  @media (max-width:760px){
+    .nav-links a.hide-mobile{ display:none; }
+  }
+
+  /* ---------- ROOFLINE DIVIDER (signature element) ---------- */
+  .roofline{
+    width:100%;
+    height:34px;
+    display:block;
+    line-height:0;
+  }
+  .roofline svg{ width:100%; height:100%; display:block; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:96px 0 0;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:56px;
+    align-items:center;
+  }
+  @media (max-width:860px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero{ padding:56px 0 0; }
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 5.4vw, 4.4rem);
+    line-height:1.03;
+    margin:18px 0 22px;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--clay);
+  }
+  .hero p.lead{
+    font-size:1.14rem;
+    max-width:46ch;
+    color:rgba(46,42,32,0.82);
+    margin-bottom:34px;
+  }
+  .cta-row{ display:flex; gap:16px; flex-wrap:wrap; align-items:center; }
+  .cta-row .btn{ padding:16px 30px; font-size:1rem; }
+  .cta-note{
+    margin-top:16px;
+    font-size:0.85rem;
+    color:rgba(46,42,32,0.6);
+    display:flex; align-items:center; gap:8px;
+  }
+  .cta-note svg{ flex:none; }
+
+  /* House illustration */
+  .house-illo{
+    position:relative;
+    display:flex; align-items:center; justify-content:center;
+    padding:20px;
+  }
+  .house-illo svg{ width:100%; height:auto; max-width:420px; }
+
+  .hero-bottom-space{ height:64px; }
+
+  /* ---------- SECTION generic ---------- */
+  section{ padding:88px 0; }
+  .section-head{ max-width:640px; margin-bottom:52px; }
+  .section-head .eyebrow{ margin-bottom:14px; display:block; }
+  .section-head h2{
+    font-size:clamp(2rem, 3.4vw, 2.7rem);
+    line-height:1.08;
+  }
+  .section-head p{
+    margin-top:16px;
+    color:rgba(46,42,32,0.78);
+    font-size:1.05rem;
+    max-width:56ch;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about{ background:var(--cream-2); }
+  .about-grid{
+    display:grid;
+    grid-template-columns:0.85fr 1.15fr;
+    gap:64px;
+    align-items:center;
+  }
+  @media (max-width:860px){ .about-grid{ grid-template-columns:1fr; gap:40px; } }
+  .about-figure{
+    background:var(--sage);
+    border-radius:var(--radius-arch);
+    padding:40px;
+    display:flex; align-items:center; justify-content:center;
+    aspect-ratio:4/5;
+    max-width:340px;
+  }
+  .about-figure svg{ width:100%; height:auto; }
+  .about-copy p{ margin:0 0 18px; color:rgba(46,42,32,0.85); }
+  .about-copy p:last-child{ margin-bottom:0; }
+  .quote-mark{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.4rem;
+    color:var(--clay-dk);
+    display:block;
+    margin-bottom:10px;
+  }
+
+  /* ---------- SERVICES ---------- */
+  .services-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:22px;
+  }
+  @media (max-width:920px){ .services-grid{ grid-template-columns:repeat(2, 1fr); } }
+  @media (max-width:520px){ .services-grid{ grid-template-columns:1fr; } }
+
+  .service-card{
+    background:var(--cream-2);
+    border-radius:var(--radius-arch);
+    padding:34px 26px 28px;
+    text-align:center;
+    border:1px solid var(--line);
+    transition:transform .22s ease, box-shadow .22s ease, background .22s ease;
+  }
+  .service-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 18px 32px rgba(46,42,32,0.12);
+    background:#fff;
+  }
+  .service-card .icon-arch{
+    width:64px; height:64px;
+    margin:0 auto 18px;
+    border-radius:60px 60px 6px 6px;
+    background:var(--sage);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .service-card .icon-arch svg{ width:30px; height:30px; stroke:var(--cream); }
+  .service-card h3{ font-size:1.2rem; margin-bottom:10px; }
+  .service-card p{ font-size:0.92rem; color:rgba(46,42,32,0.72); margin:0; }
+
+  /* ---------- BENEFITS ---------- */
+  .benefits{ background:var(--ink); color:var(--cream); }
+  .benefits .eyebrow{ color:var(--blush); }
+  .benefits .section-head h2{ color:var(--cream); }
+  .benefits .section-head p{ color:rgba(251,243,230,0.72); }
+  .benefit-list{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:2px;
+    background:rgba(251,243,230,0.14);
+    border-radius:20px;
+    overflow:hidden;
+  }
+  @media (max-width:760px){ .benefit-list{ grid-template-columns:1fr; } }
+  .benefit-item{
+    background:var(--ink);
+    padding:34px 30px;
+  }
+  .benefit-item .num{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    color:var(--clay);
+    font-size:1.6rem;
+    display:block;
+    margin-bottom:14px;
+  }
+  .benefit-item h3{ color:var(--cream); font-size:1.15rem; margin-bottom:10px; }
+  .benefit-item p{ color:rgba(251,243,230,0.68); font-size:0.94rem; margin:0; }
+
+  /* ---------- LOCATION ---------- */
+  .location-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:48px;
+    align-items:stretch;
+  }
+  @media (max-width:860px){ .location-grid{ grid-template-columns:1fr; } }
+  .location-card{
+    background:var(--blush);
+    border-radius:var(--radius-arch);
+    padding:44px 38px;
+    display:flex; flex-direction:column; justify-content:center;
+  }
+  .location-card .eyebrow{ margin-bottom:14px; }
+  .location-card h2{ font-size:2rem; margin-bottom:18px; }
+  .location-row{
+    display:flex; gap:14px; align-items:flex-start;
+    margin-bottom:18px;
+  }
+  .location-row svg{ flex:none; margin-top:3px; }
+  .location-row div strong{ display:block; font-size:0.95rem; margin-bottom:2px; }
+  .location-row div span{ font-size:0.92rem; color:rgba(46,42,32,0.72); }
+  .map-frame{
+    border-radius:var(--radius-arch);
+    overflow:hidden;
+    border:1px solid var(--line);
+    min-height:340px;
+  }
+  .map-frame iframe{ width:100%; height:100%; min-height:340px; border:0; display:block; }
+
+  /* ---------- FINAL CTA ---------- */
+  .final-cta{
+    background:var(--sage);
+    color:var(--cream);
+    text-align:center;
+    padding:96px 0;
+  }
+  .final-cta h2{
+    font-size:clamp(2.1rem, 4vw, 3.1rem);
+    color:var(--cream);
+    max-width:16ch;
+    margin:0 auto 20px;
+  }
+  .final-cta p{
+    max-width:48ch;
+    margin:0 auto 34px;
+    color:rgba(251,243,230,0.86);
+    font-size:1.05rem;
+  }
+  .final-cta .btn-primary{
+    background:var(--cream);
+    color:var(--sage-dk);
+    border-color:var(--cream);
+  }
+  .final-cta .btn-primary:hover{
+    background:#fff;
+    box-shadow:0 14px 28px rgba(0,0,0,0.18);
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--ink);
+    color:rgba(251,243,230,0.7);
+    padding:56px 0 32px;
+  }
+  .footer-grid{
+    display:flex; justify-content:space-between; flex-wrap:wrap;
+    gap:32px; margin-bottom:36px;
+  }
+  .footer-brand{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-size:1.5rem;
+    color:var(--cream);
+  }
+  .footer-brand span{ color:var(--clay); font-style:normal; }
+  .footer-links{ display:flex; gap:36px; flex-wrap:wrap; }
+  .footer-col h4{
+    font-family:'Space Grotesk', sans-serif;
+    font-size:0.75rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:rgba(251,243,230,0.5);
+    margin:0 0 12px;
+    font-weight:600;
+  }
+  .footer-col a{
+    display:block;
+    text-decoration:none;
+    font-size:0.94rem;
+    color:rgba(251,243,230,0.82);
+    margin-bottom:8px;
+    transition:color .18s ease;
+  }
+  .footer-col a:hover{ color:var(--clay); }
+  .footer-bottom{
+    border-top:1px solid rgba(251,243,230,0.14);
+    padding-top:22px;
+    font-size:0.82rem;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+  }
+
+  /* ---------- WHATSAPP FLOATING BUTTON ---------- */
+  .wa-float{
+    position:fixed;
+    bottom:22px; right:22px;
+    z-index:80;
+    background:#25D366;
+    color:#fff;
+    width:60px; height:60px;
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    text-decoration:none;
+    box-shadow:0 10px 24px rgba(37,211,102,0.45);
+    transition:transform .2s ease;
+  }
+  .wa-float:hover{ transform:scale(1.08); }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+    html{ scroll-behavior:auto; }
+  }
+
+  .reveal{
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <nav class="nav">
+    <a href="#top" class="brand"><span>La</span> Casita</a>
+    <div class="nav-links">
+      <a href="#metodo" class="hide-mobile">Método</a>
+      <a href="#clases" class="hide-mobile">Clases</a>
+      <a href="#ubicacion" class="hide-mobile">Ubicación</a>
+      <a href="https://www.instagram.com/lacasita_pilatesyoga/" target="_blank" rel="noopener" class="hide-mobile">Instagram</a>
+      <a class="btn btn-primary" href="https://api.whatsapp.com/send?phone=543725415744&text=Hola!%20Quiero%20reservar%20una%20clase%20de%20prueba%20en%20La%20Casita%20✨" target="_blank" rel="noopener">Reservar clase</a>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow reveal">Estudio auténtico · Pago Largo 1182</span>
+        <h1 class="reveal">El legado de la <em>Contrología</em>,<br>en tu barrio.</h1>
+        <p class="lead reveal">Pilates clásico tal como lo pensó Joseph Pilates: control, precisión y respiración. Clases reducidas, atención personalizada y un espacio pensado para que vuelvas a sentirte en tu cuerpo.</p>
+        <div class="cta-row reveal">
+          <a class="btn btn-primary" href="https://api.whatsapp.com/send?phone=543725415744&text=Hola!%20Quiero%20reservar%20una%20clase%20de%20prueba%20en%20La%20Casita%20✨" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Z" stroke="currentColor" stroke-width="1.6"/><path d="M8.5 8.7c.2-.6.5-.6.8-.6h.6c.2 0 .5 0 .7.5.2.6.7 1.9.8 2 .1.2.1.4 0 .6-.1.2-.2.3-.4.5-.2.2-.4.4-.2.7.2.4 1 1.5 2.1 2.4 1.4 1.2 2 1.3 2.3 1.3.3 0 .5-.2.7-.5.2-.2.6-.7.8-.9.2-.2.4-.2.6-.1.2.1 1.6.8 1.9 1 .3.1.5.2.5.4 0 .2 0 1-.4 1.5-.4.6-1.7 1.1-2.4 1.1-.6 0-1.9-.2-3.7-1.4-2.2-1.5-3.6-3.7-3.8-3.9-.1-.2-1-1.3-1-2.5 0-1.2.6-1.8.8-2.1Z" fill="currentColor"/></svg>
+            Reservar por WhatsApp
+          </a>
+          <a class="btn btn-ghost" href="#metodo">Conocé el método</a>
+        </div>
+        <div class="cta-note reveal">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9Z" stroke="currentColor" stroke-width="1.5"/></svg>
+          Cupos reducidos por clase — reservá con anticipación
+        </div>
+      </div>
+
+      <div class="house-illo reveal">
+        <svg viewBox="0 0 420 460" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- roof -->
+          <path d="M40 190 L210 50 L380 190" stroke="#2E2A20" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- house body -->
+          <rect x="70" y="190" width="280" height="220" rx="6" fill="#EFC9AF" stroke="#2E2A20" stroke-width="6"/>
+          <!-- door / arch -->
+          <path d="M175 410 V320 a35 35 0 0 1 70 0 V410" fill="#C1694F" stroke="#2E2A20" stroke-width="6"/>
+          <!-- windows -->
+          <circle cx="115" cy="255" r="26" fill="#FBF3E6" stroke="#2E2A20" stroke-width="6"/>
+          <line x1="115" y1="229" x2="115" y2="281" stroke="#2E2A20" stroke-width="4"/>
+          <line x1="89" y1="255" x2="141" y2="255" stroke="#2E2A20" stroke-width="4"/>
+          <circle cx="305" cy="255" r="26" fill="#FBF3E6" stroke="#2E2A20" stroke-width="6"/>
+          <line x1="305" y1="229" x2="305" y2="281" stroke="#2E2A20" stroke-width="4"/>
+          <line x1="279" y1="255" x2="331" y2="255" stroke="#2E2A20" stroke-width="4"/>
+          <!-- reformer hint (a spring/line motif) as the "little house" holds pilates inside -->
+          <g transform="translate(140,340)">
+            <rect x="0" y="0" width="140" height="14" rx="7" fill="#6E8F68" stroke="#2E2A20" stroke-width="4"/>
+          </g>
+          <!-- little sun -->
+          <circle cx="365" cy="70" r="18" fill="#B98A2B" opacity="0.85"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="hero-bottom-space"></div>
+    <div class="roofline" aria-hidden="true">
+      <svg viewBox="0 0 800 34" preserveAspectRatio="none">
+        <polyline points="0,34 40,4 80,34 120,4 160,34 200,4 240,34 280,4 320,34 360,4 400,34 440,4 480,34 520,4 560,34 600,4 640,34 680,4 720,34 760,4 800,34"
+          fill="none" stroke="#2E2A20" stroke-width="2" opacity="0.16"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ABOUT / METHOD -->
+  <section class="about" id="metodo">
+    <div class="wrap about-grid">
+      <div class="about-figure reveal">
+        <svg viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <ellipse cx="100" cy="60" rx="20" ry="20" fill="#FBF3E6"/>
+          <path d="M60 220 C60 160 70 130 100 130 C130 130 140 160 140 220" stroke="#FBF3E6" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <path d="M40 150 C60 130 80 120 100 120" stroke="#FBF3E6" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <path d="M160 150 C140 130 120 120 100 120" stroke="#FBF3E6" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <line x1="30" y1="150" x2="170" y2="150" stroke="#FBF3E6" stroke-width="5" stroke-linecap="round" opacity="0.6"/>
+        </svg>
+      </div>
+      <div class="about-copy reveal">
+        <span class="eyebrow">Nuestra filosofía</span>
+        <h2 style="font-size:2.2rem; margin:14px 0 22px;">Volver al método original</h2>
+        <span class="quote-mark">"El estado físico determina el estado mental."</span>
+        <p>Así llamó Joseph Pilates a su propio sistema: <strong>Contrología</strong>, el arte del control completo del cuerpo a través de la mente. En La Casita respetamos ese legado con clases de pilates clásico, en grupos reducidos, guiadas de forma personalizada según tu cuerpo y tu momento.</p>
+        <p>No es una fábrica de clases: es un estudio pensado como una casa — cálido, cercano y hecho a la medida de quien lo habita.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="roofline" aria-hidden="true" style="background:var(--cream-2)">
+    <svg viewBox="0 0 800 34" preserveAspectRatio="none">
+      <polyline points="0,4 40,34 80,4 120,34 160,4 200,34 240,4 280,34 320,4 360,34 400,4 440,34 480,4 520,34 560,4 600,34 640,4 680,34 720,4 760,34 800,4"
+        fill="none" stroke="#2E2A20" stroke-width="2" opacity="0.14"/>
+    </svg>
+  </div>
+
+  <!-- SERVICES -->
+  <section id="clases">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Qué encontrás acá</span>
+        <h2>Clases para cada cuerpo, cada objetivo</h2>
+        <p>Todas nuestras clases parten de los principios clásicos: respiración, control, centro, precisión, fluidez y concentración.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <div class="icon-arch">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M4 18h16M6 18V8a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="9" cy="12" r="1.4" fill="currentColor"/></svg>
+          </div>
+          <h3>Pilates Mat</h3>
+          <p>Trabajo en colchoneta con peso corporal. Ideal para fortalecer el centro y mejorar la postura.</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="icon-arch">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="10" width="18" height="4" rx="1" stroke="currentColor" stroke-width="1.8"/><path d="M6 14v4M18 14v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Pilates Clásico</h3>
+          <p>La secuencia original de la Contrología, tal como fue diseñada: orden, progresión y precisión.</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="icon-arch">
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="6" r="2" stroke="currentColor" stroke-width="1.8"/><path d="M12 8v6l-4 6M12 14l4 6M8 11h8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Yoga</h3>
+          <p>Movimiento consciente y respiración para equilibrar el cuerpo y bajar las revoluciones de la mente.</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="icon-arch">
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.8"/><path d="M12 8v4l3 2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Clases Privadas</h3>
+          <p>Sesiones individuales, a tu ritmo, con seguimiento cercano de objetivos y lesiones.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section class="benefits">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <span class="eyebrow">Por qué La Casita</span>
+        <h2>Un estudio, no un gimnasio</h2>
+        <p>Elegimos hacer las cosas despacio y bien. Esto es lo que eso significa en la práctica.</p>
+      </div>
+      <div class="benefit-list">
+        <div class="benefit-item reveal">
+          <span class="num">✧</span>
+          <h3>Grupos reducidos</h3>
+          <p>Pocos alumnos por clase para que cada corrección sea realmente para vos.</p>
+        </div>
+        <div class="benefit-item reveal">
+          <span class="num">✧</span>
+          <h3>Método clásico</h3>
+          <p>Fieles a la secuencia original de Joseph Pilates, sin atajos ni modas pasajeras.</p>
+        </div>
+        <div class="benefit-item reveal">
+          <span class="num">✧</span>
+          <h3>Espacio cálido</h3>
+          <p>Un lugar pensado como una casa: cómodo, cercano y sin la frialdad de un gimnasio.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATION -->
+  <section id="ubicacion">
+    <div class="wrap location-grid">
+      <div class="location-card reveal">
+        <span class="eyebrow">Encontranos</span>
+        <h2>Te esperamos en Pago Largo 1182</h2>
+
+        <div class="location-row">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9Z" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="11" r="2.3" stroke="currentColor" stroke-width="1.6"/></svg>
+          <div><strong>Dirección</strong><span>Pago Largo 1182</span></div>
+        </div>
+        <div class="location-row">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L14 13l5 2v4a2 2 0 0 1-2 2C9.6 21 3 14.4 3 6a2 2 0 0 1 1-2Z" stroke="currentColor" stroke-width="1.6"/></svg>
+          <div><strong>WhatsApp</strong><span>Reservá tu clase escribiéndonos</span></div>
+        </div>
+        <div class="location-row">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.6"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          <div><strong>Instagram</strong><span>@lacasita_pilatesyoga</span></div>
+        </div>
+
+        <div class="cta-row" style="margin-top:12px;">
+          <a class="btn btn-primary" href="https://api.whatsapp.com/send?phone=543725415744&text=Hola!%20Quiero%20reservar%20una%20clase%20de%20prueba%20en%20La%20Casita%20✨" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+          <a class="btn btn-ghost" href="https://www.instagram.com/lacasita_pilatesyoga/" target="_blank" rel="noopener">Ver Instagram</a>
+        </div>
+      </div>
+
+      <div class="map-frame reveal">
+        <iframe
+          src="https://www.google.com/maps?q=Pago+Largo+1182&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Ubicación de La Casita, Pago Largo 1182">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="final-cta">
+    <div class="wrap">
+      <span class="eyebrow" style="color:rgba(251,243,230,0.85);">Tu primera clase</span>
+      <h2 style="margin-top:14px;">Empezá hoy tu Contrología</h2>
+      <p>Escribinos por WhatsApp y coordinamos tu clase de prueba en La Casita.</p>
+      <a class="btn btn-primary" href="https://api.whatsapp.com/send?phone=543725415744&text=Hola!%20Quiero%20reservar%20una%20clase%20de%20prueba%20en%20La%20Casita%20✨" target="_blank" rel="noopener">Reservar mi clase</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand"><span>La</span> Casita</div>
+        <p style="max-width:32ch; font-size:0.92rem; margin-top:10px;">Pilates clásico · Contrología · Pago Largo 1182</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Estudio</h4>
+          <a href="#metodo">Método</a>
+          <a href="#clases">Clases</a>
+          <a href="#ubicacion">Ubicación</a>
+        </div>
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <a href="https://api.whatsapp.com/send?phone=543725415744&text=Hola!%20Quiero%20reservar%20una%20clase%20de%20prueba%20en%20La%20Casita%20✨" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="https://www.instagram.com/lacasita_pilatesyoga/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 La Casita | Pilates. Todos los derechos reservados.</span>
+      <span>Pago Largo 1182</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://api.whatsapp.com/send?phone=543725415744&text=Hola!%20Quiero%20reservar%20una%20clase%20de%20prueba%20en%20La%20Casita%20✨" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2Z" stroke="white" stroke-width="0.5" fill="white"/><path d="M8.5 8.7c.2-.6.5-.6.8-.6h.6c.2 0 .5 0 .7.5.2.6.7 1.9.8 2 .1.2.1.4 0 .6-.1.2-.2.3-.4.5-.2.2-.4.4-.2.7.2.4 1 1.5 2.1 2.4 1.4 1.2 2 1.3 2.3 1.3.3 0 .5-.2.7-.5.2-.2.6-.7.8-.9.2-.2.4-.2.6-.1.2.1 1.6.8 1.9 1 .3.1.5.2.5.4 0 .2 0 1-.4 1.5-.4.6-1.7 1.1-2.4 1.1-.6 0-1.9-.2-3.7-1.4-2.2-1.5-3.6-3.7-3.8-3.9-.1-.2-1-1.3-1-2.5 0-1.2.6-1.8.8-2.1Z" fill="#25D366"/></svg>
+</a>
+
+<script>
+  // Reveal on scroll
+  const items = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  items.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
