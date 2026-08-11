@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="es-PY">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Café de Acá ☕ | Villa Morra · Barrio Jara · Los Laureles · Terrazas del Paseo La Galería</title>
+<meta name="description" content="El Café de Acá — inspirado en el Paraguay que nos gusta. Mbeju, chipa guazú, café de especialidad y el patio más lindo de Asunción. Atendemos por orden de llegada.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500;1,9..144,700&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF1E1;
+    --paper:#FFFDF8;
+    --terracotta:#C1440E;
+    --terracotta-dark:#9A350A;
+    --palm:#2E5233;
+    --palm-dark:#1E3A24;
+    --mango:#F2A93B;
+    --wine:#6E2A3B;
+    --ink:#2B1B12;
+    --ink-soft:#5B4A3D;
+    --line:rgba(43,27,18,0.12);
+    --shadow: 0 18px 40px -18px rgba(43,27,18,0.35);
+    --radius-lg: 28px;
+    --radius-md: 18px;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'DM Sans', sans-serif;
+    line-height:1.55;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  img,svg{display:block; max-width:100%;}
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 28px;}
+  h1,h2,h3,h4{font-family:'Fraunces', serif; font-weight:700; line-height:1.08; letter-spacing:-0.01em; color:var(--ink);}
+  .eyebrow{
+    font-family:'Caveat', cursive;
+    font-size:1.5rem;
+    font-weight:600;
+    color:var(--terracotta);
+    display:inline-block;
+    transform:rotate(-2deg);
+    margin-bottom:6px;
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:15px 28px;
+    border-radius:100px;
+    font-weight:700;
+    font-size:1rem;
+    border:2px solid transparent;
+    cursor:pointer;
+    transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+    white-space:nowrap;
+  }
+  .btn svg{width:20px; height:20px; flex-shrink:0;}
+  .btn-primary{background:var(--palm); color:var(--paper); box-shadow:0 10px 24px -8px rgba(46,82,51,0.55);}
+  .btn-primary:hover{transform:translateY(-3px); box-shadow:0 16px 30px -8px rgba(46,82,51,0.6);}
+  .btn-outline{background:transparent; border-color:var(--ink); color:var(--ink);}
+  .btn-outline:hover{background:var(--ink); color:var(--cream); transform:translateY(-3px);}
+  .btn-light{background:var(--paper); color:var(--ink); border-color:var(--line);}
+  .btn-light:hover{transform:translateY(-3px); box-shadow:var(--shadow);}
+
+  /* ---------- decorative ñandutí motif ---------- */
+  .lace{position:absolute; opacity:0.55; pointer-events:none;}
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(251,241,225,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .navbar{display:flex; align-items:center; justify-content:space-between; padding:16px 28px;}
+  .logo{display:flex; align-items:center; gap:10px; font-family:'Fraunces', serif; font-weight:700; font-size:1.25rem;}
+  .logo .dot{color:var(--terracotta);}
+  .nav-links{display:flex; align-items:center; gap:30px; font-weight:600; font-size:0.95rem;}
+  .nav-links a{position:relative; padding:4px 0;}
+  .nav-links a::after{content:""; position:absolute; left:0; bottom:-2px; width:0; height:2px; background:var(--terracotta); transition:width .25s ease;}
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{display:flex; align-items:center; gap:12px;}
+  .burger{display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:8px;}
+  .burger span{width:24px; height:2.5px; background:var(--ink); border-radius:2px;}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative; padding:70px 0 90px; overflow:hidden;}
+  .hero-grid{display:grid; grid-template-columns:1.05fr 0.95fr; gap:50px; align-items:center; position:relative; z-index:2;}
+  .hero h1{font-size:clamp(2.6rem, 5vw, 4.1rem); margin-bottom:22px;}
+  .hero h1 em{font-style:italic; color:var(--terracotta);}
+  .hero p.lede{font-size:1.18rem; color:var(--ink-soft); max-width:520px; margin-bottom:32px;}
+  .hero-ctas{display:flex; gap:16px; flex-wrap:wrap; margin-bottom:38px;}
+  .hero-stats{display:flex; gap:34px; flex-wrap:wrap;}
+  .hero-stats div{display:flex; flex-direction:column;}
+  .hero-stats strong{font-family:'Fraunces', serif; font-size:1.9rem; color:var(--wine);}
+  .hero-stats span{font-size:0.85rem; color:var(--ink-soft); font-weight:600;}
+
+  .hero-art{position:relative; height:480px;}
+  .medallion{
+    position:absolute; inset:0; margin:auto; width:400px; height:400px;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .medallion-ring{position:absolute; inset:0; border-radius:50%; background:var(--palm); animation:spin 60s linear infinite;}
+  @keyframes spin{ to{ transform:rotate(360deg);} }
+  .cup-card{
+    position:relative; z-index:3; width:230px; height:230px; border-radius:50%;
+    background:var(--paper); box-shadow:var(--shadow);
+    display:flex; align-items:center; justify-content:center;
+    border:6px solid var(--mango);
+  }
+  .floaty{position:absolute; z-index:4; filter:drop-shadow(0 10px 14px rgba(43,27,18,0.25));}
+  .f1{top:6%; left:2%; width:78px; animation:float1 6s ease-in-out infinite;}
+  .f2{bottom:10%; left:-2%; width:64px; animation:float2 7s ease-in-out infinite;}
+  .f3{top:4%; right:0; width:70px; animation:float1 5.5s ease-in-out infinite;}
+  .f4{bottom:2%; right:6%; width:88px; animation:float2 6.5s ease-in-out infinite;}
+  @keyframes float1{0%,100%{transform:translateY(0) rotate(-4deg);} 50%{transform:translateY(-16px) rotate(4deg);}}
+  @keyframes float2{0%,100%{transform:translateY(0) rotate(3deg);} 50%{transform:translateY(14px) rotate(-3deg);}}
+
+  .hero-bg-blob{position:absolute; border-radius:50%; filter:blur(2px);}
+  .blob1{width:520px; height:520px; background:var(--mango); opacity:0.25; top:-220px; right:-160px;}
+  .blob2{width:380px; height:380px; background:var(--terracotta); opacity:0.14; bottom:-180px; left:-140px;}
+
+  /* ---------- section shared ---------- */
+  section{position:relative; padding:90px 0;}
+  .section-head{max-width:640px; margin-bottom:52px;}
+  .section-head h2{font-size:clamp(2rem, 3.6vw, 2.8rem);}
+  .section-head p{color:var(--ink-soft); font-size:1.08rem; margin-top:14px;}
+  .center{text-align:center; margin-left:auto; margin-right:auto;}
+
+  /* ---------- HISTORIA ---------- */
+  .historia{background:var(--paper); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+  .historia-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:60px; align-items:center;}
+  .historia-art{position:relative; aspect-ratio:1/1; border-radius:var(--radius-lg); background:var(--palm); overflow:hidden; box-shadow:var(--shadow);}
+  .historia-art .leafpattern{position:absolute; inset:0; opacity:0.5;}
+  .historia-art .center-icon{position:absolute; inset:0; display:flex; align-items:center; justify-content:center;}
+  .timeline{margin-top:26px; border-left:3px solid var(--terracotta); padding-left:22px; display:flex; flex-direction:column; gap:18px;}
+  .timeline li{position:relative; font-size:0.98rem; color:var(--ink-soft);}
+  .timeline li::before{content:""; position:absolute; left:-28px; top:5px; width:12px; height:12px; border-radius:50%; background:var(--terracotta); border:3px solid var(--cream);}
+  .timeline strong{color:var(--ink); font-family:'Fraunces',serif;}
+
+  /* ---------- MENU ---------- */
+  .menu-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:24px;}
+  .menu-card{
+    background:var(--paper); border-radius:var(--radius-md); padding:30px 26px;
+    border:1px solid var(--line); transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    position:relative; overflow:hidden;
+  }
+  .menu-card:hover{transform:translateY(-8px); box-shadow:var(--shadow); border-color:transparent;}
+  .menu-icon{width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center; margin-bottom:18px;}
+  .menu-card h3{font-size:1.28rem; margin-bottom:8px;}
+  .menu-card p{color:var(--ink-soft); font-size:0.96rem;}
+  .menu-card .tag{position:absolute; top:22px; right:22px; font-family:'Caveat',cursive; font-size:1.05rem; color:var(--terracotta); transform:rotate(-4deg); font-weight:700;}
+  .ic-1{background:#FBE3C7;} .ic-2{background:#DCEAD8;} .ic-3{background:#F6D6CC;}
+  .ic-4{background:#EFDCE0;} .ic-5{background:#FBE9BE;} .ic-6{background:#D9E7DE;}
+
+  /* ---------- POR QUE ---------- */
+  .why{background:var(--palm); color:var(--cream);}
+  .why .section-head h2{color:var(--cream);}
+  .why .section-head p{color:rgba(251,241,225,0.75);}
+  .why-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:30px;}
+  .why-card{background:rgba(255,253,248,0.06); border:1px solid rgba(255,253,248,0.16); border-radius:var(--radius-md); padding:32px 26px;}
+  .why-card .num{font-family:'Fraunces',serif; font-style:italic; font-size:2rem; color:var(--mango); margin-bottom:10px; display:block;}
+  .why-card h3{color:var(--cream); font-size:1.2rem; margin-bottom:10px;}
+  .why-card p{color:rgba(251,241,225,0.78); font-size:0.96rem;}
+
+  /* ---------- LOCALES ---------- */
+  .locales-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:22px;}
+  .local-card{
+    background:var(--paper); border-radius:var(--radius-md); padding:26px 26px 26px 22px;
+    border:1px solid var(--line); display:flex; gap:18px; align-items:flex-start;
+    transition:box-shadow .25s ease, transform .25s ease;
+  }
+  .local-card:hover{box-shadow:var(--shadow); transform:translateY(-4px);}
+  .pin{width:46px; height:46px; border-radius:50%; background:var(--terracotta); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+  .local-card h3{font-size:1.15rem; margin-bottom:6px;}
+  .local-card p{color:var(--ink-soft); font-size:0.92rem;}
+  .local-card .badge{display:inline-block; margin-top:10px; font-size:0.78rem; font-weight:700; letter-spacing:0.03em; text-transform:uppercase; color:var(--palm); background:#DCEAD8; padding:4px 10px; border-radius:100px;}
+
+  /* ---------- INSTAGRAM STRIP ---------- */
+  .insta{background:linear-gradient(135deg, var(--wine), var(--terracotta));}
+  .insta-inner{display:grid; grid-template-columns:0.9fr 1.1fr; gap:50px; align-items:center;}
+  .insta h2{color:var(--paper); font-size:clamp(1.9rem,3.4vw,2.6rem);}
+  .insta p{color:rgba(255,253,248,0.85); margin-top:14px; font-size:1.05rem; max-width:460px;}
+  .insta-stats{display:flex; gap:30px; margin-top:26px; margin-bottom:30px;}
+  .insta-stats strong{font-family:'Fraunces',serif; font-size:1.9rem; color:var(--mango); display:block;}
+  .insta-stats span{color:rgba(255,253,248,0.75); font-size:0.85rem; font-weight:600;}
+  .insta-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px;}
+  .insta-tile{aspect-ratio:1/1; border-radius:16px; display:flex; align-items:center; justify-content:center; transition:transform .3s ease;}
+  .insta-tile:hover{transform:scale(1.05) rotate(-2deg);}
+  .it1{background:#E6B45A;} .it2{background:#8FAE7C;} .it3{background:#D97A4B;}
+  .it4{background:#B5555A;} .it5{background:#E4CE8C;} .it6{background:#6E8B5C;}
+
+  /* ---------- CTA FINAL ---------- */
+  .cta-final{padding:100px 0;}
+  .cta-box{
+    background:var(--mango); border-radius:36px; padding:64px 50px; text-align:center;
+    position:relative; overflow:hidden;
+  }
+  .cta-box h2{font-size:clamp(2rem,4vw,3rem); max-width:680px; margin:0 auto 16px;}
+  .cta-box p{color:var(--ink); opacity:0.75; max-width:520px; margin:0 auto 34px; font-size:1.08rem;}
+  .cta-box .btn-primary{background:var(--ink); box-shadow:0 12px 26px -8px rgba(43,27,18,0.5);}
+  .cta-box .btn-primary:hover{background:var(--wine);}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--ink); color:rgba(251,241,225,0.75); padding:60px 0 26px;}
+  .footer-grid{display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:40px; padding-bottom:40px; border-bottom:1px solid rgba(251,241,225,0.14);}
+  .footer-logo{font-family:'Fraunces',serif; font-weight:700; font-size:1.4rem; color:var(--cream); margin-bottom:12px;}
+  footer h4{color:var(--cream); font-family:'DM Sans',sans-serif; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:16px;}
+  footer ul li{margin-bottom:10px; font-size:0.94rem;}
+  footer ul li a:hover{color:var(--mango);}
+  .footer-bottom{display:flex; justify-content:space-between; align-items:center; padding-top:24px; font-size:0.85rem; flex-wrap:wrap; gap:12px;}
+  .social-row{display:flex; gap:14px;}
+  .social-row a{width:38px; height:38px; border-radius:50%; background:rgba(251,241,225,0.1); display:flex; align-items:center; justify-content:center; transition:background .25s ease;}
+  .social-row a:hover{background:var(--terracotta);}
+
+  /* ---------- floating whatsapp ---------- */
+  .float-wa{
+    position:fixed; bottom:24px; right:24px; z-index:60;
+    width:60px; height:60px; border-radius:50%; background:#25D366;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow:0 12px 26px -6px rgba(37,211,102,0.6);
+    animation:pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse{0%,100%{transform:scale(1);} 50%{transform:scale(1.08);}}
+
+  /* ---------- reveal ---------- */
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  @media (max-width: 980px){
+    .hero-grid, .historia-grid, .insta-inner{grid-template-columns:1fr;}
+    .hero-art{height:340px; order:-1;}
+    .menu-grid{grid-template-columns:repeat(2,1fr);}
+    .why-grid{grid-template-columns:1fr;}
+    .locales-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width: 720px){
+    .nav-links{display:none;}
+    .burger{display:flex;}
+    .menu-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr; gap:28px;}
+    .hero-ctas .btn{width:100%; justify-content:center;}
+    .hero-ctas{flex-direction:column;}
+    .cta-box{padding:44px 24px;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<header>
+  <div class="navbar wrap">
+    <a href="#top" class="logo">☕ <span>el café de acá <span class="dot">.</span></span></a>
+    <nav class="nav-links">
+      <a href="#historia">Nuestra historia</a>
+      <a href="#menu">Menú</a>
+      <a href="#locales">Locales</a>
+      <a href="#instagram">Instagram</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-primary" href="https://api.whatsapp.com/send/?phone=595973153040" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.42-1.36a9.83 9.83 0 0 0 4.62 1.15h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.03c-.24.68-1.4 1.3-1.93 1.37-.5.07-1.05.1-1.7-.11-.39-.13-.9-.29-1.55-.57-2.73-1.18-4.5-3.94-4.64-4.13-.14-.19-1.11-1.47-1.11-2.81 0-1.33.7-1.98.95-2.25.24-.27.53-.34.71-.34.18 0 .36 0 .51.01.17.01.38-.06.6.46.24.57.8 1.98.87 2.12.07.14.11.3.02.49-.09.19-.14.3-.27.46-.14.16-.28.36-.4.48-.14.14-.28.29-.12.56.16.27.72 1.19 1.55 1.93 1.06.95 1.96 1.24 2.23 1.38.27.14.43.12.59-.07.16-.19.68-.79.87-1.06.18-.27.36-.22.6-.13.24.09 1.55.73 1.81.87.27.14.45.2.51.32.07.11.07.65-.17 1.33Z"/></svg>
+        WhatsApp
+      </a>
+      <button class="burger" aria-label="Abrir menú" onclick="document.querySelector('.nav-links').classList.toggle('mobile-open')">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<div id="top"></div>
+<section class="hero">
+  <div class="hero-bg-blob blob1"></div>
+  <div class="hero-bg-blob blob2"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">✨ atendemos por orden de llegada</span>
+      <h1>Inspirado en el <em>Paraguay</em><br>que nos gusta.</h1>
+      <p class="lede">Mbeju calentito, café de especialidad y un patio lleno de verde: así es El Café de Acá. Cuatro rincones de Asunción te esperan para desayunar, almorzar o simplemente quedarte un rato más.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="https://api.whatsapp.com/send/?phone=595973153040" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.42-1.36a9.83 9.83 0 0 0 4.62 1.15h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.03c-.24.68-1.4 1.3-1.93 1.37-.5.07-1.05.1-1.7-.11-.39-.13-.9-.29-1.55-.57-2.73-1.18-4.5-3.94-4.64-4.13-.14-.19-1.11-1.47-1.11-2.81 0-1.33.7-1.98.95-2.25.24-.27.53-.34.71-.34.18 0 .36 0 .51.01.17.01.38-.06.6.46.24.57.8 1.98.87 2.12.07.14.11.3.02.49-.09.19-.14.3-.27.46-.14.16-.28.36-.4.48-.14.14-.28.29-.12.56.16.27.72 1.19 1.55 1.93 1.06.95 1.96 1.24 2.23 1.38.27.14.43.12.59-.07.16-.19.68-.79.87-1.06.18-.27.36-.22.6-.13.24.09 1.55.73 1.81.87.27.14.45.2.51.32.07.11.07.65-.17 1.33Z"/></svg>
+          Reservar / Consultar
+        </a>
+        <a class="btn btn-outline" href="https://www.instagram.com/elcafedeaca/" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+          Seguinos @elcafedeaca
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>137K+</strong><span>seguidores en Instagram</span></div>
+        <div><strong>4</strong><span>locales en Asunción</span></div>
+        <div><strong>desde 2009</strong><span>sirviendo mbeju</span></div>
+      </div>
+    </div>
+
+    <div class="hero-art">
+      <img class="floaty f1" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%232E5233' d='M32 4c10 8 14 20 8 30-4 7-14 9-20 3-6-6-4-16 3-20-4 2-6 8-2 12 5 5 14 2 15-6 1-9-6-16-4-19Z'/%3E%3C/svg%3E" alt="hoja">
+      <img class="floaty f2" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23F2A93B'/%3E%3Cg stroke='%23FBF1E1' stroke-width='2'%3E%3Ccircle cx='32' cy='32' r='20' fill='none'/%3E%3Ccircle cx='32' cy='32' r='11' fill='none'/%3E%3Cpath d='M32 2v60M2 32h60M11 11l42 42M53 11 11 53' /%3E%3C/g%3E%3C/svg%3E" alt="sol ñandutí">
+      <img class="floaty f3" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%236E2A3B' d='M20 26c0-8 6-14 12-14s12 6 12 14c0 10-6 16-12 22-6-6-12-12-12-22Z'/%3E%3Ccircle cx='32' cy='26' r='4' fill='%23FBF1E1'/%3E%3C/svg%3E" alt="mate">
+      <img class="floaty f4" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%23C1440E' d='M14 26h30l-3 20a8 8 0 0 1-8 7H25a8 8 0 0 1-8-7l-3-20Z'/%3E%3Cpath fill='%23C1440E' d='M44 30h4a6 6 0 0 1 0 12h-5'/%3E%3Cpath stroke='%23FBF1E1' stroke-width='2' d='M22 14c0 4 3 4 3 8M31 12c0 4 3 4 3 8'/%3E%3C/svg%3E" alt="taza">
+
+      <div class="medallion">
+        <div class="medallion-ring"></div>
+        <div class="cup-card">
+          <svg width="120" height="120" viewBox="0 0 64 64" fill="none">
+            <path d="M14 24h30l-2.5 22a8 8 0 0 1-8 7H24.5a8 8 0 0 1-8-7L14 24Z" fill="#C1440E"/>
+            <path d="M44 28h5a7 7 0 0 1 0 14h-6" stroke="#C1440E" stroke-width="3" fill="none"/>
+            <path d="M20 15c0 4.5 3.5 4.5 3.5 9M29 13c0 4.5 3.5 4.5 3.5 9M38 15c0 4.5 3.5 4.5 3.5 9" stroke="#F2A93B" stroke-width="2.4" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HISTORIA ================= -->
+<section class="historia" id="historia">
+  <div class="wrap historia-grid">
+    <div class="historia-art reveal">
+      <svg class="leafpattern" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+        <g fill="none" stroke="#FBF1E1" stroke-width="1.2" opacity="0.5">
+          <circle cx="200" cy="200" r="170"/>
+          <circle cx="200" cy="200" r="130"/>
+          <circle cx="200" cy="200" r="90"/>
+          <circle cx="200" cy="200" r="50"/>
+          <path d="M200 30v340M30 200h340"/>
+          <path d="M83 83l234 234M317 83 83 317"/>
+        </g>
+      </svg>
+      <div class="center-icon">
+        <svg width="130" height="130" viewBox="0 0 64 64" fill="none">
+          <path d="M14 24h30l-2.5 22a8 8 0 0 1-8 7H24.5a8 8 0 0 1-8-7L14 24Z" fill="#FBF1E1"/>
+          <path d="M44 28h5a7 7 0 0 1 0 14h-6" stroke="#FBF1E1" stroke-width="3" fill="none"/>
+          <path d="M20 15c0 4.5 3.5 4.5 3.5 9M29 13c0 4.5 3.5 4.5 3.5 9M38 15c0 4.5 3.5 4.5 3.5 9" stroke="#F2A93B" stroke-width="2.4" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+    <div class="reveal">
+      <span class="eyebrow">nuestra historia</span>
+      <h2>Un ratito de Paraguay, todos los días.</h2>
+      <p style="color:var(--ink-soft); font-size:1.05rem; margin-top:16px; max-width:520px;">
+        El Café de Acá nació en Villa Morra como un rincón con patio y sombra, pensado para el desayuno con calma y las charlas que se alargan. Con los años se convirtió en punto de encuentro: cumpleaños, citas, reuniones de trabajo y domingos sin apuro, siempre con la cocina paraguaya como norte.
+      </p>
+      <ul class="timeline">
+        <li><strong>2009</strong> — Abrimos las puertas en Villa Morra, con mbeju recién salido del tatakua.</li>
+        <li><strong>2021</strong> — Sumamos Barrio Jara, dentro del Complejo Textilia.</li>
+        <li><strong>Hoy</strong> — Ya somos cuatro: Villa Morra, Barrio Jara, Los Laureles y Terrazas del Paseo La Galería.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MENU ================= -->
+<section id="menu">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">para chuparse los dedos</span>
+      <h2>Lo que no te podés perder</h2>
+      <p>Una carta que sabe a memoria paraguaya, con opciones para cada momento del día.</p>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-card reveal">
+        <span class="tag">el más pedido</span>
+        <div class="menu-icon ic-1">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#C1440E" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        </div>
+        <h3>Mbeju</h3>
+        <p>Nuestra especialidad de siempre: crocante por fuera, tierno por dentro, tal como debe ser.</p>
+      </div>
+      <div class="menu-card reveal">
+        <div class="menu-icon ic-2">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2E5233" stroke-width="1.8"><path d="M4 12c0-4 4-8 8-8s8 4 8 8-4 8-8 8-8-4-8-8Z"/><path d="M12 4v16M4 12h16"/></svg>
+        </div>
+        <h3>Chipa Guazú</h3>
+        <p>Nuestra versión del clásico cornbread paraguayo, calentito y servido en su punto justo.</p>
+      </div>
+      <div class="menu-card reveal">
+        <div class="menu-icon ic-3">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#C1440E" stroke-width="1.8"><path d="M6 3v6a6 6 0 0 0 12 0V3"/><path d="M12 15v6M8 21h8"/></svg>
+        </div>
+        <h3>Mandi'o Chyryry</h3>
+        <p>Mandioca salteada con toques que le sacan todo el sabor. Ideal para compartir.</p>
+      </div>
+      <div class="menu-card reveal">
+        <div class="menu-icon ic-4">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#6E2A3B" stroke-width="1.8"><rect x="4" y="7" width="16" height="12" rx="2"/><path d="M4 7l8-4 8 4"/></svg>
+        </div>
+        <h3>Brunch a la paraguaya</h3>
+        <p>Huevos, panificados de casa y algo dulce, con ese toque local que lo hace distinto.</p>
+      </div>
+      <div class="menu-card reveal">
+        <div class="menu-icon ic-5">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#C1440E" stroke-width="1.8"><path d="M4 10h13a3 3 0 0 1 0 6h-1"/><path d="M4 10v6a4 4 0 0 0 4 4h5a4 4 0 0 0 4-4v-6"/></svg>
+        </div>
+        <h3>Café de especialidad</h3>
+        <p>Granos seleccionados, preparados con cariño para acompañar cualquier charla.</p>
+      </div>
+      <div class="menu-card reveal">
+        <div class="menu-icon ic-6">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2E5233" stroke-width="1.8"><path d="M9 3c0 3-3 3-3 7a6 6 0 0 0 12 0c0-4-3-4-3-7"/><path d="M8 21h8"/></svg>
+        </div>
+        <h3>Tereré &amp; mate dulce</h3>
+        <p>Porque acá también se toma tereré. Fresco, de yuyos y a la paraguaya.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= POR QUÉ ================= -->
+<section class="why">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow" style="color:var(--mango);">por qué elegirnos</span>
+      <h2>Más que un café</h2>
+      <p>Tres razones por las que la gente vuelve, una y otra vez.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card reveal">
+        <span class="num">01</span>
+        <h3>Patio con sombra de verdad</h3>
+        <p>Verde, luz natural y un ambiente pensado para quedarte, no para apurarte.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="num">02</span>
+        <h3>Atendemos por orden de llegada</h3>
+        <p>Simple y justo: acá no hay reservas de apuro, hay lugar para el que llega.</p>
+      </div>
+      <div class="why-card reveal">
+        <span class="num">03</span>
+        <h3>Sabor local, cuidado en cada plato</h3>
+        <p>Ingredientes de acá, preparados con la calidez de siempre. Eso no cambia.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LOCALES ================= -->
+<section id="locales">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">encontranos</span>
+      <h2>Cuatro locales, un mismo cariño</h2>
+      <p>Elegí el que te quede más cerca — todos con la misma carta y la misma calidez.</p>
+    </div>
+    <div class="locales-grid">
+      <div class="local-card reveal">
+        <div class="pin"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FBF1E1" stroke-width="2"><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+        <div>
+          <h3>Villa Morra</h3>
+          <p>Tte. Vera 1390 esq. Dr. Morra — nuestro local original, el de siempre.</p>
+          <span class="badge">Local original</span>
+        </div>
+      </div>
+      <div class="local-card reveal">
+        <div class="pin"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FBF1E1" stroke-width="2"><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+        <div>
+          <h3>Barrio Jara</h3>
+          <p>Dentro del Complejo Textilia — mismo sabor, otro rincón de la ciudad.</p>
+          <span class="badge">Complejo Textilia</span>
+        </div>
+      </div>
+      <div class="local-card reveal">
+        <div class="pin"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FBF1E1" stroke-width="2"><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+        <div>
+          <h3>Los Laureles</h3>
+          <p>Nuestro rincón en Los Laureles, listo para recibirte con lo de siempre.</p>
+          <span class="badge">Barrio Los Laureles</span>
+        </div>
+      </div>
+      <div class="local-card reveal">
+        <div class="pin"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FBF1E1" stroke-width="2"><path d="M12 21s-7-6.5-7-11a7 7 0 0 1 14 0c0 4.5-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+        <div>
+          <h3>Terrazas del Paseo La Galería</h3>
+          <p>Adentro de La Galería, ideal para una parada antes o después de tus compras.</p>
+          <span class="badge">Paseo La Galería</span>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center; margin-top:40px;">
+      <a class="btn btn-primary reveal" href="https://api.whatsapp.com/send/?phone=595973153040" target="_blank" rel="noopener">
+        Preguntanos cuál te queda cerca
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= INSTAGRAM ================= -->
+<section class="insta" id="instagram">
+  <div class="wrap insta-inner">
+    <div class="reveal">
+      <span class="eyebrow" style="color:var(--mango);">#mehalloacá</span>
+      <h2>Seguinos en Instagram</h2>
+      <p>Todos los días compartimos el patio, los platos nuevos y ese ratito de Paraguay que nos gusta. Sumate a la comunidad.</p>
+      <div class="insta-stats">
+        <div><strong>137K+</strong><span>seguidores</span></div>
+        <div><strong>549+</strong><span>publicaciones</span></div>
+      </div>
+      <a class="btn btn-light" href="https://www.instagram.com/elcafedeaca/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#C1440E" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#C1440E" stroke="none"/></svg>
+        @elcafedeaca
+      </a>
+    </div>
+    <div class="insta-grid reveal">
+      <div class="insta-tile it1"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#2B1B12" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+      <div class="insta-tile it2"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#FBF1E1" stroke-width="1.6"><path d="M4 12c0-4 4-8 8-8s8 4 8 8-4 8-8 8-8-4-8-8Z"/></svg></div>
+      <div class="insta-tile it3"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#FBF1E1" stroke-width="1.6"><rect x="4" y="7" width="16" height="12" rx="2"/><path d="M4 7l8-4 8 4"/></svg></div>
+      <div class="insta-tile it4"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#FBF1E1" stroke-width="1.6"><path d="M9 3c0 3-3 3-3 7a6 6 0 0 0 12 0c0-4-3-4-3-7"/></svg></div>
+      <div class="insta-tile it5"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#2B1B12" stroke-width="1.6"><path d="M6 3v6a6 6 0 0 0 12 0V3"/></svg></div>
+      <div class="insta-tile it6"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#FBF1E1" stroke-width="1.6"><path d="M4 10h13a3 3 0 0 1 0 6h-1"/><path d="M4 10v6a4 4 0 0 0 4 4h5a4 4 0 0 0 4-4v-6"/></svg></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA FINAL ================= -->
+<section class="cta-final">
+  <div class="wrap">
+    <div class="cta-box reveal">
+      <span class="eyebrow">te estamos esperando</span>
+      <h2>¿Vamos al Café de Acá?</h2>
+      <p>Escribinos por WhatsApp para consultas, pedidos o eventos privados. Respondemos rapidito.</p>
+      <a class="btn btn-primary" href="https://api.whatsapp.com/send/?phone=595973153040" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.42-1.36a9.83 9.83 0 0 0 4.62 1.15h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.03c-.24.68-1.4 1.3-1.93 1.37-.5.07-1.05.1-1.7-.11-.39-.13-.9-.29-1.55-.57-2.73-1.18-4.5-3.94-4.64-4.13-.14-.19-1.11-1.47-1.11-2.81 0-1.33.7-1.98.95-2.25.24-.27.53-.34.71-.34.18 0 .36 0 .51.01.17.01.38-.06.6.46.24.57.8 1.98.87 2.12.07.14.11.3.02.49-.09.19-.14.3-.27.46-.14.16-.28.36-.4.48-.14.14-.28.29-.12.56.16.27.72 1.19 1.55 1.93 1.06.95 1.96 1.24 2.23 1.38.27.14.43.12.59-.07.16-.19.68-.79.87-1.06.18-.27.36-.22.6-.13.24.09 1.55.73 1.81.87.27.14.45.2.51.32.07.11.07.65-.17 1.33Z"/></svg>
+        Escribinos al 0973 153 040
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">☕ el café de acá</div>
+        <p style="max-width:280px; font-size:0.92rem;">Inspirado en el Paraguay que nos gusta. Villa Morra · Barrio Jara · Los Laureles · Terrazas del Paseo La Galería.</p>
+      </div>
+      <div>
+        <h4>Enlaces</h4>
+        <ul>
+          <li><a href="https://www.instagram.com/elcafedeaca/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://api.whatsapp.com/send/?phone=595973153040" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="https://fiweex.com/links" target="_blank" rel="noopener">Todos nuestros links</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Secciones</h4>
+        <ul>
+          <li><a href="#historia">Nuestra historia</a></li>
+          <li><a href="#menu">Menú</a></li>
+          <li><a href="#locales">Locales</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 El Café de Acá · #mehalloacá</span>
+      <div class="social-row">
+        <a href="https://www.instagram.com/elcafedeaca/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FBF1E1" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#FBF1E1" stroke="none"/></svg>
+        </a>
+        <a href="https://api.whatsapp.com/send/?phone=595973153040" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#FBF1E1"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.42-1.36a9.83 9.83 0 0 0 4.62 1.15h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Z"/></svg>
+        </a>
+        <a href="https://fiweex.com/links" target="_blank" rel="noopener" aria-label="Más enlaces">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FBF1E1" stroke-width="2"><path d="M10 13a5 5 0 0 0 7 0l2-2a5 5 0 0 0-7-7l-1 1"/><path d="M14 11a5 5 0 0 0-7 0l-2 2a5 5 0 0 0 7 7l1-1"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- floating whatsapp button -->
+<a class="float-wa" href="https://api.whatsapp.com/send/?phone=595973153040" target="_blank" rel="noopener" aria-label="Escribinos por WhatsApp">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="#FBF1E1"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.42-1.36a9.83 9.83 0 0 0 4.62 1.15h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.8 14.03c-.24.68-1.4 1.3-1.93 1.37-.5.07-1.05.1-1.7-.11-.39-.13-.9-.29-1.55-.57-2.73-1.18-4.5-3.94-4.64-4.13-.14-.19-1.11-1.47-1.11-2.81 0-1.33.7-1.98.95-2.25.24-.27.53-.34.71-.34.18 0 .36 0 .51.01.17.01.38-.06.6.46.24.57.8 1.98.87 2.12.07.14.11.3.02.49-.09.19-.14.3-.27.46-.14.16-.28.36-.4.48-.14.14-.28.29-.12.56.16.27.72 1.19 1.55 1.93 1.06.95 1.96 1.24 2.23 1.38.27.14.43.12.59-.07.16-.19.68-.79.87-1.06.18-.27.36-.22.6-.13.24.09 1.55.73 1.81.87.27.14.45.2.51.32.07.11.07.65-.17 1.33Z"/></svg>
+</a>
+
+<style>
+  .nav-links.mobile-open{
+    display:flex !important; position:absolute; top:100%; left:0; right:0;
+    background:var(--paper); flex-direction:column; padding:20px 28px; gap:18px;
+    border-bottom:1px solid var(--line); box-shadow:var(--shadow);
+  }
+</style>
+
+<script>
+  // reveal on scroll
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, {threshold:0.15});
+  els.forEach(el=>io.observe(el));
+
+  // close mobile nav when a link is clicked
+  document.querySelectorAll('.nav-links a').forEach(a=>{
+    a.addEventListener('click', ()=> document.querySelector('.nav-links').classList.remove('mobile-open'));
+  });
+</script>
+
+</body>
+</html>
