@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="es-PY">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heladería Doña Angela | Helado artesanal en Asunción</title>
+<meta name="description" content="Heladería Doña Angela, helado artesanal en Asunción desde hace más de 20 años. Pedí por WhatsApp, mirá el menú y seguinos en Instagram.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FFF6E9;
+    --cream-2:#FFEEDA;
+    --brown:#5A3324;
+    --brown-soft:#7A4A34;
+    --pink:#FF5E8E;
+    --pink-deep:#E23F71;
+    --mango:#FFA53C;
+    --pistachio:#6FBF73;
+    --grape:#9B6FD1;
+    --lime:#C7E86B;
+    --white:#FFFFFF;
+    --shadow: 0 14px 34px rgba(90,51,36,0.18);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--brown);
+    font-family:'Nunito',sans-serif;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Baloo 2',cursive;
+    margin:0;
+    line-height:1.05;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+  .visually-hidden{position:absolute;left:-9999px;}
+
+  :focus-visible{outline:3px solid var(--grape);outline-offset:3px;border-radius:6px;}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  /* ===== drip divider (signature element) ===== */
+  .drip{
+    position:relative;
+    width:100%;
+    height:46px;
+    line-height:0;
+    display:block;
+  }
+  .drip svg{width:100%;height:100%;display:block;}
+
+  /* ===== nav ===== */
+  .nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(255,246,233,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom:3px solid var(--brown);
+  }
+  .nav-inner{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:12px 24px;max-width:1120px;margin:0 auto;
+  }
+  .brand{display:flex;align-items:center;gap:10px;font-family:'Baloo 2';font-weight:700;font-size:1.25rem;color:var(--pink-deep);}
+  .brand .scoop-mini{width:30px;height:30px;border-radius:50% 50% 50% 0;background:var(--mango);border:2.5px solid var(--brown);transform:rotate(45deg);}
+  .nav-cta{
+    display:flex;gap:10px;
+  }
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:'Baloo 2';font-weight:600;
+    padding:10px 18px;border-radius:999px;
+    border:2.5px solid var(--brown);
+    white-space:nowrap;
+    transition:transform .15s ease, box-shadow .15s ease;
+    cursor:pointer;
+  }
+  .btn:hover{transform:translateY(-3px);}
+  .btn-whatsapp{background:#3FBF63;color:#fff;box-shadow:0 6px 0 var(--brown);}
+  .btn-whatsapp:hover{box-shadow:0 9px 0 var(--brown);}
+  .btn-outline{background:transparent;color:var(--brown);}
+  .btn-outline:hover{background:var(--brown);color:var(--cream);}
+  .btn-menu{background:var(--grape);color:#fff;box-shadow:0 6px 0 var(--brown);}
+  .btn-menu:hover{box-shadow:0 9px 0 var(--brown);}
+  .btn-ig{background:linear-gradient(135deg,#FEDA75,#FA7E1E,#D62976,#962FBF);color:#fff;box-shadow:0 6px 0 var(--brown);}
+  .btn-ig:hover{box-shadow:0 9px 0 var(--brown);}
+  .btn-sm{padding:8px 14px;font-size:.85rem;}
+
+  @media (max-width:640px){
+    .nav-cta .label-long{display:none;}
+  }
+
+  /* ===== hero ===== */
+  .hero{
+    position:relative;
+    padding:70px 0 40px;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 12% 18%, rgba(255,94,142,0.18), transparent 40%),
+      radial-gradient(circle at 88% 12%, rgba(111,191,115,0.22), transparent 42%),
+      radial-gradient(circle at 80% 85%, rgba(155,111,209,0.18), transparent 45%),
+      var(--cream);
+  }
+  .hero-grid{
+    display:grid;grid-template-columns:1.1fr 0.9fr;gap:40px;align-items:center;
+  }
+  @media (max-width:860px){ .hero-grid{grid-template-columns:1fr;} }
+
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--white);border:2.5px solid var(--brown);
+    border-radius:999px;padding:6px 16px;font-weight:800;font-size:.85rem;
+    color:var(--pink-deep);box-shadow:4px 4px 0 var(--brown);
+    margin-bottom:18px;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 5.4vw, 4.1rem);
+    color:var(--brown);
+  }
+  .hero h1 span{color:var(--pink-deep);}
+  .hero p.lead{
+    font-size:1.15rem;max-width:520px;margin-top:18px;color:var(--brown-soft);font-weight:600;
+  }
+  .hero-ctas{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap;}
+
+  .scoop-stack{
+    position:relative;
+    width:min(360px, 90%);
+    margin:0 auto;
+    aspect-ratio:1/1.15;
+  }
+  .cone{
+    position:absolute;bottom:2%;left:50%;transform:translateX(-50%);
+    width:36%;height:34%;
+    background:repeating-linear-gradient(115deg, #C98A4B 0 8px, #B4763A 8px 16px);
+    clip-path:polygon(50% 100%, 5% 0, 95% 0);
+    border:3px solid var(--brown);
+  }
+  .scoop{
+    position:absolute;left:50%;transform:translateX(-50%);
+    border-radius:50%;border:3px solid var(--brown);
+  }
+  .scoop.s1{width:58%;height:44%;bottom:22%;background:var(--mango);z-index:3;}
+  .scoop.s2{width:52%;height:40%;bottom:42%;background:var(--pink);z-index:2;}
+  .scoop.s3{width:44%;height:34%;bottom:60%;background:var(--pistachio);z-index:1;}
+  .cherry{
+    position:absolute;top:2%;left:50%;transform:translateX(-50%);
+    width:11%;height:11%;border-radius:50%;background:var(--pink-deep);border:3px solid var(--brown);z-index:4;
+  }
+  .sprinkle{
+    position:absolute;width:6px;height:14px;border-radius:3px;
+  }
+  @keyframes floaty{
+    0%,100%{transform:translateY(0) rotate(var(--r,0deg));}
+    50%{transform:translateY(-10px) rotate(var(--r,0deg));}
+  }
+  .scoop-stack .sprinkle{animation:floaty 5s ease-in-out infinite;}
+
+  /* ===== marquee ===== */
+  .marquee{
+    background:var(--brown);color:var(--cream);
+    overflow:hidden;white-space:nowrap;padding:12px 0;
+    border-top:3px solid var(--brown);border-bottom:3px solid var(--brown);
+  }
+  .marquee-track{display:inline-flex;gap:40px;animation:scroll-left 22s linear infinite;}
+  .marquee span{font-family:'Baloo 2';font-weight:600;font-size:1rem;letter-spacing:.02em;}
+  @keyframes scroll-left{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* ===== sections general ===== */
+  section{padding:64px 0;}
+  .section-title{
+    font-size:clamp(1.9rem,4vw,2.6rem);
+    color:var(--brown);
+    margin-bottom:10px;
+  }
+  .section-title .accent{color:var(--pink-deep);}
+  .section-kicker{
+    font-family:'Baloo 2';font-weight:700;color:var(--grape);
+    text-transform:uppercase;letter-spacing:.08em;font-size:.85rem;margin-bottom:6px;display:block;
+  }
+  .section-sub{color:var(--brown-soft);font-weight:700;max-width:620px;margin-top:12px;}
+
+  /* ===== about ===== */
+  .about{background:var(--white);}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;}
+  @media (max-width:860px){.about-grid{grid-template-columns:1fr;}}
+  .about-badges{display:flex;gap:16px;margin-top:26px;flex-wrap:wrap;}
+  .badge{
+    background:var(--cream-2);border:2.5px solid var(--brown);border-radius:18px;
+    padding:14px 18px;flex:1;min-width:130px;text-align:center;
+  }
+  .badge b{display:block;font-family:'Baloo 2';font-size:1.6rem;color:var(--pink-deep);}
+  .badge span{font-size:.82rem;font-weight:700;color:var(--brown-soft);}
+  .about-art{
+    display:grid;grid-template-columns:1fr 1fr;gap:16px;
+  }
+  .about-art .tile{
+    border-radius:22px;border:3px solid var(--brown);
+    aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:2.6rem;
+  }
+  .tile.t1{background:var(--pink);}
+  .tile.t2{background:var(--mango);margin-top:24px;}
+  .tile.t3{background:var(--pistachio);margin-top:-24px;}
+  .tile.t4{background:var(--grape);}
+
+  /* ===== flavors ===== */
+  .flavors{background:var(--cream);}
+  .flavor-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:34px;
+  }
+  @media (max-width:760px){.flavor-grid{grid-template-columns:1fr 1fr;}}
+  @media (max-width:480px){.flavor-grid{grid-template-columns:1fr;}}
+  .flavor-card{
+    background:var(--white);border:3px solid var(--brown);border-radius:22px;
+    padding:24px;position:relative;box-shadow:var(--shadow);
+    transition:transform .2s ease;
+  }
+  .flavor-card:hover{transform:translateY(-6px) rotate(-0.5deg);}
+  .flavor-card .scoop-icon{
+    width:64px;height:64px;border-radius:50%;border:3px solid var(--brown);margin-bottom:14px;
+    display:flex;align-items:center;justify-content:center;font-size:1.6rem;
+  }
+  .flavor-card h3{font-size:1.25rem;margin-bottom:6px;}
+  .flavor-card p{margin:0;font-size:.92rem;color:var(--brown-soft);font-weight:600;}
+  .flavor-card.star{
+    background:var(--pink-deep);color:#fff;
+  }
+  .flavor-card.star p{color:#FFE1EC;}
+  .flavor-card.star .scoop-icon{background:var(--cream);}
+  .flavor-tag{
+    position:absolute;top:-14px;right:18px;
+    background:var(--lime);border:2.5px solid var(--brown);border-radius:999px;
+    padding:4px 12px;font-size:.72rem;font-weight:800;font-family:'Baloo 2';color:var(--brown);
+  }
+
+  /* ===== cta band ===== */
+  .cta-band{
+    background:var(--grape);color:#fff;text-align:center;position:relative;overflow:hidden;
+  }
+  .cta-band h2{color:#fff;font-size:clamp(1.8rem,4vw,2.4rem);}
+  .cta-band p{max-width:560px;margin:14px auto 0;font-weight:700;color:#EFE1FF;}
+  .cta-buttons{display:flex;justify-content:center;gap:16px;margin-top:30px;flex-wrap:wrap;}
+
+  /* ===== location ===== */
+  .location{background:var(--white);}
+  .loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:stretch;}
+  @media (max-width:860px){.loc-grid{grid-template-columns:1fr;}}
+  .loc-card{
+    background:var(--cream-2);border:3px solid var(--brown);border-radius:24px;padding:32px;
+  }
+  .loc-row{display:flex;gap:14px;align-items:flex-start;margin-bottom:20px;}
+  .loc-row .ic{
+    flex:0 0 auto;width:42px;height:42px;border-radius:50%;border:2.5px solid var(--brown);
+    display:flex;align-items:center;justify-content:center;font-size:1.2rem;background:#fff;
+  }
+  .loc-row div h3{font-size:1.05rem;font-family:'Baloo 2';margin-bottom:2px;}
+  .loc-row div p{margin:0;color:var(--brown-soft);font-weight:700;font-size:.95rem;}
+  .map-frame{
+    border:3px solid var(--brown);border-radius:24px;overflow:hidden;min-height:320px;
+    box-shadow:var(--shadow);
+  }
+  .map-frame iframe{width:100%;height:100%;min-height:320px;border:0;display:block;}
+
+  /* ===== footer ===== */
+  footer{background:var(--brown);color:var(--cream);padding-top:0;}
+  .footer-inner{padding:44px 0 26px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:24px;}
+  .footer-brand{font-family:'Baloo 2';font-size:1.4rem;font-weight:700;color:var(--mango);}
+  .footer-social{display:flex;gap:14px;}
+  .footer-social a{
+    width:42px;height:42px;border-radius:50%;border:2px solid var(--cream);
+    display:flex;align-items:center;justify-content:center;font-size:1.1rem;
+    transition:background .15s ease;
+  }
+  .footer-social a:hover{background:var(--pink);}
+  .footer-copy{
+    text-align:center;font-size:.82rem;padding:16px 0 24px;opacity:.75;border-top:1px solid rgba(255,246,233,.2);
+  }
+
+  /* ===== floating whatsapp ===== */
+  .float-wa{
+    position:fixed;bottom:22px;right:22px;z-index:60;
+    background:#3FBF63;color:#fff;border:3px solid var(--brown);
+    border-radius:50%;width:60px;height:60px;display:flex;align-items:center;justify-content:center;
+    font-size:1.7rem;box-shadow:0 8px 0 rgba(90,51,36,0.4);
+    animation:pulse 2.6s ease-in-out infinite;
+  }
+  @keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.08);}}
+  @media (prefers-reduced-motion: reduce){ .float-wa{animation:none;} }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand"><span class="scoop-mini" aria-hidden="true"></span> Doña Angela</div>
+    <div class="nav-cta">
+      <a class="btn btn-menu btn-sm" href="https://app.guarapi.com.py/menu/menu" target="_blank" rel="noopener">🍦 <span class="label-long">Ver menú</span></a>
+      <a class="btn btn-whatsapp btn-sm" href="https://wa.me/59521728960" target="_blank" rel="noopener">💬 <span class="label-long">WhatsApp</span></a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">🍨 Helado artesanal desde hace más de 20 años</span>
+      <h1>El sabor que <span>Asunción</span> elige para refrescarse</h1>
+      <p class="lead">En Doña Angela hacemos helado artesanal con leche e ingredientes frescos, todos los días. Nuestro clásico dulce de leche guarapi es el favorito de la ciudad — vení a probarlo o pedilo por WhatsApp.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-whatsapp" href="https://wa.me/59521728960" target="_blank" rel="noopener">💬 Pedir por WhatsApp</a>
+        <a class="btn btn-ig" href="https://www.instagram.com/heladeriadonaangela/" target="_blank" rel="noopener">📸 Seguinos en Instagram</a>
+      </div>
+    </div>
+    <div class="scoop-stack" aria-hidden="true">
+      <div class="cherry"></div>
+      <div class="scoop s3"></div>
+      <div class="scoop s2"></div>
+      <div class="scoop s1"></div>
+      <div class="cone"></div>
+      <div class="sprinkle" style="--r:20deg; top:8%; left:22%; background:var(--pistachio); animation-delay:0s;"></div>
+      <div class="sprinkle" style="--r:-15deg; top:18%; left:70%; background:var(--pink-deep); animation-delay:.6s;"></div>
+      <div class="sprinkle" style="--r:35deg; top:30%; left:35%; background:var(--grape); animation-delay:1.1s;"></div>
+      <div class="sprinkle" style="--r:-25deg; top:14%; left:52%; background:var(--mango); animation-delay:1.6s;"></div>
+    </div>
+  </div>
+</header>
+
+<div class="drip" aria-hidden="true">
+  <svg viewBox="0 0 1200 46" preserveAspectRatio="none"><path d="M0,0 H1200 V16 C1170,40 1140,4 1110,26 C1080,44 1050,6 1020,24 C990,42 960,4 930,24 C900,44 870,6 840,26 C810,44 780,4 750,24 C720,42 690,6 660,26 C630,44 600,4 570,24 C540,42 510,6 480,26 C450,44 420,4 390,24 C360,42 330,6 300,26 C270,44 240,4 210,24 C180,42 150,6 120,26 C90,44 60,4 30,24 C15,34 0,20 0,16 Z" fill="var(--cream)"/></svg>
+</div>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee" role="presentation">
+  <div class="marquee-track">
+    <span>🍦 DULCE DE LECHE GUARAPI &nbsp; · &nbsp; 🍫 CHOCOLATE &nbsp; · &nbsp; 🍇 FRUTOS DEL BOSQUE &nbsp; · &nbsp; 🥭 MARACUYÁ &nbsp; · &nbsp; 🍨 HELADO 100% ARTESANAL &nbsp; · &nbsp;</span>
+    <span>🍦 DULCE DE LECHE GUARAPI &nbsp; · &nbsp; 🍫 CHOCOLATE &nbsp; · &nbsp; 🍇 FRUTOS DEL BOSQUE &nbsp; · &nbsp; 🥭 MARACUYÁ &nbsp; · &nbsp; 🍨 HELADO 100% ARTESANAL &nbsp; · &nbsp;</span>
+  </div>
+</div>
+
+<!-- ============ ABOUT ============ -->
+<section class="about">
+  <div class="wrap about-grid">
+    <div>
+      <span class="section-kicker">Nuestra historia</span>
+      <h2 class="section-title">Tradición familiar, hecha <span class="accent">a mano</span></h2>
+      <p class="section-sub">Somos una heladería familiar de Asunción. Elaboramos cada sabor con ingredientes frescos y de la mejor calidad, cuidando cada paso para que cada bocado tenga el sabor de siempre.</p>
+      <div class="about-badges">
+        <div class="badge"><b>+20</b><span>años de experiencia</span></div>
+        <div class="badge"><b>100%</b><span>artesanal</span></div>
+        <div class="badge"><b>⭐</b><span>favorito de Asunción</span></div>
+      </div>
+    </div>
+    <div class="about-art" aria-hidden="true">
+      <div class="tile t1">🍓</div>
+      <div class="tile t2">🍋</div>
+      <div class="tile t3">🍫</div>
+      <div class="tile t4">🍇</div>
+    </div>
+  </div>
+</section>
+
+<div class="drip" aria-hidden="true">
+  <svg viewBox="0 0 1200 46" preserveAspectRatio="none"><path d="M0,0 H1200 V16 C1170,40 1140,4 1110,26 C1080,44 1050,6 1020,24 C990,42 960,4 930,24 C900,44 870,6 840,26 C810,44 780,4 750,24 C720,42 690,6 660,26 C630,44 600,4 570,24 C540,42 510,6 480,26 C450,44 420,4 390,24 C360,42 330,6 300,26 C270,44 240,4 210,24 C180,42 150,6 120,26 C90,44 60,4 30,24 C15,34 0,20 0,16 Z" fill="var(--cream)"/></svg>
+</div>
+
+<!-- ============ FLAVORS ============ -->
+<section class="flavors">
+  <div class="wrap">
+    <span class="section-kicker">Nuestros sabores</span>
+    <h2 class="section-title">Un scoop para cada <span class="accent">antojo</span></h2>
+    <p class="section-sub">Estos son algunos de nuestros favoritos — mirá el menú completo para conocer todos los sabores y presentaciones disponibles.</p>
+
+    <div class="flavor-grid">
+      <div class="flavor-card star">
+        <span class="flavor-tag">EL FAVORITO</span>
+        <div class="scoop-icon">🍮</div>
+        <h3>Dulce de Leche Guarapi</h3>
+        <p>Nuestro sabor insignia, elegido una y otra vez por los paladares asuncenos.</p>
+      </div>
+      <div class="flavor-card">
+        <div class="scoop-icon" style="background:var(--mango);">🍫</div>
+        <h3>Chocolate</h3>
+        <p>Intenso y cremoso, el clásico de siempre para los amantes del cacao.</p>
+      </div>
+      <div class="flavor-card">
+        <div class="scoop-icon" style="background:var(--pink);">🍦</div>
+        <h3>Vainilla</h3>
+        <p>Suave y delicado, perfecto solo o para acompañar cualquier combinación.</p>
+      </div>
+      <div class="flavor-card">
+        <div class="scoop-icon" style="background:var(--grape);">🍇</div>
+        <h3>Frutos del bosque</h3>
+        <p>Una mezcla frutal y refrescante, ideal para los días de calor.</p>
+      </div>
+      <div class="flavor-card">
+        <div class="scoop-icon" style="background:var(--lime);">🥭</div>
+        <h3>Maracuyá</h3>
+        <p>Ácido y tropical, un sabor que despierta los sentidos.</p>
+      </div>
+      <div class="flavor-card">
+        <div class="scoop-icon" style="background:var(--pistachio);">🥤</div>
+        <h3>Batidos y smoothies</h3>
+        <p>Naturales y bien fríos, perfectos para refrescarte en Asunción.</p>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:38px;">
+      <a class="btn btn-menu" href="https://app.guarapi.com.py/menu/menu" target="_blank" rel="noopener">🍦 Ver el menú completo</a>
+    </div>
+  </div>
+</section>
+
+<div class="drip" aria-hidden="true">
+  <svg viewBox="0 0 1200 46" preserveAspectRatio="none"><path d="M0,0 H1200 V16 C1170,40 1140,4 1110,26 C1080,44 1050,6 1020,24 C990,42 960,4 930,24 C900,44 870,6 840,26 C810,44 780,4 750,24 C720,42 690,6 660,26 C630,44 600,4 570,24 C540,42 510,6 480,26 C450,44 420,4 390,24 C360,42 330,6 300,26 C270,44 240,4 210,24 C180,42 150,6 120,26 C90,44 60,4 30,24 C15,34 0,20 0,16 Z" fill="var(--grape)"/></svg>
+</div>
+
+<!-- ============ CTA BAND ============ -->
+<section class="cta-band">
+  <div class="wrap">
+    <h2>¿Se te antojó un helado? 🍨</h2>
+    <p>Pedí por WhatsApp, mirá el menú completo o seguinos en Instagram para conocer nuestras novedades y promociones.</p>
+    <div class="cta-buttons">
+      <a class="btn btn-whatsapp" href="https://wa.me/59521728960" target="_blank" rel="noopener">💬 WhatsApp +595 21 728 9960</a>
+      <a class="btn btn-outline" style="background:#fff;" href="tel:0217289960">📞 Llamar 021 728 9960</a>
+      <a class="btn btn-ig" href="https://www.instagram.com/heladeriadonaangela/" target="_blank" rel="noopener">📸 @heladeriadonaangela</a>
+    </div>
+  </div>
+</section>
+
+<div class="drip" aria-hidden="true">
+  <svg viewBox="0 0 1200 46" preserveAspectRatio="none"><path d="M0,0 H1200 V16 C1170,40 1140,4 1110,26 C1080,44 1050,6 1020,24 C990,42 960,4 930,24 C900,44 870,6 840,26 C810,44 780,4 750,24 C720,42 690,6 660,26 C630,44 600,4 570,24 C540,42 510,6 480,26 C450,44 420,4 390,24 C360,42 330,6 300,26 C270,44 240,4 210,24 C180,42 150,6 120,26 C90,44 60,4 30,24 C15,34 0,20 0,16 Z" fill="var(--white)"/></svg>
+</div>
+
+<!-- ============ LOCATION ============ -->
+<section class="location">
+  <div class="wrap">
+    <span class="section-kicker">Dónde encontrarnos</span>
+    <h2 class="section-title">Te esperamos en <span class="accent">Las Palmeras</span></h2>
+    <div class="loc-grid" style="margin-top:30px;">
+      <div class="loc-card">
+        <div class="loc-row">
+          <div class="ic">📍</div>
+          <div>
+            <h3>Dirección</h3>
+            <p>Calle Las Palmeras y Saraví<br>Asunción, Paraguay 2060</p>
+          </div>
+        </div>
+        <div class="loc-row">
+          <div class="ic">💬</div>
+          <div>
+            <h3>WhatsApp</h3>
+            <p><a href="https://wa.me/59521728960" target="_blank" rel="noopener">+595 21 728 9960</a></p>
+          </div>
+        </div>
+        <div class="loc-row">
+          <div class="ic">📞</div>
+          <div>
+            <h3>Llamadas</h3>
+            <p><a href="tel:0217289960">021 728 9960</a></p>
+          </div>
+        </div>
+        <div class="loc-row">
+          <div class="ic">🍦</div>
+          <div>
+            <h3>Menú digital</h3>
+            <p><a href="https://app.guarapi.com.py/menu/menu" target="_blank" rel="noopener">app.guarapi.com.py/menu/menu</a></p>
+          </div>
+        </div>
+        <div class="loc-row">
+          <div class="ic">📸</div>
+          <div>
+            <h3>Instagram</h3>
+            <p><a href="https://www.instagram.com/heladeriadonaangela/" target="_blank" rel="noopener">@heladeriadonaangela</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="map-frame">
+        <iframe
+          title="Mapa de Heladería Doña Angela"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Calle+Las+Palmeras+y+Saravi,+Asunci%C3%B3n,+Paraguay&output=embed">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap footer-inner">
+    <div>
+      <div class="footer-brand">Heladería Doña Angela</div>
+      <p style="max-width:340px;opacity:.85;font-weight:600;margin-top:8px;">Helado artesanal en Asunción, hecho con cariño desde hace más de 20 años.</p>
+    </div>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/heladeriadonaangela/" target="_blank" rel="noopener" aria-label="Instagram">📸</a>
+      <a href="https://wa.me/59521728960" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+      <a href="tel:0217289960" aria-label="Llamar">📞</a>
+    </div>
+  </div>
+  <div class="footer-copy">© 2026 Heladería Doña Angela · Calle Las Palmeras y Saraví, Asunción, Paraguay</div>
+</footer>
+
+<a class="float-wa" href="https://wa.me/59521728960" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">💬</a>
+
+</body>
+</html>
