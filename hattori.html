@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="es-PY">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hattori Sushi Bar & Resto — La casa del Sushi Libre | Asunción</title>
+<meta name="description" content="Hattori Sushi Bar & Resto en Asunción. Sushi libre, comida china y japonesa, tragos. Abrimos todos los días. Pedí online o por WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF1E2;
+    --cream-2:#F5E7D0;
+    --ink:#2A2016;
+    --red:#C4362E;
+    --red-deep:#9E2620;
+    --gold:#C99A3E;
+    --matcha:#6E7F52;
+    --salmon:#E8926B;
+    --white:#FFFDF8;
+    --shadow: 0 18px 40px -18px rgba(42,32,22,0.35);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Shippori Mincho', serif;
+    margin:0;
+    letter-spacing:.01em;
+  }
+  .eyebrow{
+    font-family:'Barlow Condensed', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.28em;
+    font-weight:600;
+    font-size:.78rem;
+    color:var(--red-deep);
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+  ::selection{background:var(--red);color:var(--white);}
+
+  /* seigaiha wave pattern background */
+  .waves{
+    position:absolute; inset:0; opacity:.09; pointer-events:none;
+    background-image: radial-gradient(circle at 50% 100%, transparent 22px, var(--red) 23px, var(--red) 24px, transparent 25px);
+    background-size: 56px 28px;
+    background-position: 0 0, 28px 14px;
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:100;
+    background:rgba(251,241,226,.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid rgba(42,32,22,.08);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 28px; max-width:1180px; margin:0 auto;
+  }
+  .brand{display:flex; align-items:center; gap:12px;}
+  .stamp{
+    width:42px; height:42px; border-radius:10px;
+    background:var(--red); color:var(--white);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Shippori Mincho',serif; font-weight:800; font-size:1.15rem;
+    box-shadow: var(--shadow);
+    transform:rotate(-3deg);
+  }
+  .brand-name{font-family:'Shippori Mincho',serif; font-weight:700; font-size:1.22rem;}
+  .brand-name span{display:block; font-family:'Barlow Condensed',sans-serif; font-size:.66rem; letter-spacing:.24em; text-transform:uppercase; color:var(--matcha); font-weight:600;}
+  nav.links{display:flex; gap:30px; font-size:.92rem; font-weight:500;}
+  nav.links a{opacity:.8; transition:opacity .2s;}
+  nav.links a:hover{opacity:1; color:var(--red-deep);}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:12px 22px; border-radius:100px;
+    font-weight:700; font-size:.92rem;
+    box-shadow: var(--shadow);
+    transition: transform .22s ease, box-shadow .22s ease;
+  }
+  .btn:hover{transform:translateY(-3px);}
+  .btn-red{background:var(--red); color:var(--white);}
+  .btn-outline{background:transparent; border:1.5px solid var(--ink); color:var(--ink); box-shadow:none;}
+  .nav-cta{display:flex; gap:10px;}
+  @media (max-width:880px){ nav.links{display:none;} }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; padding:96px 28px 70px; overflow:hidden;
+    background: linear-gradient(180deg, var(--cream) 0%, var(--cream-2) 100%);
+  }
+  .hero-inner{
+    max-width:1180px; margin:0 auto; position:relative; z-index:2;
+    display:grid; grid-template-columns:1.15fr .85fr; gap:50px; align-items:center;
+  }
+  @media (max-width:900px){ .hero-inner{grid-template-columns:1fr; text-align:center;} }
+  .hero .eyebrow{margin-bottom:18px;}
+  .hero h1{
+    font-size:clamp(2.6rem, 6vw, 4.4rem);
+    line-height:1.02; font-weight:700; color:var(--ink);
+  }
+  .hero h1 em{
+    font-style:normal; color:var(--red);
+    position:relative;
+  }
+  .hero p.lede{
+    font-size:1.14rem; line-height:1.6; max-width:520px; margin:24px 0 34px; opacity:.85;
+  }
+  @media (max-width:900px){ .hero p.lede{margin-inline:auto;} }
+  .hero-ctas{display:flex; gap:14px; flex-wrap:wrap;}
+  @media (max-width:900px){ .hero-ctas{justify-content:center;} }
+  .hero-meta{
+    margin-top:34px; display:flex; gap:26px; flex-wrap:wrap;
+    font-family:'Barlow Condensed',sans-serif;
+  }
+  @media (max-width:900px){ .hero-meta{justify-content:center;} }
+  .hero-meta div{display:flex; align-items:center; gap:8px; font-weight:600; font-size:1rem;}
+  .hero-meta .ico{font-size:1.25rem;}
+
+  /* hanko stamp visual, hero right side */
+  .hero-visual{
+    position:relative; aspect-ratio:1/1; max-width:420px; margin:0 auto;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .plate{
+    position:absolute; inset:0; border-radius:50%;
+    background: radial-gradient(circle at 32% 28%, var(--white), var(--cream-2) 72%);
+    box-shadow: var(--shadow);
+    display:flex; align-items:center; justify-content:center;
+    animation: floaty 6s ease-in-out infinite;
+  }
+  @keyframes floaty{ 0%,100%{transform:translateY(0px);} 50%{transform:translateY(-14px);} }
+  .plate-emoji{font-size:7rem; filter:drop-shadow(0 14px 18px rgba(0,0,0,.18));}
+  .orbit{
+    position:absolute; inset:0; border-radius:50%;
+    border:1.5px dashed rgba(42,32,22,.2);
+    animation: spin 22s linear infinite;
+  }
+  @keyframes spin{ to{ transform:rotate(360deg);} }
+  .orbit span{
+    position:absolute; font-size:2.1rem;
+    filter:drop-shadow(0 6px 10px rgba(0,0,0,.15));
+  }
+  .orbit span:nth-child(1){ top:-6%; left:48%; }
+  .orbit span:nth-child(2){ top:46%; right:-8%; }
+  .orbit span:nth-child(3){ bottom:-6%; left:46%; }
+  .orbit span:nth-child(4){ top:46%; left:-8%; }
+
+  @media (prefers-reduced-motion: reduce){
+    .plate, .orbit, .belt-track, .stamp-anim{animation:none !important;}
+  }
+
+  /* ---------- CONVEYOR BELT (signature element) ---------- */
+  .belt-section{
+    background:var(--ink); padding:54px 0 60px; position:relative; overflow:hidden;
+  }
+  .belt-label{
+    text-align:center; color:var(--cream); margin-bottom:28px;
+  }
+  .belt-label .eyebrow{color:var(--gold);}
+  .belt-label h2{color:var(--white); font-size:clamp(1.6rem,3.4vw,2.3rem); margin-top:10px;}
+  .belt-outer{
+    position:relative; padding:18px 0;
+    border-top:3px solid var(--gold); border-bottom:3px solid var(--gold);
+    background: repeating-linear-gradient(90deg, rgba(201,154,62,.14) 0 2px, transparent 2px 42px);
+  }
+  .belt-track{
+    display:flex; gap:22px; width:max-content;
+    animation: belt-scroll 32s linear infinite;
+  }
+  .belt-outer:hover .belt-track{animation-play-state:paused;}
+  @keyframes belt-scroll{
+    from{ transform:translateX(0); }
+    to{ transform:translateX(-50%); }
+  }
+  .dish{
+    flex:0 0 auto; width:150px; height:150px; border-radius:50%;
+    background: radial-gradient(circle at 34% 30%, #fff, var(--cream-2) 78%);
+    display:flex; align-items:center; justify-content:center;
+    font-size:3.4rem; box-shadow: var(--shadow);
+    position:relative;
+  }
+  .dish::after{
+    content:attr(data-name);
+    position:absolute; bottom:-30px; left:50%; transform:translateX(-50%);
+    font-family:'Barlow Condensed',sans-serif; font-size:.78rem; font-weight:600;
+    letter-spacing:.06em; color:var(--cream); white-space:nowrap; text-transform:uppercase;
+  }
+
+  /* ---------- LIBRE BANNER ---------- */
+  .banner{
+    background: linear-gradient(100deg, var(--red) 0%, var(--red-deep) 100%);
+    color:var(--white); padding:44px 28px; text-align:center; position:relative;
+  }
+  .banner h3{font-size:clamp(1.5rem,3.4vw,2.2rem); font-weight:700;}
+  .banner p{font-family:'Barlow Condensed',sans-serif; font-size:1.1rem; letter-spacing:.04em; margin-top:8px; opacity:.92;}
+
+  /* ---------- CATEGORIES ---------- */
+  .section{padding:90px 28px;}
+  .section-head{text-align:center; max-width:640px; margin:0 auto 54px;}
+  .section-head h2{font-size:clamp(2rem,4vw,2.7rem); margin-top:12px;}
+  .section-head p{opacity:.75; margin-top:14px; line-height:1.6;}
+
+  .cats{display:grid; grid-template-columns:repeat(3,1fr); gap:26px;}
+  @media (max-width:860px){ .cats{grid-template-columns:1fr;} }
+  .cat-card{
+    background:var(--white); border-radius:22px; padding:38px 30px;
+    box-shadow: var(--shadow); position:relative; overflow:hidden;
+    transition: transform .3s ease;
+    border-top:5px solid var(--gold);
+  }
+  .cat-card:nth-child(2){border-top-color:var(--red);}
+  .cat-card:nth-child(3){border-top-color:var(--matcha);}
+  .cat-card:hover{transform:translateY(-8px);}
+  .cat-icon{font-size:2.6rem; margin-bottom:18px; display:block;}
+  .cat-card h3{font-size:1.4rem; margin-bottom:10px;}
+  .cat-card p{opacity:.75; line-height:1.55; font-size:.98rem;}
+
+  /* ---------- ABOUT / STORY strip ---------- */
+  .story{
+    background:var(--cream-2); padding:90px 28px;
+  }
+  .story-inner{
+    max-width:1180px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;
+  }
+  @media (max-width:900px){ .story-inner{grid-template-columns:1fr;} }
+  .story h2{font-size:clamp(1.9rem,4vw,2.5rem); margin-top:12px; line-height:1.15;}
+  .story p{opacity:.8; line-height:1.7; margin-top:18px; font-size:1.05rem;}
+  .story-stats{display:flex; gap:36px; margin-top:30px; flex-wrap:wrap;}
+  .story-stats div{font-family:'Shippori Mincho',serif; font-size:2.1rem; font-weight:700; color:var(--red);}
+  .story-stats span{display:block; font-family:'Barlow Condensed',sans-serif; font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink); opacity:.65; font-weight:600;}
+  .story-plate-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:14px;
+  }
+  .mini-plate{
+    aspect-ratio:1/1; border-radius:18px; background:var(--white);
+    display:flex; align-items:center; justify-content:center; font-size:2.4rem;
+    box-shadow: var(--shadow);
+  }
+  .mini-plate:nth-child(2){transform:translateY(18px);}
+  .mini-plate:nth-child(5){transform:translateY(-18px);}
+
+  /* ---------- HOURS / LOCATION ---------- */
+  .info-section{padding:90px 28px; background:var(--ink); color:var(--cream);}
+  .info-inner{
+    max-width:1180px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:50px;
+  }
+  @media (max-width:900px){ .info-inner{grid-template-columns:1fr;} }
+  .info-inner .eyebrow{color:var(--gold);}
+  .info-inner h2{color:var(--white); font-size:clamp(1.9rem,4vw,2.4rem); margin-top:12px;}
+  .hours-table{margin-top:26px; width:100%; border-collapse:collapse;}
+  .hours-table td{padding:12px 0; border-bottom:1px solid rgba(255,255,255,.12); font-size:1.02rem;}
+  .hours-table td:last-child{text-align:right; font-family:'Barlow Condensed',sans-serif; font-weight:600; font-size:1.1rem; color:var(--gold);}
+  .addr-card{
+    background:rgba(255,255,255,.05); border:1px solid rgba(255,255,255,.14);
+    border-radius:20px; padding:30px; margin-top:26px;
+  }
+  .addr-card p{line-height:1.6; opacity:.9;}
+  .map-frame{
+    border-radius:20px; overflow:hidden; border:1px solid rgba(255,255,255,.14);
+    box-shadow: var(--shadow); height:100%; min-height:340px;
+  }
+  .map-frame iframe{width:100%; height:100%; min-height:340px; border:0; filter:grayscale(.15) contrast(1.05);}
+
+  /* ---------- INSTAGRAM TEASER ---------- */
+  .ig-section{
+    padding:90px 28px; text-align:center;
+  }
+  .ig-grid{
+    display:grid; grid-template-columns:repeat(5,1fr); gap:14px; max-width:900px; margin:44px auto 0;
+  }
+  @media (max-width:760px){ .ig-grid{grid-template-columns:repeat(3,1fr);} }
+  .ig-tile{
+    aspect-ratio:1/1; border-radius:16px;
+    background: linear-gradient(145deg, var(--salmon), var(--red));
+    display:flex; align-items:center; justify-content:center; font-size:2rem;
+    box-shadow: var(--shadow); transition:transform .25s ease;
+  }
+  .ig-tile:nth-child(even){ background: linear-gradient(145deg, var(--gold), var(--red-deep)); }
+  .ig-tile:hover{transform:scale(1.06) rotate(-2deg);}
+
+  /* ---------- FOOTER / FINAL CTA ---------- */
+  .final-cta{
+    background: linear-gradient(180deg, var(--cream-2), var(--cream));
+    padding:100px 28px; text-align:center; position:relative;
+  }
+  .final-cta h2{font-size:clamp(2.2rem,5vw,3.4rem); max-width:760px; margin:14px auto 0;}
+  .final-cta .hero-ctas{justify-content:center; margin-top:36px;}
+
+  footer{
+    background:var(--ink); color:var(--cream); padding:50px 28px 30px;
+  }
+  .foot-inner{
+    max-width:1180px; margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:30px;
+    border-bottom:1px solid rgba(255,255,255,.12); padding-bottom:30px;
+  }
+  .foot-brand{display:flex; align-items:center; gap:12px;}
+  .foot-links{display:flex; gap:26px; font-size:.94rem; opacity:.85; flex-wrap:wrap;}
+  .foot-bottom{
+    max-width:1180px; margin:22px auto 0; display:flex; justify-content:space-between;
+    font-size:.82rem; opacity:.55; font-family:'Barlow Condensed',sans-serif; letter-spacing:.04em; flex-wrap:wrap; gap:10px;
+  }
+
+  /* reveal on scroll */
+  .reveal{opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* whatsapp float */
+  .wa-float{
+    position:fixed; bottom:24px; right:24px; z-index:200;
+    width:60px; height:60px; border-radius:50%;
+    background:#25D366; color:#fff; display:flex; align-items:center; justify-content:center;
+    font-size:1.7rem; box-shadow:0 12px 26px -8px rgba(0,0,0,.4);
+    animation: pulse 2.6s ease-in-out infinite;
+  }
+  @keyframes pulse{ 0%,100%{box-shadow:0 12px 26px -8px rgba(37,211,102,.5);} 50%{box-shadow:0 12px 34px -6px rgba(37,211,102,.85);} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand">
+      <div class="stamp">秀</div>
+      <div class="brand-name">Hattori <span>Sushi Bar &amp; Resto</span></div>
+    </div>
+    <nav class="links">
+      <a href="#menu">Menú</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#horario">Horario</a>
+      <a href="#instagram">Instagram</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-red" href="https://hattorisushi.ola.click/" target="_blank" rel="noopener">Pedir online</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="waves"></div>
+  <div class="hero-inner">
+    <div class="reveal in">
+      <div class="eyebrow">Asunción · Padre Cardozo 613</div>
+      <h1>La casa del <em>sushi libre.</em></h1>
+      <p class="lede">Sushi, comida china y japonesa, y tragos en un mismo lugar. Todo lo que puedas comer, servido fresco, todos los días de la semana.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-red" href="https://hattorisushi.ola.click/" target="_blank" rel="noopener">🍣 Pedir online</a>
+        <a class="btn btn-outline" href="https://www.instagram.com/hattorisushipy/" target="_blank" rel="noopener">📸 Seguinos en Instagram</a>
+      </div>
+      <div class="hero-meta">
+        <div><span class="ico">⏰</span> 11:00–15:00 · 19:00–23:00</div>
+        <div><span class="ico">📍</span> Padre Cardozo 613 c/ Tte. Núñez</div>
+      </div>
+    </div>
+    <div class="hero-visual reveal in">
+      <div class="orbit">
+        <span>🍤</span><span>🥢</span><span>🍶</span><span>🐟</span>
+      </div>
+      <div class="plate"><div class="plate-emoji">🍣</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="belt-section">
+  <div class="belt-label reveal">
+    <div class="eyebrow">Kaiten · La cinta de Hattori</div>
+    <h2>Todo pasa por tu mesa</h2>
+  </div>
+  <div class="belt-outer">
+    <div class="belt-track" id="beltTrack">
+      <div class="dish" data-name="Sushi rolls">🍣</div>
+      <div class="dish" data-name="Ramen">🍜</div>
+      <div class="dish" data-name="Nigiri">🐟</div>
+      <div class="dish" data-name="Dumplings">🥟</div>
+      <div class="dish" data-name="Camarones">🍤</div>
+      <div class="dish" data-name="Bento">🍱</div>
+      <div class="dish" data-name="Tragos">🍶</div>
+      <div class="dish" data-name="Arroz chino">🍛</div>
+      <div class="dish" data-name="Temaki">🍙</div>
+      <div class="dish" data-name="Cocktails">🍹</div>
+      <!-- duplicado para loop continuo -->
+      <div class="dish" data-name="Sushi rolls">🍣</div>
+      <div class="dish" data-name="Ramen">🍜</div>
+      <div class="dish" data-name="Nigiri">🐟</div>
+      <div class="dish" data-name="Dumplings">🥟</div>
+      <div class="dish" data-name="Camarones">🍤</div>
+      <div class="dish" data-name="Bento">🍱</div>
+      <div class="dish" data-name="Tragos">🍶</div>
+      <div class="dish" data-name="Arroz chino">🍛</div>
+      <div class="dish" data-name="Temaki">🍙</div>
+      <div class="dish" data-name="Cocktails">🍹</div>
+    </div>
+  </div>
+</section>
+
+<div class="banner reveal">
+  <h3>Sushi libre, sin vueltas.</h3>
+  <p>Comé todo lo que quieras a un precio fijo. Ideal para ir en grupo, en pareja o para el antojo de después del trabajo.</p>
+</div>
+
+<section class="section" id="menu">
+  <div class="section-head reveal">
+    <div class="eyebrow">Nuestra propuesta</div>
+    <h2>Tres mundos, una sola mesa</h2>
+    <p>Fusionamos la precisión japonesa con el sabor de la cocina china y una carta de tragos pensada para acompañar cada plato.</p>
+  </div>
+  <div class="cats">
+    <div class="cat-card reveal">
+      <span class="cat-icon">🍣</span>
+      <h3>Sushi</h3>
+      <p>Rolls clásicos y de autor, nigiri, sashimi y temaki. Frescura todos los días, preparados al momento.</p>
+    </div>
+    <div class="cat-card reveal">
+      <span class="cat-icon">🥡</span>
+      <h3>Comida china y japonesa</h3>
+      <p>Arroces, salteados, ramen y dumplings. Sabores intensos con el toque de la casa Hattori.</p>
+    </div>
+    <div class="cat-card reveal">
+      <span class="cat-icon">🍹</span>
+      <h3>Tragos</h3>
+      <p>Cócteles y tragos pensados para maridar con la carta, ideales para after office o una noche especial.</p>
+    </div>
+  </div>
+</section>
+
+<section class="story" id="nosotros">
+  <div class="story-inner">
+    <div class="reveal">
+      <div class="eyebrow">Nosotros</div>
+      <h2>Una mesa que nunca cierra la puerta</h2>
+      <p>En Hattori abrimos los siete días de la semana porque el buen sushi no tiene horario de descanso. Nuestro salón recibe grupos, parejas y familias que buscan comer bien, sin apuro y sin límites en la cantidad.</p>
+      <div class="story-stats">
+        <div>7<span>Días abiertos</span></div>
+        <div>2<span>Turnos por día</span></div>
+        <div>∞<span>Sushi libre</span></div>
+      </div>
+    </div>
+    <div class="story-plate-grid reveal">
+      <div class="mini-plate">🍱</div>
+      <div class="mini-plate">🍤</div>
+      <div class="mini-plate">🍙</div>
+      <div class="mini-plate">🍶</div>
+      <div class="mini-plate">🍣</div>
+      <div class="mini-plate">🥢</div>
+    </div>
+  </div>
+</section>
+
+<section class="info-section" id="horario">
+  <div class="info-inner">
+    <div class="reveal">
+      <div class="eyebrow">Horario de atención</div>
+      <h2>Abrimos todos los días</h2>
+      <table class="hours-table">
+        <tr><td>Almuerzo</td><td>11:00 – 15:00</td></tr>
+        <tr><td>Cena</td><td>19:00 – 23:00</td></tr>
+        <tr><td>Todos los días de la semana</td><td>✓</td></tr>
+      </table>
+      <div class="addr-card">
+        <div class="eyebrow" style="color:var(--gold)">Ubicación</div>
+        <p style="margin-top:10px; color:var(--cream); font-size:1.05rem;">Padre Cardozo N° 613, casi Tte. Núñez<br>Asunción, Paraguay</p>
+      </div>
+    </div>
+    <div class="map-frame reveal">
+      <iframe
+        src="https://www.google.com/maps?q=Padre+Cardozo+613,+Asunci%C3%B3n,+Paraguay&output=embed"
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        title="Ubicación de Hattori Sushi Bar & Resto"></iframe>
+    </div>
+  </div>
+</section>
+
+<section class="ig-section" id="instagram">
+  <div class="section-head reveal">
+    <div class="eyebrow">@hattorisushipy</div>
+    <h2>Seguí el sabor en Instagram</h2>
+    <p>Fotos del día a día, novedades del menú y promociones exclusivas.</p>
+  </div>
+  <div class="ig-grid">
+    <div class="ig-tile reveal">🍣</div>
+    <div class="ig-tile reveal">🍤</div>
+    <div class="ig-tile reveal">🥟</div>
+    <div class="ig-tile reveal">🍹</div>
+    <div class="ig-tile reveal">🍱</div>
+  </div>
+  <div class="hero-ctas" style="justify-content:center; margin-top:40px;">
+    <a class="btn btn-red" href="https://www.instagram.com/hattorisushipy/" target="_blank" rel="noopener">📸 Ver perfil de Instagram</a>
+  </div>
+</section>
+
+<section class="final-cta">
+  <div class="eyebrow reveal">¿Se te antojó?</div>
+  <h2 class="reveal">Pedí tu sushi libre hoy mismo, online o por WhatsApp.</h2>
+  <div class="hero-ctas reveal">
+    <a class="btn btn-red" href="https://hattorisushi.ola.click/" target="_blank" rel="noopener">🍣 Pedir en hattorisushi.ola.click</a>
+    <a class="btn btn-outline" href="https://www.instagram.com/hattorisushipy/" target="_blank" rel="noopener">📸 @hattorisushipy</a>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-inner">
+    <div class="foot-brand">
+      <div class="stamp">秀</div>
+      <div class="brand-name">Hattori <span>Sushi Bar &amp; Resto</span></div>
+    </div>
+    <div class="foot-links">
+      <a href="https://hattorisushi.ola.click/" target="_blank" rel="noopener">Pedir online</a>
+      <a href="https://www.instagram.com/hattorisushipy/" target="_blank" rel="noopener">Instagram</a>
+      <a href="#horario">Horario y ubicación</a>
+      <a href="#menu">Menú</a>
+    </div>
+  </div>
+  <div class="foot-bottom">
+    <span>Padre Cardozo N° 613 casi Tte. Núñez, Asunción, Paraguay</span>
+    <span>© 2026 Hattori Sushi Bar & Resto</span>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://hattorisushi.ola.click/" target="_blank" rel="noopener" aria-label="Pedir online" title="Pedir online">🍣</a>
+
+<script>
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el=> io.observe(el));
+</script>
+
+</body>
+</html>
