@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saturno · Helados Artesanales · Necochea</title>
+<meta name="description" content="Saturno Helados Artesanales — Acompañando momentos únicos en Necochea. Pedí por WhatsApp o seguinos en Instagram.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FFF6E9;
+    --cream-2:#FFEFD9;
+    --coral:#FF8A65;
+    --coral-dark:#F06B45;
+    --pink:#FF6B9E;
+    --mint:#4FCBB6;
+    --gold:#FFC93C;
+    --sky:#5FB6E8;
+    --plum:#3B2A4A;
+    --plum-soft:#6B577F;
+    --white:#FFFFFF;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--plum);
+    font-family:'Quicksand',sans-serif;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Baloo 2',cursive;
+    font-weight:700;
+    line-height:1.05;
+  }
+  a{text-decoration:none;color:inherit;}
+  img,svg{display:block;max-width:100%;}
+  .wrap{
+    max-width:1140px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+  ::selection{background:var(--pink);color:var(--white);}
+  :focus-visible{outline:3px solid var(--plum);outline-offset:3px;}
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity .8s ease, transform .8s ease;
+  }
+  .reveal.is-visible{opacity:1;transform:translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+    *{animation:none !important;}
+  }
+
+  /* ---------- header ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    padding:18px 0;
+    background:rgba(255,246,233,0.85);
+    backdrop-filter:blur(10px);
+    transition:box-shadow .3s ease;
+  }
+  header.scrolled{box-shadow:0 4px 24px rgba(59,42,74,0.08);}
+  .nav{display:flex;align-items:center;justify-content:space-between;}
+  .logo{
+    display:flex;align-items:center;gap:10px;
+    font-family:'Baloo 2',cursive;
+    font-size:1.5rem;
+    font-weight:800;
+    color:var(--plum);
+    letter-spacing:.5px;
+  }
+  .logo .ring-dot{
+    width:34px;height:34px;flex-shrink:0;
+  }
+  .nav-links{display:flex;align-items:center;gap:28px;}
+  .nav-links a:not(.btn){
+    font-weight:600;
+    font-size:.95rem;
+    color:var(--plum-soft);
+    transition:color .2s ease;
+  }
+  .nav-links a:not(.btn):hover{color:var(--coral-dark);}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:12px 22px;
+    border-radius:100px;
+    font-weight:700;
+    font-size:.95rem;
+    font-family:'Quicksand',sans-serif;
+    transition:transform .25s ease, box-shadow .25s ease;
+    white-space:nowrap;
+  }
+  .btn-primary{
+    background:var(--coral);
+    color:var(--white);
+    box-shadow:0 8px 20px rgba(255,138,101,.4);
+  }
+  .btn-primary:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 12px 26px rgba(255,138,101,.5);}
+  .btn-ghost{
+    background:transparent;
+    border:2px solid var(--plum);
+    color:var(--plum);
+  }
+  .btn-ghost:hover{background:var(--plum);color:var(--cream);}
+  @media (max-width:720px){
+    .nav-links a:not(.btn){display:none;}
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding:150px 0 80px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero .wrap{
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:40px;
+    align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    background:var(--white);
+    padding:8px 16px;
+    border-radius:100px;
+    font-weight:700;
+    font-size:.82rem;
+    color:var(--coral-dark);
+    box-shadow:0 6px 16px rgba(59,42,74,.08);
+    margin-bottom:22px;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem,5.5vw,4.2rem);
+    color:var(--plum);
+    margin-bottom:20px;
+  }
+  .hero h1 span{color:var(--coral-dark);}
+  .hero p.lede{
+    font-size:1.15rem;
+    color:var(--plum-soft);
+    max-width:480px;
+    margin-bottom:34px;
+    font-weight:500;
+  }
+  .hero-ctas{display:flex;gap:16px;flex-wrap:wrap;}
+  .hero-visual{position:relative;display:flex;justify-content:center;}
+  .hero-visual svg{width:100%;max-width:460px;}
+  .float-a{animation:floatY 6s ease-in-out infinite;}
+  .float-b{animation:floatY 7s ease-in-out infinite .5s;}
+  .spin-slow{animation:spin 26s linear infinite;transform-origin:230px 230px;}
+  @keyframes floatY{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);}}
+  @keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+
+  .sprinkle{position:absolute;border-radius:50%;opacity:.65;}
+  @media (max-width:900px){
+    .hero .wrap{grid-template-columns:1fr;text-align:center;}
+    .hero p.lede{margin-left:auto;margin-right:auto;}
+    .hero-ctas{justify-content:center;}
+  }
+
+  /* ---------- section headings ---------- */
+  .section{padding:100px 0;}
+  .section-head{
+    max-width:620px;
+    margin-bottom:56px;
+  }
+  .section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
+  .kicker{
+    font-weight:700;
+    font-size:.85rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--mint);
+  }
+  .section-head h2{
+    font-size:clamp(2rem,4vw,2.8rem);
+    margin-top:10px;
+    color:var(--plum);
+  }
+  .section-head p{
+    margin-top:14px;
+    color:var(--plum-soft);
+    font-size:1.08rem;
+    font-weight:500;
+  }
+
+  /* ---------- about ---------- */
+  .about{background:var(--white);border-radius:48px;}
+  .about-grid{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:60px;
+    align-items:center;
+  }
+  .about-badge{
+    width:100%;
+    max-width:380px;
+  }
+  .about-list{margin-top:28px;display:grid;gap:18px;}
+  .about-item{display:flex;gap:16px;align-items:flex-start;}
+  .about-item .ico{
+    width:44px;height:44px;flex-shrink:0;
+    border-radius:14px;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--cream-2);
+  }
+  .about-item h3{font-family:'Quicksand';font-size:1.05rem;font-weight:700;color:var(--plum);margin-bottom:4px;}
+  .about-item p{color:var(--plum-soft);font-size:.96rem;}
+  @media (max-width:860px){
+    .about-grid{grid-template-columns:1fr;}
+  }
+
+  /* ---------- flavors ---------- */
+  .flavor-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+  }
+  .flavor-card{
+    background:var(--white);
+    border-radius:28px;
+    padding:32px 26px;
+    position:relative;
+    overflow:hidden;
+    transition:transform .3s ease, box-shadow .3s ease;
+    box-shadow:0 10px 30px rgba(59,42,74,.06);
+  }
+  .flavor-card:hover{transform:translateY(-8px);box-shadow:0 20px 40px rgba(59,42,74,.14);}
+  .flavor-scoop{width:64px;height:64px;margin-bottom:18px;}
+  .flavor-card h3{font-family:'Baloo 2';font-size:1.2rem;color:var(--plum);margin-bottom:8px;}
+  .flavor-card p{color:var(--plum-soft);font-size:.92rem;}
+  .flavor-tag{
+    position:absolute;top:22px;right:22px;
+    font-size:.7rem;font-weight:700;
+    padding:5px 12px;border-radius:100px;
+    color:var(--white);
+  }
+  @media (max-width:900px){
+    .flavor-grid{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:600px){
+    .flavor-grid{grid-template-columns:1fr;}
+  }
+
+  /* ---------- moment / quote strip ---------- */
+  .strip{
+    background:linear-gradient(120deg,var(--pink),var(--coral));
+    border-radius:48px;
+    padding:70px 48px;
+    text-align:center;
+    color:var(--white);
+    position:relative;
+    overflow:hidden;
+  }
+  .strip::before,.strip::after{
+    content:'';
+    position:absolute;
+    border-radius:50%;
+    background:rgba(255,255,255,.15);
+  }
+  .strip::before{width:220px;height:220px;top:-90px;left:-60px;}
+  .strip::after{width:160px;height:160px;bottom:-70px;right:-40px;}
+  .strip h2{
+    font-size:clamp(1.7rem,3.6vw,2.5rem);
+    max-width:760px;
+    margin:0 auto;
+    position:relative;
+    z-index:1;
+  }
+  .strip p{
+    margin-top:14px;
+    font-weight:600;
+    opacity:.92;
+    position:relative;
+    z-index:1;
+  }
+
+  /* ---------- location ---------- */
+  .location{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:50px;
+    align-items:center;
+  }
+  .loc-card{
+    background:var(--white);
+    border-radius:36px;
+    padding:44px;
+    box-shadow:0 14px 40px rgba(59,42,74,.08);
+  }
+  .loc-row{display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--cream-2);}
+  .loc-row:last-child{border-bottom:none;}
+  .loc-row .ico{
+    width:42px;height:42px;flex-shrink:0;border-radius:12px;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--cream-2);
+  }
+  .loc-row h3{font-size:1rem;font-weight:700;color:var(--plum);margin-bottom:3px;}
+  .loc-row p{color:var(--plum-soft);font-size:.94rem;}
+  .wave-art{width:100%;}
+  @media (max-width:900px){
+    .location{grid-template-columns:1fr;}
+  }
+
+  /* ---------- CTA final ---------- */
+  .final-cta{
+    text-align:center;
+    padding:90px 0 60px;
+  }
+  .final-cta h2{
+    font-size:clamp(2.2rem,5vw,3.4rem);
+    color:var(--plum);
+    margin-bottom:18px;
+  }
+  .final-cta p{
+    color:var(--plum-soft);
+    font-size:1.1rem;
+    font-weight:500;
+    margin-bottom:36px;
+  }
+  .final-ctas{display:flex;gap:18px;justify-content:center;flex-wrap:wrap;}
+  .btn-lg{padding:18px 34px;font-size:1.05rem;}
+
+  /* ---------- footer ---------- */
+  footer{
+    background:var(--plum);
+    color:var(--cream);
+    padding:50px 0 26px;
+    margin-top:20px;
+  }
+  .footer-top{
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px;
+    padding-bottom:30px;border-bottom:1px solid rgba(255,246,233,.15);
+  }
+  .footer-logo{font-family:'Baloo 2';font-size:1.3rem;font-weight:800;display:flex;align-items:center;gap:10px;}
+  .footer-socials{display:flex;gap:14px;}
+  .footer-socials a{
+    width:42px;height:42px;border-radius:50%;
+    background:rgba(255,246,233,.1);
+    display:flex;align-items:center;justify-content:center;
+    transition:background .2s ease, transform .2s ease;
+  }
+  .footer-socials a:hover{background:var(--coral);transform:translateY(-3px);}
+  .footer-bottom{
+    padding-top:22px;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;
+    font-size:.85rem;
+    color:rgba(255,246,233,.6);
+  }
+  .footer-bottom a{color:rgba(255,246,233,.85);font-weight:600;}
+
+  /* ---------- floating whatsapp ---------- */
+  .float-wa{
+    position:fixed;
+    bottom:26px;right:26px;
+    z-index:200;
+    width:60px;height:60px;
+    border-radius:50%;
+    background:#25D366;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 10px 26px rgba(37,211,102,.5);
+    animation:pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse{
+    0%,100%{box-shadow:0 10px 26px rgba(37,211,102,.5);}
+    50%{box-shadow:0 10px 26px rgba(37,211,102,.5), 0 0 0 10px rgba(37,211,102,.12);}
+  }
+
+  @media (max-width:640px){
+    .section{padding:70px 0;}
+    .about,.strip{border-radius:32px;}
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <div class="wrap nav">
+    <a href="#top" class="logo">
+      <svg class="ring-dot" viewBox="0 0 60 60" fill="none">
+        <ellipse cx="30" cy="30" rx="27" ry="10" stroke="#FFC93C" stroke-width="3"/>
+        <circle cx="30" cy="30" r="15" fill="#FF8A65"/>
+        <circle cx="25" cy="25" r="3.2" fill="#FFF6E9"/>
+      </svg>
+      Saturno
+    </a>
+    <nav class="nav-links">
+      <a href="#sobre">Nosotros</a>
+      <a href="#sabores">Sabores</a>
+      <a href="#donde">Dónde estamos</a>
+      <a href="https://wa.me/5492262210944" target="_blank" rel="noopener" class="btn btn-primary">Pedir ahora</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy reveal">
+        <span class="eyebrow">🍦 Necochea · Av. 59 3467</span>
+        <h1>Helados que giran alrededor <span>de vos.</span></h1>
+        <p class="lede">Saturno Helados Artesanales — acompañando momentos únicos con sabores hechos como se debe: despacio, con ingredientes reales y mucho cariño.</p>
+        <div class="hero-ctas">
+          <a href="https://wa.me/5492262210944" target="_blank" rel="noopener" class="btn btn-primary">
+            Pedí por WhatsApp
+          </a>
+          <a href="https://www.instagram.com/saturno.heladeria/" target="_blank" rel="noopener" class="btn btn-ghost">
+            Ver en Instagram
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal">
+        <svg viewBox="0 0 460 460" width="460" height="460">
+          <!-- soft sprinkle dots -->
+          <circle class="sprinkle" cx="40" cy="70" r="7" fill="#FFC93C"/>
+          <circle class="sprinkle" cx="420" cy="120" r="9" fill="#FF6B9E"/>
+          <circle class="sprinkle" cx="60" cy="380" r="6" fill="#4FCBB6"/>
+          <circle class="sprinkle" cx="410" cy="360" r="8" fill="#5FB6E8"/>
+          <circle class="sprinkle" cx="230" cy="30" r="5" fill="#FF8A65"/>
+
+          <!-- ring group spins slowly -->
+          <g class="spin-slow">
+            <ellipse cx="230" cy="230" rx="210" ry="66" fill="none" stroke="#FFC93C" stroke-width="16" stroke-linecap="round" stroke-dasharray="14 20"/>
+          </g>
+
+          <!-- planet scoop -->
+          <g class="float-a">
+            <circle cx="230" cy="230" r="132" fill="#FF8A65"/>
+            <path d="M 100 230 A 130 130 0 0 1 360 230 C 340 300 300 340 230 350 C 150 340 110 290 100 230 Z" fill="#FF6B9E" opacity="0.55"/>
+            <circle cx="185" cy="185" r="16" fill="#FFF6E9" opacity=".85"/>
+            <circle cx="270" cy="150" r="10" fill="#FFF6E9" opacity=".7"/>
+            <circle cx="290" cy="230" r="12" fill="#FFF6E9" opacity=".6"/>
+            <!-- little cherry moon -->
+          </g>
+          <g class="float-b">
+            <circle cx="360" cy="120" r="20" fill="#4FCBB6"/>
+            <circle cx="360" cy="120" r="20" fill="none" stroke="#FFF6E9" stroke-width="2" opacity=".5"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section class="section" id="sobre">
+    <div class="wrap">
+      <div class="about reveal" style="padding:64px 48px;">
+        <div class="about-grid">
+          <svg class="about-badge" viewBox="0 0 340 340">
+            <circle cx="170" cy="170" r="150" fill="#FFF0DC"/>
+            <ellipse cx="170" cy="170" rx="140" ry="46" fill="none" stroke="#FFC93C" stroke-width="12" stroke-linecap="round"/>
+            <circle cx="170" cy="170" r="88" fill="#FF6B9E"/>
+            <path d="M 92 170 A 78 78 0 0 1 248 170 C 234 220 206 248 170 254 C 130 248 100 216 92 170 Z" fill="#FF8A65"/>
+            <circle cx="140" cy="140" r="10" fill="#FFF6E9" opacity=".8"/>
+            <circle cx="200" cy="120" r="7" fill="#FFF6E9" opacity=".7"/>
+            <circle cx="205" cy="180" r="8" fill="#FFF6E9" opacity=".6"/>
+          </svg>
+
+          <div>
+            <span class="kicker">Nuestra historia</span>
+            <h2 style="margin-top:8px;">Helado artesanal, hecho con calma</h2>
+            <p style="color:var(--plum-soft);margin-top:14px;font-size:1.05rem;">En Saturno creemos que un buen helado no se apura. Elaboramos cada sabor en pequeños lotes, con frutas de estación y recetas propias, para que cada cucharada acompañe ese momento que estabas buscando.</p>
+
+            <div class="about-list">
+              <div class="about-item">
+                <div class="ico">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M4 12a8 8 0 1 1 16 0 8 8 0 0 1-16 0Z" stroke="#FF8A65" stroke-width="2"/><path d="M12 8v4l3 2" stroke="#FF8A65" stroke-width="2" stroke-linecap="round"/></svg>
+                </div>
+                <div>
+                  <h3>Elaboración diaria</h3>
+                  <p>Lotes chicos, frescos, pensados para que pruebes algo distinto cada semana.</p>
+                </div>
+              </div>
+              <div class="about-item">
+                <div class="ico">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M12 2 4 6v6c0 5 3.5 8.7 8 10 4.5-1.3 8-5 8-10V6l-8-4Z" stroke="#4FCBB6" stroke-width="2" stroke-linejoin="round"/></svg>
+                </div>
+                <div>
+                  <h3>Ingredientes reales</h3>
+                  <p>Fruta, chocolate y frutos secos de verdad — sin atajos ni saborizantes de más.</p>
+                </div>
+              </div>
+              <div class="about-item">
+                <div class="ico">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M20 21c0-4-3.6-7-8-7s-8 3-8 7" stroke="#FF6B9E" stroke-width="2" stroke-linecap="round"/><circle cx="12" cy="7" r="4" stroke="#FF6B9E" stroke-width="2"/></svg>
+                </div>
+                <div>
+                  <h3>Para compartir</h3>
+                  <p>En familia, en pareja o solo con vos — siempre hay lugar para un Saturno.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SABORES ===================== -->
+  <section class="section" id="sabores">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <span class="kicker">El universo de sabores</span>
+        <h2>Algunos favoritos de la casa</h2>
+        <p>Rotamos sabores según la temporada — estos son algunos que no pueden faltar en el pote.</p>
+      </div>
+
+      <div class="flavor-grid">
+        <div class="flavor-card reveal">
+          <span class="flavor-tag" style="background:var(--coral);">Clásico</span>
+          <svg class="flavor-scoop" viewBox="0 0 64 64"><circle cx="32" cy="30" r="26" fill="#C68B59"/><circle cx="24" cy="22" r="4" fill="#FFF6E9" opacity=".6"/></svg>
+          <h3>Dulce de Leche Cósmico</h3>
+          <p>Nuestro dulce de leche artesanal, con vetas de merengue crocante.</p>
+        </div>
+        <div class="flavor-card reveal">
+          <span class="flavor-tag" style="background:var(--pink);">De estación</span>
+          <svg class="flavor-scoop" viewBox="0 0 64 64"><circle cx="32" cy="30" r="26" fill="#FF6B9E"/><circle cx="24" cy="22" r="4" fill="#FFF6E9" opacity=".6"/></svg>
+          <h3>Frutilla a la Crema</h3>
+          <p>Frutillas frescas maceradas, mezcladas con nuestra crema de leche.</p>
+        </div>
+        <div class="flavor-card reveal">
+          <span class="flavor-tag" style="background:var(--plum);">Intenso</span>
+          <svg class="flavor-scoop" viewBox="0 0 64 64"><circle cx="32" cy="30" r="26" fill="#6B4A3B"/><circle cx="24" cy="22" r="4" fill="#FFF6E9" opacity=".5"/></svg>
+          <h3>Chocolate Eclipse</h3>
+          <p>Chocolate amargo 70%, oscuro y profundo como un eclipse total.</p>
+        </div>
+        <div class="flavor-card reveal">
+          <span class="flavor-tag" style="background:var(--mint);">Refrescante</span>
+          <svg class="flavor-scoop" viewBox="0 0 64 64"><circle cx="32" cy="30" r="26" fill="#4FCBB6"/><circle cx="24" cy="22" r="4" fill="#FFF6E9" opacity=".6"/></svg>
+          <h3>Limón y Menta Marina</h3>
+          <p>Fresco y cítrico, ideal para las tardes de sol en Necochea.</p>
+        </div>
+        <div class="flavor-card reveal">
+          <span class="flavor-tag" style="background:var(--gold);color:var(--plum);">Tropical</span>
+          <svg class="flavor-scoop" viewBox="0 0 64 64"><circle cx="32" cy="30" r="26" fill="#FFC93C"/><circle cx="24" cy="22" r="4" fill="#FFF6E9" opacity=".6"/></svg>
+          <h3>Maracuyá Satélite</h3>
+          <p>Ácido, dulce y brillante — un sabor que orbita distinto a todos.</p>
+        </div>
+        <div class="flavor-card reveal">
+          <span class="flavor-tag" style="background:var(--sky);">Cremoso</span>
+          <svg class="flavor-scoop" viewBox="0 0 64 64"><circle cx="32" cy="30" r="26" fill="#8FA876"/><circle cx="24" cy="22" r="4" fill="#FFF6E9" opacity=".6"/></svg>
+          <h3>Pistacho Nebulosa</h3>
+          <p>Pistachos tostados y molidos a mano, con una base suave y cremosa.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== STRIP / QUOTE ===================== -->
+  <section class="section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="strip reveal">
+        <h2>"Un helado, un momento único."</h2>
+        <p>Así pensamos cada pote que sale de Saturno.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== DÓNDE ESTAMOS ===================== -->
+  <section class="section" id="donde">
+    <div class="wrap">
+      <div class="location">
+        <div class="reveal">
+          <span class="kicker">Encontranos</span>
+          <h2 style="margin-top:8px;margin-bottom:20px;">Te esperamos en Necochea</h2>
+          <svg class="wave-art" viewBox="0 0 500 260">
+            <path d="M0 180 Q 60 140 120 180 T 240 180 T 360 180 T 500 180 V 260 H0 Z" fill="#5FB6E8" opacity=".35"/>
+            <path d="M0 210 Q 60 175 120 210 T 240 210 T 360 210 T 500 210 V 260 H0 Z" fill="#5FB6E8" opacity=".6"/>
+            <circle cx="250" cy="90" r="46" fill="#FFC93C"/>
+            <ellipse cx="250" cy="90" rx="70" ry="20" fill="none" stroke="#FF8A65" stroke-width="6"/>
+          </svg>
+        </div>
+
+        <div class="loc-card reveal">
+          <div class="loc-row">
+            <div class="ico">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 22s7-6.7 7-12a7 7 0 1 0-14 0c0 5.3 7 12 7 12Z" stroke="#FF8A65" stroke-width="2"/><circle cx="12" cy="10" r="2.5" stroke="#FF8A65" stroke-width="2"/></svg>
+            </div>
+            <div>
+              <h3>Dirección</h3>
+              <p>Av. 59 3467, Necochea, Buenos Aires</p>
+            </div>
+          </div>
+          <div class="loc-row">
+            <div class="ico">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M3 5c0 9 7 16 16 16l3-4-6-3-2 2c-2-1-4-3-5-5l2-2-3-6-4 1Z" stroke="#4FCBB6" stroke-width="1.8" stroke-linejoin="round"/></svg>
+            </div>
+            <div>
+              <h3>WhatsApp</h3>
+              <p><a href="https://wa.me/5492262210944" target="_blank" rel="noopener">+54 9 2262 210944</a></p>
+            </div>
+          </div>
+          <div class="loc-row">
+            <div class="ico">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="#FF6B9E" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="#FF6B9E" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="#FF6B9E"/></svg>
+            </div>
+            <div>
+              <h3>Instagram</h3>
+              <p><a href="https://www.instagram.com/saturno.heladeria/" target="_blank" rel="noopener">@saturno.heladeria</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FINAL CTA ===================== -->
+  <section class="final-cta">
+    <div class="wrap reveal">
+      <h2>¿Listo para tu próxima cucharada?</h2>
+      <p>Escribinos y coordinamos tu pedido en minutos.</p>
+      <div class="final-ctas">
+        <a href="https://wa.me/5492262210944" target="_blank" rel="noopener" class="btn btn-primary btn-lg">
+          Escribir por WhatsApp
+        </a>
+        <a href="https://www.instagram.com/saturno.heladeria/" target="_blank" rel="noopener" class="btn btn-ghost btn-lg">
+          Seguinos en Instagram
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-logo">
+        <svg width="30" height="30" viewBox="0 0 60 60" fill="none">
+          <ellipse cx="30" cy="30" rx="27" ry="10" stroke="#FFC93C" stroke-width="3"/>
+          <circle cx="30" cy="30" r="15" fill="#FF8A65"/>
+        </svg>
+        Saturno Helados Artesanales
+      </div>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/saturno.heladeria/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="5" stroke="#FFF6E9" stroke-width="1.8"/><circle cx="12" cy="12" r="4" stroke="#FFF6E9" stroke-width="1.8"/><circle cx="17.5" cy="6.5" r="1.1" fill="#FFF6E9"/></svg>
+        </a>
+        <a href="https://wa.me/5492262210944" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none"><path d="M3 5c0 9 7 16 16 16l3-4-6-3-2 2c-2-1-4-3-5-5l2-2-3-6-4 1Z" stroke="#FFF6E9" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Saturno Helados Artesanales · Necochea</span>
+      <span>Built by <a href="#">EasyLandX</a></span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/5492262210944" target="_blank" rel="noopener" class="float-wa" aria-label="Pedir por WhatsApp">
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M3 5c0 9 7 16 16 16l3-4-6-3-2 2c-2-1-4-3-5-5l2-2-3-6-4 1Z" stroke="#FFF6E9" stroke-width="1.8" stroke-linejoin="round"/></svg>
+</a>
+
+<script>
+  // header shadow on scroll
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 10);
+  });
+
+  // scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('is-visible');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
