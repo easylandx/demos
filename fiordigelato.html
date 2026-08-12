@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fiordigelato — Heladería Artesanal en Granada</title>
+<meta name="description" content="Fiordigelato, heladería artesanal en el centro de Granada. Helados 100% naturales, opciones sin lactosa, sin azúcar y sin gluten. Acera del Casino 3, Granada.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FFF9EE;
+    --cream-deep:#FCEFD8;
+    --pistachio:#7FA555;
+    --pistachio-deep:#5C7D3B;
+    --strawberry:#E8527A;
+    --strawberry-deep:#C43A5F;
+    --lemon:#F3C13A;
+    --turquoise:#3FA8B8;
+    --mango:#F2914B;
+    --choc:#4A2E23;
+    --choc-soft:#7A5C4C;
+    --paper:#FFFDF8;
+    --shadow: 0 14px 30px -12px rgba(74,46,35,0.28);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--cream);
+    color:var(--choc);
+    font-family:'Quicksand', sans-serif;
+    font-weight:500;
+    overflow-x:hidden;
+  }
+
+  h1,h2,h3, .display{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    color:var(--choc);
+    line-height:1.05;
+  }
+
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;}
+  img{max-width:100%;display:block;}
+
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 clamp(20px, 5vw, 56px);
+  }
+
+  .eyebrow{
+    font-family:'Quicksand',sans-serif;
+    font-weight:700;
+    letter-spacing:0.16em;
+    text-transform:uppercase;
+    font-size:0.78rem;
+    color:var(--strawberry-deep);
+  }
+
+  /* ---------- SWIRL DIVIDER (signature motif) ---------- */
+  .swirl-divider{
+    width:100%;
+    height:46px;
+    display:block;
+  }
+  .swirl-divider path{
+    fill:none;
+    stroke-linecap:round;
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(255,249,238,0.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(74,46,35,0.08);
+  }
+  nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:16px clamp(20px, 5vw, 56px);
+    max-width:1180px;
+    margin:0 auto;
+  }
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    font-size:1.35rem;
+    color:var(--choc);
+  }
+  .logo .scoop{
+    width:26px;height:26px;border-radius:50% 50% 50% 4px;
+    background:radial-gradient(circle at 32% 30%, var(--strawberry) 0 40%, var(--lemon) 40% 70%, var(--pistachio) 70% 100%);
+    transform:rotate(-45deg);
+    box-shadow: inset -2px -2px 4px rgba(74,46,35,0.25);
+  }
+  .nav-links{
+    display:flex;
+    align-items:center;
+    gap:28px;
+    font-weight:600;
+    font-size:0.95rem;
+  }
+  .nav-links a:not(.btn-pill){
+    position:relative;
+  }
+  .nav-links a:not(.btn-pill)::after{
+    content:"";
+    position:absolute;
+    left:0;bottom:-4px;
+    width:0%;
+    height:2px;
+    background:var(--strawberry);
+    transition:width .25s ease;
+  }
+  .nav-links a:not(.btn-pill):hover::after{width:100%;}
+
+  .btn-pill{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--choc);
+    color:var(--cream);
+    padding:10px 20px;
+    border-radius:999px;
+    font-weight:700;
+    font-size:0.9rem;
+    transition:transform .2s ease, background .2s ease, box-shadow .2s ease;
+    box-shadow:var(--shadow);
+  }
+  .btn-pill:hover{background:var(--strawberry-deep); transform:translateY(-2px);}
+  .btn-pill.ghost{
+    background:transparent;
+    color:var(--choc);
+    border:2px solid var(--choc);
+    box-shadow:none;
+  }
+  .btn-pill.ghost:hover{background:var(--choc); color:var(--cream);}
+
+  .menu-toggle{display:none;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:64px clamp(20px,5vw,56px) 20px;
+    max-width:1180px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:40px;
+    align-items:center;
+  }
+  .hero-copy .eyebrow{margin-bottom:14px;}
+  .hero h1{
+    font-size:clamp(2.6rem, 6vw, 4.3rem);
+    margin-bottom:20px;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--strawberry);
+  }
+  .hero p.lead{
+    font-size:1.15rem;
+    color:var(--choc-soft);
+    max-width:46ch;
+    margin-bottom:28px;
+  }
+  .hero-ctas{
+    display:flex;
+    gap:16px;
+    flex-wrap:wrap;
+  }
+
+  .hero-visual{
+    position:relative;
+    height:420px;
+  }
+  .blob-scoop{
+    position:absolute;
+    border-radius:50%;
+    box-shadow: inset -10px -14px 30px rgba(74,46,35,0.22), 0 20px 40px -18px rgba(74,46,35,0.35);
+  }
+  .blob-scoop.s1{
+    width:230px;height:230px;
+    top:10px; left:60px;
+    background:radial-gradient(circle at 34% 30%, #F7DD8A 0%, var(--lemon) 55%, #D89E1F 100%);
+    animation: float1 7s ease-in-out infinite;
+  }
+  .blob-scoop.s2{
+    width:200px;height:200px;
+    top:150px; left:210px;
+    background:radial-gradient(circle at 30% 28%, #F4A9BE 0%, var(--strawberry) 55%, var(--strawberry-deep) 100%);
+    animation: float2 8s ease-in-out infinite;
+  }
+  .blob-scoop.s3{
+    width:170px;height:170px;
+    top:250px; left:40px;
+    background:radial-gradient(circle at 32% 30%, #C9DFA1 0%, var(--pistachio) 55%, var(--pistachio-deep) 100%);
+    animation: float3 6.5s ease-in-out infinite;
+  }
+  .cone{
+    position:absolute;
+    bottom:-6px; left:120px;
+    width:0; height:0;
+    border-left:70px solid transparent;
+    border-right:70px solid transparent;
+    border-top:150px solid #D9A15C;
+    clip-path:polygon(0 0, 100% 0, 50% 100%);
+    background-image:
+      repeating-linear-gradient(45deg, rgba(255,255,255,0.18) 0 6px, transparent 6px 14px),
+      repeating-linear-gradient(-45deg, rgba(74,46,35,0.12) 0 6px, transparent 6px 14px);
+  }
+  @keyframes float1{0%,100%{transform:translateY(0px) rotate(0deg);} 50%{transform:translateY(-14px) rotate(3deg);}}
+  @keyframes float2{0%,100%{transform:translateY(0px) rotate(0deg);} 50%{transform:translateY(-10px) rotate(-3deg);}}
+  @keyframes float3{0%,100%{transform:translateY(0px);} 50%{transform:translateY(-16px);}}
+
+  @media (prefers-reduced-motion: reduce){
+    .blob-scoop{animation:none !important;}
+    html{scroll-behavior:auto;}
+  }
+
+  /* ---------- BADGES STRIP ---------- */
+  .badges{
+    background:var(--choc);
+    color:var(--cream);
+    padding:22px 0;
+  }
+  .badges .wrap{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:clamp(20px,4vw,54px);
+  }
+  .badge-item{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-weight:600;
+    font-size:0.95rem;
+    white-space:nowrap;
+  }
+  .badge-item .ico{font-size:1.3rem;}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:90px 0 10px;}
+  .section-head{
+    max-width:640px;
+    margin:0 auto 48px;
+    text-align:center;
+  }
+  .section-head h2{
+    font-size:clamp(2rem,4vw,2.7rem);
+    margin-top:10px;
+  }
+  .section-head p{
+    color:var(--choc-soft);
+    margin-top:14px;
+    font-size:1.05rem;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about{
+    display:grid;
+    grid-template-columns:0.85fr 1.15fr;
+    gap:56px;
+    align-items:center;
+  }
+  .about-visual{
+    position:relative;
+    aspect-ratio:1/1;
+    border-radius:50%;
+    background:conic-gradient(from 200deg, var(--lemon), var(--strawberry), var(--pistachio), var(--turquoise), var(--lemon));
+    padding:14px;
+  }
+  .about-visual-inner{
+    width:100%;height:100%;
+    border-radius:50%;
+    background:var(--paper);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:36px;
+  }
+  .about-visual-inner .display{
+    font-size:1.5rem;
+    font-style:italic;
+    font-weight:500;
+    color:var(--choc);
+    line-height:1.3;
+  }
+  .about-text h2{font-size:clamp(1.9rem,3.4vw,2.5rem); margin:10px 0 20px;}
+  .about-text p{color:var(--choc-soft); font-size:1.05rem; margin-bottom:16px; max-width:52ch;}
+  .about-stats{
+    display:flex;
+    gap:34px;
+    margin-top:28px;
+    flex-wrap:wrap;
+  }
+  .stat b{
+    display:block;
+    font-family:'Fraunces',serif;
+    font-size:1.9rem;
+    color:var(--strawberry-deep);
+  }
+  .stat span{font-size:0.9rem; color:var(--choc-soft);}
+
+  /* ---------- FLAVORS / POZZETTI (signature) ---------- */
+  .flavors-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:34px 28px;
+  }
+  .tub{
+    position:relative;
+    text-align:center;
+    perspective:800px;
+  }
+  .tub-body{
+    position:relative;
+    width:100%;
+    aspect-ratio:1/0.82;
+    border-radius:18px;
+    background:var(--paper);
+    box-shadow:var(--shadow);
+    padding-top:22px;
+    transition:transform .35s ease;
+  }
+  .tub:hover .tub-body{transform:translateY(-8px);}
+  .tub-lid{
+    width:78%;
+    aspect-ratio:1/1;
+    margin:0 auto;
+    border-radius:50%;
+    position:relative;
+    box-shadow: inset 0 -6px 14px rgba(0,0,0,0.18), 0 6px 14px -6px rgba(74,46,35,0.4);
+    transition:transform .45s cubic-bezier(.2,.8,.3,1.2);
+    transform-origin:70% 50%;
+  }
+  .tub:hover .tub-lid{transform:rotate(-18deg) translateY(-6px);}
+  .tub-name{
+    margin-top:16px;
+    font-weight:700;
+    font-size:1.05rem;
+    padding-bottom:20px;
+  }
+  .tub-tag{
+    display:block;
+    font-size:0.78rem;
+    font-weight:600;
+    color:var(--choc-soft);
+    margin-top:2px;
+  }
+
+  .lid-pistachio{background:radial-gradient(circle at 32% 28%, #DDE9C2 0%, var(--pistachio) 45%, var(--pistachio-deep) 100%);}
+  .lid-fresa{background:radial-gradient(circle at 32% 28%, #F8C4D3 0%, var(--strawberry) 45%, var(--strawberry-deep) 100%);}
+  .lid-limon{background:radial-gradient(circle at 32% 28%, #FBEBAE 0%, var(--lemon) 45%, #C98F16 100%);}
+  .lid-chocolate{background:radial-gradient(circle at 32% 28%, #9C7259 0%, var(--choc-soft) 45%, var(--choc) 100%);}
+  .lid-nata{background:radial-gradient(circle at 32% 28%, #FFFDF6 0%, #F3E2C4 45%, #D9AF7C 100%);}
+  .lid-mango{background:radial-gradient(circle at 32% 28%, #FBD3A6 0%, var(--mango) 45%, #C9662A 100%);}
+
+  /* ---------- FEATURES / OPTIONS ---------- */
+  .features{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:22px;
+  }
+  .feature-card{
+    background:var(--paper);
+    border-radius:20px;
+    padding:30px 22px;
+    text-align:center;
+    box-shadow:var(--shadow);
+    transition:transform .25s ease;
+  }
+  .feature-card:hover{transform:translateY(-6px);}
+  .feature-card .ico{
+    width:56px;height:56px;
+    margin:0 auto 16px;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.5rem;
+    color:#fff;
+  }
+  .feature-card h3{font-size:1.05rem; margin-bottom:8px;}
+  .feature-card p{font-size:0.9rem; color:var(--choc-soft);}
+  .ico.c1{background:var(--turquoise);}
+  .ico.c2{background:var(--strawberry);}
+  .ico.c3{background:var(--pistachio);}
+  .ico.c4{background:var(--lemon); color:var(--choc);}
+
+  /* ---------- VISIT / LOCATION ---------- */
+  .visit{
+    background:var(--choc);
+    color:var(--cream);
+    border-radius:32px;
+    padding:clamp(30px,5vw,60px);
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:44px;
+    align-items:center;
+    margin-top:20px;
+  }
+  .visit .eyebrow{color:var(--lemon);}
+  .visit h2{color:var(--cream); font-size:clamp(1.9rem,3.4vw,2.4rem); margin:10px 0 20px;}
+  .visit-details{margin-top:26px;}
+  .visit-row{
+    display:flex;
+    gap:14px;
+    margin-bottom:18px;
+    align-items:flex-start;
+  }
+  .visit-row .ico{
+    width:38px;height:38px;flex-shrink:0;
+    border-radius:50%;
+    background:rgba(255,249,238,0.12);
+    display:flex;align-items:center;justify-content:center;
+    font-size:1.05rem;
+  }
+  .visit-row b{display:block; font-size:1rem;}
+  .visit-row span{font-size:0.92rem; color:#E8D9CC;}
+  .visit-ctas{display:flex; gap:14px; margin-top:26px; flex-wrap:wrap;}
+
+  .map-embed{
+    position:relative;
+    border-radius:22px;
+    overflow:hidden;
+    aspect-ratio:4/3.4;
+    background:
+      radial-gradient(circle at 30% 30%, rgba(232,82,122,0.35), transparent 45%),
+      radial-gradient(circle at 70% 65%, rgba(63,168,184,0.3), transparent 45%),
+      #3a241a;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:24px;
+  }
+  .map-pin{
+    width:44px;height:44px;
+    border-radius:50% 50% 50% 0;
+    background:var(--strawberry);
+    transform:rotate(-45deg);
+    margin:0 auto 18px;
+    box-shadow:0 8px 18px rgba(0,0,0,0.35);
+  }
+  .map-embed a{
+    font-weight:700;
+    text-decoration:underline;
+    text-underline-offset:4px;
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding:60px 0 34px;
+    text-align:center;
+  }
+  footer .logo{justify-content:center; margin-bottom:14px;}
+  .footer-links{
+    display:flex;
+    gap:24px;
+    justify-content:center;
+    margin:18px 0 26px;
+    font-weight:600;
+    flex-wrap:wrap;
+  }
+  .footer-links a{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:8px 16px;
+    border-radius:999px;
+    background:var(--paper);
+    box-shadow:var(--shadow);
+    transition:transform .2s ease;
+  }
+  .footer-links a:hover{transform:translateY(-3px);}
+  footer .fine{font-size:0.85rem; color:var(--choc-soft);}
+
+  /* ---------- REVEAL ANIMATION ---------- */
+  .reveal{
+    opacity:0;
+    transform:translateY(24px);
+    transition:opacity .7s ease, transform .7s ease;
+  }
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 900px){
+    .hero{grid-template-columns:1fr; text-align:center;}
+    .hero-copy p.lead{margin-left:auto; margin-right:auto;}
+    .hero-ctas{justify-content:center;}
+    .hero-visual{height:320px; max-width:400px; margin:0 auto;}
+    .about{grid-template-columns:1fr;}
+    .about-visual{max-width:340px; margin:0 auto;}
+    .flavors-grid{grid-template-columns:repeat(2,1fr);}
+    .features{grid-template-columns:repeat(2,1fr);}
+    .visit{grid-template-columns:1fr;}
+  }
+  @media (max-width: 620px){
+    .nav-links{
+      position:fixed; inset:64px 16px auto 16px;
+      background:var(--paper);
+      border-radius:20px;
+      flex-direction:column;
+      align-items:stretch;
+      padding:18px;
+      box-shadow:var(--shadow);
+      transform:translateY(-140%);
+      opacity:0;
+      transition:transform .3s ease, opacity .3s ease;
+      z-index:40;
+    }
+    .nav-links.open{transform:translateY(0); opacity:1;}
+    .nav-links a{padding:8px 4px;}
+    .menu-toggle{
+      display:flex;
+      align-items:center;justify-content:center;
+      width:42px;height:42px;
+      border-radius:50%;
+      background:var(--choc);
+      color:var(--cream);
+      font-size:1.2rem;
+      border:none;
+      cursor:pointer;
+    }
+    .flavors-grid{grid-template-columns:1fr 1fr;}
+    .features{grid-template-columns:1fr 1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#top" class="logo"><span class="scoop"></span> Fiordigelato</a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#sabores">Sabores</a>
+      <a href="#opciones">Para todos</a>
+      <a href="#visita">Cómo llegar</a>
+      <a class="btn-pill" href="https://www.instagram.com/fiordigelato_granada/" target="_blank" rel="noopener">Instagram</a>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero" style="padding-top:56px;">
+    <div class="hero-copy">
+      <p class="eyebrow">Heladería artesanal · Granada</p>
+      <h1>Helado de verdad,<br>hecho como <em>debe ser</em>.</h1>
+      <p class="lead">En Fiordigelato elaboramos gelato artesanal, 100% natural, cada día, en pleno centro de Granada. Sin atajos, sin colorantes, solo fruta de verdad y buena leche.</p>
+      <div class="hero-ctas">
+        <a class="btn-pill" href="#sabores">Ver sabores</a>
+        <a class="btn-pill ghost" href="#visita">Cómo llegar</a>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="cone"></div>
+      <div class="blob-scoop s3"></div>
+      <div class="blob-scoop s2"></div>
+      <div class="blob-scoop s1"></div>
+    </div>
+  </section>
+
+  <svg class="swirl-divider" viewBox="0 0 1200 46" preserveAspectRatio="none">
+    <path d="M0 23 Q 50 0, 100 23 T 200 23 T 300 23 T 400 23 T 500 23 T 600 23 T 700 23 T 800 23 T 900 23 T 1000 23 T 1100 23 T 1200 23" stroke="#E8527A" stroke-width="4"/>
+  </svg>
+
+  <!-- BADGES -->
+  <div class="badges">
+    <div class="wrap">
+      <div class="badge-item"><span class="ico">🌞</span> Solete Repsol</div>
+      <div class="badge-item"><span class="ico">🍨</span> Helados artesanales</div>
+      <div class="badge-item"><span class="ico">🍓</span> 100% naturales</div>
+      <div class="badge-item"><span class="ico">🕒</span> Abierto de lunes a domingo</div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section>
+    <div class="wrap about reveal">
+      <div class="about-visual">
+        <div class="about-visual-inner">
+          <p class="display">"Fior di gelato" — la flor del helado, hecha fruta, leche y tiempo.</p>
+        </div>
+      </div>
+      <div class="about-text">
+        <p class="eyebrow">Nuestra manera de hacer gelato</p>
+        <h2>Artesanal quiere decir que lo hacemos nosotros, cada día</h2>
+        <p>Trabajamos con fruta de temporada y materias primas seleccionadas para conseguir un gelato con el sabor real de cada ingrediente, sin necesidad de aditivos artificiales.</p>
+        <p>Por eso Granada nos ha reconocido con el Solete Repsol, un sello que distingue a los sitios que merece la pena parar a visitar.</p>
+        <div class="about-stats">
+          <div class="stat"><b>100%</b><span>Ingredientes naturales</span></div>
+          <div class="stat"><b>7/7</b><span>Días a la semana</span></div>
+          <div class="stat"><b>☀️</b><span>Solete Repsol</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <svg class="swirl-divider" viewBox="0 0 1200 46" preserveAspectRatio="none">
+    <path d="M0 23 Q 50 46, 100 23 T 200 23 T 300 23 T 400 23 T 500 23 T 600 23 T 700 23 T 800 23 T 900 23 T 1000 23 T 1100 23 T 1200 23" stroke="#7FA555" stroke-width="4"/>
+  </svg>
+
+  <!-- FLAVORS -->
+  <section id="sabores">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">La vitrina</p>
+        <h2>Nuestros sabores de siempre</h2>
+        <p>Pasa el ratón sobre cada tarrina y descubre lo que te espera en la vitrina de la tienda.</p>
+      </div>
+      <div class="flavors-grid reveal">
+        <div class="tub">
+          <div class="tub-body"><div class="tub-lid lid-pistachio"></div></div>
+          <div class="tub-name">Pistacho<span class="tub-tag">Cremoso y tostado</span></div>
+        </div>
+        <div class="tub">
+          <div class="tub-body"><div class="tub-lid lid-fresa"></div></div>
+          <div class="tub-name">Fresa natural<span class="tub-tag">Fruta 100% real</span></div>
+        </div>
+        <div class="tub">
+          <div class="tub-body"><div class="tub-lid lid-limon"></div></div>
+          <div class="tub-name">Limón<span class="tub-tag">Refrescante, sorbete</span></div>
+        </div>
+        <div class="tub">
+          <div class="tub-body"><div class="tub-lid lid-chocolate"></div></div>
+          <div class="tub-name">Chocolate intenso<span class="tub-tag">Para los golosos</span></div>
+        </div>
+        <div class="tub">
+          <div class="tub-body"><div class="tub-lid lid-nata"></div></div>
+          <div class="tub-name">Nata</div>
+        </div>
+        <div class="tub">
+          <div class="tub-body"><div class="tub-lid lid-mango"></div></div>
+          <div class="tub-name">Mango<span class="tub-tag">Sabor tropical</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <svg class="swirl-divider" viewBox="0 0 1200 46" preserveAspectRatio="none">
+    <path d="M0 23 Q 50 0, 100 23 T 200 23 T 300 23 T 400 23 T 500 23 T 600 23 T 700 23 T 800 23 T 900 23 T 1000 23 T 1100 23 T 1200 23" stroke="#F3C13A" stroke-width="4"/>
+  </svg>
+
+  <!-- OPTIONS -->
+  <section id="opciones">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">Para todo el mundo</p>
+        <h2>Gelato para cada necesidad</h2>
+        <p>Porque disfrutar de un buen helado no debería tener restricciones, ofrecemos opciones pensadas para todos.</p>
+      </div>
+      <div class="features reveal">
+        <div class="feature-card">
+          <div class="ico c1">🥛</div>
+          <h3>Sin lactosa</h3>
+          <p>Opciones elaboradas sin lactosa, con todo el sabor de siempre.</p>
+        </div>
+        <div class="feature-card">
+          <div class="ico c2">🍬</div>
+          <h3>Sin azúcar</h3>
+          <p>Ideal si prefieres controlar el azúcar sin renunciar al placer del gelato.</p>
+        </div>
+        <div class="feature-card">
+          <div class="ico c3">🌾</div>
+          <h3>Sin gluten</h3>
+          <p>Alternativas aptas para celíacos e intolerantes al gluten.</p>
+        </div>
+        <div class="feature-card">
+          <div class="ico c4">🍓</div>
+          <h3>100% natural</h3>
+          <p>Fruta y materias primas reales, sin colorantes artificiales.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISIT -->
+  <section id="visita">
+    <div class="wrap">
+      <div class="visit reveal">
+        <div class="visit-copy">
+          <p class="eyebrow">Visítanos</p>
+          <h2>Te esperamos en el centro de Granada</h2>
+          <p style="color:#E8D9CC; max-width:46ch;">A un paso del centro, en Acera del Casino. Ven a probar el gelato del que todos hablan.</p>
+          <div class="visit-details">
+            <div class="visit-row">
+              <span class="ico">📍</span>
+              <div><b>Dirección</b><span>Acera del Casino 3, Granada, España 18009</span></div>
+            </div>
+            <div class="visit-row">
+              <span class="ico">🕒</span>
+              <div><b>Horario</b><span>Abierto de lunes a domingo</span></div>
+            </div>
+            <div class="visit-row">
+              <span class="ico">📷</span>
+              <div><b>Instagram</b><span>@fiordigelato_granada</span></div>
+            </div>
+          </div>
+          <div class="visit-ctas">
+            <a class="btn-pill" style="background:var(--strawberry);" href="https://maps.app.goo.gl/hU87i4Kw6NwqRBXz7" target="_blank" rel="noopener">📍 Cómo llegar</a>
+            <a class="btn-pill ghost" style="border-color:var(--cream); color:var(--cream);" href="https://www.instagram.com/fiordigelato_granada/" target="_blank" rel="noopener">Síguenos en Instagram</a>
+          </div>
+        </div>
+        <a class="map-embed" href="https://maps.app.goo.gl/hU87i4Kw6NwqRBXz7" target="_blank" rel="noopener">
+          <div>
+            <div class="map-pin"></div>
+            <b style="display:block; font-size:1.1rem; margin-bottom:6px;">Acera del Casino 3</b>
+            <span>Toca para abrir la ubicación en Google Maps</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="wrap">
+      <a href="#top" class="logo"><span class="scoop"></span> Fiordigelato</a>
+      <p class="fine">Heladería Artesanal · Acera del Casino 3, Granada 18009</p>
+      <div class="footer-links">
+        <a href="https://www.instagram.com/fiordigelato_granada/" target="_blank" rel="noopener">📷 @fiordigelato_granada</a>
+        <a href="https://maps.app.goo.gl/hU87i4Kw6NwqRBXz7" target="_blank" rel="noopener">📍 Ver en Google Maps</a>
+      </div>
+      <p class="fine">🌞 Solete Repsol · 🍨 100% artesanal y natural</p>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+  const toggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting){
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {threshold:0.15});
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
