@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heladerías Siempre Noi · Helados artesanos en Tres Cantos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FFF6E7;
+    --cream-dark:#FBE9CE;
+    --fresa:#FF6F91;
+    --fresa-dark:#E14F72;
+    --pistacho:#7FB77E;
+    --pistacho-dark:#5C9660;
+    --mango:#FFB238;
+    --mango-dark:#F09319;
+    --choco:#5A3825;
+    --choco-light:#7A4F35;
+    --cielo:#5AC8E3;
+    --white:#FFFDF9;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--choco);
+    font-family:'Quicksand', sans-serif;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Baloo 2', cursive;
+    color:var(--choco);
+    margin:0;
+  }
+  a{color:inherit;}
+  .container{
+    max-width:1100px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Baloo 2', cursive;
+    font-weight:700;
+    font-size:1.05rem;
+    padding:14px 30px;
+    border-radius:999px;
+    border:none;
+    cursor:pointer;
+    text-decoration:none;
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .btn:hover{transform:translateY(-3px) rotate(-1deg);}
+  .btn:focus-visible{outline:3px solid var(--choco); outline-offset:3px;}
+  .btn-primary{
+    background:var(--fresa);
+    color:var(--white);
+    box-shadow:0 8px 0 var(--fresa-dark);
+  }
+  .btn-primary:hover{box-shadow:0 5px 0 var(--fresa-dark);}
+  .btn-secondary{
+    background:var(--white);
+    color:var(--choco);
+    box-shadow:0 6px 0 var(--cream-dark);
+    border:2px solid var(--choco);
+  }
+
+  /* NAV */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(255,246,231,.92);
+    backdrop-filter:blur(6px);
+    border-bottom:3px dashed var(--mango);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 24px;
+    max-width:1100px; margin:0 auto;
+  }
+  .logo{
+    font-family:'Baloo 2',cursive;
+    font-weight:800;
+    font-size:1.4rem;
+    display:flex; align-items:center; gap:10px;
+  }
+  .logo .scoop-dot{
+    width:26px; height:26px; border-radius:50% 50% 50% 4px;
+    background:radial-gradient(circle at 30% 30%, #ffe3ea, var(--fresa));
+    display:inline-block;
+    transform:rotate(-15deg);
+  }
+  nav ul{
+    list-style:none; display:flex; gap:26px; margin:0; padding:0;
+    font-weight:700; font-family:'Baloo 2',cursive; font-size:.95rem;
+  }
+  nav a{text-decoration:none;}
+  nav ul{display:none;}
+  @media(min-width:720px){ nav ul{display:flex;} }
+
+  /* HERO */
+  .hero{
+    position:relative;
+    padding:70px 24px 130px;
+    text-align:center;
+    overflow:hidden;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 6vw, 4.2rem);
+    line-height:1.05;
+    max-width:850px;
+    margin:0 auto 18px;
+  }
+  .hero h1 span{color:var(--fresa);}
+  .hero p.tag{
+    font-size:1.25rem;
+    font-weight:600;
+    color:var(--choco-light);
+    max-width:560px;
+    margin:0 auto 34px;
+  }
+  .hero-ctas{display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}
+  .hero-scoops{
+    display:flex; justify-content:center; gap:26px; margin-top:56px;
+  }
+  .float-scoop{
+    width:74px; height:74px; border-radius:50% 50% 50% 6px;
+    box-shadow:inset -6px -8px 0 rgba(0,0,0,.08);
+    animation:bob 3.4s ease-in-out infinite;
+  }
+  .float-scoop:nth-child(1){background:var(--fresa); animation-delay:0s;}
+  .float-scoop:nth-child(2){background:var(--pistacho); animation-delay:.4s; transform:rotate(-8deg);}
+  .float-scoop:nth-child(3){background:var(--mango); animation-delay:.8s;}
+  .float-scoop:nth-child(4){background:#F3E3C8; animation-delay:1.2s; transform:rotate(6deg);}
+  @keyframes bob{
+    0%,100%{transform:translateY(0) rotate(-4deg);}
+    50%{transform:translateY(-18px) rotate(4deg);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .float-scoop{animation:none;}
+  }
+
+  .wave{
+    position:absolute; bottom:-2px; left:0; width:100%; line-height:0;
+  }
+
+  /* SECTION GENERAL */
+  section{padding:80px 0;}
+  .section-head{text-align:center; max-width:640px; margin:0 auto 50px;}
+  .eyebrow{
+    font-family:'Baloo 2',cursive; font-weight:700;
+    color:var(--fresa-dark); letter-spacing:.06em; text-transform:uppercase;
+    font-size:.85rem; margin-bottom:10px; display:block;
+  }
+  .section-head h2{font-size:clamp(1.8rem,4vw,2.6rem);}
+  .section-head p{color:var(--choco-light); font-size:1.05rem; margin-top:14px;}
+
+  /* ABOUT */
+  .about-wrap{
+    background:var(--white);
+    border-radius:32px;
+    padding:50px clamp(20px,5vw,60px);
+    display:grid; grid-template-columns:1fr; gap:36px;
+    box-shadow:0 14px 0 var(--cream-dark);
+  }
+  @media(min-width:820px){ .about-wrap{grid-template-columns:1.1fr .9fr; align-items:center;} }
+  .about-wrap h3{font-size:1.7rem; margin-bottom:14px;}
+  .about-wrap p{font-size:1.05rem; line-height:1.7; color:var(--choco-light);}
+  .flavor-tags{display:flex; flex-wrap:wrap; gap:10px; margin-top:22px;}
+  .flavor-tags span{
+    background:var(--cream); padding:8px 16px; border-radius:999px;
+    font-weight:700; font-size:.9rem; font-family:'Baloo 2',cursive;
+    border:2px solid var(--cream-dark);
+  }
+  .cone-illustration{display:flex; justify-content:center;}
+  .big-cone{width:170px;}
+
+  /* BUILDER (signature) */
+  .builder{
+    background:var(--choco);
+    border-radius:32px;
+    padding:56px clamp(20px,5vw,60px);
+    color:var(--cream);
+    display:grid; grid-template-columns:1fr; gap:44px; align-items:center;
+  }
+  @media(min-width:860px){ .builder{grid-template-columns:.9fr 1.1fr;} }
+  .builder .section-head{text-align:left; margin:0 0 20px; max-width:none;}
+  .builder .section-head p{color:#E8CDBA;}
+  .builder .eyebrow{color:var(--mango);}
+  .builder h2{color:var(--cream);}
+  .flavor-picker{display:flex; flex-wrap:wrap; gap:12px; margin-top:10px;}
+  .flavor-btn{
+    display:flex; align-items:center; gap:10px;
+    background:rgba(255,255,255,.08);
+    border:2px solid rgba(255,255,255,.18);
+    color:var(--cream);
+    padding:10px 16px 10px 10px;
+    border-radius:999px;
+    font-family:'Baloo 2',cursive; font-weight:600; font-size:.92rem;
+    cursor:pointer; transition:background .2s ease, transform .15s ease;
+  }
+  .flavor-btn:hover{background:rgba(255,255,255,.18); transform:translateY(-2px);}
+  .flavor-btn .swatch{width:22px; height:22px; border-radius:50%;}
+  .builder-actions{margin-top:26px; display:flex; gap:14px; flex-wrap:wrap;}
+  .link-btn{
+    background:none; border:2px solid var(--cream); color:var(--cream);
+    padding:10px 20px; border-radius:999px; font-family:'Baloo 2',cursive;
+    font-weight:700; cursor:pointer;
+  }
+  .cone-stage{
+    display:flex; flex-direction:column; align-items:center; justify-content:flex-end;
+    min-height:340px;
+  }
+  #scoopStack{
+    display:flex; flex-direction:column-reverse; align-items:center;
+    margin-bottom:-14px;
+  }
+  .scoop{
+    width:118px; height:118px; border-radius:50% 50% 50% 8px;
+    box-shadow:inset -10px -12px 0 rgba(0,0,0,.12), 0 6px 10px rgba(0,0,0,.25);
+    margin-bottom:-46px;
+    animation:drop .4s cubic-bezier(.34,1.56,.64,1);
+  }
+  @keyframes drop{
+    0%{transform:translateY(-40px) scale(.7); opacity:0;}
+    100%{transform:translateY(0) scale(1); opacity:1;}
+  }
+  .cone-svg{width:150px; display:block;}
+  .cone-msg{
+    margin-top:18px; font-family:'Baloo 2',cursive; font-size:1rem;
+    color:var(--mango); min-height:1.4em; text-align:center;
+  }
+
+  /* LOCATIONS */
+  .loc-grid{
+    display:grid; grid-template-columns:1fr; gap:28px;
+  }
+  @media(min-width:760px){ .loc-grid{grid-template-columns:1fr 1fr;} }
+  .loc-card{
+    background:var(--white);
+    border-radius:28px;
+    padding:34px;
+    box-shadow:0 12px 0 var(--cream-dark);
+    position:relative;
+  }
+  .loc-card .pin{
+    width:52px; height:52px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:1.5rem; margin-bottom:18px;
+  }
+  .loc-card:nth-child(1) .pin{background:var(--fresa); color:var(--white);}
+  .loc-card:nth-child(2) .pin{background:var(--pistacho); color:var(--white);}
+  .loc-card h3{font-size:1.3rem; margin-bottom:8px;}
+  .loc-card p{color:var(--choco-light); line-height:1.6; margin:0 0 18px;}
+  .loc-card a.map-link{
+    font-family:'Baloo 2',cursive; font-weight:700; font-size:.92rem;
+    color:var(--fresa-dark); text-decoration:none;
+  }
+  .loc-card a.map-link:hover{text-decoration:underline;}
+
+  .hours-strip{
+    margin-top:36px;
+    background:var(--mango);
+    border-radius:24px;
+    padding:26px 30px;
+    display:flex; align-items:center; justify-content:center; gap:16px;
+    flex-wrap:wrap;
+    text-align:center;
+    box-shadow:0 10px 0 var(--mango-dark);
+  }
+  .hours-strip strong{font-family:'Baloo 2',cursive; font-size:1.15rem;}
+
+  /* INSTAGRAM CTA */
+  .insta-cta{
+    background:linear-gradient(135deg, var(--fresa) 0%, var(--mango) 55%, var(--pistacho) 100%);
+    border-radius:32px;
+    padding:60px clamp(20px,6vw,70px);
+    text-align:center;
+    color:var(--white);
+  }
+  .insta-cta h2{color:var(--white); font-size:clamp(1.8rem,4vw,2.5rem);}
+  .insta-cta p{max-width:480px; margin:14px auto 30px; font-size:1.05rem; opacity:.95;}
+  .insta-btn{
+    background:var(--white); color:var(--fresa-dark);
+    font-family:'Baloo 2',cursive; font-weight:800; font-size:1.1rem;
+    padding:16px 36px; border-radius:999px; text-decoration:none;
+    display:inline-flex; align-items:center; gap:12px;
+    box-shadow:0 8px 0 rgba(0,0,0,.15);
+    transition:transform .2s ease;
+  }
+  .insta-btn:hover{transform:translateY(-3px) scale(1.02);}
+  .insta-handle{
+    margin-top:18px; font-weight:700; opacity:.9; font-family:'Baloo 2',cursive;
+  }
+
+  footer{
+    padding:44px 24px 30px; text-align:center;
+    color:var(--choco-light); font-size:.9rem;
+  }
+  footer .logo{justify-content:center; margin-bottom:10px;}
+  footer a{text-decoration:underline;}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo"><span class="scoop-dot"></span> Siempre Noi</div>
+    <ul>
+      <li><a href="#sobre">Sobre nosotros</a></li>
+      <li><a href="#crea">Crea tu cucurucho</a></li>
+      <li><a href="#ubicaciones">Ubicaciones</a></li>
+      <li><a href="#instagram">Instagram</a></li>
+    </ul>
+    <a href="https://www.instagram.com/las_heladeriasde3cantos/" target="_blank" rel="noopener" class="btn btn-primary" style="padding:10px 20px; font-size:.9rem;">Síguenos</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <h1>Helados artesanos. <span>Helados para todos.</span></h1>
+  <p class="tag">Sabores hechos a mano, cada día, en el corazón de Tres Cantos. Ven a probarlos.</p>
+  <div class="hero-ctas">
+    <a href="https://www.instagram.com/las_heladeriasde3cantos/" target="_blank" rel="noopener" class="btn btn-primary">📸 Ver en Instagram</a>
+    <a href="#ubicaciones" class="btn btn-secondary">📍 Nuestras heladerías</a>
+  </div>
+  <div class="hero-scoops" aria-hidden="true">
+    <div class="float-scoop"></div>
+    <div class="float-scoop"></div>
+    <div class="float-scoop"></div>
+    <div class="float-scoop"></div>
+  </div>
+  <svg class="wave" viewBox="0 0 1440 100" preserveAspectRatio="none">
+    <path fill="#FFFDF9" d="M0,40 C240,100 480,0 720,30 C960,60 1200,100 1440,50 L1440,100 L0,100 Z"></path>
+  </svg>
+</section>
+
+<section id="sobre" style="background:var(--white); padding-top:20px;">
+  <div class="container">
+    <div class="about-wrap">
+      <div>
+        <span class="eyebrow">Nuestra historia</span>
+        <h3>Dos heladerías, una sola pasión</h3>
+        <p>En Siempre Noi elaboramos helado artesano como se ha hecho siempre: con ingredientes reales, recetas cuidadas y mucho cariño. Nada de atajos, nada de sabores artificiales — solo helado bueno, para disfrutar sin prisa.</p>
+        <p>Abrimos nuestras puertas a partir de las 16:00h, listos para endulzar tu tarde en cualquiera de nuestros dos puntos de Tres Cantos.</p>
+        <div class="flavor-tags">
+          <span>🍓 Fresa</span>
+          <span>🍫 Chocolate</span>
+          <span>🥭 Mango</span>
+          <span>🌿 Pistacho</span>
+          <span>🍦 Nata</span>
+        </div>
+      </div>
+      <div class="cone-illustration" aria-hidden="true">
+        <svg class="big-cone" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="100" cy="70" r="62" fill="#7FB77E"/>
+          <circle cx="100" cy="70" r="62" fill="url(#shine)"/>
+          <path d="M45 95 L100 250 L155 95 Z" fill="#E3A65D"/>
+          <path d="M45 95 L100 250 L155 95 Z" fill="url(#waffle)" opacity="0.5"/>
+          <defs>
+            <radialGradient id="shine" cx="35%" cy="30%" r="60%">
+              <stop offset="0%" stop-color="#ffffff" stop-opacity="0.35"/>
+              <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+            </radialGradient>
+            <pattern id="waffle" width="16" height="16" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+              <line x1="0" y1="0" x2="0" y2="16" stroke="#5A3825" stroke-width="2"/>
+              <line x1="0" y1="0" x2="16" y2="0" stroke="#5A3825" stroke-width="2"/>
+            </pattern>
+          </defs>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="crea">
+  <div class="container">
+    <div class="builder">
+      <div>
+        <span class="eyebrow">Pruébalo tú mismo</span>
+        <h2>Crea tu cucurucho</h2>
+        <p class="section-head" style="padding:0;">Elige tus sabores favoritos y apílalos. Así de fácil es pedir en Siempre Noi — combina hasta que encuentres tu mezcla perfecta.</p>
+        <div class="flavor-picker" id="flavorPicker"></div>
+        <div class="builder-actions">
+          <button class="link-btn" id="resetCone">Vaciar cucurucho</button>
+        </div>
+      </div>
+      <div class="cone-stage">
+        <div id="scoopStack"></div>
+        <svg class="cone-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+          <path d="M40 20 L100 180 L160 20 Z" fill="#E3A65D"/>
+          <path d="M40 20 L100 180 L160 20 Z" fill="url(#waffle2)" opacity="0.55"/>
+          <defs>
+            <pattern id="waffle2" width="16" height="16" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+              <line x1="0" y1="0" x2="0" y2="16" stroke="#5A3825" stroke-width="2"/>
+              <line x1="0" y1="0" x2="16" y2="0" stroke="#5A3825" stroke-width="2"/>
+            </pattern>
+          </defs>
+        </svg>
+        <div class="cone-msg" id="coneMsg">Elige tu primer sabor arriba 👆</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ubicaciones" style="background:var(--white);">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Dónde encontrarnos</span>
+      <h2>Nuestras heladerías en Tres Cantos</h2>
+      <p>Dos puntos para que siempre tengas uno cerca.</p>
+    </div>
+    <div class="loc-grid">
+      <div class="loc-card">
+        <div class="pin">🍓</div>
+        <h3>Sector Músicos</h3>
+        <p>Sector Músicos 15<br>Tres Cantos, Madrid</p>
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Sector+M%C3%BAsicos+15+Tres+Cantos+Madrid" target="_blank" rel="noopener">Ver en el mapa →</a>
+      </div>
+      <div class="loc-card">
+        <div class="pin">🥭</div>
+        <h3>Sector Pueblos / Av. de Viñuelas</h3>
+        <p>Sector Pueblos 6 y Av. de Viñuelas 48<br>Tres Cantos, Madrid</p>
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Avenida+de+Vi%C3%B1uelas+48+Tres+Cantos+Madrid" target="_blank" rel="noopener">Ver en el mapa →</a>
+      </div>
+    </div>
+    <div class="hours-strip">
+      <span style="font-size:1.6rem;">🕓</span>
+      <span><strong>Abrimos a partir de las 16:00h</strong> — todos los días, listos para tu helado de la tarde.</span>
+    </div>
+  </div>
+</section>
+
+<section id="instagram">
+  <div class="container">
+    <div class="insta-cta">
+      <h2>Síguenos el rastro del helado 🍦</h2>
+      <p>Nuevos sabores, novedades de temporada y el día a día de nuestras heladerías, directo a tu Instagram.</p>
+      <a class="insta-btn" href="https://www.instagram.com/las_heladeriasde3cantos/" target="_blank" rel="noopener">
+        📸 Seguir en Instagram
+      </a>
+      <div class="insta-handle">@las_heladeriasde3cantos</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="logo"><span class="scoop-dot"></span> Siempre Noi</div>
+  <p>Sector Músicos 15 · Sector Pueblos 6 y Av. de Viñuelas 48 — Tres Cantos, Madrid<br>
+  Abrimos a partir de las 16:00h ·
+  <a href="https://www.instagram.com/las_heladeriasde3cantos/" target="_blank" rel="noopener">@las_heladeriasde3cantos</a></p>
+</footer>
+
+<script>
+  const flavors = [
+    {name:'Fresa', color:'#FF6F91'},
+    {name:'Pistacho', color:'#7FB77E'},
+    {name:'Chocolate', color:'#5A3825'},
+    {name:'Mango', color:'#FFB238'},
+    {name:'Nata', color:'#F3E3C8'},
+    {name:'Menta choc', color:'#3E8E7E'}
+  ];
+
+  const picker = document.getElementById('flavorPicker');
+  const stack = document.getElementById('scoopStack');
+  const msg = document.getElementById('coneMsg');
+  const maxScoops = 4;
+  let count = 0;
+
+  const messages = [
+    'Elige tu primer sabor arriba 👆',
+    '¡Buena elección! ¿Uno más?',
+    'Va tomando forma esa combinación 😋',
+    'Cucurucho casi perfecto...',
+    '¡Ese es tu cucurucho ideal! Pídelo así en tienda 🍦'
+  ];
+
+  flavors.forEach(f => {
+    const btn = document.createElement('button');
+    btn.className = 'flavor-btn';
+    btn.innerHTML = `<span class="swatch" style="background:${f.color}"></span>${f.name}`;
+    btn.addEventListener('click', () => addScoop(f));
+    picker.appendChild(btn);
+  });
+
+  function addScoop(flavor){
+    if(count >= maxScoops){
+      msg.textContent = 'Tu cucurucho ya está lleno — ¡vacíalo para probar otra combinación!';
+      return;
+    }
+    const scoop = document.createElement('div');
+    scoop.className = 'scoop';
+    scoop.style.background = flavor.color;
+    stack.appendChild(scoop);
+    count++;
+    msg.textContent = messages[count] || messages[messages.length - 1];
+  }
+
+  document.getElementById('resetCone').addEventListener('click', () => {
+    stack.innerHTML = '';
+    count = 0;
+    msg.textContent = messages[0];
+  });
+</script>
+
+</body>
+</html>
