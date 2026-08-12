@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Helados Mexty — Paletería y Nevería en Mexticacán, Jalisco</title>
+<meta name="description" content="Helados Mexty: fábrica de helados y paletas artesanales en Mexticacán, Jalisco. Sabores tradicionales, helados sin azúcar, menudeo y mayoreo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --crema:#FFF6E8;
+    --crema-2:#FFEBCF;
+    --mango:#FF8A3D;
+    --mango-dark:#E56A1E;
+    --fresa:#FF4470;
+    --fresa-dark:#D6285A;
+    --limon:#7CB93B;
+    --limon-dark:#5F9628;
+    --uva:#8E44AD;
+    --uva-dark:#6E3488;
+    --turquesa:#00A99D;
+    --choco:#3D2314;
+    --choco-soft:#6B4A38;
+    --white:#FFFFFF;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:'Nunito',sans-serif;
+    background:var(--crema);
+    color:var(--choco);
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,.display{
+    font-family:'Baloo 2',cursive;
+    font-weight:800;
+    line-height:1.05;
+  }
+
+  a{text-decoration:none;color:inherit;}
+  img{max-width:100%;display:block;}
+  ul{list-style:none;}
+
+  .container{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 24px;
+  }
+
+  /* ---------- utility: focus ---------- */
+  a:focus-visible, button:focus-visible{
+    outline:3px solid var(--turquesa);
+    outline-offset:3px;
+    border-radius:6px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
+  }
+
+  /* ---------- papel picado bunting ---------- */
+  .picado{
+    width:100%;
+    line-height:0;
+    background:var(--choco);
+  }
+  .picado svg{width:100%;height:auto;display:block;}
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:var(--crema);
+    border-bottom:4px solid var(--choco);
+  }
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:14px 24px;
+    max-width:1180px;
+    margin:0 auto;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .brand-mark{
+    width:44px;height:44px;flex-shrink:0;
+  }
+  .brand-name{
+    font-family:'Baloo 2',cursive;
+    font-weight:800;
+    font-size:1.4rem;
+    color:var(--fresa-dark);
+    letter-spacing:-0.5px;
+  }
+  .brand-name span{color:var(--uva);}
+  nav.links{
+    display:flex;
+    gap:28px;
+    font-weight:700;
+    font-size:0.98rem;
+  }
+  nav.links a{
+    position:relative;
+    padding:6px 2px;
+    color:var(--choco);
+  }
+  nav.links a::after{
+    content:"";
+    position:absolute;
+    left:0; bottom:0;
+    width:0%; height:3px;
+    background:var(--mango);
+    border-radius:3px;
+    transition:width .25s ease;
+  }
+  nav.links a:hover::after{width:100%;}
+
+  .nav-cta{
+    display:flex;
+    gap:10px;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-family:'Baloo 2',cursive;
+    font-weight:700;
+    font-size:0.95rem;
+    padding:11px 20px;
+    border-radius:999px;
+    border:3px solid var(--choco);
+    cursor:pointer;
+    transition:transform .18s ease, box-shadow .18s ease;
+    box-shadow:3px 4px 0 var(--choco);
+    white-space:nowrap;
+  }
+  .btn:hover{transform:translate(-2px,-2px); box-shadow:5px 6px 0 var(--choco);}
+  .btn:active{transform:translate(1px,1px); box-shadow:1px 2px 0 var(--choco);}
+  .btn-mango{background:var(--mango); color:var(--white);}
+  .btn-fresa{background:var(--fresa); color:var(--white);}
+  .btn-white{background:var(--white); color:var(--choco);}
+  .btn-uva{background:var(--uva); color:var(--white);}
+
+  .burger{display:none;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    padding:72px 24px 40px;
+    background:
+      radial-gradient(circle at 12% 20%, rgba(255,138,61,0.18), transparent 40%),
+      radial-gradient(circle at 88% 10%, rgba(142,68,173,0.16), transparent 45%),
+      radial-gradient(circle at 80% 85%, rgba(0,169,157,0.15), transparent 40%),
+      var(--crema);
+    overflow:hidden;
+  }
+  .hero-inner{
+    max-width:1180px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    align-items:center;
+    gap:40px;
+  }
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--white);
+    border:2.5px solid var(--choco);
+    border-radius:999px;
+    padding:7px 16px;
+    font-weight:800;
+    font-size:0.82rem;
+    letter-spacing:0.3px;
+    text-transform:uppercase;
+    color:var(--fresa-dark);
+    margin-bottom:22px;
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 5vw, 3.8rem);
+    color:var(--choco);
+    margin-bottom:20px;
+  }
+  .hero h1 .swirl-fresa{color:var(--fresa);}
+  .hero h1 .swirl-mango{color:var(--mango-dark);}
+  .hero h1 .swirl-uva{color:var(--uva);}
+  .hero p.lead{
+    font-size:1.15rem;
+    color:var(--choco-soft);
+    max-width:520px;
+    margin-bottom:30px;
+    font-weight:600;
+  }
+  .hero-ctas{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+    margin-bottom:30px;
+  }
+  .hero-tags{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+  .tag{
+    background:var(--white);
+    border:2px solid var(--choco);
+    border-radius:999px;
+    padding:6px 14px;
+    font-size:0.85rem;
+    font-weight:700;
+    color:var(--choco);
+  }
+
+  .hero-art{
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100%;
+  }
+  .hero-art svg{
+    width:100%;
+    max-width:420px;
+    filter:drop-shadow(10px 14px 0 rgba(61,35,20,0.12));
+  }
+  .float{
+    animation:float 4.5s ease-in-out infinite;
+  }
+  .float-delay{
+    animation:float 5.2s ease-in-out infinite;
+    animation-delay:.6s;
+  }
+  @keyframes float{
+    0%,100%{transform:translateY(0px) rotate(-2deg);}
+    50%{transform:translateY(-16px) rotate(2deg);}
+  }
+
+  /* wavy divider (dripping ice cream) */
+  .wave{
+    line-height:0;
+  }
+  .wave svg{width:100%;height:auto;display:block;}
+
+  /* ---------- section headers ---------- */
+  .section{padding:86px 24px;}
+  .section-head{
+    text-align:center;
+    max-width:640px;
+    margin:0 auto 52px;
+  }
+  .section-head .eyebrow{margin-bottom:16px;}
+  .section-head h2{
+    font-size:clamp(1.9rem, 3.6vw, 2.6rem);
+    color:var(--choco);
+    margin-bottom:14px;
+  }
+  .section-head p{
+    color:var(--choco-soft);
+    font-weight:600;
+    font-size:1.05rem;
+  }
+
+  /* ---------- flavors ---------- */
+  .flavors-section{
+    background:var(--white);
+  }
+  .flavor-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:22px;
+  }
+  .flavor-card{
+    border-radius:22px;
+    padding:26px 20px 22px;
+    border:3px solid var(--choco);
+    box-shadow:5px 6px 0 var(--choco);
+    transition:transform .2s ease, box-shadow .2s ease;
+    text-align:center;
+  }
+  .flavor-card:hover{transform:translate(-3px,-5px); box-shadow:8px 10px 0 var(--choco);}
+  .flavor-card .icon{
+    width:64px;height:64px;
+    margin:0 auto 14px;
+  }
+  .flavor-card h3{
+    font-size:1.15rem;
+    margin-bottom:6px;
+    color:var(--choco);
+  }
+  .flavor-card p{
+    font-size:0.9rem;
+    color:var(--choco-soft);
+    font-weight:600;
+  }
+  .fc-fresa{background:#FFE3EA;}
+  .fc-mango{background:#FFE7D1;}
+  .fc-limon{background:#EAF5DA;}
+  .fc-uva{background:#F0E1F5;}
+  .fc-coco{background:#FFF6E8;}
+  .fc-choco{background:#EDE0D8;}
+  .fc-turq{background:#D9F3F1;}
+  .fc-tama{background:#FBE3D9;}
+
+  /* ---------- sin azucar banner ---------- */
+  .banner{
+    background:var(--turquesa);
+    color:var(--white);
+    border-top:4px solid var(--choco);
+    border-bottom:4px solid var(--choco);
+    padding:52px 24px;
+  }
+  .banner-inner{
+    max-width:1000px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:auto 1fr;
+    gap:30px;
+    align-items:center;
+  }
+  .banner .icon-badge{
+    width:100px;height:100px;
+    background:var(--white);
+    border-radius:50%;
+    border:4px solid var(--choco);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+  }
+  .banner .icon-badge svg{width:56px;height:56px;}
+  .banner h2{font-size:1.7rem;margin-bottom:8px;}
+  .banner p{font-weight:700;font-size:1.02rem;opacity:.95;}
+
+  /* ---------- menudeo mayoreo ---------- */
+  .split-section{
+    background:var(--crema-2);
+  }
+  .split-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:26px;
+  }
+  .split-card{
+    background:var(--white);
+    border:3px solid var(--choco);
+    border-radius:26px;
+    padding:34px;
+    box-shadow:6px 7px 0 var(--choco);
+  }
+  .split-card .num{
+    display:inline-block;
+    font-family:'Baloo 2',cursive;
+    font-weight:800;
+    font-size:.85rem;
+    padding:5px 14px;
+    border-radius:999px;
+    margin-bottom:16px;
+  }
+  .split-card:nth-child(1) .num{background:var(--fresa); color:var(--white);}
+  .split-card:nth-child(2) .num{background:var(--uva); color:var(--white);}
+  .split-card h3{font-size:1.5rem;margin-bottom:10px;}
+  .split-card p{color:var(--choco-soft); font-weight:600; margin-bottom:18px; line-height:1.5;}
+  .split-card ul{display:flex; flex-direction:column; gap:8px;}
+  .split-card li{
+    display:flex; align-items:center; gap:10px;
+    font-weight:700; font-size:.95rem;
+  }
+  .split-card li svg{width:20px;height:20px;flex-shrink:0;}
+
+  /* ---------- about strip ---------- */
+  .about{
+    background:var(--white);
+  }
+  .about-grid{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:50px;
+    align-items:center;
+  }
+  .about-art svg{width:100%; max-width:380px; margin:0 auto;}
+  .about-text h2{font-size:clamp(1.8rem,3.4vw,2.4rem); margin-bottom:18px;}
+  .about-text p{
+    color:var(--choco-soft);
+    font-weight:600;
+    font-size:1.05rem;
+    margin-bottom:16px;
+    line-height:1.6;
+  }
+  .stat-row{
+    display:flex;
+    gap:28px;
+    margin-top:28px;
+    flex-wrap:wrap;
+  }
+  .stat{
+    background:var(--crema-2);
+    border:2.5px solid var(--choco);
+    border-radius:16px;
+    padding:14px 20px;
+    text-align:center;
+    min-width:120px;
+  }
+  .stat b{
+    display:block;
+    font-family:'Baloo 2',cursive;
+    font-size:1.5rem;
+    color:var(--fresa-dark);
+  }
+  .stat span{font-size:.8rem; font-weight:700; color:var(--choco-soft);}
+
+  /* ---------- location ---------- */
+  .location{
+    background:var(--choco);
+    color:var(--crema);
+  }
+  .location .section-head p{color:#E3CFC1;}
+  .location .eyebrow{background:var(--crema); }
+  .loc-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:30px;
+  }
+  .loc-card{
+    background:#4A2D1D;
+    border:3px solid #6B4A38;
+    border-radius:22px;
+    padding:30px;
+  }
+  .loc-card h3{
+    font-size:1.2rem;
+    margin-bottom:16px;
+    color:var(--mango);
+  }
+  .loc-row{
+    display:flex;
+    gap:14px;
+    align-items:flex-start;
+    margin-bottom:16px;
+  }
+  .loc-row svg{width:24px;height:24px;flex-shrink:0; margin-top:2px; color:var(--limon);}
+  .loc-row div b{display:block; font-size:1rem; margin-bottom:2px;}
+  .loc-row div span{font-size:.92rem; color:#E3CFC1; font-weight:600;}
+  .map-embed{
+    border-radius:22px;
+    overflow:hidden;
+    border:3px solid #6B4A38;
+    min-height:260px;
+  }
+  .map-embed iframe{width:100%; height:100%; min-height:260px; border:0; display:block;}
+
+  /* ---------- instagram cta ---------- */
+  .insta-cta{
+    background:linear-gradient(135deg, var(--fresa) 0%, var(--mango) 45%, var(--uva) 100%);
+    padding:70px 24px;
+    text-align:center;
+    color:var(--white);
+    border-top:4px solid var(--choco);
+    border-bottom:4px solid var(--choco);
+  }
+  .insta-cta h2{
+    font-size:clamp(1.9rem,4vw,2.6rem);
+    margin-bottom:14px;
+  }
+  .insta-cta p{
+    font-weight:700;
+    font-size:1.1rem;
+    margin-bottom:30px;
+    opacity:.96;
+  }
+  .insta-handle{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    background:rgba(255,255,255,0.18);
+    border:2.5px solid var(--white);
+    border-radius:999px;
+    padding:8px 20px;
+    font-weight:800;
+    margin-bottom:26px;
+  }
+  .insta-cta .btn-white{font-size:1.05rem; padding:15px 30px;}
+
+  /* ---------- footer ---------- */
+  footer{
+    background:var(--choco);
+    color:var(--crema);
+    padding:44px 24px 24px;
+  }
+  .footer-grid{
+    display:grid;
+    grid-template-columns:1.3fr 1fr 1fr;
+    gap:30px;
+    margin-bottom:30px;
+  }
+  .footer-brand{
+    display:flex; align-items:center; gap:10px; margin-bottom:12px;
+  }
+  .footer-brand .brand-mark{width:36px;height:36px;}
+  .footer-brand span{
+    font-family:'Baloo 2',cursive;
+    font-weight:800;
+    font-size:1.2rem;
+    color:var(--crema);
+  }
+  footer p{color:#C9AF9F; font-weight:600; font-size:.92rem; line-height:1.6;}
+  footer h4{
+    font-family:'Baloo 2',cursive;
+    font-size:1rem;
+    margin-bottom:14px;
+    color:var(--mango);
+  }
+  footer ul li{margin-bottom:10px;}
+  footer ul a{
+    color:#E3CFC1;
+    font-weight:700;
+    font-size:.92rem;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    transition:color .2s ease;
+  }
+  footer ul a:hover{color:var(--white);}
+  footer ul svg{width:18px;height:18px;flex-shrink:0;}
+  .footer-bottom{
+    border-top:2px solid #5A3C2C;
+    padding-top:20px;
+    text-align:center;
+    font-size:.82rem;
+    color:#B79684;
+    font-weight:600;
+  }
+
+  /* ---------- floating whatsapp ---------- */
+  .whatsapp-float{
+    position:fixed;
+    bottom:22px;
+    right:22px;
+    z-index:60;
+    background:#25D366;
+    width:60px;height:60px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border:3px solid var(--choco);
+    box-shadow:3px 4px 0 var(--choco);
+    transition:transform .2s ease;
+  }
+  .whatsapp-float:hover{transform:scale(1.08);}
+  .whatsapp-float svg{width:30px;height:30px;}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:980px){
+    nav.links{display:none;}
+    .burger{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:44px;height:44px;
+      border:2.5px solid var(--choco);
+      border-radius:12px;
+      background:var(--white);
+      cursor:pointer;
+    }
+    .nav-cta .btn-white{display:none;}
+    .hero-inner{grid-template-columns:1fr; text-align:center;}
+    .hero p.lead{margin-left:auto; margin-right:auto;}
+    .hero-ctas, .hero-tags{justify-content:center;}
+    .hero-art{order:-1; margin-bottom:10px;}
+    .flavor-grid{grid-template-columns:repeat(2,1fr);}
+    .split-grid{grid-template-columns:1fr;}
+    .about-grid{grid-template-columns:1fr; text-align:center;}
+    .about-art{order:-1;}
+    .stat-row{justify-content:center;}
+    .loc-grid{grid-template-columns:1fr;}
+    .banner-inner{grid-template-columns:1fr; text-align:center; justify-items:center;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:560px){
+    .flavor-grid{grid-template-columns:repeat(2,1fr);}
+    .footer-grid{grid-template-columns:1fr;}
+    .hero{padding-top:40px;}
+    .section{padding:60px 20px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- papel picado bunting -->
+<div class="picado" aria-hidden="true">
+  <svg viewBox="0 0 1200 60" preserveAspectRatio="none">
+    <g>
+      <path d="M0 0 L60 0 L30 55 Z" fill="#FF4470"/>
+      <path d="M60 0 L120 0 L90 55 Z" fill="#FF8A3D"/>
+      <path d="M120 0 L180 0 L150 55 Z" fill="#7CB93B"/>
+      <path d="M180 0 L240 0 L210 55 Z" fill="#8E44AD"/>
+      <path d="M240 0 L300 0 L270 55 Z" fill="#00A99D"/>
+      <path d="M300 0 L360 0 L330 55 Z" fill="#FF4470"/>
+      <path d="M360 0 L420 0 L390 55 Z" fill="#FF8A3D"/>
+      <path d="M420 0 L480 0 L450 55 Z" fill="#7CB93B"/>
+      <path d="M480 0 L540 0 L510 55 Z" fill="#8E44AD"/>
+      <path d="M540 0 L600 0 L570 55 Z" fill="#00A99D"/>
+      <path d="M600 0 L660 0 L630 55 Z" fill="#FF4470"/>
+      <path d="M660 0 L720 0 L690 55 Z" fill="#FF8A3D"/>
+      <path d="M720 0 L780 0 L750 55 Z" fill="#7CB93B"/>
+      <path d="M780 0 L840 0 L810 55 Z" fill="#8E44AD"/>
+      <path d="M840 0 L900 0 L870 55 Z" fill="#00A99D"/>
+      <path d="M900 0 L960 0 L930 55 Z" fill="#FF4470"/>
+      <path d="M960 0 L1020 0 L990 55 Z" fill="#FF8A3D"/>
+      <path d="M1020 0 L1080 0 L1050 55 Z" fill="#7CB93B"/>
+      <path d="M1080 0 L1140 0 L1110 55 Z" fill="#8E44AD"/>
+      <path d="M1140 0 L1200 0 L1170 55 Z" fill="#00A99D"/>
+    </g>
+  </svg>
+</div>
+
+<header>
+  <div class="nav">
+    <a href="#inicio" class="brand">
+      <svg class="brand-mark" viewBox="0 0 64 64" fill="none">
+        <rect x="26" y="30" width="12" height="26" rx="4" fill="#D9A066"/>
+        <path d="M32 4 C18 4 10 16 10 26 C10 38 20 46 32 46 C44 46 54 38 54 26 C54 16 46 4 32 4 Z" fill="#FF4470"/>
+        <path d="M32 4 C24 4 18 12 18 20 C18 20 26 16 32 22 C38 16 46 20 46 20 C46 12 40 4 32 4 Z" fill="#FF8A3D"/>
+        <circle cx="24" cy="20" r="3" fill="#fff" opacity=".6"/>
+      </svg>
+      <span class="brand-name">Helados <span>Mexty</span></span>
+    </a>
+    <nav class="links">
+      <a href="#sabores">Sabores</a>
+      <a href="#sin-azucar">Sin azúcar</a>
+      <a href="#negocio">Menudeo y mayoreo</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#ubicacion">Ubicación</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-white" href="https://www.instagram.com/heladosmextyjal/" target="_blank" rel="noopener">Instagram</a>
+      <a class="btn btn-mango" href="https://wa.me/523441011370" target="_blank" rel="noopener">📱 344 101 1370</a>
+    </div>
+    <button class="burger" aria-label="Abrir menú" onclick="document.getElementById('mnav').classList.toggle('open')">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3D2314" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+  <nav id="mnav" style="display:none; flex-direction:column; gap:2px; padding:0 24px 18px; font-weight:800;">
+    <a style="padding:10px 0; border-top:1px solid #EEDFC9;" href="#sabores">Sabores</a>
+    <a style="padding:10px 0; border-top:1px solid #EEDFC9;" href="#sin-azucar">Sin azúcar</a>
+    <a style="padding:10px 0; border-top:1px solid #EEDFC9;" href="#negocio">Menudeo y mayoreo</a>
+    <a style="padding:10px 0; border-top:1px solid #EEDFC9;" href="#nosotros">Nosotros</a>
+    <a style="padding:10px 0; border-top:1px solid #EEDFC9;" href="#ubicacion">Ubicación</a>
+    <a style="padding:10px 0; border-top:1px solid #EEDFC9; color:#D6285A;" href="https://www.instagram.com/heladosmextyjal/" target="_blank" rel="noopener">Ver Instagram ↗</a>
+  </nav>
+</header>
+<style>#mnav.open{display:flex !important;}</style>
+
+<main>
+  <!-- ================= HERO ================= -->
+  <section class="hero" id="inicio">
+    <div class="hero-inner">
+      <div>
+        <div class="eyebrow">📍 Mexticacán, Jalisco · Zona Centro</div>
+        <h1>Paletas y helados que saben a <span class="swirl-fresa">fresa</span>, a <span class="swirl-mango">mango</span> y a <span class="swirl-uva">pueblo</span>.</h1>
+        <p class="lead">En Helados Mexty fabricamos nuestras propias paletas y helados artesanales todos los días. Sabores tradicionales, opciones sin azúcar, y el sabor de siempre en el corazón de Mexticacán.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-fresa" href="https://www.instagram.com/heladosmextyjal/" target="_blank" rel="noopener">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff" stroke="none"/></svg>
+            Síguenos @heladosmextyjal
+          </a>
+          <a class="btn btn-mango" href="https://wa.me/523441011370" target="_blank" rel="noopener">
+            💬 Pedir por WhatsApp
+          </a>
+        </div>
+        <div class="hero-tags">
+          <span class="tag">🍦 Menudeo</span>
+          <span class="tag">📦 Mayoreo</span>
+          <span class="tag">🚫🍬 Sin azúcar</span>
+          <span class="tag">🏭 Fábrica propia</span>
+        </div>
+      </div>
+      <div class="hero-art">
+        <svg viewBox="0 0 420 460" fill="none">
+          <ellipse cx="210" cy="430" rx="150" ry="18" fill="#3D2314" opacity="0.08"/>
+          <!-- paleta 1 -->
+          <g class="float">
+            <rect x="130" y="230" width="22" height="150" rx="8" fill="#E8C79A"/>
+            <path d="M50 90 C50 40 95 10 141 10 C187 10 232 40 232 90 C232 150 190 230 141 230 C92 230 50 150 50 90 Z" fill="#FF4470"/>
+            <path d="M70 70 C90 55 120 55 141 75" stroke="#fff" stroke-width="6" stroke-linecap="round" opacity="0.35"/>
+            <circle cx="95" cy="60" r="7" fill="#fff" opacity="0.4"/>
+          </g>
+          <!-- paleta 2 -->
+          <g class="float-delay">
+            <rect x="255" y="255" width="20" height="140" rx="8" fill="#E8C79A"/>
+            <path d="M190 150 C190 105 228 80 267 80 C306 80 344 105 344 150 C344 202 308 255 267 255 C226 255 190 202 190 150 Z" fill="#7CB93B"/>
+            <path d="M210 130 C226 118 250 118 267 134" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity="0.35"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <div class="wave" aria-hidden="true">
+    <svg viewBox="0 0 1200 90" preserveAspectRatio="none"><path d="M0,40 C150,90 300,0 450,35 C600,70 750,10 900,40 C1050,70 1150,20 1200,35 L1200,90 L0,90 Z" fill="#ffffff"/></svg>
+  </div>
+
+  <!-- ================= SABORES ================= -->
+  <section class="section flavors-section" id="sabores">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">🍨 Nuestros favoritos</div>
+        <h2>Un sabor para cada antojo</h2>
+        <p>Paletas de agua, paletas de crema, helados y nieves — hechos en nuestra fábrica con fruta de la región.</p>
+      </div>
+      <div class="flavor-grid">
+        <div class="flavor-card fc-fresa">
+          <svg class="icon" viewBox="0 0 64 64"><path d="M32 8 C18 8 8 20 8 32 C8 48 20 58 32 58 C44 58 56 48 56 32 C56 20 46 8 32 8 Z" fill="#FF4470"/><g fill="#F9D9E1"><circle cx="24" cy="26" r="2"/><circle cx="34" cy="20" r="2"/><circle cx="42" cy="30" r="2"/><circle cx="30" cy="40" r="2"/><circle cx="20" cy="38" r="2"/></g></svg>
+          <h3>Fresa crema</h3>
+          <p>Clásica, cremosa y con trocitos de fruta</p>
+        </div>
+        <div class="flavor-card fc-mango">
+          <svg class="icon" viewBox="0 0 64 64"><path d="M14 34 C14 18 26 8 38 12 C50 16 54 30 46 42 C38 54 22 54 16 46 C13 42 13 38 14 34 Z" fill="#FF8A3D"/><path d="M38 12 C40 8 46 6 50 8" stroke="#5F9628" stroke-width="4" stroke-linecap="round" fill="none"/></svg>
+          <h3>Mango con chile</h3>
+          <p>Dulce, fresco y con un toque picosito</p>
+        </div>
+        <div class="flavor-card fc-limon">
+          <svg class="icon" viewBox="0 0 64 64"><ellipse cx="32" cy="32" rx="22" ry="18" fill="#7CB93B"/><path d="M10 32 L4 26 M10 32 L4 38" stroke="#5F9628" stroke-width="4" stroke-linecap="round"/></svg>
+          <h3>Limón</h3>
+          <p>El refrescante de siempre, bien agrio-dulce</p>
+        </div>
+        <div class="flavor-card fc-uva">
+          <svg class="icon" viewBox="0 0 64 64"><g fill="#8E44AD"><circle cx="24" cy="24" r="8"/><circle cx="38" cy="22" r="8"/><circle cx="32" cy="36" r="8"/><circle cx="20" cy="40" r="7"/><circle cx="42" cy="38" r="7"/></g></svg>
+          <h3>Uva</h3>
+          <p>Intensa y jugosa, como la fruta recién cortada</p>
+        </div>
+        <div class="flavor-card fc-coco">
+          <svg class="icon" viewBox="0 0 64 64"><circle cx="32" cy="32" r="22" fill="#EFE0C9"/><circle cx="32" cy="32" r="22" fill="none" stroke="#3D2314" stroke-width="2" stroke-dasharray="2 4"/></svg>
+          <h3>Coco</h3>
+          <p>Cremosa, tropical y con pulpa de coco real</p>
+        </div>
+        <div class="flavor-card fc-choco">
+          <svg class="icon" viewBox="0 0 64 64"><rect x="14" y="14" width="36" height="36" rx="10" fill="#7A4B31"/><rect x="20" y="20" width="24" height="24" rx="6" fill="#5C3620"/></svg>
+          <h3>Chocolate</h3>
+          <p>Intenso para los amantes del cacao</p>
+        </div>
+        <div class="flavor-card fc-turq">
+          <svg class="icon" viewBox="0 0 64 64"><path d="M32 10 C20 10 12 20 12 30 C12 42 20 52 32 52 C44 52 52 42 52 30 C52 20 44 10 32 10 Z" fill="#00A99D"/><circle cx="26" cy="26" r="2.5" fill="#D9F3F1"/><circle cx="36" cy="32" r="2.5" fill="#D9F3F1"/></svg>
+          <h3>Nieve de garrafa</h3>
+          <p>Sabores tradicionales hechos al momento</p>
+        </div>
+        <div class="flavor-card fc-tama">
+          <svg class="icon" viewBox="0 0 64 64"><ellipse cx="32" cy="32" rx="20" ry="16" fill="#C97B3F"/><ellipse cx="32" cy="32" rx="20" ry="16" fill="none" stroke="#3D2314" stroke-width="1.5" stroke-dasharray="1 5"/></svg>
+          <h3>Tamarindo</h3>
+          <p>Agridulce con un toque de chile</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SIN AZUCAR BANNER ================= -->
+  <section class="banner" id="sin-azucar">
+    <div class="banner-inner">
+      <div class="icon-badge">
+        <svg viewBox="0 0 64 64" fill="none"><path d="M32 8 C18 8 8 20 8 32 C8 48 20 58 32 58 C44 58 56 48 56 32 C56 20 46 8 32 8 Z" fill="#00A99D"/><line x1="14" y1="14" x2="50" y2="50" stroke="#fff" stroke-width="5" stroke-linecap="round"/></svg>
+      </div>
+      <div>
+        <h2>También pensamos en tu salud 💚</h2>
+        <p>Tenemos línea de helados y paletas sin azúcar, con el mismo sabor artesanal de siempre. Ideales para toda la familia.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MENUDEO / MAYOREO ================= -->
+  <section class="section split-section" id="negocio">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">🏭 Directo de fábrica</div>
+        <h2>Para tu antojo o para tu negocio</h2>
+        <p>Vendemos al menudeo para el cliente de la esquina y al mayoreo para tiendas, eventos y negocios.</p>
+      </div>
+      <div class="split-grid">
+        <div class="split-card">
+          <span class="num">MENUDEO</span>
+          <h3>🍦 Para ti y tu familia</h3>
+          <p>Ven a la nevería y elige tu paleta o helado favorito, o pídelo para llevar a la puerta de tu casa.</p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="#FF4470" stroke-width="3" stroke-linecap="round"><path d="M5 13l4 4L19 7"/></svg> Paletas de agua y de crema</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="#FF4470" stroke-width="3" stroke-linecap="round"><path d="M5 13l4 4L19 7"/></svg> Helados por bola o litro</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="#FF4470" stroke-width="3" stroke-linecap="round"><path d="M5 13l4 4L19 7"/></svg> Nieves y raspados</li>
+          </ul>
+        </div>
+        <div class="split-card">
+          <span class="num">MAYOREO</span>
+          <h3>📦 Para tu negocio</h3>
+          <p>Surtimos tiendas, abarrotes, eventos y fiestas con paletas y helados en presentación mayorista.</p>
+          <ul>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="#8E44AD" stroke-width="3" stroke-linecap="round"><path d="M5 13l4 4L19 7"/></svg> Precios especiales por volumen</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="#8E44AD" stroke-width="3" stroke-linecap="round"><path d="M5 13l4 4L19 7"/></svg> Surtido para eventos y fiestas</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="#8E44AD" stroke-width="3" stroke-linecap="round"><path d="M5 13l4 4L19 7"/></svg> Entrega coordinada en la región</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ABOUT ================= -->
+  <section class="section about" id="nosotros">
+    <div class="container about-grid">
+      <div class="about-art" aria-hidden="true">
+        <svg viewBox="0 0 300 300" fill="none">
+          <circle cx="150" cy="150" r="140" fill="#FFEBCF"/>
+          <rect x="130" y="150" width="16" height="110" rx="7" fill="#E8C79A"/>
+          <path d="M60 70 C60 30 100 10 140 10 C180 10 220 30 220 70 C220 125 175 190 140 190 C105 190 60 125 60 70 Z" fill="#FF8A3D"/>
+          <path d="M85 55 C105 42 130 42 150 60" stroke="#fff" stroke-width="6" stroke-linecap="round" opacity="0.4"/>
+        </svg>
+      </div>
+      <div class="about-text">
+        <h2>Hechos a mano, en Mexticacán, todos los días</h2>
+        <p>Helados Mexty es una fábrica de helados y paletas ubicada en el centro de Mexticacán, Jalisco. Elaboramos cada producto con fruta e ingredientes seleccionados, cuidando el sabor tradicional que caracteriza a nuestra región.</p>
+        <p>Desde nuestra nevería surtimos al público en general y también atendemos pedidos de mayoreo para comercios y eventos.</p>
+        <div class="stat-row">
+          <div class="stat"><b>+15</b><span>Sabores disponibles</span></div>
+          <div class="stat"><b>100%</b><span>Fabricación propia</span></div>
+          <div class="stat"><b>2</b><span>Líneas: normal y sin azúcar</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= INSTAGRAM CTA ================= -->
+  <section class="insta-cta">
+    <div class="container">
+      <h2>Mira nuestros sabores en Instagram</h2>
+      <p>Fotos, novedades y sabores del día — todo en @heladosmextyjal</p>
+      <div>
+        <span class="insta-handle">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff" stroke="none"/></svg>
+          @heladosmextyjal
+        </span>
+      </div>
+      <div>
+        <a class="btn btn-white" href="https://www.instagram.com/heladosmextyjal/" target="_blank" rel="noopener">Ver perfil de Instagram ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= UBICACION ================= -->
+  <section class="section location" id="ubicacion">
+    <div class="container">
+      <div class="section-head">
+        <div class="eyebrow">📍 Visítanos</div>
+        <h2>Encuéntranos en el centro de Mexticacán</h2>
+        <p>Te esperamos con las paletas bien frías.</p>
+      </div>
+      <div class="loc-grid">
+        <div class="loc-card">
+          <h3>Datos de contacto</h3>
+          <div class="loc-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.5-7-11a7 7 0 0114 0c0 4.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+            <div><b>Dirección</b><span>Morelos #3, Zona Centro, Mexticacán, Jalisco</span></div>
+          </div>
+          <div class="loc-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6A19.8 19.8 0 012.2 4.2 2 2 0 014.2 2h3a2 2 0 012 1.7c.1.9.3 1.8.6 2.7a2 2 0 01-.5 2.1L8 9.9a16 16 0 006 6l1.4-1.4a2 2 0 012.1-.4c.9.3 1.8.5 2.7.6a2 2 0 011.8 2.2z"/></svg>
+            <div><b>Teléfono / WhatsApp</b><span>344 101 1370</span></div>
+          </div>
+          <div class="loc-row">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            <div><b>Instagram</b><span>@heladosmextyjal</span></div>
+          </div>
+          <div class="hero-ctas" style="margin-top:22px;">
+            <a class="btn btn-mango" href="https://wa.me/523441011370" target="_blank" rel="noopener">💬 Escríbenos</a>
+            <a class="btn btn-fresa" href="https://www.instagram.com/heladosmextyjal/" target="_blank" rel="noopener">📸 Instagram</a>
+          </div>
+        </div>
+        <div class="map-embed">
+          <iframe title="Mapa Helados Mexty, Mexticacán Jalisco" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Morelos+3,+Zona+Centro,+Mexticac%C3%A1n,+Jalisco&output=embed"></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">
+          <svg class="brand-mark" viewBox="0 0 64 64" fill="none">
+            <rect x="26" y="30" width="12" height="26" rx="4" fill="#D9A066"/>
+            <path d="M32 4 C18 4 10 16 10 26 C10 38 20 46 32 46 C44 46 54 38 54 26 C54 16 46 4 32 4 Z" fill="#FF4470"/>
+          </svg>
+          <span>Helados Mexty</span>
+        </div>
+        <p>Fábrica de helados y paletas. Paletería y nevería en el centro de Mexticacán, Jalisco. Menudeo y mayoreo.</p>
+      </div>
+      <div>
+        <h4>Navegación</h4>
+        <ul>
+          <li><a href="#sabores">Sabores</a></li>
+          <li><a href="#sin-azucar">Sin azúcar</a></li>
+          <li><a href="#negocio">Menudeo y mayoreo</a></li>
+          <li><a href="#ubicacion">Ubicación</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="https://wa.me/523441011370" target="_blank" rel="noopener">📱 344 101 1370</a></li>
+          <li><a href="https://www.instagram.com/heladosmextyjal/" target="_blank" rel="noopener">📸 @heladosmextyjal</a></li>
+          <li><a href="https://www.google.com/maps?q=Morelos+3,+Zona+Centro,+Mexticac%C3%A1n,+Jalisco" target="_blank" rel="noopener">📍 Morelos #3, Mexticacán</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 Helados Mexty · Mexticacán, Jalisco · Hecho con 🍧 para el pueblo
+    </div>
+  </div>
+</footer>
+
+<a class="whatsapp-float" href="https://wa.me/523441011370" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 32 32" fill="#fff"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.4.7 4.6 1.9 6.5L4 29l7.7-1.9c1.8 1 3.9 1.6 6.3 1.6 6.6 0 12-5.4 12-12S22.6 3 16 3zm0 21.8c-2.1 0-4-.6-5.6-1.6l-.4-.2-4.6 1.2 1.2-4.5-.3-.5C5.4 17.9 4.8 16.5 4.8 15c0-6.2 5-11.2 11.2-11.2S27.2 8.8 27.2 15 22.2 24.8 16 24.8z"/><path d="M22 18.3c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.7.1-.2.3-.8 1.1-1 1.3-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-2-1.8-2.3-.2-.3 0-.5.1-.6.1-.1.3-.4.4-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5 0-.2-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4 0 1.4 1 2.8 1.2 3 .1.2 2 3 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.9-.8 2.2-1.5.3-.7.3-1.3.2-1.5 0-.1-.3-.2-.6-.4z"/></svg>
+</a>
+
+</body>
+</html>
