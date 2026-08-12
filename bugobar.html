@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BUGO BAR — Desayunos, tapas y tardeo en Madrid</title>
+<meta name="description" content="BUGO BAR. Ambiente moderno y acogedor. Desayunos que enganchan, buena música y tapas con estilo. El tardeo que te mereces.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800;900&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF1E1;
+    --plum:#2B1B34;
+    --coral:#FF5C7A;
+    --mustard:#F4B942;
+    --avocado:#7C9A47;
+    --wine:#8B2942;
+    --ink:#22131C;
+    --paper:#FFFBF4;
+    --shadow: 6px 6px 0 rgba(43,27,52,0.9);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Manrope', sans-serif;
+    background:var(--cream);
+    color:var(--ink);
+    overflow-x:hidden;
+  }
+  h1,h2,h3, .display{
+    font-family:'Unbounded', sans-serif;
+  }
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  ::selection{background:var(--coral); color:var(--paper);}
+
+  /* -------- reduce motion -------- */
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+
+  /* -------- utility -------- */
+  .wrap{max-width:1180px; margin:0 auto; padding:0 24px;}
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:'Unbounded', sans-serif;
+    font-weight:600; font-size:0.85rem;
+    letter-spacing:0.02em;
+    padding:16px 28px;
+    border-radius:100px;
+    border:3px solid var(--ink);
+    box-shadow: var(--shadow);
+    cursor:pointer;
+    transition: transform .18s ease, box-shadow .18s ease;
+    white-space:nowrap;
+  }
+  .btn:hover{ transform: translate(-3px,-3px); box-shadow: 9px 9px 0 rgba(43,27,52,0.9); }
+  .btn:active{ transform: translate(0,0); box-shadow: 2px 2px 0 rgba(43,27,52,0.9); }
+  .btn-coral{ background:var(--coral); color:var(--paper); }
+  .btn-mustard{ background:var(--mustard); color:var(--ink); }
+  .btn-outline{ background:transparent; color:var(--ink); }
+  .btn-cream{ background:var(--cream); color:var(--ink); }
+
+  .eyebrow{
+    font-family:'Unbounded', sans-serif;
+    font-size:0.72rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--wine);
+    display:inline-flex; align-items:center; gap:8px;
+    margin-bottom:14px;
+  }
+  .eyebrow::before{ content:"●"; color:var(--coral); font-size:0.6rem; }
+
+  /* -------- nav -------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(251,241,225,0.88);
+    backdrop-filter: blur(10px);
+    border-bottom:3px solid var(--ink);
+  }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px;
+    max-width:1180px; margin:0 auto;
+  }
+  .logo{
+    font-family:'Unbounded', sans-serif;
+    font-weight:900;
+    font-size:1.4rem;
+    display:flex; align-items:center; gap:8px;
+  }
+  .logo span{ color:var(--coral); }
+  .nav-links{ display:flex; gap:30px; align-items:center; }
+  .nav-links a{
+    font-weight:700; font-size:0.92rem;
+    position:relative;
+  }
+  .nav-links a:not(.btn)::after{
+    content:""; position:absolute; left:0; bottom:-5px; width:0; height:3px;
+    background:var(--coral); transition: width .25s ease;
+  }
+  .nav-links a:not(.btn):hover::after{ width:100%; }
+  .nav-cta{ display:flex; gap:12px; align-items:center; }
+  .menu-toggle{ display:none; background:none; border:none; font-size:1.6rem; cursor:pointer; }
+
+  @media (max-width:860px){
+    .nav-links{
+      position:fixed; inset:76px 0 0 0; background:var(--cream);
+      flex-direction:column; padding:40px 24px; gap:26px;
+      transform:translateX(100%); transition:transform .3s ease;
+      border-top:3px solid var(--ink);
+    }
+    .nav-links.open{ transform:translateX(0); }
+    .menu-toggle{ display:block; }
+    .nav-cta .btn span.long{ display:none; }
+  }
+
+  /* -------- hero -------- */
+  .hero{
+    position:relative;
+    background:var(--plum);
+    color:var(--paper);
+    padding:90px 0 130px;
+    overflow:hidden;
+    border-bottom:4px solid var(--ink);
+  }
+  .hero .wrap{ position:relative; z-index:3; display:flex; flex-direction:column; align-items:flex-start; gap:26px;}
+  .hero-blob{
+    position:absolute; border-radius:50%;
+    filter:blur(2px);
+    z-index:1;
+  }
+  .blob1{ width:340px; height:340px; background:var(--coral); top:-100px; right:-60px; opacity:.9; animation:float1 9s ease-in-out infinite; }
+  .blob2{ width:220px; height:220px; background:var(--mustard); bottom:-80px; right:220px; opacity:.85; animation:float2 7s ease-in-out infinite; }
+  .blob3{ width:150px; height:150px; background:var(--avocado); top:40%; right:40px; opacity:.8; animation:float1 11s ease-in-out infinite reverse; }
+  @keyframes float1{ 0%,100%{transform:translateY(0px);} 50%{transform:translateY(-22px);} }
+  @keyframes float2{ 0%,100%{transform:translateY(0px) rotate(0deg);} 50%{transform:translateY(18px) rotate(8deg);} }
+
+  .hero-emoji-row{
+    font-size:1.6rem; letter-spacing:0.3em;
+    opacity:.95;
+  }
+  .hero h1{
+    font-size:clamp(2.8rem, 7vw, 5.6rem);
+    line-height:0.95;
+    font-weight:900;
+    text-transform:uppercase;
+  }
+  .hero h1 .accent{ color:var(--mustard); -webkit-text-stroke:2px var(--ink); }
+  .hero p.lead{
+    font-size:clamp(1.05rem, 2vw, 1.35rem);
+    max-width:560px;
+    color:#F3E7D6;
+    font-weight:500;
+  }
+  .hero-ctas{ display:flex; flex-wrap:wrap; gap:16px; margin-top:10px; }
+  .hero-tags{ display:flex; flex-wrap:wrap; gap:12px; margin-top:8px; }
+  .tag{
+    font-size:0.8rem; font-weight:700; padding:8px 16px; border-radius:100px;
+    border:2px solid rgba(255,255,255,0.35); color:#F3E7D6;
+  }
+
+  /* -------- marquee -------- */
+  .marquee{
+    background:var(--mustard);
+    border-bottom:4px solid var(--ink);
+    overflow:hidden;
+    white-space:nowrap;
+    padding:14px 0;
+  }
+  .marquee-track{
+    display:inline-block;
+    animation: scroll 22s linear infinite;
+    font-family:'Unbounded', sans-serif;
+    font-weight:800; font-size:1rem; color:var(--ink);
+  }
+  .marquee-track span{ margin:0 26px; }
+  @keyframes scroll{ from{transform:translateX(0);} to{transform:translateX(-50%);} }
+
+  /* -------- section generic -------- */
+  section{ padding:100px 0; position:relative; }
+  .section-head{ max-width:640px; margin-bottom:56px; }
+  .section-head h2{
+    font-size:clamp(2rem, 4.4vw, 3.1rem);
+    font-weight:800;
+    line-height:1.08;
+  }
+  .section-head p{ margin-top:16px; font-size:1.08rem; color:#4a3a4d; max-width:520px; }
+
+  /* -------- daypart timeline (signature element) -------- */
+  .daypart{ background:var(--paper); border-bottom:4px solid var(--ink); }
+  .arc-wrap{ position:relative; margin-bottom:64px; }
+  .arc-svg{ width:100%; height:auto; display:block; }
+  .day-cards{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:24px;
+  }
+  @media (max-width:860px){ .day-cards{ grid-template-columns:1fr; } }
+  .day-card{
+    background:var(--cream);
+    border:3px solid var(--ink);
+    border-radius:22px;
+    padding:30px 26px;
+    box-shadow: var(--shadow);
+    position:relative;
+    transition: transform .2s ease;
+  }
+  .day-card:hover{ transform: translateY(-6px); }
+  .day-card .time{
+    font-family:'Unbounded', sans-serif; font-size:0.72rem; letter-spacing:0.14em;
+    text-transform:uppercase; color:var(--wine); font-weight:700;
+  }
+  .day-card h3{ font-size:1.5rem; margin:10px 0 12px; }
+  .day-card p{ color:#4a3a4d; font-size:0.98rem; line-height:1.5; }
+  .day-card .icon{ font-size:2.1rem; margin-bottom:6px; display:block; }
+  .day-card.morning{ border-color:var(--ink); }
+  .day-card.morning .icon-bg{ background:var(--mustard); }
+  .day-card.afternoon .icon-bg{ background:var(--coral); }
+  .day-card.night .icon-bg{ background:var(--avocado); }
+  .icon-bg{
+    width:52px; height:52px; border-radius:14px; display:flex; align-items:center; justify-content:center;
+    border:3px solid var(--ink); margin-bottom:14px; font-size:1.5rem;
+  }
+
+  /* -------- ambiente / gallery -------- */
+  .ambiente{ background:var(--plum); color:var(--paper); border-bottom:4px solid var(--ink); }
+  .ambiente .section-head p{ color:#D9C9DE; }
+  .amb-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:18px;
+  }
+  @media (max-width:860px){ .amb-grid{ grid-template-columns:repeat(2,1fr); } }
+  .amb-tile{
+    aspect-ratio:1/1.1;
+    border-radius:20px;
+    border:3px solid var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    font-size:2.6rem;
+    position:relative;
+    overflow:hidden;
+  }
+  .amb-tile span.label{
+    position:absolute; bottom:12px; left:14px; right:14px;
+    font-family:'Unbounded', sans-serif; font-size:0.7rem; letter-spacing:.04em;
+    font-weight:700; color:var(--ink);
+  }
+  .amb-tile.t1{ background:var(--coral); }
+  .amb-tile.t2{ background:var(--mustard); }
+  .amb-tile.t3{ background:var(--avocado); }
+  .amb-tile.t4{ background:#E8A0AE; }
+
+  /* -------- menu highlights -------- */
+  .menu-section{ background:var(--cream); border-bottom:4px solid var(--ink); }
+  .menu-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
+  @media (max-width:700px){ .menu-grid{ grid-template-columns:1fr; } }
+  .menu-item{
+    background:var(--paper); border:3px solid var(--ink); border-radius:18px;
+    padding:24px 26px; display:flex; gap:18px; align-items:flex-start;
+    box-shadow: 5px 5px 0 rgba(43,27,52,0.85);
+  }
+  .menu-item .emo{ font-size:1.8rem; }
+  .menu-item h4{ font-family:'Unbounded', sans-serif; font-size:1.05rem; margin-bottom:6px; }
+  .menu-item p{ color:#4a3a4d; font-size:0.94rem; line-height:1.45; }
+
+  /* -------- cta / follow -------- */
+  .cta-section{
+    background:var(--coral);
+    border-bottom:4px solid var(--ink);
+    position:relative;
+    overflow:hidden;
+  }
+  .cta-section .wrap{ position:relative; z-index:2; text-align:center; display:flex; flex-direction:column; align-items:center; gap:22px;}
+  .cta-section h2{ color:var(--ink); font-size:clamp(2rem,5vw,3.2rem); font-weight:900; text-transform:uppercase; }
+  .cta-section p{ color:#3a1620; font-size:1.1rem; max-width:520px; font-weight:600;}
+  .cta-btns{ display:flex; flex-wrap:wrap; gap:18px; justify-content:center; margin-top:8px;}
+  .stripe{
+    position:absolute; inset:0; z-index:1;
+    background-image: repeating-linear-gradient(45deg, rgba(0,0,0,0.05) 0 22px, transparent 22px 44px);
+  }
+
+  /* -------- location -------- */
+  .location{ background:var(--paper); }
+  .loc-flex{ display:flex; gap:50px; align-items:center; flex-wrap:wrap; }
+  .loc-text{ flex:1 1 380px; }
+  .loc-card{
+    flex:1 1 320px;
+    background:var(--plum); color:var(--paper);
+    border:3px solid var(--ink); border-radius:22px;
+    padding:36px; box-shadow: var(--shadow);
+  }
+  .loc-card .icon{ font-size:2.4rem; margin-bottom:14px; }
+  .loc-card h3{ font-family:'Unbounded', sans-serif; font-size:1.2rem; margin-bottom:10px; }
+  .loc-card p{ color:#D9C9DE; font-size:0.95rem; margin-bottom:22px; line-height:1.5; }
+  .info-list{ list-style:none; margin-bottom:24px; }
+  .info-list li{ display:flex; gap:12px; margin-bottom:14px; font-size:1.02rem; align-items:flex-start; }
+  .info-list b{ display:block; font-family:'Unbounded', sans-serif; font-size:0.78rem; letter-spacing:.06em; text-transform:uppercase; color:var(--wine); margin-bottom:3px;}
+
+  /* -------- footer -------- */
+  footer{
+    background:var(--ink); color:#F3E7D6; padding:60px 0 30px;
+  }
+  .foot-grid{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:30px; margin-bottom:40px;}
+  .foot-logo{ font-family:'Unbounded', sans-serif; font-weight:900; font-size:1.6rem; }
+  .foot-logo span{ color:var(--coral); }
+  .foot-links{ display:flex; gap:40px; flex-wrap:wrap; }
+  .foot-col h5{ font-family:'Unbounded', sans-serif; font-size:0.78rem; letter-spacing:.08em; text-transform:uppercase; color:var(--mustard); margin-bottom:14px;}
+  .foot-col a{ display:block; margin-bottom:10px; font-size:0.92rem; color:#F3E7D6; opacity:.85; }
+  .foot-col a:hover{ opacity:1; text-decoration:underline; }
+  .foot-bottom{
+    border-top:1px solid rgba(255,255,255,0.15); padding-top:24px;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+    font-size:0.82rem; opacity:.7;
+  }
+
+  /* -------- reveal on scroll -------- */
+  .reveal{ opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  :focus-visible{ outline:3px solid var(--coral); outline-offset:3px; }
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <a href="#top" class="logo">BUGO <span>BAR</span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="#ambiente">Ambiente</a>
+      <a href="#daypart">Qué ofrecemos</a>
+      <a href="#menu">Especialidades</a>
+      <a href="#encuentranos">Encuéntranos</a>
+      <a href="https://www.instagram.com/bugobar/" target="_blank" rel="noopener" class="btn btn-mustard" style="padding:10px 20px;">📷 Instagram</a>
+    </div>
+    <div class="nav-cta">
+      <a href="https://www.instagram.com/bugobar/" target="_blank" rel="noopener" class="btn btn-coral" style="padding:10px 18px; display:none;" id="navIgDesktop"><span class="long">Síguenos</span> 📷</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú">☰</button>
+    </div>
+  </nav>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-blob blob1"></div>
+  <div class="hero-blob blob2"></div>
+  <div class="hero-blob blob3"></div>
+  <div class="wrap">
+    <div class="hero-emoji-row">☕️ ✨ 🍹 🍻 💕</div>
+    <h1>El tardeo <span class="accent">que</span><br>te mereces</h1>
+    <p class="lead">Ambiente moderno y acogedor en pleno Madrid. Desayunos que enganchan, tapas con estilo y buen rollo, y la música que siempre pone el punto perfecto.</p>
+    <div class="hero-ctas">
+      <a href="https://www.instagram.com/bugobar/" target="_blank" rel="noopener" class="btn btn-coral">📷 Síguenos en Instagram</a>
+      <a href="https://maps.app.goo.gl/LN3ShCTPBH2tTX296" target="_blank" rel="noopener" class="btn btn-mustard">📍 Cómo llegar</a>
+    </div>
+    <div class="hero-tags">
+      <span class="tag">🥑 Desayunos que enganchan</span>
+      <span class="tag">🎷 Buena música</span>
+      <span class="tag">🍷 Tapas con estilo</span>
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>☕ DESAYUNOS QUE ENGANCHAN</span><span>🍷 TAPAS CON ESTILO Y BUEN ROLLO</span><span>🎵 BUENA MÚSICA</span><span>🍹 EL TARDEO QUE TE MERECES</span>
+    <span>☕ DESAYUNOS QUE ENGANCHAN</span><span>🍷 TAPAS CON ESTILO Y BUEN ROLLO</span><span>🎵 BUENA MÚSICA</span><span>🍹 EL TARDEO QUE TE MERECES</span>
+  </div>
+</div>
+
+<section class="daypart" id="daypart">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Un plan para cada momento</div>
+      <h2>De la primera taza al último brindis</h2>
+      <p>BUGO BAR cambia de ritmo según la hora, pero nunca de estilo. Así se vive el día aquí.</p>
+    </div>
+
+    <div class="day-cards">
+      <div class="day-card morning reveal">
+        <div class="icon-bg icon-bg1">☕</div>
+        <div class="time">Mañana</div>
+        <h3>Desayunos que enganchan 🥑</h3>
+        <p>La excusa perfecta para empezar bien el día: café de verdad, tostas con estilo y ese primer bocado que ya te hace querer volver mañana.</p>
+      </div>
+      <div class="day-card afternoon reveal">
+        <div class="icon-bg icon-bg2">🍷</div>
+        <div class="time">Tarde</div>
+        <h3>El tardeo que te mereces 🍹</h3>
+        <p>Tapas con estilo y buen rollo, copas bien servidas y esa sobremesa eterna que convierte una tarde cualquiera en un planazo.</p>
+      </div>
+      <div class="day-card night reveal">
+        <div class="icon-bg icon-bg3">🎷</div>
+        <div class="time">Noche</div>
+        <h3>Buena música, buen ambiente 🎵</h3>
+        <p>Ambiente moderno y acogedor con la banda sonora perfecta de fondo para alargar la noche con quien más te apetece.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="ambiente" id="ambiente">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow" style="color:var(--mustard);">La casa</div>
+      <h2>Moderno, acogedor y con mucho buen rollo</h2>
+      <p>Un rincón pensado para quedarse: colores cálidos, buena luz y ese punto informal que invita a alargar la sobremesa.</p>
+    </div>
+    <div class="amb-grid">
+      <div class="amb-tile t1 reveal">🥐<span class="label">DESAYUNOS</span></div>
+      <div class="amb-tile t2 reveal">🍸<span class="label">COCTELERÍA</span></div>
+      <div class="amb-tile t3 reveal">🎶<span class="label">MÚSICA EN VIVO</span></div>
+      <div class="amb-tile t4 reveal">🫒<span class="label">TAPAS</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="menu-section" id="menu">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="eyebrow">Lo que no te puedes perder</div>
+      <h2>Nuestras especialidades</h2>
+      <p>Cada carta cambia, pero el estilo se mantiene: producto bueno, presentación cuidada y raciones para compartir.</p>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-item reveal">
+        <div class="emo">🥑</div>
+        <div><h4>Desayunos con gancho</h4><p>Tostas, cafés de especialidad y ese desayuno completo que hace que madrugar merezca la pena.</p></div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="emo">🍹</div>
+        <div><h4>Cócteles de autor</h4><p>Combinados frescos y clásicos con vuelta de tuerca, perfectos para arrancar el tardeo.</p></div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="emo">🍷</div>
+        <div><h4>Tapas con estilo</h4><p>Raciones pensadas para compartir, con presentación cuidada y mucho sabor casero.</p></div>
+      </div>
+      <div class="menu-item reveal">
+        <div class="emo">🍻</div>
+        <div><h4>Cañas y buen rollo</h4><p>La cerveza bien tirada nunca falla, sobre todo con la música y la compañía adecuadas.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="stripe"></div>
+  <div class="wrap">
+    <h2>¿Nos vemos por ahí? 💕</h2>
+    <p>Síguenos para no perderte ni una novedad, promo o plan de última hora. Y si prefieres verlo con tus propios ojos, ya sabes dónde encontrarnos.</p>
+    <div class="cta-btns">
+      <a href="https://www.instagram.com/bugobar/" target="_blank" rel="noopener" class="btn btn-cream">📷 @bugobar en Instagram</a>
+      <a href="https://maps.app.goo.gl/LN3ShCTPBH2tTX296" target="_blank" rel="noopener" class="btn btn-outline" style="border-color:var(--ink);">📍 Ver en Google Maps</a>
+    </div>
+  </div>
+</section>
+
+<section class="location" id="encuentranos">
+  <div class="wrap loc-flex">
+    <div class="loc-text reveal">
+      <div class="eyebrow">Encuéntranos</div>
+      <h2 style="font-size:clamp(1.8rem,4vw,2.6rem); font-weight:800; line-height:1.1; margin-bottom:18px;">Te esperamos con la mesa puesta</h2>
+      <p style="color:#4a3a4d; font-size:1.05rem; line-height:1.6; max-width:480px;">BUGO BAR está pensado para pasarte por la mañana a por tu café, quedarte de tapas al mediodía o alargar la tarde-noche con buena música. Consulta ubicación exacta y horario actualizado en nuestras redes.</p>
+      <div class="hero-ctas" style="margin-top:26px;">
+        <a href="https://maps.app.goo.gl/LN3ShCTPBH2tTX296" target="_blank" rel="noopener" class="btn btn-coral">📍 Abrir en Google Maps</a>
+        <a href="https://www.instagram.com/bugobar/" target="_blank" rel="noopener" class="btn btn-mustard">📷 Ver Instagram</a>
+      </div>
+    </div>
+    <div class="loc-card reveal">
+      <div class="icon">💕</div>
+      <h3>BUGO BAR</h3>
+      <p>Ambiente moderno y acogedor · Desayunos que enganchan · Buena música · Tapas con estilo y buen rollo · El tardeo que te mereces</p>
+      <ul class="info-list">
+        <li>☕<div><b>Desayunos</b>Por la mañana, con calma y buen café.</div></li>
+        <li>🍷<div><b>Tardeo</b>Tapas, copas y sobremesa infinita.</div></li>
+        <li>🎵<div><b>Ambiente</b>Buena música todos los días.</div></li>
+      </ul>
+      <a href="https://maps.app.goo.gl/LN3ShCTPBH2tTX296" target="_blank" rel="noopener" class="btn btn-cream" style="width:100%; justify-content:center;">📍 Cómo llegar</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo">BUGO <span>BAR</span></div>
+        <p style="margin-top:12px; max-width:260px; opacity:.75; font-size:0.92rem;">☕️✨🍹🍻💕 Ambiente moderno y acogedor.</p>
+      </div>
+      <div class="foot-links">
+        <div class="foot-col">
+          <h5>Explora</h5>
+          <a href="#daypart">Qué ofrecemos</a>
+          <a href="#ambiente">Ambiente</a>
+          <a href="#menu">Especialidades</a>
+        </div>
+        <div class="foot-col">
+          <h5>Síguenos</h5>
+          <a href="https://www.instagram.com/bugobar/" target="_blank" rel="noopener">Instagram @bugobar</a>
+          <a href="https://maps.app.goo.gl/LN3ShCTPBH2tTX296" target="_blank" rel="noopener">Google Maps</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 BUGO BAR. Todos los derechos reservados.</span>
+      <span>Hecho con 💕 para quienes saben tardear bien.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+    menuToggle.textContent = navLinks.classList.contains('open') ? '✕' : '☰';
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    menuToggle.textContent = '☰';
+  }));
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
