@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hotel Rural Almazara · Frigiliana | Hotel, Spa, Eventos & Restaurante</title>
+<meta name="description" content="Hotel Rural Almazara en Frigiliana, entre Nerja y la Sierra de Almijara. Hotel con encanto, spa, restaurante y eventos frente al mar y las montañas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,450;0,9..144,600;0,9..144,700;1,9..144,500&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF3E3;
+    --cream-2:#F4E7CC;
+    --olive:#4B5D2E;
+    --olive-dark:#31401D;
+    --olive-soft:#7C8F53;
+    --terracotta:#C1652F;
+    --terracotta-dark:#9B4C22;
+    --gold:#E3A928;
+    --teal:#2C6470;
+    --ink:#33291E;
+    --paper:#FFFDF8;
+    --shadow: 0 20px 45px -20px rgba(51,41,30,0.35);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Jost',sans-serif;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces',serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    color:var(--olive-dark);
+  }
+  a{text-decoration:none;color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px;}
+  .eyebrow{
+    font-family:'Jost',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:0.22em;
+    font-size:0.75rem;
+    font-weight:600;
+    color:var(--terracotta-dark);
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:200;
+    background:rgba(251,243,227,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(75,93,46,0.12);
+    transition:box-shadow .3s ease;
+  }
+  header.scrolled{ box-shadow:0 8px 24px -18px rgba(51,41,30,0.4); }
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 28px; max-width:1180px; margin:0 auto;
+  }
+  .brand{ display:flex; align-items:center; gap:10px; }
+  .brand svg{width:34px;height:34px;flex-shrink:0;}
+  .brand-text{ font-family:'Fraunces',serif; font-weight:600; font-size:1.15rem; color:var(--olive-dark); line-height:1;}
+  .brand-text span{ display:block; font-family:'Jost',sans-serif; font-weight:400; font-size:0.62rem; letter-spacing:0.2em; text-transform:uppercase; color:var(--terracotta-dark); margin-top:3px;}
+  .nav-links{ display:flex; align-items:center; gap:30px; }
+  .nav-links a{
+    font-size:0.88rem; font-weight:500; color:var(--ink); position:relative; padding:4px 0;
+  }
+  .nav-links a::after{
+    content:''; position:absolute; left:0; right:0; bottom:-2px; height:2px; background:var(--terracotta);
+    transform:scaleX(0); transform-origin:left; transition:transform .25s ease;
+  }
+  .nav-links a:hover::after{ transform:scaleX(1); }
+  .nav-cta{
+    display:flex; align-items:center; gap:14px;
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:12px 24px; border-radius:100px; font-weight:600; font-size:0.9rem;
+    border:2px solid transparent; cursor:pointer; transition:all .25s ease; white-space:nowrap;
+  }
+  .btn-solid{ background:var(--terracotta); color:#fff; box-shadow:0 10px 22px -10px rgba(193,101,47,0.65);}
+  .btn-solid:hover{ background:var(--terracotta-dark); transform:translateY(-2px); }
+  .btn-outline{ border-color:var(--olive); color:var(--olive-dark); background:transparent; }
+  .btn-outline:hover{ background:var(--olive); color:#fff; transform:translateY(-2px); }
+  .btn-ghost{ color:var(--olive-dark); font-weight:500; }
+  .icon-link{
+    width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    background:var(--cream-2); color:var(--terracotta-dark); transition:all .25s ease; flex-shrink:0;
+  }
+  .icon-link:hover{ background:var(--terracotta); color:#fff; transform:translateY(-2px) rotate(-6deg); }
+  .nav-toggle{ display:none; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; min-height:100vh; display:flex; align-items:center;
+    padding-top:80px; overflow:hidden;
+    background:linear-gradient(180deg,#FDF6E7 0%, #F7E7C6 55%, #F1DBAF 100%);
+  }
+  .hero-sun{
+    position:absolute; top:12%; right:10%; width:220px; height:220px; border-radius:50%;
+    background:radial-gradient(circle at 40% 35%, #FFE9A8, var(--gold) 60%, #D9931C 100%);
+    box-shadow:0 0 90px 25px rgba(227,169,40,0.35);
+    animation:pulseSun 6s ease-in-out infinite;
+  }
+  @keyframes pulseSun{ 0%,100%{transform:scale(1);} 50%{transform:scale(1.06);} }
+  .hero-hills{ position:absolute; bottom:0; left:0; width:100%; line-height:0; }
+  .hero-content{
+    position:relative; z-index:5; max-width:1180px; margin:0 auto; padding:0 28px;
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:40px; align-items:center;
+  }
+  .hero-text .eyebrow{ margin-bottom:18px; display:inline-block; }
+  .hero-text h1{
+    font-size:clamp(2.6rem,5.2vw,4.2rem); line-height:1.02; margin-bottom:22px;
+  }
+  .hero-text h1 em{ font-style:italic; color:var(--terracotta); }
+  .hero-text p{
+    font-size:1.12rem; line-height:1.65; color:#4a4032; max-width:480px; margin-bottom:34px;
+  }
+  .hero-btns{ display:flex; gap:16px; flex-wrap:wrap; margin-bottom:36px; }
+  .hero-stats{ display:flex; gap:34px; flex-wrap:wrap; }
+  .hero-stats div{ display:flex; flex-direction:column; }
+  .hero-stats strong{ font-family:'Fraunces',serif; font-size:1.7rem; color:var(--olive-dark); }
+  .hero-stats span{ font-size:0.78rem; color:#5c5040; letter-spacing:0.02em; }
+
+  .hero-art{ position:relative; height:460px; }
+  .grove-frame{
+    position:absolute; inset:0; border-radius:28px; overflow:hidden;
+    box-shadow:var(--shadow); border:6px solid var(--paper);
+    background:linear-gradient(160deg,#EFE0BE,#E3CB98);
+  }
+  .grove-frame svg{ width:100%; height:100%; display:block; }
+  .float-badge{
+    position:absolute; bottom:-22px; left:-22px; background:var(--paper); border-radius:18px;
+    padding:16px 20px; box-shadow:var(--shadow); display:flex; align-items:center; gap:12px;
+    animation:float 5s ease-in-out infinite;
+  }
+  @keyframes float{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);} }
+  .float-badge svg{width:30px;height:30px;color:var(--terracotta);}
+  .float-badge strong{ display:block; font-family:'Fraunces',serif; font-size:1.05rem; color:var(--olive-dark); }
+  .float-badge span{ font-size:0.75rem; color:#6b5f4c; }
+
+  .scroll-cue{
+    position:absolute; bottom:26px; left:50%; transform:translateX(-50%); z-index:5;
+    display:flex; flex-direction:column; align-items:center; gap:6px; color:var(--olive);
+    font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; opacity:0.75;
+  }
+  .scroll-cue .line{ width:1px; height:34px; background:var(--olive); animation:scrollLine 2s ease-in-out infinite; }
+  @keyframes scrollLine{ 0%{ opacity:0.2; transform:scaleY(0.3);} 50%{opacity:1; transform:scaleY(1);} 100%{opacity:0.2; transform:scaleY(0.3);} }
+
+  /* ---------- DIVIDER (olive branch) ---------- */
+  .branch-divider{ display:flex; align-items:center; justify-content:center; gap:16px; padding:56px 0 20px; }
+  .branch-divider svg{ width:120px; height:34px; color:var(--olive-soft); }
+  .branch-divider::before, .branch-divider::after{
+    content:''; height:1px; width:120px; background:linear-gradient(90deg, transparent, var(--olive-soft), transparent);
+  }
+
+  /* ---------- REVEAL ---------- */
+  .reveal{ opacity:0; transform:translateY(28px); transition:opacity .8s ease, transform .8s ease; }
+  .reveal.visible{ opacity:1; transform:translateY(0); }
+  .reveal.delay-1.visible{ transition-delay:.12s; }
+  .reveal.delay-2.visible{ transition-delay:.24s; }
+  .reveal.delay-3.visible{ transition-delay:.36s; }
+
+  /* ---------- SECTION GENERIC ---------- */
+  section{ padding:90px 0; position:relative; }
+  .section-head{ text-align:center; max-width:640px; margin:0 auto 56px; }
+  .section-head h2{ font-size:clamp(2rem,3.6vw,2.7rem); margin-top:14px; }
+  .section-head p{ margin-top:16px; color:#5c5040; font-size:1.05rem; line-height:1.6;}
+
+  /* ---------- BIENVENIDA ---------- */
+  .welcome{ background:var(--paper); }
+  .welcome-grid{ display:grid; grid-template-columns:0.85fr 1.15fr; gap:60px; align-items:center; }
+  .welcome-art{ position:relative; }
+  .welcome-art svg{ width:100%; height:auto; border-radius:24px; box-shadow:var(--shadow); }
+  .welcome-copy h2{ font-size:clamp(1.9rem,3.4vw,2.5rem); margin-bottom:20px; }
+  .welcome-copy p{ color:#5c5040; line-height:1.75; font-size:1.03rem; margin-bottom:18px; }
+  .welcome-copy p:last-of-type{ margin-bottom:0; }
+  .welcome-tags{ display:flex; gap:10px; flex-wrap:wrap; margin-top:26px; }
+  .welcome-tags span{
+    background:var(--cream-2); color:var(--olive-dark); font-size:0.8rem; font-weight:600;
+    padding:8px 16px; border-radius:100px; border:1px solid rgba(75,93,46,0.18);
+  }
+
+  /* ---------- SERVICIOS ---------- */
+  .servicios{ background:var(--cream); }
+  .servicios-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
+  .servicio-card{
+    background:var(--paper); border-radius:22px; padding:34px 26px; text-align:left;
+    box-shadow:0 14px 30px -22px rgba(51,41,30,0.3); border:1px solid rgba(75,93,46,0.08);
+    transition:transform .3s ease, box-shadow .3s ease; position:relative; overflow:hidden;
+  }
+  .servicio-card:hover{ transform:translateY(-8px); box-shadow:var(--shadow); }
+  .servicio-card .num{ position:absolute; top:18px; right:22px; font-family:'Fraunces',serif; font-size:2.4rem; color:rgba(75,93,46,0.09); font-weight:600; }
+  .servicio-icon{
+    width:56px;height:56px;border-radius:16px; display:flex; align-items:center; justify-content:center;
+    margin-bottom:20px; color:#fff;
+  }
+  .servicio-card:nth-child(1) .servicio-icon{ background:var(--olive); }
+  .servicio-card:nth-child(2) .servicio-icon{ background:var(--teal); }
+  .servicio-card:nth-child(3) .servicio-icon{ background:var(--gold); }
+  .servicio-card:nth-child(4) .servicio-icon{ background:var(--terracotta); }
+  .servicio-card h3{ font-size:1.2rem; margin-bottom:10px; }
+  .servicio-card p{ font-size:0.92rem; color:#665a48; line-height:1.6; }
+
+  /* ---------- EXPERIENCIAS ---------- */
+  .experiencias{ background:var(--olive-dark); color:#F4EBD6; }
+  .experiencias .section-head h2{ color:#F9F2DE; }
+  .experiencias .section-head p{ color:#CFCBAE; }
+  .experiencias .eyebrow{ color:var(--gold); }
+  .exp-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; }
+  .exp-card{
+    background:rgba(244,235,214,0.06); border:1px solid rgba(244,235,214,0.14);
+    border-radius:20px; padding:28px; transition:all .3s ease;
+  }
+  .exp-card:hover{ background:rgba(244,235,214,0.12); transform:translateY(-6px); }
+  .exp-card svg{ width:34px; height:34px; color:var(--gold); margin-bottom:16px; }
+  .exp-card h3{ color:#F9F2DE; font-size:1.1rem; margin-bottom:8px; }
+  .exp-card p{ font-size:0.9rem; color:#CFCBAE; line-height:1.6; }
+
+  /* ---------- UBICACION ---------- */
+  .ubicacion{ background:var(--paper); }
+  .ubi-grid{ display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:stretch; }
+  .ubi-info h2{ font-size:clamp(1.9rem,3.2vw,2.4rem); margin-bottom:18px; }
+  .ubi-info p{ color:#5c5040; line-height:1.7; margin-bottom:24px; }
+  .ubi-list{ list-style:none; display:flex; flex-direction:column; gap:14px; margin-bottom:28px; }
+  .ubi-list li{ display:flex; gap:12px; align-items:flex-start; font-size:0.95rem; color:#4a4032; }
+  .ubi-list svg{ width:20px; height:20px; color:var(--terracotta); flex-shrink:0; margin-top:2px; }
+  .ubi-map{ border-radius:22px; overflow:hidden; box-shadow:var(--shadow); min-height:340px; border:1px solid rgba(75,93,46,0.1);}
+  .ubi-map iframe{ width:100%; height:100%; min-height:340px; border:0; display:block; }
+
+  /* ---------- OPINIONES ---------- */
+  .opiniones{ background:var(--cream-2); }
+  .rev-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .rev-card{
+    background:var(--paper); border-radius:20px; padding:30px; box-shadow:0 14px 30px -22px rgba(51,41,30,0.3);
+  }
+  .stars{ display:flex; gap:3px; margin-bottom:16px; color:var(--gold); }
+  .stars svg{ width:16px; height:16px; }
+  .rev-card p{ font-size:0.96rem; color:#4a4032; line-height:1.65; margin-bottom:18px; font-style:italic; }
+  .rev-who{ display:flex; align-items:center; gap:12px; }
+  .rev-avatar{
+    width:38px; height:38px; border-radius:50%; display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces',serif; font-weight:600; color:#fff; font-size:0.95rem;
+  }
+  .rev-who strong{ display:block; font-size:0.9rem; color:var(--olive-dark); }
+  .rev-who span{ font-size:0.76rem; color:#8a7c64; }
+
+  /* ---------- CTA / CONTACTO ---------- */
+  .contacto{
+    background:linear-gradient(135deg, var(--terracotta) 0%, var(--terracotta-dark) 100%);
+    color:#fff; position:relative; overflow:hidden;
+  }
+  .contacto::before{
+    content:''; position:absolute; width:420px; height:420px; border-radius:50%;
+    background:rgba(255,255,255,0.06); top:-140px; right:-100px;
+  }
+  .cta-grid{ display:grid; grid-template-columns:1.1fr 0.9fr; gap:50px; align-items:center; position:relative; z-index:2; }
+  .cta-grid h2{ color:#fff; font-size:clamp(2rem,3.6vw,2.8rem); margin-bottom:18px; }
+  .cta-grid > div:first-child p{ font-size:1.05rem; line-height:1.7; opacity:0.92; max-width:480px; margin-bottom:30px; }
+  .contact-card{
+    background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.25); backdrop-filter:blur(6px);
+    border-radius:24px; padding:34px; display:flex; flex-direction:column; gap:20px;
+  }
+  .contact-row{ display:flex; align-items:center; gap:14px; }
+  .contact-row .ico{
+    width:42px;height:42px;border-radius:12px; background:rgba(255,255,255,0.16); display:flex; align-items:center; justify-content:center; flex-shrink:0;
+  }
+  .contact-row .ico svg{ width:20px;height:20px; }
+  .contact-row a, .contact-row span{ font-size:0.95rem; font-weight:500; line-height:1.4; }
+  .contact-card .btn-solid{ background:#fff; color:var(--terracotta-dark); box-shadow:none; }
+  .contact-card .btn-solid:hover{ background:#F4E7CC; transform:translateY(-2px); }
+  .contact-card .btn-outline{ border-color:rgba(255,255,255,0.6); color:#fff; }
+  .contact-card .btn-outline:hover{ background:rgba(255,255,255,0.18); color:#fff; }
+  .contact-card .btn-row{ display:flex; gap:12px; flex-wrap:wrap; }
+
+  /* ---------- FOOTER ---------- */
+  footer{ background:var(--olive-dark); color:#CFCBAE; padding:50px 0 26px; }
+  .foot-grid{ display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:30px; padding-bottom:34px; border-bottom:1px solid rgba(244,235,214,0.12); }
+  .foot-brand{ display:flex; align-items:center; gap:10px; }
+  .foot-brand svg{ width:30px;height:30px; color:var(--gold); }
+  .foot-brand span{ font-family:'Fraunces',serif; color:#F9F2DE; font-size:1.1rem; }
+  .foot-links{ display:flex; gap:40px; flex-wrap:wrap; }
+  .foot-col h4{ font-size:0.78rem; text-transform:uppercase; letter-spacing:0.14em; color:var(--gold); margin-bottom:14px; font-weight:600;}
+  .foot-col a{ display:block; font-size:0.9rem; margin-bottom:10px; color:#CFCBAE; transition:color .2s; }
+  .foot-col a:hover{ color:#fff; }
+  .foot-social{ display:flex; gap:12px; }
+  .foot-social a{
+    width:38px;height:38px;border-radius:50%; background:rgba(244,235,214,0.1); display:flex; align-items:center; justify-content:center; transition:all .25s;
+  }
+  .foot-social a:hover{ background:var(--terracotta); transform:translateY(-2px); }
+  .foot-bottom{ display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; padding-top:24px; font-size:0.8rem; }
+  .foot-bottom a{ color:var(--gold); font-weight:600; }
+
+  /* ---------- WHATSAPP FLOAT ---------- */
+  .wa-float{
+    position:fixed; bottom:26px; right:26px; z-index:300; width:60px; height:60px; border-radius:50%;
+    background:#25D366; display:flex; align-items:center; justify-content:center; box-shadow:0 12px 26px -8px rgba(37,211,102,0.65);
+    animation:waPulse 2.6s ease-in-out infinite;
+  }
+  .wa-float svg{ width:30px; height:30px; color:#fff; }
+  @keyframes waPulse{ 0%,100%{ box-shadow:0 12px 26px -8px rgba(37,211,102,0.65);} 50%{ box-shadow:0 12px 34px -4px rgba(37,211,102,0.85);} }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 980px){
+    .nav-links{ display:none; }
+    .nav-toggle{ display:flex; }
+    .hero-content{ grid-template-columns:1fr; }
+    .hero-art{ height:340px; order:-1; }
+    .welcome-grid, .ubi-grid, .cta-grid{ grid-template-columns:1fr; }
+    .servicios-grid, .exp-grid, .rev-grid{ grid-template-columns:repeat(2,1fr); }
+    .hero-btns{ gap:12px; }
+  }
+  @media (max-width: 600px){
+    .servicios-grid, .exp-grid, .rev-grid{ grid-template-columns:1fr; }
+    .hero-stats{ gap:22px; }
+    nav{ padding:12px 18px; }
+    section{ padding:64px 0; }
+    .float-badge{ left:12px; bottom:-18px; padding:12px 14px; }
+    .foot-grid{ flex-direction:column; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header id="siteHeader">
+  <nav>
+    <a href="#inicio" class="brand">
+      <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="24" cy="24" r="23" fill="#4B5D2E"/>
+        <path d="M24 8C18 14 15 20 15 26c0 5 4 9 9 9s9-4 9-9c0-6-3-12-9-18Z" fill="#E3A928"/>
+        <path d="M24 14c-3 4-5 8-5 12a5 5 0 0010 0c0-4-2-8-5-12Z" fill="#FBF3E3"/>
+      </svg>
+      <span class="brand-text">Almazara<span>Hotel · Spa · Frigiliana</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="#bienvenida">La casa</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#experiencias">Experiencias</a>
+      <a href="#ubicacion">Ubicación</a>
+      <a href="#opiniones">Opiniones</a>
+      <a href="#contacto">Contacto</a>
+    </div>
+    <div class="nav-cta">
+      <a class="icon-link" href="https://www.instagram.com/hotelruralalmazara/" target="_blank" rel="noopener" aria-label="Instagram de Hotel Rural Almazara">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+      </a>
+      <a class="btn btn-solid" href="https://wa.me/34677412673?text=Hola%2C%20quiero%20reservar%20en%20Hotel%20Rural%20Almazara" target="_blank" rel="noopener">Reservar</a>
+    </div>
+  </nav>
+</header>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="inicio">
+  <div class="hero-sun"></div>
+  <div class="hero-content">
+    <div class="hero-text reveal visible">
+      <span class="eyebrow">Frigiliana · Costa del Sol</span>
+      <h1>Duerme entre<br><em>olivos</em>, mar<br>y montaña.</h1>
+      <p>Un hotel con alma andaluza a dos minutos de Nerja, donde la Sierra de Almijara se asoma al Mediterráneo. Hotel · Spa · Eventos · Restaurante.</p>
+      <div class="hero-btns">
+        <a class="btn btn-solid" href="https://wa.me/34677412673?text=Hola%2C%20quiero%20reservar%20en%20Hotel%20Rural%20Almazara" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.7 15L2 22l5.2-1.3A10 10 0 1012 2zm5.6 14.3c-.2.6-1.3 1.2-1.9 1.3-.5.1-1.1.2-3.5-.7-2.9-1.1-4.8-4-5-4.2-.1-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4.2.5.7 1.7.8 1.8.1.2.1.3 0 .5-.1.2-.1.3-.3.5-.1.2-.3.3-.4.5-.1.1-.3.3-.1.6.2.3.9 1.4 1.9 2.3 1.3 1.1 2.3 1.5 2.7 1.7.3.1.5.1.7-.1.2-.3.7-.9.9-1.1.2-.3.4-.2.6-.1l1.6.8c.2.1.4.2.4.4.1.2.1.9-.1 1.5z"/></svg>
+          Reservar por WhatsApp
+        </a>
+        <a class="btn btn-outline" href="#servicios">Ver servicios</a>
+      </div>
+      <div class="hero-stats">
+        <div><strong>22</strong><span>habitaciones con terraza</span></div>
+        <div><strong>2 min</strong><span>a las playas de Nerja</span></div>
+        <div><strong>360°</strong><span>vistas a sierra y mar</span></div>
+      </div>
+    </div>
+    <div class="hero-art reveal delay-2 visible">
+      <div class="grove-frame">
+        <svg viewBox="0 0 400 460" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+          <rect width="400" height="460" fill="#F6E6BE"/>
+          <path d="M0 130 Q100 90 200 130 T400 120 V0 H0 Z" fill="#EAD59C" opacity="0.7"/>
+          <circle cx="330" cy="90" r="46" fill="#F2C25A"/>
+          <path d="M0 210 Q90 160 200 200 T400 190 V460 H0 Z" fill="#2C6470"/>
+          <path d="M0 250 Q100 205 200 240 T400 230 V460 H0 Z" fill="#6E8B48" opacity="0.9"/>
+          <path d="M0 300 Q110 260 220 290 T400 275 V460 H0 Z" fill="#4B5D2E"/>
+          <g fill="#31401D">
+            <circle cx="60" cy="330" r="18"/><rect x="56" y="340" width="8" height="30"/>
+            <circle cx="130" cy="350" r="22"/><rect x="125" y="362" width="9" height="34"/>
+            <circle cx="210" cy="320" r="17"/><rect x="206" y="330" width="8" height="30"/>
+            <circle cx="280" cy="345" r="24"/><rect x="275" y="358" width="9" height="34"/>
+            <circle cx="350" cy="325" r="18"/><rect x="346" y="335" width="8" height="30"/>
+          </g>
+          <g fill="#FBF3E3">
+            <rect x="150" y="360" width="100" height="70" rx="4"/>
+            <polygon points="140,362 200,330 260,362" fill="#C1652F"/>
+            <rect x="180" y="395" width="18" height="35" fill="#9B4C22"/>
+            <rect x="165" y="378" width="14" height="14" fill="#2C6470"/>
+            <rect x="220" y="378" width="14" height="14" fill="#2C6470"/>
+          </g>
+        </svg>
+      </div>
+      <div class="float-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0112 5.5 5.5 5.5 0 0121.5 12c-2.5 4.5-9.5 9-9.5 9z"/></svg>
+        <div><strong>8.4 / 10</strong><span>valoración de huéspedes</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>Descubre</span><span class="line"></span></div>
+</section>
+
+<!-- ===== BIENVENIDA ===== -->
+<section class="welcome" id="bienvenida">
+  <div class="wrap welcome-grid">
+    <div class="welcome-art reveal">
+      <svg viewBox="0 0 380 420" xmlns="http://www.w3.org/2000/svg">
+        <rect width="380" height="420" fill="#F1DBAF"/>
+        <path d="M0 260 Q100 210 190 250 T380 230 V420 H0 Z" fill="#7C8F53"/>
+        <path d="M0 300 Q110 260 220 290 T380 270 V420 H0 Z" fill="#4B5D2E"/>
+        <circle cx="300" cy="80" r="40" fill="#E3A928" opacity="0.9"/>
+        <g stroke="#31401D" stroke-width="4" fill="none">
+          <path d="M60 130 Q80 60 120 40"/>
+        </g>
+        <g fill="#31401D" opacity="0.85">
+          <ellipse cx="66" cy="120" rx="7" ry="12"/><ellipse cx="82" cy="98" rx="7" ry="12"/>
+          <ellipse cx="100" cy="80" rx="7" ry="12"/><ellipse cx="118" cy="60" rx="7" ry="12"/>
+          <ellipse cx="55" cy="100" rx="6" ry="10"/><ellipse cx="95" cy="60" rx="6" ry="10"/>
+        </g>
+        <g fill="#FBF3E3">
+          <rect x="120" y="330" width="150" height="90" rx="4"/>
+          <polygon points="105,332 195,285 285,332" fill="#9B4C22"/>
+          <rect x="180" y="365" width="24" height="55" fill="#C1652F"/>
+          <rect x="140" y="345" width="20" height="20" fill="#2C6470"/>
+          <rect x="230" y="345" width="20" height="20" fill="#2C6470"/>
+        </g>
+      </svg>
+    </div>
+    <div class="welcome-copy reveal delay-1">
+      <span class="eyebrow">La casa</span>
+      <h2>Un cortijo andaluz entre dos mundos: la sierra y el mar</h2>
+      <p>En Los Tablazos, a medio camino entre Frigiliana —uno de los pueblos más bonitos de España— y Nerja, Hotel Rural Almazara conserva la esencia del estilo rústico andaluz: paredes encaladas, madera noble y terrazas abiertas al horizonte.</p>
+      <p>Aquí el tiempo se mide en atardeceres desde la piscina, en el aroma de la cocina tradicional y en el silencio de la Sierra de Almijara. Un refugio pensado para desconectar, celebrar y volver a conectar con lo esencial.</p>
+      <div class="welcome-tags">
+        <span>Estilo rústico andaluz</span>
+        <span>A 2 min de Nerja</span>
+        <span>Vistas a sierra y mar</span>
+        <span>Trato familiar</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="branch-divider reveal">
+  <svg viewBox="0 0 120 34" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 17c20-14 98-14 116 0M20 12c4-3 8-3 12 0M50 8c4-3 8-3 12 0M80 12c4-3 8-3 12 0"/></svg>
+</div>
+
+<!-- ===== SERVICIOS ===== -->
+<section class="servicios" id="servicios">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Qué te espera</span>
+      <h2>Hotel, spa, eventos y restaurante</h2>
+      <p>Cuatro razones para hacer de Almazara tu próxima escapada, todas bajo el mismo tejado.</p>
+    </div>
+    <div class="servicios-grid">
+      <div class="servicio-card reveal">
+        <span class="num">01</span>
+        <div class="servicio-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M3 18v-6a2 2 0 012-2h14a2 2 0 012 2v6"/><path d="M3 12V8a2 2 0 012-2h4a2 2 0 012 2v2"/><path d="M3 18v3M21 18v3"/></svg></div>
+        <h3>Hotel</h3>
+        <p>Habitaciones luminosas con terraza privada, aire acondicionado y vistas al valle o al mar. Estilo rústico, confort actual.</p>
+      </div>
+      <div class="servicio-card reveal delay-1">
+        <span class="num">02</span>
+        <div class="servicio-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0112 5.5 5.5 5.5 0 0121.5 12c-2.5 4.5-9.5 9-9.5 9z"/></svg></div>
+        <h3>Spa</h3>
+        <p>Piscina interior y exterior, sauna y solárium para dejar que el cuerpo descanse tanto como la mente.</p>
+      </div>
+      <div class="servicio-card reveal delay-2">
+        <span class="num">03</span>
+        <div class="servicio-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/><circle cx="9" cy="15" r="1.4" fill="#fff"/><circle cx="15" cy="15" r="1.4" fill="#fff"/></svg></div>
+        <h3>Eventos</h3>
+        <p>Salón con encanto y jardines para bodas, celebraciones y reuniones que necesitan un lugar fuera de lo común.</p>
+      </div>
+      <div class="servicio-card reveal delay-3">
+        <span class="num">04</span>
+        <div class="servicio-icon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M6 3v7a3 3 0 006 0V3M6 3v18M18 3c-2 0-3 2-3 5s1 4 3 4v10"/></svg></div>
+        <h3>Restaurante</h3>
+        <p>Cocina tradicional andaluza con producto local, servida en un comedor con vistas a la sierra y al mar.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EXPERIENCIAS ===== -->
+<section class="experiencias" id="experiencias">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Detalles que se sienten</span>
+      <h2>Cada rincón, pensado para el descanso</h2>
+      <p>Del jardín a la biblioteca, cada espacio de Almazara está hecho para quedarse un rato más.</p>
+    </div>
+    <div class="exp-grid">
+      <div class="exp-card reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12a8 8 0 1116 0"/><path d="M2 20h20M6 20V12M18 20V12"/></svg>
+        <h3>Piscina interior y exterior</h3>
+        <p>Chapuzón todo el año, con o sin sol, rodeado de jardín.</p>
+      </div>
+      <div class="exp-card reveal delay-1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v6M8 10h8l2 10H6l2-10z"/></svg>
+        <h3>Sauna y solárium</h3>
+        <p>Calor seco y tumbonas al sol para un reset completo.</p>
+      </div>
+      <div class="exp-card reveal delay-2">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 21c4-6 14-6 18 0M12 3a5 5 0 015 5c0 4-5 8-5 8s-5-4-5-8a5 5 0 015-5z"/></svg>
+        <h3>Terraza mirador</h3>
+        <p>Vistas abiertas a la Sierra de Almijara y al Mediterráneo.</p>
+      </div>
+      <div class="exp-card reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19V5a2 2 0 012-2h12a2 2 0 012 2v14M4 19a2 2 0 002 2h12a2 2 0 002-2M4 19h16M8 7h8M8 11h8"/></svg>
+        <h3>Biblioteca y salón</h3>
+        <p>Un rincón tranquilo para leer o simplemente no hacer nada.</p>
+      </div>
+      <div class="exp-card reveal delay-1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21c4-4 8-8 8-12a8 8 0 10-16 0c0 4 4 8 8 12z"/><circle cx="12" cy="9" r="2.4"/></svg>
+        <h3>Jardines mediterráneos</h3>
+        <p>Olivos, buganvillas y aromas del campo andaluz.</p>
+      </div>
+      <div class="exp-card reveal delay-2">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M6 3v7a3 3 0 006 0V3M6 3v18M18 3c-2 0-3 2-3 5s1 4 3 4v10"/></svg>
+        <h3>Cocina de la tierra</h3>
+        <p>Platos tradicionales con ingredientes de la Axarquía.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== UBICACION ===== -->
+<section class="ubicacion" id="ubicacion">
+  <div class="wrap ubi-grid">
+    <div class="ubi-info reveal">
+      <span class="eyebrow">Cómo llegar</span>
+      <h2>En Los Tablazos, entre Nerja y Frigiliana</h2>
+      <p>A un paso de la autovía del Mediterráneo, con acceso directo y aparcamiento propio. Ideal como base para explorar la Costa del Sol y la Axarquía.</p>
+      <ul class="ubi-list">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>2 minutos en coche hasta el centro de Nerja</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21c4-4 8-8 8-12a8 8 0 10-16 0c0 4 4 8 8 12z"/><circle cx="12" cy="9" r="2.4"/></svg>10 minutos de las playas de Nerja y Burriana</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V5a2 2 0 012-2h12a2 2 0 012 2v14M4 19a2 2 0 002 2h12a2 2 0 002-2M4 19h16"/></svg>Acceso directo a la autovía A-7</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>15 minutos hasta el casco histórico de Frigiliana</li>
+      </ul>
+      <a class="btn btn-outline" href="https://www.google.com/maps/search/?api=1&query=Hotel+Rural+Almazara+Los+Tablazos+Frigiliana" target="_blank" rel="noopener">Cómo llegar en Google Maps</a>
+    </div>
+    <div class="ubi-map reveal delay-1">
+      <iframe src="https://www.google.com/maps?q=Hotel+Rural+Almazara,+Los+Tablazos+197,+Frigiliana,+Malaga&output=embed" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" title="Mapa de Hotel Rural Almazara"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ===== OPINIONES ===== -->
+<section class="opiniones" id="opiniones">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Nuestros huéspedes</span>
+      <h2>Lo que se siente al quedarse en Almazara</h2>
+    </div>
+    <div class="rev-grid">
+      <div class="rev-card reveal">
+        <div class="stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .5-5.4 4.6L18 21l-6-4-6 4 1.4-6.9L2 9.5 9 9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .5-5.4 4.6L18 21l-6-4-6 4 1.4-6.9L2 9.5 9 9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .5-5.4 4.6L18 21l-6-4-6 4 1.4-6.9L2 9.5 9 9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .5-5.4 4.6L18 21l-6-4-6 4 1.4-6.9L2 9.5 9 9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .5-5.4 4.6L18 21l-6-4-6 4 1.4-6.9L2 9.5 9 9z"/></svg>
+        </div>
+        <p>"El desayuno con vistas al valle merece por sí solo la estancia. Nos costó un poco encontrar la entrada, pero el trato del personal lo compensó todo."</p>
+        <div class="rev-who">
+          <div class="rev-avatar" style="background:var(--olive)">M</div>
+          <div><strong>Marta G.</strong><span>Escapada de fin de semana</span></div>
+        </div>
+      </div>
+      <div class="rev-card reveal delay-1">
+        <div class="stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .5-5.4 4.6L18 21l-6-4-6 4 1.4-6.9L2 9.5 9 9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .5-5.4 4.6L18 21l-6-4-6 4 1.4-6.9L2 9.5 9 9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .5-5.4 4.6L18 21l-6-4-6 4 1.4-6.9L2 9.5 9 9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .5-5.4 4.6L18 21l-6-4-6 4 1.4-6.9L2 9.5 9 9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .5-5.4 4.6L18 21l-6-4-6 4 1.4-6.9L2 9.5 9 9z"/></svg>
+        </div>
+        <p>"Perfecto para desconectar entre Nerja y Frigiliana. La piscina y el jardín invitan a no salir del hotel en todo el día, y el precio es muy justo."</p>
+        <div class="rev-who">
+          <div class="rev-avatar" style="background:var(--teal)">J</div>
+          <div><strong>Javier R.</strong><span>Viaje en pareja</span></div>
+        </div>
+      </div>
+      <div class="rev-card reveal delay-2">
+        <div class="stars">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .5-5.4 4.6L18 21l-6-4-6 4 1.4-6.9L2 9.5 9 9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .5-5.4 4.6L18 21l-6-4-6 4 1.4-6.9L2 9.5 9 9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .5-5.4 4.6L18 21l-6-4-6 4 1.4-6.9L2 9.5 9 9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .5-5.4 4.6L18 21l-6-4-6 4 1.4-6.9L2 9.5 9 9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7 7 .5-5.4 4.6L18 21l-6-4-6 4 1.4-6.9L2 9.5 9 9z"/></svg>
+        </div>
+        <p>"Nos alojamos con nuestro perro y todo fueron facilidades. Restaurante recomendable, sobre todo el pescado, y muy cerca de la playa en coche."</p>
+        <div class="rev-who">
+          <div class="rev-avatar" style="background:var(--terracotta)">L</div>
+          <div><strong>Lucía P.</strong><span>Viaje pet-friendly</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACTO ===== -->
+<section class="contacto" id="contacto">
+  <div class="wrap cta-grid">
+    <div class="reveal">
+      <span class="eyebrow" style="color:#FCE9C4">Reserva directa</span>
+      <h2>Tu escapada entre olivos y mar empieza aquí</h2>
+      <p>Escríbenos por WhatsApp o correo y te ayudamos a elegir la habitación perfecta para tu estancia en Frigiliana.</p>
+      <div class="hero-btns">
+        <a class="btn btn-solid" style="background:#fff;color:var(--terracotta-dark)" href="https://wa.me/34677412673?text=Hola%2C%20quiero%20reservar%20en%20Hotel%20Rural%20Almazara" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+        <a class="btn btn-outline" style="border-color:rgba(255,255,255,0.6);color:#fff" href="https://www.instagram.com/hotelruralalmazara/" target="_blank" rel="noopener">Síguenos en Instagram</a>
+      </div>
+    </div>
+    <div class="contact-card reveal delay-1">
+      <div class="contact-row">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M12 21c4-4 8-8 8-12a8 8 0 10-16 0c0 4 4 8 8 12z"/><circle cx="12" cy="9" r="2.4"/></svg></div>
+        <span>Los Tablazos, 197 · Frigiliana, Málaga</span>
+      </div>
+      <div class="contact-row">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.7A2 2 0 014.1 2h3a2 2 0 012 1.7c.1 1 .3 2 .7 3a2 2 0 01-.4 2.1L8 10a16 16 0 006 6l1.2-1.4a2 2 0 012.1-.4c1 .4 2 .6 3 .7a2 2 0 011.7 2z"/></svg></div>
+        <a href="tel:+34952534200">952 53 42 00 · 677 41 26 73</a>
+      </div>
+      <div class="contact-row">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><path d="M4 4h16v16H4z"/><path d="M4 6l8 7 8-7"/></svg></div>
+        <a href="mailto:info@hotelruralalmazara.com">info@hotelruralalmazara.com</a>
+      </div>
+      <div class="contact-row">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg></div>
+        <a href="https://www.instagram.com/hotelruralalmazara/" target="_blank" rel="noopener">@hotelruralalmazara</a>
+      </div>
+      <div class="btn-row">
+        <a class="btn btn-solid" href="https://wa.me/34677412673?text=Hola%2C%20quiero%20reservar%20en%20Hotel%20Rural%20Almazara" target="_blank" rel="noopener">Reservar ahora</a>
+        <a class="btn btn-outline" href="tel:+34952534200">Llamar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="24" cy="24" r="23" fill="#F4EBD6" fill-opacity="0.08"/>
+            <path d="M24 8C18 14 15 20 15 26c0 5 4 9 9 9s9-4 9-9c0-6-3-12-9-18Z" fill="#E3A928"/>
+          </svg>
+          <span>Hotel Rural Almazara</span>
+        </div>
+        <p style="max-width:260px;font-size:0.85rem;margin-top:14px;line-height:1.6;">Hotel · Spa · Eventos · Restaurante en Los Tablazos, Frigiliana.</p>
+        <div class="foot-social" style="margin-top:18px;">
+          <a href="https://www.instagram.com/hotelruralalmazara/" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#F4EBD6" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1"/></svg>
+          </a>
+          <a href="https://wa.me/34677412673" target="_blank" rel="noopener" aria-label="WhatsApp">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="#F4EBD6"><path d="M12 2a10 10 0 00-8.7 15L2 22l5.2-1.3A10 10 0 1012 2z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="foot-links">
+        <div class="foot-col">
+          <h4>Explorar</h4>
+          <a href="#bienvenida">La casa</a>
+          <a href="#servicios">Servicios</a>
+          <a href="#experiencias">Experiencias</a>
+        </div>
+        <div class="foot-col">
+          <h4>Visita</h4>
+          <a href="#ubicacion">Ubicación</a>
+          <a href="#opiniones">Opiniones</a>
+          <a href="#contacto">Contacto</a>
+        </div>
+        <div class="foot-col">
+          <h4>Contacto directo</h4>
+          <a href="tel:+34952534200">952 53 42 00</a>
+          <a href="mailto:info@hotelruralalmazara.com">info@hotelruralalmazara.com</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Hotel Rural Almazara · Los Tablazos, Frigiliana (Málaga)</span>
+      <span>Built by <a href="#">EasyLandX</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- WhatsApp flotante -->
+<a class="wa-float" href="https://wa.me/34677412673?text=Hola%2C%20quiero%20reservar%20en%20Hotel%20Rural%20Almazara" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.7 15L2 22l5.2-1.3A10 10 0 1012 2zm5.6 14.3c-.2.6-1.3 1.2-1.9 1.3-.5.1-1.1.2-3.5-.7-2.9-1.1-4.8-4-5-4.2-.1-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4.2.5.7 1.7.8 1.8.1.2.1.3 0 .5-.1.2-.1.3-.3.5-.1.2-.3.3-.4.5-.1.1-.3.3-.1.6.2.3.9 1.4 1.9 2.3 1.3 1.1 2.3 1.5 2.7 1.7.3.1.5.1.7-.1.2-.3.7-.9.9-1.1.2-.3.4-.2.6-.1l1.6.8c.2.1.4.2.4.4.1.2.1.9-.1 1.5z"/></svg>
+</a>
+
+<script>
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  // Header shadow on scroll
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 20);
+  });
+</script>
+</body>
+</html>
