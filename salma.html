@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Salma · Cabaña Boutique en Laguna de Lobos</title>
+<meta name="description" content="Cabaña boutique entre el campo y la laguna. Lobos, Buenos Aires. Ideal para descansar, reconectar y disfrutar. Reservá por WhatsApp.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Fraunces:ital,opsz,wght@1,9..144,500&family=Work+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --laguna: #175B57;       /* teal profundo, agua de laguna */
+    --laguna-deep: #0E3F3C;  /* casi negro verdoso, texto/fondos oscuros */
+    --coral: #FF7A54;        /* atardecer sobre el agua */
+    --coral-deep: #E85F3A;
+    --sol: #F5B942;          /* sol de la tardecita */
+    --sol-soft: #FCE3A6;
+    --arena: #FBF2E4;        /* fondo cálido, arena/paja */
+    --arena-deep: #F3E4CC;
+    --junco: #6E8F4E;        /* verde junco/pasto */
+    --blush: #F3A79C;
+    --ink: #1D2B27;
+    --white: #FFFDF9;
+
+    --serif: "Fraunces", serif;
+    --serif-italic: "Fraunces", serif;
+    --sans: "Work Sans", sans-serif;
+    --mono: "Space Mono", monospace;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--arena);
+    color:var(--ink);
+    font-family:var(--sans);
+    line-height:1.55;
+    overflow-x:hidden;
+  }
+  img,svg{display:block;max-width:100%;}
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;}
+  section{position:relative;}
+  .wrap{
+    max-width:1180px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+  h1,h2,h3,h4{
+    font-family:var(--serif);
+    font-weight:700;
+    letter-spacing:-0.01em;
+    color:var(--laguna-deep);
+  }
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:12.5px;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--coral-deep);
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;height:1.5px;
+    background:var(--coral-deep);
+    display:inline-block;
+  }
+  ::selection{background:var(--sol-soft);color:var(--laguna-deep);}
+
+  /* focus visibility */
+  a:focus-visible, button:focus-visible{
+    outline:2.5px solid var(--coral-deep);
+    outline-offset:3px;
+    border-radius:4px;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  /* ============ NAV ============ */
+  .nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(251,242,228,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(23,91,87,0.1);
+    transition:box-shadow .3s ease;
+  }
+  .nav.scrolled{ box-shadow:0 6px 24px rgba(14,63,60,0.08); }
+  .nav-inner{
+    max-width:1180px;margin:0 auto;padding:16px 32px;
+    display:flex;align-items:center;justify-content:space-between;
+    gap:24px;
+  }
+  .brand{
+    font-family:var(--serif);
+    font-weight:700;
+    font-size:22px;
+    color:var(--laguna-deep);
+    display:flex;align-items:center;gap:8px;
+  }
+  .brand em{
+    font-style:italic;
+    font-weight:500;
+    color:var(--coral-deep);
+    font-size:15px;
+  }
+  .nav-links{
+    display:flex;gap:30px;align-items:center;
+    font-size:14.5px;font-weight:500;
+  }
+  .nav-links a{ position:relative; padding:4px 0; }
+  .nav-links a::after{
+    content:"";position:absolute;left:0;bottom:0;width:0;height:2px;
+    background:var(--coral); transition:width .25s ease;
+  }
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{
+    display:flex; gap:10px;
+  }
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--sans);font-weight:600;font-size:14.5px;
+    padding:11px 22px;border-radius:100px;
+    border:1.5px solid transparent;
+    cursor:pointer; white-space:nowrap;
+    transition:transform .2s ease, box-shadow .2s ease, background .2s ease;
+  }
+  .btn-coral{
+    background:var(--coral); color:var(--white);
+    box-shadow:0 6px 18px rgba(232,95,58,0.35);
+  }
+  .btn-coral:hover{ transform:translateY(-2px); box-shadow:0 10px 24px rgba(232,95,58,0.45); background:var(--coral-deep);}
+  .btn-outline{
+    background:transparent; border-color:var(--laguna-deep); color:var(--laguna-deep);
+  }
+  .btn-outline:hover{ background:var(--laguna-deep); color:var(--white); transform:translateY(-2px);}
+  .btn-small{ padding:9px 16px; font-size:13.5px; }
+  .nav-toggle{ display:none; }
+
+  /* ============ HERO ============ */
+  .hero{
+    padding:150px 0 0;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns:1.05fr 0.95fr;
+    gap:48px;
+    align-items:center;
+    padding-bottom:70px;
+  }
+  .hero h1{
+    font-size:clamp(40px, 5.6vw, 68px);
+    line-height:1.03;
+    margin:18px 0 22px;
+  }
+  .hero h1 .accent{
+    font-style:italic;
+    font-weight:500;
+    color:var(--coral-deep);
+  }
+  .hero p.lead{
+    font-size:18.5px;
+    color:#3B4A45;
+    max-width:480px;
+    margin-bottom:32px;
+  }
+  .hero-ctas{ display:flex; gap:14px; flex-wrap:wrap; margin-bottom:34px;}
+  .hero-meta{
+    display:flex; gap:26px; flex-wrap:wrap;
+    font-family:var(--mono); font-size:12.5px; color:var(--laguna);
+  }
+  .hero-meta span{ display:flex; align-items:center; gap:7px; }
+  .hero-meta .dot{ width:6px;height:6px;border-radius:50%; background:var(--coral); display:inline-block;}
+
+  .hero-art{ position:relative; }
+  .hero-art svg{ width:100%; height:auto; }
+  .badge-sticker{
+    position:absolute;
+    top:-6px; right:6px;
+    width:118px; height:118px;
+    background:var(--sol);
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    text-align:center;
+    font-family:var(--mono);
+    font-size:11px;
+    font-weight:700;
+    color:var(--laguna-deep);
+    transform:rotate(9deg);
+    box-shadow:0 10px 30px rgba(245,185,66,0.5);
+    animation:spin-slow 22s linear infinite;
+    z-index:5;
+  }
+  @keyframes spin-slow{ from{transform:rotate(9deg);} to{transform:rotate(369deg);} }
+  .badge-sticker span{ display:block; padding:0 14px; line-height:1.4; }
+
+  .wave-divider{
+    display:block; width:100%; line-height:0;
+    margin-top:-2px;
+  }
+  .wave-divider svg{ width:100%; height:80px; display:block; }
+
+  /* ============ MARQUEE ============ */
+  .marquee-strip{
+    background:var(--laguna-deep);
+    padding:16px 0;
+    overflow:hidden;
+    white-space:nowrap;
+  }
+  .marquee-track{
+    display:inline-flex;
+    animation:scroll-left 26s linear infinite;
+  }
+  .marquee-track span{
+    font-family:var(--serif); font-style:italic; font-weight:500;
+    font-size:20px; color:var(--sol-soft);
+    padding:0 28px;
+    display:inline-flex; align-items:center; gap:28px;
+  }
+  .marquee-track span::after{ content:"🌾"; font-style:normal; font-size:16px; }
+  @keyframes scroll-left{ from{ transform:translateX(0);} to{ transform:translateX(-50%);} }
+
+  /* ============ BIENVENIDA ============ */
+  .about{
+    padding:100px 0 90px;
+  }
+  .about-grid{
+    display:grid; grid-template-columns:0.9fr 1.1fr;
+    gap:60px; align-items:center;
+  }
+  .about h2{ font-size:clamp(30px,4vw,42px); margin:14px 0 20px; line-height:1.08;}
+  .about p{ color:#3B4A45; font-size:16.5px; margin-bottom:16px; max-width:540px;}
+  .about-art{ position:relative; }
+  .lake-frame{
+    background:var(--laguna);
+    border-radius:28px;
+    padding:26px;
+    position:relative;
+    overflow:hidden;
+  }
+  .lake-frame svg{ width:100%; height:auto; }
+  .float-tag{
+    position:absolute; bottom:-18px; left:-18px;
+    background:var(--white);
+    border-radius:16px;
+    padding:14px 18px;
+    box-shadow:0 14px 30px rgba(14,63,60,0.18);
+    display:flex; align-items:center; gap:12px;
+    font-family:var(--mono); font-size:12px; color:var(--laguna-deep);
+    max-width:220px;
+  }
+  .float-tag .num{ font-family:var(--serif); font-size:26px; font-weight:700; color:var(--coral-deep); line-height:1;}
+
+  /* ============ FEATURES ============ */
+  .features{
+    background:var(--laguna-deep);
+    padding:100px 0 110px;
+    color:var(--arena);
+    position:relative;
+  }
+  .features .eyebrow{ color:var(--sol); }
+  .features .eyebrow::before{ background:var(--sol); }
+  .features h2{ color:var(--white); font-size:clamp(30px,4vw,42px); margin:14px 0 46px; max-width:600px; line-height:1.1;}
+  .feat-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:22px;
+  }
+  .feat-card{
+    background:rgba(251,242,228,0.06);
+    border:1px solid rgba(251,242,228,0.14);
+    border-radius:20px;
+    padding:30px 26px;
+    transition:transform .25s ease, background .25s ease, border-color .25s ease;
+  }
+  .feat-card:hover{
+    transform:translateY(-6px);
+    background:rgba(251,242,228,0.11);
+    border-color:rgba(245,185,66,0.4);
+  }
+  .feat-icon{
+    width:46px;height:46px;border-radius:12px;
+    background:var(--sol);
+    display:flex;align-items:center;justify-content:center;
+    margin-bottom:18px;
+    font-size:22px;
+  }
+  .feat-card h3{
+    color:var(--white); font-size:19px; margin-bottom:8px; font-weight:600;
+  }
+  .feat-card p{ color:#C9D6D1; font-size:14.5px; }
+
+  /* ============ EXPERIENCIA / PARA QUIEN ============ */
+  .who{
+    padding:100px 0;
+  }
+  .who-head{ text-align:center; max-width:640px; margin:0 auto 54px; }
+  .who-head h2{ font-size:clamp(30px,4vw,42px); margin-top:14px; }
+  .who-head p{ color:#3B4A45; font-size:16.5px; margin-top:14px;}
+  .who-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:18px;
+  }
+  .who-card{
+    background:var(--white);
+    border-radius:20px;
+    padding:26px 22px;
+    text-align:center;
+    box-shadow:0 8px 22px rgba(14,63,60,0.06);
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .who-card:hover{ transform:translateY(-6px); box-shadow:0 16px 34px rgba(14,63,60,0.13); }
+  .who-emoji{ font-size:34px; margin-bottom:12px; }
+  .who-card h4{ font-size:16.5px; margin-bottom:6px; }
+  .who-card p{ font-size:13.5px; color:#5C6B65; }
+
+  /* ============ UBICACION ============ */
+  .location{
+    background:var(--sol-soft);
+    padding:100px 0;
+    position:relative;
+    overflow:hidden;
+  }
+  .loc-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;
+  }
+  .location h2{ font-size:clamp(30px,4vw,40px); margin:14px 0 18px;}
+  .location p{ color:#3B4A45; font-size:16.5px; margin-bottom:14px; max-width:480px;}
+  .loc-list{ margin-top:24px; display:flex; flex-direction:column; gap:14px;}
+  .loc-list li{ display:flex; gap:12px; align-items:flex-start; font-size:15px; color:var(--laguna-deep); font-weight:500;}
+  .loc-list .ico{ font-size:18px; }
+  .loc-art svg{ width:100%; height:auto; }
+
+  /* ============ CTA FINAL ============ */
+  .cta-final{
+    background:var(--coral);
+    padding:90px 0;
+    position:relative;
+    overflow:hidden;
+    text-align:center;
+  }
+  .cta-final::before{
+    content:"";
+    position:absolute; inset:0;
+    background:radial-gradient(circle at 20% 20%, rgba(255,255,255,0.18), transparent 45%),
+               radial-gradient(circle at 85% 80%, rgba(255,255,255,0.14), transparent 40%);
+  }
+  .cta-final-inner{ position:relative; z-index:2; max-width:640px; margin:0 auto; }
+  .cta-final .eyebrow{ color:var(--laguna-deep); }
+  .cta-final .eyebrow::before{ background:var(--laguna-deep); }
+  .cta-final h2{
+    color:var(--white); font-size:clamp(32px,5vw,50px); margin:16px 0 18px; line-height:1.06;
+  }
+  .cta-final p{ color:rgba(255,255,255,0.92); font-size:17px; margin-bottom:34px;}
+  .cta-final .hero-ctas{ justify-content:center; }
+  .cta-final .btn-outline{ border-color:var(--white); color:var(--white); }
+  .cta-final .btn-outline:hover{ background:var(--white); color:var(--coral-deep); }
+  .cta-final .btn-coral{ background:var(--laguna-deep); box-shadow:0 6px 18px rgba(14,63,60,0.35); }
+  .cta-final .btn-coral:hover{ background:#0a2e2b; }
+
+  /* ============ FOOTER ============ */
+  footer{
+    background:var(--laguna-deep);
+    color:var(--arena);
+    padding:56px 0 30px;
+  }
+  .foot-grid{
+    display:flex; justify-content:space-between; align-items:flex-start; gap:40px; flex-wrap:wrap;
+    padding-bottom:34px; border-bottom:1px solid rgba(251,242,228,0.14);
+  }
+  .foot-brand .brand{ color:var(--white); margin-bottom:10px; }
+  .foot-brand p{ color:#A9BCB6; max-width:280px; font-size:14px; }
+  .foot-links{ display:flex; gap:60px; flex-wrap:wrap; }
+  .foot-col h5{
+    font-family:var(--mono); font-size:12px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--sol); margin-bottom:14px;
+  }
+  .foot-col a, .foot-col span{ display:block; color:#C9D6D1; font-size:14.5px; margin-bottom:10px; }
+  .foot-col a:hover{ color:var(--sol); }
+  .foot-bottom{
+    display:flex; justify-content:space-between; align-items:center; padding-top:24px; flex-wrap:wrap; gap:10px;
+    font-size:13px; color:#7E9691;
+  }
+
+  /* ============ WHATSAPP FLOAT ============ */
+  .wa-float{
+    position:fixed; bottom:26px; right:26px; z-index:200;
+    width:60px; height:60px; border-radius:50%;
+    background:#25D366;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 10px 26px rgba(37,211,102,0.5);
+    animation:pulse-wa 2.6s ease-in-out infinite;
+  }
+  @keyframes pulse-wa{
+    0%,100%{ transform:scale(1); }
+    50%{ transform:scale(1.07); }
+  }
+  .wa-float svg{ width:30px; height:30px; }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 980px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .hero{ padding-top:126px; }
+    .about-grid{ grid-template-columns:1fr; }
+    .about-art{ order:-1; }
+    .feat-grid{ grid-template-columns:1fr 1fr; }
+    .who-grid{ grid-template-columns:1fr 1fr; }
+    .loc-grid{ grid-template-columns:1fr; }
+    .loc-art{ order:-1; }
+    .nav-links{ display:none; }
+  }
+  @media (max-width: 600px){
+    .wrap{ padding:0 20px; }
+    .feat-grid{ grid-template-columns:1fr; }
+    .who-grid{ grid-template-columns:1fr; }
+    .foot-grid{ flex-direction:column; }
+    .badge-sticker{ width:92px; height:92px; font-size:9.5px; }
+    .hero-ctas .btn{ width:100%; justify-content:center; }
+    .nav-cta .btn-outline{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="brand">Salma <em>· laguna de lobos</em></a>
+    <ul class="nav-links">
+      <li><a href="#bienvenida">La cabaña</a></li>
+      <li><a href="#experiencia">Qué te espera</a></li>
+      <li><a href="#para-quien">Para quién</a></li>
+      <li><a href="#ubicacion">Ubicación</a></li>
+    </ul>
+    <div class="nav-cta">
+      <a class="btn btn-outline btn-small" href="https://www.instagram.com/salma.lagunadelobos/" target="_blank" rel="noopener">Instagram</a>
+      <a class="btn btn-coral btn-small" href="https://wa.link/z84pgv" target="_blank" rel="noopener">Reservar</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">Lobos · Buenos Aires</span>
+      <h1>Entre el campo<br>y la <span class="accent">laguna</span>,<br>el descanso te espera</h1>
+      <p class="lead">Cabaña boutique pensada para desconectar del ruido y reconectar con lo simple: aire de campo, agua quieta y tiempo para disfrutar de a dos, en familia o con amigos.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-coral" href="https://wa.link/z84pgv" target="_blank" rel="noopener">
+          Reservá por WhatsApp →
+        </a>
+        <a class="btn btn-outline" href="https://www.instagram.com/salma.lagunadelobos/" target="_blank" rel="noopener">
+          Ver fotos en Instagram
+        </a>
+      </div>
+      <div class="hero-meta">
+        <span><i class="dot"></i>Cabaña boutique</span>
+        <span><i class="dot"></i>Frente a la laguna</span>
+        <span><i class="dot"></i>Lobos, Bs. As.</span>
+      </div>
+    </div>
+
+    <div class="hero-art">
+      <div class="badge-sticker"><span>🌿 Ideal para<br>reconectar</span></div>
+      <svg viewBox="0 0 560 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de una cabaña frente a una laguna al atardecer">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#FCE3A6"/>
+            <stop offset="55%" stop-color="#FBC58A"/>
+            <stop offset="100%" stop-color="#FF7A54"/>
+          </linearGradient>
+          <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#1E7A73"/>
+            <stop offset="100%" stop-color="#0E3F3C"/>
+          </linearGradient>
+        </defs>
+        <rect x="0" y="0" width="560" height="300" fill="url(#sky)"/>
+        <circle cx="420" cy="130" r="58" fill="#F5B942" opacity="0.95"/>
+        <circle cx="420" cy="130" r="58" fill="#F5B942" opacity="0.4">
+          <animate attributeName="r" values="58;66;58" dur="4s" repeatCount="indefinite"/>
+        </circle>
+        <!-- hills -->
+        <path d="M0,230 Q140,180 280,225 T560,215 V300 H0 Z" fill="#6E8F4E" opacity="0.9"/>
+        <path d="M0,255 Q160,215 320,250 T560,240 V300 H0 Z" fill="#587840"/>
+        <!-- water -->
+        <rect x="0" y="300" width="560" height="180" fill="url(#water)"/>
+        <path d="M0,300 Q80,292 160,300 T320,300 T480,300 T560,300" fill="none" stroke="#3E8A82" stroke-width="3" opacity="0.6"/>
+        <path d="M0,320 Q80,312 160,320 T320,320 T480,320 T560,320" fill="none" stroke="#3E8A82" stroke-width="2" opacity="0.4"/>
+        <!-- reflection of sun -->
+        <ellipse cx="420" cy="330" rx="30" ry="10" fill="#F5B942" opacity="0.5"/>
+        <ellipse cx="420" cy="352" rx="20" ry="6" fill="#F5B942" opacity="0.3"/>
+        <!-- reeds -->
+        <g stroke="#3F5B3A" stroke-width="4" stroke-linecap="round">
+          <path d="M40,300 C36,270 46,250 34,225"/>
+          <path d="M60,300 C58,265 68,245 58,215"/>
+          <path d="M80,300 C82,272 74,252 86,232"/>
+        </g>
+        <!-- cabin -->
+        <g transform="translate(150,190)">
+          <rect x="0" y="55" width="150" height="80" rx="4" fill="#F3E4CC"/>
+          <polygon points="-12,55 75,10 162,55" fill="#E85F3A"/>
+          <rect x="60" y="90" width="30" height="45" fill="#0E3F3C"/>
+          <rect x="18" y="80" width="26" height="26" rx="2" fill="#FBC58A" stroke="#0E3F3C" stroke-width="2"/>
+          <rect x="106" y="80" width="26" height="26" rx="2" fill="#FBC58A" stroke="#0E3F3C" stroke-width="2"/>
+          <rect x="65" y="24" width="14" height="20" fill="#0E3F3C"/>
+        </g>
+        <!-- birds -->
+        <path d="M60,70 q8,-10 16,0 q8,-10 16,0" fill="none" stroke="#0E3F3C" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M110,50 q6,-8 12,0 q6,-8 12,0" fill="none" stroke="#0E3F3C" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="wave-divider">
+    <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,40 C240,90 480,0 720,30 C960,60 1200,10 1440,40 L1440,80 L0,80 Z" fill="#0E3F3C"/>
+    </svg>
+  </div>
+</header>
+
+<!-- ================= MARQUEE ================= -->
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <span>Descansar</span><span>Reconectar</span><span>Disfrutar</span><span>Cabaña boutique</span>
+    <span>Descansar</span><span>Reconectar</span><span>Disfrutar</span><span>Cabaña boutique</span>
+  </div>
+</div>
+
+<!-- ================= BIENVENIDA ================= -->
+<section class="about" id="bienvenida">
+  <div class="wrap about-grid">
+    <div class="about-copy">
+      <span class="eyebrow">La cabaña</span>
+      <h2>Un refugio boutique, a metros del agua</h2>
+      <p>Salma es una cabaña pensada al detalle para quienes buscan un fin de semana distinto: despertarse con el sonido del campo, tomar un mate mirando la laguna y dejar el ritmo de la ciudad donde corresponde, afuera.</p>
+      <p>Cada rincón está pensado para que el descanso sea el protagonista, con una estética cálida que combina lo rústico del campo con el confort de una propuesta boutique.</p>
+      <a class="btn btn-outline" href="https://www.instagram.com/salma.lagunadelobos/" target="_blank" rel="noopener">Conocé más en Instagram →</a>
+    </div>
+    <div class="about-art">
+      <div class="lake-frame">
+        <svg viewBox="0 0 480 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración del interior cálido de la cabaña boutique">
+          <rect width="480" height="380" fill="#175B57"/>
+          <rect x="30" y="230" width="420" height="130" rx="10" fill="#F3E4CC"/>
+          <rect x="30" y="230" width="420" height="14" fill="#587840"/>
+          <!-- window with lagoon view -->
+          <rect x="70" y="70" width="340" height="150" rx="8" fill="#0E3F3C"/>
+          <rect x="82" y="82" width="316" height="126" rx="4" fill="#FBC58A"/>
+          <circle cx="330" cy="120" r="26" fill="#F5B942"/>
+          <path d="M82,190 Q160,170 240,192 T398,180 V208 H82 Z" fill="#175B57"/>
+          <path d="M82,150 Q220,130 398,150" stroke="#F3E4CC" stroke-width="2" fill="none" opacity="0.4"/>
+          <line x1="240" y1="82" x2="240" y2="208" stroke="#0E3F3C" stroke-width="4"/>
+          <line x1="82" y1="145" x2="398" y2="145" stroke="#0E3F3C" stroke-width="4"/>
+          <!-- fireplace / cozy -->
+          <rect x="70" y="255" width="90" height="80" rx="8" fill="#E85F3A"/>
+          <circle cx="115" cy="285" r="16" fill="#F5B942">
+            <animate attributeName="r" values="16;19;16" dur="2.4s" repeatCount="indefinite"/>
+          </circle>
+          <!-- plant -->
+          <g transform="translate(340,255)">
+            <rect x="18" y="60" width="30" height="30" rx="4" fill="#6E8F4E"/>
+            <path d="M33,60 C10,40 10,10 33,5 C30,30 33,45 33,60Z" fill="#587840"/>
+            <path d="M33,60 C56,40 56,10 33,5 C36,30 33,45 33,60Z" fill="#6E8F4E"/>
+          </g>
+          <!-- cushions -->
+          <circle cx="200" cy="300" r="20" fill="#F5B942"/>
+          <circle cx="240" cy="308" r="16" fill="#FF7A54"/>
+        </svg>
+      </div>
+      <div class="float-tag">
+        <span class="num">1</span>
+        <span>Cabaña completa, sólo para ustedes.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EXPERIENCIA / FEATURES ================= -->
+<section class="features" id="experiencia">
+  <div class="wrap">
+    <span class="eyebrow">Qué te espera</span>
+    <h2>Todo lo que necesitás para bajar un cambio, en un mismo lugar</h2>
+    <div class="feat-grid">
+      <div class="feat-card">
+        <div class="feat-icon">🌊</div>
+        <h3>Vista a la laguna</h3>
+        <p>El agua como paisaje constante, ideal para las mañanas tranquilas y los atardeceres largos.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🔥</div>
+        <h3>Ambiente cálido</h3>
+        <p>Espacios acogedores pensados para las noches de campo, en pareja, en familia o entre amigos.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🌿</div>
+        <h3>Entorno natural</h3>
+        <p>Rodeada de campo abierto, lejos del ruido de la ciudad y cerca de todo lo que importa.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🛏️</div>
+        <h3>Diseño boutique</h3>
+        <p>Cada detalle fue elegido para que la estadía se sienta especial, no como una cabaña más.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">🚗</div>
+        <h3>Fácil de llegar</h3>
+        <p>A poco más de 100 km de Buenos Aires, perfecta para una escapada corta de fin de semana.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">📸</div>
+        <h3>Momentos para guardar</h3>
+        <p>Un lugar tan lindo que va a terminar en tus fotos favoritas del año.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PARA QUIEN ================= -->
+<section class="who" id="para-quien">
+  <div class="wrap">
+    <div class="who-head">
+      <span class="eyebrow">Para quién</span>
+      <h2>Un lugar para cada motivo de escaparse</h2>
+      <p>No importa el plan, la laguna tiene lugar para todos.</p>
+    </div>
+    <div class="who-grid">
+      <div class="who-card">
+        <div class="who-emoji">💛</div>
+        <h4>En pareja</h4>
+        <p>Una escapada romántica lejos de todo, con la laguna de fondo.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-emoji">👨‍👩‍👧‍👦</div>
+        <h4>En familia</h4>
+        <p>Espacio y tranquilidad para desconectar todos juntos.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-emoji">🧑‍🤝‍🧑</div>
+        <h4>Con amigos</h4>
+        <p>Un fin de semana de campo, mates y buenas charlas.</p>
+      </div>
+      <div class="who-card">
+        <div class="who-emoji">🧘</div>
+        <h4>Solo/a</h4>
+        <p>Silencio, naturaleza y tiempo para vos.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= UBICACION ================= -->
+<section class="location" id="ubicacion">
+  <div class="wrap loc-grid">
+    <div class="loc-copy">
+      <span class="eyebrow">Ubicación</span>
+      <h2>Lobos, Buenos Aires</h2>
+      <p>La cabaña se ubica entre el campo y la laguna de Lobos, a poco más de 100 km de la Ciudad de Buenos Aires. El destino ideal para una escapada corta sin subirte a un avión.</p>
+      <ul class="loc-list">
+        <li><span class="ico">📍</span> Lobos, Provincia de Buenos Aires</li>
+        <li><span class="ico">🕒</span> Ideal para escapadas de fin de semana</li>
+        <li><span class="ico">🚙</span> A poco más de 100 km de CABA</li>
+        <li><span class="ico">🦆</span> A pasos de la laguna</li>
+      </ul>
+    </div>
+    <div class="loc-art">
+      <svg viewBox="0 0 480 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Ilustración de mapa estilizado de Lobos y la laguna">
+        <rect width="480" height="380" rx="24" fill="#175B57"/>
+        <path d="M0,260 Q120,220 240,255 T480,235 V380 H0 Z" fill="#6E8F4E" opacity="0.85"/>
+        <ellipse cx="230" cy="150" rx="150" ry="80" fill="#0E3F3C"/>
+        <ellipse cx="230" cy="150" rx="150" ry="80" fill="none" stroke="#3E8A82" stroke-width="2" opacity="0.5"/>
+        <circle cx="230" cy="150" r="10" fill="#FF7A54"/>
+        <path d="M230,150 L230,110" stroke="#FF7A54" stroke-width="4" stroke-linecap="round"/>
+        <path d="M230,110 L214,84 L246,84 Z" fill="#FF7A54"/>
+        <text x="200" y="70" font-family="Space Mono, monospace" font-size="14" fill="#FBF2E4">Salma · Laguna de Lobos</text>
+        <g stroke="#F5B942" stroke-width="3" fill="none" stroke-dasharray="6 6" opacity="0.7">
+          <path d="M40,340 Q160,300 230,150"/>
+        </g>
+        <text x="20" y="360" font-family="Space Mono, monospace" font-size="11" fill="#C9D6D1">desde Buenos Aires ~100 km</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CTA FINAL ================= -->
+<section class="cta-final">
+  <div class="wrap">
+    <div class="cta-final-inner">
+      <span class="eyebrow">Reservá tu estadía</span>
+      <h2>Tu próxima desconexión empieza acá</h2>
+      <p>Escribinos por WhatsApp y coordinamos tu estadía en la cabaña. Cupos limitados por fin de semana.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-coral" href="https://wa.link/z84pgv" target="_blank" rel="noopener">Escribir por WhatsApp →</a>
+        <a class="btn btn-outline" href="https://www.instagram.com/salma.lagunadelobos/" target="_blank" rel="noopener">@salma.lagunadelobos</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="brand">Salma <em style="font-style:italic;font-weight:500;color:#F5B942;font-size:14px;">· laguna de lobos</em></div>
+        <p>Cabaña boutique entre el campo y la laguna. Lobos, Buenos Aires. Ideal para descansar, reconectar y disfrutar.</p>
+      </div>
+      <div class="foot-links">
+        <div class="foot-col">
+          <h5>Explorar</h5>
+          <a href="#bienvenida">La cabaña</a>
+          <a href="#experiencia">Qué te espera</a>
+          <a href="#ubicacion">Ubicación</a>
+        </div>
+        <div class="foot-col">
+          <h5>Reservas</h5>
+          <a href="https://wa.link/z84pgv" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="https://www.instagram.com/salma.lagunadelobos/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+        <div class="foot-col">
+          <h5>Ubicación</h5>
+          <span>Lobos, Buenos Aires</span>
+          <span>Argentina</span>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Salma · Cabaña Laguna de Lobos</span>
+      <span>Hecho con 🌿 para desconectar</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= WHATSAPP FLOAT ================= -->
+<a class="wa-float" href="https://wa.link/z84pgv" target="_blank" rel="noopener" aria-label="Reservar por WhatsApp">
+  <svg viewBox="0 0 32 32" fill="white" xmlns="http://www.w3.org/2000/svg">
+    <path d="M16.001 3C9.373 3 4 8.373 4 15c0 2.34.653 4.527 1.787 6.393L4 29l7.81-1.752A11.94 11.94 0 0 0 16.001 27C22.628 27 28 21.627 28 15S22.628 3 16.001 3zm0 21.6c-1.86 0-3.6-.5-5.1-1.37l-.365-.216-4.63 1.038 1.02-4.51-.238-.375A9.56 9.56 0 0 1 6.4 15c0-5.302 4.298-9.6 9.601-9.6 5.301 0 9.6 4.298 9.6 9.6 0 5.303-4.299 9.6-9.6 9.6zm5.27-7.19c-.288-.144-1.706-.842-1.97-.938-.264-.096-.456-.144-.648.144-.192.288-.744.938-.912 1.13-.168.192-.336.216-.624.072-.288-.144-1.215-.448-2.314-1.428-.855-.762-1.432-1.703-1.6-1.991-.168-.288-.018-.444.126-.588.13-.129.288-.336.432-.504.144-.168.192-.288.288-.48.096-.192.048-.36-.024-.504-.072-.144-.648-1.564-.888-2.142-.234-.563-.472-.487-.648-.496-.168-.008-.36-.01-.552-.01-.192 0-.504.072-.768.36-.264.288-1.008.984-1.008 2.4 0 1.416 1.032 2.784 1.176 2.976.144.192 2.03 3.1 4.92 4.347.688.297 1.224.474 1.643.607.69.22 1.318.189 1.814.115.553-.083 1.706-.697 1.947-1.37.24-.673.24-1.25.168-1.37-.072-.12-.264-.192-.552-.336z"/>
+  </svg>
+</a>
+
+<script>
+  // nav shadow on scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 12);
+  });
+
+  // reveal on scroll
+  const revealEls = document.querySelectorAll('.feat-card, .who-card, .about-grid, .loc-grid');
+  revealEls.forEach(el => { el.style.opacity = 0; el.style.transform = 'translateY(18px)'; el.style.transition = 'opacity .6s ease, transform .6s ease'; });
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = 1;
+        entry.target.style.transform = 'translateY(0)';
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
