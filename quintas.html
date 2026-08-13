@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quintas de Conde · Casas quinta frente a la laguna, San Miguel del Monte</title>
+<meta name="description" content="Dos casas quinta privadas y petfriendly en San Miguel del Monte, a metros de la laguna. Capacidad de 2 a 5 personas. Reserva por WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500;1,9..144,600&family=Work+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#F5EFE0;
+    --sand:#E9DEC2;
+    --night:#221F1A;
+    --laguna:#1B4B43;
+    --laguna-light:#3E7268;
+    --gold:#E8A93C;
+    --clay:#B5502D;
+    --dusk:#7A3E52;
+    --midnight:#161225;
+    --star:#F1D9A0;
+    --progress:0;
+    --rail-h: 62vh;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    font-family:'Work Sans', sans-serif;
+    background:var(--cream);
+    color:var(--night);
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    line-height:1.05;
+    letter-spacing:-0.01em;
+  }
+
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    opacity:0.75;
+    display:flex;
+    align-items:center;
+    gap:0.6em;
+    margin-bottom:1.1em;
+  }
+  .eyebrow::before{
+    content:'';
+    width:22px; height:1px;
+    background:currentColor;
+    display:inline-block;
+  }
+
+  a{color:inherit;}
+
+  img,svg{display:block; max-width:100%;}
+
+  .wrap{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 6vw;
+  }
+
+  /* ---------- sun rail (signature element) ---------- */
+  .sun-rail{
+    position:fixed;
+    top:50%;
+    right:22px;
+    transform:translateY(-50%);
+    width:2px;
+    height:var(--rail-h);
+    background:linear-gradient(to bottom, rgba(34,31,26,0.08), rgba(34,31,26,0.28), rgba(34,31,26,0.08));
+    z-index:40;
+    display:none;
+  }
+  @media(min-width:880px){ .sun-rail{ display:block; } }
+  .sun-rail .dot{
+    position:absolute;
+    left:50%;
+    top:0;
+    width:13px; height:13px;
+    border-radius:50%;
+    background:var(--gold);
+    box-shadow:0 0 14px 3px rgba(232,169,60,0.55);
+    transform:translate(-50%, calc(var(--progress) * (var(--rail-h) - 13px)));
+    transition:background 0.4s ease, box-shadow 0.4s ease;
+  }
+  .sun-rail .time-label{
+    position:absolute;
+    right:20px;
+    top:0;
+    transform:translateY(calc(var(--progress) * (var(--rail-h) - 13px)) - 6px);
+    font-family:'Space Mono', monospace;
+    font-size:0.68rem;
+    letter-spacing:0.08em;
+    white-space:nowrap;
+    opacity:0.6;
+  }
+
+  /* ---------- nav ---------- */
+  nav{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:50;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:1.3rem 6vw;
+    mix-blend-mode:difference;
+    color:#fff;
+    font-family:'Space Mono', monospace;
+    font-size:0.78rem;
+    letter-spacing:0.06em;
+    pointer-events:none;
+  }
+  nav .brand{ font-family:'Fraunces', serif; font-style:italic; font-size:1.05rem; pointer-events:auto;}
+  nav .links{ display:flex; gap:1.6rem; pointer-events:auto; text-transform:uppercase;}
+  nav .links a{ text-decoration:none; opacity:0.9; }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    background:linear-gradient(180deg, #FCE9C9 0%, #F6D9A8 32%, #EFC48C 55%, var(--gold) 78%, #D98A4E 100%);
+    overflow:hidden;
+  }
+  .hero .scene{
+    position:absolute;
+    inset:0;
+    z-index:1;
+  }
+  .hero .scene svg{ width:100%; height:100%; }
+  .hero-content{
+    position:relative;
+    z-index:5;
+    padding:0 6vw 4.5rem;
+    color:#2A1B12;
+  }
+  .hero-content .eyebrow{ color:#5B3A1E; }
+  .hero h1{
+    font-size:clamp(3rem, 9vw, 6.4rem);
+    color:#2A1B12;
+  }
+  .hero h1 em{
+    font-style:italic;
+    font-weight:500;
+    color:var(--laguna);
+  }
+  .hero .tagline{
+    max-width:32em;
+    margin-top:1.1rem;
+    font-size:1.08rem;
+    line-height:1.55;
+    color:#3E2A1A;
+  }
+  .cta-row{
+    display:flex;
+    flex-wrap:wrap;
+    gap:0.9rem;
+    margin-top:2.1rem;
+  }
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    gap:0.55em;
+    padding:0.85em 1.5em;
+    border-radius:999px;
+    text-decoration:none;
+    font-weight:600;
+    font-size:0.95rem;
+    transition:transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .btn:hover{ transform:translateY(-2px); }
+  .btn-solid{
+    background:var(--laguna);
+    color:var(--cream);
+    box-shadow:0 8px 24px -8px rgba(27,75,67,0.55);
+  }
+  .btn-solid:hover{ box-shadow:0 12px 28px -6px rgba(27,75,67,0.6); }
+  .btn-outline{
+    border:1.5px solid #2A1B12;
+    color:#2A1B12;
+    background:rgba(255,255,255,0.18);
+  }
+  .scroll-cue{
+    position:absolute;
+    left:6vw; bottom:1.6rem;
+    z-index:5;
+    font-family:'Space Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.1em;
+    color:#3E2A1A;
+    opacity:0.75;
+    display:flex;
+    align-items:center;
+    gap:0.5em;
+  }
+  .scroll-cue .arrow{ animation:bob 1.8s ease-in-out infinite; }
+  @keyframes bob{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(6px);} }
+
+  /* ---------- generic section ---------- */
+  section{
+    position:relative;
+    padding:7.5rem 0;
+  }
+  .reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity 0.8s cubic-bezier(.2,.7,.2,1), transform 0.8s cubic-bezier(.2,.7,.2,1);
+  }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* ---------- intro (morning) ---------- */
+  .intro{ background:var(--cream); }
+  .intro .wrap{ max-width:760px; }
+  .intro h2{ font-size:clamp(2rem,4vw,2.9rem); }
+  .intro p{ font-size:1.12rem; line-height:1.7; margin-top:1.4rem; color:#3B352C; }
+  .intro .lede{ font-size:1.35rem; font-family:'Fraunces', serif; font-style:italic; font-weight:500; color:var(--laguna); margin-top:1.6rem;}
+
+  /* ---------- casas (midday) ---------- */
+  .casas{ background:var(--sand); }
+  .casas .head{ max-width:640px; margin-bottom:3.5rem; }
+  .casas h2{ font-size:clamp(2rem,4vw,2.9rem); }
+  .casas-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:1.8rem;
+  }
+  @media(min-width:760px){ .casas-grid{ grid-template-columns:1fr 1fr; } }
+  .casa-card{
+    background:var(--cream);
+    border-radius:22px;
+    overflow:hidden;
+    box-shadow:0 20px 40px -24px rgba(34,31,26,0.35);
+  }
+  .casa-card .art{
+    aspect-ratio:4/3;
+    background:linear-gradient(160deg,#EFE2C3,#D8C79C);
+  }
+  .casa-card .body{ padding:1.8rem 1.9rem 2.1rem; }
+  .casa-card .tag{
+    font-family:'Space Mono', monospace;
+    font-size:0.68rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--clay);
+  }
+  .casa-card h3{ font-size:1.6rem; margin-top:0.5rem; }
+  .casa-card p{ margin-top:0.7rem; color:#4A4335; line-height:1.6; font-size:0.98rem;}
+  .casa-card .meta{
+    display:flex; gap:1.4rem;
+    margin-top:1.2rem;
+    font-family:'Space Mono', monospace;
+    font-size:0.75rem;
+    color:var(--laguna);
+  }
+  .casa-card .meta span{ display:flex; align-items:center; gap:0.4em; }
+
+  /* ---------- features (afternoon) ---------- */
+  .features{ background:var(--laguna); color:var(--cream); }
+  .features .head{ max-width:640px; margin-bottom:3.2rem; }
+  .features .eyebrow{ color:#BFE0D6; }
+  .features h2{ font-size:clamp(2rem,4vw,2.9rem); color:var(--cream); }
+  .feat-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:1px;
+    background:rgba(245,239,224,0.16);
+    border-radius:18px;
+    overflow:hidden;
+  }
+  @media(min-width:700px){ .feat-grid{ grid-template-columns:1fr 1fr; } }
+  .feat-item{
+    background:var(--laguna);
+    padding:2.4rem 2rem;
+  }
+  .feat-item .icon{ width:34px; height:34px; margin-bottom:1.1rem; color:var(--gold); }
+  .feat-item h3{ font-size:1.2rem; font-weight:600; font-family:'Work Sans',sans-serif; }
+  .feat-item p{ margin-top:0.55rem; font-size:0.94rem; line-height:1.55; color:#CFE4DE; }
+
+  /* ---------- ubicacion (sunset) ---------- */
+  .ubicacion{
+    background:linear-gradient(180deg,#D98A4E 0%, #B5502D 45%, var(--dusk) 100%);
+    color:var(--cream);
+  }
+  .ubicacion .wrap{ max-width:720px; }
+  .ubicacion .eyebrow{ color:#F3D5B5; }
+  .ubicacion h2{ font-size:clamp(2rem,4vw,2.9rem); }
+  .ubicacion p{ margin-top:1.4rem; font-size:1.08rem; line-height:1.7; color:#F6E4CF; }
+  .ubicacion .laguna-line{
+    margin-top:2.4rem;
+    height:64px;
+    border-radius:6px;
+    background:linear-gradient(90deg, rgba(245,239,224,0.05), rgba(245,239,224,0.28), rgba(245,239,224,0.05));
+  }
+
+  /* ---------- footer / contacto (night) ---------- */
+  footer{
+    background:var(--midnight);
+    color:var(--cream);
+    padding:7rem 0 3rem;
+    position:relative;
+    overflow:hidden;
+  }
+  footer .stars{ position:absolute; inset:0; z-index:0; opacity:0.9; }
+  footer .wrap{ position:relative; z-index:2; max-width:700px; text-align:left; }
+  footer .eyebrow{ color:#B9A9E0; }
+  footer h2{ font-size:clamp(2.1rem,5vw,3.2rem); color:var(--star); }
+  footer p.sub{ margin-top:1.1rem; font-size:1.05rem; line-height:1.6; color:#D8CFEA; max-width:32em; }
+  footer .cta-row{ margin-top:2.2rem; }
+  footer .btn-solid{ background:var(--gold); color:#2A1B12; box-shadow:0 8px 24px -8px rgba(232,169,60,0.45); }
+  footer .btn-outline{ border-color:rgba(245,239,224,0.5); color:var(--cream); background:transparent; }
+  .fine{
+    margin-top:4.5rem;
+    padding-top:1.8rem;
+    border-top:1px solid rgba(245,239,224,0.15);
+    display:flex; flex-wrap:wrap; gap:0.8rem 1.6rem;
+    justify-content:space-between;
+    font-family:'Space Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.04em;
+    color:#8F86A8;
+    position:relative; z-index:2;
+  }
+  .fine a{ text-decoration:none; color:#C8BEE6; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .reveal{ transition:none; opacity:1; transform:none; }
+    .scroll-cue .arrow{ animation:none; }
+    .sun-rail .dot, .sun-rail .time-label{ transition:none; }
+  }
+</style>
+</head>
+<body data-time="amanecer">
+
+  <div class="sun-rail" aria-hidden="true">
+    <div class="dot"></div>
+    <div class="time-label" id="railLabel">06:00</div>
+  </div>
+
+  <nav>
+    <span class="brand">Quintas de Conde</span>
+    <span class="links">
+      <a href="#casas">Casas</a>
+      <a href="#ubicacion">Ubicación</a>
+      <a href="#contacto">Reservar</a>
+    </span>
+  </nav>
+
+  <header class="hero">
+    <div class="scene" aria-hidden="true">
+      <svg viewBox="0 0 1200 800" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="960" cy="230" r="120" fill="#FFF4D6" opacity="0.85"/>
+        <path d="M0 560 Q 300 500 600 545 T 1200 530 V 800 H 0 Z" fill="#3E7268" opacity="0.55"/>
+        <path d="M0 610 Q 320 560 640 600 T 1200 585 V 800 H 0 Z" fill="#1B4B43" opacity="0.7"/>
+        <path d="M0 660 Q 300 700 600 662 T 1200 675 V 800 H 0 Z" fill="#123A34"/>
+        <g transform="translate(150,560)" opacity="0.92">
+          <polygon points="0,-60 -55,0 55,0" fill="#B5502D"/>
+          <rect x="-40" y="0" width="80" height="55" fill="#4A2E1C"/>
+          <rect x="-8" y="18" width="16" height="37" fill="#2A1B12"/>
+        </g>
+        <g transform="translate(255,585) scale(0.8)" opacity="0.92">
+          <polygon points="0,-60 -55,0 55,0" fill="#8C3A22"/>
+          <rect x="-40" y="0" width="80" height="55" fill="#3A2415"/>
+          <rect x="-8" y="18" width="16" height="37" fill="#2A1B12"/>
+        </g>
+        <g stroke="#123A34" stroke-width="4" opacity="0.5" stroke-linecap="round">
+          <path d="M60 640 Q 68 605 55 585"/>
+          <path d="M100 655 Q 108 615 96 590"/>
+          <path d="M950 630 Q 958 598 946 578"/>
+          <path d="M1000 648 Q 1010 610 995 585"/>
+          <path d="M1050 636 Q 1058 602 1044 582"/>
+        </g>
+      </svg>
+    </div>
+    <div class="hero-content">
+      <div class="eyebrow">San Miguel del Monte · Buenos Aires</div>
+      <h1>Quintas <em>de Conde</em></h1>
+      <p class="tagline">Dos casas quinta, cada una completamente privada, a metros de la laguna. Un lugar para desconectar en pareja, en grupo o en familia — y sí, tu perro también está invitado.</p>
+      <div class="cta-row">
+        <a class="btn btn-solid" href="https://wa.me/5492271414172" target="_blank" rel="noopener">
+          <span>Reservar por WhatsApp</span>
+        </a>
+        <a class="btn btn-outline" href="https://www.instagram.com/quintasdeconde/" target="_blank" rel="noopener">
+          <span>Ver en Instagram</span>
+        </a>
+      </div>
+    </div>
+    <div class="scroll-cue"><span class="arrow">↓</span> Descubre tu quinta</div>
+  </header>
+
+  <section class="intro" data-section="manana">
+    <div class="wrap reveal">
+      <div class="eyebrow">Media mañana · 10:00</div>
+      <h2>Tu propia quinta, sin compartir nada</h2>
+      <p>En Quintas de Conde no vas a cruzarte con otros huéspedes ni compartir espacios comunes con desconocidos. Cada casa es una unidad privada e independiente, pensada para que la estancia sea solo tuya: tu ritmo, tu horario, tu tranquilidad.</p>
+      <p class="lede">Aire de campo, a un paso de la laguna de San Miguel del Monte.</p>
+    </div>
+  </section>
+
+  <section class="casas" id="casas" data-section="mediodia">
+    <div class="wrap">
+      <div class="head reveal">
+        <div class="eyebrow">Mediodía · 13:00</div>
+        <h2>Dos casas, dos quintas para elegir</h2>
+      </div>
+      <div class="casas-grid">
+        <article class="casa-card reveal">
+          <div class="art"></div>
+          <div class="body">
+            <div class="tag">Casa Quinta I</div>
+            <h3>Casa Quinta I</h3>
+            <p>Unidad privada con jardín propio, ambiente cálido de campo y todo lo necesario para instalarte sin pensar en nada más.</p>
+            <div class="meta">
+              <span>🧑‍🧑‍🧒‍🧒 2–5 personas</span>
+              <span>🐶 Petfriendly</span>
+            </div>
+          </div>
+        </article>
+        <article class="casa-card reveal">
+          <div class="art" style="background:linear-gradient(160deg,#E3D4AE,#C9B589);"></div>
+          <div class="body">
+            <div class="tag">Casa Quinta II</div>
+            <h3>Casa Quinta II</h3>
+            <p>La segunda unidad de la propiedad, igual de privada e independiente, ideal para otro grupo o para reservar ambas casas juntas.</p>
+            <div class="meta">
+              <span>🧑‍🧑‍🧒‍🧒 2–5 personas</span>
+              <span>🐶 Petfriendly</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="features" data-section="tarde">
+    <div class="wrap">
+      <div class="head reveal">
+        <div class="eyebrow">Tarde · 17:00</div>
+        <h2>Todo lo que hace fácil tu estadía</h2>
+      </div>
+      <div class="feat-grid">
+        <div class="feat-item reveal">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 11.5 12 4l9 7.5"/><path d="M5 10v9h14v-9"/></svg>
+          <h3>Unidades privadas</h3>
+          <p>Cada casa es independiente. Durante tu estadía, la quinta es solo para tu grupo.</p>
+        </div>
+        <div class="feat-item reveal">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="9" r="3"/><path d="M5 11c-1.2 1-1.7 2.6-1 4M19 11c1.2 1 1.7 2.6 1 4M8 15c-.6 1.4-.3 2.7 1 3.5M16 15c.6 1.4.3 2.7-1 3.5"/></svg>
+          <h3>Petfriendly</h3>
+          <p>Tu perro viene con vos. En Quintas de Conde no hace falta dejarlo en casa.</p>
+        </div>
+        <div class="feat-item reveal">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3 3-5 7-5s7 2 7 5"/><circle cx="17" cy="8" r="3" opacity="0.6"/></svg>
+          <h3>Capacidad flexible</h3>
+          <p>De 2 a 5 personas por casa. Perfecto para una escapada de a dos o en grupo.</p>
+        </div>
+        <div class="feat-item reveal">
+          <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.4"/></svg>
+          <h3>A metros de la laguna</h3>
+          <p>En pleno San Miguel del Monte, con la laguna como paisaje de fondo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ubicacion" id="ubicacion" data-section="atardecer">
+    <div class="wrap reveal">
+      <div class="eyebrow">Atardecer · 19:00</div>
+      <h2>San Miguel del Monte, a la orilla de la laguna</h2>
+      <p>San Miguel del Monte es uno de los destinos de laguna más conocidos de la provincia de Buenos Aires, elegido para escapadas de fin de semana lejos de la ciudad. Quintas de Conde está ahí mismo: dos casas quinta pensadas para que el plan sea simple — llegar, instalarte y no hacer nada más que descansar.</p>
+      <div class="laguna-line" aria-hidden="true"></div>
+    </div>
+  </section>
+
+  <footer id="contacto">
+    <svg class="stars" viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <g fill="#F1D9A0">
+        <circle cx="80" cy="60" r="1.6" opacity="0.8"/>
+        <circle cx="200" cy="140" r="1.2" opacity="0.6"/>
+        <circle cx="340" cy="50" r="1.8" opacity="0.7"/>
+        <circle cx="480" cy="110" r="1.3" opacity="0.5"/>
+        <circle cx="610" cy="40" r="1.6" opacity="0.75"/>
+        <circle cx="740" cy="150" r="1.2" opacity="0.55"/>
+        <circle cx="880" cy="70" r="1.9" opacity="0.8"/>
+        <circle cx="1010" cy="130" r="1.3" opacity="0.6"/>
+        <circle cx="1130" cy="55" r="1.6" opacity="0.7"/>
+        <circle cx="150" cy="220" r="1.1" opacity="0.5"/>
+        <circle cx="960" cy="230" r="1.4" opacity="0.6"/>
+      </g>
+    </svg>
+    <div class="wrap">
+      <div class="eyebrow">Noche · reservas</div>
+      <h2>Reserva tu quinta</h2>
+      <p class="sub">Escríbenos por WhatsApp y cuéntanos qué fechas tienes en mente. Te contamos disponibilidad y todo lo que necesitas para organizar tu estadía.</p>
+      <div class="cta-row">
+        <a class="btn btn-solid" href="https://wa.me/5492271414172" target="_blank" rel="noopener">Escribir por WhatsApp</a>
+        <a class="btn btn-outline" href="https://www.instagram.com/quintasdeconde/" target="_blank" rel="noopener">@quintasdeconde</a>
+      </div>
+    </div>
+    <div class="wrap fine">
+      <span>Quintas de Conde · San Miguel del Monte, Buenos Aires</span>
+      <span>
+        <a href="https://www.instagram.com/quintasdeconde/" target="_blank" rel="noopener">Instagram</a>
+        &nbsp;·&nbsp;
+        <a href="https://wa.me/5492271414172" target="_blank" rel="noopener">WhatsApp</a>
+      </span>
+    </div>
+  </footer>
+
+  <script>
+    // scroll progress -> sun rail position + time label
+    const timeLabels = {
+      amanecer:'06:00', manana:'10:00', mediodia:'13:00',
+      tarde:'17:00', atardecer:'19:00', noche:'23:00'
+    };
+    const railLabel = document.getElementById('railLabel');
+    const sections = document.querySelectorAll('[data-section]');
+
+    function onScroll(){
+      const doc = document.documentElement;
+      const total = doc.scrollHeight - doc.clientHeight;
+      const progress = total > 0 ? Math.min(1, Math.max(0, window.scrollY / total)) : 0;
+      doc.style.setProperty('--progress', progress.toFixed(4));
+    }
+
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if(!ticking){
+        requestAnimationFrame(() => { onScroll(); ticking = false; });
+        ticking = true;
+      }
+    }, { passive:true });
+    onScroll();
+
+    // reveal on scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold:0.15 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+    // active time-of-day label from section in view
+    const io2 = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if(e.isIntersecting){
+          const key = e.target.getAttribute('data-section');
+          document.body.setAttribute('data-time', key);
+          if(timeLabels[key]) railLabel.textContent = timeLabels[key];
+        }
+      });
+    }, { threshold:0.5 });
+    sections.forEach(s => io2.observe(s));
+    io2.observe(document.querySelector('.hero'));
+  </script>
+</body>
+</html>
